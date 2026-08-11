@@ -283,7 +283,7 @@ No tokens or PII in logs.
 
 Editorial-premium, not a Shopify theme, not a Tailwind template.
 
-- **Type:** Playfair Display (display/headings) + Inter (UI/body). Fluid `clamp()` scale.
+- **Type:** Sora (display/headings) + Inter (UI/body). Fluid `clamp()` scale.
 - **Color:** ink `#1C1917` primary · warm gold `#A16207` accent (WCAG-adjusted) ·
   stone-tinted neutrals `#FAFAF9`→`#0C0A09` · full light/dark token parity.
 - **Space:** 4px base, standard density scale (16→64px sections).

@@ -1,21 +1,25 @@
-import type { Metadata, Viewport } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
-import './globals.css';
+import type { Metadata, Viewport } from "next";
+import { Inter, Sora } from "next/font/google";
+import "./globals.css";
 
-import { rootMetadata } from '@/lib/seo/metadata';
-import { JsonLd, organizationSchema, websiteSchema } from '@/lib/seo/jsonld';
-import { publicEnv } from '@/lib/validation/env';
-import { getFooterCollections, getNavigation, getPopularSearches } from '@/lib/navigation';
+import { rootMetadata } from "@/lib/seo/metadata";
+import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo/jsonld";
+import { publicEnv } from "@/lib/validation/env";
+import {
+  getFooterCollections,
+  getNavigation,
+  getPopularSearches,
+} from "@/lib/navigation";
 
-import { ToastProvider } from '@/components/ui/toast';
-import { CartProvider } from '@/components/cart/cart-provider';
-import { CartDrawer } from '@/components/cart/cart-drawer';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { BottomBar } from '@/components/layout/bottom-bar';
-import { ThemeScript } from '@/components/layout/theme-toggle';
-import { ConsentBanner } from '@/components/layout/consent-banner';
-import { PageView } from '@/components/analytics/page-view';
+import { ToastProvider } from "@/components/ui/toast";
+import { CartProvider } from "@/components/cart/cart-provider";
+import { CartDrawer } from "@/components/cart/cart-drawer";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { BottomBar } from "@/components/layout/bottom-bar";
+import { ThemeScript } from "@/components/layout/theme-toggle";
+import { ConsentBanner } from "@/components/layout/consent-banner";
+import { PageView } from "@/components/analytics/page-view";
 
 /**
  * Root layout.
@@ -28,34 +32,40 @@ import { PageView } from '@/components/analytics/page-view';
 
 // Self-hosted at build time — no render-blocking request to Google's CDN.
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-  weight: ['400', '500', '600'],
+// Sora — geometric display for headings; pairs with Inter for a clean, modern
+// ecommerce look. Self-hosted at build time via next/font.
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = rootMetadata;
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   // Never cap zoom — pinch-to-zoom is an accessibility requirement.
   maximumScale: 5,
-  viewportFit: 'cover',
+  viewportFit: "cover",
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#faf9f7' },
-    { media: '(prefers-color-scheme: dark)', color: '#0c0a09' },
+    { media: "(prefers-color-scheme: light)", color: "#faf9f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0a09" },
   ],
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [navigation, popularSearches, footerCollections] = await Promise.all([
     getNavigation(),
     getPopularSearches(),
@@ -63,7 +73,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   ]);
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${sora.variable}`}
+    >
       <head>
         <ThemeScript />
       </head>
@@ -86,7 +100,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </ToastProvider>
 
         <PageView />
-        <ConsentBanner ga4Id={publicEnv.ga4Id} metaPixelId={publicEnv.metaPixelId} />
+        <ConsentBanner
+          ga4Id={publicEnv.ga4Id}
+          metaPixelId={publicEnv.metaPixelId}
+        />
       </body>
     </html>
   );

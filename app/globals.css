@@ -2,15 +2,15 @@
 
 /* ==========================================================================
    TRACKIFY DESIGN SYSTEM
-   Editorial premium · Soft-UI evolution · Playfair Display + Inter
+   Editorial premium · Soft-UI evolution · Sora + Inter
    Every color is defined on :root first, then overridden for dark.
    ========================================================================== */
 
 @theme {
   /* ── Type ──────────────────────────────────────────────────────────── */
-  /* --font-playfair / --font-inter are injected by next/font in app/layout.tsx,
+  /* --font-sora / --font-inter are injected by next/font in app/layout.tsx,
      which self-hosts the files. The fallbacks keep text readable if they fail. */
-  --font-display: var(--font-playfair), ui-serif, Georgia, 'Times New Roman', serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace;
 
