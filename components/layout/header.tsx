@@ -31,6 +31,9 @@ export function Header({
   popularSearches: string[];
 }) {
   const pathname = usePathname();
+  // Warm accent-soft header only on the About page (matches its hero); the
+  // default canvas header everywhere else.
+  const isAbout = pathname === "/about";
   const { totalQuantity, open, signedIn } = useCart();
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [navOpen, setNavOpen] = React.useState(false);
@@ -72,7 +75,11 @@ export function Header({
 
       <header
         className={cn(
-          "sticky top-0 z-40 border-b bg-canvas/85 backdrop-blur-md transition-[border-color,box-shadow] duration-300",
+          // Warm accent-soft tint only on the About page (matches its hero);
+          // the default canvas header everywhere else. The colour never
+          // changes on scroll — only the border/shadow do.
+          "sticky top-0 z-40 border-b transition-[border-color,background-color,box-shadow] duration-300",
+          isAbout ? "bg-accent-soft" : "bg-canvas/85 backdrop-blur-md",
           scrolled ? "border-line shadow-e1" : "border-transparent",
         )}
       >
