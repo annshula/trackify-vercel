@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRecentlyViewed } from '@/hooks/use-recently-viewed';
-import { formatMoney } from '@/lib/utils/money';
-import { Skeleton } from '@/components/ui/primitives';
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRecentlyViewed } from "@/hooks/use-recently-viewed";
+import { formatMoney } from "@/lib/utils/money";
+import { Skeleton } from "@/components/ui/primitives";
 
 type MiniProduct = {
   handle: string;
@@ -22,7 +22,11 @@ type MiniProduct = {
  * catalog endpoint. Renders nothing at all until there is something to show,
  * so it never occupies space or shifts layout on a first visit.
  */
-export function RecentlyViewedSection({ excludeHandle }: { excludeHandle?: string }) {
+export function RecentlyViewedSection({
+  excludeHandle,
+}: {
+  excludeHandle?: string;
+}) {
   const { handles, hydrated } = useRecentlyViewed();
   const [products, setProducts] = React.useState<MiniProduct[] | null>(null);
 
@@ -35,14 +39,16 @@ export function RecentlyViewedSection({ excludeHandle }: { excludeHandle?: strin
     if (!hydrated || wanted.length === 0) return;
 
     const controller = new AbortController();
-    fetch(`/api/products?handles=${encodeURIComponent(wanted.join(','))}`, {
+    fetch(`/api/products?handles=${encodeURIComponent(wanted.join(","))}`, {
       signal: controller.signal,
     })
-      .then((response) => (response.ok ? response.json() : Promise.reject(new Error('failed'))))
+      .then((response) =>
+        response.ok ? response.json() : Promise.reject(new Error("failed")),
+      )
       .then((data: { products: MiniProduct[] }) => setProducts(data.products))
       .catch((error) => {
         // An aborted request is a superseded one, not a failure to report.
-        if ((error as Error).name !== 'AbortError') setProducts([]);
+        if ((error as Error).name !== "AbortError") setProducts([]);
       });
 
     return () => controller.abort();
@@ -62,15 +68,21 @@ export function RecentlyViewedSection({ excludeHandle }: { excludeHandle?: strin
         {products === null
           ? wanted.map((handle) => (
               <li key={handle} className="w-36 shrink-0 snap-start sm:w-44">
-                <Skeleton className="aspect-[4/5] w-full rounded-md" />
+                <Skeleton className="aspect-4/5 w-full rounded-md" />
                 <Skeleton className="mt-2.5 h-3.5 w-3/4" />
                 <Skeleton className="mt-1.5 h-3 w-1/3" />
               </li>
             ))
           : products.map((product) => (
-              <li key={product.handle} className="w-36 shrink-0 snap-start sm:w-44">
-                <Link href={`/products/${product.handle}`} className="group block">
-                  <span className="relative block aspect-[4/5] overflow-hidden rounded-md bg-surface-sunken">
+              <li
+                key={product.handle}
+                className="w-36 shrink-0 snap-start sm:w-44"
+              >
+                <Link
+                  href={`/products/${product.handle}`}
+                  className="group block"
+                >
+                  <span className="relative block aspect-4/5 overflow-hidden rounded-md bg-surface-sunken">
                     {product.image && (
                       <Image
                         src={product.image.url}
@@ -85,7 +97,9 @@ export function RecentlyViewedSection({ excludeHandle }: { excludeHandle?: strin
                     {product.title}
                   </span>
                   <span className="mt-0.5 block text-sm tabular-nums text-ink-muted">
-                    {formatMoney(product.price, product.currencyCode, { trimZeroCents: true })}
+                    {formatMoney(product.price, product.currencyCode, {
+                      trimZeroCents: true,
+                    })}
                   </span>
                 </Link>
               </li>

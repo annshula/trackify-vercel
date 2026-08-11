@@ -12,6 +12,7 @@ import 'server-only';
 
 const SECRET_KEYS = [
   'SHOPIFY_ADMIN_API_TOKEN',
+  'SHOPIFY_ADMIN_CLIENT_SECRET',
   'SHOPIFY_STOREFRONT_API_TOKEN',
   'SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_SECRET',
   'SHOPIFY_WEBHOOK_SECRET',
@@ -68,12 +69,23 @@ function buildEnv() {
     throw new Error(`SHOPIFY_API_VERSION must look like 2025-10, received "${apiVersion}".`);
   }
 
+  // Admin GraphQL is authenticated one of two ways (see lib/shopify/admin-token.ts):
+  //   1. A static custom-app token via SHOPIFY_ADMIN_API_TOKEN (legacy), or
+  //   2. The client credentials grant via SHOPIFY_ADMIN_CLIENT_ID + _SECRET,
+  //      exchanged programmatically for a 24h access token (2026 Dev Dashboard apps).
+  const adminToken = optional('SHOPIFY_ADMIN_API_TOKEN');
+  const adminClientId = optional('SHOPIFY_ADMIN_CLIENT_ID');
+  const adminClientSecret = optional('SHOPIFY_ADMIN_CLIENT_SECRET');
+
   return {
     storeDomain,
     apiVersion,
 
-    adminToken: required('SHOPIFY_ADMIN_API_TOKEN', 'Create a custom app and copy its Admin API access token.'),
+    adminToken,
+    adminClientId,
+    adminClientSecret,
     adminEndpoint: `https://${storeDomain}/admin/api/${apiVersion}/graphql.json`,
+    adminTokenUrl: `https://${storeDomain}/admin/oauth/access_token`,
 
     storefrontToken: required(
       'SHOPIFY_STOREFRONT_API_TOKEN',
@@ -96,6 +108,15 @@ function buildEnv() {
 export function serverEnv(): ServerEnv {
   cached ??= buildEnv();
   return cached;
+}
+
+/**
+ * True when at least one Admin GraphQL auth path is configured:
+ * a static custom-app token, or both halves of the client credentials pair.
+ */
+export function isAdminAuthConfigured(): boolean {
+  const env = serverEnv();
+  return Boolean(env.adminToken) || (Boolean(env.adminClientId) && Boolean(env.adminClientSecret));
 }
 
 /** Customer Account API config, or null when the channel is not configured yet. */

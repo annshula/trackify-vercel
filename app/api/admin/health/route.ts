@@ -1,13 +1,16 @@
-import { NextResponse } from 'next/server';
-import { isAuthorizedAdminRequest, unauthorizedResponse } from '@/lib/admin/auth';
-import { productRepository } from '@/lib/catalog';
-import { adminRequest } from '@/lib/shopify/admin';
-import { SHOP_QUERY } from '@/lib/shopify/queries/admin';
-import { isCustomerAccountConfigured } from '@/lib/shopify/customer-account';
-import { serverEnv } from '@/lib/validation/env';
-import { auditCatalog, catalogSchema } from '@/lib/catalog/schema';
-import { readJsonFile, CATALOG_PATH } from '@/lib/catalog/storage';
-import type { Catalog } from '@/types/catalog';
+import { NextResponse } from "next/server";
+import {
+  isAuthorizedAdminRequest,
+  unauthorizedResponse,
+} from "@/lib/admin/auth";
+import { productRepository } from "@/lib/catalog";
+import { adminRequest } from "@/lib/shopify/admin";
+import { SHOP_QUERY } from "@/lib/shopify/queries/admin";
+import { isCustomerAccountConfigured } from "@/lib/shopify/customer-account";
+import { isAdminAuthConfigured, serverEnv } from "@/lib/validation/env";
+import { auditCatalog, catalogSchema } from "@/lib/catalog/schema";
+import { readJsonFile, CATALOG_PATH } from "@/lib/catalog/storage";
+import type { Catalog } from "@/types/catalog";
 
 /**
  * GET /api/admin/health
@@ -17,8 +20,8 @@ import type { Catalog } from '@/types/catalog';
  * only whether one is present.
  */
 
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request): Promise<Response> {
   if (!isAuthorizedAdminRequest(request)) return unauthorizedResponse();
@@ -30,7 +33,7 @@ export async function GET(request: Request): Promise<Response> {
     storeDomain: env.storeDomain,
     apiVersion: env.apiVersion,
     configured: {
-      adminApi: Boolean(env.adminToken),
+      adminApi: isAdminAuthConfigured(),
       storefrontApi: Boolean(env.storefrontToken),
       customerAccountApi: isCustomerAccountConfigured(),
       webhookSecret: Boolean(env.webhookSecret),
@@ -41,7 +44,9 @@ export async function GET(request: Request): Promise<Response> {
   // ── Shopify reachability ──────────────────────────────────────────────
   try {
     const shopStarted = Date.now();
-    const data = await adminRequest<{ shop: { name: string; currencyCode: string } }>({
+    const data = await adminRequest<{
+      shop: { name: string; currencyCode: string };
+    }>({
       query: SHOP_QUERY,
       retries: 1,
       timeoutMs: 8000,
@@ -59,7 +64,9 @@ export async function GET(request: Request): Promise<Response> {
   // ── Catalog integrity ─────────────────────────────────────────────────
   try {
     const meta = await productRepository.getCatalogMeta();
-    const products = await productRepository.getAllProducts({ includeUnavailable: true });
+    const products = await productRepository.getAllProducts({
+      includeUnavailable: true,
+    });
     const collections = await productRepository.getAllCollections();
 
     const generatedAt = new Date(meta.generatedAt);
@@ -76,8 +83,13 @@ export async function GET(request: Request): Promise<Response> {
       // A catalog older than a day means the webhook path is probably broken.
       stale: ageMs > 24 * 3_600_000,
       products: products.length,
-      publishedProducts: products.filter((p) => p.status === 'ACTIVE' && p.publishedOnline).length,
-      variants: products.reduce((sum, product) => sum + product.variants.length, 0),
+      publishedProducts: products.filter(
+        (p) => p.status === "ACTIVE" && p.publishedOnline,
+      ).length,
+      variants: products.reduce(
+        (sum, product) => sum + product.variants.length,
+        0,
+      ),
       collections: collections.length,
       schemaValid: parsed?.success ?? false,
       auditIssueCount: auditIssues.length,
@@ -92,7 +104,17 @@ export async function GET(request: Request): Promise<Response> {
   const status = shopifyOk && catalogOk ? 200 : 503;
 
   return NextResponse.json(
-    { status: status === 200 ? 'healthy' : 'degraded', checkedInMs: Date.now() - started, ...checks },
-    { status, headers: { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' } },
+    {
+      status: status === 200 ? "healthy" : "degraded",
+      checkedInMs: Date.now() - started,
+      ...checks,
+    },
+    {
+      status,
+      headers: {
+        "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow",
+      },
+    },
   );
 }

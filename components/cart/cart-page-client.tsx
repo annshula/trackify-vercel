@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import type { Cart, CartLine } from '@/types/commerce';
-import { useCart } from './cart-provider';
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import type { Cart, CartLine } from "@/types/commerce";
+import { useCart } from "./cart-provider";
 import {
   applyDiscountCode,
   proceedToCheckout,
   removeCartLine,
   removeDiscountCode,
   updateCartLine,
-} from '@/lib/cart/actions';
-import { Button } from '@/components/ui/button';
-import { ButtonLink } from '@/components/ui/button';
-import { QuantityStepper } from '@/components/ui/form';
-import { Alert, EmptyState, Price } from '@/components/ui/primitives';
-import { AlertIcon, BagIcon, TrashIcon } from '@/components/ui/icons';
-import { formatMoneyV2, moneyToNumber } from '@/lib/utils/money';
-import { track } from '@/lib/analytics';
+} from "@/lib/cart/actions";
+import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
+import { QuantityStepper } from "@/components/ui/form";
+import { Alert, EmptyState, Price } from "@/components/ui/primitives";
+import { AlertIcon, BagIcon, TrashIcon } from "@/components/ui/icons";
+import { formatMoneyV2, moneyToNumber } from "@/lib/utils/money";
+import { track } from "@/lib/analytics";
 
 /**
  * Full cart page.
@@ -40,7 +40,7 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
   const onCheckout = async () => {
     setCheckingOut(true);
     setIssues([]);
-    track('begin_checkout', {
+    track("begin_checkout", {
       currency: cart?.cost.totalAmount.currencyCode,
       value: moneyToNumber(cart?.cost.subtotalAmount),
     });
@@ -48,7 +48,8 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
     const result = await run(() => proceedToCheckout());
     if (!result.ok) {
       setCheckingOut(false);
-      if (result.issues?.length) setIssues(result.issues.map((issue) => issue.message));
+      if (result.issues?.length)
+        setIssues(result.issues.map((issue) => issue.message));
     }
   };
 
@@ -58,7 +59,11 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
         icon={<BagIcon size={24} />}
         title="Your bag is empty"
         description="Once you add something, it will appear here and stay for 30 days."
-        action={<ButtonLink href="/collections" size="lg">Start shopping</ButtonLink>}
+        action={
+          <ButtonLink href="/collections" size="lg">
+            Start shopping
+          </ButtonLink>
+        }
       />
     );
   }
@@ -78,7 +83,9 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
                 <li key={issue}>{issue}</li>
               ))}
             </ul>
-            <p className="mt-2">Review the changes above, then continue to checkout.</p>
+            <p className="mt-2">
+              Review the changes above, then continue to checkout.
+            </p>
           </Alert>
         )}
 
@@ -95,7 +102,7 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
                 })
               }
               onRemove={() => {
-                track('remove_from_cart', {
+                track("remove_from_cart", {
                   currency: line.cost.totalAmount.currencyCode,
                   value: moneyToNumber(line.cost.totalAmount),
                   items: [
@@ -121,7 +128,10 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
         </div>
       </div>
 
-      <aside aria-labelledby="summary-heading" className="lg:sticky lg:top-24 lg:self-start">
+      <aside
+        aria-labelledby="summary-heading"
+        className="lg:sticky lg:top-24 lg:self-start"
+      >
         <div className="rounded-lg border border-line bg-surface p-5 sm:p-6">
           <h2 id="summary-heading" className="text-lg">
             Summary
@@ -132,13 +142,20 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
           <dl className="mt-5 space-y-2.5 border-t border-line pt-5 text-sm">
             <div className="flex justify-between">
               <dt className="text-ink-muted">Subtotal</dt>
-              <dd className="tabular-nums">{formatMoneyV2(cart?.cost.subtotalAmount)}</dd>
+              <dd className="tabular-nums">
+                {formatMoneyV2(cart?.cost.subtotalAmount)}
+              </dd>
             </div>
 
             {cart?.discountAllocations.map((allocation, index) => (
-              <div key={`${allocation.code ?? allocation.title}-${index}`} className="flex justify-between text-success">
-                <dt>{allocation.code ?? allocation.title ?? 'Discount'}</dt>
-                <dd className="tabular-nums">−{formatMoneyV2(allocation.discountedAmount)}</dd>
+              <div
+                key={`${allocation.code ?? allocation.title}-${index}`}
+                className="flex justify-between text-success"
+              >
+                <dt>{allocation.code ?? allocation.title ?? "Discount"}</dt>
+                <dd className="tabular-nums">
+                  −{formatMoneyV2(allocation.discountedAmount)}
+                </dd>
               </div>
             ))}
 
@@ -153,7 +170,9 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
 
             <div className="flex items-baseline justify-between border-t border-line pt-3.5 text-base">
               <dt className="font-medium">Total</dt>
-              <dd className="text-xl font-medium tabular-nums">{formatMoneyV2(cart?.cost.totalAmount)}</dd>
+              <dd className="text-xl font-medium tabular-nums">
+                {formatMoneyV2(cart?.cost.totalAmount)}
+              </dd>
             </div>
           </dl>
 
@@ -169,8 +188,8 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
           </Button>
 
           <p className="mt-3 text-center text-xs leading-relaxed text-ink-subtle">
-            Shipping, taxes and any additional discounts are calculated by Shopify at checkout.
-            Payment is processed securely by Shopify.
+            Shipping, taxes and any additional discounts are calculated by
+            Shopify at checkout. Payment is processed securely by Shopify.
           </p>
         </div>
       </aside>
@@ -190,15 +209,22 @@ function CartPageLine({
   onRemove: () => void;
 }) {
   const { merchandise } = line;
-  const options = merchandise.selectedOptions.filter((option) => option.value !== 'Default Title');
+  const options = merchandise.selectedOptions.filter(
+    (option) => option.value !== "Default Title",
+  );
 
   const max =
-    typeof merchandise.quantityAvailable === 'number' && merchandise.quantityAvailable > 0
+    typeof merchandise.quantityAvailable === "number" &&
+    merchandise.quantityAvailable > 0
       ? Math.min(merchandise.quantityAvailable, 99)
       : 99;
 
   return (
-    <li className={quantity === 0 ? 'opacity-40 transition-opacity' : 'transition-opacity'}>
+    <li
+      className={
+        quantity === 0 ? "opacity-40 transition-opacity" : "transition-opacity"
+      }
+    >
       <div className="flex gap-4 py-6 sm:gap-6">
         <Link
           href={`/products/${merchandise.product.handle}`}
@@ -239,9 +265,15 @@ function CartPageLine({
                   ))}
                 </dl>
               )}
-              {merchandise.sku && <p className="mt-1 text-xs text-ink-subtle">SKU {merchandise.sku}</p>}
+              {merchandise.sku && (
+                <p className="mt-1 text-xs text-ink-subtle">
+                  SKU {merchandise.sku}
+                </p>
+              )}
               {!merchandise.availableForSale && (
-                <p className="mt-1.5 text-sm font-medium text-danger">No longer available</p>
+                <p className="mt-1.5 text-sm font-medium text-danger">
+                  No longer available
+                </p>
               )}
             </div>
 
@@ -279,7 +311,9 @@ function CartPageLine({
 
             <p className="text-sm">
               <span className="text-ink-muted">Line total </span>
-              <span className="font-medium tabular-nums">{formatMoneyV2(line.cost.totalAmount)}</span>
+              <span className="font-medium tabular-nums">
+                {formatMoneyV2(line.cost.totalAmount)}
+              </span>
             </p>
           </div>
         </div>
@@ -290,7 +324,7 @@ function CartPageLine({
 
 function DiscountForm({ cart }: { cart: Cart | null }) {
   const { run } = useCart();
-  const [code, setCode] = React.useState('');
+  const [code, setCode] = React.useState("");
   const [busy, setBusy] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const inputId = React.useId();
@@ -303,11 +337,13 @@ function DiscountForm({ cart }: { cart: Cart | null }) {
     setBusy(true);
     setError(null);
 
-    const result = await run(() => applyDiscountCode({ code: code.trim() }), { silent: true });
+    const result = await run(() => applyDiscountCode({ code: code.trim() }), {
+      silent: true,
+    });
     setBusy(false);
 
-    if (result.ok) setCode('');
-    else setError(result.error ?? 'That code could not be applied.');
+    if (result.ok) setCode("");
+    else setError(result.error ?? "That code could not be applied.");
   };
 
   return (
@@ -329,14 +365,22 @@ function DiscountForm({ cart }: { cart: Cart | null }) {
             autoCapitalize="characters"
             aria-invalid={Boolean(error) || undefined}
             aria-describedby={error ? `${inputId}-error` : undefined}
-            className="h-11 min-w-0 flex-1 rounded-md border border-line-strong bg-surface px-3.5 text-sm uppercase outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/25 aria-[invalid=true]:border-danger"
+            className="h-11 min-w-0 flex-1 rounded-md border border-line-strong bg-surface px-3.5 text-sm uppercase outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/25 aria-invalid:border-danger"
           />
-          <Button type="submit" variant="secondary" loading={busy} disabled={!code.trim()}>
+          <Button
+            type="submit"
+            variant="secondary"
+            loading={busy}
+            disabled={!code.trim()}
+          >
             Apply
           </Button>
         </div>
         {error && (
-          <p id={`${inputId}-error`} className="mt-1.5 text-xs font-medium text-danger">
+          <p
+            id={`${inputId}-error`}
+            className="mt-1.5 text-xs font-medium text-danger"
+          >
             {error}
           </p>
         )}
@@ -348,15 +392,21 @@ function DiscountForm({ cart }: { cart: Cart | null }) {
             <li key={discount.code}>
               <button
                 type="button"
-                onClick={() => run(() => removeDiscountCode({ code: discount.code }), { silent: true })}
+                onClick={() =>
+                  run(() => removeDiscountCode({ code: discount.code }), {
+                    silent: true,
+                  })
+                }
                 className={`inline-flex min-h-9 items-center gap-1.5 rounded-full px-3 text-xs font-semibold uppercase transition-colors ${
                   discount.applicable
-                    ? 'bg-success-soft text-success hover:opacity-80'
-                    : 'bg-danger-soft text-danger hover:opacity-80'
+                    ? "bg-success-soft text-success hover:opacity-80"
+                    : "bg-danger-soft text-danger hover:opacity-80"
                 }`}
               >
                 {discount.code}
-                {!discount.applicable && <span className="normal-case">(not applicable)</span>}
+                {!discount.applicable && (
+                  <span className="normal-case">(not applicable)</span>
+                )}
                 <span aria-hidden="true">×</span>
                 <span className="sr-only">Remove discount code</span>
               </button>

@@ -1,23 +1,28 @@
-import 'server-only';
-import { graphqlRequest, type GraphQLRequest } from './client';
-import { serverEnv } from '@/lib/validation/env';
+import "server-only";
+import { graphqlRequest, type GraphQLRequest } from "./client";
+import { getAdminAccessToken } from "./admin-token";
+import { serverEnv } from "@/lib/validation/env";
 
 /**
  * ShopifyAdminService — privileged, server-only.
  *
  * Used exclusively by the sync pipeline, webhook processing and diagnostics.
  * Never reachable from a customer-facing route handler.
+ *
+ * Authentication is resolved per call: either the static custom-app token or a
+ * 24h token obtained via the client credentials grant (cached in-process).
  */
 export async function adminRequest<TData, TVariables = Record<string, unknown>>(
   request: GraphQLRequest<TVariables>,
 ): Promise<TData> {
   const env = serverEnv();
+  const adminToken = await getAdminAccessToken();
   return graphqlRequest<TData, TVariables>(
     env.adminEndpoint,
-    { 'X-Shopify-Access-Token': env.adminToken },
-    'admin',
+    { "X-Shopify-Access-Token": adminToken },
+    "admin",
     // Admin data is authoritative and always fetched fresh.
-    { cache: 'no-store', timeoutMs: 30_000, ...request },
+    { cache: "no-store", timeoutMs: 30_000, ...request },
   );
 }
 
@@ -30,7 +35,11 @@ export type PageInfo = { hasNextPage: boolean; endCursor: string | null };
 export async function paginateAdmin<TNode>(
   query: string,
   connectionKey: string,
-  options: { pageSize?: number; variables?: Record<string, unknown>; onPage?: (nodes: TNode[], page: number) => void } = {},
+  options: {
+    pageSize?: number;
+    variables?: Record<string, unknown>;
+    onPage?: (nodes: TNode[], page: number) => void;
+  } = {},
 ): Promise<TNode[]> {
   type Connection = { nodes: TNode[]; pageInfo: PageInfo };
 
@@ -40,21 +49,26 @@ export async function paginateAdmin<TNode>(
   let page = 0;
 
   for (;;) {
-    const data: Record<string, Connection> = await adminRequest<Record<string, Connection>>({
+    const data: Record<string, Connection> = await adminRequest<
+      Record<string, Connection>
+    >({
       query,
       variables: { first: pageSize, after, ...options.variables },
     });
 
     const connection: Connection | undefined = data[connectionKey];
     if (!connection) {
-      throw new Error(`Admin response did not contain connection "${connectionKey}"`);
+      throw new Error(
+        `Admin response did not contain connection "${connectionKey}"`,
+      );
     }
 
     page += 1;
     collected.push(...connection.nodes);
     options.onPage?.(connection.nodes, page);
 
-    if (!connection.pageInfo.hasNextPage || !connection.pageInfo.endCursor) break;
+    if (!connection.pageInfo.hasNextPage || !connection.pageInfo.endCursor)
+      break;
     after = connection.pageInfo.endCursor;
   }
 

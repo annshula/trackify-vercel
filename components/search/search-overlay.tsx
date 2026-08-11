@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils/cn';
-import { CloseIcon, SearchIcon } from '@/components/ui/icons';
-import { Skeleton } from '@/components/ui/primitives';
-import { formatMoney } from '@/lib/utils/money';
-import { useLocalStorage } from '@/hooks/use-local-storage';
-import { track } from '@/lib/analytics';
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils/cn";
+import { CloseIcon, SearchIcon } from "@/components/ui/icons";
+import { Skeleton } from "@/components/ui/primitives";
+import { formatMoney } from "@/lib/utils/money";
+import { useLocalStorage } from "@/hooks/use-local-storage";
+import { track } from "@/lib/analytics";
 
 type SearchResults = {
   products: {
@@ -45,11 +45,14 @@ export function SearchOverlay({
 }) {
   const router = useRouter();
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const [term, setTerm] = React.useState('');
+  const [term, setTerm] = React.useState("");
   const [results, setResults] = React.useState<SearchResults>(EMPTY);
   const [loading, setLoading] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
-  const { value: recent, setValue: setRecent } = useLocalStorage<string[]>('tf_recent_searches', []);
+  const { value: recent, setValue: setRecent } = useLocalStorage<string[]>(
+    "tf_recent_searches",
+    [],
+  );
   const listboxId = React.useId();
 
   // Focus + scroll lock while open. Reset is handled by `key` on the caller,
@@ -59,7 +62,7 @@ export function SearchOverlay({
 
     const timer = window.setTimeout(() => inputRef.current?.focus(), 60);
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     return () => {
       window.clearTimeout(timer);
@@ -76,14 +79,17 @@ export function SearchOverlay({
     const timer = window.setTimeout(async () => {
       setLoading(true);
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
-          signal: controller.signal,
-        });
-        if (!response.ok) throw new Error('search failed');
+        const response = await fetch(
+          `/api/search?q=${encodeURIComponent(query)}`,
+          {
+            signal: controller.signal,
+          },
+        );
+        if (!response.ok) throw new Error("search failed");
         setResults((await response.json()) as SearchResults);
         setActiveIndex(-1);
       } catch (error) {
-        if ((error as Error).name !== 'AbortError') setResults(EMPTY);
+        if ((error as Error).name !== "AbortError") setResults(EMPTY);
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }
@@ -104,8 +110,13 @@ export function SearchOverlay({
     (value: string) => {
       const query = value.trim();
       if (!query) return;
-      setRecent((current) => [query, ...current.filter((item) => item !== query)].slice(0, 6));
-      track('search', { search_term: query, results_count: activeResults.products.length });
+      setRecent((current) =>
+        [query, ...current.filter((item) => item !== query)].slice(0, 6),
+      );
+      track("search", {
+        search_term: query,
+        results_count: activeResults.products.length,
+      });
       onClose();
       router.push(`/search?q=${encodeURIComponent(query)}`);
     },
@@ -113,22 +124,23 @@ export function SearchOverlay({
   );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       event.preventDefault();
       onClose();
       return;
     }
 
     const count = activeResults.products.length;
-    if (event.key === 'ArrowDown' && count > 0) {
+    if (event.key === "ArrowDown" && count > 0) {
       event.preventDefault();
       setActiveIndex((index) => (index + 1) % count);
-    } else if (event.key === 'ArrowUp' && count > 0) {
+    } else if (event.key === "ArrowUp" && count > 0) {
       event.preventDefault();
       setActiveIndex((index) => (index - 1 + count) % count);
-    } else if (event.key === 'Enter') {
+    } else if (event.key === "Enter") {
       event.preventDefault();
-      const active = activeIndex >= 0 ? activeResults.products[activeIndex] : null;
+      const active =
+        activeIndex >= 0 ? activeResults.products[activeIndex] : null;
       if (active) {
         onClose();
         router.push(`/products/${active.handle}`);
@@ -141,10 +153,19 @@ export function SearchOverlay({
   if (!open) return null;
 
   const hasQuery = term.trim().length >= 2;
-  const showEmpty = hasQuery && !isLoading && activeResults.products.length === 0 && activeResults.collections.length === 0;
+  const showEmpty =
+    hasQuery &&
+    !isLoading &&
+    activeResults.products.length === 0 &&
+    activeResults.collections.length === 0;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-canvas animate-fade-in" role="dialog" aria-modal="true" aria-label="Search products">
+    <div
+      className="fixed inset-0 z-50 flex flex-col bg-canvas animate-fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search products"
+    >
       <div className="border-b border-line bg-surface">
         <div className="container-page flex items-center gap-3 py-3">
           <SearchIcon size={20} className="shrink-0 text-ink-subtle" />
@@ -155,7 +176,11 @@ export function SearchOverlay({
             aria-expanded={activeResults.products.length > 0}
             aria-controls={listboxId}
             aria-autocomplete="list"
-            aria-activedescendant={activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined}
+            aria-activedescendant={
+              activeIndex >= 0
+                ? `${listboxId}-option-${activeIndex}`
+                : undefined
+            }
             value={term}
             onChange={(event) => setTerm(event.target.value)}
             onKeyDown={onKeyDown}
@@ -191,7 +216,11 @@ export function SearchOverlay({
                 />
               )}
               {popularSearches.length > 0 && (
-                <TermSection title="Popular right now" terms={popularSearches} onSelect={submit} />
+                <TermSection
+                  title="Popular right now"
+                  terms={popularSearches}
+                  onSelect={submit}
+                />
               )}
             </div>
           )}
@@ -239,7 +268,9 @@ export function SearchOverlay({
                       className="inline-flex items-center gap-2 rounded-md bg-surface-sunken px-3.5 py-2.5 text-sm font-medium transition-colors hover:bg-line"
                     >
                       {collection.title}
-                      <span className="text-xs text-ink-subtle">{collection.count}</span>
+                      <span className="text-xs text-ink-subtle">
+                        {collection.count}
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -252,7 +283,12 @@ export function SearchOverlay({
               <h2 className="mb-3 text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">
                 Products
               </h2>
-              <ul id={listboxId} role="listbox" aria-label="Product results" className="space-y-1">
+              <ul
+                id={listboxId}
+                role="listbox"
+                aria-label="Product results"
+                className="space-y-1"
+              >
                 {activeResults.products.map((product, index) => (
                   <li key={product.handle} role="presentation">
                     <Link
@@ -263,8 +299,10 @@ export function SearchOverlay({
                       onClick={onClose}
                       onMouseEnter={() => setActiveIndex(index)}
                       className={cn(
-                        'flex items-center gap-4 rounded-md p-2 transition-colors',
-                        index === activeIndex ? 'bg-surface-sunken' : 'hover:bg-surface-sunken',
+                        "flex items-center gap-4 rounded-md p-2 transition-colors",
+                        index === activeIndex
+                          ? "bg-surface-sunken"
+                          : "hover:bg-surface-sunken",
                       )}
                     >
                       <span className="relative size-16 shrink-0 overflow-hidden rounded-sm bg-surface-sunken">
@@ -280,14 +318,22 @@ export function SearchOverlay({
                       </span>
                       <span className="min-w-0 flex-1">
                         {product.vendor && (
-                          <span className="block text-2xs tracking-[0.1em] text-ink-subtle uppercase">
+                          <span className="block text-2xs tracking-widest text-ink-subtle uppercase">
                             {product.vendor}
                           </span>
                         )}
-                        <span className="block truncate text-sm font-medium">{product.title}</span>
+                        <span className="block truncate text-sm font-medium">
+                          {product.title}
+                        </span>
                         <span className="mt-0.5 block text-sm tabular-nums text-ink-muted">
-                          {formatMoney(product.price, product.currencyCode, { trimZeroCents: true })}
-                          {!product.available && <span className="ml-2 text-xs text-ink-subtle">Sold out</span>}
+                          {formatMoney(product.price, product.currencyCode, {
+                            trimZeroCents: true,
+                          })}
+                          {!product.available && (
+                            <span className="ml-2 text-xs text-ink-subtle">
+                              Sold out
+                            </span>
+                          )}
                         </span>
                       </span>
                     </Link>
@@ -352,7 +398,9 @@ function TermSection({
   return (
     <section>
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">{title}</h2>
+        <h2 className="text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">
+          {title}
+        </h2>
         {onClear && (
           <button
             type="button"

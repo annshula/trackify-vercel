@@ -1,13 +1,19 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import { createPortal } from 'react-dom';
-import { cn } from '@/lib/utils/cn';
-import { useHydrated } from '@/hooks/use-hydrated';
-import { BLUR_DATA_URL, imageAlt } from '@/lib/utils/image';
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, PlayIcon, ZoomIcon } from '@/components/ui/icons';
-import type { CatalogMedia, CatalogProduct } from '@/types/catalog';
+import * as React from "react";
+import Image from "next/image";
+import { createPortal } from "react-dom";
+import { cn } from "@/lib/utils/cn";
+import { useHydrated } from "@/hooks/use-hydrated";
+import { BLUR_DATA_URL, imageAlt } from "@/lib/utils/image";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CloseIcon,
+  PlayIcon,
+  ZoomIcon,
+} from "@/components/ui/icons";
+import type { CatalogMedia, CatalogProduct } from "@/types/catalog";
 
 /**
  * Product gallery.
@@ -25,7 +31,8 @@ export function ProductGallery({
   activeMediaId?: string | null;
   onActiveChange?: (mediaId: string) => void;
 }) {
-  const media = product.media.length > 0 ? product.media : imagesAsMedia(product);
+  const media =
+    product.media.length > 0 ? product.media : imagesAsMedia(product);
   const [index, setIndex] = React.useState(0);
   const [zoomOpen, setZoomOpen] = React.useState(false);
   const trackRef = React.useRef<HTMLDivElement>(null);
@@ -58,7 +65,7 @@ export function ProductGallery({
     if (Math.round(track.scrollLeft / track.clientWidth) === index) return;
 
     const child = track.children[index] as HTMLElement | undefined;
-    if (child) track.scrollTo({ left: child.offsetLeft, behavior: 'smooth' });
+    if (child) track.scrollTo({ left: child.offsetLeft, behavior: "smooth" });
   }, [index]);
 
   const scrollTo = React.useCallback((next: number) => setIndex(next), []);
@@ -81,7 +88,11 @@ export function ProductGallery({
 
   if (media.length === 0) {
     return (
-      <div className="aspect-[4/5] w-full rounded-lg bg-surface-sunken" role="img" aria-label="No product image available" />
+      <div
+        className="aspect-4/5 w-full rounded-lg bg-surface-sunken"
+        role="img"
+        aria-label="No product image available"
+      />
     );
   }
 
@@ -102,12 +113,16 @@ export function ProductGallery({
           {media.map((item, itemIndex) => (
             <div
               key={item.id}
-              className="relative aspect-[4/5] w-full shrink-0 snap-center lg:hidden"
+              className="relative aspect-4/5 w-full shrink-0 snap-center lg:hidden"
               role="group"
               aria-roledescription="slide"
               aria-label={`${itemIndex + 1} of ${media.length}`}
             >
-              <MediaFrame item={item} product={product} priority={itemIndex === 0} />
+              <MediaFrame
+                item={item}
+                product={product}
+                priority={itemIndex === 0}
+              />
             </div>
           ))}
 
@@ -117,7 +132,7 @@ export function ProductGallery({
               type="button"
               onClick={() => setZoomOpen(true)}
               aria-label={`Zoom ${product.title} image ${index + 1}`}
-              className="relative hidden aspect-[4/5] w-full cursor-zoom-in lg:block"
+              className="relative hidden aspect-4/5 w-full cursor-zoom-in lg:block"
             >
               <MediaFrame item={current} product={product} priority />
               <span className="absolute right-4 bottom-4 grid size-10 place-items-center rounded-full bg-surface/85 text-ink shadow-e2 backdrop-blur-sm">
@@ -138,8 +153,8 @@ export function ProductGallery({
                   aria-label={`Go to image ${itemIndex + 1}`}
                   aria-current={itemIndex === index}
                   className={cn(
-                    'h-1.5 rounded-full transition-all duration-300',
-                    itemIndex === index ? 'w-6 bg-ink' : 'w-1.5 bg-line-strong',
+                    "h-1.5 rounded-full transition-all duration-300",
+                    itemIndex === index ? "w-6 bg-ink" : "w-1.5 bg-line-strong",
                   )}
                 />
               ))}
@@ -163,7 +178,7 @@ export function ProductGallery({
 
       {/* Thumbnail rail */}
       {media.length > 1 && (
-        <ul className="hide-scrollbar hidden shrink-0 gap-2 overflow-y-auto lg:flex lg:max-h-[720px] lg:w-20 lg:flex-col">
+        <ul className="hide-scrollbar hidden shrink-0 gap-2 overflow-y-auto lg:flex lg:max-h-180 lg:w-20 lg:flex-col">
           {media.map((item, itemIndex) => (
             <li key={item.id}>
               <button
@@ -175,8 +190,10 @@ export function ProductGallery({
                 aria-label={`Show image ${itemIndex + 1} of ${media.length}`}
                 aria-current={itemIndex === index}
                 className={cn(
-                  'relative aspect-square w-full overflow-hidden rounded-md bg-surface-sunken ring-1 transition-all duration-200',
-                  itemIndex === index ? 'ring-2 ring-ink' : 'ring-line hover:ring-line-strong',
+                  "relative aspect-square w-full overflow-hidden rounded-md bg-surface-sunken ring-1 transition-all duration-200",
+                  itemIndex === index
+                    ? "ring-2 ring-ink"
+                    : "ring-line hover:ring-line-strong",
                 )}
               >
                 <ThumbFrame item={item} product={product} />
@@ -187,7 +204,11 @@ export function ProductGallery({
       )}
 
       {zoomOpen && current && (
-        <ZoomDialog item={current} product={product} onClose={() => setZoomOpen(false)} />
+        <ZoomDialog
+          item={current}
+          product={product}
+          onClose={() => setZoomOpen(false)}
+        />
       )}
     </div>
   );
@@ -202,7 +223,7 @@ function MediaFrame({
   product: CatalogProduct;
   priority?: boolean;
 }) {
-  if (item.type === 'image') {
+  if (item.type === "image") {
     return (
       <Image
         src={item.url}
@@ -217,7 +238,7 @@ function MediaFrame({
     );
   }
 
-  if (item.type === 'video') {
+  if (item.type === "video") {
     return (
       <video
         controls
@@ -235,7 +256,7 @@ function MediaFrame({
     );
   }
 
-  if (item.type === 'external_video') {
+  if (item.type === "external_video") {
     return (
       <iframe
         src={item.embedUrl}
@@ -250,22 +271,45 @@ function MediaFrame({
 
   // 3D models need a viewer we do not ship; show the poster rather than nothing.
   return item.previewUrl ? (
-    <Image src={item.previewUrl} alt={item.altText ?? product.title} fill sizes="100vw" className="object-cover" />
+    <Image
+      src={item.previewUrl}
+      alt={item.altText ?? product.title}
+      fill
+      sizes="100vw"
+      className="object-cover"
+    />
   ) : (
-    <div className="grid size-full place-items-center text-sm text-ink-subtle">3D model</div>
+    <div className="grid size-full place-items-center text-sm text-ink-subtle">
+      3D model
+    </div>
   );
 }
 
-function ThumbFrame({ item, product }: { item: CatalogMedia; product: CatalogProduct }) {
-  const url = item.type === 'image' ? item.url : item.previewUrl;
+function ThumbFrame({
+  item,
+  product,
+}: {
+  item: CatalogMedia;
+  product: CatalogProduct;
+}) {
+  const url = item.type === "image" ? item.url : item.previewUrl;
   return (
     <>
       {url ? (
-        <Image src={url} alt="" aria-hidden="true" fill sizes="80px" className="object-cover" />
+        <Image
+          src={url}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="80px"
+          className="object-cover"
+        />
       ) : (
-        <span className="grid size-full place-items-center text-2xs text-ink-subtle">{product.title}</span>
+        <span className="grid size-full place-items-center text-2xs text-ink-subtle">
+          {product.title}
+        </span>
       )}
-      {item.type !== 'image' && (
+      {item.type !== "image" && (
         <span className="absolute inset-0 grid place-items-center bg-ink/25 text-white">
           <PlayIcon size={16} />
         </span>
@@ -279,17 +323,17 @@ function GalleryArrow({
   disabled,
   onClick,
 }: {
-  direction: 'prev' | 'next';
+  direction: "prev" | "next";
   disabled: boolean;
   onClick: () => void;
 }) {
-  const Icon = direction === 'prev' ? ChevronLeftIcon : ChevronRightIcon;
+  const Icon = direction === "prev" ? ChevronLeftIcon : ChevronRightIcon;
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={direction === 'prev' ? 'Previous image' : 'Next image'}
+      aria-label={direction === "prev" ? "Previous image" : "Next image"}
       className="pointer-events-auto grid size-10 place-items-center rounded-full bg-surface/85 text-ink opacity-0 shadow-e2 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 hover:bg-surface focus-visible:opacity-100 disabled:pointer-events-none disabled:opacity-0"
     >
       <Icon size={18} />
@@ -311,19 +355,19 @@ function ZoomDialog({
 
   React.useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === "Escape") onClose();
     };
-    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener("keydown", onKeyDown);
     const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previous;
     };
   }, [onClose]);
 
   if (!mounted) return null;
-  const url = item.type === 'image' ? item.url : item.previewUrl;
+  const url = item.type === "image" ? item.url : item.previewUrl;
   if (!url) return null;
 
   return createPortal(
@@ -331,7 +375,7 @@ function ZoomDialog({
       role="dialog"
       aria-modal="true"
       aria-label={`${product.title}, enlarged`}
-      className="fixed inset-0 z-[60] animate-fade-in bg-canvas"
+      className="fixed inset-0 z-60 animate-fade-in bg-canvas"
     >
       <button
         type="button"
@@ -346,7 +390,16 @@ function ZoomDialog({
         <div className="relative mx-auto min-h-full w-full max-w-4xl">
           <Image
             src={url}
-            alt={imageAlt({ id: item.id, url, altText: item.altText, width: null, height: null }, product.title)}
+            alt={imageAlt(
+              {
+                id: item.id,
+                url,
+                altText: item.altText,
+                width: null,
+                height: null,
+              },
+              product.title,
+            )}
             width={1600}
             height={2000}
             sizes="100vw"
@@ -362,7 +415,7 @@ function ZoomDialog({
 /** Older products may have images but no media connection entries. */
 function imagesAsMedia(product: CatalogProduct): CatalogMedia[] {
   return product.images.map((image) => ({
-    type: 'image' as const,
+    type: "image" as const,
     id: image.id,
     url: image.url,
     altText: image.altText,

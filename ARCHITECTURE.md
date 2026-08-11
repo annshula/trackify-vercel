@@ -44,19 +44,19 @@ the entire customer-facing experience. Single store, single deployment, no multi
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-**Core rule:** never query Shopify to *render* a product page. Query Shopify to *transact*.
+**Core rule:** never query Shopify to _render_ a product page. Query Shopify to _transact_.
 
 ---
 
 ## 2. API Architecture
 
-| API | Runs | Credential | Used for |
-|---|---|---|---|
-| Admin GraphQL | server only | `SHOPIFY_ADMIN_API_TOKEN` | full sync, webhook re-fetch, collections, publication state, metafields, diagnostics |
-| Storefront | server (proxied) | `SHOPIFY_STOREFRONT_API_TOKEN` (public token) | cart lifecycle, live variant availability, discount codes, checkout URL |
-| Customer Account | server | `SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID` (+ secret if confidential) | login, orders, order detail, profile, addresses |
-| Webhooks | inbound | `SHOPIFY_WEBHOOK_SECRET` | catalog invalidation + incremental update |
-| Checkout | browser redirect | — | payment, tax, shipping, order creation |
+| API              | Runs             | Credential                                                                                                                                                   | Used for                                                                             |
+| ---------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| Admin GraphQL    | server only      | `SHOPIFY_ADMIN_API_TOKEN` (custom-app token) **or** `SHOPIFY_ADMIN_CLIENT_ID` + `SHOPIFY_ADMIN_CLIENT_SECRET` (client credentials grant → 24h token, cached) | full sync, webhook re-fetch, collections, publication state, metafields, diagnostics |
+| Storefront       | server (proxied) | `SHOPIFY_STOREFRONT_API_TOKEN` (public token)                                                                                                                | cart lifecycle, live variant availability, discount codes, checkout URL              |
+| Customer Account | server           | `SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID` (+ secret if confidential)                                                                                              | login, orders, order detail, profile, addresses                                      |
+| Webhooks         | inbound          | `SHOPIFY_WEBHOOK_SECRET`                                                                                                                                     | catalog invalidation + incremental update                                            |
+| Checkout         | browser redirect | —                                                                                                                                                            | payment, tax, shipping, order creation                                               |
 
 All Shopify traffic is server-side. The browser never holds an Admin token, never sees a
 customer access token, and never issues a raw GraphQL request.
@@ -259,13 +259,13 @@ Full product HTML ships in the first response — no client fetch required.
 
 ## 15. Caching / Revalidation Strategy
 
-| Layer | Policy |
-|---|---|
+| Layer           | Policy                                                               |
+| --------------- | -------------------------------------------------------------------- |
 | `products.json` | read once per process, in-memory + `unstable_cache` tagged `catalog` |
-| PDP / PLP | ISR, tags `product:{handle}`, `collection:{handle}`, `catalog` |
-| Cart | `no-store`, tag `cart` |
-| Customer data | `no-store`, never shared cache |
-| Images | `next/image` + Shopify CDN, AVIF/WebP, explicit sizes |
+| PDP / PLP       | ISR, tags `product:{handle}`, `collection:{handle}`, `catalog`       |
+| Cart            | `no-store`, tag `cart`                                               |
+| Customer data   | `no-store`, never shared cache                                       |
+| Images          | `next/image` + Shopify CDN, AVIF/WebP, explicit sizes                |
 
 Webhooks call `revalidateTag` on exactly the affected tags.
 
@@ -321,6 +321,7 @@ the interface does not change.
 
 **Setup order (Shopify admin):** install Headless channel → create storefront → copy public
 Storefront token → enable Customer Account API, set callback `https://<site>/account/callback`
-+ logout URI + JS origin → create custom app with `read_products, read_inventory,
+
+- logout URI + JS origin → create custom app with `read_products, read_inventory,
 read_product_listings, read_publications` → register webhooks → fill `.env.local` →
-`npm run shopify:sync`.
+  `npm run shopify:sync`.

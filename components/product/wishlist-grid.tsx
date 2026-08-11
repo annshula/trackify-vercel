@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useWishlist } from '@/hooks/use-wishlist';
-import { Button, ButtonLink } from '@/components/ui/button';
-import { EmptyState, Price, Skeleton, Badge } from '@/components/ui/primitives';
-import { HeartIcon, TrashIcon } from '@/components/ui/icons';
-import { useCart } from '@/components/cart/cart-provider';
-import { addToCart } from '@/lib/cart/actions';
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useWishlist } from "@/hooks/use-wishlist";
+import { Button, ButtonLink } from "@/components/ui/button";
+import { EmptyState, Price, Skeleton, Badge } from "@/components/ui/primitives";
+import { HeartIcon, TrashIcon } from "@/components/ui/icons";
+import { useCart } from "@/components/cart/cart-provider";
+import { addToCart } from "@/lib/cart/actions";
 
 type WishlistProduct = {
   handle: string;
@@ -30,20 +30,29 @@ type WishlistProduct = {
 export function WishlistGrid() {
   const { handles, remove, hydrated } = useWishlist();
   const { run, open } = useCart();
-  const [products, setProducts] = React.useState<WishlistProduct[] | null>(null);
+  const [products, setProducts] = React.useState<WishlistProduct[] | null>(
+    null,
+  );
   const [addingHandle, setAddingHandle] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (!hydrated || handles.length === 0) return;
 
     const controller = new AbortController();
-    fetch(`/api/products?handles=${encodeURIComponent(handles.slice(0, 24).join(','))}`, {
-      signal: controller.signal,
-    })
-      .then((response) => (response.ok ? response.json() : Promise.reject(new Error('failed'))))
-      .then((data: { products: WishlistProduct[] }) => setProducts(data.products))
+    fetch(
+      `/api/products?handles=${encodeURIComponent(handles.slice(0, 24).join(","))}`,
+      {
+        signal: controller.signal,
+      },
+    )
+      .then((response) =>
+        response.ok ? response.json() : Promise.reject(new Error("failed")),
+      )
+      .then((data: { products: WishlistProduct[] }) =>
+        setProducts(data.products),
+      )
       .catch((error) => {
-        if ((error as Error).name !== 'AbortError') setProducts([]);
+        if ((error as Error).name !== "AbortError") setProducts([]);
       });
 
     return () => controller.abort();
@@ -54,7 +63,7 @@ export function WishlistGrid() {
       <ul className="grid grid-cols-2 gap-x-4 gap-y-9 lg:grid-cols-3 xl:grid-cols-4">
         {[0, 1, 2, 3].map((index) => (
           <li key={index}>
-            <Skeleton className="aspect-[4/5] w-full rounded-lg" />
+            <Skeleton className="aspect-4/5 w-full rounded-lg" />
             <Skeleton className="mt-3 h-3.5 w-3/4" />
             <Skeleton className="mt-2 h-3 w-1/3" />
           </li>
@@ -69,7 +78,11 @@ export function WishlistGrid() {
         icon={<HeartIcon size={24} />}
         title="Nothing saved yet"
         description="Tap the heart on any product to keep it here for later."
-        action={<ButtonLink href="/collections" size="lg">Browse products</ButtonLink>}
+        action={
+          <ButtonLink href="/collections" size="lg">
+            Browse products
+          </ButtonLink>
+        }
       />
     );
   }
@@ -80,7 +93,7 @@ export function WishlistGrid() {
         <li key={product.handle} className="flex flex-col">
           <div className="relative overflow-hidden rounded-lg bg-surface-sunken">
             <Link href={`/products/${product.handle}`} className="group block">
-              <span className="relative block aspect-[4/5]">
+              <span className="relative block aspect-4/5">
                 {product.image && (
                   <Image
                     src={product.image.url}
@@ -88,7 +101,7 @@ export function WishlistGrid() {
                     fill
                     sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, 50vw"
                     className={`object-cover transition-transform duration-500 ease-out-soft group-hover:scale-[1.03] ${
-                      product.available ? '' : 'opacity-60'
+                      product.available ? "" : "opacity-60"
                     }`}
                   />
                 )}
@@ -123,7 +136,11 @@ export function WishlistGrid() {
             >
               {product.title}
             </Link>
-            <Price amount={product.price} currencyCode={product.currencyCode} size="sm" />
+            <Price
+              amount={product.price}
+              currencyCode={product.currencyCode}
+              size="sm"
+            />
 
             <Button
               size="sm"
@@ -142,14 +159,19 @@ export function WishlistGrid() {
                 setAddingHandle(null);
                 if (!response.ok) return;
 
-                const { variantId } = (await response.json()) as { variantId: string | null };
+                const { variantId } = (await response.json()) as {
+                  variantId: string | null;
+                };
                 if (!variantId) return;
 
-                const result = await run(() => addToCart({ variantId, quantity: 1 }), { silent: true });
+                const result = await run(
+                  () => addToCart({ variantId, quantity: 1 }),
+                  { silent: true },
+                );
                 if (result.ok) open();
               }}
             >
-              {product.available ? 'Add to bag' : 'Sold out'}
+              {product.available ? "Add to bag" : "Sold out"}
             </Button>
           </div>
         </li>
