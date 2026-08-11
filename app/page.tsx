@@ -51,12 +51,18 @@ export default async function HomePage() {
     .sort((a, b) => b.productIds.length - a.productIds.length)
     .slice(0, 3);
 
-  const heroProduct = bestSellersProxy(products, 1)[0] ?? products[0]!;
+  // The hero is the latest published product — a freshly added or restocked
+  // item should be the first thing a returning visitor sees.
+  const arrivals = newArrivals(products, 9);
+  const heroProduct = arrivals[0] ?? products[0]!;
+  // Excludes the hero so it is not repeated as the first card in this grid.
+  const arrivalsBelowHero = arrivals.slice(1, 9);
   const heroImage = primaryImage(heroProduct);
-  const arrivals = newArrivals(products, 8);
   const bestSellers = bestSellersProxy(products, 8);
   const sale = onSaleProducts(products, 4);
-  const spotlight = bestSellers[1] ?? heroProduct;
+  // A best seller distinct from the hero, so the two feature sections never
+  // show the same product twice.
+  const spotlight = bestSellers.find((product) => product.id !== heroProduct.id) ?? bestSellers[0] ?? heroProduct;
   const spotlightImage = primaryImage(spotlight);
 
   return (
@@ -183,7 +189,7 @@ export default async function HomePage() {
       )}
 
       {/* ── New arrivals ─────────────────────────────────────────────── */}
-      {arrivals.length > 0 && (
+      {arrivalsBelowHero.length > 0 && (
         <section className="container-page py-14" aria-labelledby="new-heading">
           <SectionHeading
             eyebrow="Just landed"
@@ -195,7 +201,7 @@ export default async function HomePage() {
             New arrivals
           </h2>
           <ProductGrid
-            products={arrivals}
+            products={arrivalsBelowHero}
             listName="New arrivals"
             priorityCount={2}
           />
