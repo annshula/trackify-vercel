@@ -265,11 +265,11 @@ function CartPageLine({
                   ))}
                 </dl>
               )}
-              {merchandise.sku && (
+              {/* {merchandise.sku && (
                 <p className="mt-1 text-xs text-ink-subtle">
                   SKU {merchandise.sku}
                 </p>
-              )}
+              )} */}
               {!merchandise.availableForSale && (
                 <p className="mt-1.5 text-sm font-medium text-danger">
                   No longer available

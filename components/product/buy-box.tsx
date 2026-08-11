@@ -1,13 +1,21 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import type { CatalogProduct, CatalogVariant } from '@/types/catalog';
-import { cn } from '@/lib/utils/cn';
-import { Button } from '@/components/ui/button';
-import { Price, Rating } from '@/components/ui/primitives';
-import { CheckIcon, HeartIcon, MinusIcon, PlusIcon, RefreshIcon, ShieldIcon, TruckIcon } from '@/components/ui/icons';
-import { ProductGallery } from './product-gallery';
+import * as React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import type { CatalogProduct, CatalogVariant } from "@/types/catalog";
+import { cn } from "@/lib/utils/cn";
+import { Button } from "@/components/ui/button";
+import { Price, Rating } from "@/components/ui/primitives";
+import {
+  CheckIcon,
+  HeartIcon,
+  MinusIcon,
+  PlusIcon,
+  RefreshIcon,
+  ShieldIcon,
+  TruckIcon,
+} from "@/components/ui/icons";
+import { ProductGallery } from "./product-gallery";
 import {
   availableValuesFor,
   colorSwatch,
@@ -17,12 +25,12 @@ import {
   optionsOfVariant,
   productRating,
   OPTION_IS_COLOR,
-} from '@/lib/catalog/selectors';
-import { useCart } from '@/components/cart/cart-provider';
-import { useWishlist } from '@/hooks/use-wishlist';
-import { useToast } from '@/components/ui/toast';
-import { addToCart, proceedToCheckout } from '@/lib/cart/actions';
-import { track, toEcommerceItem } from '@/lib/analytics';
+} from "@/lib/catalog/selectors";
+import { useCart } from "@/components/cart/cart-provider";
+import { useWishlist } from "@/hooks/use-wishlist";
+import { useToast } from "@/components/ui/toast";
+import { addToCart, proceedToCheckout } from "@/lib/cart/actions";
+import { track, toEcommerceItem } from "@/lib/analytics";
 
 /**
  * The purchase surface: gallery + variant selection + add to cart.
@@ -41,23 +49,26 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   const { run, open } = useCart();
 
   const initialVariant = React.useMemo(() => {
-    const requested = searchParams.get('variant');
+    const requested = searchParams.get("variant");
     if (requested) {
-      const match = product.variants.find((variant) => variant.id.endsWith(`/${requested}`));
+      const match = product.variants.find((variant) =>
+        variant.id.endsWith(`/${requested}`),
+      );
       if (match) return match;
     }
     return defaultVariant(product);
   }, [product, searchParams]);
 
-  const [selection, setSelection] = React.useState<Record<string, string>>(() =>
-    initialVariant ? optionsOfVariant(initialVariant) : {},
+  const [selection, setSelection] = React.useState<Record<string, string>>(
+    () => (initialVariant ? optionsOfVariant(initialVariant) : {}),
   );
   const [quantity, setQuantity] = React.useState(1);
   const [adding, setAdding] = React.useState(false);
   const [buying, setBuying] = React.useState(false);
 
   const variant: CatalogVariant | null =
-    findVariantByOptions(product, selection) ?? (product.options.length === 0 ? initialVariant : null);
+    findVariantByOptions(product, selection) ??
+    (product.options.length === 0 ? initialVariant : null);
 
   const rating = productRating(product);
   const lowStock = lowStockCount(variant);
@@ -65,11 +76,12 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   const activeMediaId = variant?.imageId ?? null;
 
   const selectableOptions = product.options.filter(
-    (option) => option.values.length > 1 || option.values[0] !== 'Default Title',
+    (option) =>
+      option.values.length > 1 || option.values[0] !== "Default Title",
   );
 
   React.useEffect(() => {
-    track('view_item', {
+    track("view_item", {
       currency: product.priceRange.currencyCode,
       value: product.priceRange.min,
       items: [toEcommerceItem(product)],
@@ -80,11 +92,11 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   // back/forward behave, without pushing a history entry per click.
   React.useEffect(() => {
     if (!variant) return;
-    const numericId = variant.id.split('/').pop();
+    const numericId = variant.id.split("/").pop();
     if (!numericId) return;
     const params = new URLSearchParams(searchParams.toString());
-    if (params.get('variant') === numericId) return;
-    params.set('variant', numericId);
+    if (params.get("variant") === numericId) return;
+    params.set("variant", numericId);
     router.replace(`?${params.toString()}`, { scroll: false });
   }, [variant, router, searchParams]);
 
@@ -96,7 +108,9 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
       if (findVariantByOptions(product, next)) return next;
 
       const fallback = product.variants.find((candidate) =>
-        candidate.selectedOptions.some((option) => option.name === name && option.value === value),
+        candidate.selectedOptions.some(
+          (option) => option.name === name && option.value === value,
+        ),
       );
       return fallback ? optionsOfVariant(fallback) : next;
     });
@@ -105,14 +119,23 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   const onAdd = React.useCallback(async () => {
     if (!variant) return;
     setAdding(true);
-    const result = await run(() => addToCart({ variantId: variant.id, quantity }), { silent: true });
+    const result = await run(
+      () => addToCart({ variantId: variant.id, quantity }),
+      { silent: true },
+    );
     setAdding(false);
 
     if (result.ok) {
-      track('add_to_cart', {
+      track("add_to_cart", {
         currency: variant.currencyCode,
         value: variant.price * quantity,
-        items: [toEcommerceItem(product, { item_variant: variant.title, quantity, price: variant.price })],
+        items: [
+          toEcommerceItem(product, {
+            item_variant: variant.title,
+            quantity,
+            price: variant.price,
+          }),
+        ],
       });
       open();
     }
@@ -121,12 +144,18 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   const onBuyNow = async () => {
     if (!variant) return;
     setBuying(true);
-    const added = await run(() => addToCart({ variantId: variant.id, quantity }), { silent: true });
+    const added = await run(
+      () => addToCart({ variantId: variant.id, quantity }),
+      { silent: true },
+    );
     if (!added.ok) {
       setBuying(false);
       return;
     }
-    track('begin_checkout', { currency: variant.currencyCode, value: variant.price * quantity });
+    track("begin_checkout", {
+      currency: variant.currencyCode,
+      value: variant.price * quantity,
+    });
     const result = await run(() => proceedToCheckout());
     if (!result.ok) {
       setBuying(false);
@@ -162,10 +191,14 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                 <Price
                   amount={variant?.price ?? product.priceRange.min}
                   compareAt={variant?.compareAtPrice ?? null}
-                  currencyCode={variant?.currencyCode ?? product.priceRange.currencyCode}
+                  currencyCode={
+                    variant?.currencyCode ?? product.priceRange.currencyCode
+                  }
                   size="xl"
                 />
-                <span className="text-xs text-ink-subtle">Tax &amp; shipping at checkout</span>
+                <span className="text-xs text-ink-subtle">
+                  Tax &amp; shipping at checkout
+                </span>
               </div>
 
               {/* Flat attribute chips — the fastest way to read what this is,
@@ -179,18 +212,27 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                       href="#reviews"
                       className="inline-flex h-7 items-center gap-1.5 rounded-full border border-line px-2.5 transition-colors hover:border-line-strong"
                     >
-                      <Rating value={rating.value} count={rating.count} size={12} showValue />
+                      <Rating
+                        value={rating.value}
+                        count={rating.count}
+                        size={12}
+                        showValue
+                      />
                     </a>
                   </li>
                 )}
-                {variant?.sku && <Chip muted>SKU {variant.sku}</Chip>}
+                {/* {variant?.sku && <Chip muted>SKU {variant.sku}</Chip>} */}
               </ul>
             </header>
 
             {selectableOptions.length > 0 && (
               <div className="mt-7 space-y-5">
                 {selectableOptions.map((option) => {
-                  const available = availableValuesFor(product, option.name, selection);
+                  const available = availableValuesFor(
+                    product,
+                    option.name,
+                    selection,
+                  );
                   const isColor = OPTION_IS_COLOR.test(option.name);
                   const selected = selection[option.name];
 
@@ -200,10 +242,17 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                         <span className="text-2xs font-semibold tracking-[0.14em] text-ink-subtle uppercase">
                           {option.name}
                         </span>
-                        {selected && <span className="text-sm text-ink">{selected}</span>}
+                        {selected && (
+                          <span className="text-sm text-ink">{selected}</span>
+                        )}
                       </legend>
 
-                      <div className={cn('flex flex-wrap', isColor ? 'gap-2' : 'gap-1.5')}>
+                      <div
+                        className={cn(
+                          "flex flex-wrap",
+                          isColor ? "gap-2" : "gap-1.5",
+                        )}
+                      >
                         {option.values.map((value) => {
                           const isSelected = selected === value;
                           const isAvailable = available.has(value);
@@ -217,12 +266,14 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                                 role="radio"
                                 aria-checked={isSelected}
                                 onClick={() => selectOption(option.name, value)}
-                                title={isAvailable ? value : `${value} — unavailable`}
+                                title={
+                                  isAvailable ? value : `${value} — unavailable`
+                                }
                                 className={cn(
-                                  'relative grid size-9 place-items-center rounded-full transition-shadow duration-200',
+                                  "relative grid size-9 place-items-center rounded-full transition-shadow duration-200",
                                   isSelected
-                                    ? 'ring-2 ring-ink ring-offset-2 ring-offset-canvas'
-                                    : 'ring-1 ring-line-strong hover:ring-ink',
+                                    ? "ring-2 ring-ink ring-offset-2 ring-offset-canvas"
+                                    : "ring-1 ring-line-strong hover:ring-ink",
                                 )}
                               >
                                 <span
@@ -232,7 +283,7 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                                 />
                                 <span className="sr-only">
                                   {value}
-                                  {!isAvailable && ' (unavailable)'}
+                                  {!isAvailable && " (unavailable)"}
                                 </span>
                                 {!isAvailable && (
                                   <span
@@ -251,16 +302,20 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                               role="radio"
                               aria-checked={isSelected}
                               onClick={() => selectOption(option.name, value)}
-                              title={isAvailable ? value : `${value} — unavailable`}
+                              title={
+                                isAvailable ? value : `${value} — unavailable`
+                              }
                               className={cn(
-                                'relative inline-flex h-10 min-w-10 items-center justify-center rounded-lg px-3.5 text-sm font-medium transition-colors duration-200',
+                                "relative inline-flex h-10 min-w-10 items-center justify-center rounded-lg px-3.5 text-sm font-medium transition-colors duration-200",
                                 isSelected
-                                  ? 'bg-ink text-canvas'
-                                  : 'bg-surface-sunken text-ink hover:bg-line',
+                                  ? "bg-ink text-canvas"
+                                  : "bg-surface-sunken text-ink hover:bg-line",
                                 // Unavailable stays selectable — the customer
                                 // should see the sold-out variant, not have it
                                 // silently disappear from the picker.
-                                !isAvailable && !isSelected && 'text-ink-subtle',
+                                !isAvailable &&
+                                  !isSelected &&
+                                  "text-ink-subtle",
                               )}
                             >
                               {value}
@@ -270,7 +325,10 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                                     className="pointer-events-none absolute inset-0 rounded-lg bg-[linear-gradient(to_top_right,transparent_calc(50%-0.5px),currentColor_calc(50%-0.5px),currentColor_calc(50%+0.5px),transparent_calc(50%+0.5px))] opacity-30"
                                     aria-hidden="true"
                                   />
-                                  <span className="sr-only"> (unavailable)</span>
+                                  <span className="sr-only">
+                                    {" "}
+                                    (unavailable)
+                                  </span>
                                 </>
                               )}
                             </button>
@@ -301,7 +359,7 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                   disabled={soldOut || !variant || buying}
                   className="h-12 flex-1 rounded-lg"
                 >
-                  {soldOut ? 'Sold out' : 'Add to bag'}
+                  {soldOut ? "Sold out" : "Add to bag"}
                 </Button>
                 <SaveButton handle={product.handle} title={product.title} />
               </div>
@@ -320,9 +378,18 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
 
             {/* Flat trust row — hairline separated, no bordered card. */}
             <ul className="mt-7 grid grid-cols-3 gap-px overflow-hidden rounded-lg bg-line">
-              <TrustCell icon={<TruckIcon size={17} />} label="Tracked delivery" />
-              <TrustCell icon={<RefreshIcon size={17} />} label="Easy returns" />
-              <TrustCell icon={<ShieldIcon size={17} />} label="Secure checkout" />
+              <TrustCell
+                icon={<TruckIcon size={17} />}
+                label="Tracked delivery"
+              />
+              <TrustCell
+                icon={<RefreshIcon size={17} />}
+                label="Easy returns"
+              />
+              <TrustCell
+                icon={<ShieldIcon size={17} />}
+                label="Secure checkout"
+              />
             </ul>
           </div>
         </div>
@@ -342,7 +409,10 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
 }
 
 function maxQuantity(variant: CatalogVariant | null): number {
-  if (variant?.inventoryPolicy === 'DENY' && typeof variant.inventoryQuantity === 'number') {
+  if (
+    variant?.inventoryPolicy === "DENY" &&
+    typeof variant.inventoryQuantity === "number"
+  ) {
     return Math.max(1, Math.min(variant.inventoryQuantity, 99));
   }
   return 99;
@@ -350,12 +420,18 @@ function maxQuantity(variant: CatalogVariant | null): number {
 
 /* ── Small flat primitives ─────────────────────────────────────────────── */
 
-function Chip({ children, muted = false }: { children: React.ReactNode; muted?: boolean }) {
+function Chip({
+  children,
+  muted = false,
+}: {
+  children: React.ReactNode;
+  muted?: boolean;
+}) {
   return (
     <li
       className={cn(
-        'inline-flex h-7 items-center rounded-full border border-line px-2.5 text-xs',
-        muted ? 'text-ink-subtle' : 'text-ink-muted',
+        "inline-flex h-7 items-center rounded-full border border-line px-2.5 text-xs",
+        muted ? "text-ink-subtle" : "text-ink-muted",
       )}
     >
       {children}
@@ -363,7 +439,13 @@ function Chip({ children, muted = false }: { children: React.ReactNode; muted?: 
   );
 }
 
-function StatusChip({ soldOut, lowStock }: { soldOut: boolean; lowStock: number | null }) {
+function StatusChip({
+  soldOut,
+  lowStock,
+}: {
+  soldOut: boolean;
+  lowStock: number | null;
+}) {
   if (soldOut) {
     return (
       <li className="inline-flex h-7 items-center rounded-full bg-surface-sunken px-2.5 text-xs font-medium text-ink-muted">
@@ -422,9 +504,9 @@ function FlatStepper({
   return (
     <div
       className={cn(
-        'inline-flex shrink-0 items-center rounded-lg bg-surface-sunken',
-        compact ? 'h-11' : 'h-12',
-        disabled && 'opacity-50',
+        "inline-flex shrink-0 items-center rounded-lg bg-surface-sunken",
+        compact ? "h-11" : "h-12",
+        disabled && "opacity-50",
       )}
     >
       <button
@@ -467,18 +549,21 @@ function SaveButton({ handle, title }: { handle: string; title: string }) {
       type="button"
       onClick={() => {
         const added = toggle(handle);
-        if (added) track('add_to_wishlist', { items: [{ item_id: handle, item_name: title }] });
+        if (added)
+          track("add_to_wishlist", {
+            items: [{ item_id: handle, item_name: title }],
+          });
         push({
-          tone: 'success',
+          tone: "success",
           message: added ? `Saved ${title}` : `Removed ${title} from saved`,
-          ...(added ? { action: { label: 'View', href: '/wishlist' } } : {}),
+          ...(added ? { action: { label: "View", href: "/wishlist" } } : {}),
         });
       }}
       aria-pressed={saved}
       aria-label={saved ? `Remove ${title} from saved items` : `Save ${title}`}
       className={cn(
-        'grid size-12 shrink-0 place-items-center rounded-lg bg-surface-sunken text-ink transition-colors hover:bg-line active:scale-95',
-        saved && 'text-danger',
+        "grid size-12 shrink-0 place-items-center rounded-lg bg-surface-sunken text-ink transition-colors hover:bg-line active:scale-95",
+        saved && "text-danger",
       )}
     >
       <HeartIcon size={19} filled={saved} />
@@ -527,7 +612,7 @@ function MobileActionBar({
           disabled={soldOut || !variant}
           className="h-11 flex-1 rounded-lg"
         >
-          {soldOut ? 'Sold out' : 'Add to bag'}
+          {soldOut ? "Sold out" : "Add to bag"}
         </Button>
       </div>
     </div>
