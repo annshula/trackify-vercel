@@ -99,7 +99,6 @@ export function Header({
               aria-label="Trackify home"
             >
               Trackify
-              <span className="text-accent">.</span>
             </Link>
 
             <nav

@@ -1,11 +1,23 @@
-import Link from 'next/link';
-import { NewsletterForm } from './newsletter-form';
-import { RefreshIcon, ShieldIcon, TruckIcon } from '@/components/ui/icons';
+import Link from "next/link";
+import { NewsletterForm } from "./newsletter-form";
+import { RefreshIcon, ShieldIcon, TruckIcon } from "@/components/ui/icons";
 
 const TRUST = [
-  { icon: TruckIcon, title: 'Tracked delivery', body: 'Every order ships with tracking you can follow from your account.' },
-  { icon: RefreshIcon, title: 'Easy returns', body: 'Change your mind? Start a return from your order history.' },
-  { icon: ShieldIcon, title: 'Secure checkout', body: 'Payments are processed by Shopify. We never see your card details.' },
+  {
+    icon: TruckIcon,
+    title: "Tracked delivery",
+    body: "Every order ships with tracking you can follow from your account.",
+  },
+  {
+    icon: RefreshIcon,
+    title: "Easy returns",
+    body: "Change your mind? Start a return from your order history.",
+  },
+  {
+    icon: ShieldIcon,
+    title: "Secure checkout",
+    body: "Payments are processed by Shopify. We never see your card details.",
+  },
 ];
 
 export function Footer({
@@ -36,10 +48,11 @@ export function Footer({
         <div className="grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <Link href="/" className="font-display text-2xl tracking-tight">
-              Trackify<span className="text-accent">.</span>
+              Trackify
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              Considered pieces, made to last. Order once, track everything from one place.
+              Considered pieces, made to last. Order once, track everything from
+              one place.
             </p>
             <div className="mt-6">
               <NewsletterForm />
@@ -49,7 +62,7 @@ export function Footer({
           <FooterColumn
             title="Shop"
             links={[
-              { href: '/collections', label: 'All collections' },
+              { href: "/collections", label: "All collections" },
               ...collections.slice(0, 5).map((collection) => ({
                 href: `/collections/${collection.handle}`,
                 label: collection.title,
@@ -60,28 +73,30 @@ export function Footer({
           <FooterColumn
             title="Account"
             links={[
-              { href: '/account', label: 'Your account' },
-              { href: '/account/orders', label: 'Orders' },
-              { href: '/account/addresses', label: 'Addresses' },
-              { href: '/wishlist', label: 'Saved items' },
-              { href: '/cart', label: 'Bag' },
+              { href: "/account", label: "Your account" },
+              { href: "/account/orders", label: "Orders" },
+              { href: "/account/addresses", label: "Addresses" },
+              { href: "/wishlist", label: "Saved items" },
+              { href: "/cart", label: "Bag" },
             ]}
           />
 
           <FooterColumn
             title="Help"
             links={[
-              { href: '/pages/shipping', label: 'Shipping' },
-              { href: '/pages/returns', label: 'Returns' },
-              { href: '/pages/faq', label: 'FAQ' },
-              { href: '/pages/contact', label: 'Contact' },
-              { href: '/pages/privacy', label: 'Privacy' },
+              { href: "/pages/shipping", label: "Shipping" },
+              { href: "/pages/returns", label: "Returns" },
+              { href: "/pages/faq", label: "FAQ" },
+              { href: "/pages/contact", label: "Contact" },
+              { href: "/pages/privacy", label: "Privacy" },
             ]}
           />
         </div>
 
         <div className="flex flex-col gap-4 border-t border-line py-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-ink-subtle">© {year} Trackify. All rights reserved.</p>
+          <p className="text-xs text-ink-subtle">
+            © {year} Trackify. All rights reserved.
+          </p>
           <p className="text-xs text-ink-subtle">
             Secure payments processed by Shopify.
           </p>
@@ -91,10 +106,18 @@ export function Footer({
   );
 }
 
-function FooterColumn({ title, links }: { title: string; links: { href: string; label: string }[] }) {
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+}) {
   return (
     <nav aria-label={title}>
-      <h2 className="mb-4 text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">{title}</h2>
+      <h2 className="mb-4 text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">
+        {title}
+      </h2>
       <ul className="space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>

@@ -81,7 +81,7 @@ export default async function RootLayout({
       <head>
         <ThemeScript />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
 
         <ToastProvider>
