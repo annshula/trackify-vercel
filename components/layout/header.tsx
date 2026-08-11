@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
 import {
   BagIcon,
@@ -58,6 +58,7 @@ export function Header({
   popularSearches: string[];
 }) {
   const pathname = usePathname();
+  const router = useRouter();
   // Warm accent-soft header only on the About page (matches its hero); the
   // default canvas header everywhere else.
   const isAbout = pathname === "/about";
@@ -188,7 +189,12 @@ export function Header({
                   if (link.children && link.children.length > 0) {
                     return (
                       <NavigationMenuItem key={link.href}>
-                        <NavigationMenuTrigger className="relative">
+                        <NavigationMenuTrigger
+                          className="relative"
+                          // Hover opens the category mega menu; a click goes to
+                          // the full Shop page (all items).
+                          onClick={() => router.push(link.href)}
+                        >
                           {link.label}
                           {active && (
                             <span

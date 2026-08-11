@@ -67,7 +67,20 @@ export function ProductGallery({
   if (activeMediaId !== appliedMediaId) {
     setAppliedMediaId(activeMediaId);
     if (activeMediaId) {
-      const target = media.findIndex((item) => item.id === activeMediaId);
+      let target = media.findIndex((item) => item.id === activeMediaId);
+      // Variant images use ProductImage ids, but the slides come from the media
+      // connection (MediaImage ids). Bridge the same underlying photo by URL so
+      // selecting a color shows its image in the main area.
+      if (target < 0) {
+        const productImage = product.images.find(
+          (image) => image.id === activeMediaId,
+        );
+        if (productImage) {
+          target = media.findIndex(
+            (item) => item.type === "image" && item.url === productImage.url,
+          );
+        }
+      }
       if (target >= 0 && target !== index) setIndex(target);
     }
   }
@@ -275,8 +288,7 @@ function toSlide(item: CatalogMedia): Slide {
 
   // Images, external videos and 3D models all present as a still in the
   // lightbox; the inline gallery remains the place to actually play them.
-  const src =
-    item.type === "image" ? item.url : (item.previewUrl ?? "");
+  const src = item.type === "image" ? item.url : (item.previewUrl ?? "");
 
   return {
     src,
@@ -310,7 +322,9 @@ function MediaFrame({
         blurDataURL={BLUR_DATA_URL}
         // Contained so a tall or wide product photo is never cropped — the
         // customer sees the whole product, which is the point of this image.
-        className={cn(fit === "contain" ? "object-contain p-3" : "object-cover")}
+        className={cn(
+          fit === "contain" ? "object-contain p-3" : "object-cover",
+        )}
       />
     );
   }
