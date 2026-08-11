@@ -21,6 +21,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   cancelled: 'Sign-in was cancelled. You can try again whenever you are ready.',
   expired: 'That sign-in link expired. Please start again.',
   state_mismatch: 'We could not verify that sign-in request. Please start again from this page.',
+  nonce_mismatch: 'We could not verify that sign-in request. Please start again from this page.',
   exchange_failed: 'Shopify could not complete the sign-in. Please try again in a moment.',
   missing_code: 'The sign-in response was incomplete. Please try again.',
   provider: 'Shopify could not complete the sign-in. Please try again in a moment.',

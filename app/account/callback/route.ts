@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { consumeOAuthTransaction, writeSession } from '@/lib/auth/session';
 import { timingSafeEqualString } from '@/lib/auth/pkce';
+import { idTokenNonce } from '@/lib/auth/jwt';
 import { exchangeCodeForTokens } from '@/lib/shopify/customer-account';
 import { associateCartWithCustomer } from '@/lib/cart/actions';
 import { publicEnv } from '@/lib/validation/env';
@@ -50,6 +51,18 @@ export async function GET(request: Request): Promise<NextResponse> {
       codeVerifier: transaction.codeVerifier,
       redirectUri: `${publicEnv.siteUrl}/account/callback`,
     });
+
+    // The nonce we sent at /account/authorize must come back inside the
+    // id_token. This is what stops a token obtained through a different,
+    // unrelated login attempt from being substituted into this session.
+    if (session.idToken) {
+      const returnedNonce = idTokenNonce(session.idToken);
+      if (!returnedNonce || !timingSafeEqualString(returnedNonce, transaction.nonce)) {
+        console.warn('[auth] id_token nonce mismatch — possible token substitution attempt');
+        return errorRedirect('nonce_mismatch');
+      }
+    }
+
     await writeSession(session);
   } catch (error) {
     // Never log the code or any token.
