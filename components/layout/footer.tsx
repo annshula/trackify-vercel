@@ -47,8 +47,15 @@ export function Footer({
 
         <div className="grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
-            <Link href="/" className="font-display text-2xl tracking-tight">
-              Trackify
+            <Link href="/" className="inline-block">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.svg"
+                alt="Trackify"
+                width={84}
+                height={64}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
               Considered pieces, made to last. Order once, track everything from
@@ -84,9 +91,11 @@ export function Footer({
           <FooterColumn
             title="Help"
             links={[
+              { href: "https://shoptrackify.com/blogs/news", label: "Blogs" },
+              { href: "/pages/faq", label: "FAQ" },
               { href: "/pages/shipping", label: "Shipping" },
               { href: "/pages/returns", label: "Returns" },
-              { href: "/pages/faq", label: "FAQ" },
+              { href: "/about", label: "About" },
               { href: "/pages/contact", label: "Contact" },
               { href: "/pages/privacy", label: "Privacy" },
             ]}

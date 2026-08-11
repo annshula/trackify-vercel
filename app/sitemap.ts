@@ -1,7 +1,7 @@
-import type { MetadataRoute } from 'next';
-import { productRepository } from '@/lib/catalog';
-import { STATIC_PAGES } from '@/lib/content/pages';
-import { publicEnv } from '@/lib/validation/env';
+import type { MetadataRoute } from "next";
+import { productRepository } from "@/lib/catalog";
+import { STATIC_PAGES } from "@/lib/content/pages";
+import { publicEnv } from "@/lib/validation/env";
 
 /**
  * Sitemap generated from the local catalog.
@@ -21,8 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const entries: MetadataRoute.Sitemap = [
-    { url: `${base}/`, changeFrequency: 'daily', priority: 1 },
-    { url: `${base}/collections`, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${base}/`, changeFrequency: "daily", priority: 1 },
+    { url: `${base}/collections`, changeFrequency: "daily", priority: 0.9 },
+    { url: `${base}/about`, changeFrequency: "monthly", priority: 0.5 },
   ];
 
   for (const collection of collections) {
@@ -30,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entries.push({
       url: `${base}/collections/${collection.handle}`,
       lastModified: new Date(collection.updatedAt),
-      changeFrequency: 'daily',
+      changeFrequency: "daily",
       priority: 0.8,
     });
   }
@@ -39,16 +40,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entries.push({
       url: `${base}/products/${product.handle}`,
       lastModified: new Date(product.updatedAt),
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       // In-stock products are the ones worth crawling most often.
-      priority: product.variants.some((variant) => variant.availableForSale) ? 0.7 : 0.4,
+      priority: product.variants.some((variant) => variant.availableForSale)
+        ? 0.7
+        : 0.4,
     });
   }
 
   for (const page of STATIC_PAGES) {
     entries.push({
       url: `${base}/pages/${page.handle}`,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.3,
     });
   }

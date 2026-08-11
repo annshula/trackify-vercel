@@ -1,6 +1,6 @@
-import 'server-only';
-import { productRepository } from '@/lib/catalog';
-import type { NavLink } from '@/components/layout/header';
+import "server-only";
+import { productRepository } from "@/lib/catalog";
+import type { NavLink } from "@/components/layout/header";
 
 /**
  * Navigation derived from the real catalog.
@@ -10,31 +10,14 @@ import type { NavLink } from '@/components/layout/header';
  * built from the collections that actually contain products.
  */
 export async function getNavigation(): Promise<NavLink[]> {
-  const collections = await productRepository.getAllCollections();
-  const populated = collections
-    .filter((collection) => collection.productIds.length > 0)
-    .sort((a, b) => b.productIds.length - a.productIds.length);
-
-  const featured = populated.slice(0, 4).map((collection) => ({
-    href: `/collections/${collection.handle}`,
-    label: collection.title,
-  }));
-
-  const overflow = populated.slice(4, 12).map((collection) => ({
-    href: `/collections/${collection.handle}`,
-    label: collection.title,
-  }));
-
-  const nav: NavLink[] = [
-    {
-      href: '/collections',
-      label: 'Shop',
-      children: [...featured, ...overflow].slice(0, 8),
-    },
-    ...featured.slice(0, 3),
+  // Fixed menu: Home, Shop, About. Shopify menus live in the Online Store
+  // channel, which a headless storefront does not consume, so the top-level
+  // nav is explicit rather than derived from the catalog.
+  return [
+    { href: "/", label: "Home" },
+    { href: "/collections", label: "Shop" },
+    { href: "/about", label: "About" },
   ];
-
-  return nav;
 }
 
 /** Search suggestions taken from the most-used product types in the catalog. */
@@ -43,8 +26,13 @@ export async function getPopularSearches(limit = 6): Promise<string[]> {
   const counts = new Map<string, number>();
 
   for (const product of products) {
-    if (product.productType) counts.set(product.productType, (counts.get(product.productType) ?? 0) + 1);
-    if (product.vendor) counts.set(product.vendor, (counts.get(product.vendor) ?? 0) + 1);
+    if (product.productType)
+      counts.set(
+        product.productType,
+        (counts.get(product.productType) ?? 0) + 1,
+      );
+    if (product.vendor)
+      counts.set(product.vendor, (counts.get(product.vendor) ?? 0) + 1);
   }
 
   return [...counts.entries()]
@@ -59,5 +47,8 @@ export async function getFooterCollections(limit = 6) {
     .filter((collection) => collection.productIds.length > 0)
     .sort((a, b) => b.productIds.length - a.productIds.length)
     .slice(0, limit)
-    .map((collection) => ({ handle: collection.handle, title: collection.title }));
+    .map((collection) => ({
+      handle: collection.handle,
+      title: collection.title,
+    }));
 }

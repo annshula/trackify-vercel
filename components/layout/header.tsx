@@ -79,31 +79,44 @@ export function Header({
         <div className="container-page">
           <div
             className={cn(
-              "flex items-center justify-between gap-3 transition-[height] duration-300 ease-out-soft",
+              // On desktop the nav sits in the center column of an equal-width
+              // grid, so it centers to the screen — not between the logo and
+              // the action buttons. Mobile keeps the left/right flex layout.
+              "flex items-center justify-between gap-3 transition-[height] duration-300 ease-out-soft lg:grid lg:grid-cols-[1fr_auto_1fr]",
               scrolled ? "h-14" : "h-16 sm:h-20",
             )}
           >
-            {/* Mobile: menu */}
-            <button
-              type="button"
-              onClick={() => setNavOpen(true)}
-              aria-label="Open menu"
-              className="-ml-2.5 grid size-11 place-items-center rounded-md text-ink transition-colors hover:bg-surface-sunken lg:hidden"
-            >
-              <MenuIcon size={22} />
-            </button>
+            {/* Left: mobile menu + logo */}
+            <div className="flex items-center gap-0.5">
+              <button
+                type="button"
+                onClick={() => setNavOpen(true)}
+                aria-label="Open menu"
+                className="-ml-2.5 grid size-11 place-items-center rounded-md text-ink transition-colors hover:bg-surface-sunken lg:hidden"
+              >
+                <MenuIcon size={22} />
+              </button>
 
-            <Link
-              href="/"
-              className="shrink-0 font-display text-xl tracking-tight sm:text-2xl"
-              aria-label="Trackify home"
-            >
-              Trackify
-            </Link>
+              <Link
+                href="/"
+                aria-label="Trackify home"
+                className="shrink-0 leading-none"
+              >
+                {/* Self-hosted site logo — same shrink-0 position as the wordmark it replaces. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logo.svg"
+                  alt="Trackify"
+                  width={84}
+                  height={64}
+                  className="h-9 w-auto sm:h-11"
+                />
+              </Link>
+            </div>
 
             <nav
               aria-label="Main"
-              className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
+              className="hidden min-w-0 items-center justify-center lg:flex"
             >
               <ul className="flex items-center gap-1">
                 {navigation.map((link) => {
@@ -151,7 +164,7 @@ export function Header({
               </ul>
             </nav>
 
-            <div className="flex items-center gap-0.5">
+            <div className="flex items-center justify-end gap-0.5">
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
