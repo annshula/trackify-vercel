@@ -121,10 +121,6 @@ const PRODUCT_FIELDS = /* GraphQL */ `
         }
       }
     }
-    resourcePublicationsCount {
-      count
-    }
-    publishedOnCurrentPublication
   }
 `;
 
@@ -250,7 +246,10 @@ export const WEBHOOK_SUBSCRIPTIONS_QUERY = /* GraphQL */ `
 `;
 
 export const WEBHOOK_SUBSCRIPTION_CREATE_MUTATION = /* GraphQL */ `
-  mutation WebhookCreate($topic: WebhookSubscriptionTopic!, $callbackUrl: URL!) {
+  mutation WebhookCreate(
+    $topic: WebhookSubscriptionTopic!
+    $callbackUrl: URL!
+  ) {
     webhookSubscriptionCreate(
       topic: $topic
       webhookSubscription: { callbackUrl: $callbackUrl, format: JSON }

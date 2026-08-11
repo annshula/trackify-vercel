@@ -5,7 +5,7 @@ import type {
   CatalogProduct,
   CatalogVariant,
   ProductStatus,
-} from '@/types/catalog';
+} from "@/types/catalog";
 
 /**
  * Admin GraphQL payload -> public catalog record.
@@ -16,23 +16,36 @@ import type {
  */
 
 /** Metafield namespaces safe to publish. Everything else is dropped. */
-const PUBLIC_METAFIELD_NAMESPACES = new Set(['custom', 'global', 'descriptors', 'reviews', 'specs', 'shopify']);
+const PUBLIC_METAFIELD_NAMESPACES = new Set([
+  "custom",
+  "global",
+  "descriptors",
+  "reviews",
+  "specs",
+  "shopify",
+]);
 
 /** Metafield types we can render as plain text. Structured types are JSON-stringified. */
 const TEXT_METAFIELD_TYPES = new Set([
-  'single_line_text_field',
-  'multi_line_text_field',
-  'number_integer',
-  'number_decimal',
-  'boolean',
-  'date',
-  'date_time',
-  'url',
-  'rating',
-  'json',
+  "single_line_text_field",
+  "multi_line_text_field",
+  "number_integer",
+  "number_decimal",
+  "boolean",
+  "date",
+  "date_time",
+  "url",
+  "rating",
+  "json",
 ]);
 
-type AdminImage = { id?: string | null; url?: string | null; width?: number | null; height?: number | null; altText?: string | null };
+type AdminImage = {
+  id?: string | null;
+  url?: string | null;
+  width?: number | null;
+  height?: number | null;
+  altText?: string | null;
+};
 
 type AdminMediaNode = {
   id: string;
@@ -78,12 +91,18 @@ export type AdminProductNode = {
   publishedAt?: string | null;
   totalInventory?: number | null;
   seo?: { title?: string | null; description?: string | null } | null;
-  options?: { id: string; name: string; position: number; values: string[] }[] | null;
+  options?:
+    | { id: string; name: string; position: number; values: string[] }[]
+    | null;
   featuredMedia?: { id: string } | null;
   media?: { nodes: AdminMediaNode[] } | null;
   images?: { nodes: AdminImage[] } | null;
-  collections?: { nodes: { id: string; handle: string; title: string }[] } | null;
-  metafields?: { nodes: { namespace: string; key: string; value: string; type: string }[] } | null;
+  collections?: {
+    nodes: { id: string; handle: string; title: string }[];
+  } | null;
+  metafields?: {
+    nodes: { namespace: string; key: string; value: string; type: string }[];
+  } | null;
   variants: { nodes: AdminVariantNode[] };
   publishedOnCurrentPublication?: boolean | null;
 };
@@ -101,12 +120,32 @@ export type AdminCollectionNode = {
 };
 
 function toNumber(value: string | null | undefined): number | null {
-  if (value === null || value === undefined || value === '') return null;
+  if (value === null || value === undefined || value === "") return null;
   const parsed = Number.parseFloat(value);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function normalizeImage(image: AdminImage | null | undefined, fallbackId: string): CatalogImage | null {
+/**
+ * Shopify handles can contain characters that are not URL-safe or that the
+ * schema forbids (emoji, uppercase, underscores, consecutive/edge hyphens).
+ * Normalize to the canonical "lowercase alphanumeric segments joined by single
+ * hyphens" form so every handle is safe to use verbatim in a URL. When a handle
+ * is entirely non-ASCII, derive a stable value from the resource id instead.
+ */
+function sanitizeHandle(handle: string, id = ""): string {
+  const cleaned = handle
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  if (cleaned) return cleaned;
+  const suffix = id.split("/").pop() || "item";
+  return `product-${suffix}`;
+}
+
+function normalizeImage(
+  image: AdminImage | null | undefined,
+  fallbackId: string,
+): CatalogImage | null {
   if (!image?.url) return null;
   return {
     id: image.id ?? fallbackId,
@@ -126,10 +165,10 @@ function normalizeMedia(nodes: AdminMediaNode[]): CatalogMedia[] {
     const altText = node.alt ?? previewImage?.altText ?? null;
 
     switch (node.mediaContentType) {
-      case 'IMAGE': {
+      case "IMAGE": {
         if (!previewUrl) break;
         media.push({
-          type: 'image',
+          type: "image",
           id: node.id,
           url: previewUrl,
           altText,
@@ -138,26 +177,38 @@ function normalizeMedia(nodes: AdminMediaNode[]): CatalogMedia[] {
         });
         break;
       }
-      case 'VIDEO': {
+      case "VIDEO": {
         if (!node.sources?.length) break;
-        media.push({ type: 'video', id: node.id, sources: node.sources, previewUrl, altText });
-        break;
-      }
-      case 'EXTERNAL_VIDEO': {
-        if (!node.embedUrl) break;
         media.push({
-          type: 'external_video',
+          type: "video",
           id: node.id,
-          embedUrl: node.embedUrl,
-          host: (node.host ?? 'youtube').toLowerCase(),
+          sources: node.sources,
           previewUrl,
           altText,
         });
         break;
       }
-      case 'MODEL_3D': {
+      case "EXTERNAL_VIDEO": {
+        if (!node.embedUrl) break;
+        media.push({
+          type: "external_video",
+          id: node.id,
+          embedUrl: node.embedUrl,
+          host: (node.host ?? "youtube").toLowerCase(),
+          previewUrl,
+          altText,
+        });
+        break;
+      }
+      case "MODEL_3D": {
         if (!node.sources?.length) break;
-        media.push({ type: 'model_3d', id: node.id, sources: node.sources, previewUrl, altText });
+        media.push({
+          type: "model_3d",
+          id: node.id,
+          sources: node.sources,
+          previewUrl,
+          altText,
+        });
         break;
       }
       default:
@@ -174,31 +225,40 @@ function normalizeMetafields(
   const result: Record<string, string> = {};
   for (const node of nodes) {
     if (!PUBLIC_METAFIELD_NAMESPACES.has(node.namespace)) continue;
-    if (!TEXT_METAFIELD_TYPES.has(node.type) && !node.type.startsWith('list.')) continue;
-    if (typeof node.value !== 'string' || node.value.length > 20_000) continue;
+    if (!TEXT_METAFIELD_TYPES.has(node.type) && !node.type.startsWith("list."))
+      continue;
+    if (typeof node.value !== "string" || node.value.length > 20_000) continue;
     result[`${node.namespace}.${node.key}`] = node.value;
   }
   // Stable key ordering keeps the sync byte-identical between runs.
-  return Object.fromEntries(Object.entries(result).sort(([a], [b]) => a.localeCompare(b)));
+  return Object.fromEntries(
+    Object.entries(result).sort(([a], [b]) => a.localeCompare(b)),
+  );
 }
 
-function normalizeVariant(node: AdminVariantNode, currencyCode: string): CatalogVariant {
+function normalizeVariant(
+  node: AdminVariantNode,
+  currencyCode: string,
+): CatalogVariant {
   const price = toNumber(node.price) ?? 0;
   const compareAt = toNumber(node.compareAtPrice ?? null);
   return {
     id: node.id,
     title: node.title,
-    sku: node.sku && node.sku.trim() !== '' ? node.sku : null,
-    barcode: node.barcode && node.barcode.trim() !== '' ? node.barcode : null,
+    sku: node.sku && node.sku.trim() !== "" ? node.sku : null,
+    barcode: node.barcode && node.barcode.trim() !== "" ? node.barcode : null,
     price,
     // A compare-at price that is not above the price is not a real markdown.
     compareAtPrice: compareAt !== null && compareAt > price ? compareAt : null,
     currencyCode,
-    selectedOptions: node.selectedOptions.map((option) => ({ name: option.name, value: option.value })),
+    selectedOptions: node.selectedOptions.map((option) => ({
+      name: option.name,
+      value: option.value,
+    })),
     imageId: node.image?.id ?? null,
     availableForSale: node.availableForSale,
     inventoryQuantity: node.inventoryQuantity ?? null,
-    inventoryPolicy: node.inventoryPolicy === 'CONTINUE' ? 'CONTINUE' : 'DENY',
+    inventoryPolicy: node.inventoryPolicy === "CONTINUE" ? "CONTINUE" : "DENY",
     requiresShipping: node.inventoryItem?.requiresShipping ?? true,
     weight: node.inventoryItem?.measurement?.weight?.value ?? null,
     weightUnit: node.inventoryItem?.measurement?.weight?.unit ?? null,
@@ -206,7 +266,10 @@ function normalizeVariant(node: AdminVariantNode, currencyCode: string): Catalog
   };
 }
 
-export function normalizeProduct(node: AdminProductNode, currencyCode: string): CatalogProduct {
+export function normalizeProduct(
+  node: AdminProductNode,
+  currencyCode: string,
+): CatalogProduct {
   const variants = node.variants.nodes
     .map((variant) => normalizeVariant(variant, currencyCode))
     .sort((a, b) => a.position - b.position);
@@ -217,7 +280,7 @@ export function normalizeProduct(node: AdminProductNode, currencyCode: string): 
   // with the legacy images connection filling any gap.
   const imageMap = new Map<string, CatalogImage>();
   for (const item of media) {
-    if (item.type === 'image') {
+    if (item.type === "image") {
       imageMap.set(item.id, {
         id: item.id,
         url: item.url,
@@ -229,7 +292,8 @@ export function normalizeProduct(node: AdminProductNode, currencyCode: string): 
   }
   for (const [index, image] of (node.images?.nodes ?? []).entries()) {
     const normalized = normalizeImage(image, `${node.id}-image-${index}`);
-    if (normalized && !imageMap.has(normalized.id)) imageMap.set(normalized.id, normalized);
+    if (normalized && !imageMap.has(normalized.id))
+      imageMap.set(normalized.id, normalized);
   }
   const images = [...imageMap.values()];
 
@@ -237,7 +301,8 @@ export function normalizeProduct(node: AdminProductNode, currencyCode: string): 
   // rather than shipping a record that fails the catalog audit.
   const imageIds = new Set(images.map((image) => image.id));
   for (const variant of variants) {
-    if (variant.imageId && !imageIds.has(variant.imageId)) variant.imageId = null;
+    if (variant.imageId && !imageIds.has(variant.imageId))
+      variant.imageId = null;
   }
 
   const prices = variants.map((variant) => variant.price);
@@ -245,27 +310,38 @@ export function normalizeProduct(node: AdminProductNode, currencyCode: string): 
     .map((variant) => variant.compareAtPrice)
     .filter((value): value is number => value !== null);
 
-  const status = (['ACTIVE', 'ARCHIVED', 'DRAFT'] as ProductStatus[]).includes(node.status as ProductStatus)
+  const status = (["ACTIVE", "ARCHIVED", "DRAFT"] as ProductStatus[]).includes(
+    node.status as ProductStatus,
+  )
     ? (node.status as ProductStatus)
-    : 'DRAFT';
+    : "DRAFT";
 
   return {
     id: node.id,
-    handle: node.handle,
+    handle: sanitizeHandle(node.handle, node.id),
     title: node.title,
-    description: node.description ?? '',
-    descriptionHtml: node.descriptionHtml ?? '',
-    vendor: node.vendor ?? '',
-    productType: node.productType ?? '',
+    description: node.description ?? "",
+    descriptionHtml: node.descriptionHtml ?? "",
+    vendor: node.vendor ?? "",
+    productType: node.productType ?? "",
     tags: [...(node.tags ?? [])].sort(),
     collections: (node.collections?.nodes ?? [])
-      .map((collection) => ({ id: collection.id, handle: collection.handle, title: collection.title }))
+      .map((collection) => ({
+        id: collection.id,
+        handle: sanitizeHandle(collection.handle, collection.id),
+        title: collection.title,
+      }))
       .sort((a, b) => a.handle.localeCompare(b.handle)),
     images,
     media,
-    seo: { title: node.seo?.title ?? null, description: node.seo?.description ?? null },
+    seo: {
+      title: node.seo?.title ?? null,
+      description: node.seo?.description ?? null,
+    },
     status,
-    publishedOnline: Boolean(node.publishedOnCurrentPublication ?? node.publishedAt),
+    publishedOnline: Boolean(
+      node.publishedOnCurrentPublication ?? node.publishedAt,
+    ),
     publishedAt: node.publishedAt ?? null,
     createdAt: node.createdAt,
     updatedAt: node.updatedAt,
@@ -291,15 +367,21 @@ export function normalizeProduct(node: AdminProductNode, currencyCode: string): 
   };
 }
 
-export function normalizeCollection(node: AdminCollectionNode, productIds: string[]): CatalogCollection {
+export function normalizeCollection(
+  node: AdminCollectionNode,
+  productIds: string[],
+): CatalogCollection {
   return {
     id: node.id,
-    handle: node.handle,
+    handle: sanitizeHandle(node.handle, node.id),
     title: node.title,
-    description: node.description ?? '',
-    descriptionHtml: node.descriptionHtml ?? '',
+    description: node.description ?? "",
+    descriptionHtml: node.descriptionHtml ?? "",
     image: normalizeImage(node.image, `${node.id}-image`),
-    seo: { title: node.seo?.title ?? null, description: node.seo?.description ?? null },
+    seo: {
+      title: node.seo?.title ?? null,
+      description: node.seo?.description ?? null,
+    },
     updatedAt: node.updatedAt,
     productIds: [...productIds].sort(),
     sortOrder: node.sortOrder ?? null,
@@ -308,5 +390,5 @@ export function normalizeCollection(node: AdminCollectionNode, productIds: strin
 
 /** True when the product should appear anywhere on the storefront. */
 export function isPurchasable(product: CatalogProduct): boolean {
-  return product.status === 'ACTIVE' && product.publishedOnline;
+  return product.status === "ACTIVE" && product.publishedOnline;
 }
