@@ -1,0 +1,28 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.pem
+
+# env — never commit real credentials
+.env
+.env.local
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# runtime catalog state
+data/.sync.lock
+data/.sync-state.json
+
+# editor
+.vscode/
+.idea/

@@ -1,0 +1,65 @@
+import { NextResponse } from 'next/server';
+import { consumeOAuthTransaction, writeSession } from '@/lib/auth/session';
+import { timingSafeEqualString } from '@/lib/auth/pkce';
+import { exchangeCodeForTokens } from '@/lib/shopify/customer-account';
+import { associateCartWithCustomer } from '@/lib/cart/actions';
+import { publicEnv } from '@/lib/validation/env';
+
+/**
+ * GET /account/callback
+ *
+ * Completes the OAuth flow. The state check is what prevents an attacker from
+ * completing a login they initiated in the victim's browser, so it runs before
+ * the code is exchanged and uses a constant-time comparison.
+ */
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+function errorRedirect(reason: string): NextResponse {
+  const url = new URL('/account/login', publicEnv.siteUrl);
+  url.searchParams.set('error', reason);
+  return NextResponse.redirect(url);
+}
+
+export async function GET(request: Request): Promise<NextResponse> {
+  const url = new URL(request.url);
+
+  const providerError = url.searchParams.get('error');
+  if (providerError) {
+    // Shopify rejected or the customer cancelled — send them back cleanly.
+    return errorRedirect(providerError === 'access_denied' ? 'cancelled' : 'provider');
+  }
+
+  const code = url.searchParams.get('code');
+  const state = url.searchParams.get('state');
+  if (!code || !state) return errorRedirect('missing_code');
+
+  // Single-use: reading the transaction also clears the cookie.
+  const transaction = await consumeOAuthTransaction();
+  if (!transaction) return errorRedirect('expired');
+
+  if (!timingSafeEqualString(state, transaction.state)) {
+    console.warn('[auth] OAuth state mismatch — possible CSRF attempt');
+    return errorRedirect('state_mismatch');
+  }
+
+  try {
+    const session = await exchangeCodeForTokens({
+      code,
+      codeVerifier: transaction.codeVerifier,
+      redirectUri: `${publicEnv.siteUrl}/account/callback`,
+    });
+    await writeSession(session);
+  } catch (error) {
+    // Never log the code or any token.
+    console.error('[auth] token exchange failed:', (error as Error).message);
+    return errorRedirect('exchange_failed');
+  }
+
+  // Best-effort: attach the guest cart to the now-known customer.
+  await associateCartWithCustomer();
+
+  const destination = new URL(transaction.redirectTo || '/account', publicEnv.siteUrl);
+  return NextResponse.redirect(destination);
+}

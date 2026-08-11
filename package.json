@@ -1,0 +1,43 @@
+{
+  "name": "trackify-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "shopify:sync": "tsx scripts/sync.ts",
+    "shopify:validate": "tsx scripts/validate.ts",
+    "shopify:test-webhook": "tsx scripts/test-webhook.ts",
+    "shopify:webhooks": "tsx scripts/register-webhooks.ts"
+  },
+  "dependencies": {
+    "next": "^16.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "server-only": "^0.0.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.24.0",
+    "eslint-config-next": "^16.3.0",
+    "tailwindcss": "^4.1.13",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  }
+}
