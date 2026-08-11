@@ -1,6 +1,6 @@
 import "server-only";
 import { productRepository } from "@/lib/catalog";
-import type { NavLink } from "@/components/layout/header";
+import type { NavChild, NavLink } from "@/components/layout/header";
 
 /**
  * Navigation derived from the real catalog.
@@ -10,12 +10,28 @@ import type { NavLink } from "@/components/layout/header";
  * built from the collections that actually contain products.
  */
 export async function getNavigation(): Promise<NavLink[]> {
-  // Fixed menu: Home, Shop, About. Shopify menus live in the Online Store
-  // channel, which a headless storefront does not consume, so the top-level
-  // nav is explicit rather than derived from the catalog.
+  // Fixed top-level menu. Shop opens a mega menu built from the collections
+  // that actually contain products — each with a cover image and item count.
+  const collections = await productRepository.getAllCollections();
+  const populated = collections
+    .filter((collection) => collection.productIds.length > 0)
+    .sort((a, b) => b.productIds.length - a.productIds.length);
+
+  const shopChildren: NavChild[] = populated.slice(0, 8).map((collection) => ({
+    href: `/collections/${collection.handle}`,
+    label: collection.title,
+    meta: `${collection.productIds.length} ${collection.productIds.length === 1 ? "piece" : "pieces"}`,
+    image: collection.image
+      ? {
+          url: collection.image.url,
+          alt: collection.image.altText ?? collection.title,
+        }
+      : null,
+  }));
+
   return [
     { href: "/", label: "Home" },
-    { href: "/collections", label: "Shop" },
+    { href: "/collections", label: "Shop", children: shopChildren },
     { href: "/about", label: "About" },
   ];
 }

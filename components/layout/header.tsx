@@ -1,19 +1,45 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
-import { BagIcon, MenuIcon, SearchIcon, UserIcon } from "@/components/ui/icons";
+import {
+  BagIcon,
+  ChevronRightIcon,
+  GridIcon,
+  MenuIcon,
+  SearchIcon,
+  UserIcon,
+} from "@/components/ui/icons";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import { useCart } from "@/components/cart/cart-provider";
 import { SearchOverlay } from "@/components/search/search-overlay";
 import { MobileNav } from "./mobile-nav";
 import { ThemeToggle } from "./theme-toggle";
 
+export type NavChild = {
+  href: string;
+  label: string;
+  /** Optional cover image shown in the mega menu (e.g. a collection cover). */
+  image?: { url: string; alt: string } | null;
+  /** Optional short caption, e.g. an item count. */
+  meta?: string;
+};
+
 export type NavLink = {
   href: string;
   label: string;
-  children?: { href: string; label: string }[];
+  children?: NavChild[];
 };
 
 /**
@@ -121,55 +147,112 @@ export function Header({
               </Link>
             </div>
 
-            <nav
+            <NavigationMenu
               aria-label="Main"
-              className="hidden min-w-0 items-center justify-center lg:flex"
+              className="hidden min-w-0 lg:flex"
             >
-              <ul className="flex items-center gap-1">
+              <NavigationMenuList>
                 {navigation.map((link) => {
                   const active =
                     pathname === link.href ||
                     pathname.startsWith(`${link.href}/`);
-                  return (
-                    <li key={link.href} className="group relative">
-                      <Link
-                        href={link.href}
-                        aria-current={active ? "page" : undefined}
-                        className={cn(
-                          "relative inline-flex h-10 items-center rounded-md px-3.5 text-sm font-medium transition-colors",
-                          active ? "text-ink" : "text-ink-muted hover:text-ink",
-                        )}
-                      >
-                        {link.label}
-                        {active && (
-                          <span
-                            className="absolute inset-x-3.5 bottom-1 h-px bg-accent"
-                            aria-hidden="true"
-                          />
-                        )}
-                      </Link>
 
-                      {link.children && link.children.length > 0 && (
-                        <div className="invisible absolute top-full left-1/2 z-10 w-56 -translate-x-1/2 pt-2 opacity-0 transition-[opacity,visibility] duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                          <ul className="overflow-hidden rounded-lg border border-line bg-surface-raised p-1.5 shadow-e3">
-                            {link.children.map((child) => (
-                              <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  className="block rounded-sm px-3 py-2.5 text-sm text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink"
-                                >
-                                  {child.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </li>
+                  if (link.children && link.children.length > 0) {
+                    return (
+                      <NavigationMenuItem key={link.href}>
+                        <NavigationMenuTrigger className="relative">
+                          {link.label}
+                          {active && (
+                            <span
+                              className="absolute inset-x-3.5 bottom-1 h-px bg-accent"
+                              aria-hidden="true"
+                            />
+                          )}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <div className="w-[min(92vw,40rem)] p-2.5">
+                            <p className="px-2.5 pt-1 pb-2 text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">
+                              Shop by category
+                            </p>
+                            <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+                              {link.children.map((child) => (
+                                <NavigationMenuLink key={child.href} asChild>
+                                  <Link
+                                    href={child.href}
+                                    className="flex items-center gap-3 rounded-lg px-2.5 py-2 transition-colors hover:bg-surface-sunken"
+                                  >
+                                    {child.image?.url ? (
+                                      <span className="relative size-11 shrink-0 overflow-hidden rounded-md bg-surface-sunken">
+                                        <Image
+                                          src={child.image.url}
+                                          alt={child.image.alt || child.label}
+                                          fill
+                                          sizes="44px"
+                                          className="object-cover"
+                                        />
+                                      </span>
+                                    ) : (
+                                      <span className="grid size-11 shrink-0 place-items-center rounded-md bg-surface-sunken text-ink-subtle">
+                                        <GridIcon size={18} />
+                                      </span>
+                                    )}
+                                    <span className="min-w-0">
+                                      <span className="block truncate text-sm font-medium">
+                                        {child.label}
+                                      </span>
+                                      {child.meta && (
+                                        <span className="block text-2xs text-ink-subtle">
+                                          {child.meta}
+                                        </span>
+                                      )}
+                                    </span>
+                                  </Link>
+                                </NavigationMenuLink>
+                              ))}
+                            </div>
+                            <div className="mt-1.5 border-t border-line pt-1.5">
+                              <Link
+                                href={link.href}
+                                className="flex items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-sunken"
+                              >
+                                Browse all {link.label.toLowerCase()}
+                                <ChevronRightIcon size={16} />
+                              </Link>
+                            </div>
+                          </div>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    );
+                  }
+
+                  return (
+                    <NavigationMenuItem key={link.href}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={link.href}
+                          aria-current={active ? "page" : undefined}
+                          className={cn(
+                            "relative inline-flex h-10 items-center rounded-md px-3.5 text-sm font-medium transition-colors",
+                            active
+                              ? "text-ink"
+                              : "text-ink-muted hover:text-ink",
+                          )}
+                        >
+                          {link.label}
+                          {active && (
+                            <span
+                              className="absolute inset-x-3.5 bottom-1 h-px bg-accent"
+                              aria-hidden="true"
+                            />
+                          )}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
                   );
                 })}
-              </ul>
-            </nav>
+              </NavigationMenuList>
+              <NavigationMenuIndicator />
+            </NavigationMenu>
 
             <div className="flex items-center justify-end gap-0.5">
               <button

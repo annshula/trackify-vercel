@@ -128,7 +128,7 @@ export default async function HomePage() {
           </h2>
 
           <ul className="grid gap-4 sm:grid-cols-3 sm:gap-5">
-            {featuredCollections.map((collection, index) => {
+            {featuredCollections.map((collection) => {
               const image =
                 collection.image ??
                 primaryImage(
@@ -150,7 +150,7 @@ export default async function HomePage() {
                           alt=""
                           fill
                           sizes="(min-width: 640px) 33vw, 100vw"
-                          priority={index === 0}
+                          loading="eager"
                           className="object-cover transition-transform duration-700 ease-out-soft group-hover:scale-105"
                         />
                       )}
