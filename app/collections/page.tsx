@@ -23,6 +23,7 @@ import {
   FilterSidebar,
 } from "@/components/collection/filter-panel";
 import { Pagination } from "@/components/collection/pagination";
+import { DragScroll } from "@/components/ui/drag-scroll";
 import { GridIcon } from "@/components/ui/icons";
 
 export const revalidate = 3600;
@@ -95,7 +96,10 @@ export default async function CollectionsPage({ searchParams }: PageProps) {
             <h2 id="all-collections-heading" className="sr-only">
               All collections
             </h2>
-            <ul className="hide-scrollbar flex snap-x gap-3 overflow-x-auto pb-2">
+            <DragScroll
+              as="ul"
+              className="hide-scrollbar flex snap-x gap-3 overflow-x-auto pb-2"
+            >
               {populated.map((collection) => {
                 const image = collection.image;
                 return (
@@ -114,6 +118,8 @@ export default async function CollectionsPage({ searchParams }: PageProps) {
                             alt=""
                             fill
                             sizes="208px"
+                            // Collection cards sit above the fold — load eagerly.
+                            loading="eager"
                             className="object-cover transition-transform duration-500 ease-out-soft group-hover:scale-105"
                           />
                         )}
@@ -131,7 +137,7 @@ export default async function CollectionsPage({ searchParams }: PageProps) {
                   </li>
                 );
               })}
-            </ul>
+            </DragScroll>
           </section>
         )}
 

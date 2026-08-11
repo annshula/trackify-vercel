@@ -45,9 +45,10 @@ export type NavLink = {
 /**
  * Sticky header.
  *
- * Compact by default and slightly more compact once scrolled, so the viewport
- * belongs to the product rather than the chrome. The mobile row is a single
- * 56px band with three touch targets.
+ * Deliberately a constant height (64px mobile / 72px desktop) so scrolling can
+ * never reflow the page beneath it. Scroll state is communicated through
+ * border, shadow and background alone — see the note on the header row below
+ * for why animating the height is the wrong tool for a sticky element.
  */
 export function Header({
   navigation,
@@ -65,11 +66,35 @@ export function Header({
   const [navOpen, setNavOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
+  /*
+   * Hysteresis + rAF throttle.
+   *
+   * A single threshold lets the flag chatter when a scroll settles right on the
+   * boundary — each flip re-runs the header's transition, which reads as the
+   * header "jumping" for a while. Separate enter/exit thresholds mean the state
+   * cannot flip without a deliberate ~20px of travel, and rAF collapses the
+   * burst of scroll events a momentum fling produces into one read per frame.
+   */
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    let frame = 0;
+
+    const read = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled((current) => (current ? y > 4 : y > 24));
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(read);
+    };
+
+    read();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   // "/" focuses search, the way every search-first product behaves.
@@ -111,13 +136,16 @@ export function Header({
       >
         <div className="container-page">
           <div
-            className={cn(
-              // On desktop the nav sits in the center column of an equal-width
-              // grid, so it centers to the screen — not between the logo and
-              // the action buttons. Mobile keeps the left/right flex layout.
-              "flex items-center justify-between gap-3 transition-[height] duration-300 ease-out-soft lg:grid lg:grid-cols-[1fr_auto_1fr]",
-              scrolled ? "h-14" : "h-16 sm:h-20",
-            )}
+            // Constant height, deliberately.
+            //
+            // A sticky header is in normal flow, so animating its height
+            // reflows every element below it. Worse, that reflow shifts
+            // window.scrollY, which can push the scroll position back across
+            // the threshold that triggered the change — the header then
+            // oscillates instead of settling. Scroll state is expressed with
+            // border, shadow and background only: all paint-level properties
+            // that cost no layout and cannot feed back into scroll position.
+            className="flex h-16 items-center justify-between gap-3 sm:h-18 lg:grid lg:grid-cols-[1fr_auto_1fr]"
           >
             {/* Left: mobile menu + logo */}
             <div className="flex items-center gap-0.5">

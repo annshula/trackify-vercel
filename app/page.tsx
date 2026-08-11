@@ -85,16 +85,19 @@ export default async function HomePage() {
                 chosen to earn its place, and every order is tracked from
                 checkout to doorstep.
               </p>
+              {/* The product title lives here rather than inside a CTA below —
+                  a long Shopify title inside a nowrap button breaks layout on
+                  narrow screens, while a truncating text line degrades
+                  gracefully at any width. */}
+              <p className="line-clamp-1 text-sm text-ink-subtle">
+                Featuring <span className="font-medium text-ink">{heroProduct.title}</span>
+              </p>
               <div className="flex flex-wrap gap-3">
                 <ButtonLink href="/collections" size="lg">
                   Shop the edit
                 </ButtonLink>
-                <ButtonLink
-                  href={`/products/${heroProduct.handle}`}
-                  variant="outline"
-                  size="lg"
-                >
-                  See {heroProduct.title}
+                <ButtonLink href={`/products/${heroProduct.handle}`} variant="outline" size="lg">
+                  View product
                 </ButtonLink>
               </div>
             </div>

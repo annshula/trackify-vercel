@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils/cn';
+import { useDragScroll } from '@/hooks/use-drag-scroll';
 import { LogoutIcon, MapPinIcon, PackageIcon, UserIcon, HomeIcon } from '@/components/ui/icons';
 
 const LINKS = [
@@ -20,10 +21,15 @@ const LINKS = [
  */
 export function AccountNav() {
   const pathname = usePathname();
+  // Only scrollable below lg, where the list becomes a horizontal strip.
+  const navRef = useDragScroll<HTMLUListElement>();
 
   return (
     <nav aria-label="Account" className="lg:sticky lg:top-24 lg:self-start">
-      <ul className="hide-scrollbar -mx-4 flex gap-1 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0">
+      <ul
+        ref={navRef}
+        className="hide-scrollbar -mx-4 flex gap-1 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0"
+      >
         {LINKS.map((link) => {
           const active = link.exact ? pathname === link.href : pathname.startsWith(link.href);
           const Icon = link.icon;

@@ -16,8 +16,12 @@ import { CloseIcon } from './icons';
  *  - background scroll is locked without the page shifting
  *  - the panel is a labelled dialog
  *
- * `side="bottom"` is the mobile default: a thumb-reachable sheet with a drag
- * handle, rather than a full-screen modal.
+ * `side="right"` and `"left"` are responsive: a thumb-reachable bottom sheet
+ * below `sm`, and a floating panel — inset from every edge, rounded all the
+ * way around — from `sm` up. A full-height rectangle with a single rounded
+ * corner reads as unfinished on a large screen; insetting it into its own
+ * card over the blurred backdrop is what actually reads as considered.
+ * `side="bottom"` is always a bottom sheet, at any viewport width.
  */
 
 export type DrawerProps = {
@@ -33,10 +37,15 @@ export type DrawerProps = {
   className?: string;
 };
 
+const SHEET_BASE = 'inset-x-0 bottom-0 max-h-[88vh] w-full rounded-t-2xl animate-slide-up';
+const FLOATING_BASE =
+  'sm:inset-x-auto sm:bottom-auto sm:inset-y-4 sm:h-[calc(100%-2rem)] sm:max-h-none ' +
+  'sm:w-full sm:max-w-md sm:rounded-2xl sm:ring-1 sm:ring-ink/5';
+
 const SIDE_STYLES = {
-  right: 'inset-y-0 right-0 h-full w-full max-w-md rounded-l-xl animate-slide-right',
-  left: 'inset-y-0 left-0 h-full w-full max-w-md rounded-r-xl animate-slide-right',
-  bottom: 'inset-x-0 bottom-0 max-h-[88vh] w-full rounded-t-xl animate-slide-up',
+  right: cn(SHEET_BASE, FLOATING_BASE, 'sm:right-4 sm:left-auto sm:animate-slide-right'),
+  left: cn(SHEET_BASE, FLOATING_BASE, 'sm:left-4 sm:right-auto sm:animate-slide-left'),
+  bottom: SHEET_BASE,
 } as const;
 
 export function Drawer({
@@ -127,7 +136,7 @@ export function Drawer({
         aria-label="Close"
         tabIndex={-1}
         onClick={onClose}
-        className="absolute inset-0 animate-fade-in bg-overlay backdrop-blur-[2px]"
+        className="absolute inset-0 animate-fade-in bg-overlay backdrop-blur-md backdrop-saturate-150"
       />
       <div
         ref={panelRef}
@@ -137,16 +146,20 @@ export function Drawer({
         aria-describedby={description ? descriptionId : undefined}
         tabIndex={-1}
         className={cn(
-          'absolute flex flex-col bg-surface shadow-e4 outline-none',
+          'absolute flex flex-col overflow-hidden bg-surface shadow-e4 outline-none',
           SIDE_STYLES[side],
           className,
         )}
       >
-        {side === 'bottom' && (
-          <div className="flex justify-center pt-3 pb-1" aria-hidden="true">
-            <span className="h-1 w-10 rounded-full bg-line-strong" />
-          </div>
-        )}
+        {/* The drag handle only reads correctly while the panel is acting as
+            a bottom sheet — hidden once `right`/`left` become a floating
+            panel at `sm` and up. */}
+        <div
+          className={cn('flex shrink-0 justify-center pt-3 pb-1', side !== 'bottom' && 'sm:hidden')}
+          aria-hidden="true"
+        >
+          <span className="h-1 w-10 rounded-full bg-line-strong" />
+        </div>
 
         <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
           <div className="min-w-0">

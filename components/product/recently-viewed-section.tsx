@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecentlyViewed } from "@/hooks/use-recently-viewed";
+import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { formatMoney } from "@/lib/utils/money";
 import { Skeleton } from "@/components/ui/primitives";
 
@@ -28,6 +29,7 @@ export function RecentlyViewedSection({
   excludeHandle?: string;
 }) {
   const { handles, hydrated } = useRecentlyViewed();
+  const railRef = useDragScroll<HTMLUListElement>();
   const [products, setProducts] = React.useState<MiniProduct[] | null>(null);
 
   const wanted = React.useMemo(
@@ -64,7 +66,10 @@ export function RecentlyViewedSection({
         Recently viewed
       </h2>
 
-      <ul className="hide-scrollbar mt-5 flex snap-x gap-4 overflow-x-auto pb-2">
+      <ul
+        ref={railRef}
+        className="hide-scrollbar mt-5 flex snap-x gap-4 overflow-x-auto pb-2 lg:cursor-grab"
+      >
         {products === null
           ? wanted.map((handle) => (
               <li key={handle} className="w-36 shrink-0 snap-start sm:w-44">

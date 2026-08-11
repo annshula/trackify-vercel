@@ -1,20 +1,27 @@
-import { notFound, permanentRedirect } from 'next/navigation';
-import type { Metadata } from 'next';
-import { Suspense } from 'react';
+import { notFound, permanentRedirect } from "next/navigation";
+import type { Metadata } from "next";
+import { Suspense } from "react";
 
-import { productRepository, redirectRepository } from '@/lib/catalog';
-import { relatedProducts, complementaryProducts } from '@/lib/catalog/recommendations';
-import { productMetadata } from '@/lib/seo/metadata';
-import { JsonLd, breadcrumbSchema, productSchema } from '@/lib/seo/jsonld';
+import { productRepository, redirectRepository } from "@/lib/catalog";
+import {
+  relatedProducts,
+  complementaryProducts,
+} from "@/lib/catalog/recommendations";
+import { productMetadata } from "@/lib/seo/metadata";
+import { JsonLd, breadcrumbSchema, productSchema } from "@/lib/seo/jsonld";
 
-import { Breadcrumb, SectionHeading, Skeleton } from '@/components/ui/primitives';
-import { BuyBox, StickyBuyBar } from '@/components/product/buy-box';
-import { ProductDetails } from '@/components/product/product-details';
-import { Reviews } from '@/components/product/reviews';
-import { ProductGrid } from '@/components/product/product-card';
-import { CompleteTheLook } from '@/components/product/complete-the-look';
-import { RecentlyViewedSection } from '@/components/product/recently-viewed-section';
-import { RecentlyViewedRecorder } from '@/hooks/use-recently-viewed';
+import {
+  Breadcrumb,
+  SectionHeading,
+  Skeleton,
+} from "@/components/ui/primitives";
+import { BuyBox } from "@/components/product/buy-box";
+import { ProductDetails } from "@/components/product/product-details";
+import { Reviews } from "@/components/product/reviews";
+import { ProductGrid } from "@/components/product/product-card";
+import { CompleteTheLook } from "@/components/product/complete-the-look";
+import { RecentlyViewedSection } from "@/components/product/recently-viewed-section";
+import { RecentlyViewedRecorder } from "@/hooks/use-recently-viewed";
 
 /**
  * /products/[handle]
@@ -38,10 +45,16 @@ export async function generateStaticParams() {
   return products.map((product) => ({ handle: product.handle }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { handle } = await params;
   const product = await productRepository.getProductByHandle(handle);
-  if (!product) return { title: 'Product not found', robots: { index: false, follow: false } };
+  if (!product)
+    return {
+      title: "Product not found",
+      robots: { index: false, follow: false },
+    };
   return productMetadata(product);
 }
 
@@ -62,10 +75,15 @@ export default async function ProductPage({ params }: PageProps) {
 
   const primaryCollection = product.collections[0];
   const crumbs = [
-    { href: '/', label: 'Home' },
+    { href: "/", label: "Home" },
     ...(primaryCollection
-      ? [{ href: `/collections/${primaryCollection.handle}`, label: primaryCollection.title }]
-      : [{ href: '/collections', label: 'Shop' }]),
+      ? [
+          {
+            href: `/collections/${primaryCollection.handle}`,
+            label: primaryCollection.title,
+          },
+        ]
+      : [{ href: "/collections", label: "Shop" }]),
     { label: product.title },
   ];
 
@@ -75,9 +93,14 @@ export default async function ProductPage({ params }: PageProps) {
         data={[
           productSchema(product),
           breadcrumbSchema([
-            { name: 'Home', url: '/' },
+            { name: "Home", url: "/" },
             ...(primaryCollection
-              ? [{ name: primaryCollection.title, url: `/collections/${primaryCollection.handle}` }]
+              ? [
+                  {
+                    name: primaryCollection.title,
+                    url: `/collections/${primaryCollection.handle}`,
+                  },
+                ]
               : []),
             { name: product.title, url: `/products/${product.handle}` },
           ]),
@@ -96,14 +119,19 @@ export default async function ProductPage({ params }: PageProps) {
           </Suspense>
         </div>
 
-        <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-none lg:pr-[min(420px,35%)]">
-          <ProductDetails product={product} />
+        {/* Detail content sits under the gallery column rather than spanning
+            the full width — a measure that stays readable instead of running
+            long lines across the page. */}
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-14">
+          <div className="lg:col-span-7">
+            <ProductDetails product={product} />
 
-          {complements.length > 0 && (
-            <CompleteTheLook anchor={product} products={complements} />
-          )}
+            {complements.length > 0 && (
+              <CompleteTheLook anchor={product} products={complements} />
+            )}
 
-          <Reviews product={product} />
+            <Reviews product={product} />
+          </div>
         </div>
 
         {related.length > 0 && (
@@ -113,35 +141,43 @@ export default async function ProductPage({ params }: PageProps) {
               className="mb-7"
               action={
                 primaryCollection
-                  ? { href: `/collections/${primaryCollection.handle}`, label: `All ${primaryCollection.title}` }
+                  ? {
+                      href: `/collections/${primaryCollection.handle}`,
+                      label: `All ${primaryCollection.title}`,
+                    }
                   : undefined
               }
             />
             <h2 id="related-heading" className="sr-only">
               Related products
             </h2>
-            <ProductGrid products={related} listName="Related products" priorityCount={0} />
+            <ProductGrid
+              products={related}
+              listName="Related products"
+              priorityCount={0}
+            />
           </section>
         )}
 
         <RecentlyViewedSection excludeHandle={product.handle} />
       </div>
-
-      <StickyBuyBar product={product} />
     </>
   );
 }
 
+/** Mirrors the real BuyBox proportions so nothing shifts when it swaps in. */
 function BuyBoxSkeleton() {
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:gap-12">
-      <Skeleton className="aspect-[4/5] w-full rounded-lg" />
-      <div className="space-y-4">
+    <div className="lg:grid lg:grid-cols-12 lg:gap-x-14">
+      <div className="-mx-4 sm:-mx-6 lg:col-span-7 lg:mx-0">
+        <Skeleton className="h-[min(92vw,360px)] w-full lg:h-125 lg:rounded-2xl" />
+      </div>
+      <div className="space-y-4 px-4 pt-7 sm:px-6 lg:col-span-5 lg:px-0 lg:pt-0">
         <Skeleton className="h-3 w-24" />
-        <Skeleton className="h-9 w-3/4" />
-        <Skeleton className="h-7 w-32" />
-        <Skeleton className="h-11 w-full" />
-        <Skeleton className="h-13 w-full" />
+        <Skeleton className="h-8 w-3/4" />
+        <Skeleton className="h-9 w-32" />
+        <Skeleton className="h-7 w-48 rounded-full" />
+        <Skeleton className="h-12 w-full rounded-lg" />
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ export function Price({
   amount: number;
   compareAt?: number | null;
   currencyCode: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }) {
   const percent = discountPercent(amount, compareAt);
@@ -59,6 +59,8 @@ export function Price({
     sm: { price: 'text-sm', compare: 'text-xs' },
     md: { price: 'text-base', compare: 'text-sm' },
     lg: { price: 'text-2xl', compare: 'text-base' },
+    // Editorial scale for the product page's headline price.
+    xl: { price: 'text-3xl tracking-tight', compare: 'text-base' },
   }[size];
 
   return (
