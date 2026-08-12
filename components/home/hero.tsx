@@ -70,6 +70,24 @@ export async function Hero({
             portrait, with nothing left over to clip into the header. Sizes
             and gaps step up at sm/lg once there's more room to spend. */}
         <div className="container-page relative z-10 py-8 sm:py-16 lg:py-24">
+          {/* Mobile only — this space isn't empty at sm and up, where the
+              header itself sits over the same photo with its full nav, so a
+              second lockup there would just duplicate it. */}
+          <div className="text-shadow-hero animate-fade-up mb-10 flex flex-col items-center gap-1 text-center sm:hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt=""
+              width={84}
+              height={64}
+              className="h-10 w-auto brightness-0 invert xs:h-11"
+            />
+            <p className="font-display text-xl text-white xs:text-2xl">
+              Trackify
+            </p>
+            <p className="text-sm text-white/70">Smart. Secure. Seamless.</p>
+          </div>
+
           <div className="text-shadow-hero max-w-xl">
             <p
               className="animate-fade-up text-2xs font-semibold tracking-[0.2em] text-white/80 uppercase"

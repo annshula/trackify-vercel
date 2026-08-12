@@ -217,10 +217,19 @@ export function Header({
 
             {/* Center: mobile logo / desktop nav */}
             <div className="flex min-w-0 items-center justify-center">
+              {/* Hidden on mobile specifically while the transparent hero
+                  header is active — the hero itself now shows its own,
+                  bigger centered "Trackify" lockup just below, so this one
+                  would be a redundant second logo stacked right above it. It
+                  reappears the moment overHero turns off (scrolled, or any
+                  other route). */}
               <Link
                 href="/"
                 aria-label="Trackify home"
-                className="shrink-0 leading-none lg:hidden"
+                className={cn(
+                  "shrink-0 leading-none lg:hidden",
+                  overHero && "max-lg:hidden",
+                )}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
