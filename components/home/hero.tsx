@@ -70,33 +70,39 @@ export async function Hero({
             portrait, with nothing left over to clip into the header. Sizes
             and gaps step up at sm/lg once there's more room to spend. */}
         <div className="container-page relative z-10 py-8 sm:py-16 lg:py-24">
-          {/* Mobile only — this space isn't empty at sm and up, where the
-              header itself sits over the same photo with its full nav, so a
-              second lockup there would just duplicate it. */}
-          <div className="text-shadow-hero animate-fade-up mb-10 flex flex-col items-center gap-1 text-center sm:hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.svg"
-              alt=""
-              width={84}
-              height={64}
-              className="h-10 w-auto brightness-0 invert xs:h-11"
-            />
-            <p className="font-display text-xl text-white xs:text-2xl">
-              Trackify
-            </p>
-            <p className="text-sm text-white/70">Smart. Secure. Seamless.</p>
-          </div>
+          {/* One coherent composition, not two stitched together: mobile is
+              centered start to finish (logo through button), matching how a
+              full-bleed photo hero reads on a narrow screen. sm+ switches to
+              the conventional left-aligned column, where there's room for it
+              to read as a proper block of copy instead of a centered badge. */}
+          <div className="text-shadow-hero flex flex-col items-center text-center sm:max-w-xl sm:items-start sm:text-left">
+            {/* Mobile only — this space isn't empty at sm and up, where the
+                header itself sits over the same photo with its full nav, so a
+                second lockup there would just duplicate it. Its tagline also
+                covers what the eyebrow below says, so the eyebrow is sm+ only. */}
+            <div className="animate-fade-up mb-8 flex flex-col items-center gap-1 sm:hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.svg"
+                alt=""
+                width={84}
+                height={64}
+                className="h-10 w-auto brightness-0 invert xs:h-11"
+              />
+              <p className="font-display text-xl text-white xs:text-2xl">
+                Trackify
+              </p>
+              <p className="text-sm text-white/70">Smart. Secure. Seamless.</p>
+            </div>
 
-          <div className="text-shadow-hero max-w-xl">
             <p
-              className="animate-fade-up text-2xs font-semibold tracking-[0.2em] text-white/80 uppercase"
+              className="animate-fade-up hidden text-2xs font-semibold tracking-[0.2em] text-white/80 uppercase sm:block"
               style={{ animationDelay: "60ms" }}
             >
               {heroProduct.productType || "New arrivals"}
             </p>
             <h1
-              className="animate-fade-up mt-2.5 text-3xl text-white sm:mt-4 sm:text-5xl lg:text-6xl"
+              className="animate-fade-up text-3xl text-white sm:mt-4 sm:text-5xl lg:text-6xl"
               style={{ animationDelay: "120ms" }}
             >
               Find the perfect gear to complete your everyday carry.
@@ -109,7 +115,7 @@ export async function Hero({
               earn their place — and tracked from checkout to doorstep.
             </p>
             <div
-              className="animate-fade-up mt-5 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3"
+              className="animate-fade-up mt-5 flex w-full flex-col gap-2.5 sm:mt-8 sm:w-auto sm:flex-row sm:gap-3"
               style={{ animationDelay: "240ms" }}
             >
               {/* text-shadow-none cancels the hero's inherited text-shadow —
