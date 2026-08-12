@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from "next/server";
 
 /**
  * Request proxy (formerly `middleware.ts`; renamed in Next 16).
@@ -40,27 +40,33 @@ import { NextResponse, type NextRequest } from 'next/server';
  * that a hard search.
  */
 
-const SESSION_COOKIE = '_tf_session';
+const SESSION_COOKIE = "_tf_session";
 
 /** Public /account routes: the auth flow itself must stay reachable. */
 const PUBLIC_ACCOUNT_PATHS = new Set([
-  '/account/login',
-  '/account/authorize',
-  '/account/callback',
-  '/account/logout',
-  '/account/unavailable',
+  "/account/login",
+  "/account/authorize",
+  "/account/callback",
+  "/account/logout",
+  "/account/unavailable",
 ]);
 
 /** Legacy Shopify theme paths a customer or search engine may still hold. */
-const LEGACY_REDIRECTS: { from: RegExp; to: (match: RegExpMatchArray) => string }[] = [
+const LEGACY_REDIRECTS: {
+  from: RegExp;
+  to: (match: RegExpMatchArray) => string;
+}[] = [
   { from: /^\/products\/([^/]+)\/?$/, to: (m) => `/products/${m[1]}` },
-  { from: /^\/collections\/([^/]+)\/products\/([^/]+)\/?$/, to: (m) => `/products/${m[2]}` },
-  { from: /^\/collections\/all\/?$/, to: () => '/collections' },
-  { from: /^\/collections\/?$/, to: () => '/collections' },
+  {
+    from: /^\/collections\/([^/]+)\/products\/([^/]+)\/?$/,
+    to: (m) => `/products/${m[2]}`,
+  },
+  { from: /^\/collections\/all\/?$/, to: () => "/collections" },
+  { from: /^\/collections\/?$/, to: () => "/collections" },
   { from: /^\/pages\/([^/]+)\/?$/, to: (m) => `/pages/${m[1]}` },
-  { from: /^\/search\/?$/, to: () => '/search' },
-  { from: /^\/cart\/?$/, to: () => '/cart' },
-  { from: /^\/account\/login\/?$/, to: () => '/account/login' },
+  { from: /^\/search\/?$/, to: () => "/search" },
+  { from: /^\/cart\/?$/, to: () => "/cart" },
+  { from: /^\/account\/login\/?$/, to: () => "/account/login" },
 ];
 
 /**
@@ -69,7 +75,7 @@ const LEGACY_REDIRECTS: { from: RegExp; to: (match: RegExpMatchArray) => string 
  * does this in a production build, so 'unsafe-eval' is scoped to dev only
  * rather than weakening the policy actual customers get served under.
  */
-const IS_DEV = process.env.NODE_ENV !== 'production';
+const IS_DEV = process.env.NODE_ENV !== "production";
 
 const CSP = [
   `default-src 'self'`,
@@ -77,7 +83,7 @@ const CSP = [
   // own RSC hydration payload ships as inline <script> tags whose content is
   // per-request and cannot be nonced without forfeiting static generation, or
   // hashed since it differs on every page.
-  `script-src 'self' 'unsafe-inline'${IS_DEV ? ` 'unsafe-eval'` : ''} https://www.googletagmanager.com https://connect.facebook.net`,
+  `script-src 'self' 'unsafe-inline'${IS_DEV ? ` 'unsafe-eval'` : ""} https://www.googletagmanager.com https://connect.facebook.net https://static.cloudflareinsights.com`,
   // Nonces are not honored on style *attributes* per the CSP spec (only on
   // <style> elements/<link>), and several components set dynamic inline
   // styles (progress bars, color swatches, CSS custom properties). Without a
@@ -87,7 +93,7 @@ const CSP = [
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob: https://cdn.shopify.com https://*.myshopify.com https://www.facebook.com`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com${IS_DEV ? ' ws://localhost:* wss://localhost:*' : ''}`,
+  `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com https://cloudflareinsights.com${IS_DEV ? " ws://localhost:* wss://localhost:*" : ""}`,
   // Shopify's ExternalVideo media type is YouTube or Vimeo only.
   `frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com`,
   `object-src 'none'`,
@@ -95,13 +101,13 @@ const CSP = [
   `form-action 'self'`,
   `frame-ancestors 'self'`,
   `upgrade-insecure-requests`,
-].join('; ');
+].join("; ");
 
 export default function proxy(request: NextRequest): NextResponse {
   const { pathname, search } = request.nextUrl;
 
   const respond = (response: NextResponse): NextResponse => {
-    response.headers.set('Content-Security-Policy', CSP);
+    response.headers.set("Content-Security-Policy", CSP);
     return response;
   };
 
@@ -119,12 +125,12 @@ export default function proxy(request: NextRequest): NextResponse {
   }
 
   // ── Account guard ───────────────────────────────────────────────────
-  if (pathname.startsWith('/account') && !PUBLIC_ACCOUNT_PATHS.has(pathname)) {
+  if (pathname.startsWith("/account") && !PUBLIC_ACCOUNT_PATHS.has(pathname)) {
     // Presence-only check. The real authorization happens server-side in
     // requireCustomer() — a forged cookie fails there, not here.
     if (!request.cookies.has(SESSION_COOKIE)) {
       const url = request.nextUrl.clone();
-      url.pathname = '/account/login';
+      url.pathname = "/account/login";
       url.search = `?returnTo=${encodeURIComponent(pathname + search)}`;
       return respond(NextResponse.redirect(url));
     }
@@ -139,6 +145,6 @@ export const config = {
      * Everything except Next internals, the webhook endpoint (which must not be
      * redirected), and static files.
      */
-    '/((?!_next/static|_next/image|api/webhooks|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|woff2?)$).*)',
+    "/((?!_next/static|_next/image|api/webhooks|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|woff2?)$).*)",
   ],
 };
