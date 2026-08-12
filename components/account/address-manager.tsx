@@ -1,14 +1,20 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { useFormStatus } from 'react-dom';
-import type { CustomerAddress, ActionResult } from '@/types/commerce';
-import { removeAddress, saveAddress } from '@/lib/account/actions';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/form';
-import { Drawer } from '@/components/ui/drawer';
-import { Alert, Badge, EmptyState } from '@/components/ui/primitives';
-import { AlertIcon, CheckIcon, MapPinIcon, PlusIcon, TrashIcon } from '@/components/ui/icons';
+import * as React from "react";
+import { useFormStatus } from "react-dom";
+import type { CustomerAddress, ActionResult } from "@/types/commerce";
+import { removeAddress, saveAddress } from "@/lib/account/actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/form";
+import { Drawer } from "@/components/ui/drawer";
+import { Alert, Badge, EmptyState } from "@/components/ui/primitives";
+import {
+  AlertIcon,
+  CheckIcon,
+  MapPinIcon,
+  PlusIcon,
+  TrashIcon,
+} from "@/components/ui/icons";
 
 /**
  * Address book.
@@ -24,8 +30,12 @@ export function AddressManager({
   addresses: CustomerAddress[];
   defaultAddressId: string | null;
 }) {
-  const [editing, setEditing] = React.useState<CustomerAddress | 'new' | null>(null);
-  const [confirmingDelete, setConfirmingDelete] = React.useState<string | null>(null);
+  const [editing, setEditing] = React.useState<CustomerAddress | "new" | null>(
+    null,
+  );
+  const [confirmingDelete, setConfirmingDelete] = React.useState<string | null>(
+    null,
+  );
   const [notice, setNotice] = React.useState<string | null>(null);
 
   return (
@@ -41,13 +51,15 @@ export function AddressManager({
           icon={<MapPinIcon size={24} />}
           title="No addresses saved"
           description="Save an address now and checkout will be a step shorter next time."
-          action={<Button onClick={() => setEditing('new')}>Add an address</Button>}
+          action={
+            <Button onClick={() => setEditing("new")}>Add an address</Button>
+          }
           className="rounded-lg border border-line bg-surface"
         />
       ) : (
         <>
           <div className="flex justify-end">
-            <Button onClick={() => setEditing('new')} variant="outline">
+            <Button onClick={() => setEditing("new")} variant="outline">
               <PlusIcon size={17} />
               Add address
             </Button>
@@ -77,28 +89,42 @@ export function AddressManager({
 
                   {confirmingDelete === address.id ? (
                     <div className="mt-4 rounded-md bg-danger-soft p-3">
-                      <p className="text-sm font-medium text-danger">Delete this address?</p>
+                      <p className="text-sm font-medium text-danger">
+                        Delete this address?
+                      </p>
                       <div className="mt-2.5 flex gap-2">
                         <form
                           action={async (formData: FormData) => {
                             const result = await removeAddress(formData);
                             setConfirmingDelete(null);
-                            if (result.ok) setNotice('Address deleted.');
+                            if (result.ok) setNotice("Address deleted.");
                           }}
                         >
-                          <input type="hidden" name="addressId" value={address.id} />
+                          <input
+                            type="hidden"
+                            name="addressId"
+                            value={address.id}
+                          />
                           <Button type="submit" variant="danger" size="sm">
                             Delete
                           </Button>
                         </form>
-                        <Button variant="ghost" size="sm" onClick={() => setConfirmingDelete(null)}>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setConfirmingDelete(null)}
+                        >
                           Cancel
                         </Button>
                       </div>
                     </div>
                   ) : (
                     <div className="mt-4 flex gap-2">
-                      <Button variant="outline" size="sm" onClick={() => setEditing(address)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setEditing(address)}
+                      >
                         Edit
                       </Button>
                       <Button
@@ -123,15 +149,17 @@ export function AddressManager({
         open={editing !== null}
         onClose={() => setEditing(null)}
         side="right"
-        title={editing === 'new' ? 'Add address' : 'Edit address'}
+        title={editing === "new" ? "Add address" : "Edit address"}
       >
         {editing !== null && (
           <AddressForm
-            address={editing === 'new' ? null : editing}
-            isDefault={editing !== 'new' && editing.id === defaultAddressId}
+            address={editing === "new" ? null : editing}
+            isDefault={editing !== "new" && editing.id === defaultAddressId}
             onSaved={() => {
               setEditing(null);
-              setNotice(editing === 'new' ? 'Address added.' : 'Address updated.');
+              setNotice(
+                editing === "new" ? "Address added." : "Address updated.",
+              );
             }}
           />
         )}
@@ -174,7 +202,7 @@ function AddressForm({
           id="firstName"
           name="firstName"
           label="First name"
-          defaultValue={address?.firstName ?? ''}
+          defaultValue={address?.firstName ?? ""}
           autoComplete="given-name"
           required
           error={errors.firstName}
@@ -183,7 +211,7 @@ function AddressForm({
           id="lastName"
           name="lastName"
           label="Last name"
-          defaultValue={address?.lastName ?? ''}
+          defaultValue={address?.lastName ?? ""}
           autoComplete="family-name"
           required
           error={errors.lastName}
@@ -195,7 +223,7 @@ function AddressForm({
         name="company"
         label="Company"
         hint="Optional"
-        defaultValue={address?.company ?? ''}
+        defaultValue={address?.company ?? ""}
         autoComplete="organization"
         error={errors.company}
       />
@@ -204,7 +232,7 @@ function AddressForm({
         id="address1"
         name="address1"
         label="Address"
-        defaultValue={address?.address1 ?? ''}
+        defaultValue={address?.address1 ?? ""}
         autoComplete="address-line1"
         required
         error={errors.address1}
@@ -215,7 +243,7 @@ function AddressForm({
         name="address2"
         label="Apartment, suite, etc."
         hint="Optional"
-        defaultValue={address?.address2 ?? ''}
+        defaultValue={address?.address2 ?? ""}
         autoComplete="address-line2"
         error={errors.address2}
       />
@@ -225,7 +253,7 @@ function AddressForm({
           id="city"
           name="city"
           label="City"
-          defaultValue={address?.city ?? ''}
+          defaultValue={address?.city ?? ""}
           autoComplete="address-level2"
           required
           error={errors.city}
@@ -235,7 +263,7 @@ function AddressForm({
           name="zoneCode"
           label="State / province"
           hint="Code, e.g. CA"
-          defaultValue={address?.zoneCode ?? ''}
+          defaultValue={address?.zoneCode ?? ""}
           autoComplete="address-level1"
           error={errors.zoneCode}
         />
@@ -246,7 +274,7 @@ function AddressForm({
           id="zip"
           name="zip"
           label="Postcode"
-          defaultValue={address?.zip ?? ''}
+          defaultValue={address?.zip ?? ""}
           autoComplete="postal-code"
           required
           error={errors.zip}
@@ -256,7 +284,7 @@ function AddressForm({
           name="territoryCode"
           label="Country"
           hint="2-letter code, e.g. US"
-          defaultValue={address?.territoryCode ?? ''}
+          defaultValue={address?.territoryCode ?? ""}
           autoComplete="country"
           maxLength={2}
           required
@@ -270,7 +298,7 @@ function AddressForm({
         label="Phone"
         hint="Optional. Used by the carrier for delivery updates."
         type="tel"
-        defaultValue={address?.phoneNumber ?? ''}
+        defaultValue={address?.phoneNumber ?? ""}
         autoComplete="tel"
         error={errors.phoneNumber}
       />
@@ -281,7 +309,7 @@ function AddressForm({
           name="makeDefault"
           value="true"
           defaultChecked={isDefault}
-          className="size-4.5 rounded-xs accent-[var(--color-ink)]"
+          className="size-4.5 rounded-xs accent-ink"
         />
         Use as my default address
       </label>
@@ -295,7 +323,7 @@ function SubmitButton({ isEdit }: { isEdit: boolean }) {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" fullWidth size="lg" loading={pending}>
-      {isEdit ? 'Save changes' : 'Add address'}
+      {isEdit ? "Save changes" : "Add address"}
     </Button>
   );
 }
