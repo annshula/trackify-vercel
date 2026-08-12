@@ -246,3 +246,40 @@ export async function validateCart(cart: Cart): Promise<CartValidationIssue[]> {
 
   return issues;
 }
+
+/**
+ * Folds one cart's lines into another.
+ *
+ * Shopify has no merge-carts mutation, so this reads the source lines and adds
+ * them to the target. Quantities of a line already present are summed rather
+ * than duplicated, which is what a shopper expects when a guest bag meets the
+ * bag they left on another device.
+ *
+ * Returns the updated target cart, or the original when there is nothing to move.
+ */
+export async function mergeCartInto(source: Cart, targetCartId: string): Promise<Cart | null> {
+  if (source.lines.length === 0) return null;
+
+  const target = await getCart(targetCartId);
+  if (!target) return null;
+
+  const existing = new Map(target.lines.map((line) => [line.merchandise.id, line]));
+
+  const toAdd: { merchandiseId: string; quantity: number }[] = [];
+  const toUpdate: { id: string; quantity: number }[] = [];
+
+  for (const line of source.lines) {
+    const match = existing.get(line.merchandise.id);
+    if (match) {
+      toUpdate.push({ id: match.id, quantity: match.quantity + line.quantity });
+    } else {
+      toAdd.push({ merchandiseId: line.merchandise.id, quantity: line.quantity });
+    }
+  }
+
+  let merged = target;
+  if (toAdd.length > 0) merged = await addLines(targetCartId, toAdd);
+  if (toUpdate.length > 0) merged = await updateLines(targetCartId, toUpdate);
+
+  return merged;
+}

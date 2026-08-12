@@ -16,6 +16,7 @@ const {
   addLines,
   createCart,
   getCart,
+  mergeCartInto,
   removeLines,
   setDiscountCodes,
   updateLines,
@@ -279,5 +280,99 @@ describe('pre-checkout validation', () => {
   it('skips the Shopify round-trip for an empty cart', async () => {
     await validateCart({ ...cart, lines: [] });
     expect(storefrontRequest).not.toHaveBeenCalled();
+  });
+});
+
+describe('merging a guest bag into the account bag', () => {
+  /** Minimal cart shaped like the app's `Cart`, with the lines under test. */
+  function cartWith(lines: { variantId: string; lineId: string; quantity: number }[]): Cart {
+    return {
+      id: 'gid://shopify/Cart/target',
+      checkoutUrl: 'https://example.test/checkout',
+      totalQuantity: lines.reduce((sum, line) => sum + line.quantity, 0),
+      updatedAt: '2025-01-02T00:00:00.000Z',
+      cost: {
+        subtotalAmount: { amount: '0.00', currencyCode: 'USD' },
+        totalAmount: { amount: '0.00', currencyCode: 'USD' },
+        totalTaxAmount: null,
+        totalDutyAmount: null,
+      },
+      discountCodes: [],
+      discountAllocations: [],
+      buyerIdentity: null,
+      lines: lines.map((line) => ({
+        id: line.lineId,
+        quantity: line.quantity,
+        cost: {
+          totalAmount: { amount: '0.00', currencyCode: 'USD' },
+          amountPerQuantity: { amount: '0.00', currencyCode: 'USD' },
+          compareAtAmountPerQuantity: null,
+        },
+        merchandise: {
+          id: line.variantId,
+          title: 'Default Title',
+          sku: null,
+          availableForSale: true,
+          quantityAvailable: 10,
+          selectedOptions: [],
+          image: null,
+          price: { amount: '0.00', currencyCode: 'USD' },
+          compareAtPrice: null,
+          product: { id: 'gid://shopify/Product/1', handle: 'p', title: 'P', vendor: 'V' },
+        },
+      })),
+    };
+  }
+
+  it('does nothing when the guest bag is empty', async () => {
+    const result = await mergeCartInto(cartWith([]), 'gid://shopify/Cart/target');
+    expect(result).toBeNull();
+    expect(storefrontRequest).not.toHaveBeenCalled();
+  });
+
+  it('adds a variant the account bag does not have yet', async () => {
+    storefrontRequest
+      // getCart(target) — target holds a different variant
+      .mockResolvedValueOnce({ cart: rawCart({ lines: { nodes: [] } }) })
+      .mockResolvedValueOnce({ cartLinesAdd: { cart: rawCart(), userErrors: [] } });
+
+    await mergeCartInto(
+      cartWith([{ variantId: 'gid://shopify/ProductVariant/99', lineId: 'l1', quantity: 2 }]),
+      'gid://shopify/Cart/target',
+    );
+
+    const addCall = storefrontRequest.mock.calls[1]?.[0];
+    expect(addCall.variables.lines).toEqual([
+      { merchandiseId: 'gid://shopify/ProductVariant/99', quantity: 2 },
+    ]);
+  });
+
+  it('sums quantities instead of duplicating a variant already in the bag', async () => {
+    // rawCart()'s single line is variant 1 with quantity 1.
+    storefrontRequest
+      .mockResolvedValueOnce({ cart: rawCart() })
+      .mockResolvedValueOnce({ cartLinesUpdate: { cart: rawCart(), userErrors: [] } });
+
+    await mergeCartInto(
+      cartWith([{ variantId: 'gid://shopify/ProductVariant/1', lineId: 'guest-1', quantity: 3 }]),
+      'gid://shopify/Cart/target',
+    );
+
+    const updateCall = storefrontRequest.mock.calls[1]?.[0];
+    // Targets the *target* cart's line id, with 1 (existing) + 3 (guest).
+    expect(updateCall.variables.lines).toEqual([
+      { id: 'gid://shopify/CartLine/1', quantity: 4 },
+    ]);
+  });
+
+  it('gives up quietly when the saved cart has expired', async () => {
+    storefrontRequest.mockResolvedValueOnce({ cart: null });
+
+    const result = await mergeCartInto(
+      cartWith([{ variantId: 'gid://shopify/ProductVariant/9', lineId: 'l1', quantity: 1 }]),
+      'gid://shopify/Cart/gone',
+    );
+
+    expect(result).toBeNull();
   });
 });

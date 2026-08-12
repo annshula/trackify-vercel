@@ -12,7 +12,7 @@ export default function AccountUnavailablePage() {
       <EmptyState
         icon={<UserIcon size={24} />}
         title="Accounts are not connected yet"
-        description="Sign-in needs the Shopify Customer Account API configured for this storefront. Shopping and checkout work as normal in the meantime."
+        description="Sign-in is not available on this store yet. Shopping and checkout work as normal in the meantime."
         action={<ButtonLink href="/collections">Continue shopping</ButtonLink>}
       />
     </div>

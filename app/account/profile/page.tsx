@@ -19,7 +19,7 @@ export default async function ProfilePage() {
       <header>
         <h1 className="text-3xl">Profile</h1>
         <p className="mt-1.5 text-sm text-ink-muted">
-          Your details are stored by Shopify and used for your orders.
+          Your details are stored securely and used for your orders.
         </p>
       </header>
 
@@ -52,8 +52,8 @@ export default async function ProfilePage() {
             <div className="mt-4 flex gap-2.5 rounded-md bg-surface-sunken p-3.5 text-sm text-ink-muted">
               <InfoIcon size={17} className="mt-0.5 shrink-0" />
               <p>
-                Your email address and phone number are managed by Shopify as part of your customer
-                account, and change through Shopify&apos;s own verification flow rather than here.
+                Your email address and phone number are managed as part of your secure customer
+                account, and change through a verified flow rather than here.
               </p>
             </div>
           </section>
@@ -66,7 +66,7 @@ export default async function ProfilePage() {
               Marketing preferences
             </h2>
             <p className="mt-2 text-sm text-ink-muted">
-              Email marketing consent is recorded by Shopify when you subscribe or when you check
+              Email marketing consent is recorded when you subscribe or when you check
               out. Use the unsubscribe link in any email to opt out at any time.
             </p>
           </section>

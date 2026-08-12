@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Cart, CartLine } from "@/types/commerce";
 import { useCart } from "./cart-provider";
+import { CartEmptyState } from "./cart-empty-state";
+import { CartPageSkeleton } from "./cart-skeleton";
+import { CartSignInPrompt } from "./sign-in-prompt";
 import {
   applyDiscountCode,
   proceedToCheckout,
@@ -15,8 +18,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { ButtonLink } from "@/components/ui/button";
 import { QuantityStepper } from "@/components/ui/form";
-import { Alert, EmptyState, Price } from "@/components/ui/primitives";
-import { AlertIcon, BagIcon, TrashIcon } from "@/components/ui/icons";
+import { Alert, Price } from "@/components/ui/primitives";
+import { AlertIcon, TrashIcon } from "@/components/ui/icons";
 import { formatMoneyV2, moneyToNumber } from "@/lib/utils/money";
 import { track } from "@/lib/analytics";
 
@@ -28,7 +31,7 @@ import { track } from "@/lib/analytics";
  * mobile so the total and CTA are always reachable.
  */
 export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
-  const { cart: liveCart, run, quantityOf, isPending } = useCart();
+  const { cart: liveCart, run, quantityOf, isPending, ready, loading } = useCart();
   const [checkingOut, setCheckingOut] = React.useState(false);
   const [issues, setIssues] = React.useState<string[]>([]);
 
@@ -53,24 +56,24 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
     }
   };
 
+  // Skeleton until the first response lands, so the empty state cannot
+  // flash before the real bag arrives.
+  if (!ready || (loading && lines.length === 0)) {
+    return <CartPageSkeleton />;
+  }
+
   if (lines.length === 0) {
-    return (
-      <EmptyState
-        icon={<BagIcon size={24} />}
-        title="Your bag is empty"
-        description="Once you add something, it will appear here and stay for 30 days."
-        action={
-          <ButtonLink href="/collections" size="lg">
-            Start shopping
-          </ButtonLink>
-        }
-      />
-    );
+    return <CartEmptyState size="lg" />;
   }
 
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
       <div>
+        <CartSignInPrompt
+          returnTo="/cart"
+          className="mb-6 rounded-lg border border-line"
+        />
+
         {issues.length > 0 && (
           <Alert
             tone="warning"
@@ -189,7 +192,7 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
 
           <p className="mt-3 text-center text-xs leading-relaxed text-ink-subtle">
             Shipping, taxes and any additional discounts are calculated by
-            Shopify at checkout. Payment is processed securely by Shopify.
+            our payment provider at checkout, and processed securely.
           </p>
         </div>
       </aside>

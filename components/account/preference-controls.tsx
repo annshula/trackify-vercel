@@ -4,7 +4,8 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/primitives';
 import { CheckIcon } from '@/components/ui/icons';
-import { ThemeToggle } from '@/components/layout/theme-toggle';
+// Theme switch temporarily disabled.
+// import { ThemeToggle } from '@/components/layout/theme-toggle';
 import { useConsent } from '@/lib/analytics/consent-store';
 import { useRecentlyViewed } from '@/hooks/use-recently-viewed';
 import { useWishlist } from '@/hooks/use-wishlist';
@@ -30,6 +31,7 @@ export function PreferenceControls() {
         </Alert>
       )}
 
+      {/* Theme switch temporarily disabled.
       <section aria-labelledby="appearance-heading" className="rounded-lg border border-line bg-surface p-5">
         <div className="flex items-center justify-between gap-4">
           <div>
@@ -41,6 +43,7 @@ export function PreferenceControls() {
           <ThemeToggle />
         </div>
       </section>
+      */}
 
       <section aria-labelledby="privacy-heading" className="rounded-lg border border-line bg-surface p-5">
         <h2 id="privacy-heading" className="text-base font-medium">

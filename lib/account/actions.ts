@@ -77,7 +77,9 @@ function toAddressInput(data: z.infer<typeof addressSchema>): AddressInput {
   return input;
 }
 
-export async function saveProfile(formData: FormData): Promise<ActionResult> {
+export type SavedProfile = { firstName: string | null; lastName: string | null };
+
+export async function saveProfile(formData: FormData): Promise<ActionResult<SavedProfile>> {
   const parsed = z
     .object({ firstName: nameSchema, lastName: nameSchema })
     .safeParse({
@@ -90,10 +92,11 @@ export async function saveProfile(formData: FormData): Promise<ActionResult> {
   }
 
   try {
-    await updateCustomer(parsed.data);
+    const saved = await updateCustomer(parsed.data);
     revalidatePath('/account');
     revalidatePath('/account/profile');
-    return { ok: true, data: undefined };
+    // Echo back what Shopify confirmed, not what was submitted.
+    return { ok: true, data: saved };
   } catch (error) {
     return handle(error);
   }

@@ -322,7 +322,7 @@ export default async function HomePage() {
             {
               icon: ShieldIcon,
               title: "Checkout you can trust",
-              body: "Payments handled entirely by Shopify. Your card details never touch us.",
+              body: "Payments handled entirely by our secure payment provider. Your card details never touch us.",
             },
           ].map((item) => {
             const Icon = item.icon;
@@ -380,7 +380,7 @@ export default async function HomePage() {
                 id: "payment",
                 title: "Is checkout secure?",
                 content:
-                  "Yes. Checkout and payment are handled entirely by Shopify on their own secure infrastructure. This site never sees, stores, or processes your card details.",
+                  "Yes. Checkout and payment are handled entirely by our PCI-compliant payment provider on their own secure infrastructure. This site never sees, stores, or processes your card details.",
               },
               {
                 id: "account",
@@ -403,27 +403,38 @@ export default async function HomePage() {
 /**
  * Shown before the first sync. Actionable rather than decorative — the
  * storefront is working, it simply has no catalog yet.
+ *
+ * The setup instructions name the commerce platform, so they are development
+ * only; a shopper who ever lands here sees a neutral message instead.
  */
 function EmptyCatalogState() {
+  const isDev = process.env.NODE_ENV !== "production";
+
   return (
     <div className="container-page">
       <EmptyState
         icon={<GridIcon size={24} />}
-        title="No products synced yet"
-        description="Connect your Shopify store and run the catalog sync to populate this storefront."
+        title={isDev ? "No products synced yet" : "Nothing to show just yet"}
+        description={
+          isDev
+            ? "Connect your Shopify store and run the catalog sync to populate this storefront."
+            : "We are updating our collection. Please check back shortly."
+        }
         action={
-          <div className="space-y-3 text-left">
-            <p className="text-sm text-ink-muted">
-              Run this from the project root:
-            </p>
-            <pre className="overflow-x-auto rounded-md bg-surface-sunken px-4 py-3 text-sm">
-              <code>npm run shopify:sync</code>
-            </pre>
-            <p className="text-xs text-ink-subtle">
-              Fill in <code>.env.local</code> from <code>.env.example</code>{" "}
-              first.
-            </p>
-          </div>
+          isDev ? (
+            <div className="space-y-3 text-left">
+              <p className="text-sm text-ink-muted">
+                Run this from the project root:
+              </p>
+              <pre className="overflow-x-auto rounded-md bg-surface-sunken px-4 py-3 text-sm">
+                <code>npm run shopify:sync</code>
+              </pre>
+              <p className="text-xs text-ink-subtle">
+                Fill in <code>.env.local</code> from <code>.env.example</code>{" "}
+                first.
+              </p>
+            </div>
+          ) : undefined
         }
       />
     </div>

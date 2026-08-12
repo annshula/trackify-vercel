@@ -58,7 +58,12 @@ export default async function CollectionsPage({ searchParams }: PageProps) {
         <EmptyState
           icon={<GridIcon size={24} />}
           title="Nothing to show yet"
-          description="Run the catalog sync to bring your Shopify products into the storefront."
+          // Names the commerce platform, so it stays development-only.
+          description={
+            process.env.NODE_ENV !== "production"
+              ? "Run the catalog sync to bring your Shopify products into the storefront."
+              : "We are updating our collection. Please check back shortly."
+          }
           action={<ButtonLink href="/">Back home</ButtonLink>}
         />
       </div>

@@ -16,7 +16,7 @@ const TRUST = [
   {
     icon: ShieldIcon,
     title: "Secure checkout",
-    body: "Payments are processed by Shopify. We never see your card details.",
+    body: "Payments are processed by our secure provider. We never see your card details.",
   },
 ];
 
@@ -107,7 +107,7 @@ export function Footer({
             © {year} Trackify. All rights reserved.
           </p>
           <p className="text-xs text-ink-subtle">
-            Secure payments processed by Shopify.
+            Secure payments. Your card details never touch our servers.
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { consumeOAuthTransaction, writeSession } from '@/lib/auth/session';
 import { timingSafeEqualString } from '@/lib/auth/pkce';
 import { idTokenNonce } from '@/lib/auth/jwt';
 import { exchangeCodeForTokens } from '@/lib/shopify/customer-account';
-import { associateCartWithCustomer } from '@/lib/cart/actions';
+import { associateCartWithCustomer, restoreCustomerCart } from '@/lib/cart/actions';
 import { publicEnv } from '@/lib/validation/env';
 
 /**
@@ -70,7 +70,10 @@ export async function GET(request: Request): Promise<NextResponse> {
     return errorRedirect('exchange_failed');
   }
 
-  // Best-effort: attach the guest cart to the now-known customer.
+  // Reconcile the bag before attaching it: restoreCustomerCart may swap the
+  // cart cookie to the one saved against this customer, and the buyer identity
+  // has to be set on whichever cart the shopper ends up with.
+  await restoreCustomerCart();
   await associateCartWithCustomer();
 
   const destination = new URL(transaction.redirectTo || '/account', publicEnv.siteUrl);

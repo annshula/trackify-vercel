@@ -15,7 +15,7 @@ import { useCart } from '@/components/cart/cart-provider';
  */
 export function BottomBar() {
   const pathname = usePathname();
-  const { totalQuantity, open, signedIn } = useCart();
+  const { itemCount, open, signedIn } = useCart();
 
   const items = [
     { href: '/', label: 'Home', icon: HomeIcon, match: (p: string) => p === '/' },
@@ -59,14 +59,14 @@ export function BottomBar() {
           <button
             type="button"
             onClick={open}
-            aria-label={`Open bag, ${totalQuantity} item${totalQuantity === 1 ? '' : 's'}`}
+            aria-label={`Open bag, ${itemCount} item${itemCount === 1 ? '' : 's'}`}
             className="relative flex min-h-14 w-full flex-col items-center justify-center gap-1 text-2xs font-medium text-ink-subtle transition-colors"
           >
             <span className="relative">
               <BagIcon size={21} />
-              {totalQuantity > 0 && (
+              {itemCount > 0 && (
                 <span className="absolute -top-1.5 -right-2 grid min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] leading-4 font-bold text-on-accent tabular-nums">
-                  {totalQuantity > 9 ? '9+' : totalQuantity}
+                  {itemCount > 9 ? '9+' : itemCount}
                 </span>
               )}
             </span>

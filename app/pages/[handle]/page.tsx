@@ -87,7 +87,7 @@ export default async function StaticContentPage({ params }: PageProps) {
             <div className="mt-10 rounded-lg border border-line bg-surface p-6">
               <h2 className="text-lg">Reach us</h2>
               <p className="mt-2 text-sm text-ink-muted">
-                Contact details are configured in your Shopify admin under Settings → Store details.
+                Contact details are configured in your store admin under Settings → Store details.
                 Add them here so customers can reach you directly.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">

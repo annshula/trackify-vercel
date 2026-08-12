@@ -39,7 +39,7 @@ export default async function AccountPage() {
 
       {failed && (
         <Alert tone="warning" icon={<AlertIcon size={18} />} title="Some details could not load">
-          Shopify did not return everything. Refresh the page, or try again shortly.
+          We could not load everything. Refresh the page, or try again shortly.
         </Alert>
       )}
 

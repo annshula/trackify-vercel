@@ -29,14 +29,14 @@ export const STATIC_PAGES: StaticPage[] = [
     sections: [
       {
         body: [
-          "Shipping options, rates and delivery estimates are calculated by Shopify at checkout using the address you enter. You will always see the exact cost and expected timeframe before you pay.",
+          "Shipping options, rates and delivery estimates are calculated at checkout using the address you enter. You will always see the exact cost and expected timeframe before you pay.",
           "Once your order is dispatched, tracking appears in your account under Orders, and a confirmation email is sent to the address on your order.",
         ],
       },
       {
         heading: "Where we ship",
         body: [
-          "The countries and regions we deliver to are configured in Shopify. If your country is not offered at checkout, we do not currently ship there.",
+          "The countries and regions we deliver to are set in our store settings. If your country is not offered at checkout, we do not currently ship there.",
         ],
       },
       {
@@ -67,7 +67,7 @@ export const STATIC_PAGES: StaticPage[] = [
       {
         heading: "Refunds",
         body: [
-          "Refunds are issued by Shopify to your original payment method once the return is received and checked. Your bank may take a few additional days to show the credit.",
+          "Refunds are issued to your original payment method once the return is received and checked. Your bank may take a few additional days to show the credit.",
         ],
       },
     ],
@@ -86,7 +86,7 @@ export const STATIC_PAGES: StaticPage[] = [
       {
         heading: "Is my payment secure?",
         body: [
-          "Yes. Checkout and payment are handled entirely by Shopify on their own PCI-compliant infrastructure. This site never sees, stores, or processes your card details.",
+          "Yes. Checkout and payment are handled entirely by our payment provider on their own PCI-compliant infrastructure. This site never sees, stores, or processes your card details.",
         ],
       },
       {
@@ -98,7 +98,7 @@ export const STATIC_PAGES: StaticPage[] = [
       {
         heading: "How do I use a discount code?",
         body: [
-          "Enter it in the discount field on your bag, or at checkout. Shopify validates the code and applies the discount to your total.",
+          "Enter it in the discount field on your bag, or at checkout. The code is validated and the discount applied to your total.",
         ],
       },
     ],
@@ -125,7 +125,7 @@ export const STATIC_PAGES: StaticPage[] = [
       {
         heading: "What this storefront stores",
         body: [
-          "This storefront keeps no customer database. Your account, orders, addresses and payment details are held by Shopify, and are read live from your Shopify account when you are signed in.",
+          "This storefront keeps no customer database. Your account, orders, addresses and payment details are held by our commerce and payments provider, and are read live from your account when you are signed in.",
           "In your browser we store: a cart identifier, your sign-in session (encrypted), your theme choice, your cookie preference, saved items, and recently viewed products.",
         ],
       },
@@ -138,7 +138,7 @@ export const STATIC_PAGES: StaticPage[] = [
       {
         heading: "Your rights",
         body: [
-          "For a copy of your data or to request deletion, contact us and we will action it through Shopify, which is the system of record.",
+          "For a copy of your data or to request deletion, contact us and we will action it with our commerce provider, which is the system of record.",
         ],
       },
     ],
@@ -151,13 +151,13 @@ export const STATIC_PAGES: StaticPage[] = [
     sections: [
       {
         body: [
-          "By placing an order you agree to these terms and to Shopify’s terms for the checkout and payment portion of your purchase.",
+          "By placing an order you agree to these terms, and to our payment provider’s terms for the checkout and payment portion of your purchase.",
         ],
       },
       {
         heading: "Pricing and availability",
         body: [
-          "Prices and availability shown on product pages are synchronised from Shopify. Shopify is authoritative at checkout — if something changes between browsing and paying, the checkout total is the one that applies.",
+          "Prices and availability shown on product pages are synchronised from our commerce system, which is authoritative at checkout — if something changes between browsing and paying, the checkout total is the one that applies.",
         ],
       },
     ],

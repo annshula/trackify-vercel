@@ -5,7 +5,8 @@ import { cn } from '@/lib/utils/cn';
 import { Drawer } from '@/components/ui/drawer';
 import { ChevronRightIcon, HeartIcon, LogoutIcon, UserIcon } from '@/components/ui/icons';
 import { useCart } from '@/components/cart/cart-provider';
-import { ThemeToggle } from './theme-toggle';
+// Theme switch temporarily disabled.
+// import { ThemeToggle } from './theme-toggle';
 import type { NavLink } from './header';
 
 /**
@@ -96,10 +97,12 @@ export function MobileNav({
           )}
         </div>
 
+        {/* Theme switch temporarily disabled.
         <div className="mt-5 flex items-center justify-between rounded-xl bg-surface-sunken px-4 py-2.5">
           <span className="text-sm text-ink-muted">Appearance</span>
           <ThemeToggle />
         </div>
+        */}
       </div>
     </Drawer>
   );

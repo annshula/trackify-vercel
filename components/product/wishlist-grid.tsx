@@ -29,7 +29,7 @@ type WishlistProduct = {
  */
 export function WishlistGrid() {
   const { handles, remove, hydrated } = useWishlist();
-  const { run, open } = useCart();
+  const { run } = useCart();
   const [products, setProducts] = React.useState<WishlistProduct[] | null>(
     null,
   );
@@ -164,11 +164,9 @@ export function WishlistGrid() {
                 };
                 if (!variantId) return;
 
-                const result = await run(
-                  () => addToCart({ variantId, quantity: 1 }),
-                  { silent: true },
-                );
-                if (result.ok) open();
+                // Not silent, and no drawer: the success toast plus the header
+                // badge confirm the add without covering the saved-items grid.
+                await run(() => addToCart({ variantId, quantity: 1 }));
               }}
             >
               {product.available ? "Add to bag" : "Sold out"}

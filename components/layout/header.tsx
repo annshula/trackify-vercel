@@ -25,7 +25,8 @@ import {
 import { useCart } from "@/components/cart/cart-provider";
 import { SearchOverlay } from "@/components/search/search-overlay";
 import { MobileNav } from "./mobile-nav";
-import { ThemeToggle } from "./theme-toggle";
+// Theme switch temporarily disabled.
+// import { ThemeToggle } from "./theme-toggle";
 
 export type NavChild = {
   href: string;
@@ -62,7 +63,7 @@ export function Header({
   // Warm accent-soft header only on the About page (matches its hero); the
   // default canvas header everywhere else.
   const isAbout = pathname === "/about";
-  const { totalQuantity, open, signedIn } = useCart();
+  const { itemCount, open, signedIn } = useCart();
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [navOpen, setNavOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
@@ -298,9 +299,11 @@ export function Header({
                 <SearchIcon size={20} />
               </button>
 
+              {/* Theme switch temporarily disabled.
               <div className="hidden sm:block">
                 <ThemeToggle />
               </div>
+              */}
 
               <Link
                 href={signedIn ? "/account" : "/account/login"}
@@ -314,12 +317,12 @@ export function Header({
                 type="button"
                 onClick={open}
                 className="relative -mr-2.5 grid size-11 place-items-center rounded-md text-ink transition-colors hover:bg-surface-sunken"
-                aria-label={`Open bag, ${totalQuantity} item${totalQuantity === 1 ? "" : "s"}`}
+                aria-label={`Open bag, ${itemCount} item${itemCount === 1 ? "" : "s"}`}
               >
                 <BagIcon size={20} />
-                {totalQuantity > 0 && (
+                {itemCount > 0 && (
                   <span className="absolute top-1 right-1 grid min-w-4.5 place-items-center rounded-full bg-accent px-1 text-2xs font-bold text-on-accent tabular-nums">
-                    {totalQuantity > 99 ? "99+" : totalQuantity}
+                    {itemCount > 99 ? "99+" : itemCount}
                   </span>
                 )}
               </button>

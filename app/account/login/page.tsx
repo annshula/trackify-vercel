@@ -22,9 +22,9 @@ const ERROR_MESSAGES: Record<string, string> = {
   expired: 'That sign-in link expired. Please start again.',
   state_mismatch: 'We could not verify that sign-in request. Please start again from this page.',
   nonce_mismatch: 'We could not verify that sign-in request. Please start again from this page.',
-  exchange_failed: 'Shopify could not complete the sign-in. Please try again in a moment.',
+  exchange_failed: 'We could not complete the sign-in. Please try again in a moment.',
   missing_code: 'The sign-in response was incomplete. Please try again.',
-  provider: 'Shopify could not complete the sign-in. Please try again in a moment.',
+  provider: 'We could not complete the sign-in. Please try again in a moment.',
 };
 
 type PageProps = {
@@ -42,7 +42,7 @@ export default async function LoginPage({ searchParams }: PageProps) {
         <EmptyState
           icon={<UserIcon size={24} />}
           title="Accounts are not connected yet"
-          description="Customer accounts need the Shopify Customer Account API configured before sign-in works. You can still browse and check out as a guest."
+          description="Sign-in is not available on this store yet. You can still browse and check out as normal."
           action={<ButtonLink href="/collections">Continue shopping</ButtonLink>}
         />
       </div>
@@ -66,8 +66,8 @@ export default async function LoginPage({ searchParams }: PageProps) {
           </span>
           <h1 className="text-3xl">Sign in</h1>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            Sign in with Shopify to see your orders, track deliveries and manage your addresses.
-            No password is stored by this site.
+            See your orders, track deliveries and manage your addresses. No password is stored by
+            this site.
           </p>
         </div>
 
@@ -77,21 +77,18 @@ export default async function LoginPage({ searchParams }: PageProps) {
           </Alert>
         )}
 
-        <div className="mt-8 space-y-3">
+        <div className="mt-8">
           {/* A plain link, not a form: this starts a redirect flow, not a mutation. */}
           <ButtonLink href={authorizeHref} size="lg" fullWidth prefetch={false}>
-            Continue with Shopify
-          </ButtonLink>
-          <ButtonLink href="/collections" variant="ghost" size="lg" fullWidth>
-            Continue as guest
+            Continue securely
           </ButtonLink>
         </div>
 
         <div className="mt-8 flex gap-3 rounded-lg border border-line bg-surface p-4">
           <ShieldIcon size={20} className="mt-0.5 shrink-0 text-accent" />
           <p className="text-sm leading-relaxed text-ink-muted">
-            Sign-in is handled by Shopify using a secure OAuth flow. Your credentials never reach
-            this site, and we keep no copy of your account.
+            Sign-in uses a secure, encrypted flow handled by our payment and accounts provider.
+            Your credentials never reach this site.
           </p>
         </div>
 

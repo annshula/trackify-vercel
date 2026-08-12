@@ -98,15 +98,56 @@ export async function getCustomer(): Promise<Customer> {
   };
 }
 
+/**
+ * Updates the signed-in customer's name.
+ *
+ * Returns what Shopify actually stored rather than assuming the write landed:
+ * `customerUpdate` can report success while silently ignoring a field, and
+ * discarding the payload made that indistinguishable from a real save. The
+ * caller echoes these values back into the form, so the UI can only ever show
+ * what Shopify confirmed.
+ *
+ * `retries: 1` because this is a mutation — the shared transport retries on
+ * timeouts and 5xx, which is right for a query but risks applying a write
+ * twice.
+ */
 export async function updateCustomer(input: {
   firstName?: string;
   lastName?: string;
-}): Promise<void> {
+}): Promise<{ firstName: string | null; lastName: string | null }> {
   const data = await customerRequest<{
-    customerUpdate: { customer: { id: string } | null; userErrors: GraphQLUserError[] };
-  }>({ query: CUSTOMER_UPDATE_MUTATION, variables: { input } });
+    customerUpdate: {
+      customer: { id: string; firstName: string | null; lastName: string | null } | null;
+      userErrors: GraphQLUserError[];
+    };
+  }>({ query: CUSTOMER_UPDATE_MUTATION, variables: { input }, retries: 1 });
 
   assertNoUserErrors(data.customerUpdate?.userErrors, 'We could not save your details.');
+
+  const customer = data.customerUpdate?.customer;
+  if (!customer) {
+    // No userErrors but no customer either — the write did not happen.
+    console.error('[customer] customerUpdate returned no customer; the update was not applied');
+    throw new CustomerServiceError('We could not save your details.');
+  }
+
+  // Shopify accepted the call but kept the old value: almost always a missing
+  // Customer Account API permission rather than anything the shopper did.
+  const ignored =
+    (input.firstName !== undefined && customer.firstName !== input.firstName) ||
+    (input.lastName !== undefined && customer.lastName !== input.lastName);
+
+  if (ignored) {
+    console.error(
+      '[customer] customerUpdate reported success but Shopify kept the previous name. ' +
+        'Check that the Customer Account API client is allowed to write customer details.',
+    );
+    throw new CustomerServiceError(
+      'Your details could not be saved. Please try again, or contact us if it keeps happening.',
+    );
+  }
+
+  return { firstName: customer.firstName, lastName: customer.lastName };
 }
 
 /* ── Orders ────────────────────────────────────────────────────────────── */

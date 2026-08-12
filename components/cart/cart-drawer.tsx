@@ -6,9 +6,12 @@ import Link from 'next/link';
 import { Drawer } from '@/components/ui/drawer';
 import { Button, ButtonLink } from '@/components/ui/button';
 import { QuantityStepper } from '@/components/ui/form';
-import { EmptyState, Price } from '@/components/ui/primitives';
-import { BagIcon, TrashIcon, TruckIcon } from '@/components/ui/icons';
+import { Price } from '@/components/ui/primitives';
+import { TrashIcon, TruckIcon } from '@/components/ui/icons';
 import { useCart } from './cart-provider';
+import { CartEmptyState } from './cart-empty-state';
+import { CartSkeleton } from './cart-skeleton';
+import { CartSignInPrompt } from './sign-in-prompt';
 import { proceedToCheckout, removeCartLine, updateCartLine } from '@/lib/cart/actions';
 import { formatMoneyV2, moneyToNumber } from '@/lib/utils/money';
 import { track } from '@/lib/analytics';
@@ -18,7 +21,8 @@ import type { CartLine } from '@/types/commerce';
 const FREE_SHIPPING_THRESHOLD = Number(process.env.NEXT_PUBLIC_FREE_SHIPPING_THRESHOLD ?? 0);
 
 export function CartDrawer() {
-  const { cart, isOpen, close, isPending, run, quantityOf, totalQuantity } = useCart();
+  const { cart, isOpen, close, isPending, run, quantityOf, itemCount, ready, loading } =
+    useCart();
   const [checkingOut, setCheckingOut] = React.useState(false);
 
   const lines = cart?.lines ?? [];
@@ -39,7 +43,7 @@ export function CartDrawer() {
       onClose={close}
       side="right"
       title="Your bag"
-      description={totalQuantity > 0 ? `${totalQuantity} item${totalQuantity === 1 ? '' : 's'}` : undefined}
+      description={itemCount > 0 ? `${itemCount} item${itemCount === 1 ? '' : 's'}` : undefined}
       footer={
         lines.length > 0 ? (
           <div className="space-y-3">
@@ -50,7 +54,7 @@ export function CartDrawer() {
               </span>
             </div>
             <p className="text-xs text-ink-subtle">
-              Shipping and taxes are calculated at checkout by Shopify.
+              Shipping and taxes are calculated at checkout.
             </p>
             <Button
               fullWidth
@@ -68,19 +72,16 @@ export function CartDrawer() {
         ) : null
       }
     >
-      {lines.length === 0 ? (
-        <EmptyState
-          icon={<BagIcon size={24} />}
-          title="Your bag is empty"
-          description="Everything you add will show up here."
-          action={
-            <ButtonLink href="/collections" onClick={close}>
-              Start shopping
-            </ButtonLink>
-          }
-        />
+      {/* Skeleton until there is something real to show: flashing "your bag
+          is empty" before the response lands reads as lost items. */}
+      {!ready || (loading && lines.length === 0) ? (
+        <CartSkeleton />
+      ) : lines.length === 0 ? (
+        <CartEmptyState onNavigate={close} />
       ) : (
         <div className="flex flex-col">
+          <CartSignInPrompt returnTo="/cart" onNavigate={close} />
+
           {FREE_SHIPPING_THRESHOLD > 0 && (
             <FreeShippingMeter subtotal={subtotal} threshold={FREE_SHIPPING_THRESHOLD} currency={currency} />
           )}

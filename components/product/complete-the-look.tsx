@@ -11,6 +11,7 @@ import { defaultVariant } from '@/lib/catalog/selectors';
 import { primaryImage, imageAlt } from '@/lib/utils/image';
 import { formatMoney } from '@/lib/utils/money';
 import { useCart } from '@/components/cart/cart-provider';
+import { useToast } from '@/components/ui/toast';
 import { addToCart } from '@/lib/cart/actions';
 import { track, toEcommerceItem } from '@/lib/analytics';
 
@@ -28,7 +29,8 @@ export function CompleteTheLook({
   anchor: CatalogProduct;
   products: CatalogProduct[];
 }) {
-  const { run, open } = useCart();
+  const { run } = useCart();
+  const { push } = useToast();
   const [selected, setSelected] = React.useState<Set<string>>(
     () => new Set(products.map((product) => product.id)),
   );
@@ -66,7 +68,17 @@ export function CompleteTheLook({
     }
 
     setAdding(false);
-    if (added > 0) open();
+
+    // One summary toast rather than one per item — each add above is `silent`
+    // so a five-item selection cannot stack five notifications. The drawer
+    // stays closed; the header badge reflects the new count.
+    if (added > 0) {
+      push({
+        tone: 'success',
+        message: added === 1 ? 'Added to bag' : `${added} items added to bag`,
+        action: { label: 'View bag', href: '/cart' },
+      });
+    }
   };
 
   if (products.length === 0) return null;

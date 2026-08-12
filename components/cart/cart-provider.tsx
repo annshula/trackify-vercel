@@ -25,9 +25,16 @@ type CartContextValue = {
   signedIn: boolean;
   /** False until the first /api/cart response lands. */
   ready: boolean;
+  /** True while a cart fetch is in flight — drives the skeleton. */
+  loading: boolean;
+  /** Re-reads cart + session from the server. */
+  refresh: () => Promise<void>;
   /** Quantity shown to the user — the optimistic value when one is pending. */
   quantityOf: (lineId: string) => number;
+  /** Sum of all line quantities — units in the bag, not products. */
   totalQuantity: number;
+  /** Distinct products in the bag. This is what the badge shows. */
+  itemCount: number;
   isOpen: boolean;
   isPending: boolean;
   open: () => void;
@@ -53,29 +60,67 @@ export function CartProvider({
   const [cart, setCart] = React.useState<Cart | null>(initialCart);
   const [signedIn, setSignedIn] = React.useState(false);
   const [ready, setReady] = React.useState(initialCart !== null);
+  const [loading, setLoading] = React.useState(initialCart === null);
   const [pending, setPending] = React.useState<PendingLines>({});
   const [inFlight, setInFlight] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
   const { push } = useToast();
 
-  // One request after hydration establishes cart + session for the whole app.
+  // Tracks the newest request so a slow earlier response cannot overwrite a
+  // fresher one that already landed.
+  const requestId = React.useRef(0);
+
+  /**
+   * Pulls cart + session from the server.
+   *
+   * Also runs whenever the bag is opened, not just once on mount: the cart can
+   * change outside this tab — another device for a signed-in shopper, or a
+   * second tab — and a stale bag at the moment of checkout is the worst place
+   * to be wrong.
+   */
+  const refresh = React.useCallback(async (signal?: AbortSignal, markLoading = true) => {
+    const id = ++requestId.current;
+    // The mount call passes false: `loading` already starts true when there is
+    // no server-provided cart, so flipping it here would be a synchronous
+    // setState inside an effect for no change in value.
+    if (markLoading) setLoading(true);
+
+    try {
+      const response = await fetch('/api/cart', { signal, cache: 'no-store' });
+      if (!response.ok) throw new Error('failed');
+
+      const data = (await response.json()) as { cart: Cart | null; signedIn: boolean };
+      if (id !== requestId.current) return;
+
+      setCart(data.cart);
+      setSignedIn(data.signedIn);
+      // The server is authoritative; drop any optimistic overlay it supersedes.
+      setPending({});
+    } catch (error) {
+      // An empty bag is the correct fallback; never block the storefront.
+      if ((error as Error).name === 'AbortError') return;
+    } finally {
+      if (id === requestId.current) {
+        setReady(true);
+        setLoading(false);
+      }
+    }
+  }, []);
+
   React.useEffect(() => {
     const controller = new AbortController();
-
-    fetch('/api/cart', { signal: controller.signal, cache: 'no-store' })
-      .then((response) => (response.ok ? response.json() : Promise.reject(new Error('failed'))))
-      .then((data: { cart: Cart | null; signedIn: boolean }) => {
-        setCart(data.cart);
-        setSignedIn(data.signedIn);
-        setReady(true);
-      })
-      .catch((error) => {
-        // An empty bag is the correct fallback; never block the storefront.
-        if ((error as Error).name !== 'AbortError') setReady(true);
-      });
-
+    /*
+     * Fetching on mount and storing the result is exactly what this effect is
+     * for. The rule flags any call to a function that contains setState and
+     * cannot see that every update here happens in an async continuation after
+     * the request resolves — the one synchronous update is skipped by passing
+     * markLoading: false. The request is aborted on unmount, and a stale
+     * response is discarded by the requestId check.
+     */
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void refresh(controller.signal, false);
     return () => controller.abort();
-  }, []);
+  }, [refresh]);
 
   const run = React.useCallback<CartContextValue['run']>(
     async (action, options = {}) => {
@@ -136,10 +181,27 @@ export function CartProvider({
     }, 0);
   }, [cart, pending]);
 
+  /**
+   * Distinct products in the bag, not units.
+   *
+   * Two of the same t-shirt reads as "1 item" to a shopper, not "2" — the
+   * badge and "N items" copy count lines, and a line optimistically dropped to
+   * 0 (mid-removal) does not count until the server confirms it is gone.
+   */
+  const itemCount = React.useMemo(() => {
+    if (!cart) return 0;
+    return cart.lines.filter((line) => {
+      const optimistic = pending[line.id];
+      return typeof optimistic === 'number' ? optimistic > 0 : true;
+    }).length;
+  }, [cart, pending]);
+
   const open = React.useCallback(() => {
     setIsOpen(true);
     track('view_cart', {});
-  }, []);
+    // Re-read on open so the bag reflects anything that changed elsewhere.
+    void refresh();
+  }, [refresh]);
 
   const close = React.useCallback(() => setIsOpen(false), []);
 
@@ -148,16 +210,33 @@ export function CartProvider({
       cart,
       signedIn,
       ready,
+      loading,
       quantityOf,
       totalQuantity,
+      itemCount,
       isOpen,
       isPending: inFlight > 0,
       open,
       close,
+      refresh,
       run,
       setCart,
     }),
-    [cart, signedIn, ready, quantityOf, totalQuantity, isOpen, inFlight, open, close, run],
+    [
+      cart,
+      signedIn,
+      ready,
+      loading,
+      quantityOf,
+      totalQuantity,
+      itemCount,
+      isOpen,
+      inFlight,
+      open,
+      close,
+      refresh,
+      run,
+    ],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

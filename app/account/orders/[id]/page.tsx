@@ -193,7 +193,7 @@ export default async function OrderDetailPage({ params }: PageProps) {
               rel="noopener noreferrer"
               className="text-ink underline underline-offset-4"
             >
-              Shopify&apos;s order status page
+              the full order status page
             </a>
             .
           </p>

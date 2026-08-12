@@ -119,10 +119,9 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   const onAdd = React.useCallback(async () => {
     if (!variant) return;
     setAdding(true);
-    const result = await run(
-      () => addToCart({ variantId: variant.id, quantity }),
-      { silent: true },
-    );
+    // No `silent` here: the drawer no longer opens on add, so the toast plus
+    // the header badge are the only confirmation the shopper gets.
+    const result = await run(() => addToCart({ variantId: variant.id, quantity }));
     setAdding(false);
 
     if (result.ok) {
@@ -137,9 +136,11 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
           }),
         ],
       });
-      open();
+      // Deliberately does not open the drawer — interrupting the page after
+      // every add makes browsing several products tedious. The header badge
+      // updates immediately, which is the confirmation that matters.
     }
-  }, [variant, quantity, run, open, product]);
+  }, [variant, quantity, run, product]);
 
   const onBuyNow = async () => {
     if (!variant) return;

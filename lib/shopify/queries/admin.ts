@@ -265,3 +265,42 @@ export const WEBHOOK_SUBSCRIPTION_CREATE_MUTATION = /* GraphQL */ `
     }
   }
 `;
+
+/* ── Customer ↔ cart link ──────────────────────────────────────────────────
+ * Shopify's Cart API is keyed by cart ID only — there is no query that returns
+ * "the cart belonging to this customer", and `buyerIdentity.customerAccessToken`
+ * only authenticates the cart at checkout, it does not make the cart findable
+ * later. To restore a signed-in shopper's bag on another device the mapping has
+ * to be stored somewhere, and a customer metafield is the Shopify-native place
+ * to keep it without introducing a separate customer database.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+export const CUSTOMER_CART_METAFIELD_QUERY = /* GraphQL */ `
+  query CustomerCartMetafield($id: ID!, $namespace: String!, $key: String!) {
+    customer(id: $id) {
+      id
+      metafield(namespace: $namespace, key: $key) {
+        id
+        value
+        updatedAt
+      }
+    }
+  }
+`;
+
+export const METAFIELDS_SET_MUTATION = /* GraphQL */ `
+  mutation MetafieldsSet($metafields: [MetafieldsSetInput!]!) {
+    metafieldsSet(metafields: $metafields) {
+      metafields {
+        id
+        key
+        value
+      }
+      userErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;

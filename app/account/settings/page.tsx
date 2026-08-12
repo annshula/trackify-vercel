@@ -15,7 +15,7 @@ export default async function SettingsPage() {
       <header>
         <h1 className="text-3xl">Settings</h1>
         <p className="mt-1.5 text-sm text-ink-muted">
-          Preferences for this device, plus links to what Shopify controls.
+          Preferences for this device, plus links to what your account controls.
         </p>
       </header>
 
@@ -27,10 +27,10 @@ export default async function SettingsPage() {
         </h2>
         <p className="mt-2 text-sm text-ink-muted">
           This storefront keeps no copy of your account. Your profile, orders and addresses live in
-          Shopify, and everything you see here is read live from your Shopify account.
+          your account provider, and everything you see here is read live from it.
         </p>
         <p className="mt-2 text-sm text-ink-muted">
-          For a data export or account deletion, contact us and we will action it through Shopify.
+          For a data export or account deletion, contact us and we will action it for you.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <ButtonLink href="/pages/privacy" variant="outline" size="sm">
@@ -47,7 +47,7 @@ export default async function SettingsPage() {
           Session
         </h2>
         <p className="mt-2 text-sm text-ink-muted">
-          Signing out clears your session here and at Shopify.
+          Signing out clears your session everywhere.
         </p>
         <div className="mt-4">
           <ButtonLink href="/account/logout" variant="outline" prefetch={false}>

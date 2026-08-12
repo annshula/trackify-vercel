@@ -19,7 +19,7 @@ export default async function AddressesPage() {
       <header>
         <h1 className="text-3xl">Addresses</h1>
         <p className="mt-1.5 text-sm text-ink-muted">
-          Saved addresses speed up checkout. Shopify stores them with your account.
+          Saved addresses speed up checkout. They are stored securely with your account.
         </p>
       </header>
 

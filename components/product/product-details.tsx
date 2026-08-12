@@ -51,7 +51,7 @@ export function ProductDetails({ product }: { product: CatalogProduct }) {
     content: (
       <div className="space-y-3">
         <p>
-          Delivery options, rates and estimated dates are calculated by Shopify at checkout using
+          Delivery options, rates and estimated dates are calculated at checkout using
           your address. You will see the exact cost before you pay.
         </p>
         <p>
