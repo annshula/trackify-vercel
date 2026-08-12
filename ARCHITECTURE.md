@@ -81,7 +81,7 @@ app/
     admin/(sync|health|revalidate)/route.ts
 components/
   ui/         Button Input Badge Drawer Dialog Toast Skeleton Price Rating Tabs Accordion …
-  layout/     Header MobileNav Footer AnnouncementBar BottomBar
+  layout/     Header MobileNav Footer AnnouncementBar
   product/    Gallery VariantSelector BuyBox StickyBuyBar Details Reviews Related …
   collection/ Grid FilterPanel FilterDrawer SortMenu Pagination
   cart/       CartDrawer CartLine CartSummary DiscountForm FreeShipMeter
@@ -295,10 +295,10 @@ Editorial-premium, not a Shopify theme, not a Tailwind template.
 
 ## 18. Mobile UX Strategy
 
-Mobile-first at every breakpoint (320/360/375/390/414/768/1024/1280+). Sticky slim header,
-bottom tab bar, swipe gallery with snap points, sticky add-to-cart on PDP, bottom-sheet
-filters/sort/cart, ≥44×44px targets with ≥8px spacing, `env(safe-area-inset-*)` padding,
-zero horizontal overflow, no hover-only affordances.
+Mobile-first at every breakpoint (320/360/375/390/414/768/1024/1280+). Fixed slim header with
+a hamburger drawer for navigation (no separate bottom tab bar), swipe gallery with snap points,
+sticky add-to-cart on PDP, bottom-sheet filters/sort/cart, ≥44×44px targets with ≥8px spacing,
+`env(safe-area-inset-*)` padding, zero horizontal overflow, no hover-only affordances.
 
 ## 19. Testing Strategy
 

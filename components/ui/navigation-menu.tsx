@@ -55,7 +55,7 @@ const NavigationMenuTrigger = React.forwardRef<
   >
     {children}
     <ChevronDownIcon
-      className="relative top-px ml-1 size-4 text-ink-subtle transition-transform duration-200 group-data-[state=open]:rotate-180"
+      className="relative top-px ml-1 size-4 text-current opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180"
       aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>
@@ -88,7 +88,7 @@ const NavigationMenuViewport = React.forwardRef<
     <NavigationMenuPrimitive.Viewport
       ref={ref}
       className={cn(
-        "relative mt-3 h-(--radix-navigation-menu-viewport-height) w-(--radix-navigation-menu-viewport-width) overflow-hidden rounded-2xl border border-line bg-surface text-ink shadow-e3",
+        "relative mt-3 h-(--radix-navigation-menu-viewport-height) w-(--radix-navigation-menu-viewport-width) overflow-hidden rounded-lg border border-line bg-surface text-ink shadow-e3",
         className,
       )}
       {...props}

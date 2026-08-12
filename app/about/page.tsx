@@ -95,13 +95,17 @@ export default async function AboutPage() {
       />
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
+      {/* -mt-16/-mt-18 cancels <main>'s top padding so the tinted hero starts
+          at the true top of the viewport, under the transparent header — the
+          header then blends into the hero's accent-soft tint instead of
+          showing the plain page background above it. */}
+      <section className="relative -mt-16 overflow-hidden sm:-mt-18">
         <div
           className="pointer-events-none absolute inset-0 bg-linear-to-b from-accent-soft/70 via-transparent to-transparent"
           aria-hidden="true"
         />
         <div className="container-page relative">
-          <div className="mx-auto max-w-3xl py-20 text-center sm:py-28">
+          <div className="mx-auto max-w-3xl py-24 text-center sm:py-32">
             <p className="text-2xs font-semibold tracking-[0.24em] text-accent uppercase">
               About Trackify
             </p>

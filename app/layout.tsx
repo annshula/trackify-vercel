@@ -16,8 +16,6 @@ import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { BottomBar } from "@/components/layout/bottom-bar";
-import { ThemeScript } from "@/components/layout/theme-toggle";
 import { ConsentBanner } from "@/components/layout/consent-banner";
 import { PageView } from "@/components/analytics/page-view";
 
@@ -55,10 +53,8 @@ export const viewport: Viewport = {
   // Never cap zoom — pinch-to-zoom is an accessibility requirement.
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf9f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c0a09" },
-  ],
+  // Light-only theme — the app intentionally ships no dark mode.
+  themeColor: "#faf9f7",
 };
 
 export default async function RootLayout({
@@ -79,9 +75,7 @@ export default async function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${sora.variable}`}
     >
-      <head>
-        <ThemeScript />
-      </head>
+      <head />
       <body suppressHydrationWarning>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
 
@@ -89,13 +83,16 @@ export default async function RootLayout({
           <CartProvider>
             <Header navigation={navigation} popularSearches={popularSearches} />
 
-            {/* Bottom padding clears the mobile tab bar. */}
-            <main id="main" className="min-h-[60vh] pb-24 lg:pb-0">
+            {/* Top padding clears the now-fixed header (see header.tsx); the
+                homepage hero cancels it again with a matching negative
+                margin so it can sit flush with the true top of the
+                viewport. Navigation on mobile is the hamburger drawer only —
+                no separate bottom tab bar duplicating it. */}
+            <main id="main" className="min-h-[60vh] pt-16 sm:pt-18">
               {children}
             </main>
 
             <Footer collections={footerCollections} />
-            <BottomBar />
             <CartDrawer />
           </CartProvider>
         </ToastProvider>

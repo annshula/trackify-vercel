@@ -3,7 +3,8 @@
 /* ==========================================================================
    TRACKIFY DESIGN SYSTEM
    Editorial premium · Soft-UI evolution · Sora + Inter
-   Every color is defined on :root first, then overridden for dark.
+   Light-only theme: every color is defined on :root and never overridden —
+   the app intentionally does not ship a dark mode.
    ========================================================================== */
 
 @theme {
@@ -71,9 +72,9 @@
   --color-primary: #1c1917;
   --color-primary-hover: #292524;
   --color-on-primary: #ffffff;
-  --color-accent: #8a5a08;
-  --color-accent-hover: #6f4806;
-  --color-accent-soft: #fdf6e7;
+  --color-accent: #5b6a45;
+  --color-accent-hover: #495636;
+  --color-accent-soft: #eef1e6;
   --color-on-accent: #ffffff;
   --color-success: #15803d;
   --color-success-soft: #eefaf1;
@@ -83,80 +84,16 @@
   --color-danger-soft: #fef2f2;
   --color-ring: #1c1917;
   --color-overlay: rgb(12 10 9 / 0.55);
+  /* Deliberately theme-invariant (never redefined in the dark blocks below) —
+     the footer stays a fixed near-black regardless of light/dark mode, the
+     way most storefronts anchor their footer rather than flipping it with
+     the toggle. */
+  --color-footer: #16130f;
 
   --shadow-e1: 0 1px 2px rgb(28 25 23 / 0.05), 0 1px 3px rgb(28 25 23 / 0.04);
   --shadow-e2: 0 2px 4px rgb(28 25 23 / 0.05), 0 6px 16px -6px rgb(28 25 23 / 0.09);
   --shadow-e3: 0 4px 8px rgb(28 25 23 / 0.05), 0 16px 40px -12px rgb(28 25 23 / 0.16);
   --shadow-e4: 0 8px 16px rgb(28 25 23 / 0.06), 0 32px 64px -16px rgb(28 25 23 / 0.24);
-}
-
-/* Dark: redefine ONLY the tokens. Guarded so an explicit light choice wins. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --color-canvas: #0c0a09;
-    --color-surface: #171513;
-    --color-surface-raised: #1f1c1a;
-    --color-surface-sunken: #100e0d;
-    --color-ink: #f5f3f1;
-    --color-ink-muted: #a8a29e;
-    --color-ink-subtle: #8a827c;
-    --color-ink-inverse: #0c0a09;
-    --color-line: #2c2825;
-    --color-line-strong: #3d3733;
-    --color-primary: #f5f3f1;
-    --color-primary-hover: #ffffff;
-    --color-on-primary: #0c0a09;
-    --color-accent: #e9b949;
-    --color-accent-hover: #f5cb6b;
-    --color-accent-soft: #2a2113;
-    --color-on-accent: #1a1409;
-    --color-success: #4ade80;
-    --color-success-soft: #12251a;
-    --color-warning: #fbbf24;
-    --color-warning-soft: #2a1f0d;
-    --color-danger: #f87171;
-    --color-danger-soft: #2b1414;
-    --color-ring: #e9b949;
-    --color-overlay: rgb(0 0 0 / 0.7);
-
-    --shadow-e1: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-e2: 0 2px 4px rgb(0 0 0 / 0.4), 0 6px 16px -6px rgb(0 0 0 / 0.5);
-    --shadow-e3: 0 4px 8px rgb(0 0 0 / 0.4), 0 16px 40px -12px rgb(0 0 0 / 0.6);
-    --shadow-e4: 0 8px 16px rgb(0 0 0 / 0.5), 0 32px 64px -16px rgb(0 0 0 / 0.7);
-  }
-}
-
-:root[data-theme='dark'] {
-  --color-canvas: #0c0a09;
-  --color-surface: #171513;
-  --color-surface-raised: #1f1c1a;
-  --color-surface-sunken: #100e0d;
-  --color-ink: #f5f3f1;
-  --color-ink-muted: #a8a29e;
-  --color-ink-subtle: #8a827c;
-  --color-ink-inverse: #0c0a09;
-  --color-line: #2c2825;
-  --color-line-strong: #3d3733;
-  --color-primary: #f5f3f1;
-  --color-primary-hover: #ffffff;
-  --color-on-primary: #0c0a09;
-  --color-accent: #e9b949;
-  --color-accent-hover: #f5cb6b;
-  --color-accent-soft: #2a2113;
-  --color-on-accent: #1a1409;
-  --color-success: #4ade80;
-  --color-success-soft: #12251a;
-  --color-warning: #fbbf24;
-  --color-warning-soft: #2a1f0d;
-  --color-danger: #f87171;
-  --color-danger-soft: #2b1414;
-  --color-ring: #e9b949;
-  --color-overlay: rgb(0 0 0 / 0.7);
-
-  --shadow-e1: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-e2: 0 2px 4px rgb(0 0 0 / 0.4), 0 6px 16px -6px rgb(0 0 0 / 0.5);
-  --shadow-e3: 0 4px 8px rgb(0 0 0 / 0.4), 0 16px 40px -12px rgb(0 0 0 / 0.6);
-  --shadow-e4: 0 8px 16px rgb(0 0 0 / 0.5), 0 32px 64px -16px rgb(0 0 0 / 0.7);
 }
 
 /* ==========================================================================
@@ -172,7 +109,7 @@
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
   body {
@@ -256,6 +193,15 @@
   }
 }
 
+/* Full-viewport height with a dvh upgrade: 100vh is the baseline (browsers
+   that ignore the unsupported 100dvh keep 100vh), while modern mobile
+   browsers win with 100dvh so the hero tracks the visible viewport as the
+   browser chrome shows/hides instead of overflowing under it. */
+@utility min-h-hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 /* Safe-area padding for sticky bottom UI on notched devices */
 @utility pb-safe {
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--tw-pb-safe, 0px));
@@ -292,6 +238,21 @@
 /* Editorial rule used between sections */
 @utility hairline {
   border-top: 1px solid var(--color-line);
+}
+
+/*
+ * Belt-and-suspenders contrast for white text sitting on top of a photo
+ * (the homepage hero, and the header while it overlays that hero) — the
+ * overlay gradient already darkens the photo, but a shadow guarantees
+ * legibility for the specific pixels directly behind each glyph regardless
+ * of what the photo underneath happens to look like there. text-shadow is
+ * an inherited property, so setting this once on a wrapper reaches every
+ * descendant's text without repeating it per element.
+ */
+@utility text-shadow-hero {
+  text-shadow:
+    0 1px 3px rgb(0 0 0 / 0.4),
+    0 4px 18px rgb(0 0 0 / 0.35);
 }
 
 /* ==========================================================================
@@ -376,6 +337,32 @@
   );
   background-size: 200% 100%;
   animation: tf-shimmer 1.4s linear infinite;
+}
+
+@keyframes tf-reveal-on-view {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+/*
+ * Scroll-linked reveal using native CSS scroll-driven animations
+ * (animation-timeline: view()) — no JavaScript, no IntersectionObserver.
+ *
+ * This is deliberately progressive enhancement rather than a JS-gated
+ * "hidden until scrolled into view" pattern: the @supports guard means
+ * browsers without this feature (or with JS disabled) simply never apply the
+ * animation and the element stays in its default, fully visible state. A
+ * crawler or a pre-hydration first paint always sees complete content —
+ * there is no invisible-by-default state to worry about.
+ */
+@utility scroll-reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: tf-reveal-on-view linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

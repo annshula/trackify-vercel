@@ -1,16 +1,31 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import type { CatalogProduct } from '@/types/catalog';
-import { cn } from '@/lib/utils/cn';
-import { formatPriceRange } from '@/lib/utils/money';
-import { BLUR_DATA_URL, imageAlt, primaryImage, secondaryImage } from '@/lib/utils/image';
-import { colorSwatch, defaultVariant, isSoldOut, hasMarkdown, productRating, OPTION_IS_COLOR } from '@/lib/catalog/selectors';
-import { Badge, Price, Rating } from '@/components/ui/primitives';
-import { WishlistButton } from '@/components/product/wishlist-button';
-import { track, toEcommerceItem } from '@/lib/analytics';
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import type { CatalogProduct } from "@/types/catalog";
+import { cn } from "@/lib/utils/cn";
+import { formatPriceRange } from "@/lib/utils/money";
+import {
+  BLUR_DATA_URL,
+  imageAlt,
+  primaryImage,
+  secondaryImage,
+} from "@/lib/utils/image";
+import {
+  colorSwatch,
+  defaultVariant,
+  isSoldOut,
+  hasMarkdown,
+  productRating,
+  OPTION_IS_COLOR,
+} from "@/lib/catalog/selectors";
+import { Badge, Price, Rating } from "@/components/ui/primitives";
+import { WishlistButton } from "@/components/product/wishlist-button";
+import { BagIcon } from "@/components/ui/icons";
+import { useCart } from "@/components/cart/cart-provider";
+import { addToCart } from "@/lib/cart/actions";
+import { track, toEcommerceItem } from "@/lib/analytics";
 
 /**
  * Product card.
@@ -25,7 +40,7 @@ export function ProductCard({
   index = 0,
   listName,
   className,
-  sizes = '(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 50vw',
+  sizes = "(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 50vw",
 }: {
   product: CatalogProduct;
   priority?: boolean;
@@ -44,23 +59,54 @@ export function ProductCard({
   const compareAt = variant?.compareAtPrice ?? null;
   const singlePrice = product.priceRange.min === product.priceRange.max;
 
-  const colorOption = product.options.find((option) => OPTION_IS_COLOR.test(option.name));
+  const colorOption = product.options.find((option) =>
+    OPTION_IS_COLOR.test(option.name),
+  );
   const swatches = colorOption?.values.slice(0, 5) ?? [];
+
+  const { run } = useCart();
+  const [adding, setAdding] = React.useState(false);
+  // Only offered when a single variant resolves the purchase unambiguously —
+  // a size or material choice still has to happen on the product page.
+  const canQuickAdd =
+    !soldOut && product.variants.length === 1 && variant !== null;
+
+  const onQuickAdd = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (!variant) return;
+    setAdding(true);
+    const result = await run(() =>
+      addToCart({ variantId: variant.id, quantity: 1 }),
+    );
+    setAdding(false);
+    if (result.ok) {
+      track("add_to_cart", {
+        currency: variant.currencyCode,
+        value: variant.price,
+        items: [
+          toEcommerceItem(product, { quantity: 1, price: variant.price }),
+        ],
+      });
+    }
+  };
 
   return (
     <article
-      className={cn('group reveal-item relative flex flex-col', className)}
-      style={{ '--i': index % 12 } as React.CSSProperties}
+      className={cn("group reveal-item relative flex flex-col", className)}
+      style={{ "--i": index % 12 } as React.CSSProperties}
     >
       <div className="relative overflow-hidden rounded-lg bg-surface-sunken">
         <Link
           href={`/products/${product.handle}`}
           className="block focus-visible:outline-none"
           onClick={() =>
-            track('select_item', { item_list_name: listName, items: [toEcommerceItem(product)] })
+            track("select_item", {
+              item_list_name: listName,
+              items: [toEcommerceItem(product)],
+            })
           }
         >
-          <div className="relative aspect-[4/5] w-full">
+          <div className="relative aspect-4/5 w-full">
             {image ? (
               <>
                 <Image
@@ -72,10 +118,10 @@ export function ProductCard({
                   placeholder="blur"
                   blurDataURL={BLUR_DATA_URL}
                   className={cn(
-                    'object-cover transition-[opacity,transform] duration-500 ease-out-soft',
-                    hoverImage && 'group-hover:opacity-0',
-                    !soldOut && 'group-hover:scale-[1.03]',
-                    soldOut && 'opacity-60',
+                    "object-cover transition-[opacity,transform] duration-500 ease-out-soft",
+                    hoverImage && "group-hover:opacity-0",
+                    !soldOut && "group-hover:scale-[1.03]",
+                    soldOut && "opacity-60",
                   )}
                 />
                 {hoverImage && (
@@ -91,7 +137,9 @@ export function ProductCard({
                 )}
               </>
             ) : (
-              <div className="grid h-full place-items-center text-xs text-ink-subtle">No image</div>
+              <div className="grid h-full place-items-center text-xs text-ink-subtle">
+                No image
+              </div>
             )}
 
             {/* Ring drawn on top so it is never clipped by the image scale. */}
@@ -106,28 +154,60 @@ export function ProductCard({
           <div className="flex flex-col items-start gap-1.5">
             {soldOut && <Badge tone="neutral">Sold out</Badge>}
             {!soldOut && onSale && <Badge tone="danger">Sale</Badge>}
-            {!soldOut && !onSale && isNew(product) && <Badge tone="inverse">New</Badge>}
+            {!soldOut && !onSale && isNew(product) && (
+              <Badge tone="inverse">New</Badge>
+            )}
           </div>
           <div className="pointer-events-auto">
-            <WishlistButton handle={product.handle} title={product.title} compact />
+            <WishlistButton
+              handle={product.handle}
+              title={product.title}
+              compact
+            />
           </div>
         </div>
+
+        {canQuickAdd && (
+          <div className="pointer-events-none absolute inset-x-3 bottom-3 flex justify-end opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 max-sm:opacity-100">
+            <button
+              type="button"
+              onClick={onQuickAdd}
+              disabled={adding}
+              aria-label={`Add ${product.title} to bag`}
+              className="pointer-events-auto grid size-11 place-items-center rounded-full bg-white text-ink shadow-e2 transition-transform duration-200 hover:scale-105 active:scale-95 disabled:opacity-60"
+            >
+              <BagIcon size={18} />
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col gap-1.5 pt-3.5">
         {product.vendor && (
-          <p className="text-2xs font-medium tracking-[0.12em] text-ink-subtle uppercase">{product.vendor}</p>
+          <p className="text-2xs font-medium tracking-[0.12em] text-ink-subtle uppercase">
+            {product.vendor}
+          </p>
         )}
 
         <h3 className="font-sans text-sm leading-snug font-medium tracking-normal text-ink">
-          <Link href={`/products/${product.handle}`} className="hover:underline underline-offset-4">
+          <Link
+            href={`/products/${product.handle}`}
+            className="hover:underline underline-offset-4"
+          >
             {/* Stretched link keeps the whole card clickable without nesting <a>. */}
             <span className="absolute inset-0" aria-hidden="true" />
             {product.title}
           </Link>
         </h3>
 
-        {rating && <Rating value={rating.value} count={rating.count} size={13} showValue={false} />}
+        {rating && (
+          <Rating
+            value={rating.value}
+            count={rating.count}
+            size={13}
+            showValue={false}
+          />
+        )}
 
         <div className="mt-auto pt-1">
           {singlePrice ? (
@@ -139,15 +219,20 @@ export function ProductCard({
             />
           ) : (
             <span className="text-sm font-medium tabular-nums text-ink">
-              {formatPriceRange(product.priceRange.min, product.priceRange.max, product.priceRange.currencyCode, {
-                trimZeroCents: true,
-              })}
+              {formatPriceRange(
+                product.priceRange.min,
+                product.priceRange.max,
+                product.priceRange.currencyCode,
+                {
+                  trimZeroCents: true,
+                },
+              )}
             </span>
           )}
         </div>
 
         {swatches.length > 0 && (
-          <div className="flex items-center gap-1.5 pt-1">
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
             {swatches.map((value) => {
               const color = colorSwatch(value);
               return color ? (
@@ -164,7 +249,9 @@ export function ProductCard({
               );
             })}
             {(colorOption?.values.length ?? 0) > 5 && (
-              <span className="text-2xs text-ink-subtle">+{(colorOption?.values.length ?? 0) - 5}</span>
+              <span className="text-2xs text-ink-subtle">
+                +{(colorOption?.values.length ?? 0) - 5}
+              </span>
             )}
           </div>
         )}
@@ -195,7 +282,7 @@ export function ProductGrid({
   return (
     <ul
       className={cn(
-        'grid grid-cols-2 gap-x-4 gap-y-9 sm:gap-x-5 lg:grid-cols-3 lg:gap-x-6 xl:grid-cols-4',
+        "grid grid-cols-2 gap-x-4 gap-y-9 sm:gap-x-5 lg:grid-cols-3 lg:gap-x-6 xl:grid-cols-4",
         className,
       )}
     >

@@ -37,7 +37,7 @@ export function NewsletterForm() {
     <form onSubmit={onSubmit} noValidate className="space-y-2">
       <label
         htmlFor={inputId}
-        className="block text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase"
+        className="block text-2xs font-semibold tracking-[0.16em] text-white/50 uppercase"
       >
         Get first access
       </label>
@@ -56,9 +56,9 @@ export function NewsletterForm() {
           aria-describedby={
             state === "error" ? `${inputId}-error` : `${inputId}-hint`
           }
-          className="h-11 min-w-0 flex-1 rounded-md border border-line-strong bg-surface px-3.5 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/25 aria-invalid:border-danger"
+          className="h-11 min-w-0 flex-1 rounded-md border border-white/15 bg-white/5 px-3.5 text-sm text-white outline-none transition-colors placeholder:text-white/35 focus-visible:border-white/40 focus-visible:ring-2 focus-visible:ring-white/20 aria-invalid:border-danger"
         />
-        <Button type="submit" size="md">
+        <Button type="submit" size="md" className="rounded-md bg-accent text-on-accent hover:bg-accent-hover">
           Join
         </Button>
       </div>
@@ -69,7 +69,7 @@ export function NewsletterForm() {
       ) : (
         <p
           id={`${inputId}-hint`}
-          className="flex items-center gap-1.5 text-xs text-ink-subtle"
+          className="flex items-center gap-1.5 text-xs text-white/45"
         >
           <CheckIcon size={13} />
           New arrivals and restocks. Unsubscribe anytime.

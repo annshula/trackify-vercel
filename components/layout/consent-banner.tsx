@@ -49,7 +49,7 @@ export function ConsentBanner({
         <div
           role="region"
           aria-label="Cookie preferences"
-          className="fixed inset-x-0 bottom-0 z-55 animate-slide-up border-t border-line bg-surface-raised pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] shadow-e4 lg:pb-0"
+          className="fixed inset-x-0 bottom-0 z-55 animate-slide-up border-t border-line bg-surface-raised pb-[env(safe-area-inset-bottom,0px)] shadow-e4"
         >
           <div className="container-page flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:py-5">
             <p className="max-w-2xl text-sm text-ink-muted">

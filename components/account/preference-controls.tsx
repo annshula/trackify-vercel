@@ -1,14 +1,12 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Button } from '@/components/ui/button';
-import { Alert } from '@/components/ui/primitives';
-import { CheckIcon } from '@/components/ui/icons';
-// Theme switch temporarily disabled.
-// import { ThemeToggle } from '@/components/layout/theme-toggle';
-import { useConsent } from '@/lib/analytics/consent-store';
-import { useRecentlyViewed } from '@/hooks/use-recently-viewed';
-import { useWishlist } from '@/hooks/use-wishlist';
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { Alert } from "@/components/ui/primitives";
+import { CheckIcon } from "@/components/ui/icons";
+import { useConsent } from "@/lib/analytics/consent-store";
+import { useRecentlyViewed } from "@/hooks/use-recently-viewed";
+import { useWishlist } from "@/hooks/use-wishlist";
 
 /**
  * Device-local preferences.
@@ -31,48 +29,37 @@ export function PreferenceControls() {
         </Alert>
       )}
 
-      {/* Theme switch temporarily disabled.
-      <section aria-labelledby="appearance-heading" className="rounded-lg border border-line bg-surface p-5">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <h2 id="appearance-heading" className="text-base font-medium">
-              Appearance
-            </h2>
-            <p className="mt-1 text-sm text-ink-muted">Light, dark, or follow your system.</p>
-          </div>
-          <ThemeToggle />
-        </div>
-      </section>
-      */}
-
-      <section aria-labelledby="privacy-heading" className="rounded-lg border border-line bg-surface p-5">
+      <section
+        aria-labelledby="privacy-heading"
+        className="rounded-lg border border-line bg-surface p-5"
+      >
         <h2 id="privacy-heading" className="text-base font-medium">
           Analytics &amp; cookies
         </h2>
         <p className="mt-1 text-sm text-ink-muted">
           {consent === null
-            ? 'You have not made a choice yet.'
+            ? "You have not made a choice yet."
             : consent.analytics
-              ? 'Analytics are on for this browser.'
-              : 'Analytics are off for this browser.'}
+              ? "Analytics are on for this browser."
+              : "Analytics are off for this browser."}
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Button
-            variant={consent?.analytics ? 'primary' : 'outline'}
+            variant={consent?.analytics ? "primary" : "outline"}
             size="sm"
             onClick={() => {
               setConsent({ analytics: true, marketing: true });
-              setNotice('Preferences saved.');
+              setNotice("Preferences saved.");
             }}
           >
             Allow
           </Button>
           <Button
-            variant={consent && !consent.analytics ? 'primary' : 'outline'}
+            variant={consent && !consent.analytics ? "primary" : "outline"}
             size="sm"
             onClick={() => {
               setConsent({ analytics: false, marketing: false });
-              setNotice('Preferences saved.');
+              setNotice("Preferences saved.");
             }}
           >
             Decline
@@ -80,7 +67,10 @@ export function PreferenceControls() {
         </div>
       </section>
 
-      <section aria-labelledby="local-heading" className="rounded-lg border border-line bg-surface p-5">
+      <section
+        aria-labelledby="local-heading"
+        className="rounded-lg border border-line bg-surface p-5"
+      >
         <h2 id="local-heading" className="text-base font-medium">
           Stored on this device
         </h2>
@@ -94,7 +84,7 @@ export function PreferenceControls() {
                 size="sm"
                 onClick={() => {
                   clearRecent();
-                  setNotice('Recently viewed cleared.');
+                  setNotice("Recently viewed cleared.");
                 }}
                 disabled={recent.length === 0}
               >
@@ -111,7 +101,7 @@ export function PreferenceControls() {
                 size="sm"
                 onClick={() => {
                   clearWishlist();
-                  setNotice('Saved items cleared.');
+                  setNotice("Saved items cleared.");
                 }}
                 disabled={saved.length === 0}
               >
@@ -121,8 +111,8 @@ export function PreferenceControls() {
           </div>
         </dl>
         <p className="mt-3 text-xs text-ink-subtle">
-          Saved items and recently viewed are stored in this browser only, so they do not follow you
-          to another device.
+          Saved items and recently viewed are stored in this browser only, so
+          they do not follow you to another device.
         </p>
       </section>
     </>

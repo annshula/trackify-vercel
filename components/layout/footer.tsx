@@ -28,9 +28,9 @@ export function Footer({
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-20 border-t border-line bg-surface">
+    <footer className="mt-20 bg-footer text-white">
       <div className="container-page">
-        <ul className="grid gap-8 border-b border-line py-12 sm:grid-cols-3 sm:gap-6">
+        <ul className="grid gap-8 border-b border-white/10 py-12 sm:grid-cols-3 sm:gap-6">
           {TRUST.map((item) => {
             const Icon = item.icon;
             return (
@@ -38,7 +38,7 @@ export function Footer({
                 <Icon size={22} className="mt-0.5 shrink-0 text-accent" />
                 <div>
                   <p className="text-sm font-medium">{item.title}</p>
-                  <p className="mt-1 text-sm text-ink-muted">{item.body}</p>
+                  <p className="mt-1 text-sm text-white/60">{item.body}</p>
                 </div>
               </li>
             );
@@ -46,7 +46,10 @@ export function Footer({
         </ul>
 
         <div className="grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div className="max-w-sm">
+          {/* min-w-0 lets this column shrink inside its grid track — without
+              it the newsletter form's min-content width (296px) overflows the
+              mobile single-column track and adds horizontal scroll. */}
+          <div className="min-w-0 max-w-sm">
             <Link href="/" className="inline-block">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -54,10 +57,10 @@ export function Footer({
                 alt="Trackify"
                 width={84}
                 height={64}
-                className="h-12 w-auto"
+                className="h-12 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+            <p className="mt-3 text-sm leading-relaxed text-white/60">
               Considered pieces, made to last. Order once, track everything from
               one place.
             </p>
@@ -102,11 +105,11 @@ export function Footer({
           />
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-line py-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-ink-subtle">
+        <div className="flex flex-col gap-4 border-t border-white/10 py-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/45">
             © {year} Trackify. All rights reserved.
           </p>
-          <p className="text-xs text-ink-subtle">
+          <p className="text-xs text-white/45">
             Secure payments. Your card details never touch our servers.
           </p>
         </div>
@@ -124,7 +127,7 @@ function FooterColumn({
 }) {
   return (
     <nav aria-label={title}>
-      <h2 className="mb-4 text-2xs font-semibold tracking-[0.16em] text-ink-subtle uppercase">
+      <h2 className="mb-4 text-2xs font-semibold tracking-[0.16em] text-white/45 uppercase">
         {title}
       </h2>
       <ul className="space-y-2.5">
@@ -132,7 +135,7 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm text-ink-muted transition-colors hover:text-ink hover:underline underline-offset-4"
+              className="text-sm text-white/65 transition-colors hover:text-white hover:underline underline-offset-4"
             >
               {link.label}
             </Link>

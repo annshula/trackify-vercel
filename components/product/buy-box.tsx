@@ -597,7 +597,7 @@ function MobileActionBar({
   onAdd: () => void;
 }) {
   return (
-    <div className="fixed inset-x-0 bottom-14 z-30 border-t border-line bg-canvas/95 px-4 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] backdrop-blur-md lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-canvas/95 px-4 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] backdrop-blur-md lg:hidden">
       <div className="flex items-center gap-2">
         <FlatStepper
           compact
