@@ -31,7 +31,14 @@ import { track } from "@/lib/analytics";
  * mobile so the total and CTA are always reachable.
  */
 export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
-  const { cart: liveCart, run, quantityOf, isPending, ready, loading } = useCart();
+  const {
+    cart: liveCart,
+    run,
+    quantityOf,
+    isPending,
+    ready,
+    loading,
+  } = useCart();
   const [checkingOut, setCheckingOut] = React.useState(false);
   const [issues, setIssues] = React.useState<string[]>([]);
 
@@ -67,7 +74,7 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-14">
       <div>
         <CartSignInPrompt
           returnTo="/cart"
@@ -191,8 +198,8 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
           </Button>
 
           <p className="mt-3 text-center text-xs leading-relaxed text-ink-subtle">
-            Shipping, taxes and any additional discounts are calculated by
-            our payment provider at checkout, and processed securely.
+            Shipping, taxes and any additional discounts are calculated by our
+            payment provider at checkout, and processed securely.
           </p>
         </div>
       </aside>
@@ -245,7 +252,7 @@ function CartPageLine({
         </Link>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
             <div className="min-w-0">
               {merchandise.product.vendor && (
                 <p className="text-2xs font-medium tracking-[0.12em] text-ink-subtle uppercase">
@@ -288,12 +295,12 @@ function CartPageLine({
                   : null
               }
               currencyCode={line.cost.amountPerQuantity.currencyCode}
-              className="shrink-0 text-right"
+              className="shrink-0 sm:text-right"
             />
           </div>
 
-          <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
-            <div className="flex items-center gap-3">
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-4 pt-4">
+            <div className="flex flex-wrap items-center gap-3">
               <QuantityStepper
                 value={quantity}
                 min={1}

@@ -57,7 +57,12 @@ export async function Hero({
     // everywhere modern, since mobile browser chrome showing/hiding
     // shouldn't leave a gap or crop the bottom.
     <section className="relative -mt-16 overflow-hidden bg-primary sm:-mt-18">
-      <div className="relative flex min-h-hero flex-col justify-center">
+      {/* Bottom-anchored, not centered: with the copy trimmed to eyebrow +
+          headline + one line + one button, this block is short enough to
+          never reach the header on any real phone height, and bottom
+          placement reads as an intentional hero composition rather than a
+          floating dialog in the middle of the photo. */}
+      <div className="relative flex min-h-hero flex-col justify-end">
         <HeroCarousel slides={slides} mobileSlides={mobileSlides} />
 
         {/* Compact, deliberately: this whole block has to fit between the
