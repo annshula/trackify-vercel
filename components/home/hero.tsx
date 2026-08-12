@@ -57,12 +57,12 @@ export async function Hero({
     // everywhere modern, since mobile browser chrome showing/hiding
     // shouldn't leave a gap or crop the bottom.
     <section className="relative -mt-16 overflow-hidden bg-primary sm:-mt-18">
-      {/* Bottom-anchored, not centered: with the copy trimmed to eyebrow +
-          headline + one line + one button, this block is short enough to
-          never reach the header on any real phone height, and bottom
-          placement reads as an intentional hero composition rather than a
-          floating dialog in the middle of the photo. */}
-      <div className="relative flex min-h-hero flex-col justify-end">
+      {/* Vertically centered on mobile, bottom-anchored from sm up — the
+          centered brand lockup above the headline (mobile only) reads best
+          as the anchor of a centered composition on a small screen, while
+          the larger breakpoints (no lockup, more copy visible) go back to
+          the bottom-anchored hero-photo convention. */}
+      <div className="relative flex min-h-hero flex-col justify-center sm:justify-end">
         <HeroCarousel slides={slides} mobileSlides={mobileSlides} />
 
         {/* Compact, deliberately: this whole block has to fit between the
@@ -87,9 +87,9 @@ export async function Hero({
                 alt=""
                 width={84}
                 height={64}
-                className="h-10 w-auto brightness-0 invert xs:h-11"
+                className="h-14 w-auto brightness-0 invert xs:h-16"
               />
-              <p className="font-display text-xl text-white xs:text-2xl">
+              <p className="font-display text-3xl text-white xs:text-4xl">
                 Trackify
               </p>
               <p className="text-sm text-white/70">Smart. Secure. Seamless.</p>
