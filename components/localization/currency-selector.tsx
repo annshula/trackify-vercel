@@ -41,7 +41,8 @@ const CURATED_CURRENCIES = ["AUD", "INR", "USD", "GBP", "CAD"];
  * list of our own.
  */
 export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
-  const { country, defaultCountry, countries, ready, setCountryCode } = useLocalization();
+  const { country, defaultCountry, countries, ready, setCountryCode } =
+    useLocalization();
   const { run } = useCart();
   const [open, setOpen] = React.useState(false);
   const [saving, setSaving] = React.useState<string | null>(null);
@@ -72,9 +73,12 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
 
   // No manual override yet: show what Shopify itself is actually using right
   // now (the shop's real default market), not a generic placeholder.
-  const activeCountry = countries.find((entry) => entry.isoCode === country) ?? defaultCountry;
+  const activeCountry =
+    countries.find((entry) => entry.isoCode === country) ?? defaultCountry;
   const activeOption = activeCountry
-    ? (options.find((option) => option.currencyCode === activeCountry.currency.isoCode) ?? null)
+    ? (options.find(
+        (option) => option.currencyCode === activeCountry.currency.isoCode,
+      ) ?? null)
     : null;
 
   const normalizedQuery = query.trim().toLowerCase();
@@ -98,7 +102,8 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
   React.useEffect(() => {
     if (!open) return;
     const onPointerDown = (event: PointerEvent) => {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) close();
+      if (rootRef.current && !rootRef.current.contains(event.target as Node))
+        close();
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
@@ -126,7 +131,10 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
     }
     close();
     setSaving(option.currencyCode);
-    const result = await run(() => setCountry({ countryCode: option.countryCode }), { silent: true });
+    const result = await run(
+      () => setCountry({ countryCode: option.countryCode }),
+      { silent: true },
+    );
     setSaving(null);
     if (result.ok) setCountryCode(option.countryCode);
   };
@@ -140,7 +148,12 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
   // symbol once the response lands.
   if (!ready) {
     return (
-      <div className={cn("flex h-11 items-center px-2.5", overHero && "opacity-70")}>
+      <div
+        className={cn(
+          "flex h-11 items-center px-2.5",
+          overHero && "opacity-70",
+        )}
+      >
         <Spinner />
       </div>
     );
@@ -162,7 +175,10 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
         <span>{activeOption?.currencyCode ?? "Currency"}</span>
         <ChevronDownIcon
           size={14}
-          className={cn("transition-transform duration-200", open && "rotate-180")}
+          className={cn(
+            "transition-transform duration-200",
+            open && "rotate-180",
+          )}
         />
       </button>
 
@@ -170,7 +186,7 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
         <div
           role="listbox"
           aria-label="Currency"
-          className="absolute top-full right-0 z-50 mt-2 w-72 overflow-hidden rounded-xl border border-line bg-surface text-ink shadow-e3"
+          className="absolute top-full right-0 z-50 mt-2 w-72 overflow-hidden rounded-lg border border-line bg-surface text-ink shadow-e3"
         >
           <div className="relative border-b border-line p-2">
             <SearchIcon
@@ -204,7 +220,9 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
               {saving === "auto" ? (
                 <Spinner />
               ) : (
-                country === null && <CheckIcon size={16} className="shrink-0 text-accent" />
+                country === null && (
+                  <CheckIcon size={16} className="shrink-0 text-accent" />
+                )
               )}
             </button>
           )}
@@ -228,8 +246,8 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
                     className="flex min-h-12 w-full items-center justify-between gap-3 px-4 text-left text-sm transition-colors hover:bg-surface-sunken disabled:opacity-60"
                   >
                     <span className="flex min-w-0 items-center gap-2.5">
-                      <span aria-hidden="true" className="shrink-0">
-                        {option.flag}
+                      <span aria-hidden="true" className="shrink-0 w-4 text-center">
+                        {option.symbol}
                       </span>
                       <span className="truncate">
                         {option.currencyName} ({option.currencyCode})
@@ -238,7 +256,9 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
                     {saving === option.currencyCode ? (
                       <Spinner />
                     ) : (
-                      active && <CheckIcon size={16} className="shrink-0 text-accent" />
+                      active && (
+                        <CheckIcon size={16} className="shrink-0 text-accent" />
+                      )
                     )}
                   </button>
                 </li>
