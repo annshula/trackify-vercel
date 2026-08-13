@@ -6,6 +6,19 @@ export const dynamic = 'force-dynamic';
 
 const QUERY = /* GraphQL */ `
   query IntrospectPaymentTx {
+    moneyBag: __type(name: "MoneyBag") {
+      fields {
+        name
+        type {
+          name
+          kind
+          ofType {
+            name
+            kind
+          }
+        }
+      }
+    }
     order: __type(name: "Order") {
       fields {
         name
