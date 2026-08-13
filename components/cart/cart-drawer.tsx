@@ -4,7 +4,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Drawer } from '@/components/ui/drawer';
-import { Button, ButtonLink } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { QuantityStepper } from '@/components/ui/form';
 import { Price } from '@/components/ui/primitives';
 import { TrashIcon, TruckIcon } from '@/components/ui/icons';
@@ -69,9 +69,13 @@ export function CartDrawer() {
             >
               Checkout · {formatMoneyV2(cart?.cost.subtotalAmount)}
             </Button>
-            <ButtonLink href="/cart" variant="ghost" fullWidth size="md" onClick={close}>
+            <Link
+              href="/cart"
+              onClick={close}
+              className="block text-center text-sm font-medium text-ink underline underline-offset-4 hover:text-ink-muted"
+            >
               View full bag
-            </ButtonLink>
+            </Link>
           </div>
         ) : null
       }
