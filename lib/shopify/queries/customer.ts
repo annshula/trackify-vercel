@@ -93,6 +93,31 @@ export const CUSTOMER_ORDER_QUERY = /* GraphQL */ `
       cancelledAt
       financialStatus
       statusPageUrl
+      email
+      phone
+      shippingLine {
+        title
+      }
+      paymentInformation {
+        paymentCollectionUrl
+      }
+      transactions {
+        id
+        status
+        processedAt
+        transactionAmount {
+          presentmentMoney {
+            amount
+            currencyCode
+          }
+        }
+        paymentDetails {
+          ... on CardPaymentDetails {
+            cardBrand
+            last4
+          }
+        }
+      }
       subtotal {
         amount
         currencyCode

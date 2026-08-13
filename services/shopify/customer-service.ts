@@ -211,6 +211,17 @@ export async function getOrder(orderId: string): Promise<Order | null> {
       cancelledAt: string | null;
       financialStatus: string | null;
       statusPageUrl: string | null;
+      email: string | null;
+      phone: string | null;
+      shippingLine: { title: string } | null;
+      paymentInformation: { paymentCollectionUrl: string | null } | null;
+      transactions: {
+        id: string;
+        status: string | null;
+        processedAt: string | null;
+        transactionAmount: { presentmentMoney: { amount: string; currencyCode: string } };
+        paymentDetails: { cardBrand?: string | null; last4?: string | null } | null;
+      }[];
       subtotal: { amount: string; currencyCode: string } | null;
       totalShipping: { amount: string; currencyCode: string } | null;
       totalTax: { amount: string; currencyCode: string } | null;
@@ -280,6 +291,14 @@ export async function getOrder(orderId: string): Promise<Order | null> {
     lineItemIds: fulfillment.fulfillmentLineItems.nodes.map((node) => node.lineItem.id),
   }));
 
+  // The card used is whichever successful transaction actually carries card
+  // details — a store using only manual/other payment methods simply has
+  // none, which is shown as-is rather than guessed at.
+  const cardTransaction =
+    raw.transactions.find((tx) => tx.status === 'SUCCESS' && tx.paymentDetails?.cardBrand) ??
+    raw.transactions.find((tx) => tx.paymentDetails?.cardBrand) ??
+    null;
+
   return {
     id: raw.id,
     number: raw.number,
@@ -289,6 +308,9 @@ export async function getOrder(orderId: string): Promise<Order | null> {
     financialStatus: raw.financialStatus,
     fulfillmentStatus: fulfillments[0]?.status ?? null,
     statusPageUrl: raw.statusPageUrl,
+    email: raw.email,
+    phone: raw.phone,
+    shippingLine: raw.shippingLine,
     lineItems,
     fulfillments,
     subtotal: raw.subtotal,
@@ -303,7 +325,23 @@ export async function getOrder(orderId: string): Promise<Order | null> {
     })),
     shippingAddress: raw.shippingAddress,
     billingAddress: raw.billingAddress,
-    paymentInformation: null,
+    paymentInformation: cardTransaction
+      ? {
+          paymentCollectionUrl: raw.paymentInformation?.paymentCollectionUrl ?? null,
+          brand: cardTransaction.paymentDetails?.cardBrand ?? null,
+          last4: cardTransaction.paymentDetails?.last4 ?? null,
+          amount: cardTransaction.transactionAmount.presentmentMoney,
+          processedAt: cardTransaction.processedAt,
+        }
+      : raw.paymentInformation?.paymentCollectionUrl
+        ? {
+            paymentCollectionUrl: raw.paymentInformation.paymentCollectionUrl,
+            brand: null,
+            last4: null,
+            amount: null,
+            processedAt: null,
+          }
+        : null,
   };
 }
 

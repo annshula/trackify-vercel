@@ -139,6 +139,9 @@ export type Order = {
   financialStatus: string | null;
   fulfillmentStatus: string | null;
   statusPageUrl: string | null;
+  email: string | null;
+  phone: string | null;
+  shippingLine: { title: string } | null;
   lineItems: OrderLineItem[];
   fulfillments: OrderFulfillment[];
   subtotal: MoneyV2 | null;
@@ -149,7 +152,13 @@ export type Order = {
   discounts: { label: string | null; amount: MoneyV2 | null; percentage: number | null }[];
   shippingAddress: CustomerAddress | null;
   billingAddress: CustomerAddress | null;
-  paymentInformation: { paymentCollectionUrl: string | null; brand: string | null; last4: string | null } | null;
+  paymentInformation: {
+    paymentCollectionUrl: string | null;
+    brand: string | null;
+    last4: string | null;
+    amount: MoneyV2 | null;
+    processedAt: string | null;
+  } | null;
 };
 
 export type ActionResult<T = undefined> =

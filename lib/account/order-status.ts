@@ -1,3 +1,5 @@
+import type { Order, OrderFulfillment, OrderLineItem } from '@/types/commerce';
+
 /**
  * Order status presentation.
  *
@@ -55,6 +57,73 @@ export function financialLabel(status: string | null): string {
 export function statusTone(status: string | null): StatusTone {
   if (!status) return 'neutral';
   return FULFILLMENT_TONES[status] ?? 'neutral';
+}
+
+export type ShipmentGroup = {
+  id: string;
+  lineItems: OrderLineItem[];
+  /** null means these items haven't been assigned to a shipment yet. */
+  fulfillment: OrderFulfillment | null;
+};
+
+/**
+ * Splits an order's line items by which shipment they're actually in —
+ * Shopify fulfills a multi-item order in more than one package as often as
+ * not, and each one can be at a different stage. Items not yet on any
+ * fulfillment land in one trailing "still being prepared" group.
+ */
+export function groupShipments(order: Pick<Order, 'lineItems' | 'fulfillments'>): ShipmentGroup[] {
+  const assigned = new Set<string>();
+
+  const groups: ShipmentGroup[] = order.fulfillments.map((fulfillment) => {
+    const lineItems = order.lineItems.filter((item) => fulfillment.lineItemIds.includes(item.id));
+    for (const item of lineItems) assigned.add(item.id);
+    return { id: fulfillment.id, lineItems, fulfillment };
+  });
+
+  const unfulfilled = order.lineItems.filter((item) => !assigned.has(item.id));
+  if (unfulfilled.length > 0) {
+    groups.push({ id: 'unfulfilled', lineItems: unfulfilled, fulfillment: null });
+  }
+
+  return groups;
+}
+
+export type ShipmentStep = {
+  id: string;
+  label: string;
+  description: string | null;
+  at: string | null;
+};
+
+/**
+ * The compact, two-line status shown on a shipment group's own card: its
+ * current stage on top (if it's shipped at all), "Confirmed" underneath —
+ * mirroring how Shopify's own order-status page presents each shipment,
+ * rather than the single order-wide progress bar above.
+ */
+export function shipmentSteps(
+  group: ShipmentGroup,
+  order: Pick<Order, 'processedAt'>,
+): ShipmentStep[] {
+  const confirmed: ShipmentStep = {
+    id: 'confirmed',
+    label: 'Confirmed',
+    description: group.fulfillment ? null : 'We are preparing these items for shipping.',
+    at: order.processedAt,
+  };
+
+  if (!group.fulfillment) return [confirmed];
+
+  const latestEvent = group.fulfillment.events[group.fulfillment.events.length - 1] ?? null;
+  const statusStep: ShipmentStep = {
+    id: 'status',
+    label: fulfillmentLabel(group.fulfillment.status),
+    description: null,
+    at: latestEvent?.happenedAt ?? group.fulfillment.createdAt,
+  };
+
+  return [statusStep, confirmed];
 }
 
 function titleCase(value: string): string {
