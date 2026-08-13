@@ -186,14 +186,11 @@ export default async function OrderDetailPage({ params }: PageProps) {
       </section>
 
       {/* ── Order summary ────────────────────────────────────────────── */}
-      <section
-        aria-labelledby="summary-heading"
-        className="rounded-lg border border-line bg-surface p-5 sm:p-6"
-      >
-        <h2 id="summary-heading" className="mb-4 text-lg">
+      <div className="space-y-3">
+        <h2 className="text-xs font-medium tracking-wide text-ink-subtle uppercase">
           Order summary
         </h2>
-
+        <section className="rounded-lg border border-line bg-surface p-5 sm:p-6">
         <ul className="divide-y divide-line">
           {order.lineItems.map((item) => (
             <li key={item.id} className="flex gap-4 py-4 first:pt-0 last:pb-0">
@@ -275,16 +272,15 @@ export default async function OrderDetailPage({ params }: PageProps) {
             <Row label="Refunded" value={formatMoneyV2(order.totalRefunded)} tone="success" />
           )}
         </dl>
-      </section>
+        </section>
+      </div>
 
       {/* ── Contact, shipping & payment ──────────────────────────────── */}
-      <section
-        aria-labelledby="details-heading"
-        className="rounded-lg border border-line bg-surface p-5 sm:p-6"
-      >
-        <h2 id="details-heading" className="mb-1 text-lg">
+      <div className="space-y-3">
+        <h2 className="text-xs font-medium tracking-wide text-ink-subtle uppercase">
           Delivery &amp; payment
         </h2>
+        <section className="rounded-lg border border-line bg-surface p-5 sm:p-6">
 
         <dl className="divide-y divide-line text-sm">
           {order.email && <DetailRow label="Contact" value={order.email} />}
@@ -356,7 +352,8 @@ export default async function OrderDetailPage({ params }: PageProps) {
             />
           )}
         </dl>
-      </section>
+        </section>
+      </div>
 
       <div className="flex flex-wrap gap-3">
         <ButtonLink href="/account/orders" variant="outline">
