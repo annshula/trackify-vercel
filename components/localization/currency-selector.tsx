@@ -4,7 +4,6 @@ import * as React from "react";
 import { ChevronDownIcon, CheckIcon, SearchIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils/cn";
 import { currencyDisplayName } from "@/lib/localization/format";
-import { FlagIcon } from "./flag-icon";
 import { useLocalization } from "./localization-provider";
 import { useCart } from "@/components/cart/cart-provider";
 import { setCountry, clearCountry } from "@/lib/cart/actions";
@@ -18,44 +17,35 @@ type CurrencyOption = {
 };
 
 /**
- * A deliberate curation, not a technical limit: Shopify's Markets config for
- * this store reports ~230 presentment countries (its blanket international
- * catch-all), but only these five are meant to be offered as real choices.
- * Everything about each one shown below — its symbol, its full name, its
- * flag — still comes straight from Shopify's own response for that currency,
- * never hand-typed; this list only decides *which* of Shopify's currencies
- * make the cut.
- *
- * Each curated currency is pinned to the one country that's expected to
- * report it (USD -> US, not just "whichever country happens to report USD
- * first"). Several countries can share a currency — e.g. this store's
- * default market is Canada, and Canada currently has no CAD market
- * configured in Shopify, so it reports USD like everything else — so
- * picking "the first match" is ambiguous and can attach the wrong flag/
- * country to a currency. If the pinned country doesn't actually report the
- * expected currency, that entry is dropped rather than shown anyway: it
- * means Shopify itself doesn't offer that currency yet, and this list never
- * shows a currency Shopify didn't report.
+ * When several countries share a currency (e.g. this store's default market
+ * is Canada, which currently has no CAD market configured and so reports
+ * USD like everything else), a plain "first entry wins" dedup can attach the
+ * wrong flag/country to a currency — Canada sorts before the US
+ * alphabetically, so USD would otherwise show Canada's flag. For these few
+ * currencies, the entry from the named country wins the dedup instead of
+ * whichever happened to come first; every other currency just uses
+ * Shopify's own first-listed country for it.
  */
-const CURATED_CURRENCIES: { currencyCode: string; countryCode: string }[] = [
-  { currencyCode: "AUD", countryCode: "AU" },
-  { currencyCode: "INR", countryCode: "IN" },
-  { currencyCode: "USD", countryCode: "US" },
-  { currencyCode: "GBP", countryCode: "GB" },
-  { currencyCode: "CAD", countryCode: "CA" },
-];
+const CANONICAL_COUNTRY_BY_CURRENCY: Record<string, string> = {
+  AUD: "AU",
+  INR: "IN",
+  USD: "US",
+  GBP: "GB",
+  CAD: "CA",
+};
 
 /**
  * Header currency switcher.
  *
- * The option list is built from real Shopify Markets data (via
- * LocalizationProvider → /api/localization → the real
- * `localization.availableCountries` query), deduplicated by currency code
- * rather than shown one row per country, then narrowed to CURATED_CURRENCIES.
- * The currency's full name, its symbol and its flag are all either read
- * directly from Shopify's response or a deterministic transformation of its
- * ISO code (see lib/localization/format.ts) — never a maintained or invented
- * list of our own.
+ * The option list is every currency Shopify's Markets config actually
+ * reports (via LocalizationProvider → /api/localization → the real
+ * `localization.availableCountries` query), deduplicated by currency code —
+ * one row per currency rather than one per country — with no curation or
+ * filtering of which currencies make the list. The currency's full name,
+ * its symbol and its flag are all either read directly from Shopify's
+ * response or a deterministic transformation of its ISO code (see
+ * lib/localization/format.ts) — never a maintained or invented list of our
+ * own.
  */
 export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
   const { country, defaultCountry, countries, ready, setCountryCode } =
@@ -75,21 +65,20 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
     for (const entry of source) {
       if (!byCountry.has(entry.isoCode)) byCountry.set(entry.isoCode, entry);
     }
-    const result: CurrencyOption[] = [];
-    for (const { currencyCode, countryCode } of CURATED_CURRENCIES) {
-      const entry = byCountry.get(countryCode);
-      // Shopify's own data has to actually agree that this country reports
-      // this currency — if it reports something else (no market configured
-      // for it yet), the currency is dropped rather than shown anyway.
-      if (!entry || entry.currency.isoCode !== currencyCode) continue;
-      result.push({
-        currencyCode: entry.currency.isoCode,
-        currencyName: currencyDisplayName(entry.currency.isoCode),
+    const byCurrency = new Map<string, CurrencyOption>();
+    for (const entry of byCountry.values()) {
+      const code = entry.currency.isoCode;
+      const canonicalCountry = CANONICAL_COUNTRY_BY_CURRENCY[code];
+      const isCanonical = canonicalCountry !== undefined && entry.isoCode === canonicalCountry;
+      if (byCurrency.has(code) && !isCanonical) continue;
+      byCurrency.set(code, {
+        currencyCode: code,
+        currencyName: currencyDisplayName(code),
         symbol: entry.currency.symbol,
         countryCode: entry.isoCode,
       });
     }
-    return result;
+    return [...byCurrency.values()].sort((a, b) => a.currencyName.localeCompare(b.currencyName));
   }, [countries, defaultCountry]);
 
   // No manual override yet: show what Shopify itself is actually using right
@@ -187,24 +176,24 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
         onClick={() => (open ? close() : setOpen(true))}
         aria-haspopup="listbox"
         aria-expanded={open}
+        disabled={saving !== null}
         className={cn(
-          "flex h-11 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium transition-colors",
+          "flex h-11 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium transition-colors disabled:opacity-70",
           overHero ? "hover:bg-white/15" : "hover:bg-surface-sunken",
         )}
       >
-        {activeOption ? (
-          <FlagIcon countryCode={activeOption.countryCode} className="h-3.5 w-5 shrink-0 rounded-xs" />
-        ) : (
-          <span aria-hidden="true">🌐</span>
-        )}
         <span>{activeOption?.currencyCode ?? "Currency"}</span>
-        <ChevronDownIcon
-          size={14}
-          className={cn(
-            "transition-transform duration-200",
-            open && "rotate-180",
-          )}
-        />
+        {saving !== null ? (
+          <Spinner />
+        ) : (
+          <ChevronDownIcon
+            size={14}
+            className={cn(
+              "transition-transform duration-200",
+              open && "rotate-180",
+            )}
+          />
+        )}
       </button>
 
       {open && (
@@ -271,7 +260,7 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
                     className="flex min-h-12 w-full items-center justify-between gap-3 px-4 text-left text-sm transition-colors hover:bg-surface-sunken disabled:opacity-60"
                   >
                     <span className="flex min-w-0 items-center gap-2.5">
-                      <span aria-hidden="true" className="shrink-0 w-4 text-center">
+                      <span aria-hidden="true" className="shrink-0 min-w-5 text-center text-ink-muted">
                         {option.symbol}
                       </span>
                       <span className="truncate">

@@ -29,16 +29,16 @@ export function LocalizedPrice({
   const {
     amount: displayAmount,
     currencyCode: displayCurrency,
+    compareAtAmount: displayCompareAt,
     loading,
-    isLocalized,
-  } = useLocalizedAmount(variantId, amount, currencyCode);
+  } = useLocalizedAmount(variantId, amount, currencyCode, compareAt);
 
   if (loading) return <Skeleton className={cn("h-5 w-16", className)} />;
 
   return (
     <Price
       amount={displayAmount}
-      compareAt={isLocalized ? null : compareAt}
+      compareAt={displayCompareAt}
       currencyCode={displayCurrency}
       size={size}
       className={className}

@@ -21,7 +21,12 @@ export type LocalizationCountry = {
   currency: { isoCode: string; symbol: string };
 };
 
-type LocalizedPrice = { amount: string; currencyCode: string };
+type LocalizedPrice = {
+  amount: string;
+  currencyCode: string;
+  /** Shopify's own localized compare-at price, or null if it doesn't have one in this currency — never derived locally. */
+  compareAtAmount: string | null;
+};
 
 type LocalizationContextValue = {
   /** null until the visitor picks something themselves — a manual override. */
@@ -232,17 +237,33 @@ export function useLocalizedAmount(
   variantId: string | null | undefined,
   fallbackAmount: number,
   fallbackCurrencyCode: string,
-): { amount: number; currencyCode: string; loading: boolean; isLocalized: boolean } {
+  fallbackCompareAtAmount: number | null = null,
+): {
+  amount: number;
+  currencyCode: string;
+  compareAtAmount: number | null;
+  loading: boolean;
+  isLocalized: boolean;
+} {
   const { price, loading } = useLocalizedPrice(variantId);
 
   if (price) {
     const parsed = Number.parseFloat(price.amount);
+    const compareAtParsed =
+      price.compareAtAmount !== null ? Number.parseFloat(price.compareAtAmount) : null;
     return {
       amount: Number.isFinite(parsed) ? parsed : fallbackAmount,
       currencyCode: price.currencyCode,
+      compareAtAmount: compareAtParsed !== null && Number.isFinite(compareAtParsed) ? compareAtParsed : null,
       loading: false,
       isLocalized: true,
     };
   }
-  return { amount: fallbackAmount, currencyCode: fallbackCurrencyCode, loading, isLocalized: false };
+  return {
+    amount: fallbackAmount,
+    currencyCode: fallbackCurrencyCode,
+    compareAtAmount: fallbackCompareAtAmount,
+    loading,
+    isLocalized: false,
+  };
 }

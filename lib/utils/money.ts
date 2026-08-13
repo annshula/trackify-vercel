@@ -60,14 +60,3 @@ export function discountPercent(price: number, compareAtPrice: number | null | u
   const percent = Math.round(((compareAtPrice - price) / compareAtPrice) * 100);
   return percent > 0 ? percent : null;
 }
-
-export function formatPriceRange(
-  min: number,
-  max: number,
-  currencyCode: string,
-  options?: FormatMoneyOptions,
-): string {
-  const from = formatMoney(min, currencyCode, options);
-  if (Math.abs(max - min) < 1e-9) return from;
-  return `${from} – ${formatMoney(max, currencyCode, options)}`;
-}

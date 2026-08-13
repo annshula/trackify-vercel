@@ -56,15 +56,22 @@ export function CompleteTheLook({
    * inside a .map() below is fine — no rules-of-hooks issue.
    */
   const resolvePrice = (variant: ReturnType<typeof defaultVariant>) => {
-    if (!variant) return { amount: 0, currencyCode: anchor.priceRange.currencyCode, loading: false, isLocalized: false };
+    if (!variant)
+      return {
+        amount: 0,
+        currencyCode: anchor.priceRange.currencyCode,
+        compareAtAmount: null as number | null,
+        loading: false,
+      };
     const live = localizedPriceFor(variant.id);
     if (live) {
       const parsed = Number.parseFloat(live.amount);
+      const compareAtParsed = live.compareAtAmount !== null ? Number.parseFloat(live.compareAtAmount) : null;
       return {
         amount: Number.isFinite(parsed) ? parsed : variant.price,
         currencyCode: live.currencyCode,
+        compareAtAmount: compareAtParsed !== null && Number.isFinite(compareAtParsed) ? compareAtParsed : null,
         loading: false,
-        isLocalized: true,
       };
     }
     // Before the initial /api/localization fetch resolves, a returning
@@ -73,8 +80,8 @@ export function CompleteTheLook({
     return {
       amount: variant.price,
       currencyCode: variant.currencyCode,
+      compareAtAmount: variant.compareAtPrice ?? null,
       loading: !ready || isPriceLoading(variant.id),
-      isLocalized: false,
     };
   };
 
@@ -199,7 +206,7 @@ export function CompleteTheLook({
                 ) : (
                   <Price
                     amount={itemPrice.amount}
-                    compareAt={itemPrice.isLocalized ? null : (variant?.compareAtPrice ?? null)}
+                    compareAt={itemPrice.compareAtAmount}
                     currencyCode={itemPrice.currencyCode}
                     size="sm"
                     className="shrink-0"

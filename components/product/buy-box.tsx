@@ -224,11 +224,16 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                         ? moneyToNumber(localizedPrice)
                         : (variant?.price ?? product.priceRange.min)
                     }
-                    // The compare-at price is only meaningful in the same
-                    // currency as the amount above — once a live localized
-                    // price has landed, showing the catalog's base-currency
-                    // compare-at next to it would be a currency mismatch.
-                    compareAt={localizedPrice ? null : (variant?.compareAtPrice ?? null)}
+                    // Once a live localized price has landed, its own
+                    // Shopify-reported compare-at (same currency) replaces
+                    // the catalog's base-currency one — never mixed.
+                    compareAt={
+                      localizedPrice
+                        ? (localizedPrice.compareAtAmount !== null
+                            ? Number.parseFloat(localizedPrice.compareAtAmount)
+                            : null)
+                        : (variant?.compareAtPrice ?? null)
+                    }
                     currencyCode={
                       localizedPrice?.currencyCode ??
                       variant?.currencyCode ??
@@ -237,9 +242,6 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                     size="xl"
                   />
                 )}
-                <span className="text-xs text-ink-subtle">
-                  Tax &amp; shipping at checkout
-                </span>
               </div>
 
               {/* Flat attribute chips — the fastest way to read what this is,

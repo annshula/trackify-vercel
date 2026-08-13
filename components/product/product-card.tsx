@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CatalogProduct } from "@/types/catalog";
 import { cn } from "@/lib/utils/cn";
-import { formatPriceRange } from "@/lib/utils/money";
 import {
   BLUR_DATA_URL,
   imageAlt,
@@ -58,22 +57,22 @@ export function ProductCard({
   const variant = defaultVariant(product);
 
   const compareAt = variant?.compareAtPrice ?? null;
-  const singlePrice = product.priceRange.min === product.priceRange.max;
 
-  // Live, Shopify-reported price for the shopper's chosen country — falls
-  // back to the catalog's cached base-currency price until (or unless) one
-  // is selected. Only meaningful for the single-price case: a price *range*
-  // would need its min and max variants localized separately, which the
-  // range branch below doesn't attempt yet, so it still shows the base range.
+  // Always the default variant's own price (with its own compare-at), never
+  // a "from X to Y" range — a range doesn't say what you'd actually pay for
+  // the variant the card is about to add. Live, Shopify-reported price for
+  // the shopper's chosen country when one is selected, falling back to the
+  // catalog's cached base-currency price until then.
   const {
     amount: displayAmount,
     currencyCode: displayCurrency,
+    compareAtAmount: displayCompareAt,
     loading: priceLoading,
-    isLocalized,
   } = useLocalizedAmount(
-    singlePrice ? (variant?.id ?? null) : null,
-    product.priceRange.min,
-    product.priceRange.currencyCode,
+    variant?.id ?? null,
+    variant?.price ?? product.priceRange.min,
+    variant?.currencyCode ?? product.priceRange.currencyCode,
+    compareAt,
   );
 
   const colorOption = product.options.find((option) =>
@@ -235,31 +234,15 @@ export function ProductCard({
         )}
 
         <div className="mt-auto pt-1">
-          {singlePrice ? (
-            priceLoading ? (
-              <Skeleton className="h-5 w-16" />
-            ) : (
-              <Price
-                amount={displayAmount}
-                // compareAt is only ever in the catalog's base currency — once
-                // a live localized price has landed, showing it alongside
-                // would mismatch currencies, the same reasoning as the PDP.
-                compareAt={isLocalized ? null : compareAt}
-                currencyCode={displayCurrency}
-                size="sm"
-              />
-            )
+          {priceLoading ? (
+            <Skeleton className="h-5 w-16" />
           ) : (
-            <span className="text-sm font-medium tabular-nums text-ink">
-              {formatPriceRange(
-                product.priceRange.min,
-                product.priceRange.max,
-                product.priceRange.currencyCode,
-                {
-                  trimZeroCents: true,
-                },
-              )}
-            </span>
+            <Price
+              amount={displayAmount}
+              compareAt={displayCompareAt}
+              currencyCode={displayCurrency}
+              size="sm"
+            />
           )}
         </div>
 

@@ -242,6 +242,10 @@ export const VARIANTS_AVAILABILITY_QUERY = /* GraphQL */ `
           amount
           currencyCode
         }
+        compareAtPrice {
+          amount
+          currencyCode
+        }
         product {
           handle
           title

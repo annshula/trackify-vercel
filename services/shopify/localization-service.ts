@@ -49,8 +49,10 @@ export async function getLocalization(detectedCountry?: string | null): Promise<
 }
 
 export type LocalizedVariantPrice = {
-  id: string;
-  price: { amount: string; currencyCode: string };
+  amount: string;
+  currencyCode: string;
+  /** Shopify's own localized compare-at price for this variant, or null if it doesn't have one in this currency — never derived locally. */
+  compareAtAmount: string | null;
 };
 
 /**
@@ -62,19 +64,31 @@ export type LocalizedVariantPrice = {
 export async function getLocalizedVariantPrices(
   variantIds: string[],
   country: string,
-): Promise<Map<string, LocalizedVariantPrice['price']>> {
+): Promise<Map<string, LocalizedVariantPrice>> {
   if (variantIds.length === 0) return new Map();
 
   const data = await storefrontRequest<{
-    nodes: ({ id: string; price?: { amount: string; currencyCode: string } } | null)[];
+    nodes: (
+      | {
+          id: string;
+          price?: { amount: string; currencyCode: string };
+          compareAtPrice?: { amount: string; currencyCode: string } | null;
+        }
+      | null
+    )[];
   }>({
     query: VARIANTS_AVAILABILITY_QUERY,
     variables: { ids: variantIds, country },
   });
 
-  const prices = new Map<string, LocalizedVariantPrice['price']>();
+  const prices = new Map<string, LocalizedVariantPrice>();
   for (const node of data.nodes) {
-    if (node?.price) prices.set(node.id, node.price);
+    if (!node?.price) continue;
+    prices.set(node.id, {
+      amount: node.price.amount,
+      currencyCode: node.price.currencyCode,
+      compareAtAmount: node.compareAtPrice?.amount ?? null,
+    });
   }
   return prices;
 }
