@@ -401,9 +401,9 @@ function Row({
 
 function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-[6.5rem_1fr] gap-4 py-3.5 first:pt-0 last:pb-0 sm:grid-cols-[8rem_1fr]">
-      <dt className="text-ink-subtle">{label}</dt>
-      <dd className="text-ink">{value}</dd>
+    <div className="py-3.5 first:pt-0 last:pb-0">
+      <dt className="text-xs font-medium tracking-wide text-ink-subtle uppercase">{label}</dt>
+      <dd className="mt-1.5 text-ink">{value}</dd>
     </div>
   );
 }
