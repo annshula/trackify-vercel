@@ -47,12 +47,15 @@ export function Price({
   currencyCode,
   size = 'md',
   className,
+  priceClassName,
 }: {
   amount: number;
   compareAt?: number | null;
   currencyCode: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
+  /** Overrides just the main amount's color/weight — the compare-at and discount-percent stay their usual colors. */
+  priceClassName?: string;
 }) {
   const percent = discountPercent(amount, compareAt);
   const sizes = {
@@ -65,7 +68,7 @@ export function Price({
 
   return (
     <span className={cn('inline-flex flex-wrap items-baseline gap-x-2 gap-y-0.5', className)}>
-      <span className={cn('font-medium tabular-nums text-ink', sizes.price)}>
+      <span className={cn('font-medium tabular-nums text-ink', sizes.price, priceClassName)}>
         {formatMoney(amount, currencyCode, { trimZeroCents: true })}
       </span>
       {percent !== null && compareAt ? (

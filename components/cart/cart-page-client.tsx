@@ -48,6 +48,7 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
   const lines = cart?.lines ?? [];
 
   const onCheckout = async () => {
+    if (checkingOut) return;
     setCheckingOut(true);
     setIssues([]);
     track("begin_checkout", {
@@ -56,11 +57,12 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
     });
 
     const result = await run(() => proceedToCheckout());
-    if (!result.ok) {
-      setCheckingOut(false);
-      if (result.issues?.length)
-        setIssues(result.issues.map((issue) => issue.message));
+    if (result.ok && result.checkoutUrl) {
+      window.location.href = result.checkoutUrl;
+      return;
     }
+    setCheckingOut(false);
+    if (result.issues?.length) setIssues(result.issues.map((issue) => issue.message));
   };
 
   // Skeleton until the first response lands, so the empty state cannot

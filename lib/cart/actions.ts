@@ -1,7 +1,6 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import type { Cart } from '@/types/commerce';
 import {
@@ -41,6 +40,8 @@ export type CartActionState = {
   error?: string;
   notice?: string;
   issues?: CartValidationIssue[];
+  /** Shopify's own checkout URL — an external, off-app domain, so the client navigates to it itself rather than this action calling next/navigation's redirect(). */
+  checkoutUrl?: string;
 };
 
 const variantIdSchema = z
@@ -350,8 +351,6 @@ export async function proceedToCheckout(): Promise<CartActionState> {
   const cartId = await readCartId();
   if (!cartId) return failure('Your bag is empty.');
 
-  let checkoutUrl: string | null = null;
-
   try {
     const country = await readSelectedCountry();
     let cart = await getCart(cartId, country);
@@ -405,13 +404,16 @@ export async function proceedToCheckout(): Promise<CartActionState> {
       };
     }
 
-    checkoutUrl = cart.checkoutUrl;
+    // Shopify's checkout lives on its own domain — the client navigates
+    // there itself. Calling next/navigation's redirect() here would throw
+    // its internal NEXT_REDIRECT signal through this action's own client
+    // call site, which the cart provider's try/catch would (correctly, from
+    // its point of view) treat as a failed request even though the browser
+    // was already on its way to checkout.
+    return { ok: true, cart, checkoutUrl: cart.checkoutUrl };
   } catch (error) {
     return failure(toMessage(error));
   }
-
-  // redirect() throws internally, so it must run outside the try/catch.
-  redirect(checkoutUrl);
 }
 
 export async function associateCartWithCustomer(): Promise<void> {

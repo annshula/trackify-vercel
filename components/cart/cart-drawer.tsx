@@ -30,11 +30,15 @@ export function CartDrawer() {
   const currency = cart?.cost.subtotalAmount.currencyCode ?? 'USD';
 
   const onCheckout = async () => {
+    if (checkingOut) return;
     setCheckingOut(true);
     track('begin_checkout', { currency, value: subtotal });
-    // On success this redirects and never resolves.
     const result = await run(() => proceedToCheckout());
-    if (!result.ok) setCheckingOut(false);
+    if (result.ok && result.checkoutUrl) {
+      window.location.href = result.checkoutUrl;
+      return;
+    }
+    setCheckingOut(false);
   };
 
   return (

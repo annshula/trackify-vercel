@@ -78,9 +78,8 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   // Live, Shopify-reported price for the shopper's chosen country, once one
   // is set — null (and the catalog's own price) until then. See
   // components/localization/localization-provider.tsx.
-  const { price: localizedPrice, loading: localizedPriceLoading } = useLocalizedPrice(
-    variant?.id ?? null,
-  );
+  const { price: localizedPrice, loading: localizedPriceLoading } =
+    useLocalizedPrice(variant?.id ?? null);
 
   // Prefetch every variant's converted price up front, not one at a time as
   // each is clicked — this is what makes switching color/size feel instant
@@ -143,7 +142,9 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
     setAdding(true);
     // No `silent` here: the drawer no longer opens on add, so the toast plus
     // the header badge are the only confirmation the shopper gets.
-    const result = await run(() => addToCart({ variantId: variant.id, quantity }));
+    const result = await run(() =>
+      addToCart({ variantId: variant.id, quantity }),
+    );
     setAdding(false);
 
     if (result.ok) {
@@ -165,7 +166,7 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   }, [variant, quantity, run, product]);
 
   const onBuyNow = async () => {
-    if (!variant) return;
+    if (!variant || buying) return;
     setBuying(true);
     const added = await run(
       () => addToCart({ variantId: variant.id, quantity }),
@@ -180,10 +181,12 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
       value: variant.price * quantity,
     });
     const result = await run(() => proceedToCheckout());
-    if (!result.ok) {
-      setBuying(false);
-      open();
+    if (result.ok && result.checkoutUrl) {
+      window.location.href = result.checkoutUrl;
+      return;
     }
+    setBuying(false);
+    open();
   };
 
   return (
@@ -229,9 +232,9 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                     // the catalog's base-currency one — never mixed.
                     compareAt={
                       localizedPrice
-                        ? (localizedPrice.compareAtAmount !== null
-                            ? Number.parseFloat(localizedPrice.compareAtAmount)
-                            : null)
+                        ? localizedPrice.compareAtAmount !== null
+                          ? Number.parseFloat(localizedPrice.compareAtAmount)
+                          : null
                         : (variant?.compareAtPrice ?? null)
                     }
                     currencyCode={
@@ -239,6 +242,7 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                       variant?.currencyCode ??
                       product.priceRange.currencyCode
                     }
+                    priceClassName="text-success"
                     size="xl"
                   />
                 )}

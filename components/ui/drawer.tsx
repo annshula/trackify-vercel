@@ -52,10 +52,10 @@ export type DrawerProps = {
 };
 
 const SHEET_BASE =
-  "inset-x-0 bottom-0 max-h-[88vh] w-full rounded-t-2xl animate-slide-up";
+  "inset-x-0 bottom-0 max-h-[88vh] w-full rounded-t-xl animate-slide-up";
 const FLOATING_BASE =
   "sm:inset-x-auto sm:bottom-auto sm:inset-y-4 sm:h-[calc(100%-2rem)] sm:max-h-none " +
-  "sm:w-full sm:max-w-md sm:rounded-2xl sm:ring-1 sm:ring-ink/5";
+  "sm:w-full sm:max-w-md sm:rounded-xl sm:ring-1 sm:ring-ink/5";
 // Full-height edge drawer at every viewport (used with forceSide).
 const SIDE_DRAWER_BASE = "inset-y-0 h-full max-h-none w-full max-w-md";
 

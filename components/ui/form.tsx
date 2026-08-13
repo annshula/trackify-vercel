@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils/cn';
-import { AlertIcon, ChevronDownIcon } from './icons';
+import { AlertIcon, ChevronDownIcon, MinusIcon, PlusIcon } from './icons';
 
 /**
  * Form fields.
@@ -160,6 +160,17 @@ export function Select({ id, label, hint, error, className, options, ...props }:
 
 /* ── Quantity stepper ──────────────────────────────────────────────────── */
 
+/**
+ * Debounce window between the last +/- click and the actual `onChange` call.
+ * Every click updates the number shown instantly (via local state, so a burst
+ * of clicks always counts each one) but only the final settled value after a
+ * pause is sent on — a caller like the cart wires `onChange` to a real
+ * server round trip per call, and firing one of those per click both spams
+ * the network and, if responses land out of order, can let a stale one
+ * overwrite a newer quantity.
+ */
+const QUANTITY_COMMIT_DELAY_MS = 400;
+
 export function QuantityStepper({
   value,
   onChange,
@@ -177,8 +188,45 @@ export function QuantityStepper({
   label?: string;
   size?: 'sm' | 'md';
 }) {
+  const [localValue, setLocalValue] = React.useState(value);
+  // Mirrors localValue synchronously, so a burst of clicks firing faster
+  // than React re-renders between them still reads the truly-latest number
+  // instead of each one recomputing from the same stale render's closure.
+  const localValueRef = React.useRef(value);
+  const pendingCommit = React.useRef(false);
+  const commitTimer = React.useRef<number | null>(null);
+
+  // The prop is the server-confirmed quantity. Adopt it whenever it changes
+  // from outside — except while a debounced commit is still pending, which
+  // would otherwise snap the display back to the pre-click value for a
+  // moment before the click's own commit lands.
+  React.useEffect(() => {
+    if (!pendingCommit.current) {
+      setLocalValue(value);
+      localValueRef.current = value;
+    }
+  }, [value]);
+
+  React.useEffect(() => {
+    return () => {
+      if (commitTimer.current) window.clearTimeout(commitTimer.current);
+    };
+  }, []);
+
   const clamp = (next: number) => Math.max(min, Math.min(max, next));
   const buttonSize = size === 'sm' ? 'size-9' : 'size-11';
+
+  const step = (delta: number) => {
+    const next = clamp(localValueRef.current + delta);
+    localValueRef.current = next;
+    setLocalValue(next);
+    pendingCommit.current = true;
+    if (commitTimer.current) window.clearTimeout(commitTimer.current);
+    commitTimer.current = window.setTimeout(() => {
+      pendingCommit.current = false;
+      onChange(next);
+    }, QUANTITY_COMMIT_DELAY_MS);
+  };
 
   return (
     <div
@@ -189,40 +237,40 @@ export function QuantityStepper({
     >
       <button
         type="button"
-        onClick={() => onChange(clamp(value - 1))}
-        disabled={disabled || value <= min}
+        onClick={() => step(-1)}
+        disabled={disabled || localValue <= min}
         aria-label={`Decrease ${label.toLowerCase()}`}
         className={cn(
           buttonSize,
           'grid place-items-center rounded-l-md text-ink transition-colors hover:bg-surface-sunken disabled:cursor-not-allowed disabled:opacity-40',
         )}
       >
-        <span aria-hidden="true">−</span>
+        <MinusIcon size={size === 'sm' ? 13 : 15} />
       </button>
 
       <span
         // A live region so screen readers hear the new quantity after a tap.
         aria-live="polite"
-        aria-label={`${label}: ${value}`}
+        aria-label={`${label}: ${localValue}`}
         className={cn(
           'min-w-9 text-center text-sm font-medium tabular-nums',
           size === 'sm' && 'min-w-8 text-xs',
         )}
       >
-        {value}
+        {localValue}
       </span>
 
       <button
         type="button"
-        onClick={() => onChange(clamp(value + 1))}
-        disabled={disabled || value >= max}
+        onClick={() => step(1)}
+        disabled={disabled || localValue >= max}
         aria-label={`Increase ${label.toLowerCase()}`}
         className={cn(
           buttonSize,
           'grid place-items-center rounded-r-md text-ink transition-colors hover:bg-surface-sunken disabled:cursor-not-allowed disabled:opacity-40',
         )}
       >
-        <span aria-hidden="true">+</span>
+        <PlusIcon size={size === 'sm' ? 13 : 15} />
       </button>
     </div>
   );
