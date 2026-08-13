@@ -19,11 +19,11 @@ function truncate(text: string, max = 160): string {
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Considered pieces, made to last`,
+    default: `${SITE_NAME} — Smart. Secure. Seamless.`,
     template: `%s · ${SITE_NAME}`,
   },
   description:
-    'A considered edit of pieces built to last. Fast delivery, easy returns, and every order tracked from one place.',
+    'Smart, secure, seamless everyday carry — trackers, wallets and EDC essentials built to last, with fast delivery, easy returns, and every order tracked from one place.',
   applicationName: SITE_NAME,
   referrer: 'strict-origin-when-cross-origin',
   formatDetection: { telephone: false, address: false, email: false },
@@ -33,6 +33,10 @@ export const rootMetadata: Metadata = {
     locale: 'en_US',
     url: SITE_URL,
   },
+  // No explicit `images` here — app/opengraph-image.tsx is the file-based
+  // convention Next.js resolves automatically for any page (this one
+  // included) that doesn't set its own. Product/collection pages still set
+  // their own real catalog photo below, which takes priority over it.
   twitter: { card: 'summary_large_image' },
   robots: {
     index: true,

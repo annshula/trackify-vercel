@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   // Dev-only: lets the ngrok tunnel load /_next/* without 403s.
-  allowedDevOrigins: ["d7ee-223-178-81-28.ngrok-free.app"],
+  allowedDevOrigins: ["b349-223-178-81-28.ngrok-free.app"],
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
