@@ -105,9 +105,7 @@ export function AddressManager({
                             name="addressId"
                             value={address.id}
                           />
-                          <Button type="submit" variant="danger" size="sm">
-                            Delete
-                          </Button>
+                          <DeleteAddressSubmitButton />
                         </form>
                         <Button
                           variant="ghost"
@@ -324,6 +322,16 @@ function SubmitButton({ isEdit }: { isEdit: boolean }) {
   return (
     <Button type="submit" fullWidth size="lg" loading={pending}>
       {isEdit ? "Save changes" : "Add address"}
+    </Button>
+  );
+}
+
+function DeleteAddressSubmitButton() {
+  // useFormStatus must be read from inside the form it belongs to.
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" variant="danger" size="sm" loading={pending}>
+      Delete
     </Button>
   );
 }

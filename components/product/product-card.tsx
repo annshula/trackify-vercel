@@ -173,10 +173,18 @@ export function ProductCard({
               type="button"
               onClick={onQuickAdd}
               disabled={adding}
+              aria-busy={adding || undefined}
               aria-label={`Add ${product.title} to bag`}
               className="pointer-events-auto grid size-11 place-items-center rounded-full bg-white text-ink shadow-e2 transition-transform duration-200 hover:scale-105 active:scale-95 disabled:opacity-60"
             >
-              <BagIcon size={18} />
+              {adding ? (
+                <svg viewBox="0 0 24 24" className="size-4.5 animate-spin" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.25" strokeWidth="2.5" />
+                  <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <BagIcon size={18} />
+              )}
             </button>
           </div>
         )}
