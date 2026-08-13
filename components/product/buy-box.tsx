@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/button";
-import { Price, Rating } from "@/components/ui/primitives";
+import { Price, Rating, Skeleton } from "@/components/ui/primitives";
 import {
   CheckIcon,
   HeartIcon,
@@ -27,6 +27,11 @@ import {
   OPTION_IS_COLOR,
 } from "@/lib/catalog/selectors";
 import { useCart } from "@/components/cart/cart-provider";
+import {
+  useLocalization,
+  useLocalizedPrice,
+} from "@/components/localization/localization-provider";
+import { moneyToNumber } from "@/lib/utils/money";
 import { useWishlist } from "@/hooks/use-wishlist";
 import { useToast } from "@/components/ui/toast";
 import { addToCart, proceedToCheckout } from "@/lib/cart/actions";
@@ -69,6 +74,23 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
   const variant: CatalogVariant | null =
     findVariantByOptions(product, selection) ??
     (product.options.length === 0 ? initialVariant : null);
+
+  // Live, Shopify-reported price for the shopper's chosen country, once one
+  // is set — null (and the catalog's own price) until then. See
+  // components/localization/localization-provider.tsx.
+  const { price: localizedPrice, loading: localizedPriceLoading } = useLocalizedPrice(
+    variant?.id ?? null,
+  );
+
+  // Prefetch every variant's converted price up front, not one at a time as
+  // each is clicked — this is what makes switching color/size feel instant
+  // instead of flashing the base-currency price on every click. Only the
+  // first paint of the page has anything to wait for; by the time a shopper
+  // picks a different variant, its price is already in the cache.
+  const { requestPrices } = useLocalization();
+  React.useEffect(() => {
+    requestPrices(product.variants.map((v) => v.id));
+  }, [product.variants, requestPrices]);
 
   const rating = productRating(product);
   const lowStock = lowStockCount(variant);
@@ -189,14 +211,32 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
               </h1>
 
               <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <Price
-                  amount={variant?.price ?? product.priceRange.min}
-                  compareAt={variant?.compareAtPrice ?? null}
-                  currencyCode={
-                    variant?.currencyCode ?? product.priceRange.currencyCode
-                  }
-                  size="xl"
-                />
+                {localizedPriceLoading && !localizedPrice ? (
+                  // A country is selected and its converted price is still in
+                  // flight — a skeleton reads as "loading," where showing the
+                  // base-currency number here would read as "the price,"
+                  // then visibly change a moment later.
+                  <Skeleton className="h-9 w-28" />
+                ) : (
+                  <Price
+                    amount={
+                      localizedPrice
+                        ? moneyToNumber(localizedPrice)
+                        : (variant?.price ?? product.priceRange.min)
+                    }
+                    // The compare-at price is only meaningful in the same
+                    // currency as the amount above — once a live localized
+                    // price has landed, showing the catalog's base-currency
+                    // compare-at next to it would be a currency mismatch.
+                    compareAt={localizedPrice ? null : (variant?.compareAtPrice ?? null)}
+                    currencyCode={
+                      localizedPrice?.currencyCode ??
+                      variant?.currencyCode ??
+                      product.priceRange.currencyCode
+                    }
+                    size="xl"
+                  />
+                )}
                 <span className="text-xs text-ink-subtle">
                   Tax &amp; shipping at checkout
                 </span>

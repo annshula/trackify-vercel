@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { productRepository } from '@/lib/catalog';
 import { primaryImage } from '@/lib/utils/image';
+import { defaultVariant } from '@/lib/catalog/selectors';
 
 /**
  * GET /api/search?q=…
@@ -63,6 +64,7 @@ export async function GET(request: Request): Promise<NextResponse> {
           vendor: product.vendor,
           price: product.priceRange.min,
           currencyCode: product.priceRange.currencyCode,
+          variantId: defaultVariant(product)?.id ?? null,
           image: image ? { url: image.url, altText: image.altText } : null,
           available: product.variants.some((variant) => variant.availableForSale),
         };

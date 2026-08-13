@@ -14,6 +14,7 @@ import {
 import { ToastProvider } from "@/components/ui/toast";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { LocalizationProvider } from "@/components/localization/localization-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ConsentBanner } from "@/components/layout/consent-banner";
@@ -80,21 +81,23 @@ export default async function RootLayout({
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
 
         <ToastProvider>
-          <CartProvider>
-            <Header navigation={navigation} popularSearches={popularSearches} />
+          <LocalizationProvider>
+            <CartProvider>
+              <Header navigation={navigation} popularSearches={popularSearches} />
 
-            {/* Top padding clears the now-fixed header (see header.tsx); the
-                homepage hero cancels it again with a matching negative
-                margin so it can sit flush with the true top of the
-                viewport. Navigation on mobile is the hamburger drawer only —
-                no separate bottom tab bar duplicating it. */}
-            <main id="main" className="min-h-[60vh] pt-16 sm:pt-18">
-              {children}
-            </main>
+              {/* Top padding clears the now-fixed header (see header.tsx); the
+                  homepage hero cancels it again with a matching negative
+                  margin so it can sit flush with the true top of the
+                  viewport. Navigation on mobile is the hamburger drawer only —
+                  no separate bottom tab bar duplicating it. */}
+              <main id="main" className="min-h-[60vh] pt-16 sm:pt-18">
+                {children}
+              </main>
 
-            <Footer collections={footerCollections} />
-            <CartDrawer />
-          </CartProvider>
+              <Footer collections={footerCollections} />
+              <CartDrawer />
+            </CartProvider>
+          </LocalizationProvider>
         </ToastProvider>
 
         <PageView />

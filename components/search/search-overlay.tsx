@@ -9,6 +9,7 @@ import { CloseIcon, SearchIcon } from "@/components/ui/icons";
 import { Skeleton } from "@/components/ui/primitives";
 import { formatMoney } from "@/lib/utils/money";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import { useLocalization } from "@/components/localization/localization-provider";
 import { track } from "@/lib/analytics";
 
 type SearchResults = {
@@ -18,6 +19,7 @@ type SearchResults = {
     vendor: string;
     price: number;
     currencyCode: string;
+    variantId: string | null;
     image: { url: string; altText: string | null } | null;
     available: boolean;
   }[];
@@ -54,6 +56,7 @@ export function SearchOverlay({
     [],
   );
   const listboxId = React.useId();
+  const { ready: localizationReady, localizedPriceFor, isPriceLoading, requestPrices } = useLocalization();
 
   // Focus + scroll lock while open. Reset is handled by `key` on the caller,
   // so nothing needs to be cleared here.
@@ -100,6 +103,13 @@ export function SearchOverlay({
       window.clearTimeout(timer);
     };
   }, [term]);
+
+  React.useEffect(() => {
+    const variantIds = results.products
+      .map((product) => product.variantId)
+      .filter((id): id is string => Boolean(id));
+    if (variantIds.length > 0) requestPrices(variantIds);
+  }, [results, requestPrices]);
 
   // A query shorter than the minimum has no results by definition — derive it
   // rather than clearing state from an effect.
@@ -289,7 +299,21 @@ export function SearchOverlay({
                 aria-label="Product results"
                 className="space-y-1"
               >
-                {activeResults.products.map((product, index) => (
+                {activeResults.products.map((product, index) => {
+                  const live = product.variantId
+                    ? localizedPriceFor(product.variantId)
+                    : null;
+                  // Before /api/localization resolves, a saved currency
+                  // choice is still unknown — treat that as loading too.
+                  const priceLoading = product.variantId
+                    ? !localizationReady || isPriceLoading(product.variantId)
+                    : false;
+                  const displayAmount = live
+                    ? Number.parseFloat(live.amount)
+                    : product.price;
+                  const displayCurrency = live?.currencyCode ?? product.currencyCode;
+
+                  return (
                   <li key={product.handle} role="presentation">
                     <Link
                       id={`${listboxId}-option-${index}`}
@@ -325,20 +349,25 @@ export function SearchOverlay({
                         <span className="block truncate text-sm font-medium">
                           {product.title}
                         </span>
-                        <span className="mt-0.5 block text-sm tabular-nums text-ink-muted">
-                          {formatMoney(product.price, product.currencyCode, {
-                            trimZeroCents: true,
-                          })}
-                          {!product.available && (
-                            <span className="ml-2 text-xs text-ink-subtle">
-                              Sold out
-                            </span>
-                          )}
-                        </span>
+                        {priceLoading ? (
+                          <Skeleton className="mt-1 h-3.5 w-12" />
+                        ) : (
+                          <span className="mt-0.5 block text-sm tabular-nums text-ink-muted">
+                            {formatMoney(displayAmount, displayCurrency, {
+                              trimZeroCents: true,
+                            })}
+                            {!product.available && (
+                              <span className="ml-2 text-xs text-ink-subtle">
+                                Sold out
+                              </span>
+                            )}
+                          </span>
+                        )}
                       </span>
                     </Link>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
 
               <button

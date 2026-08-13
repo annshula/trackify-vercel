@@ -32,7 +32,7 @@ type RawCart = {
     code?: string | null;
     title?: string | null;
   }[];
-  buyerIdentity: { email: string | null; customer: { id: string } | null } | null;
+  buyerIdentity: { email: string | null; countryCode: string | null; customer: { id: string } | null } | null;
   lines: {
     nodes: {
       id: string;
@@ -59,7 +59,11 @@ function toCart(raw: RawCart): Cart {
       code: allocation.code ?? null,
     })),
     buyerIdentity: raw.buyerIdentity
-      ? { email: raw.buyerIdentity.email, customerAccessToken: raw.buyerIdentity.customer?.id ?? null }
+      ? {
+          email: raw.buyerIdentity.email,
+          customerAccessToken: raw.buyerIdentity.customer?.id ?? null,
+          countryCode: raw.buyerIdentity.countryCode ?? null,
+        }
       : null,
     // A line whose merchandise is not a ProductVariant cannot be rendered.
     lines: (raw.lines?.nodes ?? [])
@@ -92,10 +96,10 @@ function unwrap(payload: MutationPayload | undefined, operation: string): Cart {
   return toCart(payload.cart);
 }
 
-export async function getCart(cartId: string): Promise<Cart | null> {
+export async function getCart(cartId: string, country?: string | null): Promise<Cart | null> {
   const data = await storefrontRequest<{ cart: RawCart | null }>({
     query: CART_QUERY,
-    variables: { id: cartId },
+    variables: { id: cartId, country: country ?? null },
   });
   // Shopify expires carts after ~10 days of inactivity; null means "start over".
   return data.cart ? toCart(data.cart) : null;
@@ -104,14 +108,21 @@ export async function getCart(cartId: string): Promise<Cart | null> {
 export async function createCart(
   lines: { merchandiseId: string; quantity: number }[] = [],
   buyerEmail?: string | null,
+  country?: string | null,
 ): Promise<Cart> {
+  const buyerIdentity =
+    buyerEmail || country
+      ? { ...(buyerEmail ? { email: buyerEmail } : {}), ...(country ? { countryCode: country } : {}) }
+      : undefined;
+
   const data = await storefrontRequest<{ cartCreate: MutationPayload }>({
     query: CART_CREATE_MUTATION,
     variables: {
       input: {
         lines: lines.map((line) => ({ merchandiseId: line.merchandiseId, quantity: line.quantity })),
-        ...(buyerEmail ? { buyerIdentity: { email: buyerEmail } } : {}),
+        ...(buyerIdentity ? { buyerIdentity } : {}),
       },
+      country: country ?? null,
     },
   });
   return unwrap(data.cartCreate, 'cartCreate');
@@ -120,10 +131,11 @@ export async function createCart(
 export async function addLines(
   cartId: string,
   lines: { merchandiseId: string; quantity: number; attributes?: { key: string; value: string }[] }[],
+  country?: string | null,
 ): Promise<Cart> {
   const data = await storefrontRequest<{ cartLinesAdd: MutationPayload }>({
     query: CART_LINES_ADD_MUTATION,
-    variables: { cartId, lines },
+    variables: { cartId, lines, country: country ?? null },
   });
   return unwrap(data.cartLinesAdd, 'cartLinesAdd');
 }
@@ -131,37 +143,43 @@ export async function addLines(
 export async function updateLines(
   cartId: string,
   lines: { id: string; quantity: number }[],
+  country?: string | null,
 ): Promise<Cart> {
   const data = await storefrontRequest<{ cartLinesUpdate: MutationPayload }>({
     query: CART_LINES_UPDATE_MUTATION,
-    variables: { cartId, lines },
+    variables: { cartId, lines, country: country ?? null },
   });
   return unwrap(data.cartLinesUpdate, 'cartLinesUpdate');
 }
 
-export async function removeLines(cartId: string, lineIds: string[]): Promise<Cart> {
+export async function removeLines(cartId: string, lineIds: string[], country?: string | null): Promise<Cart> {
   const data = await storefrontRequest<{ cartLinesRemove: MutationPayload }>({
     query: CART_LINES_REMOVE_MUTATION,
-    variables: { cartId, lineIds },
+    variables: { cartId, lineIds, country: country ?? null },
   });
   return unwrap(data.cartLinesRemove, 'cartLinesRemove');
 }
 
-export async function setDiscountCodes(cartId: string, discountCodes: string[]): Promise<Cart> {
+export async function setDiscountCodes(
+  cartId: string,
+  discountCodes: string[],
+  country?: string | null,
+): Promise<Cart> {
   const data = await storefrontRequest<{ cartDiscountCodesUpdate: MutationPayload }>({
     query: CART_DISCOUNT_CODES_UPDATE_MUTATION,
-    variables: { cartId, discountCodes },
+    variables: { cartId, discountCodes, country: country ?? null },
   });
   return unwrap(data.cartDiscountCodesUpdate, 'cartDiscountCodesUpdate');
 }
 
 export async function setBuyerIdentity(
   cartId: string,
-  buyerIdentity: { email?: string | null; customerAccessToken?: string | null },
+  buyerIdentity: { email?: string | null; customerAccessToken?: string | null; countryCode?: string | null },
+  country?: string | null,
 ): Promise<Cart> {
   const data = await storefrontRequest<{ cartBuyerIdentityUpdate: MutationPayload }>({
     query: CART_BUYER_IDENTITY_UPDATE_MUTATION,
-    variables: { cartId, buyerIdentity },
+    variables: { cartId, buyerIdentity, country: country ?? buyerIdentity.countryCode ?? null },
   });
   return unwrap(data.cartBuyerIdentityUpdate, 'cartBuyerIdentityUpdate');
 }
@@ -180,9 +198,13 @@ export type CartValidationIssue = {
  * The local catalog is never trusted for this — it can be minutes stale, and a
  * customer reaching checkout with an unavailable line is a lost order.
  */
-export async function validateCart(cart: Cart): Promise<CartValidationIssue[]> {
+export async function validateCart(cart: Cart, country?: string | null): Promise<CartValidationIssue[]> {
   if (cart.lines.length === 0) return [];
 
+  // Must be fetched in the same country context as the cart itself — a live
+  // price fetched in the shop's default currency is not comparable to a cart
+  // total Shopify already converted to a different one, and would otherwise
+  // read as a false "price changed" on every checkout once a country is set.
   const variantIds = [...new Set(cart.lines.map((line) => line.merchandise.id))];
   const data = await storefrontRequest<{
     nodes: ({
@@ -192,7 +214,10 @@ export async function validateCart(cart: Cart): Promise<CartValidationIssue[]> {
       currentlyNotInStock: boolean;
       price: { amount: string; currencyCode: string };
     } | null)[];
-  }>({ query: VARIANTS_AVAILABILITY_QUERY, variables: { ids: variantIds } });
+  }>({
+    query: VARIANTS_AVAILABILITY_QUERY,
+    variables: { ids: variantIds, country: country ?? cart.buyerIdentity?.countryCode ?? null },
+  });
 
   const live = new Map(
     data.nodes.filter((node): node is NonNullable<typeof node> => node !== null).map((node) => [node.id, node]),
@@ -257,10 +282,14 @@ export async function validateCart(cart: Cart): Promise<CartValidationIssue[]> {
  *
  * Returns the updated target cart, or the original when there is nothing to move.
  */
-export async function mergeCartInto(source: Cart, targetCartId: string): Promise<Cart | null> {
+export async function mergeCartInto(
+  source: Cart,
+  targetCartId: string,
+  country?: string | null,
+): Promise<Cart | null> {
   if (source.lines.length === 0) return null;
 
-  const target = await getCart(targetCartId);
+  const target = await getCart(targetCartId, country);
   if (!target) return null;
 
   const existing = new Map(target.lines.map((line) => [line.merchandise.id, line]));
@@ -278,8 +307,8 @@ export async function mergeCartInto(source: Cart, targetCartId: string): Promise
   }
 
   let merged = target;
-  if (toAdd.length > 0) merged = await addLines(targetCartId, toAdd);
-  if (toUpdate.length > 0) merged = await updateLines(targetCartId, toUpdate);
+  if (toAdd.length > 0) merged = await addLines(targetCartId, toAdd, country);
+  if (toUpdate.length > 0) merged = await updateLines(targetCartId, toUpdate, country);
 
   return merged;
 }

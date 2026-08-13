@@ -48,7 +48,7 @@ export type Cart = {
   discountCodes: CartDiscountCode[];
   /** Shopify-applied automatic + code discounts, already computed by Shopify */
   discountAllocations: { discountedAmount: MoneyV2; title: string | null; code: string | null }[];
-  buyerIdentity: { email: string | null; customerAccessToken: string | null } | null;
+  buyerIdentity: { email: string | null; customerAccessToken: string | null; countryCode: string | null } | null;
   updatedAt: string;
 };
 

@@ -7,12 +7,14 @@ import { useRecentlyViewed } from "@/hooks/use-recently-viewed";
 import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { formatMoney } from "@/lib/utils/money";
 import { Skeleton } from "@/components/ui/primitives";
+import { useLocalization } from "@/components/localization/localization-provider";
 
 type MiniProduct = {
   handle: string;
   title: string;
   price: number;
   currencyCode: string;
+  variantId: string | null;
   image: { url: string; altText: string | null } | null;
 };
 
@@ -31,6 +33,7 @@ export function RecentlyViewedSection({
   const { handles, hydrated } = useRecentlyViewed();
   const railRef = useDragScroll<HTMLUListElement>();
   const [products, setProducts] = React.useState<MiniProduct[] | null>(null);
+  const { ready, localizedPriceFor, isPriceLoading, requestPrices } = useLocalization();
 
   const wanted = React.useMemo(
     () => handles.filter((handle) => handle !== excludeHandle).slice(0, 6),
@@ -56,6 +59,14 @@ export function RecentlyViewedSection({
     return () => controller.abort();
   }, [hydrated, wanted]);
 
+  React.useEffect(() => {
+    if (!products) return;
+    const variantIds = products
+      .map((product) => product.variantId)
+      .filter((id): id is string => Boolean(id));
+    requestPrices(variantIds);
+  }, [products, requestPrices]);
+
   // Nothing to show and nothing to fetch — render no section at all rather
   // than reserving space that will stay empty.
   if (!hydrated || wanted.length === 0) return null;
@@ -78,37 +89,52 @@ export function RecentlyViewedSection({
                 <Skeleton className="mt-1.5 h-3 w-1/3" />
               </li>
             ))
-          : products.map((product) => (
-              <li
-                key={product.handle}
-                className="w-36 shrink-0 snap-start sm:w-44"
-              >
-                <Link
-                  href={`/products/${product.handle}`}
-                  className="group block"
+          : products.map((product) => {
+              const live = product.variantId ? localizedPriceFor(product.variantId) : null;
+              // Before /api/localization resolves, a saved currency choice
+              // is still unknown — treat that as loading too, not "none".
+              const loading = product.variantId
+                ? !ready || isPriceLoading(product.variantId)
+                : false;
+              const displayAmount = live ? Number.parseFloat(live.amount) : product.price;
+              const displayCurrency = live?.currencyCode ?? product.currencyCode;
+
+              return (
+                <li
+                  key={product.handle}
+                  className="w-36 shrink-0 snap-start sm:w-44"
                 >
-                  <span className="relative block aspect-4/5 overflow-hidden rounded-md bg-surface-sunken">
-                    {product.image && (
-                      <Image
-                        src={product.image.url}
-                        alt={product.image.altText ?? product.title}
-                        fill
-                        sizes="(min-width: 640px) 176px, 144px"
-                        className="object-cover transition-transform duration-500 ease-out-soft group-hover:scale-105"
-                      />
+                  <Link
+                    href={`/products/${product.handle}`}
+                    className="group block"
+                  >
+                    <span className="relative block aspect-4/5 overflow-hidden rounded-md bg-surface-sunken">
+                      {product.image && (
+                        <Image
+                          src={product.image.url}
+                          alt={product.image.altText ?? product.title}
+                          fill
+                          sizes="(min-width: 640px) 176px, 144px"
+                          className="object-cover transition-transform duration-500 ease-out-soft group-hover:scale-105"
+                        />
+                      )}
+                    </span>
+                    <span className="mt-2.5 block truncate text-sm font-medium group-hover:underline underline-offset-4">
+                      {product.title}
+                    </span>
+                    {loading ? (
+                      <Skeleton className="mt-1 h-3.5 w-12" />
+                    ) : (
+                      <span className="mt-0.5 block text-sm tabular-nums text-ink-muted">
+                        {formatMoney(displayAmount, displayCurrency, {
+                          trimZeroCents: true,
+                        })}
+                      </span>
                     )}
-                  </span>
-                  <span className="mt-2.5 block truncate text-sm font-medium group-hover:underline underline-offset-4">
-                    {product.title}
-                  </span>
-                  <span className="mt-0.5 block text-sm tabular-nums text-ink-muted">
-                    {formatMoney(product.price, product.currencyCode, {
-                      trimZeroCents: true,
-                    })}
-                  </span>
-                </Link>
-              </li>
-            ))}
+                  </Link>
+                </li>
+              );
+            })}
       </ul>
     </section>
   );

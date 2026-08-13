@@ -20,10 +20,11 @@ import {
   productRating,
   OPTION_IS_COLOR,
 } from "@/lib/catalog/selectors";
-import { Badge, Price, Rating } from "@/components/ui/primitives";
+import { Badge, Price, Rating, Skeleton } from "@/components/ui/primitives";
 import { WishlistButton } from "@/components/product/wishlist-button";
 import { BagIcon } from "@/components/ui/icons";
 import { useCart } from "@/components/cart/cart-provider";
+import { useLocalizedAmount } from "@/components/localization/localization-provider";
 import { addToCart } from "@/lib/cart/actions";
 import { track, toEcommerceItem } from "@/lib/analytics";
 
@@ -58,6 +59,22 @@ export function ProductCard({
 
   const compareAt = variant?.compareAtPrice ?? null;
   const singlePrice = product.priceRange.min === product.priceRange.max;
+
+  // Live, Shopify-reported price for the shopper's chosen country — falls
+  // back to the catalog's cached base-currency price until (or unless) one
+  // is selected. Only meaningful for the single-price case: a price *range*
+  // would need its min and max variants localized separately, which the
+  // range branch below doesn't attempt yet, so it still shows the base range.
+  const {
+    amount: displayAmount,
+    currencyCode: displayCurrency,
+    loading: priceLoading,
+    isLocalized,
+  } = useLocalizedAmount(
+    singlePrice ? (variant?.id ?? null) : null,
+    product.priceRange.min,
+    product.priceRange.currencyCode,
+  );
 
   const colorOption = product.options.find((option) =>
     OPTION_IS_COLOR.test(option.name),
@@ -219,12 +236,19 @@ export function ProductCard({
 
         <div className="mt-auto pt-1">
           {singlePrice ? (
-            <Price
-              amount={product.priceRange.min}
-              compareAt={compareAt}
-              currencyCode={product.priceRange.currencyCode}
-              size="sm"
-            />
+            priceLoading ? (
+              <Skeleton className="h-5 w-16" />
+            ) : (
+              <Price
+                amount={displayAmount}
+                // compareAt is only ever in the catalog's base currency — once
+                // a live localized price has landed, showing it alongside
+                // would mismatch currencies, the same reasoning as the PDP.
+                compareAt={isLocalized ? null : compareAt}
+                currencyCode={displayCurrency}
+                size="sm"
+              />
+            )
           ) : (
             <span className="text-sm font-medium tabular-nums text-ink">
               {formatPriceRange(

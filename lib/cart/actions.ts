@@ -25,6 +25,7 @@ import {
 import { getCustomer } from '@/services/shopify/customer-service';
 import { clearCartId, readCartId, writeCartId } from '@/lib/auth/session';
 import { getValidSession } from '@/lib/shopify/customer-account';
+import { readSelectedCountry, writeSelectedCountry, clearSelectedCountry } from '@/lib/localization/country';
 
 /**
  * Cart server actions.
@@ -68,7 +69,8 @@ export async function fetchCart(): Promise<Cart | null> {
   if (!cartId) return restoreLinkedCart();
 
   try {
-    const cart = await getCart(cartId);
+    const country = await readSelectedCountry();
+    const cart = await getCart(cartId, country);
     if (!cart) {
       await clearCartId();
       return restoreLinkedCart();
@@ -93,7 +95,8 @@ async function restoreLinkedCart(): Promise<Cart | null> {
     const linkedCartId = await getLinkedCartId(customer.id);
     if (!linkedCartId) return null;
 
-    const cart = await getCart(linkedCartId);
+    const country = await readSelectedCountry();
+    const cart = await getCart(linkedCartId, country);
     if (!cart) return null;
 
     await writeCartId(cart.id);
@@ -108,7 +111,8 @@ async function ensureCart(): Promise<Cart> {
   const existing = await fetchCart();
   if (existing) return existing;
 
-  const cart = await createCart();
+  const country = await readSelectedCountry();
+  const cart = await createCart([], null, country);
   await writeCartId(cart.id);
 
   // A brand-new cart belonging to a signed-in shopper has to be recorded
@@ -173,8 +177,10 @@ export async function restoreCustomerCart(): Promise<void> {
       return;
     }
 
+    const country = await readSelectedCountry();
+
     // Verify the saved cart still exists; Shopify expires idle carts.
-    const linkedCart = await getCart(linkedCartId);
+    const linkedCart = await getCart(linkedCartId, country);
     if (!linkedCart) {
       if (guestCartId) await setLinkedCartId(customer.id, guestCartId);
       return;
@@ -185,9 +191,9 @@ export async function restoreCustomerCart(): Promise<void> {
       return;
     }
 
-    const guestCart = await getCart(guestCartId);
+    const guestCart = await getCart(guestCartId, country);
     if (guestCart && guestCart.lines.length > 0) {
-      await mergeCartInto(guestCart, linkedCartId);
+      await mergeCartInto(guestCart, linkedCartId, country);
     }
 
     await writeCartId(linkedCartId);
@@ -213,17 +219,22 @@ export async function addToCart(input: {
   if (!parsed.success) return failure('That product option is not valid.');
 
   try {
+    const country = await readSelectedCountry();
     const cart = await ensureCart();
     const existingLine = cart.lines.find((line) => line.merchandise.id === parsed.data.variantId);
 
     // Adding an item already in the cart should increase it, not duplicate it.
     const updated = existingLine
-      ? await updateLines(cart.id, [
-          { id: existingLine.id, quantity: existingLine.quantity + parsed.data.quantity },
-        ])
-      : await addLines(cart.id, [
-          { merchandiseId: parsed.data.variantId, quantity: parsed.data.quantity },
-        ]);
+      ? await updateLines(
+          cart.id,
+          [{ id: existingLine.id, quantity: existingLine.quantity + parsed.data.quantity }],
+          country,
+        )
+      : await addLines(
+          cart.id,
+          [{ merchandiseId: parsed.data.variantId, quantity: parsed.data.quantity }],
+          country,
+        );
 
     await writeCartId(updated.id);
     revalidatePath('/cart');
@@ -241,10 +252,11 @@ export async function updateCartLine(input: { lineId: string; quantity: number }
   if (!cartId) return failure('Your bag is empty.');
 
   try {
+    const country = await readSelectedCountry();
     const cart =
       parsed.data.quantity === 0
-        ? await removeLines(cartId, [parsed.data.lineId])
-        : await updateLines(cartId, [{ id: parsed.data.lineId, quantity: parsed.data.quantity }]);
+        ? await removeLines(cartId, [parsed.data.lineId], country)
+        : await updateLines(cartId, [{ id: parsed.data.lineId, quantity: parsed.data.quantity }], country);
 
     revalidatePath('/cart');
     return { ok: true, cart };
@@ -261,7 +273,8 @@ export async function removeCartLine(input: { lineId: string }): Promise<CartAct
   if (!cartId) return failure('Your bag is empty.');
 
   try {
-    const cart = await removeLines(cartId, [parsed.data.lineId]);
+    const country = await readSelectedCountry();
+    const cart = await removeLines(cartId, [parsed.data.lineId], country);
     revalidatePath('/cart');
     return { ok: true, cart, notice: 'Removed from bag' };
   } catch (error) {
@@ -279,11 +292,12 @@ export async function applyDiscountCode(input: { code: string }): Promise<CartAc
   if (!cartId) return failure('Add something to your bag first.');
 
   try {
-    const current = await getCart(cartId);
+    const country = await readSelectedCountry();
+    const current = await getCart(cartId, country);
     const existing = current?.discountCodes.map((discount) => discount.code) ?? [];
     const next = [...new Set([...existing, parsed.data.code])];
 
-    const cart = await setDiscountCodes(cartId, next);
+    const cart = await setDiscountCodes(cartId, next, country);
     const applied = cart.discountCodes.find(
       (discount) => discount.code.toLowerCase() === parsed.data.code.toLowerCase(),
     );
@@ -314,12 +328,13 @@ export async function removeDiscountCode(input: { code: string }): Promise<CartA
   if (!cartId) return failure('Your bag is empty.');
 
   try {
-    const current = await getCart(cartId);
+    const country = await readSelectedCountry();
+    const current = await getCart(cartId, country);
     const remaining = (current?.discountCodes ?? [])
       .map((discount) => discount.code)
       .filter((code) => code.toLowerCase() !== parsed.data.code.toLowerCase());
 
-    const cart = await setDiscountCodes(cartId, remaining);
+    const cart = await setDiscountCodes(cartId, remaining, country);
     revalidatePath('/cart');
     return { ok: true, cart };
   } catch (error) {
@@ -338,7 +353,8 @@ export async function proceedToCheckout(): Promise<CartActionState> {
   let checkoutUrl: string | null = null;
 
   try {
-    let cart = await getCart(cartId);
+    const country = await readSelectedCountry();
+    let cart = await getCart(cartId, country);
     if (!cart) {
       await clearCartId();
       return failure('Your bag expired. Please add your items again.');
@@ -350,13 +366,13 @@ export async function proceedToCheckout(): Promise<CartActionState> {
     const session = await getValidSession();
     if (session && !cart.buyerIdentity?.customerAccessToken) {
       try {
-        cart = await setBuyerIdentity(cart.id, { customerAccessToken: session.accessToken });
+        cart = await setBuyerIdentity(cart.id, { customerAccessToken: session.accessToken }, country);
       } catch {
         // Not fatal — the customer can still check out as a guest.
       }
     }
 
-    const issues = await validateCart(cart);
+    const issues = await validateCart(cart, country);
 
     if (issues.length > 0) {
       const removals = issues
@@ -372,8 +388,8 @@ export async function proceedToCheckout(): Promise<CartActionState> {
         )
         .map((issue) => ({ id: issue.lineId, quantity: issue.availableQuantity }));
 
-      if (removals.length > 0) cart = await removeLines(cart.id, removals);
-      if (reductions.length > 0) cart = await updateLines(cart.id, reductions);
+      if (removals.length > 0) cart = await removeLines(cart.id, removals, country);
+      if (reductions.length > 0) cart = await updateLines(cart.id, reductions, country);
 
       revalidatePath('/cart');
 
@@ -406,8 +422,62 @@ export async function associateCartWithCustomer(): Promise<void> {
   if (!session) return;
 
   try {
-    await setBuyerIdentity(cartId, { customerAccessToken: session.accessToken });
+    const country = await readSelectedCountry();
+    await setBuyerIdentity(cartId, { customerAccessToken: session.accessToken }, country);
   } catch {
     // Best-effort only — never block sign-in on this.
+  }
+}
+
+const countryCodeSchema = z
+  .string()
+  .trim()
+  .toUpperCase()
+  .regex(/^[A-Z]{2}$/, 'Invalid country code');
+
+/**
+ * Sets the shopper's chosen country/market.
+ *
+ * Persists the choice as a cookie (an ISO code, never a currency value — see
+ * lib/localization/country.ts), then updates the existing cart's buyer
+ * identity so Shopify recomputes its own totals for that country. Every
+ * price in the returned cart came straight from Shopify's response for this
+ * request; nothing here converts a currency itself.
+ */
+export async function setCountry(input: { countryCode: string }): Promise<CartActionState> {
+  const parsed = countryCodeSchema.safeParse(input.countryCode);
+  if (!parsed.success) return failure('That country is not valid.');
+
+  await writeSelectedCountry(parsed.data);
+
+  const cartId = await readCartId();
+  if (!cartId) return { ok: true, cart: null };
+
+  try {
+    const cart = await setBuyerIdentity(cartId, { countryCode: parsed.data }, parsed.data);
+    revalidatePath('/cart');
+    return { ok: true, cart };
+  } catch (error) {
+    // The country preference is saved either way — only the cart's own
+    // currency failed to update, and the next cart read will retry it.
+    return failure(toMessage(error));
+  }
+}
+
+/** "Auto" — clears the manual country override and reverts the cart to Shopify's own default market. */
+export async function clearCountry(): Promise<CartActionState> {
+  await clearSelectedCountry();
+
+  const cartId = await readCartId();
+  if (!cartId) return { ok: true, cart: null };
+
+  try {
+    // No buyerIdentity fields change — this call exists only to re-fetch the
+    // cart with @inContext(country: null), i.e. back to the shop's default.
+    const cart = await setBuyerIdentity(cartId, {}, null);
+    revalidatePath('/cart');
+    return { ok: true, cart };
+  } catch (error) {
+    return failure(toMessage(error));
   }
 }

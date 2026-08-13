@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useCart } from "@/components/cart/cart-provider";
 import { SearchOverlay } from "@/components/search/search-overlay";
+import { CurrencySelector } from "@/components/localization/currency-selector";
 import { MobileNav } from "./mobile-nav";
 
 export type NavChild = {
@@ -366,6 +367,10 @@ export function Header({
             </div>
 
             <div className="flex items-center justify-end gap-0.5">
+              <div className="hidden sm:block">
+                <CurrencySelector overHero={overHero} />
+              </div>
+
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}

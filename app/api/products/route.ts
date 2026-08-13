@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { productRepository } from '@/lib/catalog';
 import { primaryImage } from '@/lib/utils/image';
+import { defaultVariant } from '@/lib/catalog/selectors';
 
 /**
  * GET /api/products?handles=a,b,c
@@ -41,6 +42,9 @@ export async function GET(request: Request): Promise<NextResponse> {
         vendor: product.vendor,
         price: product.priceRange.min,
         currencyCode: product.priceRange.currencyCode,
+        // Lets the client ask Shopify for this variant's price in the
+        // shopper's chosen country — see components/localization.
+        variantId: defaultVariant(product)?.id ?? null,
         image: image ? { url: image.url, altText: image.altText } : null,
         available: product.variants.some((variant) => variant.availableForSale),
       };

@@ -5,12 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { CatalogProduct } from '@/types/catalog';
 import { Button } from '@/components/ui/button';
-import { Price } from '@/components/ui/primitives';
+import { Price, Skeleton } from '@/components/ui/primitives';
 import { CheckIcon } from '@/components/ui/icons';
 import { defaultVariant } from '@/lib/catalog/selectors';
 import { primaryImage, imageAlt } from '@/lib/utils/image';
 import { formatMoney } from '@/lib/utils/money';
 import { useCart } from '@/components/cart/cart-provider';
+import { useLocalization } from '@/components/localization/localization-provider';
 import { useToast } from '@/components/ui/toast';
 import { addToCart } from '@/lib/cart/actions';
 import { track, toEcommerceItem } from '@/lib/analytics';
@@ -31,14 +32,58 @@ export function CompleteTheLook({
 }) {
   const { run } = useCart();
   const { push } = useToast();
+  const { ready, localizedPriceFor, isPriceLoading, requestPrices } = useLocalization();
   const [selected, setSelected] = React.useState<Set<string>>(
     () => new Set(products.map((product) => product.id)),
   );
   const [adding, setAdding] = React.useState(false);
 
+  // Prefetch every suggestion's variant price once, up front — not one at a
+  // time as each gets checked/unchecked (which doesn't change what needs
+  // fetching anyway, since all of them start selected).
+  React.useEffect(() => {
+    const variantIds = products
+      .map((product) => defaultVariant(product)?.id)
+      .filter((id): id is string => Boolean(id));
+    requestPrices(variantIds);
+  }, [products, requestPrices]);
+
+  /**
+   * Resolves a product's display price: the live Shopify-converted price for
+   * the shopper's chosen country when one has landed, otherwise the
+   * catalog's base-currency price. `localizedPriceFor`/`isPriceLoading` are
+   * plain functions from context (not hooks), so calling them per-item
+   * inside a .map() below is fine — no rules-of-hooks issue.
+   */
+  const resolvePrice = (variant: ReturnType<typeof defaultVariant>) => {
+    if (!variant) return { amount: 0, currencyCode: anchor.priceRange.currencyCode, loading: false, isLocalized: false };
+    const live = localizedPriceFor(variant.id);
+    if (live) {
+      const parsed = Number.parseFloat(live.amount);
+      return {
+        amount: Number.isFinite(parsed) ? parsed : variant.price,
+        currencyCode: live.currencyCode,
+        loading: false,
+        isLocalized: true,
+      };
+    }
+    // Before the initial /api/localization fetch resolves, a returning
+    // visitor's saved currency choice is still unknown — show loading rather
+    // than assuming "no selection" and flashing the base price.
+    return {
+      amount: variant.price,
+      currencyCode: variant.currencyCode,
+      loading: !ready || isPriceLoading(variant.id),
+      isLocalized: false,
+    };
+  };
+
   const chosen = products.filter((product) => selected.has(product.id));
-  const total = chosen.reduce((sum, product) => sum + (defaultVariant(product)?.price ?? 0), 0);
-  const currency = anchor.priceRange.currencyCode;
+  const chosenPrices = chosen.map((product) => resolvePrice(defaultVariant(product)));
+  const total = chosenPrices.reduce((sum, price) => sum + price.amount, 0);
+  // Every chosen item resolves under the same selected country, so they
+  // never disagree on currency — the first one (if any) speaks for all.
+  const currency = chosenPrices[0]?.currencyCode ?? anchor.priceRange.currencyCode;
 
   const toggle = (id: string) => {
     setSelected((current) => {
@@ -98,6 +143,7 @@ export function CompleteTheLook({
           const image = primaryImage(product);
           const isChecked = selected.has(product.id);
           const soldOut = !variant?.availableForSale;
+          const itemPrice = resolvePrice(variant);
 
           return (
             <li key={product.id}>
@@ -148,13 +194,17 @@ export function CompleteTheLook({
                   {soldOut && <span className="block text-xs font-medium text-danger">Sold out</span>}
                 </span>
 
-                <Price
-                  amount={variant?.price ?? product.priceRange.min}
-                  compareAt={variant?.compareAtPrice ?? null}
-                  currencyCode={currency}
-                  size="sm"
-                  className="shrink-0"
-                />
+                {itemPrice.loading ? (
+                  <Skeleton className="h-5 w-14 shrink-0" />
+                ) : (
+                  <Price
+                    amount={itemPrice.amount}
+                    compareAt={itemPrice.isLocalized ? null : (variant?.compareAtPrice ?? null)}
+                    currencyCode={itemPrice.currencyCode}
+                    size="sm"
+                    className="shrink-0"
+                  />
+                )}
               </label>
             </li>
           );

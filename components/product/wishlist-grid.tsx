@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useWishlist } from "@/hooks/use-wishlist";
 import { Button, ButtonLink } from "@/components/ui/button";
-import { EmptyState, Price, Skeleton, Badge } from "@/components/ui/primitives";
+import { EmptyState, Skeleton, Badge } from "@/components/ui/primitives";
+import { LocalizedPrice } from "@/components/localization/localized-price";
 import { HeartIcon, TrashIcon } from "@/components/ui/icons";
 import { useCart } from "@/components/cart/cart-provider";
 import { addToCart } from "@/lib/cart/actions";
@@ -16,6 +17,7 @@ type WishlistProduct = {
   vendor: string;
   price: number;
   currencyCode: string;
+  variantId: string | null;
   image: { url: string; altText: string | null } | null;
   available: boolean;
 };
@@ -136,7 +138,8 @@ export function WishlistGrid() {
             >
               {product.title}
             </Link>
-            <Price
+            <LocalizedPrice
+              variantId={product.variantId}
               amount={product.price}
               currencyCode={product.currencyCode}
               size="sm"

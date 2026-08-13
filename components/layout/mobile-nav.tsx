@@ -6,6 +6,7 @@ import { Drawer } from "@/components/ui/drawer";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { ChevronRightIcon, LogoutIcon } from "@/components/ui/icons";
 import { useCart } from "@/components/cart/cart-provider";
+import { CurrencySelector } from "@/components/localization/currency-selector";
 import type { NavLink } from "./header";
 
 /**
@@ -50,19 +51,22 @@ export function MobileNav({
       hideHeaderBorder
       hideFooterBorder
       header={
-        <div className="flex items-center gap-2.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.svg"
-            alt="Trackify"
-            width={42}
-            height={32}
-            className="h-8 w-auto shrink-0"
-          />
-          <div className="min-w-0">
-            <p className="font-display text-base leading-tight">Trackify</p>
-            <p className="text-xs text-ink-subtle">Smart Secure Seamless</p>
+        <div className="flex items-center justify-between gap-2.5">
+          <div className="flex min-w-0 items-center gap-2.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="Trackify"
+              width={42}
+              height={32}
+              className="h-8 w-auto shrink-0"
+            />
+            <div className="min-w-0">
+              <p className="font-display text-base leading-tight">Trackify</p>
+              <p className="text-xs text-ink-subtle">Smart Secure Seamless</p>
+            </div>
           </div>
+          <CurrencySelector />
         </div>
       }
       footer={
