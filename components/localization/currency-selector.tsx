@@ -214,7 +214,7 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
               placeholder="Search currencies"
               aria-label="Search currencies"
               autoFocus
-              className="h-10 w-full rounded-lg border border-line-strong bg-surface pr-3 pl-9 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/25"
+              className="h-10 w-full rounded-md border border-line-strong bg-surface pr-3 pl-9 text-sm outline-none"
             />
           </div>
 
