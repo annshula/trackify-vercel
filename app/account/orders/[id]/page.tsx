@@ -28,8 +28,22 @@ export default async function OrderDetailPage({ params }: PageProps) {
   await requireCustomer(`/account/orders/${id}`);
 
   const orderId = decodeURIComponent(id);
-  const order = await getOrder(orderId).catch(() => null);
-  if (!order) notFound();
+  let debugError: string | null = null;
+  const order = await getOrder(orderId).catch((error: unknown) => {
+    debugError = error instanceof Error ? error.message : String(error);
+    return null;
+  });
+  if (!order) {
+    return (
+      <div className="space-y-4">
+        <p className="text-sm text-ink-subtle">rawId: {id}</p>
+        <p className="text-sm text-ink-subtle">decodedId: {orderId}</p>
+        <p className="text-sm font-medium text-danger">
+          debugError: {debugError ?? "getOrder returned null with no thrown error (Shopify likely returned order: null)"}
+        </p>
+      </div>
+    );
+  }
 
   const timeline = buildTimeline(order);
   const trackingLinks = order.fulfillments.flatMap((fulfillment) =>
