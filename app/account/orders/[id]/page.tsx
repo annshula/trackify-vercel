@@ -193,30 +193,48 @@ export default async function OrderDetailPage({ params }: PageProps) {
         <section className="rounded-lg border border-line bg-surface p-5 sm:p-6">
         <ul className="divide-y divide-line">
           {order.lineItems.map((item) => (
-            <li key={item.id} className="flex gap-4 py-4 first:pt-0 last:pb-0">
-              <span className="relative size-16 shrink-0 overflow-hidden rounded-md bg-surface-sunken">
-                {item.image && (
-                  <Image
-                    src={item.image.url}
-                    alt={item.image.altText ?? item.title}
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                )}
-                <span className="absolute top-1 right-1 grid size-5 place-items-center rounded-full bg-ink text-[10px] font-medium text-canvas">
-                  {item.quantity}
+            <li
+              key={item.id}
+              className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:gap-4"
+            >
+              {/* Image + title stay paired as their own row on mobile — at
+                  sm+ `contents` drops this wrapper so both sit in the same
+                  row as the price block instead. Cramming image, title and
+                  price into one row on a narrow screen is what forced text
+                  to shrink before; this restructures instead of shrinking. */}
+              <div className="flex gap-3 sm:contents">
+                <span className="relative size-16 shrink-0 overflow-hidden rounded-md bg-surface-sunken">
+                  {item.image && (
+                    <Image
+                      src={item.image.url}
+                      alt={item.image.altText ?? item.title}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  )}
+                  <span className="absolute top-1 right-1 grid size-5 place-items-center rounded-full bg-ink text-[10px] font-medium text-canvas">
+                    {item.quantity}
+                  </span>
                 </span>
-              </span>
 
-              <div className="flex min-w-0 flex-1 flex-col justify-center">
-                <p className="font-medium">{item.title}</p>
-                {item.variantTitle && item.variantTitle !== "Default Title" && (
-                  <p className="mt-0.5 text-sm text-ink-muted">{item.variantTitle}</p>
-                )}
+                <div className="flex min-w-0 flex-1 flex-col justify-center sm:flex-1">
+                  <p className="line-clamp-2 font-medium">{item.title}</p>
+                  {item.variantTitle && item.variantTitle !== "Default Title" && (
+                    <p className="mt-0.5 text-sm text-ink-muted">{item.variantTitle}</p>
+                  )}
+                  <p className="mt-1 text-sm font-medium tabular-nums sm:hidden">
+                    {formatMoneyV2(item.totalPrice ?? item.price)}
+                    {item.quantity > 1 && item.price && (
+                      <span className="ml-1.5 text-xs font-normal text-ink-subtle">
+                        ({formatMoneyV2(item.price)} each)
+                      </span>
+                    )}
+                  </p>
+                </div>
               </div>
 
-              <div className="shrink-0 self-center text-right">
+              <div className="hidden shrink-0 text-right sm:block">
                 <p className="font-medium tabular-nums">
                   {formatMoneyV2(item.totalPrice ?? item.price)}
                 </p>
