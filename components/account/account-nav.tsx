@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils/cn';
-import { useDragScroll } from '@/hooks/use-drag-scroll';
 import { LogoutIcon, MapPinIcon, PackageIcon, UserIcon, HomeIcon } from '@/components/ui/icons';
 
 const LINKS = [
@@ -16,25 +15,62 @@ const LINKS = [
 /**
  * Account navigation.
  *
- * A horizontal scroller on mobile (no space for a sidebar, and a dropdown
- * hides where you are), a vertical list from lg up.
+ * Below lg: a compact 2-column grid of icon-badge chips — small rows, not
+ * tall tiles, so all five destinations fit without feeling like oversized
+ * buttons. No Sign out row here: the mobile hamburger drawer already has one
+ * (components/layout/mobile-nav.tsx), and this nav only ever renders
+ * alongside that drawer below lg, so a second copy would be pure duplication.
+ *
+ * From lg up: the traditional sticky vertical list, unchanged — there is no
+ * hamburger drawer at that width, so its own Sign out row is the only one.
  */
 export function AccountNav() {
   const pathname = usePathname();
-  // Only scrollable below lg, where the list becomes a horizontal strip.
-  const navRef = useDragScroll<HTMLUListElement>();
+
+  const isActive = (link: (typeof LINKS)[number]) =>
+    link.exact ? pathname === link.href : pathname.startsWith(link.href);
 
   return (
     <nav aria-label="Account" className="lg:sticky lg:top-24 lg:self-start">
-      <ul
-        ref={navRef}
-        className="hide-scrollbar -mx-4 flex gap-1 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0"
-      >
+      {/* Compact chip grid — lg:hidden */}
+      <ul className="grid grid-cols-2 gap-2 lg:hidden">
         {LINKS.map((link) => {
-          const active = link.exact ? pathname === link.href : pathname.startsWith(link.href);
+          const active = isActive(link);
           const Icon = link.icon;
           return (
-            <li key={link.href} className="shrink-0 lg:shrink">
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                aria-current={active ? 'page' : undefined}
+                className={cn(
+                  'flex min-h-12 items-center gap-2.5 rounded-xl border px-3 py-2 transition-colors',
+                  active
+                    ? 'border-primary bg-primary text-on-primary'
+                    : 'border-line bg-surface text-ink hover:bg-surface-sunken',
+                )}
+              >
+                <span
+                  className={cn(
+                    'grid size-8 shrink-0 place-items-center rounded-full',
+                    active ? 'bg-white/15' : 'bg-accent-soft text-accent',
+                  )}
+                >
+                  <Icon size={16} />
+                </span>
+                <span className="min-w-0 flex-1 truncate text-sm font-medium">{link.label}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* Sticky vertical list — hidden lg:flex */}
+      <ul className="hidden gap-1 lg:flex lg:flex-col">
+        {LINKS.map((link) => {
+          const active = isActive(link);
+          const Icon = link.icon;
+          return (
+            <li key={link.href}>
               <Link
                 href={link.href}
                 aria-current={active ? 'page' : undefined}
@@ -50,7 +86,7 @@ export function AccountNav() {
           );
         })}
 
-        <li className="shrink-0 lg:mt-2 lg:shrink lg:border-t lg:border-line lg:pt-2">
+        <li className="mt-2 border-t border-line pt-2">
           <Link
             href="/account/logout"
             prefetch={false}

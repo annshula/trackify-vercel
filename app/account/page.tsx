@@ -27,10 +27,28 @@ export default async function AccountPage() {
   const greeting = firstName ? `Hello, ${firstName}` : 'Your account';
   const recentOrder = orders[0];
   const defaultAddress = customer?.addresses.find((address) => address.id === customer.defaultAddressId);
+  const initials = accountInitials(customer);
 
   return (
     <div className="space-y-10">
-      <header>
+      {/* Mobile-only avatar card. lg keeps the original plain header
+          unchanged below — this redesign was scoped to mobile only. */}
+      <header className="flex items-center gap-4 rounded-2xl border border-line bg-surface p-5 lg:hidden">
+        <span
+          aria-hidden="true"
+          className="grid size-14 shrink-0 place-items-center rounded-full bg-accent-soft text-lg font-semibold text-accent"
+        >
+          {initials}
+        </span>
+        <div className="min-w-0">
+          <h1 className="truncate text-xl">{greeting}</h1>
+          {customer?.emailAddress && (
+            <p className="mt-0.5 truncate text-sm text-ink-muted">{customer.emailAddress}</p>
+          )}
+        </div>
+      </header>
+
+      <header className="hidden lg:block">
         <h1 className="text-3xl">{greeting}</h1>
         {customer?.emailAddress && (
           <p className="mt-1.5 text-sm text-ink-muted">{customer.emailAddress}</p>
@@ -145,6 +163,19 @@ export default async function AccountPage() {
       </section>
     </div>
   );
+}
+
+/** First letter of first + last name, falling back to the display name, then a generic mark. */
+function accountInitials(
+  customer: { firstName: string | null; lastName: string | null; displayName: string } | null,
+): string {
+  if (!customer) return '·';
+  const first = customer.firstName?.trim().charAt(0) ?? '';
+  const last = customer.lastName?.trim().charAt(0) ?? '';
+  const combined = `${first}${last}`.toUpperCase();
+  if (combined) return combined;
+  const fallback = customer.displayName.trim().charAt(0).toUpperCase();
+  return fallback || '·';
 }
 
 function DetailCard({
