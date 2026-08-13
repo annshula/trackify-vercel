@@ -95,7 +95,7 @@ export function Footer({
             title="Help"
             links={[
               { href: "https://shoptrackify.com/blogs/news", label: "Blogs" },
-              { href: "/pages/faq", label: "FAQ" },
+              { href: "/faq", label: "FAQ" },
               { href: "/pages/shipping", label: "Shipping" },
               { href: "/pages/returns", label: "Returns" },
               { href: "/about", label: "About" },

@@ -328,6 +328,14 @@ export default async function HomePage() {
               },
             ]}
           />
+          <div className="mt-6 text-center">
+            <Link
+              href="/faq"
+              className="text-sm font-medium underline underline-offset-4"
+            >
+              See all FAQs
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -73,37 +73,6 @@ export const STATIC_PAGES: StaticPage[] = [
     ],
   },
   {
-    handle: "faq",
-    title: "Frequently asked questions",
-    description: "Answers to the questions we get most often.",
-    sections: [
-      {
-        heading: "Do I need an account to order?",
-        body: [
-          "No. You can check out as a guest. An account lets you see order history, follow deliveries, and save addresses for next time.",
-        ],
-      },
-      {
-        heading: "Is my payment secure?",
-        body: [
-          "Yes. Checkout and payment are handled entirely by our payment provider on their own PCI-compliant infrastructure. This site never sees, stores, or processes your card details.",
-        ],
-      },
-      {
-        heading: "Can I change my order after placing it?",
-        body: [
-          "Contact us as soon as possible with your order number. If it has not been dispatched we can usually help.",
-        ],
-      },
-      {
-        heading: "How do I use a discount code?",
-        body: [
-          "Enter it in the discount field on your bag, or at checkout. The code is validated and the discount applied to your total.",
-        ],
-      },
-    ],
-  },
-  {
     handle: "contact",
     title: "Contact us",
     description: "Get in touch about an order, a return, or anything else.",

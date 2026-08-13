@@ -63,6 +63,10 @@ const LEGACY_REDIRECTS: {
   },
   { from: /^\/collections\/all\/?$/, to: () => "/collections" },
   { from: /^\/collections\/?$/, to: () => "/collections" },
+  // The FAQ moved off the generic static-page system onto its own route
+  // (richer layout + FAQPage schema) — must come before the generic
+  // /pages/:handle passthrough rule below, which would otherwise match first.
+  { from: /^\/pages\/faq\/?$/, to: () => "/faq" },
   { from: /^\/pages\/([^/]+)\/?$/, to: (m) => `/pages/${m[1]}` },
   { from: /^\/search\/?$/, to: () => "/search" },
   { from: /^\/cart\/?$/, to: () => "/cart" },

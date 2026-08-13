@@ -122,6 +122,21 @@ export function productSchema(product: CatalogProduct) {
   };
 }
 
+export function faqSchema(entries: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entries.map((entry) => ({
+      '@type': 'Question',
+      name: entry.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: entry.answer,
+      },
+    })),
+  };
+}
+
 export function collectionSchema(collection: CatalogCollection, products: CatalogProduct[]) {
   return {
     '@context': 'https://schema.org',
