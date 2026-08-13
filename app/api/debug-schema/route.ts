@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 const INTROSPECT_DISCOUNT = /* GraphQL */ `
   query IntrospectDiscount {
-    discountApplication: __type(name: "DiscountApplication") {
+    pricingValue: __type(name: "PricingValue") {
       kind
       possibleTypes {
         name
@@ -15,10 +15,6 @@ const INTROSPECT_DISCOUNT = /* GraphQL */ `
           type {
             name
             kind
-            ofType {
-              name
-              kind
-            }
           }
         }
       }
