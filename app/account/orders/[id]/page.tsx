@@ -79,7 +79,7 @@ export default async function OrderDetailPage({ params }: PageProps) {
 
       {/* ── Order status ─────────────────────────────────────────────── */}
       <section aria-labelledby="status-heading" className="space-y-4">
-        <h2 id="status-heading" className="text-lg">
+        <h2 id="status-heading" className="text-xs font-medium tracking-wide text-ink-subtle uppercase">
           Order status
         </h2>
 
