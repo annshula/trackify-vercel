@@ -28,21 +28,9 @@ export default async function OrderDetailPage({ params }: PageProps) {
   await requireCustomer(`/account/orders/${id}`);
 
   const orderId = decodeURIComponent(id);
-  let debugError: string | null = null;
-  const order = await getOrder(orderId).catch((error: unknown) => {
-    debugError = error instanceof Error ? error.message : String(error);
-    return null;
-  });
+  const order = await getOrder(orderId).catch(() => null);
   if (!order) {
-    return (
-      <div className="space-y-4">
-        <p className="text-sm text-ink-subtle">rawId: {id}</p>
-        <p className="text-sm text-ink-subtle">decodedId: {orderId}</p>
-        <p className="text-sm font-medium text-danger">
-          debugError: {debugError ?? "getOrder returned null with no thrown error (Shopify likely returned order: null)"}
-        </p>
-      </div>
-    );
+    notFound();
   }
 
   const timeline = buildTimeline(order);
@@ -277,10 +265,14 @@ export default async function OrderDetailPage({ params }: PageProps) {
             )}
             {order.discounts.map((discount, index) => (
               <Row
-                key={`${discount.title ?? "discount"}-${index}`}
-                label={discount.title ?? "Discount"}
+                key={`${discount.label ?? "discount"}-${index}`}
+                label={discount.label ?? "Discount"}
                 value={
-                  discount.amount ? `−${formatMoneyV2(discount.amount)}` : "—"
+                  discount.amount
+                    ? `−${formatMoneyV2(discount.amount)}`
+                    : discount.percentage
+                      ? `−${discount.percentage}%`
+                      : "—"
                 }
                 tone="success"
               />

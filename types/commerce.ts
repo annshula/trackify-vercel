@@ -146,7 +146,7 @@ export type Order = {
   totalTax: MoneyV2 | null;
   totalPrice: MoneyV2;
   totalRefunded: MoneyV2 | null;
-  discounts: { title: string | null; amount: MoneyV2 | null }[];
+  discounts: { label: string | null; amount: MoneyV2 | null; percentage: number | null }[];
   shippingAddress: CustomerAddress | null;
   billingAddress: CustomerAddress | null;
   paymentInformation: { paymentCollectionUrl: string | null; brand: string | null; last4: string | null } | null;

@@ -216,7 +216,16 @@ export async function getOrder(orderId: string): Promise<Order | null> {
       totalTax: { amount: string; currencyCode: string } | null;
       totalPrice: { amount: string; currencyCode: string };
       totalRefunded: { amount: string; currencyCode: string } | null;
-      discounts: { nodes: { title?: string | null; value?: { amount: string; currencyCode: string } | null }[] };
+      discountApplications: {
+        nodes: {
+          title?: string | null;
+          code?: string | null;
+          value?:
+            | { amount: string; currencyCode: string }
+            | { percentage: number }
+            | null;
+        }[];
+      };
       shippingAddress: RawAddress | null;
       billingAddress: RawAddress | null;
       lineItems: {
@@ -287,9 +296,10 @@ export async function getOrder(orderId: string): Promise<Order | null> {
     totalTax: raw.totalTax,
     totalPrice: raw.totalPrice,
     totalRefunded: raw.totalRefunded,
-    discounts: raw.discounts.nodes.map((discount) => ({
-      title: discount.title ?? null,
-      amount: discount.value ?? null,
+    discounts: raw.discountApplications.nodes.map((discount) => ({
+      label: discount.title ?? discount.code ?? null,
+      amount: discount.value && 'amount' in discount.value ? discount.value : null,
+      percentage: discount.value && 'percentage' in discount.value ? discount.value.percentage : null,
     })),
     shippingAddress: raw.shippingAddress,
     billingAddress: raw.billingAddress,

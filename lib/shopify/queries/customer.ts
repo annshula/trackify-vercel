@@ -113,16 +113,28 @@ export const CUSTOMER_ORDER_QUERY = /* GraphQL */ `
         amount
         currencyCode
       }
-      discounts(first: 10) {
+      discountApplications(first: 10) {
         nodes {
-          ... on OrderDiscountApplicationOnOrder {
-            title
-            value {
-              ... on MoneyV2 {
-                amount
-                currencyCode
-              }
+          value {
+            ... on MoneyV2 {
+              amount
+              currencyCode
             }
+            ... on PricingPercentageValue {
+              percentage
+            }
+          }
+          ... on AutomaticDiscountApplication {
+            title
+          }
+          ... on ManualDiscountApplication {
+            title
+          }
+          ... on ScriptDiscountApplication {
+            title
+          }
+          ... on DiscountCodeApplication {
+            code
           }
         }
       }
