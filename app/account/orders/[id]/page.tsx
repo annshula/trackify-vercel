@@ -77,8 +77,12 @@ export default async function OrderDetailPage({ params }: PageProps) {
         </Alert>
       )}
 
-      {/* ── Shipments ────────────────────────────────────────────────── */}
-      <div className="space-y-4">
+      {/* ── Order status ─────────────────────────────────────────────── */}
+      <section aria-labelledby="status-heading" className="space-y-4">
+        <h2 id="status-heading" className="text-lg">
+          Order status
+        </h2>
+
         {shipments.map((group) => {
           const steps = shipmentSteps(group, order);
           const trackingLinks = (group.fulfillment?.trackingInformation ?? []).filter(
@@ -164,29 +168,29 @@ export default async function OrderDetailPage({ params }: PageProps) {
             </section>
           );
         })}
-      </div>
 
-      {order.statusPageUrl && (
-        <p className="-mt-4 text-xs text-ink-subtle">
-          You can also view{" "}
-          <a
-            href={order.statusPageUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink underline underline-offset-4"
-          >
-            the full order status page
-          </a>
-          .
-        </p>
-      )}
+        {/* {order.statusPageUrl && (
+          <p className="text-xs text-ink-subtle">
+            You can also view{" "}
+            <a
+              href={order.statusPageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink underline underline-offset-4"
+            >
+              the full order status page
+            </a>
+            .
+          </p>
+        )} */}
+      </section>
 
       {/* ── Order summary ────────────────────────────────────────────── */}
       <section
         aria-labelledby="summary-heading"
         className="rounded-lg border border-line bg-surface p-5 sm:p-6"
       >
-        <h2 id="summary-heading" className="sr-only">
+        <h2 id="summary-heading" className="mb-4 text-lg">
           Order summary
         </h2>
 
@@ -278,8 +282,8 @@ export default async function OrderDetailPage({ params }: PageProps) {
         aria-labelledby="details-heading"
         className="rounded-lg border border-line bg-surface p-5 sm:p-6"
       >
-        <h2 id="details-heading" className="sr-only">
-          Order details
+        <h2 id="details-heading" className="mb-1 text-lg">
+          Delivery &amp; payment
         </h2>
 
         <dl className="divide-y divide-line text-sm">
