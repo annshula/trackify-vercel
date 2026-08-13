@@ -1,6 +1,6 @@
-import 'server-only';
-import type { Cart, CartLine } from '@/types/commerce';
-import { storefrontRequest } from '@/lib/shopify/storefront';
+import "server-only";
+import type { Cart, CartLine } from "@/types/commerce";
+import { storefrontRequest } from "@/lib/shopify/storefront";
 import {
   CART_BUYER_IDENTITY_UPDATE_MUTATION,
   CART_CREATE_MUTATION,
@@ -10,8 +10,8 @@ import {
   CART_LINES_UPDATE_MUTATION,
   CART_QUERY,
   VARIANTS_AVAILABILITY_QUERY,
-} from '@/lib/shopify/queries/storefront';
-import { firstUserError, type GraphQLUserError } from '@/lib/shopify/errors';
+} from "@/lib/shopify/queries/storefront";
+import { firstUserError, type GraphQLUserError } from "@/lib/shopify/errors";
 
 /**
  * ShopifyCartService.
@@ -25,19 +25,23 @@ type RawCart = {
   checkoutUrl: string;
   totalQuantity: number;
   updatedAt: string;
-  cost: Cart['cost'];
+  cost: Cart["cost"];
   discountCodes: { code: string; applicable: boolean }[];
   discountAllocations: {
     discountedAmount: { amount: string; currencyCode: string };
     code?: string | null;
     title?: string | null;
   }[];
-  buyerIdentity: { email: string | null; countryCode: string | null; customer: { id: string } | null } | null;
+  buyerIdentity: {
+    email: string | null;
+    countryCode: string | null;
+    customer: { id: string } | null;
+  } | null;
   lines: {
     nodes: {
       id: string;
       quantity: number;
-      cost: CartLine['cost'];
+      cost: CartLine["cost"];
       merchandise: Record<string, unknown> | null;
     }[];
   };
@@ -67,12 +71,17 @@ function toCart(raw: RawCart): Cart {
       : null,
     // A line whose merchandise is not a ProductVariant cannot be rendered.
     lines: (raw.lines?.nodes ?? [])
-      .filter((line) => line.merchandise && typeof line.merchandise === 'object' && 'id' in line.merchandise)
+      .filter(
+        (line) =>
+          line.merchandise &&
+          typeof line.merchandise === "object" &&
+          "id" in line.merchandise,
+      )
       .map((line) => ({
         id: line.id,
         quantity: line.quantity,
         cost: line.cost,
-        merchandise: line.merchandise as unknown as CartLine['merchandise'],
+        merchandise: line.merchandise as unknown as CartLine["merchandise"],
       })),
   };
 }
@@ -81,22 +90,30 @@ export class CartError extends Error {
   readonly code: string | null;
   constructor(message: string, code: string | null = null) {
     super(message);
-    this.name = 'CartError';
+    this.name = "CartError";
     this.code = code;
   }
 }
 
 function unwrap(payload: MutationPayload | undefined, operation: string): Cart {
-  if (!payload) throw new CartError(`Shopify returned no result for ${operation}.`);
+  if (!payload)
+    throw new CartError(`Shopify returned no result for ${operation}.`);
 
   const userError = firstUserError(payload.userErrors);
-  if (userError) throw new CartError(userError, payload.userErrors[0]?.code ?? null);
+  if (userError)
+    throw new CartError(userError, payload.userErrors[0]?.code ?? null);
 
-  if (!payload.cart) throw new CartError(`Your cart could not be loaded. Please refresh and try again.`);
+  if (!payload.cart)
+    throw new CartError(
+      `Your cart could not be loaded. Please refresh and try again.`,
+    );
   return toCart(payload.cart);
 }
 
-export async function getCart(cartId: string, country?: string | null): Promise<Cart | null> {
+export async function getCart(
+  cartId: string,
+  country?: string | null,
+): Promise<Cart | null> {
   const data = await storefrontRequest<{ cart: RawCart | null }>({
     query: CART_QUERY,
     variables: { id: cartId, country: country ?? null },
@@ -112,32 +129,42 @@ export async function createCart(
 ): Promise<Cart> {
   const buyerIdentity =
     buyerEmail || country
-      ? { ...(buyerEmail ? { email: buyerEmail } : {}), ...(country ? { countryCode: country } : {}) }
+      ? {
+          ...(buyerEmail ? { email: buyerEmail } : {}),
+          ...(country ? { countryCode: country } : {}),
+        }
       : undefined;
 
   const data = await storefrontRequest<{ cartCreate: MutationPayload }>({
     query: CART_CREATE_MUTATION,
     variables: {
       input: {
-        lines: lines.map((line) => ({ merchandiseId: line.merchandiseId, quantity: line.quantity })),
+        lines: lines.map((line) => ({
+          merchandiseId: line.merchandiseId,
+          quantity: line.quantity,
+        })),
         ...(buyerIdentity ? { buyerIdentity } : {}),
       },
       country: country ?? null,
     },
   });
-  return unwrap(data.cartCreate, 'cartCreate');
+  return unwrap(data.cartCreate, "cartCreate");
 }
 
 export async function addLines(
   cartId: string,
-  lines: { merchandiseId: string; quantity: number; attributes?: { key: string; value: string }[] }[],
+  lines: {
+    merchandiseId: string;
+    quantity: number;
+    attributes?: { key: string; value: string }[];
+  }[],
   country?: string | null,
 ): Promise<Cart> {
   const data = await storefrontRequest<{ cartLinesAdd: MutationPayload }>({
     query: CART_LINES_ADD_MUTATION,
     variables: { cartId, lines, country: country ?? null },
   });
-  return unwrap(data.cartLinesAdd, 'cartLinesAdd');
+  return unwrap(data.cartLinesAdd, "cartLinesAdd");
 }
 
 export async function updateLines(
@@ -149,15 +176,19 @@ export async function updateLines(
     query: CART_LINES_UPDATE_MUTATION,
     variables: { cartId, lines, country: country ?? null },
   });
-  return unwrap(data.cartLinesUpdate, 'cartLinesUpdate');
+  return unwrap(data.cartLinesUpdate, "cartLinesUpdate");
 }
 
-export async function removeLines(cartId: string, lineIds: string[], country?: string | null): Promise<Cart> {
+export async function removeLines(
+  cartId: string,
+  lineIds: string[],
+  country?: string | null,
+): Promise<Cart> {
   const data = await storefrontRequest<{ cartLinesRemove: MutationPayload }>({
     query: CART_LINES_REMOVE_MUTATION,
     variables: { cartId, lineIds, country: country ?? null },
   });
-  return unwrap(data.cartLinesRemove, 'cartLinesRemove');
+  return unwrap(data.cartLinesRemove, "cartLinesRemove");
 }
 
 export async function setDiscountCodes(
@@ -165,29 +196,41 @@ export async function setDiscountCodes(
   discountCodes: string[],
   country?: string | null,
 ): Promise<Cart> {
-  const data = await storefrontRequest<{ cartDiscountCodesUpdate: MutationPayload }>({
+  const data = await storefrontRequest<{
+    cartDiscountCodesUpdate: MutationPayload;
+  }>({
     query: CART_DISCOUNT_CODES_UPDATE_MUTATION,
     variables: { cartId, discountCodes, country: country ?? null },
   });
-  return unwrap(data.cartDiscountCodesUpdate, 'cartDiscountCodesUpdate');
+  return unwrap(data.cartDiscountCodesUpdate, "cartDiscountCodesUpdate");
 }
 
 export async function setBuyerIdentity(
   cartId: string,
-  buyerIdentity: { email?: string | null; customerAccessToken?: string | null; countryCode?: string | null },
+  buyerIdentity: {
+    email?: string | null;
+    customerAccessToken?: string | null;
+    countryCode?: string | null;
+  },
   country?: string | null,
 ): Promise<Cart> {
-  const data = await storefrontRequest<{ cartBuyerIdentityUpdate: MutationPayload }>({
+  const data = await storefrontRequest<{
+    cartBuyerIdentityUpdate: MutationPayload;
+  }>({
     query: CART_BUYER_IDENTITY_UPDATE_MUTATION,
-    variables: { cartId, buyerIdentity, country: country ?? buyerIdentity.countryCode ?? null },
+    variables: {
+      cartId,
+      buyerIdentity,
+      country: country ?? buyerIdentity.countryCode ?? null,
+    },
   });
-  return unwrap(data.cartBuyerIdentityUpdate, 'cartBuyerIdentityUpdate');
+  return unwrap(data.cartBuyerIdentityUpdate, "cartBuyerIdentityUpdate");
 }
 
 export type CartValidationIssue = {
   lineId: string;
   title: string;
-  reason: 'unavailable' | 'insufficient-stock' | 'price-changed';
+  reason: "unavailable" | "insufficient-stock" | "price-changed";
   message: string;
   availableQuantity?: number;
 };
@@ -198,14 +241,19 @@ export type CartValidationIssue = {
  * The local catalog is never trusted for this — it can be minutes stale, and a
  * customer reaching checkout with an unavailable line is a lost order.
  */
-export async function validateCart(cart: Cart, country?: string | null): Promise<CartValidationIssue[]> {
+export async function validateCart(
+  cart: Cart,
+  country?: string | null,
+): Promise<CartValidationIssue[]> {
   if (cart.lines.length === 0) return [];
 
   // Must be fetched in the same country context as the cart itself — a live
   // price fetched in the shop's default currency is not comparable to a cart
   // total Shopify already converted to a different one, and would otherwise
   // read as a false "price changed" on every checkout once a country is set.
-  const variantIds = [...new Set(cart.lines.map((line) => line.merchandise.id))];
+  const variantIds = [
+    ...new Set(cart.lines.map((line) => line.merchandise.id)),
+  ];
   const data = await storefrontRequest<{
     nodes: ({
       id: string;
@@ -216,11 +264,16 @@ export async function validateCart(cart: Cart, country?: string | null): Promise
     } | null)[];
   }>({
     query: VARIANTS_AVAILABILITY_QUERY,
-    variables: { ids: variantIds, country: country ?? cart.buyerIdentity?.countryCode ?? null },
+    variables: {
+      ids: variantIds,
+      country: country ?? cart.buyerIdentity?.countryCode ?? null,
+    },
   });
 
   const live = new Map(
-    data.nodes.filter((node): node is NonNullable<typeof node> => node !== null).map((node) => [node.id, node]),
+    data.nodes
+      .filter((node): node is NonNullable<typeof node> => node !== null)
+      .map((node) => [node.id, node]),
   );
 
   const issues: CartValidationIssue[] = [];
@@ -233,25 +286,22 @@ export async function validateCart(cart: Cart, country?: string | null): Promise
       issues.push({
         lineId: line.id,
         title,
-        reason: 'unavailable',
+        reason: "unavailable",
         message: `${title} is no longer available.`,
       });
       continue;
     }
 
     if (
-      typeof variant.quantityAvailable === 'number' &&
-      variant.quantityAvailable >= 0 &&
+      typeof variant.quantityAvailable === "number" &&
+      variant.quantityAvailable > 0 &&
       variant.quantityAvailable < line.quantity
     ) {
       issues.push({
         lineId: line.id,
         title,
-        reason: 'insufficient-stock',
-        message:
-          variant.quantityAvailable === 0
-            ? `${title} just sold out.`
-            : `Only ${variant.quantityAvailable} of ${title} left — your quantity was reduced.`,
+        reason: "insufficient-stock",
+        message: `Only ${variant.quantityAvailable} of ${title} left — your quantity was reduced.`,
         availableQuantity: variant.quantityAvailable,
       });
       continue;
@@ -259,11 +309,15 @@ export async function validateCart(cart: Cart, country?: string | null): Promise
 
     const livePrice = Number.parseFloat(variant.price.amount);
     const cartPrice = Number.parseFloat(line.cost.amountPerQuantity.amount);
-    if (Number.isFinite(livePrice) && Number.isFinite(cartPrice) && Math.abs(livePrice - cartPrice) > 0.005) {
+    if (
+      Number.isFinite(livePrice) &&
+      Number.isFinite(cartPrice) &&
+      Math.abs(livePrice - cartPrice) > 0.005
+    ) {
       issues.push({
         lineId: line.id,
         title,
-        reason: 'price-changed',
+        reason: "price-changed",
         message: `The price of ${title} changed. Your cart has been updated.`,
       });
     }
@@ -292,7 +346,9 @@ export async function mergeCartInto(
   const target = await getCart(targetCartId, country);
   if (!target) return null;
 
-  const existing = new Map(target.lines.map((line) => [line.merchandise.id, line]));
+  const existing = new Map(
+    target.lines.map((line) => [line.merchandise.id, line]),
+  );
 
   const toAdd: { merchandiseId: string; quantity: number }[] = [];
   const toUpdate: { id: string; quantity: number }[] = [];
@@ -302,13 +358,17 @@ export async function mergeCartInto(
     if (match) {
       toUpdate.push({ id: match.id, quantity: match.quantity + line.quantity });
     } else {
-      toAdd.push({ merchandiseId: line.merchandise.id, quantity: line.quantity });
+      toAdd.push({
+        merchandiseId: line.merchandise.id,
+        quantity: line.quantity,
+      });
     }
   }
 
   let merged = target;
   if (toAdd.length > 0) merged = await addLines(targetCartId, toAdd, country);
-  if (toUpdate.length > 0) merged = await updateLines(targetCartId, toUpdate, country);
+  if (toUpdate.length > 0)
+    merged = await updateLines(targetCartId, toUpdate, country);
 
   return merged;
 }
