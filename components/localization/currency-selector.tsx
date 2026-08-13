@@ -3,7 +3,8 @@
 import * as React from "react";
 import { ChevronDownIcon, CheckIcon, SearchIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils/cn";
-import { flagEmoji, currencyDisplayName } from "@/lib/localization/format";
+import { currencyDisplayName } from "@/lib/localization/format";
+import { FlagIcon } from "./flag-icon";
 import { useLocalization } from "./localization-provider";
 import { useCart } from "@/components/cart/cart-provider";
 import { setCountry, clearCountry } from "@/lib/cart/actions";
@@ -14,7 +15,6 @@ type CurrencyOption = {
   symbol: string;
   /** The real Shopify country ISO code this currency is reported against — sent back to setCountry. */
   countryCode: string;
-  flag: string;
 };
 
 /**
@@ -25,8 +25,25 @@ type CurrencyOption = {
  * flag — still comes straight from Shopify's own response for that currency,
  * never hand-typed; this list only decides *which* of Shopify's currencies
  * make the cut.
+ *
+ * Each curated currency is pinned to the one country that's expected to
+ * report it (USD -> US, not just "whichever country happens to report USD
+ * first"). Several countries can share a currency — e.g. this store's
+ * default market is Canada, and Canada currently has no CAD market
+ * configured in Shopify, so it reports USD like everything else — so
+ * picking "the first match" is ambiguous and can attach the wrong flag/
+ * country to a currency. If the pinned country doesn't actually report the
+ * expected currency, that entry is dropped rather than shown anyway: it
+ * means Shopify itself doesn't offer that currency yet, and this list never
+ * shows a currency Shopify didn't report.
  */
-const CURATED_CURRENCIES = ["AUD", "INR", "USD", "GBP", "CAD"];
+const CURATED_CURRENCIES: { currencyCode: string; countryCode: string }[] = [
+  { currencyCode: "AUD", countryCode: "AU" },
+  { currencyCode: "INR", countryCode: "IN" },
+  { currencyCode: "USD", countryCode: "US" },
+  { currencyCode: "GBP", countryCode: "GB" },
+  { currencyCode: "CAD", countryCode: "CA" },
+];
 
 /**
  * Header currency switcher.
@@ -50,25 +67,29 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
   const rootRef = React.useRef<HTMLDivElement>(null);
 
   const options = React.useMemo<CurrencyOption[]>(() => {
-    const byCurrency = new Map<string, CurrencyOption>();
+    const byCountry = new Map<string, { isoCode: string; currency: { isoCode: string; symbol: string } }>();
     // defaultCountry is folded in even though it should already be present
     // in `countries` — a defensive guarantee that the shop's own active
     // currency always has an entry to show, never just a placeholder.
     const source = defaultCountry ? [defaultCountry, ...countries] : countries;
     for (const entry of source) {
-      if (!CURATED_CURRENCIES.includes(entry.currency.isoCode)) continue;
-      if (byCurrency.has(entry.currency.isoCode)) continue;
-      byCurrency.set(entry.currency.isoCode, {
+      if (!byCountry.has(entry.isoCode)) byCountry.set(entry.isoCode, entry);
+    }
+    const result: CurrencyOption[] = [];
+    for (const { currencyCode, countryCode } of CURATED_CURRENCIES) {
+      const entry = byCountry.get(countryCode);
+      // Shopify's own data has to actually agree that this country reports
+      // this currency — if it reports something else (no market configured
+      // for it yet), the currency is dropped rather than shown anyway.
+      if (!entry || entry.currency.isoCode !== currencyCode) continue;
+      result.push({
         currencyCode: entry.currency.isoCode,
         currencyName: currencyDisplayName(entry.currency.isoCode),
         symbol: entry.currency.symbol,
         countryCode: entry.isoCode,
-        flag: flagEmoji(entry.isoCode),
       });
     }
-    return CURATED_CURRENCIES.map((code) => byCurrency.get(code)).filter(
-      (option): option is CurrencyOption => option !== undefined,
-    );
+    return result;
   }, [countries, defaultCountry]);
 
   // No manual override yet: show what Shopify itself is actually using right
@@ -171,7 +192,11 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
           overHero ? "hover:bg-white/15" : "hover:bg-surface-sunken",
         )}
       >
-        <span aria-hidden="true">{activeOption?.flag ?? "🌐"}</span>
+        {activeOption ? (
+          <FlagIcon countryCode={activeOption.countryCode} className="h-3.5 w-5 shrink-0 rounded-xs" />
+        ) : (
+          <span aria-hidden="true">🌐</span>
+        )}
         <span>{activeOption?.currencyCode ?? "Currency"}</span>
         <ChevronDownIcon
           size={14}
