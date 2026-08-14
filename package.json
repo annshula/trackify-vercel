@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && shopify:sync && shopify:sync-blog",
-    "start": "next start",
+    "build": "next build",
+    "start": "shopify:sync && shopify:sync-blog && next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
