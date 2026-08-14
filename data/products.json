@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-12T14:21:44.818Z",
+  "generatedAt": "2026-08-14T17:18:30.575Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -2499,7 +2499,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T15:45:51Z",
       "createdAt": "2025-02-26T15:45:51Z",
-      "updatedAt": "2026-08-12T03:00:46Z",
+      "updatedAt": "2026-08-13T17:54:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157428175075",
@@ -2551,7 +2551,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/44220762292451",
           "availableForSale": true,
-          "inventoryQuantity": 0,
+          "inventoryQuantity": -1,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 0,
@@ -2721,7 +2721,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T16:10:45Z",
       "createdAt": "2025-02-26T16:10:45Z",
-      "updatedAt": "2026-08-12T03:08:35Z",
+      "updatedAt": "2026-08-13T18:04:42Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157445443811",
@@ -2750,7 +2750,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/44220921446627",
           "availableForSale": true,
-          "inventoryQuantity": 0,
+          "inventoryQuantity": -1,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 0,
@@ -3638,7 +3638,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-08-12T06:21:17Z",
+      "updatedAt": "2026-08-14T15:03:09Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -3736,6 +3736,537 @@
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100901093603\"]"
       },
       "totalInventory": 35606
+    },
+    {
+      "id": "gid://shopify/Product/9603256975587",
+      "handle": "baby-toddler-headrest-child-protection-baby-head-protection-cushion-cute-angel-wings",
+      "title": "Baby Toddler Headrest Child Protection Baby Head Protection Cushion Cute Angel Wings",
+      "description": "Product information Ability development: crawling 3C configuration category: plush toys under 14 years old A: Dream Little Butterfly B: Summer style-little tiger C: Summer Style-Green Owl D: Summer Style-Little Flying Pig G: Pink Butterfly-Mesh H: Frog - Plush I: Turtle - Mesh fabric Applicable age: infants (0-3 years old) Product category: safety lock",
+      "descriptionHtml": "<p>\n <b>Product information</b>\n <br>\n</p>\n<p>\n Ability development: crawling\n <br>\n 3C configuration category: plush toys under 14 years old\n <br>\n A: Dream Little Butterfly\n <br>\n B: Summer style-little tiger\n <br>\n C: Summer Style-Green Owl\n <br>\n D: Summer Style-Little Flying Pig\n</p>\n<p>G: Pink Butterfly-Mesh</p>\n<p>\n H: Frog - Plush\n <br>\n I: Turtle - Mesh fabric\n</p>\n<p>\n Applicable age: infants (0-3 years old)\n <br>\n Product category: safety lock\n</p>",
+      "vendor": "Trackify.com",
+      "productType": "Kids & Toddler",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/474949320931",
+          "handle": "kids-toddler",
+          "title": "Kids & Toddler"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39567531475171",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163826.jpg?v=1786723699",
+          "altText": "5cbb774b557bc2f00d6af92d060ce159",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531507939",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
+          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531540707",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1617457595840.jpg?v=1786723698",
+          "altText": "e79599c4a5160a8ab5bbda93a46469f2",
+          "width": 1001,
+          "height": 1001
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531573475",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8979740f-6b43-4ef0-9d06-1d8ed344c1b9.jpg?v=1786723698",
+          "altText": "f1a9c64909e2e700d262b13902084953",
+          "width": 677,
+          "height": 695
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531606243",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1617457592695.jpg?v=1786723698",
+          "altText": "82e8efcf0f829182a99df2a640347dd7",
+          "width": 1001,
+          "height": 1001
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531639011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f2893b7-4932-40b1-af59-003ba860aedc.jpg?v=1786723698",
+          "altText": "e621caeb73b449a29d3a3e6fe63d3bf2",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531671779",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163784.jpg?v=1786723698",
+          "altText": "ca243c43f83bfc9440679ea7736f4bb7",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531704547",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163814.jpg?v=1786723698",
+          "altText": "e2f25a6021222d9e50da478ea248c096",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531737315",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a89de9f4-bc07-4b76-9f39-53a776676d4b.jpg?v=1786723698",
+          "altText": "5fbf0f22f2415f0ce878b6c745af9edb",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531770083",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e72d9d5f-59b7-4a96-a4fe-7bfff8b8ddfc.jpg?v=1786723698",
+          "altText": "e2b22311d5b1151e0dbdd093717656ba",
+          "width": 373,
+          "height": 386
+        },
+        {
+          "id": "gid://shopify/MediaImage/39567531802851",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1ad9bc4e-8485-4613-92c4-fa39cd7436ba.jpg?v=1786723698",
+          "altText": "6652e54bb12774ef0d489a421c917c4c",
+          "width": 397,
+          "height": 421
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938767587",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163826.jpg?v=1786723699",
+          "altText": "5cbb774b557bc2f00d6af92d060ce159",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938800355",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
+          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938833123",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1617457595840.jpg?v=1786723698",
+          "altText": "e79599c4a5160a8ab5bbda93a46469f2",
+          "width": 1001,
+          "height": 1001
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938865891",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8979740f-6b43-4ef0-9d06-1d8ed344c1b9.jpg?v=1786723698",
+          "altText": "f1a9c64909e2e700d262b13902084953",
+          "width": 677,
+          "height": 695
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938898659",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1617457592695.jpg?v=1786723698",
+          "altText": "82e8efcf0f829182a99df2a640347dd7",
+          "width": 1001,
+          "height": 1001
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938931427",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f2893b7-4932-40b1-af59-003ba860aedc.jpg?v=1786723698",
+          "altText": "e621caeb73b449a29d3a3e6fe63d3bf2",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938964195",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163784.jpg?v=1786723698",
+          "altText": "ca243c43f83bfc9440679ea7736f4bb7",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782938996963",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163814.jpg?v=1786723698",
+          "altText": "e2f25a6021222d9e50da478ea248c096",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782939029731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a89de9f4-bc07-4b76-9f39-53a776676d4b.jpg?v=1786723698",
+          "altText": "5fbf0f22f2415f0ce878b6c745af9edb",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782939062499",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e72d9d5f-59b7-4a96-a4fe-7bfff8b8ddfc.jpg?v=1786723698",
+          "altText": "e2b22311d5b1151e0dbdd093717656ba",
+          "width": 373,
+          "height": 386
+        },
+        {
+          "id": "gid://shopify/ProductImage/48782939095267",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1ad9bc4e-8485-4613-92c4-fa39cd7436ba.jpg?v=1786723698",
+          "altText": "6652e54bb12774ef0d489a421c917c4c",
+          "width": 397,
+          "height": 421
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531475171",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163826.jpg?v=1786723699",
+          "altText": "5cbb774b557bc2f00d6af92d060ce159",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531507939",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
+          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531540707",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1617457595840.jpg?v=1786723698",
+          "altText": "e79599c4a5160a8ab5bbda93a46469f2",
+          "width": 1001,
+          "height": 1001
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531573475",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8979740f-6b43-4ef0-9d06-1d8ed344c1b9.jpg?v=1786723698",
+          "altText": "f1a9c64909e2e700d262b13902084953",
+          "width": 677,
+          "height": 695
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531606243",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1617457592695.jpg?v=1786723698",
+          "altText": "82e8efcf0f829182a99df2a640347dd7",
+          "width": 1001,
+          "height": 1001
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531639011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f2893b7-4932-40b1-af59-003ba860aedc.jpg?v=1786723698",
+          "altText": "e621caeb73b449a29d3a3e6fe63d3bf2",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531671779",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163784.jpg?v=1786723698",
+          "altText": "ca243c43f83bfc9440679ea7736f4bb7",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531704547",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163814.jpg?v=1786723698",
+          "altText": "e2f25a6021222d9e50da478ea248c096",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531737315",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a89de9f4-bc07-4b76-9f39-53a776676d4b.jpg?v=1786723698",
+          "altText": "5fbf0f22f2415f0ce878b6c745af9edb",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531770083",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e72d9d5f-59b7-4a96-a4fe-7bfff8b8ddfc.jpg?v=1786723698",
+          "altText": "e2b22311d5b1151e0dbdd093717656ba",
+          "width": 373,
+          "height": 386
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39567531802851",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1ad9bc4e-8485-4613-92c4-fa39cd7436ba.jpg?v=1786723698",
+          "altText": "6652e54bb12774ef0d489a421c917c4c",
+          "width": 397,
+          "height": 421
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-08-14T16:08:19Z",
+      "createdAt": "2026-08-14T16:08:16Z",
+      "updatedAt": "2026-08-14T16:08:30Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12081001890019",
+          "name": "style",
+          "position": 1,
+          "values": [
+            "Purple",
+            "Lion",
+            "Angel",
+            "Bee",
+            "Fairy",
+            "Butterfly",
+            "Frog",
+            "Turtle",
+            "Tortoise",
+            "Unicorn"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49535878234339",
+          "title": "Purple",
+          "sku": "CJYE102989601AZ",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Purple"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938800355",
+          "availableForSale": true,
+          "inventoryQuantity": 40004,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878267107",
+          "title": "Lion",
+          "sku": "CJYE102989602BY",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Lion"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938996963",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878299875",
+          "title": "Angel",
+          "sku": "CJYE102989603CX",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Angel"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938767587",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878332643",
+          "title": "Bee",
+          "sku": "CJYE102989605EV",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Bee"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938898659",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 4
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878365411",
+          "title": "Fairy",
+          "sku": "CJYE102989606FU",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Fairy"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938833123",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878398179",
+          "title": "Butterfly",
+          "sku": "CJYE102989607GT",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Butterfly"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938865891",
+          "availableForSale": true,
+          "inventoryQuantity": 41620,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878430947",
+          "title": "Frog",
+          "sku": "CJYE102989693OL",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Frog"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782939029731",
+          "availableForSale": true,
+          "inventoryQuantity": 11901,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 7
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878463715",
+          "title": "Turtle",
+          "sku": "CJYE102989694PK",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Turtle"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782938931427",
+          "availableForSale": true,
+          "inventoryQuantity": 13819,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 8
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878496483",
+          "title": "Tortoise",
+          "sku": "CJYE102989698TG",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Tortoise"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782939062499",
+          "availableForSale": true,
+          "inventoryQuantity": 12536,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 220,
+          "weightUnit": "GRAMS",
+          "position": 9
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49535878529251",
+          "title": "Unicorn",
+          "sku": "CJYE102989697SH",
+          "barcode": null,
+          "price": 45.99,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Unicorn"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48782939095267",
+          "availableForSale": true,
+          "inventoryQuantity": 13612,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 10
+        }
+      ],
+      "priceRange": {
+        "min": 45.99,
+        "max": 45.99,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {},
+      "totalInventory": 293492
     }
   ],
   "collections": [
@@ -3825,7 +4356,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/8783853551843"
       ],
@@ -3848,7 +4379,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/8783869280483"
       ],
@@ -3909,7 +4440,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:05:04Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783841493219",
@@ -3950,7 +4481,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8783852667107",
@@ -3969,7 +4500,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/8783842672867",
         "gid://shopify/Product/8783852667107",
@@ -3988,7 +4519,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/8783853551843"
       ],
@@ -4028,9 +4559,26 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-08-14T11:27:22Z",
       "productIds": [
         "gid://shopify/Product/9599352864995"
+      ],
+      "sortOrder": "BEST_SELLING"
+    },
+    {
+      "id": "gid://shopify/Collection/474949320931",
+      "handle": "kids-toddler",
+      "title": "Kids & Toddler",
+      "description": "",
+      "descriptionHtml": "",
+      "image": null,
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "updatedAt": "2026-08-14T16:08:22Z",
+      "productIds": [
+        "gid://shopify/Product/9603256975587"
       ],
       "sortOrder": "BEST_SELLING"
     }
