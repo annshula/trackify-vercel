@@ -290,3 +290,35 @@ export const LOCALIZATION_QUERY = /* GraphQL */ `
     }
   }
 `;
+
+/**
+ * Shop Policies — Terms of Service, Privacy Policy, Refund Policy, Shipping
+ * Policy, as configured by the merchant under Shopify Admin → Settings →
+ * Policies. A distinct feature from Shopify's generic Online Store "Pages"
+ * (see lib/content/pages.ts's doc comment for why those aren't used here) —
+ * these fields are on the public Storefront API's `shop` object and need no
+ * extra access scope beyond the storefront token this app already has.
+ * Any policy the merchant hasn't filled in comes back `null`, not empty text.
+ */
+export const SHOP_POLICIES_QUERY = /* GraphQL */ `
+  query ShopPolicies {
+    shop {
+      termsOfService {
+        title
+        body
+      }
+      privacyPolicy {
+        title
+        body
+      }
+      refundPolicy {
+        title
+        body
+      }
+      shippingPolicy {
+        title
+        body
+      }
+    }
+  }
+`;
