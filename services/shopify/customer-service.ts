@@ -350,22 +350,19 @@ export async function getOrder(orderId: string): Promise<Order | null> {
 }
 
 type RawReturnStatusOrder = {
-  returnStatus: OrderReturnStatus | 'NO_RETURN';
   returns?: {
     nodes: {
+      status: OrderReturnStatus;
       createdAt: string;
-      requestApprovedAt: string | null;
       closedAt: string | null;
       returnLineItems: {
-        nodes: { fulfillmentLineItem?: { lineItem: { id: string } } | null }[];
+        nodes: { lineItem?: { id: string } | null }[];
       };
-      reverseFulfillmentOrders: {
+      reverseDeliveries: {
         nodes: {
-          reverseDeliveries: {
-            nodes: {
-              deliverable: { tracking?: { number: string | null; url: string | null; carrierName: string | null } | null } | null;
-            }[];
-          };
+          deliverable: {
+            tracking?: { trackingNumber: string | null; trackingUrl: string | null; carrierName: string | null } | null;
+          } | null;
         }[];
       };
     }[];
@@ -373,41 +370,46 @@ type RawReturnStatusOrder = {
 };
 
 function toReturnSummary(order: RawReturnStatusOrder | null): OrderReturnSummary | null {
-  if (!order || order.returnStatus === 'NO_RETURN') return null;
-
-  const rawReturns = order.returns?.nodes ?? [];
+  const rawReturns = order?.returns?.nodes ?? [];
   if (rawReturns.length === 0) return null;
 
-  // One entry per real Shopify Return, keeping its own dates and line items
-  // together — a merged/flattened summary would misattribute one return's
-  // timestamps to another return's products when an order has more than one.
+  // One entry per real Shopify Return, keeping its own status, dates, and
+  // line items together — a merged/flattened summary would misattribute one
+  // return's timestamps to another return's products when an order has more
+  // than one.
   const returns: OrderReturnDetail[] = rawReturns
     .map((r) => {
       const lineItemIds = [
-        ...new Set(
-          r.returnLineItems.nodes.map((node) => node.fulfillmentLineItem?.lineItem.id).filter((id): id is string => Boolean(id)),
-        ),
+        ...new Set(r.returnLineItems.nodes.map((node) => node.lineItem?.id).filter((id): id is string => Boolean(id))),
       ];
       const tracking =
-        r.reverseFulfillmentOrders.nodes
-          .flatMap((rfo) => rfo.reverseDeliveries.nodes)
+        r.reverseDeliveries.nodes
           .map((delivery) => delivery.deliverable?.tracking)
-          .find((t): t is NonNullable<typeof t> => Boolean(t?.number)) ?? null;
+          .find((t): t is NonNullable<typeof t> => Boolean(t?.trackingNumber)) ?? null;
 
       return {
+        status: r.status,
         lineItemIds,
         requestedAt: r.createdAt,
-        approvedAt: r.requestApprovedAt,
         closedAt: r.closedAt,
-        tracking: tracking ? { number: tracking.number, url: tracking.url, carrierName: tracking.carrierName } : null,
+        tracking: tracking ? { number: tracking.trackingNumber, url: tracking.trackingUrl, carrierName: tracking.carrierName } : null,
       };
     })
     // No real per-item mapping for this return — never guess which product it applies to.
     .filter((r) => r.lineItemIds.length > 0);
 
-  if (returns.length === 0) return null;
+  if (returns.length === 0) {
+    // The query succeeded and a return exists, but nothing mapped to a real
+    // line item id — most likely `ReturnLineItemType` resolved to
+    // `UnverifiedReturnLineItem` (no `lineItem` field at all) instead of
+    // `ReturnLineItem` for these nodes.
+    console.error(
+      `[return-status] order has ${rawReturns.length} return(s) but none mapped to a real line item id — showing no return status.`,
+    );
+    return null;
+  }
 
-  return { status: order.returnStatus, returns };
+  return { returns };
 }
 
 /**
@@ -426,8 +428,72 @@ export async function getOrderReturnStatus(orderId: string): Promise<OrderReturn
       variables: { id: orderId },
     });
     return toReturnSummary(data.order);
-  } catch {
+  } catch (error) {
+    // Temporary diagnostic: these fields are only confirmed against the Admin
+    // API (via introspection) — never against the Customer Account API
+    // itself, which needs a real signed-in session to test. If this logs,
+    // that's the mismatch; the message says which field.
+    console.error(
+      '[return-status] query failed, showing no return status for this order:',
+      error instanceof Error ? error.message : error,
+    );
+    await logReturnSchemaDebug();
     return null;
+  }
+}
+
+/**
+ * TEMPORARY diagnostic — introspects the Customer Account API's own schema
+ * (through the same authenticated session) to find the real field names for
+ * returns, since Admin API introspection turned out not to match. Delete
+ * this once CUSTOMER_ORDER_RETURN_STATUS_QUERY is rewritten against the
+ * confirmed real schema.
+ */
+type DebugField = { name: string; type: { kind: string; name: string | null; ofType: DebugField['type'] | null } };
+type DebugType = { name: string; fields: DebugField[] | null; enumValues: { name: string }[] | null } | null;
+
+function debugTypeName(t: DebugField['type'] | null): string {
+  if (!t) return '?';
+  if (t.name) return t.name;
+  if (t.ofType) return debugTypeName(t.ofType);
+  return '?';
+}
+
+async function logReturnSchemaDebug(): Promise<void> {
+  const typeQuery = (name: string) => `
+    q_${name}: __type(name: "${name}") {
+      name
+      fields { name type { kind name ofType { kind name ofType { kind name } } } }
+      enumValues { name }
+    }
+  `;
+
+  try {
+    const data = await customerRequest<Record<string, DebugType>>({
+      query: /* GraphQL */ `
+        query ReturnSchemaDebug {
+          ${typeQuery('Return')}
+          ${typeQuery('ReverseDelivery')}
+          ${typeQuery('ReverseDeliveryDeliverable')}
+          ${typeQuery('ReturnStatus')}
+        }
+      `,
+    });
+
+    for (const [key, type] of Object.entries(data)) {
+      const label = key.replace('q_', '');
+      if (!type) {
+        console.error(`[return-status][schema] ${label}: NOT FOUND`);
+        continue;
+      }
+      if (type.enumValues) console.error(`[return-status][schema] ${label} enum values:`, type.enumValues.map((v) => v.name));
+      if (type.fields) console.error(`[return-status][schema] ${label} fields:`, type.fields.map((f) => `${f.name}: ${debugTypeName(f.type)}`));
+    }
+  } catch (introspectionError) {
+    console.error(
+      '[return-status][schema] introspection itself failed (may be disabled on this API):',
+      introspectionError instanceof Error ? introspectionError.message : introspectionError,
+    );
   }
 }
 

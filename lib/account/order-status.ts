@@ -96,20 +96,25 @@ export function returnableLineItems(order: Pick<Order, 'lineItems' | 'fulfillmen
 }
 
 const RETURN_STATUS_LABELS: Record<OrderReturnStatus, string> = {
-  RETURN_REQUESTED: 'Return requested',
-  IN_PROGRESS: 'Return in progress',
-  INSPECTION_COMPLETE: 'Return received',
-  RETURNED: 'Return complete',
-  RETURN_FAILED: 'Return failed',
+  REQUESTED: 'Return requested',
+  OPEN: 'Return in progress',
+  CLOSED: 'Return complete',
+  CANCELED: 'Return canceled',
+  DECLINED: 'Return declined',
 };
 
 const RETURN_STATUS_DESCRIPTIONS: Record<OrderReturnStatus, string> = {
-  RETURN_REQUESTED: "We're reviewing your return request.",
-  IN_PROGRESS: 'Your return is on its way to us.',
-  INSPECTION_COMPLETE: "We've received your return and it's being inspected.",
-  RETURNED: 'Your return is complete.',
-  RETURN_FAILED: 'There was a problem processing this return. Contact us for help.',
+  REQUESTED: "We're reviewing your return request.",
+  OPEN: 'Your return is approved and on its way to us.',
+  CLOSED: 'Your return is complete.',
+  CANCELED: 'This return was canceled.',
+  DECLINED: 'This return request was declined. Contact us for help.',
 };
+
+/** Terminal states — nothing more will happen to this return. */
+export function isFinalReturnStatus(status: OrderReturnStatus): boolean {
+  return status === 'CLOSED' || status === 'CANCELED' || status === 'DECLINED';
+}
 
 export function returnStatusLabel(status: OrderReturnStatus): string {
   return RETURN_STATUS_LABELS[status];

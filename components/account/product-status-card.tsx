@@ -5,6 +5,7 @@ import {
   statusTone,
   returnStatusLabel,
   returnStatusDescription,
+  isFinalReturnStatus,
   type ShipmentGroup,
   type StatusTone,
 } from '@/lib/account/order-status';
@@ -37,33 +38,29 @@ type TimelineNode = { id: string; label: string; at: string | null; state: 'done
 
 /**
  * The full real chain for a product: delivery history first, then — if this
- * exact item is covered by a return — that return's own real milestones
- * (requested / approved / completed or failed), using each timestamp
- * Shopify actually reports. A milestone with no timestamp yet (still in
- * progress) renders as the current step, never a guessed date.
+ * exact item is covered by a return — that return's own real milestones,
+ * using each timestamp Shopify actually reports. There's no "approved"
+ * milestone here (the Customer Account API doesn't expose one, unlike
+ * Admin's schema) — just requested (always dated) and the current/final
+ * status, dated only once it's actually closed.
  */
 function buildProductTimeline(
   deliverySteps: { id: string; label: string; at: string | null }[],
   returnDetail: OrderReturnDetail | null,
-  returnLabel: string | null,
-  isFinalReturn: boolean,
 ): TimelineNode[] {
   const delivered: TimelineNode[] = [...deliverySteps].reverse().map((s) => ({ id: s.id, label: s.label, at: s.at, state: 'done' }));
-  if (!returnDetail || !returnLabel) return delivered;
+  if (!returnDetail) return delivered;
 
-  const returnSteps: TimelineNode[] = [
-    { id: 'return-requested', label: 'Return requested', at: returnDetail.requestedAt, state: 'done' },
-  ];
-  if (returnDetail.approvedAt) {
-    returnSteps.push({ id: 'return-approved', label: 'Return approved', at: returnDetail.approvedAt, state: 'done' });
-  }
-  if (isFinalReturn && returnDetail.closedAt) {
-    returnSteps.push({ id: 'return-final', label: returnLabel, at: returnDetail.closedAt, state: 'done' });
-  } else {
-    returnSteps.push({ id: 'return-current', label: returnLabel, at: null, state: 'current' });
-  }
+  const requested: TimelineNode = { id: 'return-requested', label: 'Return requested', at: returnDetail.requestedAt, state: 'done' };
+  if (returnDetail.status === 'REQUESTED') return [...delivered, requested];
 
-  return [...delivered, ...returnSteps];
+  const label = returnStatusLabel(returnDetail.status);
+  const statusStep: TimelineNode =
+    isFinalReturnStatus(returnDetail.status) && returnDetail.closedAt
+      ? { id: 'return-status', label, at: returnDetail.closedAt, state: 'done' }
+      : { id: 'return-status', label, at: null, state: 'current' };
+
+  return [...delivered, requested, statusStep];
 }
 
 /**
@@ -87,24 +84,22 @@ export function ProductStatusCard({
 }) {
   const returnDetail = returnStatus?.returns.find((r) => r.lineItemIds.includes(item.id)) ?? null;
   const isReturning = returnDetail !== null;
-  const isFinalReturn = returnStatus?.status === 'RETURNED' || returnStatus?.status === 'RETURN_FAILED';
-  const returnLabel = returnStatus ? returnStatusLabel(returnStatus.status) : null;
 
   const steps = shipmentSteps(group, order);
-  const timeline = buildProductTimeline(steps, returnDetail, returnLabel, isFinalReturn ?? false);
+  const timeline = buildProductTimeline(steps, returnDetail);
   const trackingLinks = (group.fulfillment?.trackingInformation ?? []).filter((info) => info.url);
 
-  const tone: StatusTone = isReturning
-    ? returnStatus?.status === 'RETURNED'
+  const tone: StatusTone = returnDetail
+    ? returnDetail.status === 'CLOSED'
       ? 'success'
-      : returnStatus?.status === 'RETURN_FAILED'
+      : returnDetail.status === 'CANCELED' || returnDetail.status === 'DECLINED'
         ? 'danger'
         : 'accent'
     : statusTone(group.fulfillment?.status ?? null);
   const styles = TONE_STYLES[tone];
 
-  const headingLabel = isReturning ? returnLabel : steps[0]?.label;
-  const headingDate = isReturning ? (returnDetail?.closedAt ?? returnDetail?.approvedAt ?? returnDetail?.requestedAt) : steps[0]?.at;
+  const headingLabel = returnDetail ? returnStatusLabel(returnDetail.status) : steps[0]?.label;
+  const headingDate = returnDetail ? (returnDetail.closedAt ?? returnDetail.requestedAt) : steps[0]?.at;
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-line bg-surface shadow-e1 transition-shadow duration-200 hover:shadow-e2">
@@ -140,13 +135,13 @@ export function ProductStatusCard({
           <span className="shrink-0 pt-0.5 text-xs text-ink-subtle tabular-nums">×{item.quantity}</span>
         </div>
 
-        {isReturning && returnStatus && (
-          <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">{returnStatusDescription(returnStatus.status)}</p>
+        {returnDetail && (
+          <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">{returnStatusDescription(returnDetail.status)}</p>
         )}
 
         {timeline.length > 1 && <MiniStepper steps={timeline} />}
 
-        {isReturning && returnDetail?.tracking?.number && (
+        {returnDetail?.tracking?.number && (
           <div className="mt-3 border-t border-line pt-3 text-sm">
             <p className="text-xs text-ink-subtle">Tracking number</p>
             {returnDetail.tracking.url ? (

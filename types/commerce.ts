@@ -201,26 +201,24 @@ export type ReturnLineItemInput = {
   reason: ReturnReason;
 };
 
-/** Shopify's order-level `OrderReturnStatus` enum. */
-export type OrderReturnStatus =
-  | 'RETURN_REQUESTED'
-  | 'IN_PROGRESS'
-  | 'INSPECTION_COMPLETE'
-  | 'RETURNED'
-  | 'RETURN_FAILED';
+/**
+ * Shopify Customer Account API's real `Return.status` enum — confirmed via
+ * live introspection against that API (not Admin's, which has a different,
+ * larger shape). There is no order-level aggregate on this API; each Return
+ * carries its own status.
+ */
+export type OrderReturnStatus = 'REQUESTED' | 'OPEN' | 'CLOSED' | 'CANCELED' | 'DECLINED';
 
-/** One real Shopify Return object, with its own timestamps and the exact line items it covers. */
+/** One real Shopify Return object, with its own status, timestamps, and the exact line items it covers. */
 export type OrderReturnDetail = {
+  status: OrderReturnStatus;
   lineItemIds: string[];
-  requestedAt: string | null;
-  approvedAt: string | null;
+  requestedAt: string;
   closedAt: string | null;
   tracking: { number: string | null; url: string | null; carrierName: string | null } | null;
 };
 
 export type OrderReturnSummary = {
-  /** Order-level aggregate status — Shopify doesn't expose a customer-friendly equivalent per individual Return. */
-  status: OrderReturnStatus;
   /** One entry per actual Return on the order — a product's real timeline is built from whichever entry covers it. */
   returns: OrderReturnDetail[];
 };
