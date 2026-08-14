@@ -31,6 +31,17 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  async rewrites() {
+    const storeDomain = process.env.SHOPIFY_STORE_DOMAIN;
+    if (!storeDomain) return [];
+
+    return [
+      {
+        source: "/_t/:path*",
+        destination: `https://${storeDomain}/_t/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
