@@ -199,8 +199,11 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
         </div>
 
         {/* Below lg the panel is pulled up over the image's bottom edge as a
-            sheet — the native "photo, then detail slides up" pattern. */}
-        <div className="relative z-10 -mt-6 rounded-t-3xl bg-canvas px-4 pt-7 sm:px-6 lg:col-span-5 lg:mt-0 lg:rounded-none lg:px-0 lg:pt-0">
+            sheet — the native "photo, then detail slides up" pattern. The
+            same -mx-4/-mx-6 the gallery uses to bleed edge-to-edge is needed
+            here too, or the sheet's rounded corners float inset from the
+            image's full-bleed edges instead of meeting them. */}
+        <div className="relative z-10 -mx-4 -mt-6 rounded-t-3xl bg-canvas px-4 pt-7 sm:-mx-6 sm:px-6 lg:col-span-5 lg:mx-0 lg:mt-0 lg:rounded-none lg:px-0 lg:pt-0">
           <div className="lg:sticky lg:top-24">
             <header>
               {product.vendor && (

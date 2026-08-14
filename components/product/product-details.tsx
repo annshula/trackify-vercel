@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { CatalogProduct } from '@/types/catalog';
-import { Accordion, type AccordionItem } from '@/components/ui/accordion';
+import { Tabs, type TabItem } from '@/components/ui/accordion';
 
 /**
  * Description, specifications, shipping and returns.
@@ -10,13 +10,12 @@ import { Accordion, type AccordionItem } from '@/components/ui/accordion';
  * omitted rather than filled with placeholder text.
  */
 export function ProductDetails({ product }: { product: CatalogProduct }) {
-  const items: AccordionItem[] = [];
+  const items: TabItem[] = [];
 
   if (product.descriptionHtml.trim()) {
     items.push({
       id: 'description',
-      title: 'Description',
-      defaultOpen: true,
+      label: 'Description',
       content: (
         <div
           className="prose-product"
@@ -31,13 +30,13 @@ export function ProductDetails({ product }: { product: CatalogProduct }) {
   if (specs.length > 0) {
     items.push({
       id: 'specifications',
-      title: 'Specifications',
+      label: 'Specifications',
       content: (
-        <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+        <dl className="grid gap-x-8 gap-y-0 sm:grid-cols-2">
           {specs.map((spec) => (
-            <div key={spec.label} className="flex justify-between gap-4 border-b border-line pb-2">
-              <dt className="text-ink-subtle">{spec.label}</dt>
-              <dd className="text-right font-medium text-ink">{spec.value}</dd>
+            <div key={spec.label} className="flex items-baseline justify-between gap-4 border-b border-line py-3 first:pt-0">
+              <dt className="text-sm text-ink-subtle">{spec.label}</dt>
+              <dd className="text-right text-sm font-medium text-ink">{spec.value}</dd>
             </div>
           ))}
         </dl>
@@ -47,9 +46,9 @@ export function ProductDetails({ product }: { product: CatalogProduct }) {
 
   items.push({
     id: 'shipping',
-    title: 'Shipping & delivery',
+    label: 'Shipping & delivery',
     content: (
-      <div className="space-y-3">
+      <div className="space-y-3 text-sm leading-relaxed text-ink-muted">
         <p>
           Delivery options, rates and estimated dates are calculated at checkout using
           your address. You will see the exact cost before you pay.
@@ -67,9 +66,9 @@ export function ProductDetails({ product }: { product: CatalogProduct }) {
 
   items.push({
     id: 'returns',
-    title: 'Returns',
+    label: 'Returns',
     content: (
-      <p>
+      <p className="text-sm leading-relaxed text-ink-muted">
         Not right? Start a return from your order history. See our{' '}
         <Link href="/pages/returns" className="text-ink underline underline-offset-4">
           full returns policy
@@ -84,7 +83,7 @@ export function ProductDetails({ product }: { product: CatalogProduct }) {
       <h2 id="details-heading" className="sr-only">
         Product details
       </h2>
-      <Accordion items={items} />
+      <Tabs items={items} />
     </section>
   );
 }

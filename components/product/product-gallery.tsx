@@ -150,13 +150,14 @@ export function ProductGallery({
               onClick={() => setZoomOpen(true)}
               // Height-capped rather than aspect-ratio driven — see the note at
               // the top of this file.
-              className="relative h-[min(92vw,360px)] w-full shrink-0 cursor-zoom-in snap-center lg:hidden"
+              className="relative h-[min(92vw,360px)] w-full shrink-0 cursor-zoom-in snap-center snap-always lg:hidden"
               aria-label={`View ${product.title} image ${itemIndex + 1} full screen`}
             >
               <MediaFrame
                 item={item}
                 product={product}
                 priority={itemIndex === 0}
+                fit="cover"
               />
             </button>
           ))}
@@ -180,8 +181,11 @@ export function ProductGallery({
         {media.length > 1 && (
           <>
             {/* Counter pill instead of dots — exact, and it stays legible with
-                any number of images where a dot row would wrap. */}
-            <div className="pointer-events-none absolute right-3 bottom-3 rounded-full bg-ink/70 px-2.5 py-1 text-2xs font-medium text-white tabular-nums backdrop-blur-sm lg:hidden">
+                any number of images where a dot row would wrap. Sits at the
+                top: the buy-box sheet below overlaps this stage's bottom
+                edge on mobile (-mt-6, see buy-box.tsx), which would cover a
+                bottom-anchored pill entirely. */}
+            <div className="pointer-events-none absolute top-3 right-3 rounded-full bg-ink/70 px-2.5 py-1 text-2xs font-medium text-white tabular-nums backdrop-blur-sm lg:hidden">
               {index + 1} / {media.length}
             </div>
 
@@ -323,7 +327,7 @@ function MediaFrame({
         // Contained so a tall or wide product photo is never cropped — the
         // customer sees the whole product, which is the point of this image.
         className={cn(
-          fit === "contain" ? "object-contain p-3" : "object-cover",
+          fit === "contain" ? "object-contain p-0 lg:p-3" : "object-cover",
         )}
       />
     );
