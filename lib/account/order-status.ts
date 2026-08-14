@@ -1,4 +1,12 @@
-import type { Order, OrderFulfillment, OrderLineItem, OrderReturnStatus, OrderReturnSummary } from '@/types/commerce';
+import type {
+  Order,
+  OrderFulfillment,
+  OrderLineItem,
+  OrderReturnStatus,
+  OrderReturnSummary,
+  ReturnDeclineReason,
+  ReturnReason,
+} from '@/types/commerce';
 
 /**
  * Order status presentation.
@@ -110,7 +118,9 @@ const RETURN_STATUS_DESCRIPTIONS: Record<OrderReturnStatus, string> = {
   // description repeating that adds nothing.
   CLOSED: '',
   CANCELED: 'This return was canceled.',
-  DECLINED: 'This return request was declined. Contact us for help.',
+  // Empty on purpose — the real reason the customer gave is shown instead
+  // of this generic boilerplate (see returnReasonLabel below).
+  DECLINED: '',
 };
 
 /** Terminal states — nothing more will happen to this return. */
@@ -136,6 +146,35 @@ export function returnStatusLabel(status: OrderReturnStatus): string {
 
 export function returnStatusDescription(status: OrderReturnStatus): string {
   return RETURN_STATUS_DESCRIPTIONS[status];
+}
+
+/** Shopify Customer Account API's real `ReturnReason` enum values, as customer-facing labels. */
+const RETURN_REASON_LABELS: Record<ReturnReason, string> = {
+  SIZE_TOO_SMALL: 'Too small',
+  SIZE_TOO_LARGE: 'Too large',
+  UNWANTED: 'No longer needed',
+  NOT_AS_DESCRIBED: 'Not as described',
+  WRONG_ITEM: 'Wrong item',
+  DEFECTIVE: 'Arrived damaged or defective',
+  STYLE: "Didn't like the style",
+  COLOR: "Didn't like the color",
+  OTHER: 'Other',
+  UNKNOWN: 'Not specified',
+};
+
+export function returnReasonLabel(reason: ReturnReason): string {
+  return RETURN_REASON_LABELS[reason];
+}
+
+/** Shopify Admin API's `ReturnDeclineReason` enum, as customer-facing labels. */
+const RETURN_DECLINE_REASON_LABELS: Record<ReturnDeclineReason, string> = {
+  RETURN_PERIOD_ENDED: 'Return window has ended',
+  FINAL_SALE: 'Item was a final sale',
+  OTHER: 'Other',
+};
+
+export function returnDeclineReasonLabel(reason: ReturnDeclineReason): string {
+  return RETURN_DECLINE_REASON_LABELS[reason];
 }
 
 export type ShipmentGroup = {

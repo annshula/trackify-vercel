@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { requireCustomer } from "@/lib/auth/guard";
 import { getOrder, getOrderReturnStatus } from "@/services/shopify/customer-service";
+import { getDeclinedReturnReasons } from "@/services/shopify/order-actions-service";
 import { noIndex } from "@/lib/seo/metadata";
 import { fulfillmentLabel, financialLabel, statusTone, groupShipments } from "@/lib/account/order-status";
 import { shortDate } from "@/lib/utils/date";
@@ -31,6 +32,7 @@ export default async function OrderDetailPage({ params }: PageProps) {
   }
   // Never allowed to fail the page — see getOrderReturnStatus's own doc comment.
   const returnStatus = await getOrderReturnStatus(orderId);
+  const declineReasons = await getDeclinedReturnReasons(orderId);
 
   const shipments = groupShipments(order);
   const groupByItemId = new Map(shipments.flatMap((group) => group.lineItems.map((item) => [item.id, group] as const)));
@@ -72,7 +74,14 @@ export default async function OrderDetailPage({ params }: PageProps) {
         <h2 className="text-xs font-medium tracking-wide text-ink-subtle uppercase">Order status</h2>
         <div className="space-y-3">
           {order.lineItems.map((item) => (
-            <ProductStatusCard key={item.id} item={item} group={groupByItemId.get(item.id)!} order={order} returnStatus={returnStatus} />
+            <ProductStatusCard
+              key={item.id}
+              item={item}
+              group={groupByItemId.get(item.id)!}
+              order={order}
+              returnStatus={returnStatus}
+              declineReasons={declineReasons}
+            />
           ))}
         </div>
       </div>

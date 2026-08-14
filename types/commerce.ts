@@ -213,12 +213,22 @@ export type OrderReturnStatus = 'REQUESTED' | 'OPEN' | 'CLOSED' | 'CANCELED' | '
 
 /** One real Shopify Return object, with its own status, timestamps, and the exact line items it covers. */
 export type OrderReturnDetail = {
+  id: string;
   status: OrderReturnStatus;
   lineItemIds: string[];
+  /** The reason the customer gave when requesting the return, per line item. */
+  lineItemReasons: Record<string, ReturnReason>;
   requestedAt: string;
   closedAt: string | null;
+  /** Last real change to this return — used as the date for a final status when Shopify hasn't set `closedAt` (e.g. declined returns). */
+  updatedAt: string;
   tracking: { number: string | null; url: string | null; carrierName: string | null } | null;
 };
+
+/** Shopify Admin API's `ReturnDeclineReason` enum — only reachable via the privileged Admin API, never the Customer Account API. */
+export type ReturnDeclineReason = 'RETURN_PERIOD_ENDED' | 'FINAL_SALE' | 'OTHER';
+
+export type ReturnDeclineInfo = { reason: ReturnDeclineReason; note: string | null };
 
 export type OrderReturnSummary = {
   /** One entry per actual Return on the order — a product's real timeline is built from whichever entry covers it. */

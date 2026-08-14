@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { Order, OrderLineItem, ReturnLineItemInput, ReturnReason } from '@/types/commerce';
 import { requestReturnAction } from '@/lib/account/order-actions';
+import { returnReasonLabel } from '@/lib/account/order-status';
 import { formatMoneyV2 } from '@/lib/utils/money';
 import { Button } from '@/components/ui/button';
 import { Select, QuantityStepper } from '@/components/ui/form';
@@ -12,17 +13,22 @@ import { Alert } from '@/components/ui/primitives';
 import { AlertIcon } from '@/components/ui/icons';
 import { useToast } from '@/components/ui/toast';
 
-const REASON_OPTIONS: { value: ReturnReason; label: string }[] = [
-  { value: 'SIZE_TOO_SMALL', label: 'Too small' },
-  { value: 'SIZE_TOO_LARGE', label: 'Too large' },
-  { value: 'DEFECTIVE', label: 'Arrived damaged or defective' },
-  { value: 'NOT_AS_DESCRIBED', label: 'Not as described' },
-  { value: 'WRONG_ITEM', label: 'Wrong item' },
-  { value: 'STYLE', label: "Didn't like the style" },
-  { value: 'COLOR', label: "Didn't like the color" },
-  { value: 'UNWANTED', label: 'No longer needed' },
-  { value: 'OTHER', label: 'Other' },
+// UNKNOWN is a real enum value but not something a customer would ever pick themselves.
+const SELECTABLE_REASONS: ReturnReason[] = [
+  'SIZE_TOO_SMALL',
+  'SIZE_TOO_LARGE',
+  'DEFECTIVE',
+  'NOT_AS_DESCRIBED',
+  'WRONG_ITEM',
+  'STYLE',
+  'COLOR',
+  'UNWANTED',
+  'OTHER',
 ];
+const REASON_OPTIONS: { value: ReturnReason; label: string }[] = SELECTABLE_REASONS.map((value) => ({
+  value,
+  label: returnReasonLabel(value),
+}));
 
 type Selection = { quantity: number; reason: ReturnReason | '' };
 

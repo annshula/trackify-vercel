@@ -238,14 +238,17 @@ export const CUSTOMER_ORDER_RETURN_STATUS_QUERY = /* GraphQL */ `
     order(id: $id) {
       returns(first: 5) {
         nodes {
+          id
           status
           createdAt
           closedAt
+          updatedAt
           returnLineItems(first: 50) {
             nodes {
               lineItem {
                 id
               }
+              returnReason
             }
           }
           reverseDeliveries(first: 5) {

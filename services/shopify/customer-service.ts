@@ -354,11 +354,13 @@ export async function getOrder(orderId: string): Promise<Order | null> {
 type RawReturnStatusOrder = {
   returns?: {
     nodes: {
+      id: string;
       status: OrderReturnStatus;
       createdAt: string;
       closedAt: string | null;
+      updatedAt: string;
       returnLineItems: {
-        nodes: { lineItem?: { id: string } | null }[];
+        nodes: { lineItem?: { id: string } | null; returnReason: ReturnReason }[];
       };
       reverseDeliveries: {
         nodes: {
@@ -384,16 +386,23 @@ function toReturnSummary(order: RawReturnStatusOrder | null): OrderReturnSummary
       const lineItemIds = [
         ...new Set(r.returnLineItems.nodes.map((node) => node.lineItem?.id).filter((id): id is string => Boolean(id))),
       ];
+      const lineItemReasons: Record<string, ReturnReason> = {};
+      for (const node of r.returnLineItems.nodes) {
+        if (node.lineItem?.id) lineItemReasons[node.lineItem.id] = node.returnReason;
+      }
       const tracking =
         r.reverseDeliveries.nodes
           .map((delivery) => delivery.deliverable?.tracking)
           .find((t): t is NonNullable<typeof t> => Boolean(t?.trackingNumber)) ?? null;
 
       return {
+        id: r.id,
         status: r.status,
         lineItemIds,
+        lineItemReasons,
         requestedAt: r.createdAt,
         closedAt: r.closedAt,
+        updatedAt: r.updatedAt,
         tracking: tracking ? { number: tracking.trackingNumber, url: tracking.trackingUrl, carrierName: tracking.carrierName } : null,
       };
     })

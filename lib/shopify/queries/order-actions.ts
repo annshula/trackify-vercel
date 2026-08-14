@@ -34,3 +34,21 @@ export const ORDER_CANCEL_MUTATION = /* GraphQL */ `
     }
   }
 `;
+
+/**
+ * Reads why a merchant declined a return — `Return.decline { reason, note }`
+ * only exists on the Admin API (confirmed absent from the Customer Account
+ * API via live introspection). Read-only, but still requires the same
+ * ownership gate as the mutation above — see `getDeclinedReturnReasons` in
+ * order-actions-service.ts.
+ */
+export const RETURN_DECLINE_QUERY = /* GraphQL */ `
+  query ReturnDecline($id: ID!) {
+    return(id: $id) {
+      decline {
+        reason
+        note
+      }
+    }
+  }
+`;

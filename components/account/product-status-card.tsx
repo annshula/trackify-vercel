@@ -1,17 +1,19 @@
 import Image from 'next/image';
-import type { Order, OrderLineItem, OrderReturnDetail, OrderReturnSummary } from '@/types/commerce';
+import type { Order, OrderLineItem, OrderReturnDetail, OrderReturnSummary, ReturnDeclineInfo } from '@/types/commerce';
 import {
   shipmentSteps,
   statusTone,
   returnStatusLabel,
+  returnReasonLabel,
   returnStatusDescription,
+  returnDeclineReasonLabel,
   isFinalReturnStatus,
   type ShipmentGroup,
   type StatusTone,
 } from '@/lib/account/order-status';
 import { shortDate } from '@/lib/utils/date';
 import { cn } from '@/lib/utils/cn';
-import { CheckIcon, PackageIcon, RefreshIcon, TruckIcon, XCircleIcon } from '@/components/ui/icons';
+import { CheckIcon, CloseIcon, PackageIcon, RefreshIcon, TruckIcon, XCircleIcon } from '@/components/ui/icons';
 
 const TONE_STYLES: Record<StatusTone, { bar: string; iconBg: string; iconText: string; text: string }> = {
   success: { bar: 'bg-success', iconBg: 'bg-success-soft', iconText: 'text-success', text: 'text-success' },
@@ -34,7 +36,7 @@ function StatusGlyph({ isReturning, fulfillmentStatus }: { isReturning: boolean;
   return <TruckIcon size={11} />;
 }
 
-type TimelineNode = { id: string; label: string; at: string | null; state: 'done' | 'current' };
+type TimelineNode = { id: string; label: string; at: string | null; state: 'done' | 'current' | 'failed' };
 
 /**
  * The full real chain for a product: delivery history first, then — if this
@@ -42,7 +44,9 @@ type TimelineNode = { id: string; label: string; at: string | null; state: 'done
  * using each timestamp Shopify actually reports. There's no "approved"
  * milestone here (the Customer Account API doesn't expose one, unlike
  * Admin's schema) — just requested (always dated) and the current/final
- * status, dated only once it's actually closed.
+ * status. A final status is always `done` or `failed` regardless of whether
+ * Shopify set `closedAt` — CANCELED/DECLINED don't get any less final just
+ * because that timestamp happens to be missing.
  */
 function buildProductTimeline(
   deliverySteps: { id: string; label: string; at: string | null }[],
@@ -55,10 +59,18 @@ function buildProductTimeline(
   if (returnDetail.status === 'REQUESTED') return [...delivered, requested];
 
   const label = returnStatusLabel(returnDetail.status);
-  const statusStep: TimelineNode =
-    isFinalReturnStatus(returnDetail.status) && returnDetail.closedAt
-      ? { id: 'return-status', label, at: returnDetail.closedAt, state: 'done' }
-      : { id: 'return-status', label, at: null, state: 'current' };
+  const state: TimelineNode['state'] =
+    returnDetail.status === 'CLOSED'
+      ? 'done'
+      : returnDetail.status === 'CANCELED' || returnDetail.status === 'DECLINED'
+        ? 'failed'
+        : 'current';
+  const statusStep: TimelineNode = {
+    id: 'return-status',
+    label,
+    at: isFinalReturnStatus(returnDetail.status) ? (returnDetail.closedAt ?? returnDetail.updatedAt) : null,
+    state,
+  };
 
   return [...delivered, requested, statusStep];
 }
@@ -76,14 +88,17 @@ export function ProductStatusCard({
   group,
   order,
   returnStatus,
+  declineReasons,
 }: {
   item: OrderLineItem;
   group: ShipmentGroup;
   order: Order;
   returnStatus: OrderReturnSummary | null;
+  declineReasons: Record<string, ReturnDeclineInfo>;
 }) {
   const returnDetail = returnStatus?.returns.find((r) => r.lineItemIds.includes(item.id)) ?? null;
   const isReturning = returnDetail !== null;
+  const declineInfo = returnDetail ? (declineReasons[returnDetail.id] ?? null) : null;
 
   const steps = shipmentSteps(group, order);
   const timeline = buildProductTimeline(steps, returnDetail);
@@ -99,8 +114,9 @@ export function ProductStatusCard({
   const styles = TONE_STYLES[tone];
 
   const headingLabel = returnDetail ? returnStatusLabel(returnDetail.status) : steps[0]?.label;
-  const headingDate = returnDetail ? (returnDetail.closedAt ?? returnDetail.requestedAt) : steps[0]?.at;
+  const headingDate = returnDetail ? (returnDetail.closedAt ?? returnDetail.updatedAt) : steps[0]?.at;
   const returnDescription = returnDetail ? returnStatusDescription(returnDetail.status) : null;
+  const returnReason = returnDetail?.lineItemReasons[item.id] ?? null;
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-line bg-surface shadow-e1 transition-shadow duration-200 hover:shadow-e2">
@@ -136,27 +152,39 @@ export function ProductStatusCard({
           <span className="shrink-0 pt-0.5 text-xs text-ink-subtle tabular-nums">×{item.quantity}</span>
         </div>
 
-        {returnDescription && (
-          <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">{returnDescription}</p>
-        )}
-
         {timeline.length > 1 && <MiniStepper steps={timeline} />}
 
-        {returnDetail?.tracking?.number && (
-          <div className="mt-3 border-t border-line pt-3 text-sm">
-            <p className="text-xs text-ink-subtle">Tracking number</p>
-            {returnDetail.tracking.url ? (
-              <a
-                href={returnDetail.tracking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-ink underline underline-offset-4"
-              >
-                {returnDetail.tracking.number}
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            ) : (
-              <p className="font-medium">{returnDetail.tracking.number}</p>
+        {(returnDescription || returnReason || declineInfo || returnDetail?.tracking?.number) && (
+          <div className="mt-3 space-y-1 border-t border-line pt-3 text-sm">
+            {returnDescription && <p className="text-ink-muted">{returnDescription}</p>}
+            {returnReason && (
+              <p className="text-ink-subtle">
+                Reason: <span className="font-medium text-ink">{returnReasonLabel(returnReason)}</span>
+              </p>
+            )}
+            {declineInfo && (
+              <p className="text-danger">
+                Declined: <span className="font-medium">{returnDeclineReasonLabel(declineInfo.reason)}</span>
+                {declineInfo.note && <span className="text-danger/80"> — {declineInfo.note}</span>}
+              </p>
+            )}
+            {returnDetail?.tracking?.number && (
+              <p className="text-ink-subtle">
+                Tracking:{' '}
+                {returnDetail.tracking.url ? (
+                  <a
+                    href={returnDetail.tracking.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-ink underline underline-offset-4"
+                  >
+                    {returnDetail.tracking.number}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                ) : (
+                  <span className="font-medium text-ink">{returnDetail.tracking.number}</span>
+                )}
+              </p>
             )}
           </div>
         )}
@@ -185,6 +213,12 @@ export function ProductStatusCard({
 }
 
 /** Horizontal, chronological (oldest → newest) mini progress line. `current` renders as a pulsing accent dot instead of a checkmark — the one step that hasn't actually completed yet. */
+const STEP_LABEL_COLOR: Record<TimelineNode['state'], string> = {
+  done: 'text-ink',
+  current: 'text-accent',
+  failed: 'text-danger',
+};
+
 function MiniStepper({ steps }: { steps: TimelineNode[] }) {
   return (
     <div className="mt-3 flex items-start border-t border-line pt-3.5">
@@ -193,32 +227,43 @@ function MiniStepper({ steps }: { steps: TimelineNode[] }) {
         return (
           <div key={step.id} className={cn('flex items-start', isLast ? 'shrink-0' : 'flex-1')}>
             <div className="flex w-14 shrink-0 flex-col items-center gap-1.5 text-center">
-              {step.state === 'current' ? (
-                <span className="relative grid size-4 place-items-center rounded-full bg-accent">
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 animate-ping rounded-full bg-accent opacity-40 motion-reduce:hidden"
-                  />
-                  <span className="relative size-1.5 rounded-full bg-on-accent" />
-                </span>
-              ) : (
-                <span className="grid size-4 place-items-center rounded-full bg-success text-white ring-4 ring-success-soft">
-                  <CheckIcon size={9} />
-                </span>
-              )}
+              <MiniStepDot state={step.state} />
               <div>
-                <p className={cn('text-[11px] leading-tight font-medium', step.state === 'current' ? 'text-accent' : 'text-ink')}>
-                  {step.label}
-                </p>
+                <p className={cn('text-[11px] leading-tight font-medium', STEP_LABEL_COLOR[step.state])}>{step.label}</p>
                 {step.at && <p className="text-[10px] leading-tight text-ink-subtle">{shortDate(step.at)}</p>}
               </div>
             </div>
             {!isLast && (
-              <div className={cn('mt-2 h-0.5 flex-1 rounded-full', step.state === 'current' ? 'bg-line' : 'bg-success')} />
+              <div className={cn('mt-2 h-0.5 flex-1 rounded-full', step.state === 'done' ? 'bg-success' : 'bg-line')} />
             )}
           </div>
         );
       })}
     </div>
+  );
+}
+
+function MiniStepDot({ state }: { state: TimelineNode['state'] }) {
+  if (state === 'current') {
+    return (
+      <span className="relative grid size-4 place-items-center rounded-full bg-accent">
+        <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full bg-accent opacity-40 motion-reduce:hidden" />
+        <span className="relative size-1.5 rounded-full bg-on-accent" />
+      </span>
+    );
+  }
+
+  if (state === 'failed') {
+    return (
+      <span className="grid size-4 place-items-center rounded-full bg-danger text-white ring-4 ring-danger-soft">
+        <CloseIcon size={8} />
+      </span>
+    );
+  }
+
+  return (
+    <span className="grid size-4 place-items-center rounded-full bg-success text-white ring-4 ring-success-soft">
+      <CheckIcon size={9} />
+    </span>
   );
 }
