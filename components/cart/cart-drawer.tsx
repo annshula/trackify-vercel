@@ -46,6 +46,7 @@ export function CartDrawer() {
       open={isOpen}
       onClose={close}
       side="right"
+      className="max-h-[90vh]"
       title="Your bag"
       description={itemCount > 0 ? `${itemCount} item${itemCount === 1 ? '' : 's'}` : undefined}
       footer={
