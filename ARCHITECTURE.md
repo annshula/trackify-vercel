@@ -68,7 +68,7 @@ customer access token, and never issues a raw GraphQL request.
 ```
 app/
   layout.tsx  page.tsx  error.tsx  not-found.tsx  globals.css
-  sitemap.ts  robots.ts  opengraph-image.tsx
+  sitemap.ts  robots.ts  # default og:image is the static public/opengraph.png (lib/seo/metadata.ts)
   products/[handle]/page.tsx
   collections/page.tsx  collections/[handle]/page.tsx
   search/page.tsx

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FAQ_CATEGORIES, FAQ_ENTRIES } from "@/lib/content/faq";
-import { absoluteUrl } from "@/lib/seo/metadata";
+import { absoluteUrl, siteOpenGraphImage } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/seo/jsonld";
 import { Breadcrumb } from "@/components/ui/primitives";
 import { ButtonLink } from "@/components/ui/button";
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   alternates: { canonical: "/faq" },
   openGraph: {
+    ...siteOpenGraphImage,
     type: "website",
     title: TITLE,
     description: DESCRIPTION,
@@ -41,7 +42,9 @@ export default function FaqPage() {
 
       <div className="container-page">
         <div className="py-4">
-          <Breadcrumb items={[{ href: "/", label: "Home" }, { label: TITLE }]} />
+          <Breadcrumb
+            items={[{ href: "/", label: "Home" }, { label: TITLE }]}
+          />
         </div>
 
         {/* ── Hero ─────────────────────────────────────────────────────── */}
@@ -51,14 +54,20 @@ export default function FaqPage() {
           </span>
           <h1 className="mt-4 text-3xl sm:text-4xl">Questions, answered</h1>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
-            Real answers about what our trackers actually support, how the
-            gear holds up, and how orders, returns and checkout work here.
+            Real answers about what our trackers actually support, how the gear
+            holds up, and how orders, returns and checkout work here.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-ink-subtle">
             <span>{FAQ_ENTRIES.length} questions</span>
-            <span aria-hidden="true" className="size-1 rounded-full bg-line-strong" />
+            <span
+              aria-hidden="true"
+              className="size-1 rounded-full bg-line-strong"
+            />
             <span>{FAQ_CATEGORIES.length} categories</span>
-            <span aria-hidden="true" className="size-1 rounded-full bg-line-strong" />
+            <span
+              aria-hidden="true"
+              className="size-1 rounded-full bg-line-strong"
+            />
             <span>Answers within 1 working day</span>
           </div>
         </div>
@@ -80,8 +89,8 @@ export default function FaqPage() {
               </h2>
               <p className="text-sm leading-relaxed text-ink-muted">
                 We answer every message within one working day. Include your
-                order number if it&rsquo;s about an order that&rsquo;s
-                already placed — it lets us help you straight away.
+                order number if it&rsquo;s about an order that&rsquo;s already
+                placed — it lets us help you straight away.
               </p>
               <div className="mt-1 flex flex-wrap gap-3">
                 <ButtonLink href="/pages/contact" className="rounded-full">

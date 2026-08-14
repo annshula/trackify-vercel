@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { productRepository } from "@/lib/catalog";
 import { productRating } from "@/lib/catalog/selectors";
-import { absoluteUrl } from "@/lib/seo/metadata";
+import { absoluteUrl, siteOpenGraphImage } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbSchema } from "@/lib/seo/jsonld";
 import { ButtonLink } from "@/components/ui/button";
 import {
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: "Security and convenience in every carry — the Trackify story.",
   alternates: { canonical: "/about" },
   openGraph: {
+    ...siteOpenGraphImage,
     type: "website",
     title: "About · Trackify",
     description:
