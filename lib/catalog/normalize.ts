@@ -6,6 +6,7 @@ import type {
   CatalogVariant,
   ProductStatus,
 } from "@/types/catalog";
+import type { Blog, BlogArticle } from "@/types/blog";
 
 /**
  * Admin GraphQL payload -> public catalog record.
@@ -391,4 +392,66 @@ export function normalizeCollection(
 /** True when the product should appear anywhere on the storefront. */
 export function isPurchasable(product: CatalogProduct): boolean {
   return product.status === "ACTIVE" && product.publishedOnline;
+}
+
+/* ── Blog content ─────────────────────────────────────────────────────── */
+
+export type AdminArticleNode = {
+  id: string;
+  handle: string;
+  title: string;
+  body: string;
+  summary?: string | null;
+  tags: string[];
+  isPublished: boolean;
+  createdAt: string;
+  updatedAt?: string | null;
+  publishedAt?: string | null;
+  image?: AdminImage | null;
+  author?: { name: string } | null;
+  blog: { id: string; handle: string; title: string };
+};
+
+export type AdminBlogNode = {
+  id: string;
+  handle: string;
+  title: string;
+  tags: string[];
+  updatedAt?: string | null;
+};
+
+export function normalizeArticle(node: AdminArticleNode): BlogArticle {
+  return {
+    id: node.id,
+    handle: sanitizeHandle(node.handle, node.id),
+    blogId: node.blog.id,
+    blogHandle: sanitizeHandle(node.blog.handle, node.blog.id),
+    blogTitle: node.blog.title,
+    title: node.title,
+    bodyHtml: node.body ?? "",
+    excerptHtml: node.summary ?? "",
+    image: normalizeImage(node.image, `${node.id}-image`),
+    authorName: node.author?.name ?? null,
+    tags: [...(node.tags ?? [])].sort(),
+    isPublished: node.isPublished,
+    publishedAt: node.publishedAt ?? null,
+    createdAt: node.createdAt,
+    updatedAt: node.updatedAt ?? null,
+  };
+}
+
+export function normalizeBlog(node: AdminBlogNode, articleIds: string[]): Blog {
+  return {
+    id: node.id,
+    handle: sanitizeHandle(node.handle, node.id),
+    title: node.title,
+    tags: [...(node.tags ?? [])].sort(),
+    articleIds: [...articleIds].sort(),
+    updatedAt: node.updatedAt ?? null,
+  };
+}
+
+/** True when the article should appear anywhere on the storefront. */
+export function isArticleVisible(article: BlogArticle): boolean {
+  return article.isPublished;
 }

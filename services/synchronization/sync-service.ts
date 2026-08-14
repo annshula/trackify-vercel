@@ -1,7 +1,12 @@
 import 'server-only';
 import type { Catalog, CatalogCollection, CatalogProduct, SyncStats } from '@/types/catalog';
+import type { Blog, BlogArticle, BlogCatalog, BlogSyncStats } from '@/types/blog';
 import { adminRequest, paginateAdmin } from '@/lib/shopify/admin';
 import {
+  ARTICLES_PAGE_QUERY,
+  ARTICLE_BY_ID_QUERY,
+  BLOGS_PAGE_QUERY,
+  BLOG_BY_ID_QUERY,
   COLLECTIONS_PAGE_QUERY,
   COLLECTION_BY_ID_QUERY,
   PRODUCTS_PAGE_QUERY,
@@ -9,15 +14,22 @@ import {
   SHOP_QUERY,
 } from '@/lib/shopify/queries/admin';
 import {
+  normalizeArticle,
+  normalizeBlog,
   normalizeCollection,
   normalizeProduct,
+  type AdminArticleNode,
+  type AdminBlogNode,
   type AdminCollectionNode,
   type AdminProductNode,
 } from '@/lib/catalog/normalize';
 import { auditCatalog, catalogSchema, validateCatalog } from '@/lib/catalog/schema';
 import { productRepository, redirectRepository } from '@/lib/catalog';
-import { acquireLock, readJsonFile, CATALOG_PATH } from '@/lib/catalog/storage';
+import { blogRepository } from '@/lib/catalog/blog';
+import { acquireLock, readJsonFile, BLOG_PATH, CATALOG_PATH } from '@/lib/catalog/storage';
 import { serverEnv } from '@/lib/validation/env';
+
+export const BLOG_CATALOG_VERSION = 1;
 
 export const CATALOG_VERSION = 1;
 
@@ -259,4 +271,153 @@ export async function syncSingleCollection(collectionGid: string): Promise<Catal
 
   await productRepository.updateCollection(collection);
   return collection;
+}
+
+/* ── Blog content ──────────────────────────────────────────────────────── */
+
+/**
+ * Full blog/article rebuild — separate from `fullSync()` because blog content
+ * requires the `read_content` Admin API scope, which a store may not have
+ * granted yet. Failing here must never take the product catalog down with it.
+ */
+export async function fullSyncBlogContent(options: SyncOptions = {}): Promise<BlogSyncStats> {
+  const startedAt = Date.now();
+  const report = options.onProgress ?? (() => {});
+  const warnings: string[] = [];
+
+  const lock = await acquireLock({ timeoutMs: 60_000 });
+
+  try {
+    report('Fetching blogs…');
+    const blogNodes = await paginateAdmin<AdminBlogNode>(BLOGS_PAGE_QUERY, 'blogs', {
+      pageSize: 50,
+      onPage: (nodes, page) => report(`  page ${page}: ${nodes.length} blogs`),
+    });
+
+    report('Fetching articles…');
+    const articleNodes = await paginateAdmin<AdminArticleNode>(ARTICLES_PAGE_QUERY, 'articles', {
+      pageSize: options.pageSize ?? 50,
+      onPage: (nodes, page) => report(`  page ${page}: ${nodes.length} articles`),
+    });
+
+    report('Normalizing…');
+    const articles = articleNodes
+      .map((node) => {
+        try {
+          return normalizeArticle(node);
+        } catch (error) {
+          warnings.push(`Skipped article ${node.handle}: ${(error as Error).message}`);
+          return null;
+        }
+      })
+      .filter((article): article is BlogArticle => article !== null)
+      .sort((a, b) => a.id.localeCompare(b.id));
+
+    // Blog membership is derived from each article's own blog reference — one
+    // traversal instead of a per-blog articles query.
+    const membership = new Map<string, string[]>();
+    for (const article of articles) {
+      const list = membership.get(article.blogId);
+      if (list) list.push(article.id);
+      else membership.set(article.blogId, [article.id]);
+    }
+
+    const blogs = blogNodes
+      .map((node) => normalizeBlog(node, membership.get(node.id) ?? []))
+      .sort((a, b) => a.id.localeCompare(b.id));
+
+    const catalog: BlogCatalog = {
+      version: BLOG_CATALOG_VERSION,
+      generatedAt: new Date().toISOString(),
+      blogs,
+      articles,
+    };
+
+    report('Diffing against the previous blog catalog…');
+    const previous = await readJsonFile<BlogCatalog>(BLOG_PATH);
+    const diff = diffBlogCatalogs(previous, catalog);
+
+    report('Writing data/blog.json…');
+    await blogRepository.replaceCatalog(catalog);
+
+    const finishedAt = Date.now();
+    return {
+      startedAt: new Date(startedAt).toISOString(),
+      finishedAt: new Date(finishedAt).toISOString(),
+      durationMs: finishedAt - startedAt,
+      blogs: blogs.length,
+      articles: articles.length,
+      added: diff.added,
+      updated: diff.updated,
+      removed: diff.removed,
+      warnings,
+    };
+  } finally {
+    await lock.release();
+  }
+}
+
+export type BlogCatalogDiff = {
+  added: string[];
+  updated: string[];
+  removed: string[];
+};
+
+export function diffBlogCatalogs(previous: BlogCatalog | null, next: BlogCatalog): BlogCatalogDiff {
+  const key = (article: BlogArticle) => `${article.blogHandle}/${article.handle}`;
+
+  if (!previous) {
+    return { added: next.articles.map(key), updated: [], removed: [] };
+  }
+
+  const previousById = new Map(previous.articles.map((article) => [article.id, article]));
+  const nextIds = new Set(next.articles.map((article) => article.id));
+
+  const diff: BlogCatalogDiff = { added: [], updated: [], removed: [] };
+
+  for (const article of next.articles) {
+    const before = previousById.get(article.id);
+    if (!before) {
+      diff.added.push(key(article));
+      continue;
+    }
+    if (JSON.stringify(before) !== JSON.stringify(article)) diff.updated.push(key(article));
+  }
+
+  for (const article of previous.articles) {
+    if (!nextIds.has(article.id)) diff.removed.push(key(article));
+  }
+
+  return diff;
+}
+
+/* ── Incremental (webhook) paths ───────────────────────────────────────── */
+
+export async function syncSingleArticle(articleGid: string): Promise<BlogArticle | null> {
+  const data = await adminRequest<{ article: AdminArticleNode | null }>({
+    query: ARTICLE_BY_ID_QUERY,
+    variables: { id: articleGid },
+  });
+  if (!data.article) return null;
+
+  const article = normalizeArticle(data.article);
+  await blogRepository.updateArticle(article);
+  return article;
+}
+
+export async function syncSingleBlog(blogGid: string): Promise<Blog | null> {
+  const data = await adminRequest<{ blog: AdminBlogNode | null }>({
+    query: BLOG_BY_ID_QUERY,
+    variables: { id: blogGid },
+  });
+  if (!data.blog) return null;
+
+  // Membership comes from the articles already in the catalog, so a blog
+  // update never triggers a full article re-fetch.
+  const articles = await blogRepository.getAllArticles({ includeUnpublished: true });
+  const memberIds = articles.filter((article) => article.blogId === blogGid).map((article) => article.id);
+
+  const blog = normalizeBlog(data.blog, memberIds);
+  await blogRepository.updateBlog(blog);
+  return blog;
 }

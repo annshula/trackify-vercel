@@ -1,6 +1,12 @@
 import 'server-only';
 import { productRepository } from '@/lib/catalog';
-import { syncSingleCollection, syncSingleProduct } from '@/services/synchronization/sync-service';
+import { blogRepository } from '@/lib/catalog/blog';
+import {
+  syncSingleArticle,
+  syncSingleBlog,
+  syncSingleCollection,
+  syncSingleProduct,
+} from '@/services/synchronization/sync-service';
 import { adminRequest } from '@/lib/shopify/admin';
 import { INVENTORY_ITEM_VARIANTS_QUERY } from '@/lib/shopify/queries/admin';
 import { CACHE_TAGS, purgePath, purgeTag } from '@/lib/catalog/tags';
@@ -15,6 +21,12 @@ export type WebhookTopic =
   | 'inventory_levels/update'
   | 'product_listings/add'
   | 'product_listings/remove'
+  | 'blogs/create'
+  | 'blogs/update'
+  | 'blogs/delete'
+  | 'articles/create'
+  | 'articles/update'
+  | 'articles/delete'
   | 'shop/redact';
 
 export type WebhookResult = {
@@ -29,6 +41,12 @@ const productGid = (id: string | number) =>
 const collectionGid = (id: string | number) =>
   String(id).startsWith('gid://') ? String(id) : `gid://shopify/Collection/${id}`;
 
+const blogGid = (id: string | number) =>
+  String(id).startsWith('gid://') ? String(id) : `gid://shopify/Blog/${id}`;
+
+const articleGid = (id: string | number) =>
+  String(id).startsWith('gid://') ? String(id) : `gid://shopify/Article/${id}`;
+
 function revalidateProduct(handle: string): void {
   purgeTag(CACHE_TAGS.product(handle));
   purgeTag(CACHE_TAGS.catalog);
@@ -39,6 +57,18 @@ function revalidateCollection(handle: string): void {
   purgeTag(CACHE_TAGS.collection(handle));
   purgeTag(CACHE_TAGS.catalog);
   purgePath(`/collections/${handle}`);
+}
+
+function revalidateBlog(handle: string): void {
+  purgeTag(CACHE_TAGS.blog(handle));
+  purgeTag(CACHE_TAGS.blogCatalog);
+  purgePath(`/blogs/${handle}`);
+}
+
+function revalidateArticle(blogHandle: string, articleHandle: string): void {
+  purgeTag(CACHE_TAGS.article(blogHandle, articleHandle));
+  purgeTag(CACHE_TAGS.blogCatalog);
+  purgePath(`/blogs/${blogHandle}/${articleHandle}`);
 }
 
 /**
@@ -143,6 +173,68 @@ export async function handleWebhook(
 
       revalidateProduct(product.handle);
       return { handled: true, action: 'inventory-updated', detail: product.handle };
+    }
+
+    case 'blogs/create':
+    case 'blogs/update': {
+      const id = payload.id;
+      if (id === undefined || id === null) return { handled: false, action: 'missing-blog-id' };
+
+      const blog = await syncSingleBlog(blogGid(id as string | number));
+      if (!blog) return { handled: true, action: 'blog-not-found' };
+
+      revalidateBlog(blog.handle);
+      purgePath('/blogs');
+      return { handled: true, action: 'blog-upserted', detail: blog.handle };
+    }
+
+    case 'blogs/delete': {
+      const id = payload.id;
+      if (id === undefined || id === null) return { handled: false, action: 'missing-blog-id' };
+
+      const gid = blogGid(id as string | number);
+      const blogs = await blogRepository.getAllBlogs();
+      const existing = blogs.find((blog) => blog.id === gid);
+      const removed = await blogRepository.deleteBlog(gid);
+
+      if (existing) revalidateBlog(existing.handle);
+      purgeTag(CACHE_TAGS.blogCatalog);
+      purgePath('/blogs');
+      return { handled: true, action: removed ? 'blog-deleted' : 'blog-already-absent' };
+    }
+
+    case 'articles/create':
+    case 'articles/update': {
+      const id = payload.id;
+      if (id === undefined || id === null) return { handled: false, action: 'missing-article-id' };
+
+      const article = await syncSingleArticle(articleGid(id as string | number));
+      if (!article) {
+        const removed = await blogRepository.deleteArticle(articleGid(id as string | number));
+        purgeTag(CACHE_TAGS.blogCatalog);
+        return { handled: true, action: removed ? 'article-removed-not-found' : 'article-not-found' };
+      }
+
+      revalidateArticle(article.blogHandle, article.handle);
+      purgePath(`/blogs/${article.blogHandle}`);
+      return { handled: true, action: 'article-upserted', detail: `${article.blogHandle}/${article.handle}` };
+    }
+
+    case 'articles/delete': {
+      const id = payload.id;
+      if (id === undefined || id === null) return { handled: false, action: 'missing-article-id' };
+
+      const gid = articleGid(id as string | number);
+      const articles = await blogRepository.getAllArticles({ includeUnpublished: true });
+      const existing = articles.find((article) => article.id === gid);
+      const removed = await blogRepository.deleteArticle(gid);
+
+      if (existing) {
+        revalidateArticle(existing.blogHandle, existing.handle);
+        purgePath(`/blogs/${existing.blogHandle}`);
+      }
+      purgeTag(CACHE_TAGS.blogCatalog);
+      return { handled: true, action: removed ? 'article-deleted' : 'article-already-absent' };
     }
 
     case 'shop/redact':

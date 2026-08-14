@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { isAuthorizedAdminRequest, unauthorizedResponse } from '@/lib/admin/auth';
 import { CACHE_TAGS, purgePath, purgeTag } from '@/lib/catalog/tags';
 import { invalidateCatalogCache } from '@/lib/catalog';
+import { invalidateBlogCache } from '@/lib/catalog/blog';
 
 /**
  * POST /api/admin/revalidate
@@ -10,7 +11,7 @@ import { invalidateCatalogCache } from '@/lib/catalog';
  * Manual cache purge — for when a webhook was missed, or after editing content
  * that is not webhook-driven.
  *
- * Body: { tags?: string[], paths?: string[], catalog?: boolean }
+ * Body: { tags?: string[], paths?: string[], catalog?: boolean, blog?: boolean }
  */
 
 export const runtime = 'nodejs';
@@ -20,6 +21,7 @@ const bodySchema = z.object({
   tags: z.array(z.string().min(1).max(200)).max(50).optional(),
   paths: z.array(z.string().startsWith('/').max(500)).max(50).optional(),
   catalog: z.boolean().optional(),
+  blog: z.boolean().optional(),
 });
 
 export async function POST(request: Request): Promise<Response> {
@@ -44,6 +46,12 @@ export async function POST(request: Request): Promise<Response> {
     invalidateCatalogCache();
     purgeTag(CACHE_TAGS.catalog);
     purged.tags.push(CACHE_TAGS.catalog);
+  }
+
+  if (parsed.data.blog) {
+    invalidateBlogCache();
+    purgeTag(CACHE_TAGS.blogCatalog);
+    purged.tags.push(CACHE_TAGS.blogCatalog);
   }
 
   for (const tag of parsed.data.tags ?? []) {

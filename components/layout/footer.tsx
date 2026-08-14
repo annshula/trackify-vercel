@@ -94,7 +94,7 @@ export function Footer({
           <FooterColumn
             title="Help"
             links={[
-              { href: "https://shoptrackify.com/blogs/news", label: "Blogs" },
+              { href: "/blogs/news", label: "Blogs" },
               { href: "/faq", label: "FAQ" },
               { href: "/pages/shipping", label: "Shipping" },
               { href: "/pages/returns", label: "Returns" },

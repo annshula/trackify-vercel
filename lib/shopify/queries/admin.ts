@@ -204,6 +204,97 @@ export const COLLECTION_BY_ID_QUERY = /* GraphQL */ `
   }
 `;
 
+/* ── Blog content ──────────────────────────────────────────────────────────
+ * Requires the `read_content` Admin API access scope. If that scope is not
+ * granted on this store's custom app, `blogs`/`articles` come back with a
+ * GraphQL ACCESS_DENIED error rather than an empty list — surfaced clearly by
+ * the sync service rather than silently producing an empty blog.json.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+const ARTICLE_FIELDS = /* GraphQL */ `
+  fragment ArticleFields on Article {
+    id
+    handle
+    title
+    body
+    summary
+    tags
+    isPublished
+    createdAt
+    updatedAt
+    publishedAt
+    image {
+      id
+      url
+      width
+      height
+      altText
+    }
+    author {
+      name
+    }
+    blog {
+      id
+      handle
+      title
+    }
+  }
+`;
+
+export const ARTICLES_PAGE_QUERY = /* GraphQL */ `
+  ${ARTICLE_FIELDS}
+  query ArticlesPage($first: Int!, $after: String) {
+    articles(first: $first, after: $after, sortKey: ID) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        ...ArticleFields
+      }
+    }
+  }
+`;
+
+export const ARTICLE_BY_ID_QUERY = /* GraphQL */ `
+  ${ARTICLE_FIELDS}
+  query ArticleById($id: ID!) {
+    article(id: $id) {
+      ...ArticleFields
+    }
+  }
+`;
+
+export const BLOGS_PAGE_QUERY = /* GraphQL */ `
+  query BlogsPage($first: Int!, $after: String) {
+    blogs(first: $first, after: $after, sortKey: ID) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        id
+        handle
+        title
+        tags
+        updatedAt
+      }
+    }
+  }
+`;
+
+export const BLOG_BY_ID_QUERY = /* GraphQL */ `
+  query BlogById($id: ID!) {
+    blog(id: $id) {
+      id
+      handle
+      title
+      tags
+      updatedAt
+    }
+  }
+`;
+
 export const SHOP_QUERY = /* GraphQL */ `
   query Shop {
     shop {

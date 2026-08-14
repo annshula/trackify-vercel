@@ -1,4 +1,5 @@
 import type { CatalogCollection, CatalogProduct } from '@/types/catalog';
+import type { BlogArticle } from '@/types/blog';
 import { publicEnv } from '@/lib/validation/env';
 import { productRating } from '@/lib/catalog/selectors';
 import { absoluteUrl } from './metadata';
@@ -119,6 +120,23 @@ export function productSchema(product: CatalogProduct) {
           },
         }
       : {}),
+  };
+}
+
+export function articleSchema(article: BlogArticle) {
+  const url = absoluteUrl(`/blogs/${article.blogHandle}/${article.handle}`);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: article.title,
+    url,
+    datePublished: article.publishedAt ?? article.createdAt,
+    ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
+    ...(article.authorName ? { author: { '@type': 'Person', name: article.authorName } } : {}),
+    ...(article.image ? { image: [article.image.url] } : {}),
+    publisher: { '@id': `${publicEnv.siteUrl}/#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   };
 }
 

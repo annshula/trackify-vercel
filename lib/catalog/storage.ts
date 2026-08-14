@@ -17,6 +17,7 @@ import { randomBytes } from 'node:crypto';
 export const DATA_DIR = path.join(process.cwd(), 'data');
 export const CATALOG_PATH = path.join(DATA_DIR, 'products.json');
 export const REDIRECTS_PATH = path.join(DATA_DIR, 'redirects.json');
+export const BLOG_PATH = path.join(DATA_DIR, 'blog.json');
 export const SYNC_STATE_PATH = path.join(DATA_DIR, '.sync-state.json');
 const LOCK_PATH = path.join(DATA_DIR, '.sync.lock');
 

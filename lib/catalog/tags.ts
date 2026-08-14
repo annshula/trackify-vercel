@@ -6,6 +6,9 @@ export const CACHE_TAGS = {
   cart: 'cart',
   product: (handle: string) => `product:${handle}`,
   collection: (handle: string) => `collection:${handle}`,
+  blogCatalog: 'blog-catalog',
+  blog: (handle: string) => `blog:${handle}`,
+  article: (blogHandle: string, articleHandle: string) => `article:${blogHandle}/${articleHandle}`,
 } as const;
 
 /**
