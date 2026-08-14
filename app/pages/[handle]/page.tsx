@@ -85,7 +85,7 @@ export default async function StaticContentPage({ params }: PageProps) {
             // Real, merchant-authored policy from Shopify Admin → Settings → Policies.
             // Shopify sanitizes this HTML on ingest, same as product descriptions.
             <div
-              className="space-y-4 leading-relaxed text-ink-muted [&_a]:text-ink [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:text-ink [&_h2]:first:mt-0 [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:text-ink [&_li]:mb-1.5 [&_ol]:list-decimal [&_ol]:space-y-1.5 [&_ol]:pl-5 [&_p]:mb-4 [&_strong]:font-medium [&_strong]:text-ink [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-5"
+              className="prose-product"
               dangerouslySetInnerHTML={{ __html: shopifyPolicy.body }}
             />
           ) : (

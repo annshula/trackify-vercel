@@ -339,6 +339,97 @@
   animation: tf-shimmer 1.4s linear infinite;
 }
 
+/*
+ * Styling for raw HTML from Shopify's rich-text editor (product
+ * descriptions, shop policies) — this content arrives as plain <p>/<ul>/
+ * <strong>/<a> markup with no classes attached, so it needs real selectors
+ * rather than Tailwind utility classes. Without this, the base `p { }` rule
+ * alone left every element touching with no spacing, no list markers, and
+ * no visual distinction for headings/bold/links — which read as broken
+ * compared to how Shopify's own admin preview renders the same HTML.
+ */
+@utility prose-product {
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+  & p {
+    margin-block: 1em;
+  }
+
+  & h1, & h2, & h3, & h4 {
+    margin-top: 1.75em;
+    margin-bottom: 0.6em;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+  & h1 { font-size: 1.5em; }
+  & h2 { font-size: 1.3em; }
+  & h3 { font-size: 1.15em; }
+  & h4 { font-size: 1em; }
+
+  & ul, & ol {
+    margin-block: 1em;
+    padding-left: 1.25em;
+  }
+  & ul {
+    list-style: disc;
+  }
+  & ol {
+    list-style: decimal;
+  }
+  & li {
+    margin-block: 0.35em;
+  }
+  & li > ul, & li > ol {
+    margin-block: 0.35em;
+  }
+
+  & strong, & b {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  & em, & i {
+    font-style: italic;
+  }
+
+  & a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  & blockquote {
+    margin-block: 1em;
+    padding-left: 1em;
+    border-left: 2px solid var(--color-line);
+    color: var(--color-ink-subtle);
+  }
+
+  & hr {
+    margin-block: 1.5em;
+    border-color: var(--color-line);
+  }
+
+  & table {
+    margin-block: 1em;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  & th, & td {
+    padding: 0.5em 0.75em;
+    border: 1px solid var(--color-line);
+    text-align: left;
+  }
+}
+
 @keyframes tf-reveal-on-view {
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: none; }
