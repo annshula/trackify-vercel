@@ -106,7 +106,9 @@ const RETURN_STATUS_LABELS: Record<OrderReturnStatus, string> = {
 const RETURN_STATUS_DESCRIPTIONS: Record<OrderReturnStatus, string> = {
   REQUESTED: "We're reviewing your return request.",
   OPEN: 'Your return is approved and on its way to us.',
-  CLOSED: 'Your return is complete.',
+  // Empty on purpose — the heading already says "Return complete"; a
+  // description repeating that adds nothing.
+  CLOSED: '',
   CANCELED: 'This return was canceled.',
   DECLINED: 'This return request was declined. Contact us for help.',
 };

@@ -100,6 +100,7 @@ export function ProductStatusCard({
 
   const headingLabel = returnDetail ? returnStatusLabel(returnDetail.status) : steps[0]?.label;
   const headingDate = returnDetail ? (returnDetail.closedAt ?? returnDetail.requestedAt) : steps[0]?.at;
+  const returnDescription = returnDetail ? returnStatusDescription(returnDetail.status) : null;
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-line bg-surface shadow-e1 transition-shadow duration-200 hover:shadow-e2">
@@ -135,8 +136,8 @@ export function ProductStatusCard({
           <span className="shrink-0 pt-0.5 text-xs text-ink-subtle tabular-nums">×{item.quantity}</span>
         </div>
 
-        {returnDetail && (
-          <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">{returnStatusDescription(returnDetail.status)}</p>
+        {returnDescription && (
+          <p className="mt-3 border-t border-line pt-3 text-sm text-ink-muted">{returnDescription}</p>
         )}
 
         {timeline.length > 1 && <MiniStepper steps={timeline} />}
