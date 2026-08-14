@@ -6,8 +6,13 @@ import { serverEnv } from "@/lib/validation/env";
 /**
  * ShopifyAdminService — privileged, server-only.
  *
- * Used exclusively by the sync pipeline, webhook processing and diagnostics.
- * Never reachable from a customer-facing route handler.
+ * Used by the sync pipeline, webhook processing and diagnostics. The one
+ * exception is `services/shopify/order-actions-service.ts`, which lets a
+ * customer trigger `orderCancel` (no Customer Account API equivalent
+ * exists) — but only after re-fetching that exact order through the
+ * customer-scoped API first, so an id belonging to another customer never
+ * reaches this client. No other customer-facing route handler should call
+ * this directly.
  *
  * Authentication is resolved per call: either the static custom-app token or a
  * 24h token obtained via the client credentials grant (cached in-process).

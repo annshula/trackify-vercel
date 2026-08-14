@@ -5,6 +5,9 @@ import type {
   Order,
   OrderFulfillment,
   OrderLineItem,
+  OrderReturnDetail,
+  OrderReturnStatus,
+  OrderReturnSummary,
   OrderSummary,
 } from '@/types/commerce';
 import { customerRequest } from '@/lib/shopify/customer-account';
@@ -13,6 +16,7 @@ import {
   ADDRESS_DELETE_MUTATION,
   ADDRESS_UPDATE_MUTATION,
   CUSTOMER_ORDER_QUERY,
+  CUSTOMER_ORDER_RETURN_STATUS_QUERY,
   CUSTOMER_ORDERS_QUERY,
   CUSTOMER_QUERY,
   CUSTOMER_UPDATE_MUTATION,
@@ -343,6 +347,88 @@ export async function getOrder(orderId: string): Promise<Order | null> {
           }
         : null,
   };
+}
+
+type RawReturnStatusOrder = {
+  returnStatus: OrderReturnStatus | 'NO_RETURN';
+  returns?: {
+    nodes: {
+      createdAt: string;
+      requestApprovedAt: string | null;
+      closedAt: string | null;
+      returnLineItems: {
+        nodes: { fulfillmentLineItem?: { lineItem: { id: string } } | null }[];
+      };
+      reverseFulfillmentOrders: {
+        nodes: {
+          reverseDeliveries: {
+            nodes: {
+              deliverable: { tracking?: { number: string | null; url: string | null; carrierName: string | null } | null } | null;
+            }[];
+          };
+        }[];
+      };
+    }[];
+  };
+};
+
+function toReturnSummary(order: RawReturnStatusOrder | null): OrderReturnSummary | null {
+  if (!order || order.returnStatus === 'NO_RETURN') return null;
+
+  const rawReturns = order.returns?.nodes ?? [];
+  if (rawReturns.length === 0) return null;
+
+  // One entry per real Shopify Return, keeping its own dates and line items
+  // together — a merged/flattened summary would misattribute one return's
+  // timestamps to another return's products when an order has more than one.
+  const returns: OrderReturnDetail[] = rawReturns
+    .map((r) => {
+      const lineItemIds = [
+        ...new Set(
+          r.returnLineItems.nodes.map((node) => node.fulfillmentLineItem?.lineItem.id).filter((id): id is string => Boolean(id)),
+        ),
+      ];
+      const tracking =
+        r.reverseFulfillmentOrders.nodes
+          .flatMap((rfo) => rfo.reverseDeliveries.nodes)
+          .map((delivery) => delivery.deliverable?.tracking)
+          .find((t): t is NonNullable<typeof t> => Boolean(t?.number)) ?? null;
+
+      return {
+        lineItemIds,
+        requestedAt: r.createdAt,
+        approvedAt: r.requestApprovedAt,
+        closedAt: r.closedAt,
+        tracking: tracking ? { number: tracking.number, url: tracking.url, carrierName: tracking.carrierName } : null,
+      };
+    })
+    // No real per-item mapping for this return — never guess which product it applies to.
+    .filter((r) => r.lineItemIds.length > 0);
+
+  if (returns.length === 0) return null;
+
+  return { status: order.returnStatus, returns };
+}
+
+/**
+ * Return status attributed to the real line items it covers — never a
+ * blanket status applied to every product in the order. Kept separate from
+ * `getOrder` on purpose: a GraphQL document fails as a whole on any
+ * unrecognized field, and these fields are unverified against the Customer
+ * Account API schema (confirmed only via Admin API introspection). Any
+ * failure — schema mismatch or otherwise — returns `null` rather than
+ * guessing, and must never break the order detail page.
+ */
+export async function getOrderReturnStatus(orderId: string): Promise<OrderReturnSummary | null> {
+  try {
+    const data = await customerRequest<{ order: RawReturnStatusOrder | null }>({
+      query: CUSTOMER_ORDER_RETURN_STATUS_QUERY,
+      variables: { id: orderId },
+    });
+    return toReturnSummary(data.order);
+  } catch {
+    return null;
+  }
 }
 
 /* ── Addresses ─────────────────────────────────────────────────────────── */

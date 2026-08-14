@@ -151,6 +151,13 @@ export const RefreshIcon = (props: IconProps) => (
   </Icon>
 );
 
+export const XCircleIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="m9.5 9.5 5 5M14.5 9.5l-5 5" />
+  </Icon>
+);
+
 export const StarIcon = ({ fillLevel = 0, ...props }: IconProps & { fillLevel?: number }) => {
   // A stable id is required so two stars on the page cannot collide.
   const clipId = React.useId();

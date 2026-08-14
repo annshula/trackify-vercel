@@ -1,4 +1,4 @@
-import type { Order, OrderFulfillment, OrderLineItem } from '@/types/commerce';
+import type { Order, OrderFulfillment, OrderLineItem, OrderReturnStatus } from '@/types/commerce';
 
 /**
  * Order status presentation.
@@ -57,6 +57,66 @@ export function financialLabel(status: string | null): string {
 export function statusTone(status: string | null): StatusTone {
   if (!status) return 'neutral';
   return FULFILLMENT_TONES[status] ?? 'neutral';
+}
+
+/** Pre-shipment fulfillment states — nothing has left the warehouse yet. */
+const PRE_SHIPMENT_STATUSES = new Set([
+  'UNFULFILLED',
+  'OPEN',
+  'PENDING_FULFILLMENT',
+  'SCHEDULED',
+]);
+
+/**
+ * Whether a customer can self-serve cancel this order: not already cancelled,
+ * and nothing has shipped yet. A shipped order still may be cancellable via
+ * Shopify's API, but that judgment call is left to support rather than
+ * offered as a one-click self-service action.
+ */
+export function isCancellable(order: Pick<Order, 'cancelledAt' | 'fulfillmentStatus'>): boolean {
+  if (order.cancelledAt) return false;
+  return order.fulfillmentStatus === null || PRE_SHIPMENT_STATUSES.has(order.fulfillmentStatus);
+}
+
+/** Whether a customer can request a return: not cancelled, and at least one fulfillment exists. */
+export function isReturnable(order: Pick<Order, 'cancelledAt' | 'fulfillments'>): boolean {
+  if (order.cancelledAt) return false;
+  return order.fulfillments.length > 0;
+}
+
+/**
+ * Line items that have actually shipped, and so are eligible to return.
+ * `OrderFulfillment.lineItemIds` only tracks membership (not a per-fulfillment
+ * quantity split), so the full ordered quantity is used as the return cap —
+ * the same fidelity the rest of this module already works with.
+ */
+export function returnableLineItems(order: Pick<Order, 'lineItems' | 'fulfillments'>): OrderLineItem[] {
+  const fulfilledIds = new Set(order.fulfillments.flatMap((fulfillment) => fulfillment.lineItemIds));
+  return order.lineItems.filter((item) => fulfilledIds.has(item.id));
+}
+
+const RETURN_STATUS_LABELS: Record<OrderReturnStatus, string> = {
+  RETURN_REQUESTED: 'Return requested',
+  IN_PROGRESS: 'Return in progress',
+  INSPECTION_COMPLETE: 'Return received',
+  RETURNED: 'Return complete',
+  RETURN_FAILED: 'Return failed',
+};
+
+const RETURN_STATUS_DESCRIPTIONS: Record<OrderReturnStatus, string> = {
+  RETURN_REQUESTED: "We're reviewing your return request.",
+  IN_PROGRESS: 'Your return is on its way to us.',
+  INSPECTION_COMPLETE: "We've received your return and it's being inspected.",
+  RETURNED: 'Your return is complete.',
+  RETURN_FAILED: 'There was a problem processing this return. Contact us for help.',
+};
+
+export function returnStatusLabel(status: OrderReturnStatus): string {
+  return RETURN_STATUS_LABELS[status];
+}
+
+export function returnStatusDescription(status: OrderReturnStatus): string {
+  return RETURN_STATUS_DESCRIPTIONS[status];
 }
 
 export type ShipmentGroup = {
@@ -134,108 +194,3 @@ function titleCase(value: string): string {
     .join(' ');
 }
 
-export type TimelineStep = {
-  id: string;
-  label: string;
-  description: string;
-  state: 'done' | 'current' | 'upcoming' | 'skipped';
-  at: string | null;
-};
-
-/**
- * Builds the visual delivery timeline from real order data.
- *
- * Steps are only marked complete when Shopify actually reports them. A cancelled
- * order collapses to its own single state rather than showing a fake progression.
- */
-export function buildTimeline(order: {
-  processedAt: string;
-  cancelledAt: string | null;
-  financialStatus: string | null;
-  fulfillments: {
-    status: string;
-    createdAt: string;
-    estimatedDeliveryAt: string | null;
-    events: { status: string; happenedAt: string }[];
-  }[];
-}): TimelineStep[] {
-  if (order.cancelledAt) {
-    return [
-      {
-        id: 'placed',
-        label: 'Order placed',
-        description: 'We received your order.',
-        state: 'done',
-        at: order.processedAt,
-      },
-      {
-        id: 'cancelled',
-        label: 'Cancelled',
-        description: 'This order was cancelled.',
-        state: 'current',
-        at: order.cancelledAt,
-      },
-    ];
-  }
-
-  const fulfillment = order.fulfillments[0] ?? null;
-  const eventStatuses = new Set(
-    order.fulfillments.flatMap((item) => item.events.map((event) => event.status.toUpperCase())),
-  );
-
-  const shipped = Boolean(fulfillment);
-  const inTransit = eventStatuses.has('IN_TRANSIT') || eventStatuses.has('OUT_FOR_DELIVERY');
-  const delivered = fulfillment?.status === 'SUCCESS' || eventStatuses.has('DELIVERED');
-
-  const eventTime = (status: string): string | null =>
-    order.fulfillments
-      .flatMap((item) => item.events)
-      .find((event) => event.status.toUpperCase() === status)?.happenedAt ?? null;
-
-  const steps: TimelineStep[] = [
-    {
-      id: 'placed',
-      label: 'Order placed',
-      description: 'We received your order.',
-      state: 'done',
-      at: order.processedAt,
-    },
-    {
-      id: 'processing',
-      label: 'Processing',
-      description: 'Your order is being prepared for dispatch.',
-      state: shipped ? 'done' : 'current',
-      at: null,
-    },
-    {
-      id: 'shipped',
-      label: 'Shipped',
-      description: 'Your order has left our warehouse.',
-      state: shipped ? (inTransit || delivered ? 'done' : 'current') : 'upcoming',
-      at: fulfillment?.createdAt ?? null,
-    },
-    {
-      id: 'transit',
-      label: 'In transit',
-      description: 'On its way to you with the carrier.',
-      state: delivered ? 'done' : inTransit ? 'current' : 'upcoming',
-      at: eventTime('IN_TRANSIT') ?? eventTime('OUT_FOR_DELIVERY'),
-    },
-    {
-      id: 'delivered',
-      label: 'Delivered',
-      description: delivered
-        ? 'Your order arrived.'
-        : fulfillment?.estimatedDeliveryAt
-          ? `Estimated ${new Date(fulfillment.estimatedDeliveryAt).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-            })}`
-          : 'We will update this once the carrier confirms delivery.',
-      state: delivered ? 'done' : 'upcoming',
-      at: delivered ? (eventTime('DELIVERED') ?? null) : null,
-    },
-  ];
-
-  return steps;
-}

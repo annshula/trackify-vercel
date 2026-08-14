@@ -221,6 +221,59 @@ export const CUSTOMER_ORDER_QUERY = /* GraphQL */ `
   }
 `;
 
+/**
+ * Return status for an order, attributed to the specific line items an
+ * active return actually covers (via \`fulfillmentLineItem.lineItem.id\`) —
+ * never a blanket status applied to every product. Kept separate from
+ * CUSTOMER_ORDER_QUERY on purpose: a GraphQL document fails as a whole on any
+ * unrecognized field, and these fields are unverified against the Customer
+ * Account API schema (confirmed only via Admin API introspection) — see
+ * \`getOrderReturnStatus\` in customer-service.ts, which returns null rather
+ * than guessing if this fails.
+ */
+export const CUSTOMER_ORDER_RETURN_STATUS_QUERY = /* GraphQL */ `
+  query CustomerOrderReturnStatus($id: ID!) {
+    order(id: $id) {
+      returnStatus
+      returns(first: 5) {
+        nodes {
+          createdAt
+          requestApprovedAt
+          closedAt
+          returnLineItems(first: 50) {
+            nodes {
+              ... on ReturnLineItem {
+                fulfillmentLineItem {
+                  lineItem {
+                    id
+                  }
+                }
+              }
+            }
+          }
+          reverseFulfillmentOrders(first: 5) {
+            nodes {
+              reverseDeliveries(first: 5) {
+                nodes {
+                  deliverable {
+                    ... on ReverseDeliveryShippingDeliverable {
+                      tracking {
+                        number
+                        url
+                        carrierName
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const CUSTOMER_UPDATE_MUTATION = /* GraphQL */ `
   mutation CustomerUpdate($input: CustomerUpdateInput!) {
     customerUpdate(input: $input) {

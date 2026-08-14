@@ -164,3 +164,63 @@ export type Order = {
 export type ActionResult<T = undefined> =
   | { ok: true; data: T }
   | { ok: false; error: string; fieldErrors?: Record<string, string> };
+
+/* ── Order actions (cancel + return) ──────────────────────────────────── */
+
+/** Restricted to reasons a customer can honestly self-attest. Shopify's full
+ *  `OrderCancelReason` enum also has DECLINED / FRAUD / INVENTORY / STAFF,
+ *  which are merchant judgment calls. */
+export type OrderCancelReason = 'CUSTOMER' | 'OTHER';
+
+export type OrderCancelRefundMethod = 'ORIGINAL_PAYMENT_METHOD' | 'STORE_CREDIT';
+
+export type CancelOrderInput = {
+  orderId: string;
+  reason: OrderCancelReason;
+  note?: string;
+  refundMethod: OrderCancelRefundMethod;
+  restock: boolean;
+  notifyCustomer: boolean;
+};
+
+/** Shopify's `ReturnReason` enum, customer-appropriate subset. */
+export type ReturnReason =
+  | 'SIZE_TOO_SMALL'
+  | 'SIZE_TOO_LARGE'
+  | 'DEFECTIVE'
+  | 'NOT_AS_DESCRIBED'
+  | 'WRONG_ITEM'
+  | 'STYLE'
+  | 'UNWANTED'
+  | 'OTHER';
+
+export type ReturnLineItemInput = {
+  orderId: string;
+  lineItemId: string;
+  quantity: number;
+  reason: ReturnReason;
+};
+
+/** Shopify's order-level `OrderReturnStatus` enum. */
+export type OrderReturnStatus =
+  | 'RETURN_REQUESTED'
+  | 'IN_PROGRESS'
+  | 'INSPECTION_COMPLETE'
+  | 'RETURNED'
+  | 'RETURN_FAILED';
+
+/** One real Shopify Return object, with its own timestamps and the exact line items it covers. */
+export type OrderReturnDetail = {
+  lineItemIds: string[];
+  requestedAt: string | null;
+  approvedAt: string | null;
+  closedAt: string | null;
+  tracking: { number: string | null; url: string | null; carrierName: string | null } | null;
+};
+
+export type OrderReturnSummary = {
+  /** Order-level aggregate status — Shopify doesn't expose a customer-friendly equivalent per individual Return. */
+  status: OrderReturnStatus;
+  /** One entry per actual Return on the order — a product's real timeline is built from whichever entry covers it. */
+  returns: OrderReturnDetail[];
+};
