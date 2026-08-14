@@ -39,11 +39,11 @@ export function OrderCard({ order, compact = false }: { order: OrderSummary; com
 
       <div className="flex items-center justify-between gap-4 px-5 py-4">
         {!compact && order.previewImages.length > 0 && (
-          <ul className="flex -space-x-2.5">
+          <ul className="flex gap-2">
             {order.previewImages.map((image, index) => (
               <li
                 key={`${image.url}-${index}`}
-                className="relative size-14 overflow-hidden rounded-md bg-surface-sunken ring-2 ring-surface"
+                className="relative size-14 shrink-0 overflow-hidden rounded-md bg-surface-sunken"
               >
                 <Image
                   src={image.url}
@@ -55,7 +55,7 @@ export function OrderCard({ order, compact = false }: { order: OrderSummary; com
               </li>
             ))}
             {order.lineItemCount > order.previewImages.length && (
-              <li className="relative grid size-14 place-items-center rounded-md bg-surface-sunken text-xs font-medium text-ink-muted ring-2 ring-surface">
+              <li className="relative grid size-14 shrink-0 place-items-center rounded-md bg-surface-sunken text-xs font-medium text-ink-muted">
                 +{order.lineItemCount - order.previewImages.length}
               </li>
             )}
