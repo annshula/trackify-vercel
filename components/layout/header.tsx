@@ -405,7 +405,7 @@ export function Header({
               >
                 <BagIcon size={24} />
                 {itemCount > 0 && (
-                  <span className="absolute top-1 right-1 grid min-w-4.5 place-items-center rounded-full bg-accent px-1 font-display text-2xs font-semibold tracking-tight text-on-accent tabular-nums">
+                  <span className="absolute top-1 right-1 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-accent px-1 font-display text-2xs font-semibold tracking-tight text-on-accent tabular-nums shadow-e1 ring-2 ring-canvas">
                     {itemCount > 99 ? "99+" : itemCount}
                   </span>
                 )}

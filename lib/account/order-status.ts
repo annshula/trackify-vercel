@@ -1,4 +1,4 @@
-import type { Order, OrderFulfillment, OrderLineItem, OrderReturnStatus } from '@/types/commerce';
+import type { Order, OrderFulfillment, OrderLineItem, OrderReturnStatus, OrderReturnSummary } from '@/types/commerce';
 
 /**
  * Order status presentation.
@@ -116,6 +116,18 @@ const RETURN_STATUS_DESCRIPTIONS: Record<OrderReturnStatus, string> = {
 /** Terminal states — nothing more will happen to this return. */
 export function isFinalReturnStatus(status: OrderReturnStatus): boolean {
   return status === 'CLOSED' || status === 'CANCELED' || status === 'DECLINED';
+}
+
+/**
+ * Whether a line item already has a return against it that's requested,
+ * in progress, or completed — a canceled or declined return doesn't count,
+ * since the item is genuinely available to request a return for again.
+ */
+export function hasActiveReturn(itemId: string, returnStatus: OrderReturnSummary | null): boolean {
+  if (!returnStatus) return false;
+  return returnStatus.returns.some(
+    (r) => r.lineItemIds.includes(itemId) && r.status !== 'CANCELED' && r.status !== 'DECLINED',
+  );
 }
 
 export function returnStatusLabel(status: OrderReturnStatus): string {

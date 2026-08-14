@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { requireCustomer } from '@/lib/auth/guard';
-import { getOrder } from '@/services/shopify/customer-service';
-import { isReturnable, returnableLineItems } from '@/lib/account/order-status';
+import { getOrder, getOrderReturnStatus } from '@/services/shopify/customer-service';
+import { hasActiveReturn, isReturnable, returnableLineItems } from '@/lib/account/order-status';
 import { noIndex } from '@/lib/seo/metadata';
 import { Breadcrumb } from '@/components/ui/primitives';
 import { ReturnRequestForm } from '@/components/account/return-request-form';
@@ -20,7 +20,9 @@ export default async function OrderReturnPage({ params }: PageProps) {
   const order = await getOrder(orderId).catch(() => null);
   if (!order || !isReturnable(order)) notFound();
 
-  const items = returnableLineItems(order);
+  // Never allowed to fail the page — see getOrderReturnStatus's own doc comment.
+  const returnStatus = await getOrderReturnStatus(orderId);
+  const items = returnableLineItems(order).filter((item) => !hasActiveReturn(item.id, returnStatus));
   if (items.length === 0) notFound();
 
   return (
