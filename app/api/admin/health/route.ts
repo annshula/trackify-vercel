@@ -39,6 +39,17 @@ export async function GET(request: Request): Promise<Response> {
       webhookSecret: Boolean(env.webhookSecret),
       sessionSecret: Boolean(env.sessionSecret),
     },
+    // Presence only, never values — tells us which catalog storage backend
+    // this deployment will actually use (fs vs Blob), without a dashboard trip.
+    blobStorage: {
+      blobReadWriteToken: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      vercelOidcToken: Boolean(process.env.VERCEL_OIDC_TOKEN),
+      blobStoreId: Boolean(process.env.BLOB_STORE_ID),
+      willUseBlobBackend: Boolean(
+        process.env.BLOB_READ_WRITE_TOKEN ||
+          (process.env.VERCEL_OIDC_TOKEN && process.env.BLOB_STORE_ID),
+      ),
+    },
   };
 
   // ── Shopify reachability ──────────────────────────────────────────────
