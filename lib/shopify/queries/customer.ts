@@ -267,6 +267,28 @@ export const CUSTOMER_ORDER_RETURN_STATUS_QUERY = /* GraphQL */ `
   }
 `;
 
+/**
+ * Submits a real return request. Shape confirmed via live introspection
+ * against the Customer Account API (not documented publicly at the time
+ * this was written): \`orderRequestReturn(orderId: ID!, requestedLineItems:
+ * [RequestedLineItemInput!]!): OrderRequestReturnPayload\`, where
+ * \`RequestedLineItemInput\` is \`{ lineItemId: ID!, quantity: Int!,
+ * returnReason: ReturnReason!, customerNote: String }\`.
+ */
+export const ORDER_REQUEST_RETURN_MUTATION = /* GraphQL */ `
+  mutation OrderRequestReturn($orderId: ID!, $requestedLineItems: [RequestedLineItemInput!]!) {
+    orderRequestReturn(orderId: $orderId, requestedLineItems: $requestedLineItems) {
+      return {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 export const CUSTOMER_UPDATE_MUTATION = /* GraphQL */ `
   mutation CustomerUpdate($input: CustomerUpdateInput!) {
     customerUpdate(input: $input) {

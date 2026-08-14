@@ -9,6 +9,7 @@ import type {
   OrderReturnStatus,
   OrderReturnSummary,
   OrderSummary,
+  ReturnReason,
 } from '@/types/commerce';
 import { customerRequest } from '@/lib/shopify/customer-account';
 import {
@@ -20,6 +21,7 @@ import {
   CUSTOMER_ORDERS_QUERY,
   CUSTOMER_QUERY,
   CUSTOMER_UPDATE_MUTATION,
+  ORDER_REQUEST_RETURN_MUTATION,
 } from '@/lib/shopify/queries/customer';
 import { firstUserError, type GraphQLUserError } from '@/lib/shopify/errors';
 
@@ -429,71 +431,47 @@ export async function getOrderReturnStatus(orderId: string): Promise<OrderReturn
     });
     return toReturnSummary(data.order);
   } catch (error) {
-    // Temporary diagnostic: these fields are only confirmed against the Admin
-    // API (via introspection) — never against the Customer Account API
-    // itself, which needs a real signed-in session to test. If this logs,
-    // that's the mismatch; the message says which field.
     console.error(
       '[return-status] query failed, showing no return status for this order:',
       error instanceof Error ? error.message : error,
     );
-    await logReturnSchemaDebug();
     return null;
   }
 }
 
+export type RequestReturnItem = { lineItemId: string; quantity: number; reason: ReturnReason };
+
 /**
- * TEMPORARY diagnostic — introspects the Customer Account API's own schema
- * (through the same authenticated session) to find the real field names for
- * returns, since Admin API introspection turned out not to match. Delete
- * this once CUSTOMER_ORDER_RETURN_STATUS_QUERY is rewritten against the
- * confirmed real schema.
+ * Submits a real return request via `orderRequestReturn` — shape confirmed
+ * via live introspection against the Customer Account API (see
+ * `ORDER_REQUEST_RETURN_MUTATION`'s doc comment). No separate ownership
+ * check is needed here the way `cancelOrder` needs one: this call goes
+ * through the customer-scoped token, so Shopify itself only ever lets it
+ * act on the signed-in customer's own order.
  */
-type DebugField = { name: string; type: { kind: string; name: string | null; ofType: DebugField['type'] | null } };
-type DebugType = { name: string; fields: DebugField[] | null; enumValues: { name: string }[] | null } | null;
+export async function requestReturn(orderId: string, items: RequestReturnItem[]): Promise<void> {
+  const data = await customerRequest<{
+    orderRequestReturn: {
+      return: { id: string } | null;
+      userErrors: GraphQLUserError[];
+    };
+  }>({
+    query: ORDER_REQUEST_RETURN_MUTATION,
+    variables: {
+      orderId,
+      requestedLineItems: items.map((item) => ({
+        lineItemId: item.lineItemId,
+        quantity: item.quantity,
+        returnReason: item.reason,
+      })),
+    },
+    retries: 1,
+  });
 
-function debugTypeName(t: DebugField['type'] | null): string {
-  if (!t) return '?';
-  if (t.name) return t.name;
-  if (t.ofType) return debugTypeName(t.ofType);
-  return '?';
-}
-
-async function logReturnSchemaDebug(): Promise<void> {
-  const typeQuery = (name: string) => `
-    q_${name}: __type(name: "${name}") {
-      name
-      fields { name type { kind name ofType { kind name ofType { kind name } } } }
-      enumValues { name }
-    }
-  `;
-
-  try {
-    const data = await customerRequest<Record<string, DebugType>>({
-      query: /* GraphQL */ `
-        query ReturnSchemaDebug {
-          ${typeQuery('Return')}
-          ${typeQuery('ReverseDelivery')}
-          ${typeQuery('ReverseDeliveryDeliverable')}
-          ${typeQuery('ReturnStatus')}
-        }
-      `,
-    });
-
-    for (const [key, type] of Object.entries(data)) {
-      const label = key.replace('q_', '');
-      if (!type) {
-        console.error(`[return-status][schema] ${label}: NOT FOUND`);
-        continue;
-      }
-      if (type.enumValues) console.error(`[return-status][schema] ${label} enum values:`, type.enumValues.map((v) => v.name));
-      if (type.fields) console.error(`[return-status][schema] ${label} fields:`, type.fields.map((f) => `${f.name}: ${debugTypeName(f.type)}`));
-    }
-  } catch (introspectionError) {
-    console.error(
-      '[return-status][schema] introspection itself failed (may be disabled on this API):',
-      introspectionError instanceof Error ? introspectionError.message : introspectionError,
-    );
+  assertNoUserErrors(data.orderRequestReturn?.userErrors, 'We could not submit that return. Please try again.');
+  if (!data.orderRequestReturn?.return) {
+    console.error('[return-request] orderRequestReturn reported success but returned no return object.');
+    throw new CustomerServiceError('We could not submit that return. Please try again.');
   }
 }
 

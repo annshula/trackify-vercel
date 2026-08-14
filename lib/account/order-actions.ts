@@ -4,19 +4,21 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import type { ActionResult, ReturnLineItemInput } from '@/types/commerce';
 import { cancelOrder, OrderActionError } from '@/services/shopify/order-actions-service';
+import { requestReturn, CustomerServiceError } from '@/services/shopify/customer-service';
 import { UnauthenticatedError } from '@/lib/shopify/errors';
 
 /**
  * Order-level server actions: cancel (live, calls the real Admin API — see
  * `order-actions-service.ts` for the ownership gate) and return request
- * (stubbed — see `requestReturnAction` below).
+ * (live, calls the real Customer Account API — see `requestReturn` in
+ * customer-service.ts).
  */
 
 function handle(error: unknown): ActionResult<never> {
   if (error instanceof UnauthenticatedError) {
     return { ok: false, error: 'Your session expired. Please sign in again.' };
   }
-  if (error instanceof OrderActionError) {
+  if (error instanceof OrderActionError || error instanceof CustomerServiceError) {
     return { ok: false, error: error.message };
   }
   return { ok: false, error: 'Something went wrong. Please try again.' };
@@ -66,28 +68,15 @@ const returnItemSchema = z.object({
   orderId: z.string().trim().min(1),
   lineItemId: z.string().trim().min(1),
   quantity: z.number().int().min(1),
-  reason: z.enum([
-    'SIZE_TOO_SMALL',
-    'SIZE_TOO_LARGE',
-    'DEFECTIVE',
-    'NOT_AS_DESCRIBED',
-    'WRONG_ITEM',
-    'STYLE',
-    'UNWANTED',
-    'OTHER',
-  ]),
+  reason: z.enum(['SIZE_TOO_SMALL', 'SIZE_TOO_LARGE', 'UNWANTED', 'NOT_AS_DESCRIBED', 'WRONG_ITEM', 'DEFECTIVE', 'STYLE', 'COLOR', 'OTHER']),
 });
 
 const returnRequestSchema = z.array(returnItemSchema).min(1, 'Select at least one item to return.');
 
 /**
- * Records a return request. Not yet wired to Shopify — self-serve returns
- * (Customer Account API `returnRequest` mutation) need to be confirmed
- * enabled on the store first. Logged here so a submission isn't silently
- * dropped in the meantime.
- *
- * TODO: replace the console.info below with a call to Shopify's Customer
- * Account API `returnRequest` mutation once self-serve returns are enabled.
+ * Submits a real return request via `requestReturn` (Customer Account API's
+ * `orderRequestReturn` mutation). Every item here comes from one order's
+ * return page, so they all share the same `orderId`.
  */
 export async function requestReturnAction(items: ReturnLineItemInput[]): Promise<ActionResult> {
   const parsed = returnRequestSchema.safeParse(items);
@@ -95,7 +84,18 @@ export async function requestReturnAction(items: ReturnLineItemInput[]): Promise
     return { ok: false, error: parsed.error.issues[0]?.message ?? 'That return request was incomplete.' };
   }
 
-  console.info('[return-request] received (not yet sent to Shopify):', parsed.data);
+  const orderId = parsed.data[0]?.orderId;
+  if (!orderId) return { ok: false, error: 'That return request was incomplete.' };
 
-  return { ok: true, data: undefined };
+  try {
+    await requestReturn(
+      orderId,
+      parsed.data.map((item) => ({ lineItemId: item.lineItemId, quantity: item.quantity, reason: item.reason })),
+    );
+    revalidatePath(`/account/orders/${encodeURIComponent(orderId)}`);
+    revalidatePath(`/account/orders/${encodeURIComponent(orderId)}/return`);
+    return { ok: true, data: undefined };
+  } catch (error) {
+    return handle(error);
+  }
 }

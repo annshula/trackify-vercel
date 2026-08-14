@@ -19,6 +19,7 @@ const REASON_OPTIONS: { value: ReturnReason; label: string }[] = [
   { value: 'NOT_AS_DESCRIBED', label: 'Not as described' },
   { value: 'WRONG_ITEM', label: 'Wrong item' },
   { value: 'STYLE', label: "Didn't like the style" },
+  { value: 'COLOR', label: "Didn't like the color" },
   { value: 'UNWANTED', label: 'No longer needed' },
   { value: 'OTHER', label: 'Other' },
 ];

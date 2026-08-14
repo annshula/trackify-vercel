@@ -183,16 +183,18 @@ export type CancelOrderInput = {
   notifyCustomer: boolean;
 };
 
-/** Shopify's `ReturnReason` enum, customer-appropriate subset. */
+/** Shopify Customer Account API's real `ReturnReason` enum — confirmed via live introspection. */
 export type ReturnReason =
   | 'SIZE_TOO_SMALL'
   | 'SIZE_TOO_LARGE'
-  | 'DEFECTIVE'
+  | 'UNWANTED'
   | 'NOT_AS_DESCRIBED'
   | 'WRONG_ITEM'
+  | 'DEFECTIVE'
   | 'STYLE'
-  | 'UNWANTED'
-  | 'OTHER';
+  | 'COLOR'
+  | 'OTHER'
+  | 'UNKNOWN';
 
 export type ReturnLineItemInput = {
   orderId: string;
