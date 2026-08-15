@@ -114,7 +114,11 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
 
         <div id="buy-box" className="scroll-mt-24">
-          <Suspense fallback={<BuyBoxSkeleton />}>
+          <Suspense
+            fallback={
+              <BuyBoxSkeleton title={product.title} vendor={product.vendor} />
+            }
+          >
             <BuyBox product={product} />
           </Suspense>
         </div>
@@ -165,16 +169,36 @@ export default async function ProductPage({ params }: PageProps) {
   );
 }
 
-/** Mirrors the real BuyBox proportions so nothing shifts when it swaps in. */
-function BuyBoxSkeleton() {
+/**
+ * Mirrors the real BuyBox proportions so nothing shifts when it swaps in.
+ *
+ * BuyBox is a client component gated on useSearchParams(), so Next.js ships
+ * this fallback — not BuyBox's own markup — in the static/prerendered HTML
+ * that crawlers see. The title and vendor are real server-rendered text
+ * (not skeleton bars) so every product page has a proper H1 before
+ * hydration ever runs.
+ */
+function BuyBoxSkeleton({
+  title,
+  vendor,
+}: {
+  title: string;
+  vendor?: string | null;
+}) {
   return (
     <div className="lg:grid lg:grid-cols-12 lg:gap-x-14">
       <div className="-mx-4 sm:-mx-6 lg:col-span-7 lg:mx-0">
         <Skeleton className="h-[min(92vw,360px)] w-full lg:h-125 lg:rounded-2xl" />
       </div>
       <div className="space-y-4 px-4 pt-7 sm:px-6 lg:col-span-5 lg:px-0 lg:pt-0">
-        <Skeleton className="h-3 w-24" />
-        <Skeleton className="h-8 w-3/4" />
+        {vendor && (
+          <p className="text-2xs font-semibold tracking-[0.2em] text-ink-subtle uppercase">
+            {vendor}
+          </p>
+        )}
+        <h1 className="font-display text-3xl leading-[1.1] tracking-tight text-balance">
+          {title}
+        </h1>
         <Skeleton className="h-9 w-32" />
         <Skeleton className="h-7 w-48 rounded-full" />
         <Skeleton className="h-12 w-full rounded-lg" />

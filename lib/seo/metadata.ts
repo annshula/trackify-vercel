@@ -46,7 +46,7 @@ export const rootMetadata: Metadata = {
     template: `%s · ${SITE_NAME}`,
   },
   description:
-    "Smart, secure, seamless everyday carry — trackers, wallets and EDC essentials built to last, with fast delivery, easy returns, and every order tracked from one place.",
+    "Smart, secure, seamless everyday carry — trackers, wallets and EDC essentials built to last. Fast delivery, easy returns, every order tracked.",
   applicationName: SITE_NAME,
   referrer: "strict-origin-when-cross-origin",
   formatDetection: { telephone: false, address: false, email: false },
