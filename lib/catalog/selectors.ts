@@ -1,4 +1,4 @@
-import type { CatalogProduct, CatalogVariant } from '@/types/catalog';
+import type { CatalogImage, CatalogProduct, CatalogVariant } from '@/types/catalog';
 
 /** Pure, shared derivations used by both server and client components. */
 
@@ -91,6 +91,21 @@ export function productRating(product: CatalogProduct): { value: number; count: 
 
   const count = rawCount ? Number.parseInt(rawCount, 10) : 0;
   return { value, count: Number.isFinite(count) ? count : 0 };
+}
+
+/** The photo Shopify shows for a color swatch: the image of the first variant carrying that value. */
+export function variantImageFor(
+  product: CatalogProduct,
+  optionName: string,
+  value: string,
+): CatalogImage | null {
+  const variant = product.variants.find((candidate) =>
+    candidate.selectedOptions.some(
+      (option) => option.name === optionName && option.value === value,
+    ),
+  );
+  if (!variant?.imageId) return null;
+  return product.images.find((image) => image.id === variant.imageId) ?? null;
 }
 
 export const OPTION_IS_COLOR = /^(colour|color)$/i;

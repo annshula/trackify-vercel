@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { cn } from "@/lib/utils/cn";
@@ -24,6 +25,7 @@ import {
   lowStockCount,
   optionsOfVariant,
   productRating,
+  variantImageFor,
   OPTION_IS_COLOR,
 } from "@/lib/catalog/selectors";
 import { useCart } from "@/components/cart/cart-provider";
@@ -306,7 +308,54 @@ export function BuyBox({ product }: { product: CatalogProduct }) {
                         {option.values.map((value) => {
                           const isSelected = selected === value;
                           const isAvailable = available.has(value);
-                          const swatch = isColor ? colorSwatch(value) : null;
+                          // A real product photo reads better than a flat
+                          // color dot — Shopify's own admin defaults to this
+                          // once a variant has an image, so match it here.
+                          const image = isColor
+                            ? variantImageFor(product, option.name, value)
+                            : null;
+                          const swatch =
+                            isColor && !image ? colorSwatch(value) : null;
+
+                          if (image) {
+                            return (
+                              <button
+                                key={value}
+                                type="button"
+                                role="radio"
+                                aria-checked={isSelected}
+                                onClick={() => selectOption(option.name, value)}
+                                title={
+                                  isAvailable ? value : `${value} — unavailable`
+                                }
+                                className={cn(
+                                  "relative size-11 shrink-0 overflow-hidden rounded-lg border-2 bg-surface transition-colors duration-200",
+                                  isSelected
+                                    ? "border-ink"
+                                    : "border-transparent ring-1 ring-line-strong hover:ring-ink",
+                                )}
+                              >
+                                <Image
+                                  src={image.url}
+                                  alt=""
+                                  aria-hidden="true"
+                                  fill
+                                  sizes="44px"
+                                  className="object-contain p-1"
+                                />
+                                <span className="sr-only">
+                                  {value}
+                                  {!isAvailable && " (unavailable)"}
+                                </span>
+                                {!isAvailable && (
+                                  <span
+                                    className="pointer-events-none absolute inset-0 bg-canvas/60"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                              </button>
+                            );
+                          }
 
                           if (swatch) {
                             return (

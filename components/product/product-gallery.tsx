@@ -13,7 +13,6 @@ import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import { cn } from "@/lib/utils/cn";
-import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { BLUR_DATA_URL, imageAlt } from "@/lib/utils/image";
 import {
   ChevronLeftIcon,
@@ -115,7 +114,6 @@ export function ProductGallery({
   }, [media, onActiveChange]);
 
   const slides = React.useMemo(() => media.map(toSlide), [media]);
-  const thumbStripRef = useDragScroll<HTMLUListElement>();
 
   if (media.length === 0) {
     return (
@@ -130,9 +128,9 @@ export function ProductGallery({
   const current = media[index];
 
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-col gap-2.5 lg:flex-row-reverse lg:items-start lg:gap-3">
       {/* Main stage */}
-      <div className="relative min-w-0">
+      <div className="relative min-w-0 lg:flex-1">
         <div
           ref={trackRef}
           onScroll={onScroll}
@@ -209,13 +207,12 @@ export function ProductGallery({
         )}
       </div>
 
-      {/* Thumbnail strip — horizontal under the stage, which keeps the image
-          column as wide as possible rather than surrendering 80px to a rail. */}
+      {/* Thumbnail rail — a vertical column to the left of the stage on
+          desktop (Amazon-style), matching the stage's own height so it never
+          pushes the layout taller. Mobile relies on the swipeable carousel
+          above instead, so this stays hidden below lg. */}
       {media.length > 1 && (
-        <ul
-          ref={thumbStripRef}
-          className="hide-scrollbar hidden gap-2 overflow-x-auto lg:flex lg:cursor-grab"
-        >
+        <ul className="hide-scrollbar hidden gap-2 lg:flex lg:h-125 lg:w-16 lg:shrink-0 lg:flex-col lg:overflow-y-auto">
           {media.map((item, itemIndex) => (
             <li key={item.id} className="shrink-0">
               <button
@@ -227,10 +224,10 @@ export function ProductGallery({
                 aria-label={`Show image ${itemIndex + 1} of ${media.length}`}
                 aria-current={itemIndex === index}
                 className={cn(
-                  // A border rather than an offset ring: this strip is a
-                  // horizontal scroll container, and `ring-offset` paints
-                  // outside the border box where the container clips it.
-                  // A border sits inside the box, so it is never cut off.
+                  // A border rather than an offset ring: this rail is a
+                  // scroll container, and `ring-offset` paints outside the
+                  // border box where the container clips it. A border sits
+                  // inside the box, so it is never cut off.
                   "relative size-16 overflow-hidden rounded-lg border-2 bg-surface transition-[border-color,opacity] duration-200",
                   itemIndex === index
                     ? "border-ink opacity-100"
