@@ -96,6 +96,9 @@ const CSP = [
   // execute script.
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: blob: https://cdn.shopify.com https://*.myshopify.com https://www.facebook.com`,
+  // Product/article videos are served from Shopify's video CDN — without this,
+  // <video> falls back to default-src 'self' and every request is blocked.
+  `media-src 'self' https://cdn.shopify.com https://*.myshopify.com`,
   `font-src 'self' data:`,
   `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com https://cloudflareinsights.com${IS_DEV ? " ws://localhost:* wss://localhost:*" : ""}`,
   // Shopify's ExternalVideo media type is YouTube or Vimeo only.

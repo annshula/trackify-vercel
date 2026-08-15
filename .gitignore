@@ -26,3 +26,4 @@ data/.sync-state.json
 # editor
 .vscode/
 .idea/
+.gstack/

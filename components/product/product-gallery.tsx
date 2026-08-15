@@ -158,6 +158,10 @@ export function ProductGallery({
                 product={product}
                 priority={itemIndex === 0}
                 fit="cover"
+                // Only the slide currently scrolled into view should play —
+                // every slide is mounted at once in this carousel, so without
+                // this a video would sit paused until manually pressed.
+                active={itemIndex === index}
               />
             </button>
           ))}
@@ -170,7 +174,7 @@ export function ProductGallery({
               aria-label={`Zoom ${product.title} image ${index + 1}`}
               className="relative hidden h-125 w-full cursor-zoom-in lg:block"
             >
-              <MediaFrame item={current} product={product} priority />
+              <MediaFrame item={current} product={product} priority active />
               <span className="absolute right-3 bottom-3 grid size-9 place-items-center rounded-lg bg-canvas/90 text-ink backdrop-blur-sm">
                 <ZoomIcon size={17} />
               </span>
@@ -308,11 +312,14 @@ function MediaFrame({
   product,
   priority,
   fit = "contain",
+  active = true,
 }: {
   item: CatalogMedia;
   product: CatalogProduct;
   priority?: boolean;
   fit?: "contain" | "cover";
+  /** Whether this is the slide currently in view — drives video autoplay. */
+  active?: boolean;
 }) {
   if (item.type === "image") {
     return (
@@ -334,21 +341,7 @@ function MediaFrame({
   }
 
   if (item.type === "video") {
-    return (
-      <video
-        controls
-        playsInline
-        preload="metadata"
-        poster={item.previewUrl ?? undefined}
-        aria-label={item.altText ?? `${product.title} video`}
-        className="size-full object-contain"
-      >
-        {item.sources.map((source) => (
-          <source key={source.url} src={source.url} type={source.mimeType} />
-        ))}
-        Your browser does not support embedded video.
-      </video>
-    );
+    return <ProductVideoFrame item={item} product={product} active={active} />;
   }
 
   if (item.type === "external_video") {
@@ -377,6 +370,58 @@ function MediaFrame({
     <div className="grid size-full place-items-center text-sm text-ink-subtle">
       3D model
     </div>
+  );
+}
+
+/*
+ * Autoplays, muted and looping, the moment its slide becomes the active one —
+ * the same "preview" behaviour Amazon uses for product videos, so the
+ * customer sees it move without having to find and press play themselves.
+ * Controls stay on so they can unmute or pause; browsers only block
+ * *unmuted* autoplay, so muted+active is enough to satisfy that policy.
+ */
+function ProductVideoFrame({
+  item,
+  product,
+  active,
+}: {
+  item: Extract<CatalogMedia, { type: "video" }>;
+  product: CatalogProduct;
+  active: boolean;
+}) {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (active) {
+      video.play().catch(() => {
+        // Autoplay can still be rejected (e.g. low-power mode) — the visible
+        // native controls remain the fallback for the customer to press play.
+      });
+    } else {
+      video.pause();
+    }
+  }, [active]);
+
+  return (
+    <video
+      ref={videoRef}
+      controls
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      poster={item.previewUrl ?? undefined}
+      aria-label={item.altText ?? `${product.title} video`}
+      className="size-full object-contain"
+    >
+      {item.sources.map((source) => (
+        <source key={source.url} src={source.url} type={source.mimeType} />
+      ))}
+      Your browser does not support embedded video.
+    </video>
   );
 }
 

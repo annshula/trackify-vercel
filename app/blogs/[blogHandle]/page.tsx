@@ -34,10 +34,16 @@ export default async function BlogPage({ params, searchParams }: PageProps) {
   const { blogHandle } = await params;
   const resolvedSearchParams = await searchParams;
 
-  const blog = await blogRepository.getBlogByHandle(blogHandle);
+  const [blog, blogs] = await Promise.all([blogRepository.getBlogByHandle(blogHandle), blogRepository.getAllBlogs()]);
   if (!blog) notFound();
 
   const page = await blogRepository.getArticlesByBlog(blogHandle, { page: parsePage(resolvedSearchParams.page) });
+
+  // The store's one-and-only blog is usually titled something like "Blogs" or
+  // "News" — stacking that title right after the generic "Blog" hub crumb
+  // reads as a duplicate ("Blog > Blogs"). Collapse to one crumb in that case;
+  // with multiple blogs the two are genuinely different pages, so keep both.
+  const showBlogTitleCrumb = blogs.length > 1;
 
   return (
     <>
@@ -45,13 +51,19 @@ export default async function BlogPage({ params, searchParams }: PageProps) {
         data={breadcrumbSchema([
           { name: 'Home', url: '/' },
           { name: 'Blog', url: '/blogs' },
-          { name: blog.title, url: `/blogs/${blog.handle}` },
+          ...(showBlogTitleCrumb ? [{ name: blog.title, url: `/blogs/${blog.handle}` }] : []),
         ])}
       />
 
       <div className="container-page">
         <div className="py-4">
-          <Breadcrumb items={[{ href: '/', label: 'Home' }, { href: '/blogs', label: 'Blog' }, { label: blog.title }]} />
+          <Breadcrumb
+            items={[
+              { href: '/', label: 'Home' },
+              { href: '/blogs', label: 'Blog' },
+              ...(showBlogTitleCrumb ? [{ label: blog.title }] : []),
+            ]}
+          />
         </div>
 
         <header className="max-w-2xl pb-8">

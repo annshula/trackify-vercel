@@ -271,6 +271,14 @@ export const SettingsIcon = (props: IconProps) => (
   </Icon>
 );
 
+export const LinkIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M10 14.5 14.5 10" />
+    <path d="M11 8.5 12.8 6.7a3.4 3.4 0 1 1 4.8 4.8L15.7 13" />
+    <path d="M13.5 15.8 11.7 17.6a3.4 3.4 0 1 1-4.8-4.8L8.8 11" />
+  </Icon>
+);
+
 export const QuoteIcon = (props: IconProps) => (
   <Icon {...props} fill="currentColor" stroke="none">
     <path d="M9.5 6.5C6.5 8 5 10.3 5 13.2c0 2.4 1.6 4.1 3.7 4.1 1.9 0 3.3-1.4 3.3-3.2 0-1.7-1.2-3-2.8-3-.2 0-.4 0-.6.1.3-1.7 1.7-3.2 3.4-4.1L9.5 6.5Zm9 0C15.5 8 14 10.3 14 13.2c0 2.4 1.6 4.1 3.7 4.1 1.9 0 3.3-1.4 3.3-3.2 0-1.7-1.2-3-2.8-3-.2 0-.4 0-.6.1.3-1.7 1.7-3.2 3.4-4.1l-1.5-1.6Z" />
