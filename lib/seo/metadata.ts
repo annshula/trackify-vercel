@@ -49,6 +49,10 @@ export const rootMetadata: Metadata = {
     "Smart, secure, seamless everyday carry — trackers, wallets and EDC essentials built to last. Fast delivery, easy returns, every order tracked.",
   applicationName: SITE_NAME,
   referrer: "strict-origin-when-cross-origin",
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   formatDetection: { telephone: false, address: false, email: false },
   openGraph: {
     type: "website",
