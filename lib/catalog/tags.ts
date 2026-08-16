@@ -22,3 +22,27 @@ export function purgeTag(tag: string): void {
 export function purgePath(path: string, type?: 'layout' | 'page'): void {
   revalidatePath(path, type);
 }
+
+export function revalidateProduct(handle: string): void {
+  purgeTag(CACHE_TAGS.product(handle));
+  purgeTag(CACHE_TAGS.catalog);
+  purgePath(`/products/${handle}`);
+}
+
+export function revalidateCollection(handle: string): void {
+  purgeTag(CACHE_TAGS.collection(handle));
+  purgeTag(CACHE_TAGS.catalog);
+  purgePath(`/collections/${handle}`);
+}
+
+export function revalidateBlog(handle: string): void {
+  purgeTag(CACHE_TAGS.blog(handle));
+  purgeTag(CACHE_TAGS.blogCatalog);
+  purgePath(`/blogs/${handle}`);
+}
+
+export function revalidateArticle(blogHandle: string, articleHandle: string): void {
+  purgeTag(CACHE_TAGS.article(blogHandle, articleHandle));
+  purgeTag(CACHE_TAGS.blogCatalog);
+  purgePath(`/blogs/${blogHandle}/${articleHandle}`);
+}

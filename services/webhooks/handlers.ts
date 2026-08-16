@@ -9,7 +9,15 @@ import {
 } from '@/services/synchronization/sync-service';
 import { adminRequest } from '@/lib/shopify/admin';
 import { INVENTORY_ITEM_VARIANTS_QUERY } from '@/lib/shopify/queries/admin';
-import { CACHE_TAGS, purgePath, purgeTag } from '@/lib/catalog/tags';
+import {
+  CACHE_TAGS,
+  purgePath,
+  purgeTag,
+  revalidateArticle,
+  revalidateBlog,
+  revalidateCollection,
+  revalidateProduct,
+} from '@/lib/catalog/tags';
 
 export type WebhookTopic =
   | 'products/create'
@@ -46,30 +54,6 @@ const blogGid = (id: string | number) =>
 
 const articleGid = (id: string | number) =>
   String(id).startsWith('gid://') ? String(id) : `gid://shopify/Article/${id}`;
-
-function revalidateProduct(handle: string): void {
-  purgeTag(CACHE_TAGS.product(handle));
-  purgeTag(CACHE_TAGS.catalog);
-  purgePath(`/products/${handle}`);
-}
-
-function revalidateCollection(handle: string): void {
-  purgeTag(CACHE_TAGS.collection(handle));
-  purgeTag(CACHE_TAGS.catalog);
-  purgePath(`/collections/${handle}`);
-}
-
-function revalidateBlog(handle: string): void {
-  purgeTag(CACHE_TAGS.blog(handle));
-  purgeTag(CACHE_TAGS.blogCatalog);
-  purgePath(`/blogs/${handle}`);
-}
-
-function revalidateArticle(blogHandle: string, articleHandle: string): void {
-  purgeTag(CACHE_TAGS.article(blogHandle, articleHandle));
-  purgeTag(CACHE_TAGS.blogCatalog);
-  purgePath(`/blogs/${blogHandle}/${articleHandle}`);
-}
 
 /**
  * Routes a verified webhook to the smallest possible amount of work.

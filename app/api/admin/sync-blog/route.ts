@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { isAuthorizedAdminRequest, unauthorizedResponse } from '@/lib/admin/auth';
 import { fullSyncBlogContent } from '@/services/synchronization/sync-service';
-import { CACHE_TAGS, purgePath, purgeTag } from '@/lib/catalog/tags';
+import { CACHE_TAGS, purgePath, purgeTag, revalidateArticle, revalidateBlog } from '@/lib/catalog/tags';
 import { invalidateBlogCache } from '@/lib/catalog/blog';
 
 /**
@@ -27,6 +27,18 @@ export async function POST(request: Request): Promise<Response> {
     invalidateBlogCache();
     purgeTag(CACHE_TAGS.blogCatalog);
     purgePath('/blogs', 'layout');
+
+    // purgePath('/blogs', 'layout') does not reach already-cached article/blog
+    // detail pages — an existing article whose image just changed keeps
+    // serving its stale ISR render until each of those paths is purged too.
+    const changedBlogHandles = new Set<string>();
+    for (const key of [...stats.added, ...stats.updated]) {
+      const [blogHandle, articleHandle] = key.split('/');
+      if (!blogHandle || !articleHandle) continue;
+      revalidateArticle(blogHandle, articleHandle);
+      changedBlogHandles.add(blogHandle);
+    }
+    for (const blogHandle of changedBlogHandles) revalidateBlog(blogHandle);
 
     return NextResponse.json(
       { ok: true, stats, logs },
