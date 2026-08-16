@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-16T18:12:51.263Z",
+  "generatedAt": "2026-08-16T18:15:15.892Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -4043,11 +4043,11 @@
         "title": "Acupressure Pen | No-Needle Meridian Massage Tool",
         "description": "Auto-sensing acupressure pen finds pressure points for you — no needles, no training. 3 & 5-head styles, oil or oil-free. Shop now."
       },
-      "status": "ACTIVE",
-      "publishedOnline": true,
-      "publishedAt": "2026-08-16T17:55:33Z",
+      "status": "DRAFT",
+      "publishedOnline": false,
+      "publishedAt": null,
       "createdAt": "2026-08-16T17:55:30Z",
-      "updatedAt": "2026-08-16T18:01:28Z",
+      "updatedAt": "2026-08-16T18:14:46Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12083713900771",
@@ -4384,7 +4384,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-16T17:59:37Z",
+      "updatedAt": "2026-08-16T18:14:47Z",
       "productIds": [
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783841493219",
