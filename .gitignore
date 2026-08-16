@@ -27,3 +27,6 @@ data/.sync-state.json
 .vscode/
 .idea/
 .gstack/
+
+# strix security scan output — local run data, may contain vuln findings
+strix_runs/
