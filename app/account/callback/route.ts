@@ -76,6 +76,12 @@ export async function GET(request: Request): Promise<NextResponse> {
   await restoreCustomerCart();
   await associateCartWithCustomer();
 
+  // The redirect target was checked when the OAuth transaction was created,
+  // but re-validate it at the point of use: a crafted transaction must never
+  // send the browser to a different origin (open redirect).
   const destination = new URL(transaction.redirectTo || '/account', publicEnv.siteUrl);
+  if (destination.origin !== new URL(publicEnv.siteUrl).origin) {
+    return errorRedirect('invalid_destination');
+  }
   return NextResponse.redirect(destination);
 }

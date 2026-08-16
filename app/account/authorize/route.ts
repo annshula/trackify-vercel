@@ -15,11 +15,19 @@ import { publicEnv } from '@/lib/validation/env';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-/** Only same-site paths may be used as a post-login destination. */
+/** Only same-origin paths may be used as a post-login destination. */
 function safeReturnTo(raw: string | null): string {
   if (!raw) return '/account';
-  if (!raw.startsWith('/') || raw.startsWith('//')) return '/account';
-  return raw;
+  // Backslashes are normalized to slashes by URL parsers, so `/\evil.com`
+  // would otherwise be treated as the scheme-relative host `//evil.com`.
+  if (raw.includes('\\')) return '/account';
+  try {
+    const resolved = new URL(raw, publicEnv.siteUrl);
+    if (resolved.origin !== new URL(publicEnv.siteUrl).origin) return '/account';
+    return resolved.pathname + resolved.search;
+  } catch {
+    return '/account';
+  }
 }
 
 export async function GET(request: Request): Promise<NextResponse> {
