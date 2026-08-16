@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-15T08:04:51.886Z",
+  "generatedAt": "2026-08-16T18:12:51.263Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -342,16 +342,16 @@
       ],
       "images": [
         {
-          "id": "gid://shopify/MediaImage/36062642307299",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "id": "gid://shopify/MediaImage/36062642340067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
           "altText": "",
           "width": 1033,
           "height": 1007
         },
         {
-          "id": "gid://shopify/MediaImage/36062642340067",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
-          "altText": "",
+          "id": "gid://shopify/MediaImage/36062642307299",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
           "width": 1033,
           "height": 1007
         },
@@ -398,16 +398,16 @@
           "height": 1024
         },
         {
-          "id": "gid://shopify/ProductImage/44220445524195",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "id": "gid://shopify/ProductImage/44220445556963",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
           "altText": "",
           "width": 1033,
           "height": 1007
         },
         {
-          "id": "gid://shopify/ProductImage/44220445556963",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
-          "altText": "",
+          "id": "gid://shopify/ProductImage/44220445524195",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
           "width": 1033,
           "height": 1007
         },
@@ -456,6 +456,14 @@
       ],
       "media": [
         {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36062642340067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
           "type": "video",
           "id": "gid://shopify/Video/36094942544099",
           "sources": [
@@ -487,15 +495,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36062642307299",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
-          "altText": "",
-          "width": 1033,
-          "height": 1007
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/36062642340067",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
-          "altText": "",
+          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
           "width": 1033,
           "height": 1007
         },
@@ -556,7 +556,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-08-15T08:03:48Z",
+      "updatedAt": "2026-08-16T13:31:51Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -2671,7 +2671,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-08-14T19:44:06Z",
+      "updatedAt": "2026-08-16T02:05:47Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -2776,7 +2776,7 @@
       "title": "Baby Head Protector Backpack | Toddler Anti-Fall Cushion Pillow",
       "description": "Give Your Little Explorer the Confidence to Play Safely! Is your baby starting to crawl, stand, or take their first steps? Keep their precious head safe from those inevitable tumbles with this Baby Head Protector Backpack. Designed for ages 5 to 24 months, this adorable anti-fall safety cushion absorbs impact, giving you total peace of mind and your baby the confidence to keep exploring. Why Parents Love This Head Protector: Ultimate Fall Protection: Cushions the back of the head and upper back to prevent bumps and bruises on hard floors during crucial developmental months. Feather-Light & Comfy: Your baby will barely notice it! The ultra-lightweight design ensures it won’t restrict their playtime or throw off their balance. Fully Adjustable Fit: Features flexible, soft straps that grow with your child, ensuring a snug, secure fit from the crawling phase right through to the walking phase. Breathable & Machine Washable: Made from soft, skin-friendly fabric with high-elastic cotton filler. When it gets dirty, simply toss it in the wash. Adorable Angel Wings Design: Safety doesn't have to be boring. The cute angel wings make this a stylish and fun accessory your little one will love to wear. The Secret to a Tear-Free Baby Just like training wheels on a bike, this head protection cushion softens the blow of falling, encouraging your baby to get right back up without the tears. Don't wait for the next slip—equip your baby with the essential safety net for little explorers. Order yours today and protect every step of their journey!",
       "descriptionHtml": "<p><b>Give Your Little Explorer the Confidence to Play Safely!</b></p>\n<p>Is your baby starting to crawl, stand, or take their first steps? Keep their precious head safe from those inevitable tumbles with this <b>Baby Head Protector Backpack</b>. Designed for ages 5 to 24 months, this adorable anti-fall safety cushion absorbs impact, giving you total peace of mind and your baby the confidence to keep exploring.</p>\n<p><b>Why Parents Love This Head Protector:</b></p>\n<ul>\n<li>\n<p><b>Ultimate Fall Protection:</b> Cushions the back of the head and upper back to prevent bumps and bruises on hard floors during crucial developmental months.</p>\n</li>\n<li>\n<p><b>Feather-Light &amp; Comfy:</b> Your baby will barely notice it! The ultra-lightweight design ensures it won’t restrict their playtime or throw off their balance.</p>\n</li>\n<li>\n<p><b>Fully Adjustable Fit:</b> Features flexible, soft straps that grow with your child, ensuring a snug, secure fit from the crawling phase right through to the walking phase.</p>\n</li>\n<li>\n<p><b>Breathable &amp; Machine Washable:</b> Made from soft, skin-friendly fabric with high-elastic cotton filler. When it gets dirty, simply toss it in the wash.</p>\n</li>\n<li>\n<p><b>Adorable Angel Wings Design:</b> Safety doesn't have to be boring. The cute angel wings make this a stylish and fun accessory your little one will love to wear.</p>\n</li>\n</ul>\n<p><b>The Secret to a Tear-Free Baby</b> Just like training wheels on a bike, this head protection cushion softens the blow of falling, encouraging your baby to get right back up without the tears. Don't wait for the next slip—equip your baby with the essential safety net for little explorers.</p>\n<p><b>Order yours today and protect every step of their journey!</b></p>",
-      "vendor": "Trackify.com",
+      "vendor": "Trackify",
       "productType": "Kids & Toddler",
       "tags": [
         "Angel Wings Cushion",
@@ -3050,7 +3050,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T16:08:19Z",
       "createdAt": "2026-08-14T16:08:16Z",
-      "updatedAt": "2026-08-14T19:21:25Z",
+      "updatedAt": "2026-08-16T17:50:52Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081001890019",
@@ -3087,7 +3087,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48782938800355",
           "availableForSale": true,
-          "inventoryQuantity": 40001,
+          "inventoryQuantity": 40000,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 190,
@@ -3202,7 +3202,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48782938865891",
           "availableForSale": true,
-          "inventoryQuantity": 41620,
+          "inventoryQuantity": 41619,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 190,
@@ -3309,7 +3309,7 @@
       },
       "compareAtPriceRange": null,
       "metafields": {},
-      "totalInventory": 293489
+      "totalInventory": 293487
     },
     {
       "id": "gid://shopify/Product/9603356328163",
@@ -3556,7 +3556,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-08-14T20:27:34Z",
+      "updatedAt": "2026-08-16T02:05:25Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -3768,6 +3768,449 @@
       "compareAtPriceRange": null,
       "metafields": {},
       "totalInventory": 58941
+    },
+    {
+      "id": "gid://shopify/Product/9605585436899",
+      "handle": "acupressure-pen-meridian-massage-tool",
+      "title": "Acupressure Pen - Auto-Sensing Meridian Massage Tool, No Needles",
+      "description": "No needles. Just real acupressure. This auto-sensing acupressure pen locates pressure points and delivers gentle electronic stimulation at the push of a button — the same meridian-point technique used in traditional acupuncture, without the needles, the training, or the appointment. Why people are switching to this over traditional tools Auto point-sensing — the tip detects acupoints automatically, so you don't need to know pressure-point charts to use it correctly Multiple head styles — choose 3-head or 5-head tips, oil-free or oil-infused, depending on sensitivity and use case Durable build — ABS + aluminum alloy body designed for daily use Portable — compact enough for a desk drawer, gym bag, or carry-on Multi-purpose — home massage, post-workout recovery, everyday tension relief Who it's for Anyone dealing with everyday muscle tension, stress, or stiffness who wants a faster, needle-free alternative to traditional acupuncture — at home, on your schedule. FAQ Is this the same as acupuncture?It uses the same meridian/pressure-point principle as acupuncture, but stimulates points electronically instead of with needles. Do I need training to use it?No — the auto-sensing tip is designed to find active points without prior knowledge of acupoint charts. Is it safe for daily use?Yes, it's designed for regular home use. As with any massage tool, avoid use directly over broken skin, varicose veins, or if pregnant without consulting a doctor. What's the difference between the head styles?3-head tips are more precise for smaller areas; 5-head tips cover broader muscle groups faster. Oil-infused variants glide more smoothly on skin. This is a wellness/massage tool, not a medical device. Individual results vary.",
+      "descriptionHtml": "<p><b>No needles. Just real acupressure.</b> This auto-sensing acupressure pen locates pressure points and delivers gentle electronic stimulation at the push of a button — the same meridian-point technique used in traditional acupuncture, without the needles, the training, or the appointment.</p>\n\n<h3>Why people are switching to this over traditional tools</h3>\n<ul>\n<li>\n<b>Auto point-sensing</b> — the tip detects acupoints automatically, so you don't need to know pressure-point charts to use it correctly</li>\n<li>\n<b>Multiple head styles</b> — choose 3-head or 5-head tips, oil-free or oil-infused, depending on sensitivity and use case</li>\n<li>\n<b>Durable build</b> — ABS + aluminum alloy body designed for daily use</li>\n<li>\n<b>Portable</b> — compact enough for a desk drawer, gym bag, or carry-on</li>\n<li>\n<b>Multi-purpose</b> — home massage, post-workout recovery, everyday tension relief</li>\n</ul>\n\n<h3>Who it's for</h3>\n<p>Anyone dealing with everyday muscle tension, stress, or stiffness who wants a faster, needle-free alternative to traditional acupuncture — at home, on your schedule.</p>\n\n<h3>FAQ</h3>\n<p><b>Is this the same as acupuncture?</b><br>It uses the same meridian/pressure-point principle as acupuncture, but stimulates points electronically instead of with needles.</p>\n<p><b>Do I need training to use it?</b><br>No — the auto-sensing tip is designed to find active points without prior knowledge of acupoint charts.</p>\n<p><b>Is it safe for daily use?</b><br>Yes, it's designed for regular home use. As with any massage tool, avoid use directly over broken skin, varicose veins, or if pregnant without consulting a doctor.</p>\n<p><b>What's the difference between the head styles?</b><br>3-head tips are more precise for smaller areas; 5-head tips cover broader muscle groups faster. Oil-infused variants glide more smoothly on skin.</p>\n\n<p><i>This is a wellness/massage tool, not a medical device. Individual results vary.</i></p>",
+      "vendor": "Trackify",
+      "productType": "Kids & Toddler",
+      "tags": [
+        "acupoint pen",
+        "acupressure pen",
+        "electronic massage pen",
+        "meridian massage tool",
+        "no needle acupuncture",
+        "physiotherapy tool",
+        "wellness gadget"
+      ],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39580456648931",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/da560ae6-4bd7-46e7-86f8-fac502a3cdc3.jpg?v=1786902932",
+          "altText": "5558b84f6192f3683312bea2c8c30be9",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456681699",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1d82da7b-61e5-40a3-bf85-237570915f2f.jpg?v=1786902931",
+          "altText": "1909cd3f0219787a2394bb970577e4ba",
+          "width": 591,
+          "height": 786
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456714467",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/029e763f-3b6c-44ae-bf9b-74ce60d381df.jpg?v=1786902932",
+          "altText": "4ace3dbb3c2abd3a1c90adb514c77673",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456747235",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b2d00050-9a28-4e1c-9cc2-b6beb1a5766d.jpg?v=1786902932",
+          "altText": "7c43a1f8413a4f0471cfc646ad5b0bda",
+          "width": 1080,
+          "height": 1301
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456780003",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c6e687c4-4219-49e9-9e78-6e10d3a5bc2d.jpg?v=1786902932",
+          "altText": "8390ee48f6fd5b435ef8c80a90f8d44c",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456812771",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f931c505-1b43-4f24-8d78-3fcabbf6b29c.jpg?v=1786902932",
+          "altText": "fa2a6bfe3f3eafbfb6e002cec93608fb",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456845539",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3e56e05d-cd18-4ac7-8c26-8faf092d913e.jpg?v=1786902932",
+          "altText": "b7d25cbcb59e858e98f85b8278d30e67",
+          "width": 476,
+          "height": 434
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456878307",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f652d8a-4b40-424d-835f-e574cd3e0926.jpg?v=1786902932",
+          "altText": "b0603e54bc0f8bb97e617eba5c405129",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456911075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/9ab8f2cc-2ba9-48b9-b735-ffd149833740.jpg?v=1786902932",
+          "altText": "8833614012c7b8051b319e46f420b490",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580456943843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/370894b1-f8d8-4236-9b3a-12a75d49c6eb.jpg?v=1786902932",
+          "altText": "c60b7098122323a31efed79108b18e9c",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39580457042147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/93c2b9c4-38cf-4516-b556-d6c3ca530065.jpg?v=1786902932",
+          "altText": "93f7e279e74f940c4c77e4e411420cc0",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955232995",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/da560ae6-4bd7-46e7-86f8-fac502a3cdc3.jpg?v=1786902932",
+          "altText": "5558b84f6192f3683312bea2c8c30be9",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955265763",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1d82da7b-61e5-40a3-bf85-237570915f2f.jpg?v=1786902931",
+          "altText": "1909cd3f0219787a2394bb970577e4ba",
+          "width": 591,
+          "height": 786
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955298531",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/029e763f-3b6c-44ae-bf9b-74ce60d381df.jpg?v=1786902932",
+          "altText": "4ace3dbb3c2abd3a1c90adb514c77673",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955331299",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b2d00050-9a28-4e1c-9cc2-b6beb1a5766d.jpg?v=1786902932",
+          "altText": "7c43a1f8413a4f0471cfc646ad5b0bda",
+          "width": 1080,
+          "height": 1301
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955364067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c6e687c4-4219-49e9-9e78-6e10d3a5bc2d.jpg?v=1786902932",
+          "altText": "8390ee48f6fd5b435ef8c80a90f8d44c",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955396835",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f931c505-1b43-4f24-8d78-3fcabbf6b29c.jpg?v=1786902932",
+          "altText": "fa2a6bfe3f3eafbfb6e002cec93608fb",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955429603",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3e56e05d-cd18-4ac7-8c26-8faf092d913e.jpg?v=1786902932",
+          "altText": "b7d25cbcb59e858e98f85b8278d30e67",
+          "width": 476,
+          "height": 434
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955462371",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f652d8a-4b40-424d-835f-e574cd3e0926.jpg?v=1786902932",
+          "altText": "b0603e54bc0f8bb97e617eba5c405129",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955495139",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/9ab8f2cc-2ba9-48b9-b735-ffd149833740.jpg?v=1786902932",
+          "altText": "8833614012c7b8051b319e46f420b490",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955527907",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/370894b1-f8d8-4236-9b3a-12a75d49c6eb.jpg?v=1786902932",
+          "altText": "c60b7098122323a31efed79108b18e9c",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48795955626211",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/93c2b9c4-38cf-4516-b556-d6c3ca530065.jpg?v=1786902932",
+          "altText": "93f7e279e74f940c4c77e4e411420cc0",
+          "width": 1920,
+          "height": 1920
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456648931",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/da560ae6-4bd7-46e7-86f8-fac502a3cdc3.jpg?v=1786902932",
+          "altText": "5558b84f6192f3683312bea2c8c30be9",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456681699",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1d82da7b-61e5-40a3-bf85-237570915f2f.jpg?v=1786902931",
+          "altText": "1909cd3f0219787a2394bb970577e4ba",
+          "width": 591,
+          "height": 786
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456714467",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/029e763f-3b6c-44ae-bf9b-74ce60d381df.jpg?v=1786902932",
+          "altText": "4ace3dbb3c2abd3a1c90adb514c77673",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456747235",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b2d00050-9a28-4e1c-9cc2-b6beb1a5766d.jpg?v=1786902932",
+          "altText": "7c43a1f8413a4f0471cfc646ad5b0bda",
+          "width": 1080,
+          "height": 1301
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456780003",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c6e687c4-4219-49e9-9e78-6e10d3a5bc2d.jpg?v=1786902932",
+          "altText": "8390ee48f6fd5b435ef8c80a90f8d44c",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456812771",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f931c505-1b43-4f24-8d78-3fcabbf6b29c.jpg?v=1786902932",
+          "altText": "fa2a6bfe3f3eafbfb6e002cec93608fb",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456845539",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3e56e05d-cd18-4ac7-8c26-8faf092d913e.jpg?v=1786902932",
+          "altText": "b7d25cbcb59e858e98f85b8278d30e67",
+          "width": 476,
+          "height": 434
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456878307",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f652d8a-4b40-424d-835f-e574cd3e0926.jpg?v=1786902932",
+          "altText": "b0603e54bc0f8bb97e617eba5c405129",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456911075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/9ab8f2cc-2ba9-48b9-b735-ffd149833740.jpg?v=1786902932",
+          "altText": "8833614012c7b8051b319e46f420b490",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580456943843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/370894b1-f8d8-4236-9b3a-12a75d49c6eb.jpg?v=1786902932",
+          "altText": "c60b7098122323a31efed79108b18e9c",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39580457042147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/93c2b9c4-38cf-4516-b556-d6c3ca530065.jpg?v=1786902932",
+          "altText": "93f7e279e74f940c4c77e4e411420cc0",
+          "width": 1920,
+          "height": 1920
+        }
+      ],
+      "seo": {
+        "title": "Acupressure Pen | No-Needle Meridian Massage Tool",
+        "description": "Auto-sensing acupressure pen finds pressure points for you — no needles, no training. 3 & 5-head styles, oil or oil-free. Shop now."
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-08-16T17:55:33Z",
+      "createdAt": "2026-08-16T17:55:30Z",
+      "updatedAt": "2026-08-16T18:01:28Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12083713900771",
+          "name": "Variant",
+          "position": 1,
+          "values": [
+            "Blister oil free 3 heads",
+            "Blister with oil 3 heads",
+            "Blue box with oil 3 heads",
+            "OPP three head oil free",
+            "OPP with oil 3 heads",
+            "opp five head oil free"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49544206156003",
+          "title": "Blister oil free 3 heads",
+          "sku": "CJYD151610804DW",
+          "barcode": null,
+          "price": 64.48,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "Blister oil free 3 heads"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48795955527907",
+          "availableForSale": true,
+          "inventoryQuantity": 7664,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 180,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49544206221539",
+          "title": "Blister with oil 3 heads",
+          "sku": "CJYD151610805EV",
+          "barcode": null,
+          "price": 36.76,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "Blister with oil 3 heads"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48795955462371",
+          "availableForSale": true,
+          "inventoryQuantity": 8716,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 180,
+          "weightUnit": "GRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49544206287075",
+          "title": "Blue box with oil 3 heads",
+          "sku": "CJYD151610806FU",
+          "barcode": null,
+          "price": 40.8,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "Blue box with oil 3 heads"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48795955626211",
+          "availableForSale": true,
+          "inventoryQuantity": 9880,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 180,
+          "weightUnit": "GRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49544206352611",
+          "title": "OPP three head oil free",
+          "sku": "CJYD151610801AZ",
+          "barcode": null,
+          "price": 21.56,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "OPP three head oil free"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48795955495139",
+          "availableForSale": true,
+          "inventoryQuantity": 5308,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 180,
+          "weightUnit": "GRAMS",
+          "position": 7
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49544206418147",
+          "title": "OPP with oil 3 heads",
+          "sku": "CJYD151610803CX",
+          "barcode": null,
+          "price": 22.18,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "OPP with oil 3 heads"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48795955364067",
+          "availableForSale": true,
+          "inventoryQuantity": 5819,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 180,
+          "weightUnit": "GRAMS",
+          "position": 9
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49544206483683",
+          "title": "opp five head oil free",
+          "sku": "CJYD151610802BY",
+          "barcode": null,
+          "price": 32.71,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "opp five head oil free"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48795955298531",
+          "availableForSale": true,
+          "inventoryQuantity": 46331,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 178,
+          "weightUnit": "GRAMS",
+          "position": 11
+        }
+      ],
+      "priceRange": {
+        "min": 21.56,
+        "max": 64.48,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {},
+      "totalInventory": 83718
     }
   ],
   "collections": [
@@ -3941,12 +4384,13 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T19:42:55Z",
+      "updatedAt": "2026-08-16T17:59:37Z",
       "productIds": [
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8783842672867",
-        "gid://shopify/Product/8783853551843"
+        "gid://shopify/Product/8783853551843",
+        "gid://shopify/Product/9605585436899"
       ],
       "sortOrder": "BEST_SELLING"
     },
@@ -4076,7 +4520,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T19:21:26Z",
+      "updatedAt": "2026-08-16T17:50:54Z",
       "productIds": [
         "gid://shopify/Product/9603256975587"
       ],
