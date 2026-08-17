@@ -66,7 +66,10 @@ export function HeroCarousel({
             src={slide.src}
             alt={slide.alt}
             fill
-            sizes="100vw"
+            // Hidden below md (md:block) — telling the browser it's ~0px
+            // there stops it from fetching a full desktop-width image on a
+            // viewport where this slide is never shown.
+            sizes="(min-width: 768px) 100vw, 1px"
             priority={index === 0}
             className="object-cover"
           />
@@ -93,7 +96,10 @@ export function HeroCarousel({
             src={slide.src}
             alt={slide.alt}
             fill
-            sizes="100vw"
+            // Hidden at md+ (md:hidden) — the mirror image of the desktop
+            // slide's sizes above, so this one isn't fetched full-size when
+            // the desktop carousel is showing instead.
+            sizes="(min-width: 768px) 1px, 100vw"
             priority={index === 0}
             className="object-cover"
           />

@@ -360,7 +360,7 @@ function MediaFrame({
       src={item.previewUrl}
       alt={item.altText ?? product.title}
       fill
-      sizes="100vw"
+      sizes="(min-width: 1024px) 45vw, 100vw"
       className="object-contain p-3"
     />
   ) : (

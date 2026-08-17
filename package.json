@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "shopify:sync": "tsx scripts/sync.ts",
     "shopify:sync-blog": "tsx scripts/sync-blog.ts",
+    "shopify:sync-shop": "tsx scripts/sync-shop.ts",
     "shopify:validate": "tsx scripts/validate.ts",
     "shopify:test-webhook": "tsx scripts/test-webhook.ts",
     "shopify:webhooks": "tsx scripts/register-webhooks.ts"

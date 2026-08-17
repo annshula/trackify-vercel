@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { STATIC_PAGES, getStaticPage } from "@/lib/content/pages";
-import {
-  getShopPolicies,
-  getShopContact,
-  type ShopPolicies,
-} from "@/services/shopify/shop-service";
+import { shopRepository } from "@/lib/catalog/shop";
+import type { ShopPolicies, ShopAddress } from "@/types/shop";
 import { absoluteUrl, siteOpenGraphImage } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbSchema } from "@/lib/seo/jsonld";
 import { Breadcrumb, Alert } from "@/components/ui/primitives";
@@ -15,7 +12,7 @@ import { InfoIcon, MailIcon, PhoneIcon, MapPinIcon } from "@/components/ui/icons
 
 export const revalidate = 86400;
 
-/** Handles that have a real Shopify Shop Policy counterpart — see shop-service.ts. */
+/** Handles that have a real Shopify Shop Policy counterpart — see lib/catalog/shop.ts. */
 const SHOPIFY_POLICY_HANDLES: Partial<Record<string, keyof ShopPolicies>> = {
   terms: "termsOfService",
   privacy: "privacyPolicy",
@@ -23,8 +20,7 @@ const SHOPIFY_POLICY_HANDLES: Partial<Record<string, keyof ShopPolicies>> = {
   shipping: "shippingPolicy",
 };
 
-function formatAddress(address: NonNullable<Awaited<ReturnType<typeof getShopContact>>>["address"]): string {
-  if (!address) return "";
+function formatAddress(address: ShopAddress): string {
   const street = [address.address1, address.address2].filter(Boolean).join(", ");
   const region = [address.city, [address.province, address.zip].filter(Boolean).join(" ")]
     .filter(Boolean)
@@ -71,9 +67,9 @@ export default async function StaticContentPage({ params }: PageProps) {
   if (!page) notFound();
 
   const policyKey = SHOPIFY_POLICY_HANDLES[handle];
-  const policies = policyKey ? await getShopPolicies().catch(() => null) : null;
+  const policies = policyKey ? await shopRepository.getPolicies() : null;
   const shopifyPolicy = policyKey ? (policies?.[policyKey] ?? null) : null;
-  const contact = handle === "contact" ? await getShopContact() : null;
+  const contact = handle === "contact" ? await shopRepository.getContact() : null;
   const hasContactDetails = Boolean(contact?.email || contact?.phone || contact?.address);
 
   return (

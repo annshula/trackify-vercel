@@ -1,7 +1,9 @@
 import 'server-only';
 import type { Catalog, CatalogCollection, CatalogProduct, SyncStats } from '@/types/catalog';
 import type { Blog, BlogArticle, BlogCatalog, BlogSyncStats } from '@/types/blog';
+import type { ShopCatalog, ShopSyncStats } from '@/types/shop';
 import { adminRequest, paginateAdmin } from '@/lib/shopify/admin';
+import { storefrontRequest } from '@/lib/shopify/storefront';
 import {
   ARTICLES_PAGE_QUERY,
   ARTICLE_BY_ID_QUERY,
@@ -12,7 +14,9 @@ import {
   PRODUCTS_PAGE_QUERY,
   PRODUCT_BY_ID_QUERY,
   SHOP_QUERY,
+  SHOP_CONTACT_QUERY,
 } from '@/lib/shopify/queries/admin';
+import { SHOP_POLICIES_QUERY } from '@/lib/shopify/queries/storefront';
 import {
   normalizeArticle,
   normalizeBlog,
@@ -26,10 +30,13 @@ import {
 import { auditCatalog, catalogSchema, validateCatalog } from '@/lib/catalog/schema';
 import { productRepository, redirectRepository } from '@/lib/catalog';
 import { blogRepository } from '@/lib/catalog/blog';
+import { shopRepository } from '@/lib/catalog/shop';
 import { acquireLock, readJsonFile, BLOG_PATH, CATALOG_PATH } from '@/lib/catalog/storage';
 import { serverEnv } from '@/lib/validation/env';
 
 export const BLOG_CATALOG_VERSION = 1;
+
+export const SHOP_CATALOG_VERSION = 1;
 
 export const CATALOG_VERSION = 1;
 
@@ -389,6 +396,97 @@ export function diffBlogCatalogs(previous: BlogCatalog | null, next: BlogCatalog
   }
 
   return diff;
+}
+
+/* ── Shop details (contact + policies) ───────────────────────────────────
+ * Two different Shopify APIs (Admin for contact, Storefront for policies),
+ * one small file — both change rarely and are read together on the same
+ * pages. No add/updated/removed diffing like products/blog: this is a
+ * single object, not a list, so a sync either succeeds and replaces it
+ * whole or fails and leaves the previous copy in place.
+ * ─────────────────────────────────────────────────────────────────────── */
+
+type ShopContactQueryResult = {
+  shop: {
+    email: string | null;
+    billingAddress: {
+      phone: string | null;
+      address1: string | null;
+      address2: string | null;
+      city: string | null;
+      province: string | null;
+      zip: string | null;
+      country: string | null;
+      countryCodeV2: string | null;
+    } | null;
+  };
+};
+
+export async function fullSyncShopContent(options: SyncOptions = {}): Promise<ShopSyncStats> {
+  const startedAt = Date.now();
+  const report = options.onProgress ?? (() => {});
+  const warnings: string[] = [];
+
+  const lock = await acquireLock({ timeoutMs: 30_000 });
+
+  try {
+    report('Fetching store contact details…');
+    const contact = await adminRequest<ShopContactQueryResult>({ query: SHOP_CONTACT_QUERY })
+      .then(({ shop }) => ({
+        email: shop.email,
+        phone: shop.billingAddress?.phone ?? null,
+        address: shop.billingAddress
+          ? {
+              address1: shop.billingAddress.address1,
+              address2: shop.billingAddress.address2,
+              city: shop.billingAddress.city,
+              province: shop.billingAddress.province,
+              zip: shop.billingAddress.zip,
+              country: shop.billingAddress.country,
+            }
+          : null,
+      }))
+      .catch((error) => {
+        warnings.push(`Store contact details: ${(error as Error).message}`);
+        return { email: null, phone: null, address: null };
+      });
+
+    report('Fetching store policies…');
+    const policies = await storefrontRequest<{ shop: ShopCatalog['policies'] }>({ query: SHOP_POLICIES_QUERY })
+      .then(({ shop }) => shop)
+      .catch((error) => {
+        warnings.push(`Store policies: ${(error as Error).message}`);
+        return {
+          termsOfService: null,
+          privacyPolicy: null,
+          refundPolicy: null,
+          shippingPolicy: null,
+        };
+      });
+
+    const catalog: ShopCatalog = {
+      version: SHOP_CATALOG_VERSION,
+      generatedAt: new Date().toISOString(),
+      contact,
+      policies,
+    };
+
+    report('Writing data/shop.json…');
+    await shopRepository.replaceCatalog(catalog);
+
+    const finishedAt = Date.now();
+    return {
+      startedAt: new Date(startedAt).toISOString(),
+      finishedAt: new Date(finishedAt).toISOString(),
+      durationMs: finishedAt - startedAt,
+      hasContactEmail: contact.email !== null,
+      hasContactAddress: contact.address !== null,
+      policiesFound: Object.values(policies).filter((policy) => policy !== null).length,
+      warnings,
+    };
+  } finally {
+    await lock.release();
+  }
 }
 
 /* ── Incremental (webhook) paths ───────────────────────────────────────── */

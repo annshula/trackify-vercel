@@ -24,6 +24,7 @@ const DATA_DIR = path.join(process.cwd(), 'data');
 export const CATALOG_PATH = path.join(DATA_DIR, 'products.json');
 export const REDIRECTS_PATH = path.join(DATA_DIR, 'redirects.json');
 export const BLOG_PATH = path.join(DATA_DIR, 'blog.json');
+export const SHOP_PATH = path.join(DATA_DIR, 'shop.json');
 export const SYNC_STATE_PATH = path.join(DATA_DIR, '.sync-state.json');
 const LOCK_PATH = path.join(DATA_DIR, '.sync.lock');
 

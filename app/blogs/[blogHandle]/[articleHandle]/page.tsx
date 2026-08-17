@@ -18,6 +18,14 @@ export const revalidate = 3600;
 
 type PageProps = { params: Promise<{ blogHandle: string; articleHandle: string }> };
 
+export async function generateStaticParams() {
+  const articles = await blogRepository.getAllArticles();
+  return articles.map((article) => ({
+    blogHandle: article.blogHandle,
+    articleHandle: article.handle,
+  }));
+}
+
 const WORDS_PER_MINUTE = 200;
 
 /** Rough estimate from the article body — same convention as Medium/Substack. */

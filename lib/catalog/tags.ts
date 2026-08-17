@@ -9,6 +9,8 @@ export const CACHE_TAGS = {
   blogCatalog: 'blog-catalog',
   blog: (handle: string) => `blog:${handle}`,
   article: (blogHandle: string, articleHandle: string) => `article:${blogHandle}/${articleHandle}`,
+  /** Store policies + contact details — rarely-changing Admin/Storefront reads. */
+  shop: 'shop',
 } as const;
 
 /**
