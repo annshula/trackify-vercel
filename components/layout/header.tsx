@@ -59,9 +59,9 @@ export function Header({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  // Warm accent-soft header only on the About page (matches its hero); the
-  // default canvas header everywhere else.
-  const isAbout = pathname === "/about";
+  // Warm accent-soft header on pages whose hero tints its top the same way
+  // (About, FAQ); the default canvas header everywhere else.
+  const hasTintedHero = pathname === "/about" || pathname === "/faq";
   const isHome = pathname === "/";
   const { itemCount, open, signedIn } = useCart();
   const [searchOpen, setSearchOpen] = React.useState(false);
@@ -76,7 +76,7 @@ export function Header({
   // The About page's hero tints its top with accent-soft, so the header goes
   // transparent there too (keeping dark text) and lets that tint show through
   // seamlessly; it reverts to solid accent-soft once scrolled.
-  const overTintedHero = (isHome || isAbout) && !scrolled;
+  const overTintedHero = (isHome || hasTintedHero) && !scrolled;
   // Homepage-only: over the dark full-viewport hero the header needs light
   // text and an inverted (white) logo, plus light hover surfaces.
   const overHero = isHome && !scrolled;
