@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-16T18:58:52.894Z",
+  "generatedAt": "2026-08-17T10:56:47.715Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -2772,7 +2772,7 @@
     },
     {
       "id": "gid://shopify/Product/9603256975587",
-      "handle": "baby-toddler-headrest-child-protection-baby-head-protection-cushion-cute-angel-wings",
+      "handle": "baby-head-protector-backpack",
       "title": "Baby Head Protector Backpack | Toddler Anti-Fall Cushion Pillow",
       "description": "Give Your Little Explorer the Confidence to Play Safely! Is your baby starting to crawl, stand, or take their first steps? Keep their precious head safe from those inevitable tumbles with this Baby Head Protector Backpack. Designed for ages 5 to 24 months, this adorable anti-fall safety cushion absorbs impact, giving you total peace of mind and your baby the confidence to keep exploring. Why Parents Love This Head Protector: Ultimate Fall Protection: Cushions the back of the head and upper back to prevent bumps and bruises on hard floors during crucial developmental months. Feather-Light & Comfy: Your baby will barely notice it! The ultra-lightweight design ensures it won’t restrict their playtime or throw off their balance. Fully Adjustable Fit: Features flexible, soft straps that grow with your child, ensuring a snug, secure fit from the crawling phase right through to the walking phase. Breathable & Machine Washable: Made from soft, skin-friendly fabric with high-elastic cotton filler. When it gets dirty, simply toss it in the wash. Adorable Angel Wings Design: Safety doesn't have to be boring. The cute angel wings make this a stylish and fun accessory your little one will love to wear. The Secret to a Tear-Free Baby Just like training wheels on a bike, this head protection cushion softens the blow of falling, encouraging your baby to get right back up without the tears. Don't wait for the next slip—equip your baby with the essential safety net for little explorers. Order yours today and protect every step of their journey!",
       "descriptionHtml": "<p><b>Give Your Little Explorer the Confidence to Play Safely!</b></p>\n<p>Is your baby starting to crawl, stand, or take their first steps? Keep their precious head safe from those inevitable tumbles with this <b>Baby Head Protector Backpack</b>. Designed for ages 5 to 24 months, this adorable anti-fall safety cushion absorbs impact, giving you total peace of mind and your baby the confidence to keep exploring.</p>\n<p><b>Why Parents Love This Head Protector:</b></p>\n<ul>\n<li>\n<p><b>Ultimate Fall Protection:</b> Cushions the back of the head and upper back to prevent bumps and bruises on hard floors during crucial developmental months.</p>\n</li>\n<li>\n<p><b>Feather-Light &amp; Comfy:</b> Your baby will barely notice it! The ultra-lightweight design ensures it won’t restrict their playtime or throw off their balance.</p>\n</li>\n<li>\n<p><b>Fully Adjustable Fit:</b> Features flexible, soft straps that grow with your child, ensuring a snug, secure fit from the crawling phase right through to the walking phase.</p>\n</li>\n<li>\n<p><b>Breathable &amp; Machine Washable:</b> Made from soft, skin-friendly fabric with high-elastic cotton filler. When it gets dirty, simply toss it in the wash.</p>\n</li>\n<li>\n<p><b>Adorable Angel Wings Design:</b> Safety doesn't have to be boring. The cute angel wings make this a stylish and fun accessory your little one will love to wear.</p>\n</li>\n</ul>\n<p><b>The Secret to a Tear-Free Baby</b> Just like training wheels on a bike, this head protection cushion softens the blow of falling, encouraging your baby to get right back up without the tears. Don't wait for the next slip—equip your baby with the essential safety net for little explorers.</p>\n<p><b>Order yours today and protect every step of their journey!</b></p>",
@@ -3050,7 +3050,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T16:08:19Z",
       "createdAt": "2026-08-14T16:08:16Z",
-      "updatedAt": "2026-08-16T17:50:52Z",
+      "updatedAt": "2026-08-17T10:54:01Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081001890019",
@@ -3248,7 +3248,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48782938931427",
           "availableForSale": true,
-          "inventoryQuantity": 13819,
+          "inventoryQuantity": 13816,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 190,
@@ -3309,7 +3309,7 @@
       },
       "compareAtPriceRange": null,
       "metafields": {},
-      "totalInventory": 293487
+      "totalInventory": 293484
     },
     {
       "id": "gid://shopify/Product/9603356328163",
@@ -4047,7 +4047,7 @@
       "publishedOnline": false,
       "publishedAt": null,
       "createdAt": "2026-08-16T17:55:30Z",
-      "updatedAt": "2026-08-16T18:23:20Z",
+      "updatedAt": "2026-08-17T10:24:39Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12083713900771",
