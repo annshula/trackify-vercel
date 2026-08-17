@@ -93,6 +93,16 @@ export function productMetadata(product: CatalogProduct): Metadata {
   );
   const url = absoluteUrl(`/products/${product.handle}`);
   const image = product.images[0];
+  // A product photo is the norm; this only guards a catalog gap so the
+  // share card is never blank rather than being the expected path.
+  const ogImage = image
+    ? {
+        url: shopifyImageUrl(image.url, { width: 1200, height: 1200 }),
+        width: 1200,
+        height: 1200,
+        alt: image.altText ?? product.title,
+      }
+    : defaultOpenGraphImage;
 
   return {
     title,
@@ -105,24 +115,13 @@ export function productMetadata(product: CatalogProduct): Metadata {
       description,
       url,
       siteName: SITE_NAME,
-      images: image
-        ? [
-            {
-              url: shopifyImageUrl(image.url, { width: 1200, height: 1200 }),
-              width: 1200,
-              height: 1200,
-              alt: image.altText ?? product.title,
-            },
-          ]
-        : undefined,
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: image
-        ? [shopifyImageUrl(image.url, { width: 1200, height: 1200 })]
-        : undefined,
+      images: [ogImage.url],
     },
     other: {
       "product:brand": product.vendor,
@@ -148,6 +147,15 @@ export function collectionMetadata(
       `Shop ${productCount} piece${productCount === 1 ? "" : "s"} in ${collection.title} at ${SITE_NAME}.`,
   );
 
+  const ogImage = collection.image
+    ? {
+        url: shopifyImageUrl(collection.image.url, { width: 1200, height: 630 }),
+        width: 1200,
+        height: 630,
+        alt: collection.image.altText ?? title,
+      }
+    : defaultOpenGraphImage;
+
   return {
     title,
     description,
@@ -158,18 +166,13 @@ export function collectionMetadata(
       description,
       url: absoluteUrl(`/collections/${collection.handle}`),
       siteName: SITE_NAME,
-      images: collection.image
-        ? [
-            {
-              url: shopifyImageUrl(collection.image.url, {
-                width: 1200,
-                height: 630,
-              }),
-              width: 1200,
-              height: 630,
-            },
-          ]
-        : undefined,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage.url],
     },
   };
 }
@@ -181,6 +184,14 @@ export function articleMetadata(article: BlogArticle): Metadata {
       `${article.title} — ${SITE_NAME}`,
   );
   const url = absoluteUrl(`/blogs/${article.blogHandle}/${article.handle}`);
+  const ogImage = article.image
+    ? {
+        url: shopifyImageUrl(article.image.url, { width: 1200, height: 630 }),
+        width: 1200,
+        height: 630,
+        alt: article.image.altText ?? article.title,
+      }
+    : defaultOpenGraphImage;
 
   return {
     title: article.title,
@@ -195,36 +206,38 @@ export function articleMetadata(article: BlogArticle): Metadata {
       publishedTime: article.publishedAt ?? undefined,
       modifiedTime: article.updatedAt ?? undefined,
       authors: article.authorName ? [article.authorName] : undefined,
-      images: article.image
-        ? [
-            {
-              url: shopifyImageUrl(article.image.url, { width: 1200, height: 630 }),
-              width: 1200,
-              height: 630,
-              alt: article.image.altText ?? article.title,
-            },
-          ]
-        : undefined,
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description,
-      images: article.image ? [shopifyImageUrl(article.image.url, { width: 1200, height: 630 })] : undefined,
+      images: [ogImage.url],
     },
   };
 }
 
 export function blogMetadata(blog: Blog): Metadata {
+  const description = `Read the latest from ${blog.title} at ${SITE_NAME}.`;
+
   return {
     title: blog.title,
-    description: `Read the latest from ${blog.title} at ${SITE_NAME}.`,
+    description,
     alternates: { canonical: `/blogs/${blog.handle}` },
     openGraph: {
+      // No per-blog banner in the catalog — the shared default image is
+      // still a real, intentional photo, not a placeholder.
+      ...siteOpenGraphImage,
       type: "website",
       title: blog.title,
+      description,
       url: absoluteUrl(`/blogs/${blog.handle}`),
       siteName: SITE_NAME,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description,
     },
   };
 }

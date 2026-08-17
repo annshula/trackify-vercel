@@ -237,6 +237,19 @@ export const MapPinIcon = (props: IconProps) => (
   </Icon>
 );
 
+export const MailIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M4.5 6h15a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" />
+    <path d="m4 7 8 6 8-6" />
+  </Icon>
+);
+
+export const PhoneIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M8.4 4.5 9.8 7a1.4 1.4 0 0 1-.3 1.7L8.3 9.9c.9 2.3 2.7 4.1 5 5l1.2-1.2a1.4 1.4 0 0 1 1.7-.3l2.5 1.4c.5.3.7.9.5 1.4l-.6 1.6a1.5 1.5 0 0 1-1.6 1C10.7 18.2 5.8 13.3 4.2 7.1a1.5 1.5 0 0 1 1-1.6l1.6-.6c.5-.2 1.1 0 1.4.5Z" />
+  </Icon>
+);
+
 export const GlobeIcon = (props: IconProps) => (
   <Icon {...props}>
     <circle cx="12" cy="12" r="9" />

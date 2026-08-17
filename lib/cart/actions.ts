@@ -108,22 +108,6 @@ async function restoreLinkedCart(): Promise<Cart | null> {
   }
 }
 
-async function ensureCart(): Promise<Cart> {
-  const existing = await fetchCart();
-  if (existing) return existing;
-
-  const country = await readSelectedCountry();
-  const cart = await createCart([], null, country);
-  await writeCartId(cart.id);
-
-  // A brand-new cart belonging to a signed-in shopper has to be recorded
-  // against the customer, or it will not follow them to another device. Only
-  // creation needs this — adding lines never changes the cart id.
-  await linkCartToCustomer(cart.id);
-
-  return cart;
-}
-
 /**
  * Records `cartId` against the signed-in customer.
  *
@@ -221,23 +205,26 @@ export async function addToCart(input: {
 
   try {
     const country = await readSelectedCountry();
-    const cart = await ensureCart();
-    const existingLine = cart.lines.find((line) => line.merchandise.id === parsed.data.variantId);
+    const cart = await fetchCart();
+    const line = { merchandiseId: parsed.data.variantId, quantity: parsed.data.quantity };
 
-    // Adding an item already in the cart should increase it, not duplicate it.
-    const updated = existingLine
-      ? await updateLines(
-          cart.id,
-          [{ id: existingLine.id, quantity: existingLine.quantity + parsed.data.quantity }],
-          country,
-        )
-      : await addLines(
-          cart.id,
-          [{ merchandiseId: parsed.data.variantId, quantity: parsed.data.quantity }],
-          country,
-        );
+    // Shopify merges a merchandiseId already present in the cart into its
+    // existing line (summing quantity) rather than duplicating it, so adding
+    // through cartLinesAdd alone is correct under concurrent requests —
+    // unlike reading the current quantity and writing back a computed total,
+    // which silently drops updates under a race (each request overwrites the
+    // last one's work instead of summing on top of it).
+    const updated = cart
+      ? await addLines(cart.id, [line], country)
+      : await createCart([line], null, country);
 
     await writeCartId(updated.id);
+
+    // A brand-new cart belonging to a signed-in shopper has to be recorded
+    // against the customer, or it will not follow them to another device.
+    // Only creation needs this — adding lines never changes the cart id.
+    if (!cart) await linkCartToCustomer(updated.id);
+
     revalidatePath('/cart');
     return { ok: true, cart: updated, notice: 'Added to bag' };
   } catch (error) {

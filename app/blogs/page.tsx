@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { blogRepository } from '@/lib/catalog/blog';
 import { JsonLd, breadcrumbSchema } from '@/lib/seo/jsonld';
+import { absoluteUrl, siteOpenGraphImage } from '@/lib/seo/metadata';
 import { Breadcrumb, EmptyState } from '@/components/ui/primitives';
 import { ButtonLink } from '@/components/ui/button';
 import { GridIcon } from '@/components/ui/icons';
@@ -10,10 +11,25 @@ import { ArticleGrid } from '@/components/blog/article-card';
 
 export const revalidate = 3600;
 
+const TITLE = 'Blog';
+const DESCRIPTION = 'News, guides and updates.';
+
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'News, guides and updates.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: '/blogs' },
+  openGraph: {
+    ...siteOpenGraphImage,
+    type: 'website',
+    title: TITLE,
+    description: DESCRIPTION,
+    url: absoluteUrl('/blogs'),
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export default async function BlogsIndexPage() {

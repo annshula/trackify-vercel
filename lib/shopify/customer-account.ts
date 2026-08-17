@@ -1,4 +1,5 @@
 import "server-only";
+import { randomUUID } from "node:crypto";
 import { graphqlRequest, type GraphQLRequest } from "./client";
 import { UnauthenticatedError } from "./errors";
 import { customerAccountConfig } from "@/lib/validation/env";
@@ -106,6 +107,8 @@ export async function exchangeCodeForTokens(params: {
     refreshToken: token.refresh_token ?? null,
     expiresAt: Date.now() + token.expires_in * 1000,
     idToken: token.id_token ?? null,
+    sessionId: randomUUID(),
+    customerId: null,
   };
 }
 
@@ -127,6 +130,9 @@ export async function refreshTokens(
     refreshToken: token.refresh_token ?? session.refreshToken,
     expiresAt: Date.now() + token.expires_in * 1000,
     idToken: token.id_token ?? session.idToken,
+    // Refreshing renews credentials, not identity — the session stays the same one.
+    sessionId: session.sessionId,
+    customerId: session.customerId,
   };
 }
 

@@ -4,6 +4,7 @@ import { timingSafeEqualString } from '@/lib/auth/pkce';
 import { idTokenNonce } from '@/lib/auth/jwt';
 import { exchangeCodeForTokens } from '@/lib/shopify/customer-account';
 import { associateCartWithCustomer, restoreCustomerCart } from '@/lib/cart/actions';
+import { getCustomer } from '@/services/shopify/customer-service';
 import { publicEnv } from '@/lib/validation/env';
 
 /**
@@ -64,6 +65,16 @@ export async function GET(request: Request): Promise<NextResponse> {
     }
 
     await writeSession(session);
+
+    // Best-effort: lets logout revoke this exact session server-side (see
+    // services/shopify/session-revocation.ts). Never blocks sign-in — a
+    // session that fails to capture a customerId just skips that check.
+    try {
+      const customer = await getCustomer();
+      await writeSession({ ...session, customerId: customer.id });
+    } catch {
+      // Ignore.
+    }
   } catch (error) {
     // Never log the code or any token.
     console.error('[auth] token exchange failed:', (error as Error).message);

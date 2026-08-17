@@ -4,13 +4,14 @@ import { notFound } from "next/navigation";
 import { STATIC_PAGES, getStaticPage } from "@/lib/content/pages";
 import {
   getShopPolicies,
+  getShopContact,
   type ShopPolicies,
 } from "@/services/shopify/shop-service";
 import { absoluteUrl, siteOpenGraphImage } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbSchema } from "@/lib/seo/jsonld";
 import { Breadcrumb, Alert } from "@/components/ui/primitives";
 import { ButtonLink } from "@/components/ui/button";
-import { InfoIcon } from "@/components/ui/icons";
+import { InfoIcon, MailIcon, PhoneIcon, MapPinIcon } from "@/components/ui/icons";
 
 export const revalidate = 86400;
 
@@ -21,6 +22,15 @@ const SHOPIFY_POLICY_HANDLES: Partial<Record<string, keyof ShopPolicies>> = {
   returns: "refundPolicy",
   shipping: "shippingPolicy",
 };
+
+function formatAddress(address: NonNullable<Awaited<ReturnType<typeof getShopContact>>>["address"]): string {
+  if (!address) return "";
+  const street = [address.address1, address.address2].filter(Boolean).join(", ");
+  const region = [address.city, [address.province, address.zip].filter(Boolean).join(" ")]
+    .filter(Boolean)
+    .join(", ");
+  return [street, region, address.country].filter(Boolean).join(" · ");
+}
 
 type PageProps = { params: Promise<{ handle: string }> };
 
@@ -47,6 +57,11 @@ export async function generateMetadata({
       description: page.description,
       url: absoluteUrl(`/pages/${page.handle}`),
     },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+    },
   };
 }
 
@@ -58,6 +73,8 @@ export default async function StaticContentPage({ params }: PageProps) {
   const policyKey = SHOPIFY_POLICY_HANDLES[handle];
   const policies = policyKey ? await getShopPolicies().catch(() => null) : null;
   const shopifyPolicy = policyKey ? (policies?.[policyKey] ?? null) : null;
+  const contact = handle === "contact" ? await getShopContact() : null;
+  const hasContactDetails = Boolean(contact?.email || contact?.phone || contact?.address);
 
   return (
     <>
@@ -132,11 +149,52 @@ export default async function StaticContentPage({ params }: PageProps) {
           {page.handle === "contact" && (
             <div className="mt-10 rounded-lg border border-line bg-surface p-6">
               <h2 className="text-lg">Reach us</h2>
-              <p className="mt-2 text-sm text-ink-muted">
-                Contact details are configured in your store admin under
-                Settings → Store details. Add them here so customers can reach
-                you directly.
-              </p>
+
+              {hasContactDetails && contact ? (
+                <ul className="mt-4 space-y-1">
+                  {contact.email && (
+                    <li>
+                      <a
+                        href={`mailto:${contact.email}`}
+                        className="flex items-center gap-3 rounded-md py-2 text-sm text-ink transition-colors hover:text-ink-muted"
+                      >
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-canvas text-ink-muted">
+                          <MailIcon size={17} />
+                        </span>
+                        {contact.email}
+                      </a>
+                    </li>
+                  )}
+                  {contact.phone && (
+                    <li>
+                      <a
+                        href={`tel:${contact.phone}`}
+                        className="flex items-center gap-3 rounded-md py-2 text-sm text-ink transition-colors hover:text-ink-muted"
+                      >
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-canvas text-ink-muted">
+                          <PhoneIcon size={17} />
+                        </span>
+                        {contact.phone}
+                      </a>
+                    </li>
+                  )}
+                  {contact.address && (
+                    <li className="flex items-start gap-3 py-2 text-sm text-ink-muted">
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-canvas text-ink-muted">
+                        <MapPinIcon size={17} />
+                      </span>
+                      <span className="pt-1.5">{formatAddress(contact.address)}</span>
+                    </li>
+                  )}
+                </ul>
+              ) : (
+                <p className="mt-2 text-sm text-ink-muted">
+                  Contact details are configured in your store admin under
+                  Settings → Store details. Add them there so customers can
+                  reach you directly.
+                </p>
+              )}
+
               <div className="mt-5 flex flex-wrap gap-2">
                 <ButtonLink href="/account/orders" variant="outline">
                   Find your order number

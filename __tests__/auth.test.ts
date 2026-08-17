@@ -105,14 +105,14 @@ describe('session encryption', () => {
 
 describe('session expiry', () => {
   it('treats a future token as valid', () => {
-    expect(isExpired({ accessToken: 'a', refreshToken: null, idToken: null, expiresAt: Date.now() + 600_000 })).toBe(false);
+    expect(isExpired({ accessToken: 'a', refreshToken: null, idToken: null, sessionId: 's', customerId: null, expiresAt: Date.now() + 600_000 })).toBe(false);
   });
 
   it('treats a past token as expired', () => {
-    expect(isExpired({ accessToken: 'a', refreshToken: null, idToken: null, expiresAt: Date.now() - 1000 })).toBe(true);
+    expect(isExpired({ accessToken: 'a', refreshToken: null, idToken: null, sessionId: 's', customerId: null, expiresAt: Date.now() - 1000 })).toBe(true);
   });
 
   it('refreshes early, inside the 60s window, rather than at the edge', () => {
-    expect(isExpired({ accessToken: 'a', refreshToken: null, idToken: null, expiresAt: Date.now() + 30_000 })).toBe(true);
+    expect(isExpired({ accessToken: 'a', refreshToken: null, idToken: null, sessionId: 's', customerId: null, expiresAt: Date.now() + 30_000 })).toBe(true);
   });
 });

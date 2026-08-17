@@ -76,7 +76,6 @@ export const STATIC_PAGES: StaticPage[] = [
     handle: "contact",
     title: "Contact us",
     description: "Get in touch about an order, a return, or anything else.",
-    requiresMerchantReview: true,
     sections: [
       {
         body: [

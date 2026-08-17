@@ -9,6 +9,7 @@ import {
   countActiveFilters,
 } from "@/lib/catalog/query-params";
 import { JsonLd, breadcrumbSchema } from "@/lib/seo/jsonld";
+import { absoluteUrl, siteOpenGraphImage } from "@/lib/seo/metadata";
 
 import {
   Breadcrumb,
@@ -28,10 +29,25 @@ import { GridIcon } from "@/components/ui/icons";
 
 export const revalidate = 3600;
 
+const TITLE = "Shop all";
+const DESCRIPTION = "Browse every collection and product in the store.";
+
 export const metadata: Metadata = {
-  title: "Shop all",
-  description: "Browse every collection and product in the store.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/collections" },
+  openGraph: {
+    ...siteOpenGraphImage,
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: absoluteUrl("/collections"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 type PageProps = {

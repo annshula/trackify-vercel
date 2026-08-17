@@ -305,6 +305,25 @@ export const SHOP_QUERY = /* GraphQL */ `
   }
 `;
 
+/** Store details from Shopify Admin → Settings → Store details, for the "Contact us" page. */
+export const SHOP_CONTACT_QUERY = /* GraphQL */ `
+  query ShopContact {
+    shop {
+      email
+      billingAddress {
+        phone
+        address1
+        address2
+        city
+        province
+        zip
+        country
+        countryCodeV2
+      }
+    }
+  }
+`;
+
 export const INVENTORY_ITEM_VARIANTS_QUERY = /* GraphQL */ `
   query InventoryItemVariants($id: ID!) {
     inventoryItem(id: $id) {
