@@ -37,6 +37,14 @@ type LocalizationContextValue = {
    * `localization.country`, never assumed from the first list entry.
    */
   defaultCountry: LocalizationCountry | null;
+  /**
+   * `country` if the visitor picked one, otherwise `defaultCountry`'s code —
+   * what actually drives live pricing (see lib/localization/country.ts's
+   * resolveEffectiveCountry, which the server side resolves to the same
+   * value). Distinct from `country`: the selector still needs to know
+   * whether this is a confirmed pick or just a detected default.
+   */
+  effectiveCountry: string | null;
   /** True once the initial /api/localization fetch has resolved. */
   ready: boolean;
   countries: LocalizationCountry[];
@@ -103,22 +111,32 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
     return () => controller.abort();
   }, []);
 
-  // A country change invalidates every price fetched under the old one.
-  const countryRef = React.useRef(country);
+  // The country that should actually drive pricing: the visitor's explicit
+  // choice if they made one, otherwise the same edge-geolocated country the
+  // selector shows as "detected" — mirrors lib/localization/country.ts's
+  // resolveEffectiveCountry(), which is what the server side of every fetch
+  // below this actually resolves to. Without this, an unconfirmed
+  // auto-detection never requested a live price at all and every price
+  // silently stayed in the shop's base currency until the visitor manually
+  // picked something (even their own already-detected country again).
+  const effectiveCountry = country ?? defaultCountry?.isoCode ?? null;
+
+  // An effective-country change invalidates every price fetched under the old one.
+  const countryRef = React.useRef(effectiveCountry);
   React.useEffect(() => {
-    if (countryRef.current !== country) {
-      countryRef.current = country;
+    if (countryRef.current !== effectiveCountry) {
+      countryRef.current = effectiveCountry;
       setPriceMap({});
       setLoadingIds(new Set());
       requestedIds.current.clear();
     }
-  }, [country]);
+  }, [effectiveCountry]);
 
   const flush = React.useCallback(() => {
     flushTimer.current = null;
     const ids = [...pendingIds.current];
     pendingIds.current.clear();
-    if (ids.length === 0 || !country) return;
+    if (ids.length === 0 || !effectiveCountry) return;
 
     fetch('/api/localization/prices', {
       method: 'POST',
@@ -143,11 +161,11 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
           return next;
         });
       });
-  }, [country]);
+  }, [effectiveCountry]);
 
   const requestPrices = React.useCallback(
     (variantIds: string[]) => {
-      if (!country) return;
+      if (!effectiveCountry) return;
       const added: string[] = [];
       for (const id of variantIds) {
         if (requestedIds.current.has(id)) continue;
@@ -162,7 +180,7 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
       if (flushTimer.current) window.clearTimeout(flushTimer.current);
       flushTimer.current = window.setTimeout(flush, 60);
     },
-    [country, flush],
+    [effectiveCountry, flush],
   );
 
   const localizedPriceFor = React.useCallback(
@@ -179,6 +197,7 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
     () => ({
       country,
       defaultCountry,
+      effectiveCountry,
       ready,
       countries,
       setCountryCode: setCountry,
@@ -186,7 +205,16 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
       isPriceLoading,
       requestPrices,
     }),
-    [country, defaultCountry, ready, countries, localizedPriceFor, isPriceLoading, requestPrices],
+    [
+      country,
+      defaultCountry,
+      effectiveCountry,
+      ready,
+      countries,
+      localizedPriceFor,
+      isPriceLoading,
+      requestPrices,
+    ],
   );
 
   return <LocalizationContext.Provider value={value}>{children}</LocalizationContext.Provider>;
@@ -214,11 +242,11 @@ export function useLocalization(): LocalizationContextValue {
 export function useLocalizedPrice(
   variantId: string | null | undefined,
 ): { price: LocalizedPrice | null; loading: boolean } {
-  const { ready, country, localizedPriceFor, isPriceLoading, requestPrices } = useLocalization();
+  const { ready, effectiveCountry, localizedPriceFor, isPriceLoading, requestPrices } = useLocalization();
 
   React.useEffect(() => {
-    if (variantId && country) requestPrices([variantId]);
-  }, [variantId, country, requestPrices]);
+    if (variantId && effectiveCountry) requestPrices([variantId]);
+  }, [variantId, effectiveCountry, requestPrices]);
 
   if (!variantId) return { price: null, loading: false };
   if (!ready) return { price: null, loading: true };

@@ -24,7 +24,11 @@ import {
 import { getCustomer } from '@/services/shopify/customer-service';
 import { clearCartId, readCartId, writeCartId } from '@/lib/auth/session';
 import { getValidSession } from '@/lib/shopify/customer-account';
-import { readSelectedCountry, writeSelectedCountry, clearSelectedCountry } from '@/lib/localization/country';
+import {
+  resolveEffectiveCountry,
+  writeSelectedCountry,
+  clearSelectedCountry,
+} from '@/lib/localization/country';
 
 /**
  * Cart server actions.
@@ -70,7 +74,7 @@ export async function fetchCart(): Promise<Cart | null> {
   if (!cartId) return restoreLinkedCart();
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const cart = await getCart(cartId, country);
     if (!cart) {
       await clearCartId();
@@ -96,7 +100,7 @@ async function restoreLinkedCart(): Promise<Cart | null> {
     const linkedCartId = await getLinkedCartId(customer.id);
     if (!linkedCartId) return null;
 
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const cart = await getCart(linkedCartId, country);
     if (!cart) return null;
 
@@ -162,7 +166,7 @@ export async function restoreCustomerCart(): Promise<void> {
       return;
     }
 
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
 
     // Verify the saved cart still exists; Shopify expires idle carts.
     const linkedCart = await getCart(linkedCartId, country);
@@ -204,7 +208,7 @@ export async function addToCart(input: {
   if (!parsed.success) return failure('That product option is not valid.');
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const cart = await fetchCart();
     const line = { merchandiseId: parsed.data.variantId, quantity: parsed.data.quantity };
 
@@ -240,7 +244,7 @@ export async function updateCartLine(input: { lineId: string; quantity: number }
   if (!cartId) return failure('Your bag is empty.');
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const cart =
       parsed.data.quantity === 0
         ? await removeLines(cartId, [parsed.data.lineId], country)
@@ -261,7 +265,7 @@ export async function removeCartLine(input: { lineId: string }): Promise<CartAct
   if (!cartId) return failure('Your bag is empty.');
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const cart = await removeLines(cartId, [parsed.data.lineId], country);
     revalidatePath('/cart');
     return { ok: true, cart, notice: 'Removed from bag' };
@@ -280,7 +284,7 @@ export async function applyDiscountCode(input: { code: string }): Promise<CartAc
   if (!cartId) return failure('Add something to your bag first.');
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const current = await getCart(cartId, country);
     const existing = current?.discountCodes.map((discount) => discount.code) ?? [];
     const next = [...new Set([...existing, parsed.data.code])];
@@ -316,7 +320,7 @@ export async function removeDiscountCode(input: { code: string }): Promise<CartA
   if (!cartId) return failure('Your bag is empty.');
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     const current = await getCart(cartId, country);
     const remaining = (current?.discountCodes ?? [])
       .map((discount) => discount.code)
@@ -339,7 +343,7 @@ export async function proceedToCheckout(): Promise<CartActionState> {
   if (!cartId) return failure('Your bag is empty.');
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     let cart = await getCart(cartId, country);
     if (!cart) {
       await clearCartId();
@@ -411,7 +415,7 @@ export async function associateCartWithCustomer(): Promise<void> {
   if (!session) return;
 
   try {
-    const country = await readSelectedCountry();
+    const country = await resolveEffectiveCountry();
     await setBuyerIdentity(cartId, { customerAccessToken: session.accessToken }, country);
   } catch {
     // Best-effort only — never block sign-in on this.

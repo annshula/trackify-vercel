@@ -24,7 +24,7 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const [localization, selected] = await Promise.all([
-      getLocalization(detectVisitorCountry(request)),
+      getLocalization(detectVisitorCountry(request.headers)),
       readSelectedCountry(),
     ]);
 

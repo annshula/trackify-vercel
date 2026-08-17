@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getLocalizedVariantPrices } from '@/services/shopify/localization-service';
-import { readSelectedCountry } from '@/lib/localization/country';
+import { resolveEffectiveCountry } from '@/lib/localization/country';
 
 /**
  * POST /api/localization/prices
  *
  * Given a batch of variant IDs, returns each one's price *as Shopify itself
- * reports it* for the visitor's currently selected country — no conversion
- * happens in this app. Used to overlay real localized prices onto product
- * cards and PDPs once a shopper picks a country other than the store's
- * default; before that, pages keep showing the cached base-currency price
- * and never call this at all.
+ * reports it* for the visitor's effective country — their explicit choice if
+ * they made one, otherwise the same edge-geolocated country the currency
+ * selector already shows as detected (see resolveEffectiveCountry) — no
+ * conversion happens in this app. Before either is available, pages keep
+ * showing the cached base-currency price and never call this at all.
  */
 
 export const runtime = 'nodejs';
@@ -25,8 +25,8 @@ const bodySchema = z.object({
 });
 
 export async function POST(request: Request): Promise<NextResponse> {
-  const country = await readSelectedCountry();
-  // No country chosen (or it matches the default) — nothing to overlay.
+  const country = await resolveEffectiveCountry();
+  // No country detected or chosen — nothing to overlay.
   if (!country) {
     return NextResponse.json(
       { prices: {} },

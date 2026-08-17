@@ -1,5 +1,7 @@
 import 'server-only';
-import type { NextRequest } from 'next/server';
+
+/** Anything with a Headers-shaped `.get()` — a NextRequest's `.headers`, or next/headers' `headers()` result. */
+type HeaderSource = { get(name: string): string | null };
 
 /**
  * Visitor country, from whichever edge/CDN in front of this app already
@@ -14,9 +16,8 @@ import type { NextRequest } from 'next/server';
  * This only ever supplies a *candidate* country to hand to Shopify's
  * `@inContext` — Shopify still resolves the actual currency for it.
  */
-export function detectVisitorCountry(request: NextRequest): string | null {
-  const candidate =
-    request.headers.get('cf-ipcountry') || request.headers.get('x-vercel-ip-country');
+export function detectVisitorCountry(headers: HeaderSource): string | null {
+  const candidate = headers.get('cf-ipcountry') || headers.get('x-vercel-ip-country');
 
   if (!candidate) return null;
   const code = candidate.trim().toUpperCase();
