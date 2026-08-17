@@ -1,8 +1,8 @@
-import 'server-only';
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
-import { randomBytes } from 'node:crypto';
-import { put, get, head, del, BlobNotFoundError } from '@vercel/blob';
+import "server-only";
+import { promises as fs } from "node:fs";
+import path from "node:path";
+import { randomBytes } from "node:crypto";
+import { put, get, head, del, BlobNotFoundError } from "@vercel/blob";
 
 /**
  * Safe persistence for the catalog files.
@@ -20,17 +20,18 @@ import { put, get, head, del, BlobNotFoundError } from '@vercel/blob';
  * that relies on `put()` without `allowOverwrite` rejecting a second writer.
  */
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-export const CATALOG_PATH = path.join(DATA_DIR, 'products.json');
-export const REDIRECTS_PATH = path.join(DATA_DIR, 'redirects.json');
-export const BLOG_PATH = path.join(DATA_DIR, 'blog.json');
-export const SHOP_PATH = path.join(DATA_DIR, 'shop.json');
-export const SYNC_STATE_PATH = path.join(DATA_DIR, '.sync-state.json');
-const LOCK_PATH = path.join(DATA_DIR, '.sync.lock');
+const DATA_DIR = path.join(process.cwd(), "data");
+export const CATALOG_PATH = path.join(DATA_DIR, "products.json");
+export const REDIRECTS_PATH = path.join(DATA_DIR, "redirects.json");
+export const BLOG_PATH = path.join(DATA_DIR, "blog.json");
+export const SHOP_PATH = path.join(DATA_DIR, "shop.json");
+export const SYNC_STATE_PATH = path.join(DATA_DIR, ".sync-state.json");
+const LOCK_PATH = path.join(DATA_DIR, ".sync.lock");
 
 function useBlobStorage(): boolean {
   return Boolean(
-    process.env.BLOB_READ_WRITE_TOKEN || (process.env.VERCEL_OIDC_TOKEN && process.env.BLOB_STORE_ID),
+    process.env.BLOB_READ_WRITE_TOKEN ||
+    (process.env.VERCEL_OIDC_TOKEN && process.env.BLOB_STORE_ID),
   );
 }
 
@@ -57,26 +58,42 @@ export async function ensureDataDir(): Promise<void> {
   await fs.mkdir(DATA_DIR, { recursive: true });
 }
 
-export async function readJsonFile<T>(filePath: string): Promise<T | null> {
-  if (useBlobStorage()) {
-    try {
-      const result = await get(blobPathname(filePath), { access: 'public', useCache: false });
-      if (!result) return null;
-      return JSON.parse(await new Response(result.stream).text()) as T;
-    } catch (error) {
-      if (error instanceof BlobNotFoundError) return null;
-      throw error;
-    }
-  }
-
+/** Reads a JSON document straight off disk — the committed `data/*.json` seed files. */
+async function readLocalJsonFile<T>(filePath: string): Promise<T | null> {
   try {
-    const raw = await fs.readFile(filePath, 'utf8');
+    const raw = await fs.readFile(filePath, "utf8");
     return JSON.parse(raw) as T;
   } catch (error) {
     const code = (error as NodeJS.ErrnoException).code;
-    if (code === 'ENOENT') return null;
+    if (code === "ENOENT") return null;
     throw error;
   }
+}
+
+export async function readJsonFile<T>(filePath: string): Promise<T | null> {
+  if (useBlobStorage()) {
+    try {
+      const result = await get(blobPathname(filePath), {
+        access: "public",
+        useCache: false,
+      });
+      if (result) {
+        return JSON.parse(await new Response(result.stream).text()) as T;
+      }
+    } catch (error) {
+      if (!(error instanceof BlobNotFoundError)) throw error;
+    }
+
+    // Blob miss — the sync that produces this document has not run in this
+    // environment yet (or the blob was purged). Fall back to the committed
+    // `data/*.json` seed shipped with the deployment instead of silently
+    // serving an empty catalog (which showed placeholder contact/policies on
+    // a fresh deploy). Once a sync runs, the blob becomes the live source
+    // and wins on every subsequent read.
+    return readLocalJsonFile(filePath);
+  }
+
+  return readLocalJsonFile(filePath);
 }
 
 /**
@@ -85,26 +102,29 @@ export async function readJsonFile<T>(filePath: string): Promise<T | null> {
  * single `put()` is itself atomic — there is no partial-write state to guard
  * against.
  */
-export async function writeJsonFileAtomic(filePath: string, value: unknown): Promise<void> {
+export async function writeJsonFileAtomic(
+  filePath: string,
+  value: unknown,
+): Promise<void> {
   const serialized = `${JSON.stringify(value, null, 2)}\n`;
 
   if (useBlobStorage()) {
     await put(blobPathname(filePath), serialized, {
-      access: 'public',
+      access: "public",
       addRandomSuffix: false,
       allowOverwrite: true,
-      contentType: 'application/json',
+      contentType: "application/json",
     });
     return;
   }
 
   await ensureDataDir();
-  const tempPath = `${filePath}.${randomBytes(6).toString('hex')}.tmp`;
+  const tempPath = `${filePath}.${randomBytes(6).toString("hex")}.tmp`;
 
   let handle: fs.FileHandle | undefined;
   try {
-    handle = await fs.open(tempPath, 'w');
-    await handle.writeFile(serialized, 'utf8');
+    handle = await fs.open(tempPath, "w");
+    await handle.writeFile(serialized, "utf8");
     // fsync before rename so the rename cannot expose an empty file after a crash.
     await handle.sync();
   } finally {
@@ -120,7 +140,9 @@ export type LockHandle = { release: () => Promise<void> };
  * Cross-process advisory lock. Stale locks (from a killed process) expire so a
  * crashed sync never blocks webhooks forever.
  */
-export async function acquireLock(options: { timeoutMs?: number; staleMs?: number } = {}): Promise<LockHandle> {
+export async function acquireLock(
+  options: { timeoutMs?: number; staleMs?: number } = {},
+): Promise<LockHandle> {
   const timeoutMs = options.timeoutMs ?? 30_000;
   const staleMs = options.staleMs ?? 5 * 60_000;
   const deadline = Date.now() + timeoutMs;
@@ -132,11 +154,19 @@ export async function acquireLock(options: { timeoutMs?: number; staleMs?: numbe
       try {
         // Fails if the blob already exists — no `allowOverwrite` — giving the
         // same "create exclusively" semantics as `fs.open(path, 'wx')`.
-        await put(lockPathname, JSON.stringify({ pid: process.pid, at: Date.now() }), {
-          access: 'public',
-          addRandomSuffix: false,
-        });
-        return { release: async () => { await del(lockPathname); } };
+        await put(
+          lockPathname,
+          JSON.stringify({ pid: process.pid, at: Date.now() }),
+          {
+            access: "public",
+            addRandomSuffix: false,
+          },
+        );
+        return {
+          release: async () => {
+            await del(lockPathname);
+          },
+        };
       } catch {
         const existing = await head(lockPathname).catch(() => null);
         if (existing && Date.now() - existing.uploadedAt.getTime() > staleMs) {
@@ -144,7 +174,9 @@ export async function acquireLock(options: { timeoutMs?: number; staleMs?: numbe
           continue;
         }
         if (Date.now() > deadline) {
-          throw new Error(`Timed out after ${timeoutMs}ms waiting for the catalog lock at ${lockPathname}`);
+          throw new Error(
+            `Timed out after ${timeoutMs}ms waiting for the catalog lock at ${lockPathname}`,
+          );
         }
         await new Promise((resolve) => setTimeout(resolve, 120));
       }
@@ -155,8 +187,11 @@ export async function acquireLock(options: { timeoutMs?: number; staleMs?: numbe
 
   for (;;) {
     try {
-      const handle = await fs.open(LOCK_PATH, 'wx');
-      await handle.writeFile(JSON.stringify({ pid: process.pid, at: Date.now() }), 'utf8');
+      const handle = await fs.open(LOCK_PATH, "wx");
+      await handle.writeFile(
+        JSON.stringify({ pid: process.pid, at: Date.now() }),
+        "utf8",
+      );
       await handle.close();
       return {
         release: async () => {
@@ -164,7 +199,7 @@ export async function acquireLock(options: { timeoutMs?: number; staleMs?: numbe
         },
       };
     } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
+      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
 
       const stat = await fs.stat(LOCK_PATH).catch(() => null);
       if (stat && Date.now() - stat.mtimeMs > staleMs) {
@@ -172,7 +207,9 @@ export async function acquireLock(options: { timeoutMs?: number; staleMs?: numbe
         continue;
       }
       if (Date.now() > deadline) {
-        throw new Error(`Timed out after ${timeoutMs}ms waiting for the catalog lock at ${LOCK_PATH}`);
+        throw new Error(
+          `Timed out after ${timeoutMs}ms waiting for the catalog lock at ${LOCK_PATH}`,
+        );
       }
       await new Promise((resolve) => setTimeout(resolve, 120));
     }
