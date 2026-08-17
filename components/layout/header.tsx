@@ -201,17 +201,16 @@ export function Header({
                 aria-label="Trackify home"
                 className="hidden shrink-0 leading-none lg:block"
               >
-                {/* Self-hosted site logo — same shrink-0 position as the wordmark it replaces. */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logo.svg"
+                {/* Self-hosted site logo — same shrink-0 position as the wordmark it replaces.
+                    White variant over the dark hero, not a CSS filter — a real
+                    white asset instead of approximating one with invert(). */}
+                <Image
+                  src={overHero ? "/logo-white.png" : "/logo.png"}
                   alt="Trackify"
                   width={84}
                   height={64}
-                  className={cn(
-                    "h-9 w-auto transition-[filter] duration-300 sm:h-11",
-                    overHero && "brightness-0 invert",
-                  )}
+                  priority
+                  className="h-9 w-auto sm:h-11"
                 />
               </Link>
             </div>
@@ -232,16 +231,13 @@ export function Header({
                   overHero && "max-lg:hidden",
                 )}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logo.svg"
+                <Image
+                  src={overHero ? "/logo-white.png" : "/logo.png"}
                   alt="Trackify"
                   width={84}
                   height={64}
-                  className={cn(
-                    "h-9 w-auto transition-[filter] duration-300 sm:h-11",
-                    overHero && "brightness-0 invert",
-                  )}
+                  priority
+                  className="h-9 w-auto sm:h-11"
                 />
               </Link>
 

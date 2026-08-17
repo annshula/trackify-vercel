@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CatalogProduct } from "@/types/catalog";
 import { primaryImage, imageAlt } from "@/lib/utils/image";
 import { listHeroImages, listHeroMobileImages } from "@/lib/home/hero-images";
@@ -81,13 +82,13 @@ export async function Hero({
                 second lockup there would just duplicate it. Its tagline also
                 covers what the eyebrow below says, so the eyebrow is sm+ only. */}
             <div className="animate-fade-up mb-8 flex flex-col items-center gap-1 sm:hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.svg"
+              <Image
+                src="/logo-white.png"
                 alt=""
                 width={84}
                 height={64}
-                className="h-14 w-auto brightness-0 invert xs:h-16"
+                priority
+                className="h-14 w-auto xs:h-16"
               />
               <p className="font-display text-3xl text-white xs:text-4xl">
                 Trackify

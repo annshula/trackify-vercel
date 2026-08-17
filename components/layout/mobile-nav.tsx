@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Drawer } from "@/components/ui/drawer";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { ChevronRightIcon, LogoutIcon } from "@/components/ui/icons";
@@ -53,9 +54,8 @@ export function MobileNav({
       header={
         <div className="flex items-center justify-between gap-2.5">
           <div className="flex min-w-0 items-center gap-2.5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.svg"
+            <Image
+              src="/logo.png"
               alt="Trackify"
               width={42}
               height={32}

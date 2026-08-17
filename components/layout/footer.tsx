@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { NewsletterForm } from "./newsletter-form";
 import { RefreshIcon, ShieldIcon, TruckIcon } from "@/components/ui/icons";
 
@@ -51,13 +52,12 @@ export function Footer({
               mobile single-column track and adds horizontal scroll. */}
           <div className="min-w-0 max-w-sm">
             <Link href="/" className="inline-block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.svg"
+              <Image
+                src="/logo-white.png"
                 alt="Trackify"
                 width={84}
                 height={64}
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-white/60">
