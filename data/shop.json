@@ -5,11 +5,7 @@
     "email": "support@shoptrackify.com",
     "phone": "",
     "address": {
-      "address1": "51 Major Oaks Drive",
-      "address2": "",
-      "city": "Brampton",
       "province": "Ontario",
-      "zip": "L6V 3K1",
       "country": "Canada"
     }
   },

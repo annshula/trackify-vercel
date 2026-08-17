@@ -8,7 +8,12 @@ import { absoluteUrl, siteOpenGraphImage } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbSchema } from "@/lib/seo/jsonld";
 import { Breadcrumb, Alert } from "@/components/ui/primitives";
 import { ButtonLink } from "@/components/ui/button";
-import { InfoIcon, MailIcon, PhoneIcon, MapPinIcon } from "@/components/ui/icons";
+import {
+  InfoIcon,
+  MailIcon,
+  PhoneIcon,
+  MapPinIcon,
+} from "@/components/ui/icons";
 
 export const revalidate = 86400;
 
@@ -20,12 +25,9 @@ const SHOPIFY_POLICY_HANDLES: Partial<Record<string, keyof ShopPolicies>> = {
   shipping: "shippingPolicy",
 };
 
+/** Only region + country are synced/stored — the full street address is never kept. */
 function formatAddress(address: ShopAddress): string {
-  const street = [address.address1, address.address2].filter(Boolean).join(", ");
-  const region = [address.city, [address.province, address.zip].filter(Boolean).join(" ")]
-    .filter(Boolean)
-    .join(", ");
-  return [street, region, address.country].filter(Boolean).join(" · ");
+  return [address.province, address.country].filter(Boolean).join(", ");
 }
 
 type PageProps = { params: Promise<{ handle: string }> };
@@ -69,8 +71,11 @@ export default async function StaticContentPage({ params }: PageProps) {
   const policyKey = SHOPIFY_POLICY_HANDLES[handle];
   const policies = policyKey ? await shopRepository.getPolicies() : null;
   const shopifyPolicy = policyKey ? (policies?.[policyKey] ?? null) : null;
-  const contact = handle === "contact" ? await shopRepository.getContact() : null;
-  const hasContactDetails = Boolean(contact?.email || contact?.phone || contact?.address);
+  const contact =
+    handle === "contact" ? await shopRepository.getContact() : null;
+  const hasContactDetails = Boolean(
+    contact?.email || contact?.phone || contact?.address,
+  );
 
   return (
     <>
@@ -179,7 +184,9 @@ export default async function StaticContentPage({ params }: PageProps) {
                       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-canvas text-ink-muted">
                         <MapPinIcon size={17} />
                       </span>
-                      <span className="pt-1.5">{formatAddress(contact.address)}</span>
+                      <span className="pt-1.5">
+                        {formatAddress(contact.address)}
+                      </span>
                     </li>
                   )}
                 </ul>

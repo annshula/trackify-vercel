@@ -19,12 +19,17 @@ export type ShopPolicies = {
   shippingPolicy: ShopPolicy | null;
 };
 
+/**
+ * Only region + country are synced from Shopify. Street/city/zip are
+ * intentionally not stored so the full address is never exposed.
+ * Kept optional so older catalogs still type-check.
+ */
 export type ShopAddress = {
-  address1: string | null;
-  address2: string | null;
-  city: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
   province: string | null;
-  zip: string | null;
+  zip?: string | null;
   country: string | null;
 };
 

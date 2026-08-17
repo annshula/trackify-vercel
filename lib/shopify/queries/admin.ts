@@ -312,13 +312,8 @@ export const SHOP_CONTACT_QUERY = /* GraphQL */ `
       email
       billingAddress {
         phone
-        address1
-        address2
-        city
         province
-        zip
         country
-        countryCodeV2
       }
     }
   }

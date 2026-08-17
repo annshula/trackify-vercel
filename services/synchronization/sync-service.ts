@@ -1,9 +1,19 @@
-import 'server-only';
-import type { Catalog, CatalogCollection, CatalogProduct, SyncStats } from '@/types/catalog';
-import type { Blog, BlogArticle, BlogCatalog, BlogSyncStats } from '@/types/blog';
-import type { ShopCatalog, ShopSyncStats } from '@/types/shop';
-import { adminRequest, paginateAdmin } from '@/lib/shopify/admin';
-import { storefrontRequest } from '@/lib/shopify/storefront';
+import "server-only";
+import type {
+  Catalog,
+  CatalogCollection,
+  CatalogProduct,
+  SyncStats,
+} from "@/types/catalog";
+import type {
+  Blog,
+  BlogArticle,
+  BlogCatalog,
+  BlogSyncStats,
+} from "@/types/blog";
+import type { ShopCatalog, ShopSyncStats } from "@/types/shop";
+import { adminRequest, paginateAdmin } from "@/lib/shopify/admin";
+import { storefrontRequest } from "@/lib/shopify/storefront";
 import {
   ARTICLES_PAGE_QUERY,
   ARTICLE_BY_ID_QUERY,
@@ -15,8 +25,8 @@ import {
   PRODUCT_BY_ID_QUERY,
   SHOP_QUERY,
   SHOP_CONTACT_QUERY,
-} from '@/lib/shopify/queries/admin';
-import { SHOP_POLICIES_QUERY } from '@/lib/shopify/queries/storefront';
+} from "@/lib/shopify/queries/admin";
+import { SHOP_POLICIES_QUERY } from "@/lib/shopify/queries/storefront";
 import {
   normalizeArticle,
   normalizeBlog,
@@ -26,13 +36,22 @@ import {
   type AdminBlogNode,
   type AdminCollectionNode,
   type AdminProductNode,
-} from '@/lib/catalog/normalize';
-import { auditCatalog, catalogSchema, validateCatalog } from '@/lib/catalog/schema';
-import { productRepository, redirectRepository } from '@/lib/catalog';
-import { blogRepository } from '@/lib/catalog/blog';
-import { shopRepository } from '@/lib/catalog/shop';
-import { acquireLock, readJsonFile, BLOG_PATH, CATALOG_PATH } from '@/lib/catalog/storage';
-import { serverEnv } from '@/lib/validation/env';
+} from "@/lib/catalog/normalize";
+import {
+  auditCatalog,
+  catalogSchema,
+  validateCatalog,
+} from "@/lib/catalog/schema";
+import { productRepository, redirectRepository } from "@/lib/catalog";
+import { blogRepository } from "@/lib/catalog/blog";
+import { shopRepository } from "@/lib/catalog/shop";
+import {
+  acquireLock,
+  readJsonFile,
+  BLOG_PATH,
+  CATALOG_PATH,
+} from "@/lib/catalog/storage";
+import { serverEnv } from "@/lib/validation/env";
 
 export const BLOG_CATALOG_VERSION = 1;
 
@@ -40,7 +59,9 @@ export const SHOP_CATALOG_VERSION = 1;
 
 export const CATALOG_VERSION = 1;
 
-type ShopQueryResult = { shop: { name: string; myshopifyDomain: string; currencyCode: string } };
+type ShopQueryResult = {
+  shop: { name: string; myshopifyDomain: string; currencyCode: string };
+};
 
 export type SyncOptions = {
   pageSize?: number;
@@ -62,30 +83,44 @@ export async function fullSync(options: SyncOptions = {}): Promise<SyncStats> {
   const lock = await acquireLock({ timeoutMs: 60_000 });
 
   try {
-    report('Connecting to Shopify Admin GraphQL API…');
+    report("Connecting to Shopify Admin GraphQL API…");
     const shopData = await adminRequest<ShopQueryResult>({ query: SHOP_QUERY });
     const currencyCode = shopData.shop.currencyCode;
-    report(`Connected to ${shopData.shop.name} (${shopData.shop.myshopifyDomain}), currency ${currencyCode}`);
+    report(
+      `Connected to ${shopData.shop.name} (${shopData.shop.myshopifyDomain}), currency ${currencyCode}`,
+    );
 
-    report('Fetching products…');
-    const productNodes = await paginateAdmin<AdminProductNode>(PRODUCTS_PAGE_QUERY, 'products', {
-      pageSize: options.pageSize ?? 50,
-      onPage: (nodes, page) => report(`  page ${page}: ${nodes.length} products`),
-    });
+    report("Fetching products…");
+    const productNodes = await paginateAdmin<AdminProductNode>(
+      PRODUCTS_PAGE_QUERY,
+      "products",
+      {
+        pageSize: options.pageSize ?? 50,
+        onPage: (nodes, page) =>
+          report(`  page ${page}: ${nodes.length} products`),
+      },
+    );
 
-    report('Fetching collections…');
-    const collectionNodes = await paginateAdmin<AdminCollectionNode>(COLLECTIONS_PAGE_QUERY, 'collections', {
-      pageSize: 50,
-      onPage: (nodes, page) => report(`  page ${page}: ${nodes.length} collections`),
-    });
+    report("Fetching collections…");
+    const collectionNodes = await paginateAdmin<AdminCollectionNode>(
+      COLLECTIONS_PAGE_QUERY,
+      "collections",
+      {
+        pageSize: 50,
+        onPage: (nodes, page) =>
+          report(`  page ${page}: ${nodes.length} collections`),
+      },
+    );
 
-    report('Normalizing…');
+    report("Normalizing…");
     const products = productNodes
       .map((node) => {
         try {
           return normalizeProduct(node, currencyCode);
         } catch (error) {
-          warnings.push(`Skipped product ${node.handle}: ${(error as Error).message}`);
+          warnings.push(
+            `Skipped product ${node.handle}: ${(error as Error).message}`,
+          );
           return null;
         }
       })
@@ -125,40 +160,47 @@ export async function fullSync(options: SyncOptions = {}): Promise<SyncStats> {
       collections,
     };
 
-    report('Validating…');
+    report("Validating…");
     const validation = validateCatalog(catalog);
     if (!validation.ok) {
-      const detail = validation.issues.map((issue) => `  ${issue.path}: ${issue.message}`).join('\n');
-      throw new Error(`Catalog failed schema validation — refusing to write.\n${detail}`);
+      const detail = validation.issues
+        .map((issue) => `  ${issue.path}: ${issue.message}`)
+        .join("\n");
+      throw new Error(
+        `Catalog failed schema validation — refusing to write.\n${detail}`,
+      );
     }
 
     const auditIssues = auditCatalog(catalogSchema.parse(catalog));
-    const fatal = auditIssues.filter((issue) => issue.message.includes('Duplicate handle'));
+    const fatal = auditIssues.filter((issue) =>
+      issue.message.includes("Duplicate handle"),
+    );
     if (fatal.length > 0) {
       throw new Error(
         `Catalog has duplicate handles — refusing to write.\n${fatal
           .map((issue) => `  ${issue.path}: ${issue.message}`)
-          .join('\n')}`,
+          .join("\n")}`,
       );
     }
-    for (const issue of auditIssues) warnings.push(`${issue.path}: ${issue.message}`);
+    for (const issue of auditIssues)
+      warnings.push(`${issue.path}: ${issue.message}`);
 
-    report('Diffing against the previous catalog…');
+    report("Diffing against the previous catalog…");
     const previous = await readJsonFile<Catalog>(CATALOG_PATH);
     const diff = diffCatalogs(previous, catalog);
 
     let redirectsCreated = 0;
     for (const change of diff.handleChanges) {
-      await redirectRepository.record('products', change.from, change.to);
+      await redirectRepository.record("products", change.from, change.to);
       redirectsCreated += 1;
       report(`  redirect /products/${change.from} → /products/${change.to}`);
     }
     for (const change of diff.collectionHandleChanges) {
-      await redirectRepository.record('collections', change.from, change.to);
+      await redirectRepository.record("collections", change.from, change.to);
       redirectsCreated += 1;
     }
 
-    report('Writing data/products.json…');
+    report("Writing data/products.json…");
     await productRepository.replaceCatalog(catalog);
 
     const finishedAt = Date.now();
@@ -167,7 +209,10 @@ export async function fullSync(options: SyncOptions = {}): Promise<SyncStats> {
       finishedAt: new Date(finishedAt).toISOString(),
       durationMs: finishedAt - startedAt,
       products: products.length,
-      variants: products.reduce((sum, product) => sum + product.variants.length, 0),
+      variants: products.reduce(
+        (sum, product) => sum + product.variants.length,
+        0,
+      ),
       images: products.reduce((sum, product) => sum + product.images.length, 0),
       collections: collections.length,
       added: diff.added,
@@ -189,7 +234,10 @@ export type CatalogDiff = {
   collectionHandleChanges: { id: string; from: string; to: string }[];
 };
 
-export function diffCatalogs(previous: Catalog | null, next: Catalog): CatalogDiff {
+export function diffCatalogs(
+  previous: Catalog | null,
+  next: Catalog,
+): CatalogDiff {
   const diff: CatalogDiff = {
     added: [],
     updated: [],
@@ -202,7 +250,9 @@ export function diffCatalogs(previous: Catalog | null, next: Catalog): CatalogDi
     return diff;
   }
 
-  const previousById = new Map(previous.products.map((product) => [product.id, product]));
+  const previousById = new Map(
+    previous.products.map((product) => [product.id, product]),
+  );
   const nextIds = new Set(next.products.map((product) => product.id));
 
   for (const product of next.products) {
@@ -213,20 +263,31 @@ export function diffCatalogs(previous: Catalog | null, next: Catalog): CatalogDi
     }
     // Same Shopify ID with a different handle == a rename, not a new product.
     if (before.handle !== product.handle) {
-      diff.handleChanges.push({ id: product.id, from: before.handle, to: product.handle });
+      diff.handleChanges.push({
+        id: product.id,
+        from: before.handle,
+        to: product.handle,
+      });
     }
-    if (JSON.stringify(before) !== JSON.stringify(product)) diff.updated.push(product.handle);
+    if (JSON.stringify(before) !== JSON.stringify(product))
+      diff.updated.push(product.handle);
   }
 
   for (const product of previous.products) {
     if (!nextIds.has(product.id)) diff.removed.push(product.handle);
   }
 
-  const previousCollections = new Map(previous.collections.map((collection) => [collection.id, collection]));
+  const previousCollections = new Map(
+    previous.collections.map((collection) => [collection.id, collection]),
+  );
   for (const collection of next.collections) {
     const before = previousCollections.get(collection.id);
     if (before && before.handle !== collection.handle) {
-      diff.collectionHandleChanges.push({ id: collection.id, from: before.handle, to: collection.handle });
+      diff.collectionHandleChanges.push({
+        id: collection.id,
+        from: before.handle,
+        to: collection.handle,
+      });
     }
   }
 
@@ -235,7 +296,9 @@ export function diffCatalogs(previous: Catalog | null, next: Catalog): CatalogDi
 
 /* ── Incremental (webhook) paths ───────────────────────────────────────── */
 
-export async function syncSingleProduct(productGid: string): Promise<CatalogProduct | null> {
+export async function syncSingleProduct(
+  productGid: string,
+): Promise<CatalogProduct | null> {
   const data = await adminRequest<{ product: AdminProductNode | null }>({
     query: PRODUCT_BY_ID_QUERY,
     variables: { id: productGid },
@@ -244,18 +307,27 @@ export async function syncSingleProduct(productGid: string): Promise<CatalogProd
 
   // Currency comes from the catalog the full sync already established.
   const meta = await productRepository.getCatalogMeta();
-  const product = normalizeProduct(data.product, meta.shop.currencyCode || 'USD');
+  const product = normalizeProduct(
+    data.product,
+    meta.shop.currencyCode || "USD",
+  );
 
   const existing = await productRepository.getProductById(product.id);
   if (existing && existing.handle !== product.handle) {
-    await redirectRepository.record('products', existing.handle, product.handle);
+    await redirectRepository.record(
+      "products",
+      existing.handle,
+      product.handle,
+    );
   }
 
   await productRepository.updateProduct(product);
   return product;
 }
 
-export async function syncSingleCollection(collectionGid: string): Promise<CatalogCollection | null> {
+export async function syncSingleCollection(
+  collectionGid: string,
+): Promise<CatalogCollection | null> {
   const data = await adminRequest<{ collection: AdminCollectionNode | null }>({
     query: COLLECTION_BY_ID_QUERY,
     variables: { id: collectionGid },
@@ -264,16 +336,30 @@ export async function syncSingleCollection(collectionGid: string): Promise<Catal
 
   // Membership comes from the products already in the catalog, so a collection
   // update never triggers a full product re-fetch.
-  const products = await productRepository.getAllProducts({ includeUnavailable: true });
+  const products = await productRepository.getAllProducts({
+    includeUnavailable: true,
+  });
   const memberIds = products
-    .filter((product) => product.collections.some((ref) => ref.id === collectionGid))
+    .filter((product) =>
+      product.collections.some((ref) => ref.id === collectionGid),
+    )
     .map((product) => product.id);
 
-  const existing = await productRepository.getCollectionByHandle(data.collection.handle);
+  const existing = await productRepository.getCollectionByHandle(
+    data.collection.handle,
+  );
   const collection = normalizeCollection(data.collection, memberIds);
 
-  if (existing && existing.id === collection.id && existing.handle !== collection.handle) {
-    await redirectRepository.record('collections', existing.handle, collection.handle);
+  if (
+    existing &&
+    existing.id === collection.id &&
+    existing.handle !== collection.handle
+  ) {
+    await redirectRepository.record(
+      "collections",
+      existing.handle,
+      collection.handle,
+    );
   }
 
   await productRepository.updateCollection(collection);
@@ -287,7 +373,9 @@ export async function syncSingleCollection(collectionGid: string): Promise<Catal
  * requires the `read_content` Admin API scope, which a store may not have
  * granted yet. Failing here must never take the product catalog down with it.
  */
-export async function fullSyncBlogContent(options: SyncOptions = {}): Promise<BlogSyncStats> {
+export async function fullSyncBlogContent(
+  options: SyncOptions = {},
+): Promise<BlogSyncStats> {
   const startedAt = Date.now();
   const report = options.onProgress ?? (() => {});
   const warnings: string[] = [];
@@ -295,25 +383,37 @@ export async function fullSyncBlogContent(options: SyncOptions = {}): Promise<Bl
   const lock = await acquireLock({ timeoutMs: 60_000 });
 
   try {
-    report('Fetching blogs…');
-    const blogNodes = await paginateAdmin<AdminBlogNode>(BLOGS_PAGE_QUERY, 'blogs', {
-      pageSize: 50,
-      onPage: (nodes, page) => report(`  page ${page}: ${nodes.length} blogs`),
-    });
+    report("Fetching blogs…");
+    const blogNodes = await paginateAdmin<AdminBlogNode>(
+      BLOGS_PAGE_QUERY,
+      "blogs",
+      {
+        pageSize: 50,
+        onPage: (nodes, page) =>
+          report(`  page ${page}: ${nodes.length} blogs`),
+      },
+    );
 
-    report('Fetching articles…');
-    const articleNodes = await paginateAdmin<AdminArticleNode>(ARTICLES_PAGE_QUERY, 'articles', {
-      pageSize: options.pageSize ?? 50,
-      onPage: (nodes, page) => report(`  page ${page}: ${nodes.length} articles`),
-    });
+    report("Fetching articles…");
+    const articleNodes = await paginateAdmin<AdminArticleNode>(
+      ARTICLES_PAGE_QUERY,
+      "articles",
+      {
+        pageSize: options.pageSize ?? 50,
+        onPage: (nodes, page) =>
+          report(`  page ${page}: ${nodes.length} articles`),
+      },
+    );
 
-    report('Normalizing…');
+    report("Normalizing…");
     const articles = articleNodes
       .map((node) => {
         try {
           return normalizeArticle(node);
         } catch (error) {
-          warnings.push(`Skipped article ${node.handle}: ${(error as Error).message}`);
+          warnings.push(
+            `Skipped article ${node.handle}: ${(error as Error).message}`,
+          );
           return null;
         }
       })
@@ -340,11 +440,11 @@ export async function fullSyncBlogContent(options: SyncOptions = {}): Promise<Bl
       articles,
     };
 
-    report('Diffing against the previous blog catalog…');
+    report("Diffing against the previous blog catalog…");
     const previous = await readJsonFile<BlogCatalog>(BLOG_PATH);
     const diff = diffBlogCatalogs(previous, catalog);
 
-    report('Writing data/blog.json…');
+    report("Writing data/blog.json…");
     await blogRepository.replaceCatalog(catalog);
 
     const finishedAt = Date.now();
@@ -370,14 +470,20 @@ export type BlogCatalogDiff = {
   removed: string[];
 };
 
-export function diffBlogCatalogs(previous: BlogCatalog | null, next: BlogCatalog): BlogCatalogDiff {
-  const key = (article: BlogArticle) => `${article.blogHandle}/${article.handle}`;
+export function diffBlogCatalogs(
+  previous: BlogCatalog | null,
+  next: BlogCatalog,
+): BlogCatalogDiff {
+  const key = (article: BlogArticle) =>
+    `${article.blogHandle}/${article.handle}`;
 
   if (!previous) {
     return { added: next.articles.map(key), updated: [], removed: [] };
   }
 
-  const previousById = new Map(previous.articles.map((article) => [article.id, article]));
+  const previousById = new Map(
+    previous.articles.map((article) => [article.id, article]),
+  );
   const nextIds = new Set(next.articles.map((article) => article.id));
 
   const diff: BlogCatalogDiff = { added: [], updated: [], removed: [] };
@@ -388,7 +494,8 @@ export function diffBlogCatalogs(previous: BlogCatalog | null, next: BlogCatalog
       diff.added.push(key(article));
       continue;
     }
-    if (JSON.stringify(before) !== JSON.stringify(article)) diff.updated.push(key(article));
+    if (JSON.stringify(before) !== JSON.stringify(article))
+      diff.updated.push(key(article));
   }
 
   for (const article of previous.articles) {
@@ -411,18 +518,15 @@ type ShopContactQueryResult = {
     email: string | null;
     billingAddress: {
       phone: string | null;
-      address1: string | null;
-      address2: string | null;
-      city: string | null;
       province: string | null;
-      zip: string | null;
       country: string | null;
-      countryCodeV2: string | null;
     } | null;
   };
 };
 
-export async function fullSyncShopContent(options: SyncOptions = {}): Promise<ShopSyncStats> {
+export async function fullSyncShopContent(
+  options: SyncOptions = {},
+): Promise<ShopSyncStats> {
   const startedAt = Date.now();
   const report = options.onProgress ?? (() => {});
   const warnings: string[] = [];
@@ -430,18 +534,17 @@ export async function fullSyncShopContent(options: SyncOptions = {}): Promise<Sh
   const lock = await acquireLock({ timeoutMs: 30_000 });
 
   try {
-    report('Fetching store contact details…');
-    const contact = await adminRequest<ShopContactQueryResult>({ query: SHOP_CONTACT_QUERY })
+    report("Fetching store contact details…");
+    const contact = await adminRequest<ShopContactQueryResult>({
+      query: SHOP_CONTACT_QUERY,
+    })
       .then(({ shop }) => ({
         email: shop.email,
         phone: shop.billingAddress?.phone ?? null,
+        // Only region + country are stored — never the full street address.
         address: shop.billingAddress
           ? {
-              address1: shop.billingAddress.address1,
-              address2: shop.billingAddress.address2,
-              city: shop.billingAddress.city,
               province: shop.billingAddress.province,
-              zip: shop.billingAddress.zip,
               country: shop.billingAddress.country,
             }
           : null,
@@ -451,8 +554,10 @@ export async function fullSyncShopContent(options: SyncOptions = {}): Promise<Sh
         return { email: null, phone: null, address: null };
       });
 
-    report('Fetching store policies…');
-    const policies = await storefrontRequest<{ shop: ShopCatalog['policies'] }>({ query: SHOP_POLICIES_QUERY })
+    report("Fetching store policies…");
+    const policies = await storefrontRequest<{ shop: ShopCatalog["policies"] }>(
+      { query: SHOP_POLICIES_QUERY },
+    )
       .then(({ shop }) => shop)
       .catch((error) => {
         warnings.push(`Store policies: ${(error as Error).message}`);
@@ -471,7 +576,7 @@ export async function fullSyncShopContent(options: SyncOptions = {}): Promise<Sh
       policies,
     };
 
-    report('Writing data/shop.json…');
+    report("Writing data/shop.json…");
     await shopRepository.replaceCatalog(catalog);
 
     const finishedAt = Date.now();
@@ -481,7 +586,8 @@ export async function fullSyncShopContent(options: SyncOptions = {}): Promise<Sh
       durationMs: finishedAt - startedAt,
       hasContactEmail: contact.email !== null,
       hasContactAddress: contact.address !== null,
-      policiesFound: Object.values(policies).filter((policy) => policy !== null).length,
+      policiesFound: Object.values(policies).filter((policy) => policy !== null)
+        .length,
       warnings,
     };
   } finally {
@@ -491,7 +597,9 @@ export async function fullSyncShopContent(options: SyncOptions = {}): Promise<Sh
 
 /* ── Incremental (webhook) paths ───────────────────────────────────────── */
 
-export async function syncSingleArticle(articleGid: string): Promise<BlogArticle | null> {
+export async function syncSingleArticle(
+  articleGid: string,
+): Promise<BlogArticle | null> {
   const data = await adminRequest<{ article: AdminArticleNode | null }>({
     query: ARTICLE_BY_ID_QUERY,
     variables: { id: articleGid },
@@ -512,8 +620,12 @@ export async function syncSingleBlog(blogGid: string): Promise<Blog | null> {
 
   // Membership comes from the articles already in the catalog, so a blog
   // update never triggers a full article re-fetch.
-  const articles = await blogRepository.getAllArticles({ includeUnpublished: true });
-  const memberIds = articles.filter((article) => article.blogId === blogGid).map((article) => article.id);
+  const articles = await blogRepository.getAllArticles({
+    includeUnpublished: true,
+  });
+  const memberIds = articles
+    .filter((article) => article.blogId === blogGid)
+    .map((article) => article.id);
 
   const blog = normalizeBlog(data.blog, memberIds);
   await blogRepository.updateBlog(blog);
