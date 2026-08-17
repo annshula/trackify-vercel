@@ -75,11 +75,29 @@ export async function fetchCart(): Promise<Cart | null> {
 
   try {
     const country = await resolveEffectiveCountry();
-    const cart = await getCart(cartId, country);
+    let cart = await getCart(cartId, country);
     if (!cart) {
       await clearCartId();
       return restoreLinkedCart();
     }
+
+    // A cart's line costs are committed in whatever currency was actually
+    // set on its buyerIdentity when each line was added — @inContext on a
+    // read does not retroactively re-price them. A cart created (or last
+    // touched) under a different resolved country than the visitor has
+    // right now would keep showing its old currency's costs, which then
+    // mismatches a fresh price lookup at checkout and falsely trips "Your
+    // bag changed." Reconcile here, the one place every cart read goes
+    // through, so it self-heals before that ever surfaces.
+    if (country && cart.buyerIdentity?.countryCode !== country) {
+      try {
+        cart = await setBuyerIdentity(cart.id, { countryCode: country }, country);
+      } catch {
+        // Best-effort — proceedToCheckout's own validateCart still catches
+        // a real mismatch if this doesn't land.
+      }
+    }
+
     return cart;
   } catch {
     // A cart lookup failure must not break page rendering.
