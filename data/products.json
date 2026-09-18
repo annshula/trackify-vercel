@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-17T10:56:47.715Z",
+  "generatedAt": "2026-09-18T18:58:03.953Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -260,7 +260,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T13:46:17Z",
       "createdAt": "2025-02-26T13:46:17Z",
-      "updatedAt": "2026-08-12T03:27:55Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157340848355",
@@ -556,7 +556,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-08-16T13:31:51Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -1151,7 +1151,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:58:35Z",
       "createdAt": "2025-02-26T14:58:35Z",
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157414445283",
@@ -1559,7 +1559,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T15:45:51Z",
       "createdAt": "2025-02-26T15:45:51Z",
-      "updatedAt": "2026-08-13T17:54:33Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157428175075",
@@ -1781,7 +1781,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T16:10:45Z",
       "createdAt": "2025-02-26T16:10:45Z",
-      "updatedAt": "2026-08-13T18:04:42Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157445443811",
@@ -1970,7 +1970,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-08-12T02:53:59Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -1987,8 +1987,8 @@
           "title": "Black",
           "sku": null,
           "barcode": null,
-          "price": 0,
-          "compareAtPrice": 19.99,
+          "price": 29.99,
+          "compareAtPrice": null,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -2007,14 +2007,11 @@
         }
       ],
       "priceRange": {
-        "min": 0,
-        "max": 0,
+        "min": 29.99,
+        "max": 29.99,
         "currencyCode": "USD"
       },
-      "compareAtPriceRange": {
-        "min": 19.99,
-        "max": 19.99
-      },
+      "compareAtPriceRange": null,
       "metafields": {
         "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.91\"}",
         "reviews.rating_count": "11",
@@ -2072,7 +2069,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-08-12T02:34:19Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -2170,7 +2167,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-08-12T02:34:07Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -2268,7 +2265,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-08-12T02:37:38Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -2366,7 +2363,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-08-11T14:02:34Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -2671,7 +2668,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-08-16T02:05:47Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -2690,8 +2687,8 @@
           "title": "Trainers And Wireball",
           "sku": "CJYD182940302BY",
           "barcode": null,
-          "price": 39.99,
-          "compareAtPrice": 45,
+          "price": 42.88,
+          "compareAtPrice": 53.17,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -2713,8 +2710,8 @@
           "title": "Trainers And Wireball 2pcs",
           "sku": "CJYD182940304DW",
           "barcode": null,
-          "price": 49.99,
-          "compareAtPrice": 62.8,
+          "price": 50.6,
+          "compareAtPrice": 65.27,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -2736,8 +2733,8 @@
           "title": "Ball With Line",
           "sku": "CJYD182940301AZ",
           "barcode": null,
-          "price": 15.99,
-          "compareAtPrice": 32.99,
+          "price": 38.76,
+          "compareAtPrice": 45.74,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -2756,13 +2753,13 @@
         }
       ],
       "priceRange": {
-        "min": 15.99,
-        "max": 49.99,
+        "min": 38.76,
+        "max": 50.6,
         "currencyCode": "USD"
       },
       "compareAtPriceRange": {
-        "min": 32.99,
-        "max": 62.8
+        "min": 45.74,
+        "max": 65.27
       },
       "metafields": {
         "shopify.age-group": "[\"gid://shopify/Metaobject/251416674531\",\"gid://shopify/Metaobject/251416707299\",\"gid://shopify/Metaobject/251748221155\"]",
@@ -2798,6 +2795,34 @@
       ],
       "images": [
         {
+          "id": "gid://shopify/MediaImage/39567531507939",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
+          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069730992355",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc2986104fbbf4152af4eafb296f59486m.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069730468067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Saa44d1ad7ed6462a929cc795e8f37ed4e.jpg?v=1789563971",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069730959587",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se56581f50d614d51b5e6ab07d974d66bV.jpg?v=1789563971",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
           "id": "gid://shopify/MediaImage/39567531475171",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163826.jpg?v=1786723699",
           "altText": "5cbb774b557bc2f00d6af92d060ce159",
@@ -2805,11 +2830,46 @@
           "height": 800
         },
         {
-          "id": "gid://shopify/MediaImage/39567531507939",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
-          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "id": "gid://shopify/MediaImage/40069730533603",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5e02f47d825c4608b90cf49fb440b367O.jpg?v=1789563971",
+          "altText": "",
           "width": 800,
           "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069731123427",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S1cef0cb9eb874fda92cc09a02ed48a7fk.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069730861283",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S505a5748affa45a59edabaa036e2e14dy.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069731156195",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7685c09462b744aca3fc8121aeab861cH.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069730926819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S870c9133153c4a9080a3c680df6655b8J.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/40069731057891",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf6e870940f4345059da38a62fa2c598bU.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "id": "gid://shopify/MediaImage/39567531540707",
@@ -2875,6 +2935,34 @@
           "height": 421
         },
         {
+          "id": "gid://shopify/ProductImage/48782938800355",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
+          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307783823587",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc2986104fbbf4152af4eafb296f59486m.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307783332067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Saa44d1ad7ed6462a929cc795e8f37ed4e.jpg?v=1789563971",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307783790819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se56581f50d614d51b5e6ab07d974d66bV.jpg?v=1789563971",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
           "id": "gid://shopify/ProductImage/48782938767587",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163826.jpg?v=1786723699",
           "altText": "5cbb774b557bc2f00d6af92d060ce159",
@@ -2882,11 +2970,46 @@
           "height": 800
         },
         {
-          "id": "gid://shopify/ProductImage/48782938800355",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
-          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "id": "gid://shopify/ProductImage/49307783397603",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5e02f47d825c4608b90cf49fb440b367O.jpg?v=1789563971",
+          "altText": "",
           "width": 800,
           "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307784970467",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S1cef0cb9eb874fda92cc09a02ed48a7fk.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307783692515",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S505a5748affa45a59edabaa036e2e14dy.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307784937699",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7685c09462b744aca3fc8121aeab861cH.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307783758051",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S870c9133153c4a9080a3c680df6655b8J.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49307783856355",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf6e870940f4345059da38a62fa2c598bU.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "id": "gid://shopify/ProductImage/48782938833123",
@@ -2955,6 +3078,66 @@
       "media": [
         {
           "type": "image",
+          "id": "gid://shopify/MediaImage/39567531507939",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
+          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "video",
+          "id": "gid://shopify/Video/40070762987747",
+          "sources": [
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.SD-480p-1.2Mbps-94610342.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.HD-1080p-4.8Mbps-94610342.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.HD-720p-3.0Mbps-94610342.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.m3u8",
+              "mimeType": "application/x-mpegURL",
+              "format": "m3u8"
+            }
+          ],
+          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/aa2383647ce7411b833d6c87c5b90fa5.thumbnail.0000000000.jpg?v=1789568755",
+          "altText": ""
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069730992355",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc2986104fbbf4152af4eafb296f59486m.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069730468067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Saa44d1ad7ed6462a929cc795e8f37ed4e.jpg?v=1789563971",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069730959587",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se56581f50d614d51b5e6ab07d974d66bV.jpg?v=1789563971",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
           "id": "gid://shopify/MediaImage/39567531475171",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163826.jpg?v=1786723699",
           "altText": "5cbb774b557bc2f00d6af92d060ce159",
@@ -2963,11 +3146,51 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39567531507939",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1614912163811.jpg?v=1786723698",
-          "altText": "cff58fc1672a077d440f1381f2b45460",
+          "id": "gid://shopify/MediaImage/40069730533603",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5e02f47d825c4608b90cf49fb440b367O.jpg?v=1789563971",
+          "altText": "",
           "width": 800,
           "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069731123427",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S1cef0cb9eb874fda92cc09a02ed48a7fk.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069730861283",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S505a5748affa45a59edabaa036e2e14dy.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069731156195",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7685c09462b744aca3fc8121aeab861cH.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069730926819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S870c9133153c4a9080a3c680df6655b8J.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40069731057891",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf6e870940f4345059da38a62fa2c598bU.jpg?v=1789563971",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "type": "image",
@@ -3050,7 +3273,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T16:08:19Z",
       "createdAt": "2026-08-14T16:08:16Z",
-      "updatedAt": "2026-08-17T10:54:01Z",
+      "updatedAt": "2026-09-18T04:26:26Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081001890019",
@@ -3066,7 +3289,8 @@
             "Frog",
             "Turtle",
             "Tortoise",
-            "Unicorn"
+            "Unicorn",
+            "Yellow Bee"
           ]
         }
       ],
@@ -3076,8 +3300,8 @@
           "title": "Dream Little Butterfly",
           "sku": "CJYE102989601AZ",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3087,7 +3311,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48782938800355",
           "availableForSale": true,
-          "inventoryQuantity": 40000,
+          "inventoryQuantity": 39999,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 190,
@@ -3099,8 +3323,8 @@
           "title": "Lion",
           "sku": "CJYE102989602BY",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3122,8 +3346,8 @@
           "title": "Green Owl",
           "sku": "CJYE102989603CX",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3145,8 +3369,8 @@
           "title": "Bee",
           "sku": "CJYE102989605EV",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3168,8 +3392,8 @@
           "title": "Flying Pig",
           "sku": "CJYE102989606FU",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3191,8 +3415,8 @@
           "title": "Pink Butterfly",
           "sku": "CJYE102989607GT",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3214,8 +3438,8 @@
           "title": "Frog",
           "sku": "CJYE102989693OL",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3237,8 +3461,8 @@
           "title": "Turtle",
           "sku": "CJYE102989694PK",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3248,7 +3472,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48782938931427",
           "availableForSale": true,
-          "inventoryQuantity": 13816,
+          "inventoryQuantity": 13822,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 190,
@@ -3260,8 +3484,8 @@
           "title": "Tortoise",
           "sku": "CJYE102989698TG",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3283,8 +3507,8 @@
           "title": "Unicorn",
           "sku": "CJYE102989697SH",
           "barcode": null,
-          "price": 45.99,
-          "compareAtPrice": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3300,16 +3524,42 @@
           "weight": 190,
           "weightUnit": "GRAMS",
           "position": 10
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49749579268323",
+          "title": "Yellow Bee",
+          "sku": null,
+          "barcode": null,
+          "price": 30.16,
+          "compareAtPrice": 45.24,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "style",
+              "value": "Yellow Bee"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49307783856355",
+          "availableForSale": false,
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 190,
+          "weightUnit": "GRAMS",
+          "position": 11
         }
       ],
       "priceRange": {
-        "min": 45.99,
-        "max": 45.99,
+        "min": 30.16,
+        "max": 30.16,
         "currencyCode": "USD"
       },
-      "compareAtPriceRange": null,
+      "compareAtPriceRange": {
+        "min": 45.24,
+        "max": 45.24
+      },
       "metafields": {},
-      "totalInventory": 293484
+      "totalInventory": 293489
     },
     {
       "id": "gid://shopify/Product/9603356328163",
@@ -3556,7 +3806,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-08-16T02:05:25Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -3580,8 +3830,8 @@
           "title": "Gold",
           "sku": "CJYD276125704DW",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.16,
+          "compareAtPrice": 51.93,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3603,8 +3853,8 @@
           "title": "Blue",
           "sku": "CJYD276125703CX",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.16,
+          "compareAtPrice": 54.19,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3626,8 +3876,8 @@
           "title": "Carbon Fiber Color",
           "sku": "CJYD276125701AZ",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.16,
+          "compareAtPrice": 56.9,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3649,8 +3899,8 @@
           "title": "Damascus Send A Screwdriver",
           "sku": "CJYD276125708HS",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.84,
+          "compareAtPrice": 54.09,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3672,8 +3922,8 @@
           "title": "Gradient Color",
           "sku": "CJYD276125707GT",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.84,
+          "compareAtPrice": 56.84,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3695,8 +3945,8 @@
           "title": "Pink",
           "sku": "CJYD276125702BY",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.16,
+          "compareAtPrice": 58.26,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3718,8 +3968,8 @@
           "title": "Red And Black",
           "sku": "CJYD276125706FU",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.16,
+          "compareAtPrice": 52.39,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3741,8 +3991,8 @@
           "title": "Silver",
           "sku": "CJYD276125705EV",
           "barcode": null,
-          "price": 44.99,
-          "compareAtPrice": null,
+          "price": 45.16,
+          "compareAtPrice": 55.1,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -3761,20 +4011,23 @@
         }
       ],
       "priceRange": {
-        "min": 44.99,
-        "max": 44.99,
+        "min": 45.16,
+        "max": 45.84,
         "currencyCode": "USD"
       },
-      "compareAtPriceRange": null,
+      "compareAtPriceRange": {
+        "min": 51.93,
+        "max": 58.26
+      },
       "metafields": {},
       "totalInventory": 58941
     },
     {
       "id": "gid://shopify/Product/9605585436899",
-      "handle": "acupressure-pen-meridian-massage-tool",
+      "handle": "acupressure-pen-pro",
       "title": "Acupressure Pen - Auto-Sensing Meridian Massage Tool, No Needles",
-      "description": "No needles. Just real acupressure. This auto-sensing acupressure pen locates pressure points and delivers gentle electronic stimulation at the push of a button — the same meridian-point technique used in traditional acupuncture, without the needles, the training, or the appointment. Why people are switching to this over traditional tools Auto point-sensing — the tip detects acupoints automatically, so you don't need to know pressure-point charts to use it correctly Multiple head styles — choose 3-head or 5-head tips, oil-free or oil-infused, depending on sensitivity and use case Durable build — ABS + aluminum alloy body designed for daily use Portable — compact enough for a desk drawer, gym bag, or carry-on Multi-purpose — home massage, post-workout recovery, everyday tension relief Who it's for Anyone dealing with everyday muscle tension, stress, or stiffness who wants a faster, needle-free alternative to traditional acupuncture — at home, on your schedule. FAQ Is this the same as acupuncture?It uses the same meridian/pressure-point principle as acupuncture, but stimulates points electronically instead of with needles. Do I need training to use it?No — the auto-sensing tip is designed to find active points without prior knowledge of acupoint charts. Is it safe for daily use?Yes, it's designed for regular home use. As with any massage tool, avoid use directly over broken skin, varicose veins, or if pregnant without consulting a doctor. What's the difference between the head styles?3-head tips are more precise for smaller areas; 5-head tips cover broader muscle groups faster. Oil-infused variants glide more smoothly on skin. This is a wellness/massage tool, not a medical device. Individual results vary.",
-      "descriptionHtml": "<p><b>No needles. Just real acupressure.</b> This auto-sensing acupressure pen locates pressure points and delivers gentle electronic stimulation at the push of a button — the same meridian-point technique used in traditional acupuncture, without the needles, the training, or the appointment.</p>\n\n<h3>Why people are switching to this over traditional tools</h3>\n<ul>\n<li>\n<b>Auto point-sensing</b> — the tip detects acupoints automatically, so you don't need to know pressure-point charts to use it correctly</li>\n<li>\n<b>Multiple head styles</b> — choose 3-head or 5-head tips, oil-free or oil-infused, depending on sensitivity and use case</li>\n<li>\n<b>Durable build</b> — ABS + aluminum alloy body designed for daily use</li>\n<li>\n<b>Portable</b> — compact enough for a desk drawer, gym bag, or carry-on</li>\n<li>\n<b>Multi-purpose</b> — home massage, post-workout recovery, everyday tension relief</li>\n</ul>\n\n<h3>Who it's for</h3>\n<p>Anyone dealing with everyday muscle tension, stress, or stiffness who wants a faster, needle-free alternative to traditional acupuncture — at home, on your schedule.</p>\n\n<h3>FAQ</h3>\n<p><b>Is this the same as acupuncture?</b><br>It uses the same meridian/pressure-point principle as acupuncture, but stimulates points electronically instead of with needles.</p>\n<p><b>Do I need training to use it?</b><br>No — the auto-sensing tip is designed to find active points without prior knowledge of acupoint charts.</p>\n<p><b>Is it safe for daily use?</b><br>Yes, it's designed for regular home use. As with any massage tool, avoid use directly over broken skin, varicose veins, or if pregnant without consulting a doctor.</p>\n<p><b>What's the difference between the head styles?</b><br>3-head tips are more precise for smaller areas; 5-head tips cover broader muscle groups faster. Oil-infused variants glide more smoothly on skin.</p>\n\n<p><i>This is a wellness/massage tool, not a medical device. Individual results vary.</i></p>",
+      "description": "An acupressure pen you can actually check the specs on. Most listings in this category tell you what the device will do for your body. This one tells you what it is: a 158 g pen in an ABS and aluminium-alloy body, nine intensity levels on a lit display, five screw-on heads, and a single AA cell. Press the tip to a point, pick a level, and that is the whole machine. What you actually get Five heads, oil-free — rounded ball, ridged, fine point and flat spoon, plus the fitted tip on the pen. Every head is in the box. None is held back as a paid extra. Nine levels, held on the display — the level you set stays on screen until you change it, so the setting that suited you yesterday is the one you return to, not a guess at the same number of button presses. Auto point-sensing tip — the tip responds as it passes over an active point, so you do not need a meridian chart memorised before you start. One AA cell — no charger, no cable, no charging cradle, and no battery that dies at three years old and takes the device with it. It travels in hand luggage without an argument. 170 mm, 158 g — long enough to reach between your own shoulder blades one-handed, light enough to hold there. Honest specifications Body: ABS and aluminium alloy Weight: 158 g, oil-free build, without packaging Heads: five, interchangeable, threaded (not friction-fit) Intensity: nine selectable levels Power: one AA cell, not included What it is, and what it is not This is a consumer wellness and massage tool that applies pressure through a metal tip along with a low-level electrical pulse, in the same broad family as the TENS units sold in any pharmacy. It is not a medical device. It is not cleared by the FDA or Health Canada, and nothing here is a health claim or a treatment for any condition. If a listing for one of these tells you it cures something, that is the moment to close the tab. Do not use it if you have a pacemaker or any implanted electronic device, or if you are pregnant. Avoid broken skin, the front and sides of the neck, and the area near the eyes. If you have a heart condition, epilepsy or reduced sensation, ask a doctor first. Common questions Do I need to know the pressure points first?No. The auto-sensing tip responds as it passes over an active point, which is what most people use to find where to work. How long should a session be?Five to fifteen minutes across a few points, once or twice a day. Longer is not better. If a spot goes numb, sore or red, stop and move on. What is the difference between the heads?The fine point concentrates on one spot, the ball and spoon spread the same pressure over a wider area, and the ridged head suits a broad muscle like a calf or a forearm. Is a battery included?No. It takes one standard AA cell, which keeps the pen cheap to run and legal to fly with.",
+      "descriptionHtml": "<p><b>An acupressure pen you can actually check the specs on.</b> Most listings in this category tell you what the device will do for your body. This one tells you what it is: a 158 g pen in an ABS and aluminium-alloy body, nine intensity levels on a lit display, five screw-on heads, and a single AA cell. Press the tip to a point, pick a level, and that is the whole machine.</p>\n\n<h3>What you actually get</h3>\n<ul>\n<li>\n<b>Five heads, oil-free</b> — rounded ball, ridged, fine point and flat spoon, plus the fitted tip on the pen. Every head is in the box. None is held back as a paid extra.</li>\n<li>\n<b>Nine levels, held on the display</b> — the level you set stays on screen until you change it, so the setting that suited you yesterday is the one you return to, not a guess at the same number of button presses.</li>\n<li>\n<b>Auto point-sensing tip</b> — the tip responds as it passes over an active point, so you do not need a meridian chart memorised before you start.</li>\n<li>\n<b>One AA cell</b> — no charger, no cable, no charging cradle, and no battery that dies at three years old and takes the device with it. It travels in hand luggage without an argument.</li>\n<li>\n<b>170 mm, 158 g</b> — long enough to reach between your own shoulder blades one-handed, light enough to hold there.</li>\n</ul>\n\n<h3>Honest specifications</h3>\n<ul>\n<li>Body: ABS and aluminium alloy</li>\n<li>Weight: 158 g, oil-free build, without packaging</li>\n<li>Heads: five, interchangeable, threaded (not friction-fit)</li>\n<li>Intensity: nine selectable levels</li>\n<li>Power: one AA cell, not included</li>\n</ul>\n\n<h3>What it is, and what it is not</h3>\n<p>This is a consumer wellness and massage tool that applies pressure through a metal tip along with a low-level electrical pulse, in the same broad family as the TENS units sold in any pharmacy. It is <b>not a medical device</b>. It is not cleared by the FDA or Health Canada, and nothing here is a health claim or a treatment for any condition. If a listing for one of these tells you it cures something, that is the moment to close the tab.</p>\n\n<p>Do not use it if you have a pacemaker or any implanted electronic device, or if you are pregnant. Avoid broken skin, the front and sides of the neck, and the area near the eyes. If you have a heart condition, epilepsy or reduced sensation, ask a doctor first.</p>\n\n<h3>Common questions</h3>\n<p><b>Do I need to know the pressure points first?</b><br>No. The auto-sensing tip responds as it passes over an active point, which is what most people use to find where to work.</p>\n<p><b>How long should a session be?</b><br>Five to fifteen minutes across a few points, once or twice a day. Longer is not better. If a spot goes numb, sore or red, stop and move on.</p>\n<p><b>What is the difference between the heads?</b><br>The fine point concentrates on one spot, the ball and spoon spread the same pressure over a wider area, and the ridged head suits a broad muscle like a calf or a forearm.</p>\n<p><b>Is a battery included?</b><br>No. It takes one standard AA cell, which keeps the pen cheap to run and legal to fly with.</p>\n",
       "vendor": "Trackify",
       "productType": "Kids & Toddler",
       "tags": [
@@ -3795,259 +4048,575 @@
       ],
       "images": [
         {
-          "id": "gid://shopify/MediaImage/39580456648931",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/da560ae6-4bd7-46e7-86f8-fac502a3cdc3.jpg?v=1786902932",
-          "altText": "5558b84f6192f3683312bea2c8c30be9",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/39961025413347",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd44a5fa2dfee40b5a49a5d208a0165c6B.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/MediaImage/39580456681699",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1d82da7b-61e5-40a3-bf85-237570915f2f.jpg?v=1786902931",
-          "altText": "1909cd3f0219787a2394bb970577e4ba",
-          "width": 591,
-          "height": 786
+          "id": "gid://shopify/MediaImage/39961025315043",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa895515640a942659a1ff572b10224cej.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/MediaImage/39580456714467",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/029e763f-3b6c-44ae-bf9b-74ce60d381df.jpg?v=1786902932",
-          "altText": "4ace3dbb3c2abd3a1c90adb514c77673",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/39961025380579",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3402fe0a09040348098bc4ee43c87dfy.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/MediaImage/39580456747235",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b2d00050-9a28-4e1c-9cc2-b6beb1a5766d.jpg?v=1786902932",
-          "altText": "7c43a1f8413a4f0471cfc646ad5b0bda",
-          "width": 1080,
-          "height": 1301
+          "id": "gid://shopify/MediaImage/39961025642723",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7c52dc8b2f6044dc9121ada59345025ev.webp?v=1788893818",
+          "altText": "",
+          "width": 790,
+          "height": 910
         },
         {
-          "id": "gid://shopify/MediaImage/39580456780003",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c6e687c4-4219-49e9-9e78-6e10d3a5bc2d.jpg?v=1786902932",
-          "altText": "8390ee48f6fd5b435ef8c80a90f8d44c",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/MediaImage/39580456812771",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f931c505-1b43-4f24-8d78-3fcabbf6b29c.jpg?v=1786902932",
-          "altText": "fa2a6bfe3f3eafbfb6e002cec93608fb",
+          "id": "gid://shopify/MediaImage/39961025478883",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2d28817f188e4cadaa5d9ec9d43a5bebm.webp?v=1788893818",
+          "altText": "",
           "width": 800,
           "height": 800
         },
         {
-          "id": "gid://shopify/MediaImage/39580456845539",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3e56e05d-cd18-4ac7-8c26-8faf092d913e.jpg?v=1786902932",
-          "altText": "b7d25cbcb59e858e98f85b8278d30e67",
-          "width": 476,
-          "height": 434
+          "id": "gid://shopify/MediaImage/39961025741027",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S62f6a358147c4006897565ae7a18f5e6m.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/MediaImage/39580456878307",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f652d8a-4b40-424d-835f-e574cd3e0926.jpg?v=1786902932",
-          "altText": "b0603e54bc0f8bb97e617eba5c405129",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/MediaImage/39580456911075",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/9ab8f2cc-2ba9-48b9-b735-ffd149833740.jpg?v=1786902932",
-          "altText": "8833614012c7b8051b319e46f420b490",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/MediaImage/39580456943843",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/370894b1-f8d8-4236-9b3a-12a75d49c6eb.jpg?v=1786902932",
-          "altText": "c60b7098122323a31efed79108b18e9c",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/MediaImage/39580457042147",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/93c2b9c4-38cf-4516-b556-d6c3ca530065.jpg?v=1786902932",
-          "altText": "93f7e279e74f940c4c77e4e411420cc0",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/ProductImage/48795955232995",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/da560ae6-4bd7-46e7-86f8-fac502a3cdc3.jpg?v=1786902932",
-          "altText": "5558b84f6192f3683312bea2c8c30be9",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/ProductImage/48795955265763",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1d82da7b-61e5-40a3-bf85-237570915f2f.jpg?v=1786902931",
-          "altText": "1909cd3f0219787a2394bb970577e4ba",
-          "width": 591,
-          "height": 786
-        },
-        {
-          "id": "gid://shopify/ProductImage/48795955298531",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/029e763f-3b6c-44ae-bf9b-74ce60d381df.jpg?v=1786902932",
-          "altText": "4ace3dbb3c2abd3a1c90adb514c77673",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/ProductImage/48795955331299",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b2d00050-9a28-4e1c-9cc2-b6beb1a5766d.jpg?v=1786902932",
-          "altText": "7c43a1f8413a4f0471cfc646ad5b0bda",
-          "width": 1080,
-          "height": 1301
-        },
-        {
-          "id": "gid://shopify/ProductImage/48795955364067",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c6e687c4-4219-49e9-9e78-6e10d3a5bc2d.jpg?v=1786902932",
-          "altText": "8390ee48f6fd5b435ef8c80a90f8d44c",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "id": "gid://shopify/ProductImage/48795955396835",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f931c505-1b43-4f24-8d78-3fcabbf6b29c.jpg?v=1786902932",
-          "altText": "fa2a6bfe3f3eafbfb6e002cec93608fb",
+          "id": "gid://shopify/MediaImage/39961026167011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf52b70494a1e48f58bd38f6e6d818a271.webp?v=1788893818",
+          "altText": "",
           "width": 800,
           "height": 800
         },
         {
-          "id": "gid://shopify/ProductImage/48795955429603",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3e56e05d-cd18-4ac7-8c26-8faf092d913e.jpg?v=1786902932",
-          "altText": "b7d25cbcb59e858e98f85b8278d30e67",
-          "width": 476,
-          "height": 434
+          "id": "gid://shopify/MediaImage/40006719045859",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S09c131c178f64179a1fe9a3c9f124c4er.webp?v=1789206174",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/ProductImage/48795955462371",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f652d8a-4b40-424d-835f-e574cd3e0926.jpg?v=1786902932",
-          "altText": "b0603e54bc0f8bb97e617eba5c405129",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/40006723240163",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S82de8ec6ef4c418da48105847ec17ce9u.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/ProductImage/48795955495139",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/9ab8f2cc-2ba9-48b9-b735-ffd149833740.jpg?v=1786902932",
-          "altText": "8833614012c7b8051b319e46f420b490",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/40006723272931",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S82e0288053be4a0cb5bd700a680968b9K.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
-          "id": "gid://shopify/ProductImage/48795955527907",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/370894b1-f8d8-4236-9b3a-12a75d49c6eb.jpg?v=1786902932",
-          "altText": "c60b7098122323a31efed79108b18e9c",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/39961025839331",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S479c5347f7fd4b54b81391c4f3e9e938J.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
         },
         {
-          "id": "gid://shopify/ProductImage/48795955626211",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/93c2b9c4-38cf-4516-b556-d6c3ca530065.jpg?v=1786902932",
-          "altText": "93f7e279e74f940c4c77e4e411420cc0",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/40006723207395",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa378d10da4fb4417a07b142e1b1233bdY.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025773795",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S76feb74656f24df18d715dd7ef72bf86q.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025708259",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S36b0670a94a043009720487771249129c.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025577187",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5fbd8258196e469ba1f0b060c6effd2aP.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025511651",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c487cc12fcd412aa7f6a0cf9f789015f.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025970403",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe67745aa6f848d09948126c3dbd1c21V.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025183971",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S84cb4be72e9546b38e93c3574065d008j.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025216739",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S08679b1b5063463c8fc5c6a621d38ac91.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025249507",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S66064b4d043440caa2d4e78addc3dbf5B.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025282275",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S67945f27e60b4b859926550d0026adfek.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025347811",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sb995d021ae334ebb99079f73d48fa39fB.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025446115",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S0e068698913e4b28841bfec65fb9494fk.webp?v=1788893818",
+          "altText": "",
+          "width": 790,
+          "height": 1104
+        },
+        {
+          "id": "gid://shopify/MediaImage/39961025544419",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b668a806ff74098b5d24afa1db9f49fv.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846355683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd44a5fa2dfee40b5a49a5d208a0165c6B.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846257379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa895515640a942659a1ff572b10224cej.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846322915",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3402fe0a09040348098bc4ee43c87dfy.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846585059",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7c52dc8b2f6044dc9121ada59345025ev.webp?v=1788893818",
+          "altText": "",
+          "width": 790,
+          "height": 910
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846421219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2d28817f188e4cadaa5d9ec9d43a5bebm.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846683363",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S62f6a358147c4006897565ae7a18f5e6m.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194847109347",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf52b70494a1e48f58bd38f6e6d818a271.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49242484080867",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S09c131c178f64179a1fe9a3c9f124c4er.webp?v=1789206174",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49242488439011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S82de8ec6ef4c418da48105847ec17ce9u.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49242488471779",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S82e0288053be4a0cb5bd700a680968b9K.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846781667",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S479c5347f7fd4b54b81391c4f3e9e938J.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49242488406243",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa378d10da4fb4417a07b142e1b1233bdY.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846716131",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S76feb74656f24df18d715dd7ef72bf86q.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846650595",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S36b0670a94a043009720487771249129c.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846519523",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5fbd8258196e469ba1f0b060c6effd2aP.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846453987",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c487cc12fcd412aa7f6a0cf9f789015f.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846912739",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe67745aa6f848d09948126c3dbd1c21V.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846126307",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S84cb4be72e9546b38e93c3574065d008j.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846159075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S08679b1b5063463c8fc5c6a621d38ac91.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846191843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S66064b4d043440caa2d4e78addc3dbf5B.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846224611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S67945f27e60b4b859926550d0026adfek.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846290147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sb995d021ae334ebb99079f73d48fa39fB.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846388451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S0e068698913e4b28841bfec65fb9494fk.webp?v=1788893818",
+          "altText": "",
+          "width": 790,
+          "height": 1104
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846486755",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b668a806ff74098b5d24afa1db9f49fv.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49194846552291",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7ada4b10530f4f3a94a877dca84cf785h.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         }
       ],
       "media": [
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456648931",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/da560ae6-4bd7-46e7-86f8-fac502a3cdc3.jpg?v=1786902932",
-          "altText": "5558b84f6192f3683312bea2c8c30be9",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/39961025413347",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd44a5fa2dfee40b5a49a5d208a0165c6B.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "video",
+          "id": "gid://shopify/Video/40006724878563",
+          "sources": [
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/1c768e00c584414abb7f320429539d7a/1c768e00c584414abb7f320429539d7a.SD-480p-0.9Mbps-94202584.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/1c768e00c584414abb7f320429539d7a/1c768e00c584414abb7f320429539d7a.HD-720p-1.6Mbps-94202584.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/1c768e00c584414abb7f320429539d7a/1c768e00c584414abb7f320429539d7a.m3u8",
+              "mimeType": "application/x-mpegURL",
+              "format": "m3u8"
+            }
+          ],
+          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/1c768e00c584414abb7f320429539d7a.thumbnail.0000000000.jpg?v=1789206268",
+          "altText": ""
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456681699",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1d82da7b-61e5-40a3-bf85-237570915f2f.jpg?v=1786902931",
-          "altText": "1909cd3f0219787a2394bb970577e4ba",
-          "width": 591,
-          "height": 786
+          "id": "gid://shopify/MediaImage/39961025315043",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa895515640a942659a1ff572b10224cej.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456714467",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/029e763f-3b6c-44ae-bf9b-74ce60d381df.jpg?v=1786902932",
-          "altText": "4ace3dbb3c2abd3a1c90adb514c77673",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/39961025380579",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3402fe0a09040348098bc4ee43c87dfy.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456747235",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b2d00050-9a28-4e1c-9cc2-b6beb1a5766d.jpg?v=1786902932",
-          "altText": "7c43a1f8413a4f0471cfc646ad5b0bda",
-          "width": 1080,
-          "height": 1301
+          "id": "gid://shopify/MediaImage/39961025642723",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S7c52dc8b2f6044dc9121ada59345025ev.webp?v=1788893818",
+          "altText": "",
+          "width": 790,
+          "height": 910
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456780003",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c6e687c4-4219-49e9-9e78-6e10d3a5bc2d.jpg?v=1786902932",
-          "altText": "8390ee48f6fd5b435ef8c80a90f8d44c",
-          "width": 1920,
-          "height": 1920
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/39580456812771",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f931c505-1b43-4f24-8d78-3fcabbf6b29c.jpg?v=1786902932",
-          "altText": "fa2a6bfe3f3eafbfb6e002cec93608fb",
+          "id": "gid://shopify/MediaImage/39961025478883",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2d28817f188e4cadaa5d9ec9d43a5bebm.webp?v=1788893818",
+          "altText": "",
           "width": 800,
           "height": 800
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456845539",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3e56e05d-cd18-4ac7-8c26-8faf092d913e.jpg?v=1786902932",
-          "altText": "b7d25cbcb59e858e98f85b8278d30e67",
-          "width": 476,
-          "height": 434
+          "id": "gid://shopify/MediaImage/39961025741027",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S62f6a358147c4006897565ae7a18f5e6m.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456878307",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f652d8a-4b40-424d-835f-e574cd3e0926.jpg?v=1786902932",
-          "altText": "b0603e54bc0f8bb97e617eba5c405129",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/39961026167011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf52b70494a1e48f58bd38f6e6d818a271.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456911075",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/9ab8f2cc-2ba9-48b9-b735-ffd149833740.jpg?v=1786902932",
-          "altText": "8833614012c7b8051b319e46f420b490",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/40006719045859",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S09c131c178f64179a1fe9a3c9f124c4er.webp?v=1789206174",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580456943843",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/370894b1-f8d8-4236-9b3a-12a75d49c6eb.jpg?v=1786902932",
-          "altText": "c60b7098122323a31efed79108b18e9c",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/40006723240163",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S82de8ec6ef4c418da48105847ec17ce9u.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/39580457042147",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/93c2b9c4-38cf-4516-b556-d6c3ca530065.jpg?v=1786902932",
-          "altText": "93f7e279e74f940c4c77e4e411420cc0",
-          "width": 1920,
-          "height": 1920
+          "id": "gid://shopify/MediaImage/40006723272931",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S82e0288053be4a0cb5bd700a680968b9K.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025839331",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S479c5347f7fd4b54b81391c4f3e9e938J.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/40006723207395",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa378d10da4fb4417a07b142e1b1233bdY.webp?v=1789206219",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025773795",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S76feb74656f24df18d715dd7ef72bf86q.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025708259",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S36b0670a94a043009720487771249129c.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025577187",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5fbd8258196e469ba1f0b060c6effd2aP.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025511651",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c487cc12fcd412aa7f6a0cf9f789015f.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025970403",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe67745aa6f848d09948126c3dbd1c21V.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025183971",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S84cb4be72e9546b38e93c3574065d008j.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025216739",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S08679b1b5063463c8fc5c6a621d38ac91.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025249507",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S66064b4d043440caa2d4e78addc3dbf5B.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025282275",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S67945f27e60b4b859926550d0026adfek.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025347811",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sb995d021ae334ebb99079f73d48fa39fB.webp?v=1788893818",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025446115",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S0e068698913e4b28841bfec65fb9494fk.webp?v=1788893818",
+          "altText": "",
+          "width": 790,
+          "height": 1104
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39961025544419",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b668a806ff74098b5d24afa1db9f49fv.webp?v=1788893818",
+          "altText": "",
+          "width": 800,
+          "height": 800
         }
       ],
       "seo": {
-        "title": "Electronic Acupuncture Pen – No Needle Meridian Tool",
-        "description": "Electronic acupuncture pen auto-senses pressure points for needle-free relief at home. No training needed. 3 & 5-head tips. Shop now."
+        "title": "Acupressure Pen, Auto-Sensing, 5 Heads, No Needles",
+        "description": "Needle-free acupressure pen with auto point-sensing, 9 intensity levels and 5 heads. 158 g, ABS and aluminium alloy, one AA cell. Free worldwide shipping."
       },
-      "status": "DRAFT",
-      "publishedOnline": false,
-      "publishedAt": null,
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-09-06T18:43:31Z",
       "createdAt": "2026-08-16T17:55:30Z",
-      "updatedAt": "2026-08-17T10:24:39Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12083713900771",
@@ -4059,7 +4628,8 @@
             "Blue box with oil 3 heads",
             "OPP three head oil free",
             "OPP with oil 3 heads",
-            "opp five head oil free"
+            "opp five head oil free",
+            "opp five head oil free 2PCS"
           ]
         }
       ],
@@ -4069,8 +4639,8 @@
           "title": "Blister oil free 3 heads",
           "sku": "CJYD151610804DW",
           "barcode": null,
-          "price": 64.48,
-          "compareAtPrice": null,
+          "price": 39.95,
+          "compareAtPrice": 59.95,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -4078,7 +4648,7 @@
               "value": "Blister oil free 3 heads"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/48795955527907",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 7664,
           "inventoryPolicy": "DENY",
@@ -4092,8 +4662,8 @@
           "title": "Blister with oil 3 heads",
           "sku": "CJYD151610805EV",
           "barcode": null,
-          "price": 36.76,
-          "compareAtPrice": null,
+          "price": 44.95,
+          "compareAtPrice": 64.95,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -4101,7 +4671,7 @@
               "value": "Blister with oil 3 heads"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/48795955462371",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 8716,
           "inventoryPolicy": "DENY",
@@ -4115,8 +4685,8 @@
           "title": "Blue box with oil 3 heads",
           "sku": "CJYD151610806FU",
           "barcode": null,
-          "price": 40.8,
-          "compareAtPrice": null,
+          "price": 47.95,
+          "compareAtPrice": 69.95,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -4124,7 +4694,7 @@
               "value": "Blue box with oil 3 heads"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/48795955626211",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 9880,
           "inventoryPolicy": "DENY",
@@ -4138,8 +4708,8 @@
           "title": "OPP three head oil free",
           "sku": "CJYD151610801AZ",
           "barcode": null,
-          "price": 21.56,
-          "compareAtPrice": null,
+          "price": 39.95,
+          "compareAtPrice": 59.95,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -4147,7 +4717,7 @@
               "value": "OPP three head oil free"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/48795955495139",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 5308,
           "inventoryPolicy": "DENY",
@@ -4161,8 +4731,8 @@
           "title": "OPP with oil 3 heads",
           "sku": "CJYD151610803CX",
           "barcode": null,
-          "price": 22.18,
-          "compareAtPrice": null,
+          "price": 44.95,
+          "compareAtPrice": 64.95,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -4170,7 +4740,7 @@
               "value": "OPP with oil 3 heads"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/48795955364067",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 5819,
           "inventoryPolicy": "DENY",
@@ -4184,8 +4754,8 @@
           "title": "opp five head oil free",
           "sku": "CJYD151610802BY",
           "barcode": null,
-          "price": 32.71,
-          "compareAtPrice": null,
+          "price": 37.76,
+          "compareAtPrice": 59.95,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -4193,7 +4763,7 @@
               "value": "opp five head oil free"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/48795955298531",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 46331,
           "inventoryPolicy": "DENY",
@@ -4201,16 +4771,2703 @@
           "weight": 178,
           "weightUnit": "GRAMS",
           "position": 11
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49722686243043",
+          "title": "opp five head oil free 2PCS",
+          "sku": "CJYD151610812LO",
+          "barcode": null,
+          "price": 60.42,
+          "compareAtPrice": 119.9,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Variant",
+              "value": "opp five head oil free 2PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": false,
+          "inventoryQuantity": 0,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 344,
+          "weightUnit": "GRAMS",
+          "position": 12
         }
       ],
       "priceRange": {
-        "min": 21.56,
-        "max": 64.48,
+        "min": 37.76,
+        "max": 60.42,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": {
+        "min": 59.95,
+        "max": 119.9
+      },
+      "metafields": {
+        "shopify.body-area": "[\"gid://shopify/Metaobject/260830462179\"]",
+        "shopify.heat-function": "[\"gid://shopify/Metaobject/260830593251\"]",
+        "shopify.material": "[\"gid://shopify/Metaobject/260830494947\"]",
+        "shopify.speed-settings": "[\"gid://shopify/Metaobject/260830560483\"]",
+        "shopify.treatment-objective": "[\"gid://shopify/Metaobject/260830527715\"]"
+      },
+      "totalInventory": 83718
+    },
+    {
+      "id": "gid://shopify/Product/9606653313251",
+      "handle": "square-black-tourmaline-bracelet-mens-elastic-mixed-style-bracelet",
+      "title": "Square Black Tourmaline Bracelet Mens Elastic Mixed-Style Bracelet",
+      "description": "Weight you can feel. Quiet you can wear. Fourteen rectangular beads of polished black tourmaline, three of them faced in mirror steel, strung on a hidden elastic core. No clasp. No logo. Nothing to fasten and nothing to announce. It goes on in one motion and it stays. HIMVOLT is built around a single idea: a physical object on your wrist is a better reminder than a notification. The stone is cool when you put it on and warm within a minute. When you notice that, you notice yourself. That is the whole ritual. Specification Stone: natural black tourmaline, hand-polished to a mirror gloss Accents: three mirror-steel inlay faces, polished steel spacer bars Bead: approx. 10 × 10 mm, softly radiused corners Fit: elastic stretch core, one size, fits approx. 16–21 cm wrists Weight: approx. 40 g — present, never heavy Wear: Mens Care Wipe with a dry cloth. Remove before swimming, showering or the gym — elastic and chlorine are not friends. Roll it on rather than stretching it wide, and it will outlast the habit you bought it for. In the box Bracelet(s), protective pouch, care card. HIMVOLT is jewellery. It is not a medical device and makes no health, therapeutic or diagnostic claims.",
+      "descriptionHtml": "<p><strong>Weight you can feel. Quiet you can wear.</strong></p>\n<p>Fourteen rectangular beads of polished black tourmaline, three of them faced in mirror steel, strung on a hidden elastic core. No clasp. No logo. Nothing to fasten and nothing to announce. It goes on in one motion and it stays.</p>\n<p>HIMVOLT is built around a single idea: a physical object on your wrist is a better reminder than a notification. The stone is cool when you put it on and warm within a minute. When you notice that, you notice yourself. That is the whole ritual.</p>\n<h3>Specification</h3>\n<ul>\n<li>\n<strong>Stone:</strong> natural black tourmaline, hand-polished to a mirror gloss</li>\n<li>\n<strong>Accents:</strong> three mirror-steel inlay faces, polished steel spacer bars</li>\n<li>\n<strong>Bead:</strong> approx. 10 × 10 mm, softly radiused corners</li>\n<li>\n<strong>Fit:</strong> elastic stretch core, one size, fits approx. 16–21 cm wrists</li>\n<li>\n<strong>Weight:</strong> approx. 40 g — present, never heavy</li>\n<li>\n<strong>Wear:</strong> Mens</li>\n</ul>\n<h3>Care</h3>\n<p>Wipe with a dry cloth. Remove before swimming, showering or the gym — elastic and chlorine are not friends. Roll it on rather than stretching it wide, and it will outlast the habit you bought it for.</p>\n<h3>In the box</h3>\n<p>Bracelet(s), protective pouch, care card.</p>\n<p><small>HIMVOLT is jewellery. It is not a medical device and makes no health, therapeutic or diagnostic claims.</small></p>",
+      "vendor": "Trackify.com",
+      "productType": "Kids & Toddler",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39587996958947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/caa04a99-10c4-48cc-8627-9cfdbe29c5ae.jpg?v=1786992382",
+          "altText": "17c79433d9ab9eff2c7518393157a82a",
+          "width": 675,
+          "height": 675
+        },
+        {
+          "id": "gid://shopify/MediaImage/39587996991715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5513f308-52ed-4438-b0de-76478b27175b.jpg?v=1786992382",
+          "altText": "316fd8a3a83d5e1c47f49972bc82f570",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39587997024483",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/78d7fa95-4918-411f-850e-689da0d36ce5.jpg?v=1786992382",
+          "altText": "554d98acb98926a70fcd910ac0368df5",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/39587997057251",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/748c23d7-127f-482a-a50e-04b1f0d0d1a5.jpg?v=1786992382",
+          "altText": "89ca5492fdde870e80c254528872611a",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39587997090019",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2b193eaa-003e-4774-8340-50145e8ad43f.jpg?v=1786992382",
+          "altText": "e4c95d2553423fcc7ef470131a74fb41",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/39587997122787",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cab7c405-5b44-4e7c-881e-f8d6059390b4.jpg?v=1786992382",
+          "altText": "14ab3f431b48a6086a64562e9f8206a7",
+          "width": 490,
+          "height": 469
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581329635",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/caa04a99-10c4-48cc-8627-9cfdbe29c5ae.jpg?v=1786992382",
+          "altText": "17c79433d9ab9eff2c7518393157a82a",
+          "width": 675,
+          "height": 675
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581362403",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5513f308-52ed-4438-b0de-76478b27175b.jpg?v=1786992382",
+          "altText": "316fd8a3a83d5e1c47f49972bc82f570",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581395171",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/78d7fa95-4918-411f-850e-689da0d36ce5.jpg?v=1786992382",
+          "altText": "554d98acb98926a70fcd910ac0368df5",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581427939",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/748c23d7-127f-482a-a50e-04b1f0d0d1a5.jpg?v=1786992382",
+          "altText": "89ca5492fdde870e80c254528872611a",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581460707",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2b193eaa-003e-4774-8340-50145e8ad43f.jpg?v=1786992382",
+          "altText": "e4c95d2553423fcc7ef470131a74fb41",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581493475",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cab7c405-5b44-4e7c-881e-f8d6059390b4.jpg?v=1786992382",
+          "altText": "14ab3f431b48a6086a64562e9f8206a7",
+          "width": 490,
+          "height": 469
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587996958947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/caa04a99-10c4-48cc-8627-9cfdbe29c5ae.jpg?v=1786992382",
+          "altText": "17c79433d9ab9eff2c7518393157a82a",
+          "width": 675,
+          "height": 675
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587996991715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5513f308-52ed-4438-b0de-76478b27175b.jpg?v=1786992382",
+          "altText": "316fd8a3a83d5e1c47f49972bc82f570",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587997024483",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/78d7fa95-4918-411f-850e-689da0d36ce5.jpg?v=1786992382",
+          "altText": "554d98acb98926a70fcd910ac0368df5",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587997057251",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/748c23d7-127f-482a-a50e-04b1f0d0d1a5.jpg?v=1786992382",
+          "altText": "89ca5492fdde870e80c254528872611a",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587997090019",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2b193eaa-003e-4774-8340-50145e8ad43f.jpg?v=1786992382",
+          "altText": "e4c95d2553423fcc7ef470131a74fb41",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587997122787",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cab7c405-5b44-4e7c-881e-f8d6059390b4.jpg?v=1786992382",
+          "altText": "14ab3f431b48a6086a64562e9f8206a7",
+          "width": 490,
+          "height": 469
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "DRAFT",
+      "publishedOnline": false,
+      "publishedAt": null,
+      "createdAt": "2026-08-17T18:46:20Z",
+      "updatedAt": "2026-09-18T12:46:38Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12085045461219",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Square Bracelet"
+          ]
+        },
+        {
+          "id": "gid://shopify/ProductOption/12085045493987",
+          "name": "Please Input",
+          "position": 2,
+          "values": [
+            "1PCS",
+            "2PCS",
+            "4PCS"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49549914079459",
+          "title": "Square Bracelet / 1PCS",
+          "sku": "CJSL278251902BY",
+          "barcode": null,
+          "price": 14.26,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Square Bracelet"
+            },
+            {
+              "name": "Please Input",
+              "value": "1PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48803581395171",
+          "availableForSale": true,
+          "inventoryQuantity": 9707,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 40,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49549914112227",
+          "title": "Square Bracelet / 2PCS",
+          "sku": "CJSL278251901AZ",
+          "barcode": null,
+          "price": 40.77,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Square Bracelet"
+            },
+            {
+              "name": "Please Input",
+              "value": "2PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48803581362403",
+          "availableForSale": true,
+          "inventoryQuantity": 8026,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 74,
+          "weightUnit": "GRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49549914144995",
+          "title": "Square Bracelet / 4PCS",
+          "sku": "CJSL278251903CX",
+          "barcode": null,
+          "price": 42.55,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Square Bracelet"
+            },
+            {
+              "name": "Please Input",
+              "value": "4PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48803581493475",
+          "availableForSale": true,
+          "inventoryQuantity": 6973,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 148,
+          "weightUnit": "GRAMS",
+          "position": 3
+        }
+      ],
+      "priceRange": {
+        "min": 14.26,
+        "max": 42.55,
         "currencyCode": "USD"
       },
       "compareAtPriceRange": null,
       "metafields": {},
-      "totalInventory": 83718
+      "totalInventory": 24706
+    },
+    {
+      "id": "gid://shopify/Product/9617569120483",
+      "handle": "black-gallstone-bracelet-hematite-jewelry-terahertz",
+      "title": "The Hematite Drop Bracelet",
+      "description": "Hand-strung hematite beads in a geometric cut, polished to a dark gunmetal shine. The heaviest piece in the collection at 107g — built to be felt, not just seen.",
+      "descriptionHtml": "<p>Hand-strung hematite beads in a geometric cut, polished to a dark gunmetal shine. The heaviest piece in the collection at 107g — built to be felt, not just seen.</p>",
+      "vendor": "HIMVOLT",
+      "productType": "Bracelet",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39646372135139",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1787500281",
+          "altText": "1680fb7322775765a8387a07353e0ef1",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646372167907",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1e3fb0a6-4353-457f-8ce1-cf918421091b.jpg?v=1787500281",
+          "altText": "8db361fd4080efb0f68d95dfa2f04d42",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646372200675",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3bab1e98-71a4-460a-87d5-f19cfcf46cf6.jpg?v=1787500281",
+          "altText": "8c82154c3c58158fdbaa8696ffd74e06",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646372233443",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cc625092-0dcb-491d-a934-cb3f94dfaba0.jpg?v=1787500281",
+          "altText": "b633eeb25e2283dc780872f97823b3e8",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646372266211",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4dbb02ed-8ac9-4dff-9509-1e27592e42dd.jpg?v=1787500281",
+          "altText": "214b44d0942e967dfac2decfd9667ef",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862233854179",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1787500281",
+          "altText": "1680fb7322775765a8387a07353e0ef1",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862233886947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1e3fb0a6-4353-457f-8ce1-cf918421091b.jpg?v=1787500281",
+          "altText": "8db361fd4080efb0f68d95dfa2f04d42",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862233919715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3bab1e98-71a4-460a-87d5-f19cfcf46cf6.jpg?v=1787500281",
+          "altText": "8c82154c3c58158fdbaa8696ffd74e06",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862233952483",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cc625092-0dcb-491d-a934-cb3f94dfaba0.jpg?v=1787500281",
+          "altText": "b633eeb25e2283dc780872f97823b3e8",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862233985251",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4dbb02ed-8ac9-4dff-9509-1e27592e42dd.jpg?v=1787500281",
+          "altText": "214b44d0942e967dfac2decfd9667ef",
+          "width": 1000,
+          "height": 1000
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646372135139",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1787500281",
+          "altText": "1680fb7322775765a8387a07353e0ef1",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646372167907",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1e3fb0a6-4353-457f-8ce1-cf918421091b.jpg?v=1787500281",
+          "altText": "8db361fd4080efb0f68d95dfa2f04d42",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646372200675",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3bab1e98-71a4-460a-87d5-f19cfcf46cf6.jpg?v=1787500281",
+          "altText": "8c82154c3c58158fdbaa8696ffd74e06",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646372233443",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cc625092-0dcb-491d-a934-cb3f94dfaba0.jpg?v=1787500281",
+          "altText": "b633eeb25e2283dc780872f97823b3e8",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646372266211",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4dbb02ed-8ac9-4dff-9509-1e27592e42dd.jpg?v=1787500281",
+          "altText": "214b44d0942e967dfac2decfd9667ef",
+          "width": 1000,
+          "height": 1000
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-08-23T15:51:23Z",
+      "createdAt": "2026-08-23T15:51:20Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12097363902691",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Black"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49583074509027",
+          "title": "Black",
+          "sku": "CJSL140042801AZ",
+          "barcode": null,
+          "price": 42.14,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Black"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862233854179",
+          "availableForSale": true,
+          "inventoryQuantity": 47229,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 107,
+          "weightUnit": "GRAMS",
+          "position": 1
+        }
+      ],
+      "priceRange": {
+        "min": 42.14,
+        "max": 42.14,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/253818372323\",\"gid://shopify/Metaobject/253818405091\",\"gid://shopify/Metaobject/253818437859\"]",
+        "custom.material": "Hematite",
+        "custom.specs": "[\"gid://shopify/Metaobject/253819486435\",\"gid://shopify/Metaobject/253819519203\",\"gid://shopify/Metaobject/253819551971\",\"gid://shopify/Metaobject/253819584739\",\"gid://shopify/Metaobject/253819617507\",\"gid://shopify/Metaobject/253819650275\"]",
+        "custom.subtitle": "Hand-strung hematite · geometric beads"
+      },
+      "totalInventory": 47229
+    },
+    {
+      "id": "gid://shopify/Product/9617580785891",
+      "handle": "hematite-ring-without-magnetic-surface",
+      "title": "Hematite Band Ring",
+      "description": "A solid hematite band, polished to a dark metallic shine. No plating, no coating — the colour is the stone. Not magnetic; this is the natural, unmodified mineral.",
+      "descriptionHtml": "<p>A solid hematite band, polished to a dark metallic shine. No plating, no coating — the colour is the stone. Not magnetic; this is the natural, unmodified mineral.</p>",
+      "vendor": "HIMVOLT",
+      "productType": "Bracelet",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39646449271011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032996430.jpg?v=1787500449",
+          "altText": "8f1882e99cbe7faf765afbe9102c4a5",
+          "width": 534,
+          "height": 521
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646449303779",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939277.jpg?v=1787500449",
+          "altText": "46bc5713e167d413b871b34dd1eeb437",
+          "width": 535,
+          "height": 521
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646449336547",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948208.jpg?v=1787500449",
+          "altText": "f8b904a91dbf85b4c539f98f5ce4e6e1",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646449369315",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948211.jpg?v=1787500449",
+          "altText": "b546bcf730cb11763756ed4260d982d2",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646449402083",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939274.jpg?v=1787500449",
+          "altText": "ebdca5c1beb4e94dd08d079038d5b7f1",
+          "width": 527,
+          "height": 530
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862308729059",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032996430.jpg?v=1787500449",
+          "altText": "8f1882e99cbe7faf765afbe9102c4a5",
+          "width": 534,
+          "height": 521
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862308761827",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939277.jpg?v=1787500449",
+          "altText": "46bc5713e167d413b871b34dd1eeb437",
+          "width": 535,
+          "height": 521
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862308794595",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948208.jpg?v=1787500449",
+          "altText": "f8b904a91dbf85b4c539f98f5ce4e6e1",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862308827363",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948211.jpg?v=1787500449",
+          "altText": "b546bcf730cb11763756ed4260d982d2",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862308860131",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939274.jpg?v=1787500449",
+          "altText": "ebdca5c1beb4e94dd08d079038d5b7f1",
+          "width": 527,
+          "height": 530
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646449271011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032996430.jpg?v=1787500449",
+          "altText": "8f1882e99cbe7faf765afbe9102c4a5",
+          "width": 534,
+          "height": 521
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646449303779",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939277.jpg?v=1787500449",
+          "altText": "46bc5713e167d413b871b34dd1eeb437",
+          "width": 535,
+          "height": 521
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646449336547",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948208.jpg?v=1787500449",
+          "altText": "f8b904a91dbf85b4c539f98f5ce4e6e1",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646449369315",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948211.jpg?v=1787500449",
+          "altText": "b546bcf730cb11763756ed4260d982d2",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646449402083",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939274.jpg?v=1787500449",
+          "altText": "ebdca5c1beb4e94dd08d079038d5b7f1",
+          "width": 527,
+          "height": 530
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-08-23T15:54:11Z",
+      "createdAt": "2026-08-23T15:54:07Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12097375731939",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Six black"
+          ]
+        },
+        {
+          "id": "gid://shopify/ProductOption/12097375764707",
+          "name": "Size",
+          "position": 2,
+          "values": [
+            "10",
+            "11",
+            "12",
+            "6",
+            "7",
+            "8",
+            "9"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49583113076963",
+          "title": "Six black / 10",
+          "sku": "CJLX114563005EV",
+          "barcode": null,
+          "price": 33.74,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "10"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29489,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 29,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583113109731",
+          "title": "Six black / 11",
+          "sku": "CJLX114563006FU",
+          "barcode": null,
+          "price": 33.74,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "11"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29491,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583113142499",
+          "title": "Six black / 12",
+          "sku": "CJLX114563007GT",
+          "barcode": null,
+          "price": 33.74,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "12"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29491,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 31,
+          "weightUnit": "GRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583113175267",
+          "title": "Six black / 6",
+          "sku": "CJLX114563001AZ",
+          "barcode": null,
+          "price": 33.74,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "6"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29491,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 25,
+          "weightUnit": "GRAMS",
+          "position": 4
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583113208035",
+          "title": "Six black / 7",
+          "sku": "CJLX114563002BY",
+          "barcode": null,
+          "price": 33.74,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "7"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29491,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 26,
+          "weightUnit": "GRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583113240803",
+          "title": "Six black / 8",
+          "sku": "CJLX114563003CX",
+          "barcode": null,
+          "price": 28.67,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "8"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29491,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 27,
+          "weightUnit": "GRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583113273571",
+          "title": "Six black / 9",
+          "sku": "CJLX114563004DW",
+          "barcode": null,
+          "price": 33.74,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Six black"
+            },
+            {
+              "name": "Size",
+              "value": "9"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862308729059",
+          "availableForSale": true,
+          "inventoryQuantity": 29493,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 28,
+          "weightUnit": "GRAMS",
+          "position": 7
+        }
+      ],
+      "priceRange": {
+        "min": 28.67,
+        "max": 33.74,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/253818470627\",\"gid://shopify/Metaobject/253818503395\",\"gid://shopify/Metaobject/253818536163\"]",
+        "custom.material": "Hematite",
+        "custom.specs": "[\"gid://shopify/Metaobject/253819683043\",\"gid://shopify/Metaobject/253819715811\",\"gid://shopify/Metaobject/253819748579\",\"gid://shopify/Metaobject/253819781347\",\"gid://shopify/Metaobject/253819814115\"]",
+        "custom.subtitle": "Solid hematite · sizes 6–12"
+      },
+      "totalInventory": 206437
+    },
+    {
+      "id": "gid://shopify/Product/9617597890787",
+      "handle": "fashion-curved-hematite-magnetic-ring",
+      "title": "Curved Hematite Ring",
+      "description": "A curved hematite band in two finishes: natural non-magnetic hematite, or a man-made magnetic hematite (often called \"hematine\") for the magnetic variants. Natural hematite itself is only weakly magnetic — the strongly magnetic feel in the \"Magnetic\" sizes comes from that man-made version, same as most magnetic hematite jewellery on the market. We would rather tell you that than let you assume otherwise.",
+      "descriptionHtml": "<p>A curved hematite band in two finishes: natural non-magnetic hematite, or a man-made magnetic hematite (often called \"hematine\") for the magnetic variants. Natural hematite itself is only weakly magnetic — the strongly magnetic feel in the \"Magnetic\" sizes comes from that man-made version, same as most magnetic hematite jewellery on the market. We would rather tell you that than let you assume otherwise.</p>",
+      "vendor": "HIMVOLT",
+      "productType": "Bracelet",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39646563139811",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682377.jpg?v=1787500786",
+          "altText": "48aa5300c06a2bb9add520d89ef7358d",
+          "width": 750,
+          "height": 750
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646563172579",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682374.jpg?v=1787500786",
+          "altText": "16fcbe9fb898dba6e73e2df93b0fe6b0",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646563205347",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682372.jpg?v=1787500786",
+          "altText": "34f12d04ed36efb78c82126e12c0e54b",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646563238115",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682375.jpg?v=1787500786",
+          "altText": "5a712713e8368f68d8ab033d0d98ac7b",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39646563270883",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682376.jpg?v=1787500786",
+          "altText": "3e87a39dbbf4514bfc6f6dbf90816844",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862422761699",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682377.jpg?v=1787500786",
+          "altText": "48aa5300c06a2bb9add520d89ef7358d",
+          "width": 750,
+          "height": 750
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862422794467",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682374.jpg?v=1787500786",
+          "altText": "16fcbe9fb898dba6e73e2df93b0fe6b0",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862422827235",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682372.jpg?v=1787500786",
+          "altText": "34f12d04ed36efb78c82126e12c0e54b",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862422860003",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682375.jpg?v=1787500786",
+          "altText": "5a712713e8368f68d8ab033d0d98ac7b",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862422892771",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682376.jpg?v=1787500786",
+          "altText": "3e87a39dbbf4514bfc6f6dbf90816844",
+          "width": 1600,
+          "height": 1600
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646563139811",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682377.jpg?v=1787500786",
+          "altText": "48aa5300c06a2bb9add520d89ef7358d",
+          "width": 750,
+          "height": 750
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646563172579",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682374.jpg?v=1787500786",
+          "altText": "16fcbe9fb898dba6e73e2df93b0fe6b0",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646563205347",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682372.jpg?v=1787500786",
+          "altText": "34f12d04ed36efb78c82126e12c0e54b",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646563238115",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682375.jpg?v=1787500786",
+          "altText": "5a712713e8368f68d8ab033d0d98ac7b",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39646563270883",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682376.jpg?v=1787500786",
+          "altText": "3e87a39dbbf4514bfc6f6dbf90816844",
+          "width": 1600,
+          "height": 1600
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-08-23T15:59:47Z",
+      "createdAt": "2026-08-23T15:59:44Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12097393361123",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Magnetic 10",
+            "Magnetic 6",
+            "Magnetic 7",
+            "Magnetic 8",
+            "Magnetic 9",
+            "No.10 non magnetic",
+            "No.6 non magnetic",
+            "No.7 non magnetic",
+            "No.8 non magnetic",
+            "No.9 non magnetic"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49583159673059",
+          "title": "Magnetic 10",
+          "sku": "CJLX110336905EV",
+          "barcode": null,
+          "price": 31.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Magnetic 10"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 27,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159705827",
+          "title": "Magnetic 6",
+          "sku": "CJLX110336901AZ",
+          "barcode": null,
+          "price": 31.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Magnetic 6"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 23,
+          "weightUnit": "GRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159738595",
+          "title": "Magnetic 7",
+          "sku": "CJLX110336902BY",
+          "barcode": null,
+          "price": 31.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Magnetic 7"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 24,
+          "weightUnit": "GRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159771363",
+          "title": "Magnetic 8",
+          "sku": "CJLX110336903CX",
+          "barcode": null,
+          "price": 31.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Magnetic 8"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40004,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 25,
+          "weightUnit": "GRAMS",
+          "position": 4
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159804131",
+          "title": "Magnetic 9",
+          "sku": "CJLX110336904DW",
+          "barcode": null,
+          "price": 31.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Magnetic 9"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 26,
+          "weightUnit": "GRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159836899",
+          "title": "No.10 non magnetic",
+          "sku": "CJLX110336910JQ",
+          "barcode": null,
+          "price": 29.48,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "No.10 non magnetic"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 27,
+          "weightUnit": "GRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159869667",
+          "title": "No.6 non magnetic",
+          "sku": "CJLX110336906FU",
+          "barcode": null,
+          "price": 29.48,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "No.6 non magnetic"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 23,
+          "weightUnit": "GRAMS",
+          "position": 7
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159902435",
+          "title": "No.7 non magnetic",
+          "sku": "CJLX110336907GT",
+          "barcode": null,
+          "price": 29.48,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "No.7 non magnetic"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 24,
+          "weightUnit": "GRAMS",
+          "position": 8
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159935203",
+          "title": "No.8 non magnetic",
+          "sku": "CJLX110336908HS",
+          "barcode": null,
+          "price": 29.48,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "No.8 non magnetic"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 25,
+          "weightUnit": "GRAMS",
+          "position": 9
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583159967971",
+          "title": "No.9 non magnetic",
+          "sku": "CJLX110336909IR",
+          "barcode": null,
+          "price": 29.48,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "No.9 non magnetic"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862422761699",
+          "availableForSale": true,
+          "inventoryQuantity": 40000,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 26,
+          "weightUnit": "GRAMS",
+          "position": 10
+        }
+      ],
+      "priceRange": {
+        "min": 29.48,
+        "max": 31.72,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/253818568931\",\"gid://shopify/Metaobject/253818601699\",\"gid://shopify/Metaobject/253818634467\"]",
+        "custom.material": "Hematite (magnetic and non-magnetic finishes)",
+        "custom.specs": "[\"gid://shopify/Metaobject/253819846883\",\"gid://shopify/Metaobject/253819879651\",\"gid://shopify/Metaobject/253819912419\",\"gid://shopify/Metaobject/253819945187\",\"gid://shopify/Metaobject/253819977955\"]",
+        "custom.subtitle": "Magnetic or non-magnetic · sizes 6–10"
+      },
+      "totalInventory": 400004
+    },
+    {
+      "id": "gid://shopify/Product/9617681973475",
+      "handle": "natural-black-tourmaline-and-hematite-single-strand-round-bead-bracelet",
+      "title": "Hematite Round Bead Bracelet",
+      "description": "Round hematite beads on a stretch cord, in the stone's natural gunmetal finish or gold-, silver- or rose-gold-plated. Seven bead sizes from a subtle 2mm to a substantial 12mm — the most customizable piece in the collection.",
+      "descriptionHtml": "<p>Round hematite beads on a stretch cord, in the stone's natural gunmetal finish or gold-, silver- or rose-gold-plated. Seven bead sizes from a subtle 2mm to a substantial 12mm — the most customizable piece in the collection.</p>",
+      "vendor": "HIMVOLT",
+      "productType": "Bracelet",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39647094604003",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c7586cc7-015e-4c36-8e79-808b5dde519c.jpg?v=1787502800",
+          "altText": "c9e781b48f342365a7d721a3b60b918a",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094636771",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/794b80c2-7f83-405b-8bef-55ff095033a8.jpg?v=1787502800",
+          "altText": "fb1b0ad29e11048e90192ba47e60c7e0",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094669539",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c9ce7006-0d9a-4bff-8103-42e0a7c35ff4.jpg?v=1787502800",
+          "altText": "1efdbe40e6dd1f86adcf83c524463931",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094702307",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/06c3978e-6177-48ed-813b-003b5568fd5d.jpg?v=1787502800",
+          "altText": "7ad3df0f5d7e83d1ca053273a1164d2",
+          "width": 695,
+          "height": 695
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094735075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c86b79aa-5f40-474a-871d-0d0d3b62027e.jpg?v=1787502800",
+          "altText": "d93b41bd9c378a5d187d5c49583976fa",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094767843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f34b22eb-92d9-4f3a-b9eb-dd042c724042.jpg?v=1787502800",
+          "altText": "17bd5eb1b26db334bafd5998aa0ed632",
+          "width": 695,
+          "height": 695
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094800611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0b149ace-582c-4ed5-9563-5637479cd194.jpg?v=1787502800",
+          "altText": "8f3065e04902a81cfac73b1dbf89797c",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094833379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7b7aa4b8-81a4-4239-921a-34ccfbce58f5.jpg?v=1787502800",
+          "altText": "fc90845d3ef8adf86e3ea534aecc6a15",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "id": "gid://shopify/MediaImage/39647094866147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2bf570f8-0f6f-4a99-93a5-44aab08daa26.jpg?v=1787502800",
+          "altText": "bd3c4cc2ef44477f9eeec5dfe7cfc2fd",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862954815715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c7586cc7-015e-4c36-8e79-808b5dde519c.jpg?v=1787502800",
+          "altText": "c9e781b48f342365a7d721a3b60b918a",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862954848483",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/794b80c2-7f83-405b-8bef-55ff095033a8.jpg?v=1787502800",
+          "altText": "fb1b0ad29e11048e90192ba47e60c7e0",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862954881251",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c9ce7006-0d9a-4bff-8103-42e0a7c35ff4.jpg?v=1787502800",
+          "altText": "1efdbe40e6dd1f86adcf83c524463931",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862954914019",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/06c3978e-6177-48ed-813b-003b5568fd5d.jpg?v=1787502800",
+          "altText": "7ad3df0f5d7e83d1ca053273a1164d2",
+          "width": 695,
+          "height": 695
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862954946787",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c86b79aa-5f40-474a-871d-0d0d3b62027e.jpg?v=1787502800",
+          "altText": "d93b41bd9c378a5d187d5c49583976fa",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862954979555",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f34b22eb-92d9-4f3a-b9eb-dd042c724042.jpg?v=1787502800",
+          "altText": "17bd5eb1b26db334bafd5998aa0ed632",
+          "width": 695,
+          "height": 695
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862955012323",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0b149ace-582c-4ed5-9563-5637479cd194.jpg?v=1787502800",
+          "altText": "8f3065e04902a81cfac73b1dbf89797c",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862955045091",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7b7aa4b8-81a4-4239-921a-34ccfbce58f5.jpg?v=1787502800",
+          "altText": "fc90845d3ef8adf86e3ea534aecc6a15",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "id": "gid://shopify/ProductImage/48862955077859",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2bf570f8-0f6f-4a99-93a5-44aab08daa26.jpg?v=1787502800",
+          "altText": "bd3c4cc2ef44477f9eeec5dfe7cfc2fd",
+          "width": 800,
+          "height": 800
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094604003",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c7586cc7-015e-4c36-8e79-808b5dde519c.jpg?v=1787502800",
+          "altText": "c9e781b48f342365a7d721a3b60b918a",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094636771",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/794b80c2-7f83-405b-8bef-55ff095033a8.jpg?v=1787502800",
+          "altText": "fb1b0ad29e11048e90192ba47e60c7e0",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094669539",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c9ce7006-0d9a-4bff-8103-42e0a7c35ff4.jpg?v=1787502800",
+          "altText": "1efdbe40e6dd1f86adcf83c524463931",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094702307",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/06c3978e-6177-48ed-813b-003b5568fd5d.jpg?v=1787502800",
+          "altText": "7ad3df0f5d7e83d1ca053273a1164d2",
+          "width": 695,
+          "height": 695
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094735075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c86b79aa-5f40-474a-871d-0d0d3b62027e.jpg?v=1787502800",
+          "altText": "d93b41bd9c378a5d187d5c49583976fa",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094767843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f34b22eb-92d9-4f3a-b9eb-dd042c724042.jpg?v=1787502800",
+          "altText": "17bd5eb1b26db334bafd5998aa0ed632",
+          "width": 695,
+          "height": 695
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094800611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0b149ace-582c-4ed5-9563-5637479cd194.jpg?v=1787502800",
+          "altText": "8f3065e04902a81cfac73b1dbf89797c",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094833379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7b7aa4b8-81a4-4239-921a-34ccfbce58f5.jpg?v=1787502800",
+          "altText": "fc90845d3ef8adf86e3ea534aecc6a15",
+          "width": 500,
+          "height": 500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39647094866147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2bf570f8-0f6f-4a99-93a5-44aab08daa26.jpg?v=1787502800",
+          "altText": "bd3c4cc2ef44477f9eeec5dfe7cfc2fd",
+          "width": 800,
+          "height": 800
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-08-23T16:33:21Z",
+      "createdAt": "2026-08-23T16:33:18Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12097481933027",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Golden Hematite Bracelet",
+            "Hematite Bracelet",
+            "Rose Gold Hematite Bracelet",
+            "Silver Hematite Bracelet"
+          ]
+        },
+        {
+          "id": "gid://shopify/ProductOption/12097481965795",
+          "name": "Purity",
+          "position": 2,
+          "values": [
+            "10mm",
+            "12mm",
+            "2mm",
+            "3mm",
+            "4mm",
+            "6mm",
+            "8mm"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49583348482275",
+          "title": "Golden Hematite Bracelet / 10mm",
+          "sku": "CJSL304925813MN",
+          "barcode": null,
+          "price": 28,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "10mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 8465,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348515043",
+          "title": "Golden Hematite Bracelet / 12mm",
+          "sku": "CJSL304925814NM",
+          "barcode": null,
+          "price": 28.5,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "12mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 8100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348547811",
+          "title": "Golden Hematite Bracelet / 2mm",
+          "sku": "CJSL304925808HS",
+          "barcode": null,
+          "price": 27.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "2mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 5296,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348580579",
+          "title": "Golden Hematite Bracelet / 3mm",
+          "sku": "CJSL304925809IR",
+          "barcode": null,
+          "price": 27.66,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "3mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 9547,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 4
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348613347",
+          "title": "Golden Hematite Bracelet / 4mm",
+          "sku": "CJSL304925810JQ",
+          "barcode": null,
+          "price": 27.56,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "4mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 8010,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348646115",
+          "title": "Golden Hematite Bracelet / 6mm",
+          "sku": "CJSL304925811KP",
+          "barcode": null,
+          "price": 27.58,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "6mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 5018,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348678883",
+          "title": "Golden Hematite Bracelet / 8mm",
+          "sku": "CJSL304925812LO",
+          "barcode": null,
+          "price": 27.78,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Golden Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "8mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862955077859",
+          "availableForSale": true,
+          "inventoryQuantity": 7150,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 7
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348711651",
+          "title": "Hematite Bracelet / 10mm",
+          "sku": "CJSL304925806FU",
+          "barcode": null,
+          "price": 27.3,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "10mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 6099,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 8
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348744419",
+          "title": "Hematite Bracelet / 12mm",
+          "sku": "CJSL304925807GT",
+          "barcode": null,
+          "price": 27.64,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "12mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 6433,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 9
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348777187",
+          "title": "Hematite Bracelet / 2mm",
+          "sku": "CJSL304925801AZ",
+          "barcode": null,
+          "price": 27.5,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "2mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 9471,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 10
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348809955",
+          "title": "Hematite Bracelet / 3mm",
+          "sku": "CJSL304925802BY",
+          "barcode": null,
+          "price": 27.3,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "3mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 8889,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 11
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348842723",
+          "title": "Hematite Bracelet / 4mm",
+          "sku": "CJSL304925803CX",
+          "barcode": null,
+          "price": 27.5,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "4mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 5949,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 12
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348875491",
+          "title": "Hematite Bracelet / 6mm",
+          "sku": "CJSL304925804DW",
+          "barcode": null,
+          "price": 26.94,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "6mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 9915,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 13
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348908259",
+          "title": "Hematite Bracelet / 8mm",
+          "sku": "CJSL304925805EV",
+          "barcode": null,
+          "price": 27.5,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "8mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954946787",
+          "availableForSale": true,
+          "inventoryQuantity": 7674,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 14
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348941027",
+          "title": "Rose Gold Hematite Bracelet / 10mm",
+          "sku": "CJSL304925827AZ",
+          "barcode": null,
+          "price": 28,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "10mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 8420,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 15
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583348973795",
+          "title": "Rose Gold Hematite Bracelet / 12mm",
+          "sku": "CJSL304925828BY",
+          "barcode": null,
+          "price": 28.5,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "12mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 6274,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 16
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349006563",
+          "title": "Rose Gold Hematite Bracelet / 2mm",
+          "sku": "CJSL304925822VE",
+          "barcode": null,
+          "price": 27.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "2mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 5038,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 17
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349039331",
+          "title": "Rose Gold Hematite Bracelet / 3mm",
+          "sku": "CJSL304925823WD",
+          "barcode": null,
+          "price": 27.66,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "3mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 7167,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 18
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349072099",
+          "title": "Rose Gold Hematite Bracelet / 4mm",
+          "sku": "CJSL304925824XC",
+          "barcode": null,
+          "price": 27.56,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "4mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 7271,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 19
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349104867",
+          "title": "Rose Gold Hematite Bracelet / 6mm",
+          "sku": "CJSL304925825YB",
+          "barcode": null,
+          "price": 27.58,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "6mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 6503,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 20
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349137635",
+          "title": "Rose Gold Hematite Bracelet / 8mm",
+          "sku": "CJSL304925826ZA",
+          "barcode": null,
+          "price": 27.78,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Rose Gold Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "8mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954914019",
+          "availableForSale": true,
+          "inventoryQuantity": 8409,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 21
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349170403",
+          "title": "Silver Hematite Bracelet / 10mm",
+          "sku": "CJSL304925820TG",
+          "barcode": null,
+          "price": 28,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "10mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 8072,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 22
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349203171",
+          "title": "Silver Hematite Bracelet / 12mm",
+          "sku": "CJSL304925821UF",
+          "barcode": null,
+          "price": 28.5,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "12mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 8387,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 23
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349235939",
+          "title": "Silver Hematite Bracelet / 2mm",
+          "sku": "CJSL304925815OL",
+          "barcode": null,
+          "price": 27.72,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "2mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 7454,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 24
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349268707",
+          "title": "Silver Hematite Bracelet / 3mm",
+          "sku": "CJSL304925816PK",
+          "barcode": null,
+          "price": 27.66,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "3mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 9944,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 25
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349301475",
+          "title": "Silver Hematite Bracelet / 4mm",
+          "sku": "CJSL304925817QJ",
+          "barcode": null,
+          "price": 27.56,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "4mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 6030,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 26
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349334243",
+          "title": "Silver Hematite Bracelet / 6mm",
+          "sku": "CJSL304925818RI",
+          "barcode": null,
+          "price": 27.58,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "6mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 9103,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 27
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49583349367011",
+          "title": "Silver Hematite Bracelet / 8mm",
+          "sku": "CJSL304925819SH",
+          "barcode": null,
+          "price": 27.78,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Silver Hematite Bracelet"
+            },
+            {
+              "name": "Purity",
+              "value": "8mm"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/48862954979555",
+          "availableForSale": true,
+          "inventoryQuantity": 7788,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 30,
+          "weightUnit": "GRAMS",
+          "position": 28
+        }
+      ],
+      "priceRange": {
+        "min": 26.94,
+        "max": 28.5,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/253818274019\",\"gid://shopify/Metaobject/253818306787\",\"gid://shopify/Metaobject/253818339555\"]",
+        "custom.material": "Natural hematite (some finishes plated)",
+        "custom.specs": "[\"gid://shopify/Metaobject/253819289827\",\"gid://shopify/Metaobject/253819322595\",\"gid://shopify/Metaobject/253819355363\",\"gid://shopify/Metaobject/253819388131\",\"gid://shopify/Metaobject/253819420899\",\"gid://shopify/Metaobject/253819453667\"]",
+        "custom.subtitle": "Round hematite beads · 4 finishes, 7 sizes"
+      },
+      "totalInventory": 211876
+    },
+    {
+      "id": "gid://shopify/Product/9650571346147",
+      "handle": "hematite-mens-bracelet",
+      "title": "Black Natural Hematite Bracelet For Men HimVolt Jewelry Wrist Hematite Stone Beaded Genuine Stone Edge Style For Men",
+      "description": "Reclaim Your Edge Confidence Natural Hematite Stone Beaded Stretch Healing Bracelets Gift Jewelry Polished hematite beads on a stretch elastic core, no clasp, no hardware, nothing to break. Metallic gunmetal-black, dense enough to notice the moment you pick it up. Hematite is an iron oxide, one of the most abundant iron ores on Earth, cut and polished here for jewellery rather than industrial use. That iron content is what gives every bead its weight: pick the bracelet up and it sits heavier in the hand than its size suggests, and under the black polish it streaks red-brown when scratched, the same test a mineralogist would use to confirm the real stone rather than dyed glass or resin. At 5.5-6.5 on the Mohs scale, it's roughly as hard as hardened steel, hard enough to take daily knocks against a desk, a doorframe or a dumbbell without dulling, and hard enough that the hand-polished gunmetal finish stays a finish, not a coating that wears through. There's no plating to chip and no coating over the stone: what you see the day it arrives is what you'll still see years in. The build is as low-maintenance as the material: a single stretch elastic core threaded through the beads, no clasp and no sizing chart. Roll it over your hand and forget it's there, it fits a range of wrist sizes without ever needing adjustment, and there's no clasp mechanism to eventually fail. Genuine stone, not imitation: real hematite (iron oxide), verifiable by its red-brown streak, not resin or dyed glass standing in for it. Built to take daily wear: 5.5-6.5 Mohs hardness holds up to knocks, desks and gym bags without dulling the polish. No clasp to break: one stretch elastic core, on in one motion, nothing to fasten or eventually snap. Fits without sizing: the elastic core stretches across a wide range of wrist sizes, so there's no chart to check before you order. Substantial by design: 70g of dense, iron-rich stone on a single strand, present enough to feel deliberate under a cuff. Finish that lasts: hand-polished directly on the stone, with no plating or coating to wear through over time. Pairs with anything black or steel-toned: the gunmetal shine reads as understated metal, so it layers cleanly with a watch or a second bracelet without competing for attention. We describe hematite for what it verifiably is composition, hardness, the streak test, not what it will do for you beyond that. No health claims, just a genuine stone built into a bracelet that's easy to wear every day and hard to wear out.",
+      "descriptionHtml": "<p>Reclaim Your Edge Confidence Natural Hematite Stone Beaded Stretch Healing Bracelets Gift Jewelry</p>\n<p>Polished hematite beads on a stretch elastic core, no clasp, no hardware, nothing to break. Metallic gunmetal-black, dense enough to notice the moment you pick it up.</p>\n<p>Hematite is an iron oxide, one of the most abundant iron ores on Earth, cut and polished here for jewellery rather than industrial use. That iron content is what gives every bead its weight: pick the bracelet up and it sits heavier in the hand than its size suggests, and under the black polish it streaks red-brown when scratched, the same test a mineralogist would use to confirm the real stone rather than dyed glass or resin.</p>\n<p>At 5.5-6.5 on the Mohs scale, it's roughly as hard as hardened steel, hard enough to take daily knocks against a desk, a doorframe or a dumbbell without dulling, and hard enough that the hand-polished gunmetal finish stays a finish, not a coating that wears through. There's no plating to chip and no coating over the stone: what you see the day it arrives is what you'll still see years in.</p>\n<p>The build is as low-maintenance as the material: a single stretch elastic core threaded through the beads, no clasp and no sizing chart. Roll it over your hand and forget it's there, it fits a range of wrist sizes without ever needing adjustment, and there's no clasp mechanism to eventually fail.</p>\n<ul>\n<li>\n<strong>Genuine stone, not imitation:</strong> real hematite (iron oxide), verifiable by its red-brown streak, not resin or dyed glass standing in for it.</li>\n<li>\n<strong>Built to take daily wear:</strong> 5.5-6.5 Mohs hardness holds up to knocks, desks and gym bags without dulling the polish.</li>\n<li>\n<strong>No clasp to break:</strong> one stretch elastic core, on in one motion, nothing to fasten or eventually snap.</li>\n<li>\n<strong>Fits without sizing</strong>: the elastic core stretches across a wide range of wrist sizes, so there's no chart to check before you order.</li>\n<li>\n<strong>Substantial by design:</strong> 70g of dense, iron-rich stone on a single strand, present enough to feel deliberate under a cuff.</li>\n<li>\n<strong>Finish that lasts</strong>: hand-polished directly on the stone, with no plating or coating to wear through over time.</li>\n<li>\n<strong>Pairs with anything black or steel-toned</strong>: the gunmetal shine reads as understated metal, so it layers cleanly with a watch or a second bracelet without competing for attention.</li>\n</ul>\n<p>We describe hematite for what it verifiably is composition, hardness, the streak test, not what it will do for you beyond that. No health claims, just a genuine stone built into a bracelet that's easy to wear every day and hard to wear out.</p>",
+      "vendor": "HIMVOLT",
+      "productType": "Bracelet",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Seller"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/39823947071715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/himvolt_image_2.webp?v=1788346748",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/39828188168419",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S40360e697e9141c2aa311f69c5fdf4e9C.jpg?v=1788354200",
+          "altText": "Black beaded bracelet with certification logos and product features on a white background",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/39822599749859",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b308fe34f1b41b8a3900a9c91c7abc4O.jpg?v=1788344174",
+          "altText": "A close-up of a bracelet worn on a wrist, with fingers holding the lower end of the bracelet to show its flexibility. The bracelet features glossy, dark metallic square beads on a thin silver-toned band.",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "id": "gid://shopify/MediaImage/39827051806947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc0740d508dc949fbb2991e24f49c82d2L.jpg?v=1788352177",
+          "altText": "",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "id": "gid://shopify/MediaImage/39828187873507",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbdae622a7b31498487a52b2a26699e4eC.jpg?v=1788354200",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39828187807971",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5665a2e389f343939f035b94caab2b5as.jpg?v=1788354200",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/39828187906275",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S495f01db7bf04932a631d50fd32e45e6z.jpg?v=1788354200",
+          "altText": "A black beaded stretch bracelet made of glossy, rectangular faceted beads, displayed on a clean white surface with a dark black marble slate prop in the background.",
+          "width": 1728,
+          "height": 2304
+        },
+        {
+          "id": "gid://shopify/MediaImage/39828187939043",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S395a08de24c94387a7831cb015159725o.jpg?v=1788354200",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/39648070697187",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/single.jpg?v=1787507733",
+          "altText": "",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/MediaImage/39648070729955",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/topdown.jpg?v=1787507733",
+          "altText": "",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/MediaImage/39587996991715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5513f308-52ed-4438-b0de-76478b27175b.jpg?v=1786992382",
+          "altText": "316fd8a3a83d5e1c47f49972bc82f570",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/MediaImage/39648070893795",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/hero.jpg?v=1787507734",
+          "altText": "",
+          "width": 2025,
+          "height": 1359
+        },
+        {
+          "id": "gid://shopify/ProductImage/49056514113763",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/himvolt_image_2.webp?v=1788346748",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49060758814947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S40360e697e9141c2aa311f69c5fdf4e9C.jpg?v=1788354200",
+          "altText": "Black beaded bracelet with certification logos and product features on a white background",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49055165710563",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b308fe34f1b41b8a3900a9c91c7abc4O.jpg?v=1788344174",
+          "altText": "A close-up of a bracelet worn on a wrist, with fingers holding the lower end of the bracelet to show its flexibility. The bracelet features glossy, dark metallic square beads on a thin silver-toned band.",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "id": "gid://shopify/ProductImage/49059621896419",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc0740d508dc949fbb2991e24f49c82d2L.jpg?v=1788352177",
+          "altText": "",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "id": "gid://shopify/ProductImage/49060758487267",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbdae622a7b31498487a52b2a26699e4eC.jpg?v=1788354200",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49060758454499",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5665a2e389f343939f035b94caab2b5as.jpg?v=1788354200",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49060758520035",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S495f01db7bf04932a631d50fd32e45e6z.jpg?v=1788354200",
+          "altText": "A black beaded stretch bracelet made of glossy, rectangular faceted beads, displayed on a clean white surface with a dark black marble slate prop in the background.",
+          "width": 1728,
+          "height": 2304
+        },
+        {
+          "id": "gid://shopify/ProductImage/49060758552803",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S395a08de24c94387a7831cb015159725o.jpg?v=1788354200",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/48863932940515",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/single.jpg?v=1787507733",
+          "altText": "",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/ProductImage/48863932973283",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/topdown.jpg?v=1787507733",
+          "altText": "",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/ProductImage/48803581362403",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5513f308-52ed-4438-b0de-76478b27175b.jpg?v=1786992382",
+          "altText": "316fd8a3a83d5e1c47f49972bc82f570",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "id": "gid://shopify/ProductImage/48863933137123",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/hero.jpg?v=1787507734",
+          "altText": "",
+          "width": 2025,
+          "height": 1359
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39823947071715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/himvolt_image_2.webp?v=1788346748",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39828188168419",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S40360e697e9141c2aa311f69c5fdf4e9C.jpg?v=1788354200",
+          "altText": "Black beaded bracelet with certification logos and product features on a white background",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "video",
+          "id": "gid://shopify/Video/39827713589475",
+          "sources": [
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/ae2f82edd16a4eac97aa886ab7f624d0/ae2f82edd16a4eac97aa886ab7f624d0.SD-480p-0.9Mbps-93287343.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/ae2f82edd16a4eac97aa886ab7f624d0/ae2f82edd16a4eac97aa886ab7f624d0.HD-720p-1.6Mbps-93287343.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/ae2f82edd16a4eac97aa886ab7f624d0/ae2f82edd16a4eac97aa886ab7f624d0.m3u8",
+              "mimeType": "application/x-mpegURL",
+              "format": "m3u8"
+            }
+          ],
+          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/ae2f82edd16a4eac97aa886ab7f624d0.thumbnail.0000000000.jpg?v=1788353411",
+          "altText": ""
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39822599749859",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b308fe34f1b41b8a3900a9c91c7abc4O.jpg?v=1788344174",
+          "altText": "A close-up of a bracelet worn on a wrist, with fingers holding the lower end of the bracelet to show its flexibility. The bracelet features glossy, dark metallic square beads on a thin silver-toned band.",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39827051806947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc0740d508dc949fbb2991e24f49c82d2L.jpg?v=1788352177",
+          "altText": "",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39828187873507",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbdae622a7b31498487a52b2a26699e4eC.jpg?v=1788354200",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39828187807971",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5665a2e389f343939f035b94caab2b5as.jpg?v=1788354200",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39828187906275",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S495f01db7bf04932a631d50fd32e45e6z.jpg?v=1788354200",
+          "altText": "A black beaded stretch bracelet made of glossy, rectangular faceted beads, displayed on a clean white surface with a dark black marble slate prop in the background.",
+          "width": 1728,
+          "height": 2304
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39828187939043",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S395a08de24c94387a7831cb015159725o.jpg?v=1788354200",
+          "altText": "",
+          "width": 800,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39648070697187",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/single.jpg?v=1787507733",
+          "altText": "",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39648070729955",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/topdown.jpg?v=1787507733",
+          "altText": "",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39587996991715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5513f308-52ed-4438-b0de-76478b27175b.jpg?v=1786992382",
+          "altText": "316fd8a3a83d5e1c47f49972bc82f570",
+          "width": 1920,
+          "height": 1920
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/39648070893795",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/hero.jpg?v=1787507734",
+          "altText": "",
+          "width": 2025,
+          "height": 1359
+        }
+      ],
+      "seo": {
+        "title": "Hematite Bracelet for Men | Genuine Stone | Buy 1 Get 1 Free | HimVolt",
+        "description": "Shop genuine hematite bracelet for men. Natural stone, hardened steel level hardness, no clasp design. Buy 1 Get 1 Free, $34.98. Free shipping, 30-day returns."
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-09-02T09:53:50Z",
+      "createdAt": "2026-09-02T09:53:47Z",
+      "updatedAt": "2026-09-16T12:01:33Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/12133518475491",
+          "name": "quantity",
+          "position": 1,
+          "values": [
+            "1PC",
+            "2PC"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/49659415134435",
+          "title": "1PC",
+          "sku": "HMB-1PC",
+          "barcode": null,
+          "price": 34.98,
+          "compareAtPrice": 43.73,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "quantity",
+              "value": "1PC"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49060758487267",
+          "availableForSale": true,
+          "inventoryQuantity": 8063,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 70,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/49659425456355",
+          "title": "2PC",
+          "sku": "HMB-2PC",
+          "barcode": null,
+          "price": 34.98,
+          "compareAtPrice": 69.96,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "quantity",
+              "value": "2PC"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49056514113763",
+          "availableForSale": true,
+          "inventoryQuantity": 3999,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 70,
+          "weightUnit": "GRAMS",
+          "position": 2
+        }
+      ],
+      "priceRange": {
+        "min": 34.98,
+        "max": 34.98,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": {
+        "min": 43.73,
+        "max": 69.96
+      },
+      "metafields": {
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/256618299619\",\"gid://shopify/Metaobject/256618332387\"]",
+        "custom.material": "Natural hematite (iron oxide)",
+        "custom.specs": "[\"gid://shopify/Metaobject/256618070243\",\"gid://shopify/Metaobject/256618103011\",\"gid://shopify/Metaobject/256618135779\",\"gid://shopify/Metaobject/256618168547\",\"gid://shopify/Metaobject/256618201315\",\"gid://shopify/Metaobject/256618234083\",\"gid://shopify/Metaobject/256618266851\"]",
+        "custom.subtitle": "Polished hematite · elastic fit",
+        "shopify.bracelet-design": "[\"gid://shopify/Metaobject/256616792291\"]",
+        "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\"]",
+        "shopify.jewelry-material": "[\"gid://shopify/Metaobject/258297757923\",\"gid://shopify/Metaobject/253817749731\"]",
+        "shopify.target-gender": "[\"gid://shopify/Metaobject/253817782499\"]"
+      },
+      "totalInventory": 12062
     }
   ],
   "collections": [
@@ -4231,7 +7488,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:05:04Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [
         "gid://shopify/Product/8783771533539"
       ],
@@ -4254,7 +7511,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:32Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [
         "gid://shopify/Product/8783841493219"
       ],
@@ -4277,7 +7534,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [
         "gid://shopify/Product/8783842672867"
       ],
@@ -4300,7 +7557,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T11:27:22Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [
         "gid://shopify/Product/8783853551843"
       ],
@@ -4323,7 +7580,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T11:27:22Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [
         "gid://shopify/Product/8783869280483"
       ],
@@ -4346,7 +7603,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [],
       "sortOrder": "BEST_SELLING"
     },
@@ -4367,7 +7624,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T20:11:07Z",
+      "updatedAt": "2026-09-14T20:29:10Z",
       "productIds": [
         "gid://shopify/Product/9603356328163"
       ],
@@ -4384,13 +7641,19 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-16T18:14:47Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8783842672867",
         "gid://shopify/Product/8783853551843",
-        "gid://shopify/Product/9605585436899"
+        "gid://shopify/Product/9605585436899",
+        "gid://shopify/Product/9606653313251",
+        "gid://shopify/Product/9617569120483",
+        "gid://shopify/Product/9617580785891",
+        "gid://shopify/Product/9617597890787",
+        "gid://shopify/Product/9617681973475",
+        "gid://shopify/Product/9650571346147"
       ],
       "sortOrder": "BEST_SELLING"
     },
@@ -4405,7 +7668,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-11T14:02:33Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/8819139641571",
         "gid://shopify/Product/8819140165859",
@@ -4425,7 +7688,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T20:11:07Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8783869280483",
@@ -4444,7 +7707,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T20:11:07Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/8783842672867",
         "gid://shopify/Product/8783853551843",
@@ -4463,7 +7726,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T11:27:22Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/8783853551843"
       ],
@@ -4480,7 +7743,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T20:11:07Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/9603356328163"
       ],
@@ -4503,7 +7766,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-14T19:42:56Z",
+      "updatedAt": "2026-09-14T20:29:11Z",
       "productIds": [
         "gid://shopify/Product/9599352864995"
       ],
@@ -4520,7 +7783,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-08-16T17:50:54Z",
+      "updatedAt": "2026-09-18T11:22:07Z",
       "productIds": [
         "gid://shopify/Product/9603256975587"
       ],
