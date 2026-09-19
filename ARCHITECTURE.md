@@ -269,6 +269,13 @@ Full product HTML ships in the first response — no client fetch required.
 
 Webhooks call `revalidateTag` on exactly the affected tags.
 
+A stored catalog document is written by whichever deployment last ran the sync, so it can
+predate the code reading it (the production Blob is the usual case). `lib/catalog/hydrate.ts`
+fills fields whose absence has one meaning — today `specs` and `featureHighlights` — before
+records enter memory, so a read never assumes the document matches the current
+`CatalogProduct`. Absent means empty; content is never invented, and writes still persist
+exactly what they were given. Add a default there whenever a new field is added to the type.
+
 ## 16. Security Model
 
 Server-only secrets (`lib/validation/env.ts` fails fast at boot, and throws if a secret name
