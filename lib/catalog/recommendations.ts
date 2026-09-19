@@ -51,30 +51,6 @@ export function relatedProducts(
   return scored.slice(0, limit).map((entry) => entry.candidate);
 }
 
-/**
- * "Complete the look" — deliberately biased toward a *different* product type
- * in a shared collection, so it complements rather than duplicates.
- */
-export function complementaryProducts(
-  product: CatalogProduct,
-  catalog: CatalogProduct[],
-  limit = 3,
-): CatalogProduct[] {
-  const sourceCollections = new Set(product.collections.map((c) => c.handle));
-  if (sourceCollections.size === 0) return [];
-
-  return catalog
-    .filter(
-      (candidate) =>
-        candidate.id !== product.id &&
-        candidate.productType !== product.productType &&
-        candidate.variants.some((variant) => variant.availableForSale) &&
-        candidate.collections.some((c) => sourceCollections.has(c.handle)),
-    )
-    .sort((a, b) => a.priceRange.min - b.priceRange.min)
-    .slice(0, limit);
-}
-
 export function bestSellersProxy(catalog: CatalogProduct[], limit = 8): CatalogProduct[] {
   // Sales data is not in the public catalog. Rank by catalog signals that
   // correlate with merchandising priority instead of inventing numbers.

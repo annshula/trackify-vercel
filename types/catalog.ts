@@ -60,6 +60,33 @@ export type CatalogCollectionRef = {
   title: string;
 };
 
+/** A video attached to a spec or feature metaobject. */
+export type CatalogSpecVideo = {
+  id: string;
+  sources: { url: string; mimeType: string; format: string }[];
+  previewUrl: string | null;
+};
+
+/** One entry from the `custom.specs` metaobject list (Shopify's "Product spec" definition). */
+export type CatalogProductSpec = {
+  label: string;
+  value: string;
+  description: string | null;
+  image: CatalogImage | null;
+  /** Set when the merchant attached a video instead of (or as well as) an image. */
+  video: CatalogSpecVideo | null;
+};
+
+/** One entry from the `custom.feature_highlights` metaobject list. */
+export type CatalogFeatureHighlight = {
+  /** A constrained choice on the Shopify side (e.g. "stone", "fit", "ship") — treated as an opaque key here, not an enum, since the choice list is merchant-defined. */
+  icon: string | null;
+  label: string;
+  body: string;
+  image: CatalogImage | null;
+  video: CatalogSpecVideo | null;
+};
+
 export type CatalogProduct = {
   /** Shopify GID, e.g. gid://shopify/Product/123 */
   id: string;
@@ -87,6 +114,10 @@ export type CatalogProduct = {
   compareAtPriceRange: { min: number; max: number } | null;
   /** Allowlisted public metafields, keyed "namespace.key" */
   metafields: Record<string, string>;
+  /** Resolved from the `custom.specs` metaobject list, when the merchant set it. */
+  specs: CatalogProductSpec[];
+  /** Resolved from the `custom.feature_highlights` metaobject list, when the merchant set it. */
+  featureHighlights: CatalogFeatureHighlight[];
   totalInventory: number | null;
 };
 

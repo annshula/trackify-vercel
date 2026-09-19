@@ -3,13 +3,24 @@ import type { CatalogProduct } from '@/types/catalog';
 import { Tabs, type TabItem } from '@/components/ui/accordion';
 
 /**
- * Description, specifications, shipping and returns.
+ * Description, specifications, shipping and returns — the fallback layout.
+ *
+ * This is the presentation for products with no structured metaobject data.
+ * Products that *do* have `custom.specs` / `custom.feature_highlights` get
+ * the richer full-bleed treatment in ProductSpecs instead, and only keep the
+ * compact shipping/returns pair from here (which is store-wide policy copy
+ * every product needs, not per-product content).
  *
  * Everything is sourced from the product's own data or from store-wide policy
  * copy — nothing is generated per product. Sections with no real content are
  * omitted rather than filled with placeholder text.
  */
 export function ProductDetails({ product }: { product: CatalogProduct }) {
+  const hasRichStory =
+    product.specs.length > 0 || product.featureHighlights.length > 0;
+
+  if (hasRichStory) return <PolicyNotes />;
+
   const items: TabItem[] = [];
 
   if (product.descriptionHtml.trim()) {
@@ -79,11 +90,55 @@ export function ProductDetails({ product }: { product: CatalogProduct }) {
   });
 
   return (
-    <section aria-labelledby="details-heading" className="mt-14">
+    <section aria-labelledby="details-heading" className="scroll-reveal mt-16">
       <h2 id="details-heading" className="sr-only">
         Product details
       </h2>
       <Tabs items={items} />
+    </section>
+  );
+}
+
+/**
+ * Shipping and returns only, as two quiet hairline rows.
+ *
+ * What a product with a rich metaobject story still needs from this file:
+ * store-wide policy every customer wants before buying, without re-opening
+ * the full tab strip whose Description/Specifications halves would duplicate
+ * the sections already shown above.
+ */
+function PolicyNotes() {
+  return (
+    <section
+      aria-labelledby="policy-heading"
+      className="scroll-reveal mt-16 divide-y divide-line border-y border-line"
+    >
+      <h2 id="policy-heading" className="sr-only">
+        Shipping and returns
+      </h2>
+
+      <div className="py-5">
+        <h3 className="text-sm font-medium text-ink">Shipping &amp; delivery</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+          Delivery options, rates and estimated dates are calculated at checkout using your
+          address. You will see the exact cost before you pay, and tracking appears in{' '}
+          <Link href="/account/orders" className="text-ink underline underline-offset-4">
+            your order history
+          </Link>{' '}
+          once it ships.
+        </p>
+      </div>
+
+      <div className="py-5">
+        <h3 className="text-sm font-medium text-ink">Returns</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+          Not right? Start a return from your order history. See our{' '}
+          <Link href="/pages/returns" className="text-ink underline underline-offset-4">
+            full returns policy
+          </Link>{' '}
+          for timeframes and conditions.
+        </p>
+      </div>
     </section>
   );
 }

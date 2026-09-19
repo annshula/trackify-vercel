@@ -134,6 +134,186 @@ describe('product normalization', () => {
   it('treats an unknown status as DRAFT rather than trusting it', () => {
     expect(normalizeProduct(adminProduct({ status: 'WEIRD' }), 'USD').status).toBe('DRAFT');
   });
+
+  /** Declares the metafield that points at spec/feature metaobjects by id. */
+  function specMetafield(key: 'specs' | 'feature_highlights', ...ids: string[]) {
+    return {
+      namespace: 'custom',
+      key,
+      value: JSON.stringify(ids),
+      type: 'list.metaobject_reference',
+    };
+  }
+
+  it('resolves custom.specs and custom.feature_highlights metaobject lists', () => {
+    const node = adminProduct();
+    node.metafields!.nodes.push(
+      specMetafield('specs', 'gid://shopify/Metaobject/1'),
+      specMetafield('feature_highlights', 'gid://shopify/Metaobject/2'),
+    );
+
+    const metaobjects = new Map([
+      [
+        'gid://shopify/Metaobject/1',
+        {
+          id: 'gid://shopify/Metaobject/1',
+          fields: [
+            { key: 'label', value: 'Material' },
+            { key: 'value', value: 'Titanium' },
+            { key: 'description', value: 'Aerospace-grade, corrosion resistant.' },
+            { key: 'image', value: 'gid://shopify/MediaImage/1' },
+          ],
+        },
+      ],
+      [
+        'gid://shopify/Metaobject/2',
+        {
+          id: 'gid://shopify/Metaobject/2',
+          fields: [
+            { key: 'icon', value: 'fit' },
+            { key: 'label', value: 'Adjustable band' },
+            { key: 'body', value: "Fits any wrist without tools." },
+            { key: 'image', value: null },
+          ],
+        },
+      ],
+    ]);
+
+    const product = normalizeProduct(node, 'USD', metaobjects);
+
+    expect(product.specs).toEqual([
+      {
+        label: 'Material',
+        value: 'Titanium',
+        description: 'Aerospace-grade, corrosion resistant.',
+        image: product.images[0],
+        video: null,
+      },
+    ]);
+    expect(product.featureHighlights).toEqual([
+      {
+        icon: 'fit',
+        label: 'Adjustable band',
+        body: 'Fits any wrist without tools.',
+        image: null,
+        video: null,
+      },
+    ]);
+  });
+
+  it('resolves a spec image from the file reference even when it is not in the product media', () => {
+    const node = adminProduct();
+    node.metafields!.nodes.push(specMetafield('specs', 'gid://shopify/Metaobject/4'));
+
+    const metaobjects = new Map([
+      [
+        'gid://shopify/Metaobject/4',
+        {
+          id: 'gid://shopify/Metaobject/4',
+          fields: [
+            { key: 'label', value: 'Finish' },
+            { key: 'value', value: 'Brushed' },
+            // Lives in the store's Files library, never attached to this
+            // product's media — the reference is what makes it resolvable.
+            {
+              key: 'image',
+              value: 'gid://shopify/MediaImage/999',
+              reference: {
+                id: 'gid://shopify/MediaImage/999',
+                image: {
+                  url: 'https://cdn.shopify.com/finish.jpg',
+                  width: 800,
+                  height: 800,
+                  altText: 'Brushed finish',
+                },
+              },
+            },
+          ],
+        },
+      ],
+    ]);
+
+    const spec = normalizeProduct(node, 'USD', metaobjects).specs[0];
+    expect(spec?.image).toEqual({
+      id: 'gid://shopify/MediaImage/999',
+      url: 'https://cdn.shopify.com/finish.jpg',
+      altText: 'Brushed finish',
+      width: 800,
+      height: 800,
+    });
+  });
+
+  it('resolves a spec video for an entry that has one instead of an image', () => {
+    const node = adminProduct();
+    node.metafields!.nodes.push(specMetafield('specs', 'gid://shopify/Metaobject/5'));
+
+    const metaobjects = new Map([
+      [
+        'gid://shopify/Metaobject/5',
+        {
+          id: 'gid://shopify/Metaobject/5',
+          fields: [
+            { key: 'label', value: 'Polish' },
+            { key: 'value', value: 'Hand-polished' },
+            { key: 'image', value: null },
+            {
+              key: 'video',
+              value: 'gid://shopify/Video/77',
+              reference: {
+                id: 'gid://shopify/Video/77',
+                sources: [
+                  { url: 'https://cdn.shopify.com/polish.mp4', mimeType: 'video/mp4', format: 'mp4' },
+                ],
+                preview: { image: { url: 'https://cdn.shopify.com/polish-poster.jpg' } },
+              },
+            },
+          ],
+        },
+      ],
+    ]);
+
+    const spec = normalizeProduct(node, 'USD', metaobjects).specs[0];
+    expect(spec?.image).toBeNull();
+    expect(spec?.video).toEqual({
+      id: 'gid://shopify/Video/77',
+      sources: [
+        { url: 'https://cdn.shopify.com/polish.mp4', mimeType: 'video/mp4', format: 'mp4' },
+      ],
+      previewUrl: 'https://cdn.shopify.com/polish-poster.jpg',
+    });
+  });
+
+  it('drops a spec entry missing required fields rather than rendering a blank row', () => {
+    const node = adminProduct();
+    node.metafields!.nodes.push(specMetafield('specs', 'gid://shopify/Metaobject/3'));
+
+    const metaobjects = new Map([
+      [
+        'gid://shopify/Metaobject/3',
+        {
+          id: 'gid://shopify/Metaobject/3',
+          fields: [{ key: 'label', value: 'Material' }], // no `value` field
+        },
+      ],
+    ]);
+
+    expect(normalizeProduct(node, 'USD', metaobjects).specs).toEqual([]);
+  });
+
+  it('ignores a spec reference whose metaobject did not resolve', () => {
+    const node = adminProduct();
+    node.metafields!.nodes.push(specMetafield('specs', 'gid://shopify/Metaobject/missing'));
+
+    // An empty index is what a store without `read_metaobjects` produces —
+    // the catalog must still build, just without the structured specs.
+    expect(normalizeProduct(node, 'USD', new Map()).specs).toEqual([]);
+  });
+
+  it('is empty when the product has no custom.specs or custom.feature_highlights metafield', () => {
+    const product = normalizeProduct(adminProduct(), 'USD');
+    expect(product.specs).toEqual([]);
+    expect(product.featureHighlights).toEqual([]);
+  });
 });
 
 describe('collection normalization', () => {

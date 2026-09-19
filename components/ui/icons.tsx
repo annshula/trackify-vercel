@@ -137,6 +137,24 @@ export const TruckIcon = (props: IconProps) => (
   </Icon>
 );
 
+export const GemIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M6.5 3.5h11L21 9l-9 11.5L3 9l3.5-5.5Z" />
+    <path d="M3 9h18" />
+    <path d="M9 3.5 12 9l-1.8 11.5" />
+    <path d="M15 3.5 12 9l1.8 11.5" />
+  </Icon>
+);
+
+export const RulerIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M4.5 15.5 15.5 4.5a1.4 1.4 0 0 1 2 0l2 2a1.4 1.4 0 0 1 0 2L8.5 19.5a1.4 1.4 0 0 1-2 0l-2-2a1.4 1.4 0 0 1 0-2Z" />
+    <path d="m13 7 2 2" />
+    <path d="m10 10 2 2" />
+    <path d="m7 13 2 2" />
+  </Icon>
+);
+
 export const ShieldIcon = (props: IconProps) => (
   <Icon {...props}>
     <path d="M12 3.5 19 6v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6l7-2.5Z" />

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-18T19:04:26.660Z",
+  "generatedAt": "2026-09-19T06:23:29.259Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -310,6 +310,8 @@
         "reviews.rating_count": "18",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 0
     },
     {
@@ -800,6 +802,8 @@
         "shopify.target-gender": "[\"gid://shopify/Metaobject/100900798691\"]",
         "shopify.wallet-features": "[\"gid://shopify/Metaobject/100900896995\",\"gid://shopify/Metaobject/100900962531\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 900
     },
     {
@@ -1373,6 +1377,8 @@
         "shopify.carry-options": "[\"gid://shopify/Metaobject/100901421283\",\"gid://shopify/Metaobject/100901519587\"]",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900929763\",\"gid://shopify/Metaobject/100901159139\",\"gid://shopify/Metaobject/100900831459\",\"gid://shopify/Metaobject/100901290211\",\"gid://shopify/Metaobject/100901093603\",\"gid://shopify/Metaobject/100901191907\",\"gid://shopify/Metaobject/100901224675\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 80
     },
     {
@@ -1633,6 +1639,8 @@
         "reviews.rating_count": "3",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/101071421667\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 0
     },
     {
@@ -1855,6 +1863,8 @@
         "reviews.rating_count": "14",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900765923\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 0
     },
     {
@@ -2017,6 +2027,8 @@
         "reviews.rating_count": "11",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 0
     },
     {
@@ -2115,6 +2127,8 @@
         "max": 142.7
       },
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 11
     },
     {
@@ -2213,6 +2227,8 @@
         "max": 121.41
       },
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 10
     },
     {
@@ -2311,6 +2327,8 @@
         "max": 157.13
       },
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 10
     },
     {
@@ -2409,6 +2427,8 @@
         "max": 171.4
       },
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 10
     },
     {
@@ -2765,6 +2785,8 @@
         "shopify.age-group": "[\"gid://shopify/Metaobject/251416674531\",\"gid://shopify/Metaobject/251416707299\",\"gid://shopify/Metaobject/251748221155\"]",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100901093603\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 35606
     },
     {
@@ -3559,6 +3581,8 @@
         "max": 45.24
       },
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 293489
     },
     {
@@ -4020,6 +4044,8 @@
         "max": 58.26
       },
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 58941
     },
     {
@@ -4812,6 +4838,8 @@
         "shopify.speed-settings": "[\"gid://shopify/Metaobject/260830560483\"]",
         "shopify.treatment-objective": "[\"gid://shopify/Metaobject/260830527715\"]"
       },
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 83718
     },
     {
@@ -5085,6 +5113,8 @@
       },
       "compareAtPriceRange": null,
       "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
       "totalInventory": 24706
     },
     {
@@ -5273,6 +5303,172 @@
         "custom.specs": "[\"gid://shopify/Metaobject/253819486435\",\"gid://shopify/Metaobject/253819519203\",\"gid://shopify/Metaobject/253819551971\",\"gid://shopify/Metaobject/253819584739\",\"gid://shopify/Metaobject/253819617507\",\"gid://shopify/Metaobject/253819650275\"]",
         "custom.subtitle": "Hand-strung hematite · geometric beads"
       },
+      "specs": [
+        {
+          "label": "Stone",
+          "value": "Hematite",
+          "description": "Hematite, cut in a geometric facet rather than a plain round bead.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372135139",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1787500281",
+            "altText": "1680fb7322775765a8387a07353e0ef1",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657852567779",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.SD-480p-0.9Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-1080p-2.5Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-720p-1.6Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/c5273e32d238461d9a160391122d4b61.thumbnail.0000000000.jpg?v=1787554441"
+          }
+        },
+        {
+          "label": "Cut",
+          "value": "Geometric, hand-strung",
+          "description": "Hand-strung, geometric-cut beads for sharper light than a rounded bead gives.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372167907",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1e3fb0a6-4353-457f-8ce1-cf918421091b.jpg?v=1787500281",
+            "altText": "8db361fd4080efb0f68d95dfa2f04d42",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "Hardness",
+          "value": "5.5-6.5 Mohs",
+          "description": "Roughly level with hardened steel.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372200675",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3bab1e98-71a4-460a-87d5-f19cfcf46cf6.jpg?v=1787500281",
+            "altText": "8c82154c3c58158fdbaa8696ffd74e06",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "Density",
+          "value": "Notably dense - heavier in hand than its size suggests",
+          "description": "Notably heavy in hand - the densest-feeling piece in the collection.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372233443",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cc625092-0dcb-491d-a934-cb3f94dfaba0.jpg?v=1787500281",
+            "altText": "b633eeb25e2283dc780872f97823b3e8",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "Weight",
+          "value": "107 g",
+          "description": "107 grams - the heaviest piece here, built to be felt.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372266211",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4dbb02ed-8ac9-4dff-9509-1e27592e42dd.jpg?v=1787500281",
+            "altText": "214b44d0942e967dfac2decfd9667ef",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "Finish",
+          "value": "Polished",
+          "description": "Polished to a dark gunmetal shine.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372135139",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1787500281",
+            "altText": "1680fb7322775765a8387a07353e0ef1",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "stone",
+          "label": "Hand-strung hematite",
+          "body": "Geometric-cut beads, hand-strung and polished to a dark gunmetal shine.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372135139",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1787500281",
+            "altText": "1680fb7322775765a8387a07353e0ef1",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "icon": "fit",
+          "label": "The heaviest piece",
+          "body": "107 grams - built to be felt on the wrist, not just seen.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372167907",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1e3fb0a6-4353-457f-8ce1-cf918421091b.jpg?v=1787500281",
+            "altText": "8db361fd4080efb0f68d95dfa2f04d42",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657179578595",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.SD-480p-0.9Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.HD-720p-1.6Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/5e35b05f52d84e4db3df7c57c0319de5.thumbnail.0000000000.jpg?v=1787552415"
+          }
+        },
+        {
+          "icon": "ship",
+          "label": "Free tracked shipping",
+          "body": "Every order, every country, no threshold. Dispatched within 1-3 business days.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646372200675",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3bab1e98-71a4-460a-87d5-f19cfcf46cf6.jpg?v=1787500281",
+            "altText": "8c82154c3c58158fdbaa8696ffd74e06",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        }
+      ],
       "totalInventory": 47229
     },
     {
@@ -5641,6 +5837,159 @@
         "custom.specs": "[\"gid://shopify/Metaobject/253819683043\",\"gid://shopify/Metaobject/253819715811\",\"gid://shopify/Metaobject/253819748579\",\"gid://shopify/Metaobject/253819781347\",\"gid://shopify/Metaobject/253819814115\"]",
         "custom.subtitle": "Solid hematite · sizes 6–12"
       },
+      "specs": [
+        {
+          "label": "Stone",
+          "value": "Hematite (natural, not magnetic)",
+          "description": "Solid, natural hematite - not magnetic, no plating, the colour is the stone.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449271011",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032996430.jpg?v=1787500449",
+            "altText": "8f1882e99cbe7faf765afbe9102c4a5",
+            "width": 534,
+            "height": 521
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657852567779",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.SD-480p-0.9Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-1080p-2.5Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-720p-1.6Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/c5273e32d238461d9a160391122d4b61.thumbnail.0000000000.jpg?v=1787554441"
+          }
+        },
+        {
+          "label": "Hardness",
+          "value": "5.5-6.5 Mohs",
+          "description": "Roughly level with hardened steel.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449303779",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939277.jpg?v=1787500449",
+            "altText": "46bc5713e167d413b871b34dd1eeb437",
+            "width": 535,
+            "height": 521
+          },
+          "video": null
+        },
+        {
+          "label": "Density",
+          "value": "Notably dense - heavier in hand than its size suggests",
+          "description": "Heavier in hand than a ring its size usually is.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449336547",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948208.jpg?v=1787500449",
+            "altText": "f8b904a91dbf85b4c539f98f5ce4e6e1",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Sizes",
+          "value": "6-12",
+          "description": "Standard US ring sizing, 6 through 12.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449369315",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948211.jpg?v=1787500449",
+            "altText": "b546bcf730cb11763756ed4260d982d2",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Finish",
+          "value": "Polished, solid band",
+          "description": "Polished to a dark metallic shine, solid band.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449402083",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939274.jpg?v=1787500449",
+            "altText": "ebdca5c1beb4e94dd08d079038d5b7f1",
+            "width": 527,
+            "height": 530
+          },
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "stone",
+          "label": "Solid hematite",
+          "body": "No plating, no coating - the colour is the stone itself.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449271011",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032996430.jpg?v=1787500449",
+            "altText": "8f1882e99cbe7faf765afbe9102c4a5",
+            "width": 534,
+            "height": 521
+          },
+          "video": null
+        },
+        {
+          "icon": "fit",
+          "label": "True to size",
+          "body": "Runs true to standard US ring sizing, 6-12.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449303779",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032939277.jpg?v=1787500449",
+            "altText": "46bc5713e167d413b871b34dd1eeb437",
+            "width": 535,
+            "height": 521
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657179578595",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.SD-480p-0.9Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.HD-720p-1.6Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/5e35b05f52d84e4db3df7c57c0319de5.thumbnail.0000000000.jpg?v=1787552415"
+          }
+        },
+        {
+          "icon": "ship",
+          "label": "Free tracked shipping",
+          "body": "Every order, every country, no threshold. Dispatched within 1-3 business days.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646449336547",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1622032948208.jpg?v=1787500449",
+            "altText": "f8b904a91dbf85b4c539f98f5ce4e6e1",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        }
+      ],
       "totalInventory": 206437
     },
     {
@@ -6045,6 +6394,159 @@
         "custom.specs": "[\"gid://shopify/Metaobject/253819846883\",\"gid://shopify/Metaobject/253819879651\",\"gid://shopify/Metaobject/253819912419\",\"gid://shopify/Metaobject/253819945187\",\"gid://shopify/Metaobject/253819977955\"]",
         "custom.subtitle": "Magnetic or non-magnetic · sizes 6–10"
       },
+      "specs": [
+        {
+          "label": "Stone",
+          "value": "Hematite",
+          "description": "Hematite in two finishes - natural or a magnetic composite, sold and labelled as what each actually is.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563139811",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682377.jpg?v=1787500786",
+            "altText": "48aa5300c06a2bb9add520d89ef7358d",
+            "width": 750,
+            "height": 750
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657852567779",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.SD-480p-0.9Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-1080p-2.5Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-720p-1.6Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/c5273e32d238461d9a160391122d4b61.thumbnail.0000000000.jpg?v=1787554441"
+          }
+        },
+        {
+          "label": "Magnetic variants",
+          "value": "Man-made magnetic hematite (\"hematine\"), not natural",
+          "description": "A man-made magnetic hematite composite, often called hematine - not the weakly-magnetic natural stone.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563172579",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682374.jpg?v=1787500786",
+            "altText": "16fcbe9fb898dba6e73e2df93b0fe6b0",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Non-magnetic variants",
+          "value": "Natural hematite",
+          "description": "The real, natural hematite, unmodified.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563205347",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682372.jpg?v=1787500786",
+            "altText": "34f12d04ed36efb78c82126e12c0e54b",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Sizes",
+          "value": "6-10",
+          "description": "Standard US ring sizing, 6 through 10.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563238115",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682375.jpg?v=1787500786",
+            "altText": "5a712713e8368f68d8ab033d0d98ac7b",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Finish",
+          "value": "Polished, curved band",
+          "description": "Polished, curved band.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563270883",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682376.jpg?v=1787500786",
+            "altText": "3e87a39dbbf4514bfc6f6dbf90816844",
+            "width": 1600,
+            "height": 1600
+          },
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "stone",
+          "label": "Natural or magnetic hematite",
+          "body": "Choose natural non-magnetic hematite, or a magnetic hematite (hematine) finish - labelled honestly on every listing.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563139811",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682377.jpg?v=1787500786",
+            "altText": "48aa5300c06a2bb9add520d89ef7358d",
+            "width": 750,
+            "height": 750
+          },
+          "video": null
+        },
+        {
+          "icon": "fit",
+          "label": "True to size",
+          "body": "Runs true to standard US ring sizing, 6-10.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563172579",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682374.jpg?v=1787500786",
+            "altText": "16fcbe9fb898dba6e73e2df93b0fe6b0",
+            "width": 800,
+            "height": 800
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657179578595",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.SD-480p-0.9Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.HD-720p-1.6Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/5e35b05f52d84e4db3df7c57c0319de5.thumbnail.0000000000.jpg?v=1787552415"
+          }
+        },
+        {
+          "icon": "ship",
+          "label": "Free tracked shipping",
+          "body": "Every order, every country, no threshold. Dispatched within 1-3 business days.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39646563205347",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/1619578682372.jpg?v=1787500786",
+            "altText": "34f12d04ed36efb78c82126e12c0e54b",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        }
+      ],
       "totalInventory": 400004
     },
     {
@@ -7071,6 +7573,127 @@
         "custom.specs": "[\"gid://shopify/Metaobject/253819289827\",\"gid://shopify/Metaobject/253819322595\",\"gid://shopify/Metaobject/253819355363\",\"gid://shopify/Metaobject/253819388131\",\"gid://shopify/Metaobject/253819420899\",\"gid://shopify/Metaobject/253819453667\"]",
         "custom.subtitle": "Round hematite beads · 4 finishes, 7 sizes"
       },
+      "specs": [
+        {
+          "label": "Stone",
+          "value": "Natural hematite",
+          "description": "The same natural hematite underneath every finish - plating changes the surface colour, not the mineral.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094735075",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c86b79aa-5f40-474a-871d-0d0d3b62027e.jpg?v=1787502800",
+            "altText": "d93b41bd9c378a5d187d5c49583976fa",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "Cut",
+          "value": "Round beads, 7 sizes: 2-12mm",
+          "description": "Round beads across seven sizes, so the fit and the presence on the wrist are entirely up to you.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094800611",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0b149ace-582c-4ed5-9563-5637479cd194.jpg?v=1787502800",
+            "altText": "8f3065e04902a81cfac73b1dbf89797c",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Finishes",
+          "value": "Natural, gold-plated, silver-plated, rose-gold-plated",
+          "description": "Natural gunmetal, or gold-, silver- or rose-gold-plated over the same stone.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094866147",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/2bf570f8-0f6f-4a99-93a5-44aab08daa26.jpg?v=1787502800",
+            "altText": "bd3c4cc2ef44477f9eeec5dfe7cfc2fd",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "label": "Hardness",
+          "value": "5.5-6.5 Mohs",
+          "description": "Roughly level with hardened steel.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094767843",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f34b22eb-92d9-4f3a-b9eb-dd042c724042.jpg?v=1787502800",
+            "altText": "17bd5eb1b26db334bafd5998aa0ed632",
+            "width": 695,
+            "height": 695
+          },
+          "video": null
+        },
+        {
+          "label": "Streak test",
+          "value": "Red-brown when scratched, despite the metallic black surface",
+          "description": "Red-brown when scratched, whatever the plating on top looks like.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094702307",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/06c3978e-6177-48ed-813b-003b5568fd5d.jpg?v=1787502800",
+            "altText": "7ad3df0f5d7e83d1ca053273a1164d2",
+            "width": 695,
+            "height": 695
+          },
+          "video": null
+        },
+        {
+          "label": "Core",
+          "value": "Stretch elastic, no clasp",
+          "description": "A stretch elastic cord - roll it on, no clasp to fumble.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094833379",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7b7aa4b8-81a4-4239-921a-34ccfbce58f5.jpg?v=1787502800",
+            "altText": "fc90845d3ef8adf86e3ea534aecc6a15",
+            "width": 500,
+            "height": 500
+          },
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "stone",
+          "label": "Natural or plated hematite",
+          "body": "Four finishes on the same real stone: natural, gold-, silver- or rose-gold-plated.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094735075",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c86b79aa-5f40-474a-871d-0d0d3b62027e.jpg?v=1787502800",
+            "altText": "d93b41bd9c378a5d187d5c49583976fa",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "icon": "fit",
+          "label": "Seven bead sizes",
+          "body": "2mm to 12mm on one stretch cord - the most customizable piece in the collection.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094636771",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/794b80c2-7f83-405b-8bef-55ff095033a8.jpg?v=1787502800",
+            "altText": "fb1b0ad29e11048e90192ba47e60c7e0",
+            "width": 1600,
+            "height": 1600
+          },
+          "video": null
+        },
+        {
+          "icon": "ship",
+          "label": "Free tracked shipping",
+          "body": "Every order, every country, no threshold. Dispatched within 1-3 business days.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39647094669539",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c9ce7006-0d9a-4bff-8103-42e0a7c35ff4.jpg?v=1787502800",
+            "altText": "1efdbe40e6dd1f86adcf83c524463931",
+            "width": 500,
+            "height": 500
+          },
+          "video": null
+        }
+      ],
       "totalInventory": 211876
     },
     {
@@ -7467,14 +8090,174 @@
         "shopify.jewelry-material": "[\"gid://shopify/Metaobject/258297757923\",\"gid://shopify/Metaobject/253817749731\"]",
         "shopify.target-gender": "[\"gid://shopify/Metaobject/253817782499\"]"
       },
+      "specs": [
+        {
+          "label": "Stone",
+          "value": "Natural hematite (iron oxide)",
+          "description": "Iron oxide - one of the most abundant iron ores on Earth, cut and polished for jewellery rather than industrial use.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39648070893795",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/hero.jpg?v=1787507734",
+            "altText": "",
+            "width": 2025,
+            "height": 1359
+          },
+          "video": null
+        },
+        {
+          "label": "Hardness",
+          "value": "5.5-6.5 Mohs",
+          "description": "Roughly level with hardened steel - hard enough for daily wear without a special sizing chart.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39823516729571",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/magnetic-hematite-ring.webp?v=1788345981",
+            "altText": "Hand-polished hematite rings showing hardness and shine",
+            "width": 2528,
+            "height": 1696
+          },
+          "video": null
+        },
+        {
+          "label": "Density",
+          "value": "Notably dense - heavier in hand than its size suggests",
+          "description": "Iron content makes hematite dense - pick a piece up and it is heavier than its size suggests.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39823516631267",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/magnetic-hematite-bracelet-guide.webp?v=1788345980",
+            "altText": "Loose hematite beads showing natural density and weight",
+            "width": 1264,
+            "height": 848
+          },
+          "video": null
+        },
+        {
+          "label": "Streak test",
+          "value": "Red-brown when scratched, despite the metallic black surface",
+          "description": "Scratch it against unglazed ceramic and it leaves red-brown, not black - the mineralogist's standard test for the real stone.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39823516598499",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/hematite-hardness.webp?v=1788345981",
+            "altText": "Hematite streak test showing red-brown mark on polished stone",
+            "width": 2528,
+            "height": 1696
+          },
+          "video": {
+            "id": "gid://shopify/Video/39657852567779",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.SD-480p-0.9Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-1080p-2.5Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.HD-720p-1.6Mbps-92431002.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/c5273e32d238461d9a160391122d4b61/c5273e32d238461d9a160391122d4b61.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/c5273e32d238461d9a160391122d4b61.thumbnail.0000000000.jpg?v=1787554441"
+          }
+        },
+        {
+          "label": "Weight",
+          "value": "70 g",
+          "description": "70 grams on a single strand - present enough to feel deliberate, low enough to slide under a cuff.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39823516664035",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/hematite-ring-benefits.webp?v=1788345981",
+            "altText": "Polished hematite band on dark background",
+            "width": 2528,
+            "height": 1696
+          },
+          "video": null
+        },
+        {
+          "label": "Core",
+          "value": "Stretch elastic, no clasp",
+          "description": "A stretch elastic core, not a clasp - nothing to fasten, nothing to break.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39648070729955",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/topdown.jpg?v=1787507733",
+            "altText": "",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "label": "Finish",
+          "value": "Hand-polished",
+          "description": "Hand-polished to a metallic gunmetal shine, no coating over the stone.",
+          "image": null,
+          "video": {
+            "id": "gid://shopify/Video/39657179578595",
+            "sources": [
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.SD-480p-0.9Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.HD-720p-1.6Mbps-92428482.mp4",
+                "mimeType": "video/mp4",
+                "format": "mp4"
+              },
+              {
+                "url": "https://cdn.shopify.com/videos/c/vp/5e35b05f52d84e4db3df7c57c0319de5/5e35b05f52d84e4db3df7c57c0319de5.m3u8",
+                "mimeType": "application/x-mpegURL",
+                "format": "m3u8"
+              }
+            ],
+            "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/5e35b05f52d84e4db3df7c57c0319de5.thumbnail.0000000000.jpg?v=1787552415"
+          }
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "stone",
+          "label": "Natural hematite",
+          "body": "Genuine iron oxide, not resin or dyed glass. Streak-tests red-brown under the polish.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39823516565731",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/what-is-hematite.webp?v=1788345980",
+            "altText": "Raw and polished hematite - the mineral stripped of its jewelry finish",
+            "width": 1264,
+            "height": 848
+          },
+          "video": null
+        },
+        {
+          "icon": "fit",
+          "label": "Stretch elastic fit",
+          "body": "One elastic core, no clasp, no sizing chart. Roll it on and forget it's there.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39822599749859",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5b308fe34f1b41b8a3900a9c91c7abc4O.jpg?v=1788344174",
+            "altText": "A close-up of a bracelet worn on a wrist, with fingers holding the lower end of the bracelet to show its flexibility. The bracelet features glossy, dark metallic square beads on a thin silver-toned band.",
+            "width": 1440,
+            "height": 1440
+          },
+          "video": null
+        }
+      ],
       "totalInventory": 12062
     },
     {
       "id": "gid://shopify/Product/9680566649059",
       "handle": "foldable-keychain-storage-pouch-large-capacity-portable-handheld-shoulder-eco-bag",
       "title": "Foldable Keychain Storage Pouch Large-Capacity Portable Handheld Shoulder Eco-Bag",
-      "description": "Product information: Overview: This large-capacity foldable eco-friendly shopping bag is made of high-quality polyester fiber. Designed in a modern minimalist handbag style, it can be easily folded and is suitable for mall shopping and daily home storage. Specification: Material: Polyester Style: Modern Minimalist Function: Foldable Applicable Scenario: Shopping Mall Colors: Black, Brown, Wine Red, Army Green, Green, Khaki, Customized Color Packing list: Tote Bag x 1pc Product Image:",
-      "descriptionHtml": "<p>\n <b>Product information:</b>\n <br>\n Overview:\n <br>\n This large-capacity foldable eco-friendly shopping bag is made of high-quality polyester fiber. Designed in a modern minimalist handbag style, it can be easily folded and is suitable for mall shopping and daily home storage.\n <br>\n Specification:\n <br>\n Material: Polyester\n <br>\n Style: Modern Minimalist\n <br>\n Function: Foldable\n <br>\n Applicable Scenario: Shopping Mall\n <br>\n Colors: Black, Brown, Wine Red, Army Green, Green, Khaki, Customized Color\n</p>\n<p>\n <br>\n</p>\n<b>Packing list: </b>\n<br>\nTote Bag x 1pc\n<p>\n <br>\n</p>\n<b>Product Image:</b>\n<div>\n <b>\n  <br>\n </b>\n <img src=\"https://cf.cjdropshipping.com/quick/product/05fe01ff-1059-463c-8bfd-26e0c5b59974.jpg\">\n <img src=\"https://cf.cjdropshipping.com/quick/product/72090d79-7661-4888-844f-947440279ffb.jpg\">\n <img src=\"https://cf.cjdropshipping.com/quick/product/d5b3ae4d-e223-4584-befc-b21e269b001e.jpg\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2026/08/12/03/8b3d36de-186f-4738-9b70-a2ac79c8edb1_water.jpeg\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2026/08/12/03/08084a69-da2b-4898-b12e-d799d18b60de.jpg\">\n</div>",
+      "description": "Polyester canvas, a keychain-sized fold, and a full shopping bag's worth of capacity the moment you shake it open. Built for the errand you didn't plan for — the extra grocery run, the gift that needs carrying, the gym bag that overflowed. Reinforced seams and a durable weave mean this is a bag meant to be unfolded and refolded hundreds of times, not a disposable liner. Dual handles are sized for a comfortable grip by hand or over a shoulder, and it folds back down small enough to clip to a keyring, bag strap, or belt loop. Available in Black, Brown, Wine Red, Army Green, Green, and Khaki — every colorway is the same reinforced build underneath. Ships as one tote bag per order.",
+      "descriptionHtml": "<p>Polyester canvas, a keychain-sized fold, and a full shopping bag's worth of capacity the moment you shake it open. Built for the errand you didn't plan for — the extra grocery run, the gift that needs carrying, the gym bag that overflowed.</p>\n<p>Reinforced seams and a durable weave mean this is a bag meant to be unfolded and refolded hundreds of times, not a disposable liner. Dual handles are sized for a comfortable grip by hand or over a shoulder, and it folds back down small enough to clip to a keyring, bag strap, or belt loop.</p>\n<p>Available in Black, Brown, Wine Red, Army Green, Green, and Khaki — every colorway is the same reinforced build underneath. Ships as one tote bag per order.</p>",
       "vendor": "HIMVOLT",
       "productType": "Bags",
       "tags": [],
@@ -7710,14 +8493,14 @@
         }
       ],
       "seo": {
-        "title": null,
-        "description": null
+        "title": "Foldable Keychain Pouch Tote | Compact Eco Shopping Bag | HimVolt",
+        "description": "Folds to keychain size, opens into a full-size tote. Durable polyester, reinforced seams, 6 colors. Free shipping."
       },
       "status": "ACTIVE",
       "publishedOnline": true,
       "publishedAt": "2026-09-18T19:03:32Z",
       "createdAt": "2026-09-18T19:03:28Z",
-      "updatedAt": "2026-09-18T19:04:06Z",
+      "updatedAt": "2026-09-19T06:13:29Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12170150838499",
@@ -7879,7 +8662,124 @@
         "currencyCode": "USD"
       },
       "compareAtPriceRange": null,
-      "metafields": {},
+      "metafields": {
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/271215427811\",\"gid://shopify/Metaobject/271215460579\"]",
+        "custom.material": "Polyester fiber",
+        "custom.specs": "[\"gid://shopify/Metaobject/271213265123\",\"gid://shopify/Metaobject/271213297891\",\"gid://shopify/Metaobject/271213363427\",\"gid://shopify/Metaobject/271213396195\",\"gid://shopify/Metaobject/271213428963\",\"gid://shopify/Metaobject/271213461731\"]",
+        "custom.subtitle": "Folds to keychain size — opens into a full tote",
+        "specs.best_for": "Shopping, errands, gym, travel",
+        "specs.fold_type": "Keychain-portable fold",
+        "specs.material": "Polyester fiber",
+        "specs.style": "Modern minimalist"
+      },
+      "specs": [
+        {
+          "label": "Material",
+          "value": "Polyester fiber",
+          "description": "A durable woven polyester built to be folded and unfolded daily without stretching out or splitting at the seams.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894631651",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/27d75e64-e063-4ed4-83ef-638f78504635.jpg?v=1789758210",
+            "altText": "54b9d9792e2f65ecd6470eb3a17caf4d",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "label": "Folded size",
+          "value": "Keychain-portable",
+          "description": "Folds along its seams into a pouch small enough to clip to a keyring, bag strap, or belt loop.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894598883",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5f974abd-7a7b-44f3-91f6-9d0eed7c649f.jpg?v=1789758210",
+            "altText": "92ec3a1b998d10f1103b671ab9f0051f",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "label": "Capacity",
+          "value": "Full-size tote when open",
+          "description": "Opens into a wide, full-capacity tote with dual handles sized for a comfortable grip, by hand or over the shoulder.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894566115",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/62b8d984-6d11-4f7c-8340-5050d9972e05.jpg?v=1789758210",
+            "altText": "8e9dbcebf4bd5ac4b8f821607bf25bac",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "label": "Colors",
+          "value": "Black, Brown, Wine Red, Army Green, Green, Khaki",
+          "description": "Six colorways on the same reinforced build, so you can match it to how you’ll actually use it.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894664419",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cd4f7f67-bcaa-43e1-a202-96cdb06f2aa8.jpg?v=1789758210",
+            "altText": "745d5fdbdb70a1d1cbae73ba000cbce",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "label": "Construction",
+          "value": "Reinforced seams",
+          "description": "Stitched seams and a durable weave hold up to daily shopping runs, commutes, and gym trips.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894697187",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b21c2d32-6708-4af0-95f3-0d5b5c2deda6.jpg?v=1789758210",
+            "altText": "7cb27d80d7e9301f7257f63792d9318f",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "label": "Best for",
+          "value": "Shopping, errands, gym, travel",
+          "description": "Built for the errand you did not plan for — the extra grocery run, the gift that needs carrying, the overflowing gym bag.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894729955",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/3dfe6cf7-08f2-4281-ad33-a640970eb033.jpg?v=1789758210",
+            "altText": "e7164048afc4ece6096add2728ec875c",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "fit",
+          "label": "Folds to keychain size",
+          "body": "Collapses down small enough to clip to a keyring or bag strap — it travels with you, ready before you need it.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894598883",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5f974abd-7a7b-44f3-91f6-9d0eed7c649f.jpg?v=1789758210",
+            "altText": "92ec3a1b998d10f1103b671ab9f0051f",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "icon": "ship",
+          "label": "Opens to a full-size tote",
+          "body": "Reinforced polyester holds its shape under load, wide enough for a grocery haul.",
+          "image": {
+            "id": "gid://shopify/MediaImage/40109894566115",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/62b8d984-6d11-4f7c-8340-5050d9972e05.jpg?v=1789758210",
+            "altText": "8e9dbcebf4bd5ac4b8f821607bf25bac",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        }
+      ],
       "totalInventory": 50194
     }
   ],

@@ -54,6 +54,28 @@ export const mediaSchema = z.discriminatedUnion('type', [
   }),
 ]);
 
+const specVideoSchema = z.object({
+  id: z.string(),
+  sources: z.array(mediaSourceSchema).min(1),
+  previewUrl: z.string().url().nullable(),
+});
+
+export const productSpecSchema = z.object({
+  label: z.string().min(1),
+  value: z.string().min(1),
+  description: z.string().nullable(),
+  image: imageSchema.nullable(),
+  video: specVideoSchema.nullable(),
+});
+
+export const featureHighlightSchema = z.object({
+  icon: z.string().nullable(),
+  label: z.string().min(1),
+  body: z.string().min(1),
+  image: imageSchema.nullable(),
+  video: specVideoSchema.nullable(),
+});
+
 export const variantSchema = z.object({
   id: z.string().min(1),
   title: z.string(),
@@ -116,6 +138,8 @@ export const productSchema = z.object({
     .object({ min: z.number().nonnegative(), max: z.number().nonnegative() })
     .nullable(),
   metafields: z.record(z.string()),
+  specs: z.array(productSpecSchema),
+  featureHighlights: z.array(featureHighlightSchema),
   totalInventory: z.number().int().nullable(),
 });
 

@@ -1,8 +1,11 @@
 import type {
   CatalogCollection,
+  CatalogFeatureHighlight,
   CatalogImage,
   CatalogMedia,
   CatalogProduct,
+  CatalogProductSpec,
+  CatalogSpecVideo,
   CatalogVariant,
   ProductStatus,
 } from "@/types/catalog";
@@ -77,6 +80,39 @@ type AdminVariantNode = {
   } | null;
 };
 
+/** A metaobject field's resolved file reference (image or video). */
+type AdminMetaobjectFileRef = {
+  id?: string | null;
+  image?: AdminImage | null;
+  sources?: { url: string; mimeType: string; format: string }[] | null;
+  preview?: { image?: { url?: string | null } | null } | null;
+};
+
+type AdminMetaobjectRef = {
+  id: string;
+  fields: {
+    key: string;
+    value: string | null;
+    reference?: AdminMetaobjectFileRef | null;
+  }[];
+};
+
+type AdminMetafieldNode = {
+  namespace: string;
+  key: string;
+  value: string;
+  type: string;
+};
+
+/**
+ * Metaobjects resolved separately by METAOBJECTS_BY_IDS_QUERY, keyed by GID.
+ *
+ * The product query deliberately doesn't resolve these inline — doing so
+ * applies the nested file-reference cost to every metafield slot and blows
+ * the Admin API's per-query cost limit. See that query's own note.
+ */
+export type MetaobjectIndex = Map<string, AdminMetaobjectRef>;
+
 export type AdminProductNode = {
   id: string;
   handle: string;
@@ -102,7 +138,7 @@ export type AdminProductNode = {
     nodes: { id: string; handle: string; title: string }[];
   } | null;
   metafields?: {
-    nodes: { namespace: string; key: string; value: string; type: string }[];
+    nodes: AdminMetafieldNode[];
   } | null;
   variants: { nodes: AdminVariantNode[] };
   publishedOnCurrentPublication?: boolean | null;
@@ -220,9 +256,7 @@ function normalizeMedia(nodes: AdminMediaNode[]): CatalogMedia[] {
   return media;
 }
 
-function normalizeMetafields(
-  nodes: { namespace: string; key: string; value: string; type: string }[],
-): Record<string, string> {
+function normalizeMetafields(nodes: AdminMetafieldNode[]): Record<string, string> {
   const result: Record<string, string> = {};
   for (const node of nodes) {
     if (!PUBLIC_METAFIELD_NAMESPACES.has(node.namespace)) continue;
@@ -235,6 +269,136 @@ function normalizeMetafields(
   return Object.fromEntries(
     Object.entries(result).sort(([a], [b]) => a.localeCompare(b)),
   );
+}
+
+/**
+ * A `list.metaobject_reference` metafield stores its targets as a JSON array
+ * of GID strings. Malformed values yield an empty list rather than throwing —
+ * one bad metafield must not take down a whole catalog sync.
+ */
+function parseGidList(value: string | undefined): string[] {
+  if (!value) return [];
+  try {
+    const parsed: unknown = JSON.parse(value);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((item): item is string => typeof item === "string");
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Every metaobject GID a product's spec/feature metafields point at, so the
+ * sync can batch-resolve them in one request before normalizing.
+ */
+export function referencedMetaobjectIds(node: AdminProductNode): string[] {
+  const nodes = node.metafields?.nodes ?? [];
+  return ["specs", "feature_highlights"].flatMap((key) =>
+    parseGidList(nodes.find((n) => n.namespace === "custom" && n.key === key)?.value),
+  );
+}
+
+/** Plain lookup of a metaobject's own fields by key, tolerating nulls. */
+function fieldValue(metaobject: AdminMetaobjectRef, key: string): string | null {
+  const field = metaobject.fields.find((f) => f.key === key);
+  return field?.value ?? null;
+}
+
+/**
+ * A metaobject's image field -> CatalogImage.
+ *
+ * Prefers the field's own resolved file reference, so an image that lives in
+ * the store's Files library resolves even when it was never attached to this
+ * product's media (the normal case for supporting imagery shot for one spec).
+ * Falls back to the product's media map for older entries whose reference
+ * doesn't resolve, and yields null rather than a half-built record when
+ * neither source has a usable URL.
+ */
+function specImage(
+  metaobject: AdminMetaobjectRef,
+  key: string,
+  imageMap: Map<string, CatalogImage>,
+): CatalogImage | null {
+  const field = metaobject.fields.find((f) => f.key === key);
+  if (!field) return null;
+
+  const reference = field.reference;
+  const image = reference?.image;
+  if (image?.url) {
+    return {
+      id: reference?.id ?? field.value ?? image.url,
+      url: image.url,
+      altText: image.altText ?? null,
+      width: image.width ?? null,
+      height: image.height ?? null,
+    };
+  }
+
+  return (field.value && imageMap.get(field.value)) || null;
+}
+
+/** A metaobject's video field -> CatalogSpecVideo, or null when it has no playable source. */
+function specVideo(
+  metaobject: AdminMetaobjectRef,
+  key: string,
+): CatalogSpecVideo | null {
+  const field = metaobject.fields.find((f) => f.key === key);
+  const reference = field?.reference;
+  if (!reference?.sources?.length) return null;
+
+  return {
+    id: reference.id ?? field?.value ?? reference.sources[0]!.url,
+    sources: reference.sources,
+    previewUrl: reference.preview?.image?.url ?? null,
+  };
+}
+
+/**
+ * Resolves the `custom.specs` (product_spec) and `custom.feature_highlights`
+ * (feature_highlight) metaobject lists into plain records the storefront can
+ * render directly — no GID chasing in components.
+ *
+ * Image and video fields resolve from the metaobject's own file reference, so
+ * supporting imagery that lives in the store's Files library resolves even
+ * when it was never attached to this product's media. `imageMap` (the
+ * product's own normalized images) remains the fallback for entries whose
+ * reference doesn't resolve.
+ */
+function normalizeSpecsAndFeatures(
+  nodes: AdminMetafieldNode[],
+  imageMap: Map<string, CatalogImage>,
+  metaobjects: MetaobjectIndex,
+): { specs: CatalogProductSpec[]; featureHighlights: CatalogFeatureHighlight[] } {
+  const resolve = (key: string): AdminMetaobjectRef[] =>
+    parseGidList(
+      nodes.find((n) => n.namespace === "custom" && n.key === key)?.value,
+    )
+      .map((gid) => metaobjects.get(gid))
+      .filter((entry): entry is AdminMetaobjectRef => entry !== undefined);
+
+  const specs: CatalogProductSpec[] = resolve("specs")
+    .filter((ref) => fieldValue(ref, "label") && fieldValue(ref, "value"))
+    .map((ref) => ({
+      label: fieldValue(ref, "label")!,
+      value: fieldValue(ref, "value")!,
+      description: fieldValue(ref, "description"),
+      image: specImage(ref, "image", imageMap),
+      video: specVideo(ref, "video"),
+    }));
+
+  const featureHighlights: CatalogFeatureHighlight[] = resolve(
+    "feature_highlights",
+  )
+    .filter((ref) => fieldValue(ref, "label") && fieldValue(ref, "body"))
+    .map((ref) => ({
+      icon: fieldValue(ref, "icon"),
+      label: fieldValue(ref, "label")!,
+      body: fieldValue(ref, "body")!,
+      image: specImage(ref, "image", imageMap),
+      video: specVideo(ref, "video"),
+    }));
+
+  return { specs, featureHighlights };
 }
 
 function normalizeVariant(
@@ -270,6 +434,8 @@ function normalizeVariant(
 export function normalizeProduct(
   node: AdminProductNode,
   currencyCode: string,
+  /** Metaobjects resolved up front by the sync; empty when a product has none. */
+  metaobjects: MetaobjectIndex = new Map(),
 ): CatalogProduct {
   const variants = node.variants.nodes
     .map((variant) => normalizeVariant(variant, currencyCode))
@@ -316,6 +482,12 @@ export function normalizeProduct(
   )
     ? (node.status as ProductStatus)
     : "DRAFT";
+
+  const { specs, featureHighlights } = normalizeSpecsAndFeatures(
+    node.metafields?.nodes ?? [],
+    imageMap,
+    metaobjects,
+  );
 
   return {
     id: node.id,
@@ -364,6 +536,8 @@ export function normalizeProduct(
       ? { min: Math.min(...compareAtPrices), max: Math.max(...compareAtPrices) }
       : null,
     metafields: normalizeMetafields(node.metafields?.nodes ?? []),
+    specs,
+    featureHighlights,
     totalInventory: node.totalInventory ?? null,
   };
 }

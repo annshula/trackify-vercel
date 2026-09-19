@@ -57,6 +57,8 @@ export function makeProduct(overrides: Partial<CatalogProduct> = {}): CatalogPro
     priceRange: { min: Math.min(...prices), max: Math.max(...prices), currencyCode: 'USD' },
     compareAtPriceRange: null,
     metafields: {},
+    specs: [],
+    featureHighlights: [],
     totalInventory: 25,
     ...overrides,
   };

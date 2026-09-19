@@ -67,6 +67,9 @@ const PRODUCT_FIELDS = /* GraphQL */ `
         }
       }
     }
+    # Duplicates the media connection above, but variant.image.id is a
+    # ProductImage id that only appears here — dropping it would break
+    # variant colour swatches.
     images(first: 25) {
       nodes {
         id
@@ -83,7 +86,7 @@ const PRODUCT_FIELDS = /* GraphQL */ `
         title
       }
     }
-    metafields(first: 30) {
+    metafields(first: 15) {
       nodes {
         namespace
         key
@@ -144,6 +147,54 @@ export const PRODUCT_BY_ID_QUERY = /* GraphQL */ `
   query ProductById($id: ID!) {
     product(id: $id) {
       ...ProductFields
+    }
+  }
+`;
+
+/**
+ * Resolves `custom.specs` / `custom.feature_highlights` metaobjects by id,
+ * including each entry's image/video file reference.
+ *
+ * Deliberately a separate query rather than a nested selection on the product
+ * query: nesting it there applies the file-reference cost to all 15 metafield
+ * slots on every product, which exceeds the Admin API's 1000-point
+ * single-query limit. Fetching only the ids actually referenced costs a
+ * fraction of that, and the sync batches them so it stays one extra request.
+ */
+export const METAOBJECTS_BY_IDS_QUERY = /* GraphQL */ `
+  query MetaobjectsByIds($ids: [ID!]!) {
+    nodes(ids: $ids) {
+      ... on Metaobject {
+        id
+        fields {
+          key
+          value
+          reference {
+            ... on MediaImage {
+              id
+              image {
+                url
+                width
+                height
+                altText
+              }
+            }
+            ... on Video {
+              id
+              sources {
+                url
+                mimeType
+                format
+              }
+              preview {
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

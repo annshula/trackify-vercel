@@ -21,6 +21,7 @@ import {
   BLOG_BY_ID_QUERY,
   COLLECTIONS_PAGE_QUERY,
   COLLECTION_BY_ID_QUERY,
+  METAOBJECTS_BY_IDS_QUERY,
   PRODUCTS_PAGE_QUERY,
   PRODUCT_BY_ID_QUERY,
   SHOP_QUERY,
@@ -32,10 +33,12 @@ import {
   normalizeBlog,
   normalizeCollection,
   normalizeProduct,
+  referencedMetaobjectIds,
   type AdminArticleNode,
   type AdminBlogNode,
   type AdminCollectionNode,
   type AdminProductNode,
+  type MetaobjectIndex,
 } from "@/lib/catalog/normalize";
 import {
   auditCatalog,
@@ -67,6 +70,48 @@ export type SyncOptions = {
   pageSize?: number;
   onProgress?: (message: string) => void;
 };
+
+/** Shopify's `nodes(ids:)` accepts at most 250 ids per request. */
+const METAOBJECT_BATCH_SIZE = 200;
+
+/**
+ * Batch-resolves every metaobject the given products reference, keyed by GID.
+ *
+ * Separate from the product query on purpose — see METAOBJECTS_BY_IDS_QUERY.
+ * Returns an empty index rather than throwing when the store hasn't granted
+ * `read_metaobjects`: structured specs are an enhancement, and a catalog sync
+ * must not fail wholesale because one optional scope is missing.
+ */
+async function fetchMetaobjects(
+  products: AdminProductNode[],
+  report: (message: string) => void,
+): Promise<MetaobjectIndex> {
+  const ids = [...new Set(products.flatMap(referencedMetaobjectIds))];
+  const index: MetaobjectIndex = new Map();
+  if (ids.length === 0) return index;
+
+  report(`Resolving ${ids.length} spec/feature metaobjects…`);
+
+  for (let offset = 0; offset < ids.length; offset += METAOBJECT_BATCH_SIZE) {
+    const batch = ids.slice(offset, offset + METAOBJECT_BATCH_SIZE);
+    try {
+      const data = await adminRequest<{
+        nodes: ({ id: string; fields: { key: string; value: string | null }[] } | null)[];
+      }>({ query: METAOBJECTS_BY_IDS_QUERY, variables: { ids: batch } });
+
+      for (const node of data.nodes) {
+        if (node?.id) index.set(node.id, node);
+      }
+    } catch (error) {
+      report(
+        `  Skipped metaobject resolution: ${(error as Error).message.slice(0, 120)}`,
+      );
+      return index;
+    }
+  }
+
+  return index;
+}
 
 /**
  * ShopifySyncService — the full catalog rebuild.
@@ -112,11 +157,13 @@ export async function fullSync(options: SyncOptions = {}): Promise<SyncStats> {
       },
     );
 
+    const metaobjects = await fetchMetaobjects(productNodes, report);
+
     report("Normalizing…");
     const products = productNodes
       .map((node) => {
         try {
-          return normalizeProduct(node, currencyCode);
+          return normalizeProduct(node, currencyCode, metaobjects);
         } catch (error) {
           warnings.push(
             `Skipped product ${node.handle}: ${(error as Error).message}`,
@@ -307,9 +354,11 @@ export async function syncSingleProduct(
 
   // Currency comes from the catalog the full sync already established.
   const meta = await productRepository.getCatalogMeta();
+  const metaobjects = await fetchMetaobjects([data.product], () => {});
   const product = normalizeProduct(
     data.product,
     meta.shop.currencyCode || "USD",
+    metaobjects,
   );
 
   const existing = await productRepository.getProductById(product.id);
