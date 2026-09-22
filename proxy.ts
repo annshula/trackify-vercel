@@ -81,13 +81,83 @@ const LEGACY_REDIRECTS: {
  */
 const IS_DEV = process.env.NODE_ENV !== "production";
 
+/**
+ * Every analytics origin below is gated on its own env var, same as the
+ * component that actually loads it (see components/analytics/) — a store
+ * that never configures a provider gets a CSP that never widens for it.
+ */
+
+/**
+ * Microsoft Clarity — the tag script lives on clarity.ms, replay/heatmap
+ * payloads upload to regional *.clarity.ms hosts, and Clarity also fires a
+ * sync/telemetry beacon as an <img> from c.bing.com (it rides on Microsoft's
+ * Bing infrastructure) — a plain image load, so it needs img-src but not
+ * script-src/connect-src beyond the tag script itself.
+ */
+const CLARITY_ENABLED = Boolean(process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID);
+const CLARITY_SRC = CLARITY_ENABLED
+  ? " https://www.clarity.ms https://*.clarity.ms"
+  : "";
+const CLARITY_IMG_SRC = CLARITY_ENABLED ? " https://c.bing.com" : "";
+
+/**
+ * Meta Pixel — the tag script is served from connect.facebook.net, but the
+ * pixel does not send events with fetch(): it POSTs a hidden <form> to
+ * facebook.com/tr/ and opens an iframe on facebook.com, so form-action and
+ * frame-src have to name the host too (without frame-src the iframe falls
+ * back to default-src 'self' and is blocked).
+ */
+const META_PIXEL_ENABLED = Boolean(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+const META_FB = " https://www.facebook.com";
+const META_SCRIPT_SRC = META_PIXEL_ENABLED
+  ? " https://connect.facebook.net"
+  : "";
+const META_PIXEL_SRC = META_PIXEL_ENABLED
+  ? `${META_FB} https://connect.facebook.net`
+  : "";
+const META_FRAME_SRC = META_PIXEL_ENABLED ? META_FB : "";
+
+/**
+ * Google Analytics 4 — the gtag.js loader is served from
+ * googletagmanager.com; event payloads are sent (usually as sendBeacon GETs)
+ * to www.google-analytics.com and regional *.google-analytics.com hosts, so
+ * connect-src and img-src both need them. gtag does not open iframes.
+ */
+const GA_ENABLED = Boolean(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);
+const GA_SCRIPT_SRC = GA_ENABLED ? " https://www.googletagmanager.com" : "";
+const GA_COLLECT_SRC = GA_ENABLED
+  ? " https://www.google-analytics.com https://*.google-analytics.com"
+  : "";
+
+/**
+ * TikTok Pixel — the tag script and its event beacons are both served from
+ * analytics.tiktok.com, so script-src, connect-src, and img-src (the
+ * <noscript> fallback beacon) all need the one host.
+ */
+const TIKTOK_PIXEL_ENABLED = Boolean(process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID);
+const TIKTOK_SRC = TIKTOK_PIXEL_ENABLED ? " https://analytics.tiktok.com" : "";
+
+/**
+ * Google Tag Manager — gated on NEXT_PUBLIC_GTM_ID (see
+ * components/analytics/gtm.tsx), unlike the reference's own permanent
+ * install. The loader runs from googletagmanager.com (script-src), its
+ * tracking beacon fires as an <img> (img-src), and the required <noscript>
+ * fallback is an <iframe> on that same host (frame-src). The container
+ * typically also serves a GA4 tag, which beacons to google-analytics.com.
+ */
+const GTM_ENABLED = Boolean(process.env.NEXT_PUBLIC_GTM_ID);
+const GTM_SRC = GTM_ENABLED ? " https://www.googletagmanager.com" : "";
+const GTM_COLLECT_SRC = GTM_ENABLED
+  ? " https://www.google-analytics.com https://*.google-analytics.com"
+  : "";
+
 const CSP = [
   `default-src 'self'`,
   // See the module doc comment above for why 'unsafe-inline' is here: Next's
   // own RSC hydration payload ships as inline <script> tags whose content is
   // per-request and cannot be nonced without forfeiting static generation, or
   // hashed since it differs on every page.
-  `script-src 'self' 'unsafe-inline'${IS_DEV ? ` 'unsafe-eval'` : ""} https://www.googletagmanager.com https://connect.facebook.net https://static.cloudflareinsights.com https://analytics.tiktok.com https://www.clarity.ms`,
+  `script-src 'self' 'unsafe-inline'${IS_DEV ? ` 'unsafe-eval'` : ""} https://static.cloudflareinsights.com${CLARITY_SRC}${META_SCRIPT_SRC}${GA_SCRIPT_SRC}${GTM_SRC}${TIKTOK_SRC}`,
   // Nonces are not honored on style *attributes* per the CSP spec (only on
   // <style> elements/<link>), and several components set dynamic inline
   // styles (progress bars, color swatches, CSS custom properties). Without a
@@ -95,17 +165,18 @@ const CSP = [
   // that does not break those — it is scoped to styles only, which cannot
   // execute script.
   `style-src 'self' 'unsafe-inline'`,
-  `img-src 'self' data: blob: https://cdn.shopify.com https://*.myshopify.com https://www.facebook.com`,
+  `img-src 'self' data: blob: https://cdn.shopify.com https://*.myshopify.com${CLARITY_SRC}${CLARITY_IMG_SRC}${META_PIXEL_SRC}${GA_COLLECT_SRC}${GTM_SRC}${GTM_COLLECT_SRC}${TIKTOK_SRC}`,
   // Product/article videos are served from Shopify's video CDN — without this,
   // <video> falls back to default-src 'self' and every request is blocked.
   `media-src 'self' https://cdn.shopify.com https://*.myshopify.com`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com https://cloudflareinsights.com https://analytics.tiktok.com https://www.clarity.ms${IS_DEV ? " ws://localhost:* wss://localhost:*" : ""}`,
-  // Shopify's ExternalVideo media type is YouTube or Vimeo only.
-  `frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com`,
+  `connect-src 'self' https://cloudflareinsights.com${CLARITY_SRC}${META_PIXEL_SRC}${GA_COLLECT_SRC}${GTM_SRC}${GTM_COLLECT_SRC}${TIKTOK_SRC}${IS_DEV ? " ws://localhost:* wss://localhost:*" : ""}`,
+  // Shopify's ExternalVideo media type is YouTube or Vimeo only; Meta/GTM add
+  // their own iframe hosts above when configured.
+  `frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com${META_FRAME_SRC}${GTM_SRC}`,
   `object-src 'none'`,
   `base-uri 'self'`,
-  `form-action 'self'`,
+  `form-action 'self'${META_FRAME_SRC}`,
   `frame-ancestors 'self'`,
   `upgrade-insecure-requests`,
 ].join("; ");
