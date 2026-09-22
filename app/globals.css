@@ -58,23 +58,28 @@
 
   --breakpoint-xs: 22.5rem;
 
-  /* ── Semantic colors (light — the base definition) ─────────────────── */
-  --color-canvas: #faf9f7;
-  --color-surface: #ffffff;
+  /* ── Semantic colors (light — the base definition) ───────────────────
+     Rebranded around the hero video's own palette: warm cream tabletop,
+     saddle-leather tan/cognac, and espresso ink — sampled directly from
+     the hero footage rather than picked by eye (see the pixel samples in
+     the PR/commit that introduced this palette). Olive is gone; leather
+     tan is now the one accent color used everywhere accent used to be. */
+  --color-canvas: #faf6ef;
+  --color-surface: #fffdf9;
   --color-surface-raised: #ffffff;
-  --color-surface-sunken: #f2f0ed;
-  --color-ink: #0c0a09;
-  --color-ink-muted: #57534e;
-  --color-ink-subtle: #78716c;
-  --color-ink-inverse: #fafaf9;
-  --color-line: #e3dfda;
-  --color-line-strong: #d6d3d1;
-  --color-primary: #1c1917;
-  --color-primary-hover: #292524;
+  --color-surface-sunken: #f3ecdf;
+  --color-ink: #1f1710;
+  --color-ink-muted: #5c4f42;
+  --color-ink-subtle: #7d6f60;
+  --color-ink-inverse: #fdf9f2;
+  --color-line: #e6dac8;
+  --color-line-strong: #d8c7ab;
+  --color-primary: #241a10;
+  --color-primary-hover: #34271a;
   --color-on-primary: #ffffff;
-  --color-accent: #5b6a45;
-  --color-accent-hover: #495636;
-  --color-accent-soft: #eef1e6;
+  --color-accent: #8a4f2d;
+  --color-accent-hover: #713f22;
+  --color-accent-soft: #f3e6d8;
   --color-on-accent: #ffffff;
   --color-success: #15803d;
   --color-success-soft: #eefaf1;
@@ -82,18 +87,18 @@
   --color-warning-soft: #fff7ed;
   --color-danger: #b91c1c;
   --color-danger-soft: #fef2f2;
-  --color-ring: #1c1917;
-  --color-overlay: rgb(12 10 9 / 0.55);
+  --color-ring: #241a10;
+  --color-overlay: rgb(31 23 16 / 0.55);
   /* Deliberately theme-invariant (never redefined in the dark blocks below) —
      the footer stays a fixed near-black regardless of light/dark mode, the
      way most storefronts anchor their footer rather than flipping it with
      the toggle. */
-  --color-footer: #16130f;
+  --color-footer: #1a130c;
 
-  --shadow-e1: 0 1px 2px rgb(28 25 23 / 0.05), 0 1px 3px rgb(28 25 23 / 0.04);
-  --shadow-e2: 0 2px 4px rgb(28 25 23 / 0.05), 0 6px 16px -6px rgb(28 25 23 / 0.09);
-  --shadow-e3: 0 4px 8px rgb(28 25 23 / 0.05), 0 16px 40px -12px rgb(28 25 23 / 0.16);
-  --shadow-e4: 0 8px 16px rgb(28 25 23 / 0.06), 0 32px 64px -16px rgb(28 25 23 / 0.24);
+  --shadow-e1: 0 1px 2px rgb(36 26 16 / 0.06), 0 1px 3px rgb(36 26 16 / 0.05);
+  --shadow-e2: 0 2px 4px rgb(36 26 16 / 0.06), 0 6px 16px -6px rgb(36 26 16 / 0.1);
+  --shadow-e3: 0 4px 8px rgb(36 26 16 / 0.06), 0 16px 40px -12px rgb(36 26 16 / 0.18);
+  --shadow-e4: 0 8px 16px rgb(36 26 16 / 0.07), 0 32px 64px -16px rgb(36 26 16 / 0.26);
 }
 
 /* ==========================================================================

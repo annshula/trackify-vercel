@@ -97,7 +97,7 @@ export default async function HomePage() {
             Most recommended collections
           </h2>
 
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-[16rem_16rem] sm:gap-5 lg:grid-rows-[19rem_19rem]">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-[12rem_12rem] sm:gap-5 lg:grid-rows-[14rem_14rem]">
             {featuredCollections.map((collection, index) => {
               const image =
                 collection.image ??
@@ -174,7 +174,7 @@ export default async function HomePage() {
             products={arrivalsBelowHero}
             listName="New collection"
             priorityCount={3}
-            className="sm:grid-cols-3 xl:grid-cols-4"
+            className="grid-cols-3 gap-x-3 gap-y-7 sm:gap-x-4 lg:grid-cols-4 xl:grid-cols-5"
           />
           <div className="mt-10 flex justify-center">
             <ButtonLink
@@ -256,6 +256,7 @@ export default async function HomePage() {
             products={bestSellers}
             listName="Best sellers"
             priorityCount={0}
+            className="grid-cols-3 gap-x-3 gap-y-7 sm:gap-x-4 lg:grid-cols-4 xl:grid-cols-5"
           />
         </section>
       )}
@@ -275,7 +276,12 @@ export default async function HomePage() {
           <h2 id="sale-heading" className="sr-only">
             Reduced products
           </h2>
-          <ProductGrid products={sale} listName="Sale" priorityCount={0} />
+          <ProductGrid
+            products={sale}
+            listName="Sale"
+            priorityCount={0}
+            className="grid-cols-3 gap-x-3 gap-y-7 sm:gap-x-4 lg:grid-cols-4 xl:grid-cols-5"
+          />
         </section>
       )}
 
