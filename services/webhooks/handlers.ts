@@ -18,6 +18,7 @@ import {
   revalidateCollection,
   revalidateProduct,
 } from '@/lib/catalog/tags';
+import { sendPurchaseConversions, type ShopifyOrder } from '@/services/webhooks/conversions';
 
 export type WebhookTopic =
   | 'products/create'
@@ -35,7 +36,14 @@ export type WebhookTopic =
   | 'articles/create'
   | 'articles/update'
   | 'articles/delete'
+  | 'orders/paid'
   | 'shop/redact';
+
+/** Request context a handler may need beyond the payload — currently just orders/paid's IP/UA for conversion match data. */
+export type WebhookContext = {
+  ip: string | null;
+  userAgent: string | null;
+};
 
 export type WebhookResult = {
   handled: boolean;
@@ -65,6 +73,7 @@ const articleGid = (id: string | number) =>
 export async function handleWebhook(
   topic: string,
   payload: Record<string, unknown>,
+  context: WebhookContext = { ip: null, userAgent: null },
 ): Promise<WebhookResult> {
   switch (topic as WebhookTopic) {
     case 'products/create':
@@ -219,6 +228,18 @@ export async function handleWebhook(
       }
       purgeTag(CACHE_TAGS.blogCatalog);
       return { handled: true, action: removed ? 'article-deleted' : 'article-already-absent' };
+    }
+
+    case 'orders/paid': {
+      // The browser pixels never see this: the shopper pays on Shopify's
+      // hosted checkout domain and never returns to a client-side success
+      // page here. This is the only place a purchase conversion can fire.
+      const order = payload as unknown as ShopifyOrder;
+      if (order.id === undefined || order.id === null) {
+        return { handled: false, action: 'missing-order-id' };
+      }
+      await sendPurchaseConversions(order, context.ip, context.userAgent);
+      return { handled: true, action: 'purchase-conversions-dispatched', detail: String(order.id) };
     }
 
     case 'shop/redact':

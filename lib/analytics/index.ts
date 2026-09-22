@@ -3,9 +3,11 @@
 /**
  * Analytics abstraction.
  *
- * One `track()` call fans out to whichever providers are configured. Nothing
- * loads and nothing fires until the visitor has granted consent, and no
- * personally identifying data is ever put into an event payload.
+ * One `track()` call fans out to whichever providers are configured (GA4,
+ * Meta Pixel, TikTok Pixel — each only installs its `window.*` global when
+ * its own env var is set, so an unconfigured provider is a silent no-op).
+ * Providers load unconditionally, matching components/analytics/*; no
+ * personally identifying data is ever put into an event payload regardless.
  */
 
 export type EcommerceItem = {
@@ -34,47 +36,19 @@ export type AnalyticsEvents = {
   sign_up: { method: string };
 };
 
-export type ConsentState = { analytics: boolean; marketing: boolean };
-
-const CONSENT_KEY = 'tf_consent';
-
-export function readConsent(): ConsentState | null {
-  if (typeof window === 'undefined') return null;
-  try {
-    const raw = window.localStorage.getItem(CONSENT_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as Partial<ConsentState>;
-    return { analytics: Boolean(parsed.analytics), marketing: Boolean(parsed.marketing) };
-  } catch {
-    return null;
-  }
-}
-
-export function writeConsent(state: ConsentState): void {
-  if (typeof window === 'undefined') return;
-  try {
-    window.localStorage.setItem(CONSENT_KEY, JSON.stringify(state));
-  } catch {
-    // Private mode / storage disabled — treat as no consent rather than crashing.
-  }
-  window.dispatchEvent(new CustomEvent('tf:consent', { detail: state }));
-}
-
 type WindowWithProviders = Window & {
   gtag?: (...args: unknown[]) => void;
   fbq?: (...args: unknown[]) => void;
+  ttq?: { track: (...args: unknown[]) => void };
 };
-
-/** Events fired before consent resolves are held here, not dropped. */
-const queue: { name: keyof AnalyticsEvents; params: Record<string, unknown> }[] = [];
-const MAX_QUEUE = 30;
 
 function dispatch(name: string, params: Record<string, unknown>): void {
   const target = window as WindowWithProviders;
 
   target.gtag?.('event', name, params);
 
-  // Meta's ecommerce vocabulary differs from GA4's; map only what maps cleanly.
+  // Meta and TikTok's ecommerce vocabulary differs from GA4's; map only what
+  // maps cleanly onto each platform's own standard event names.
   const META_EVENTS: Record<string, string> = {
     view_item: 'ViewContent',
     add_to_cart: 'AddToCart',
@@ -85,28 +59,22 @@ function dispatch(name: string, params: Record<string, unknown>): void {
   };
   const metaEvent = META_EVENTS[name];
   if (metaEvent) target.fbq?.('track', metaEvent, params);
+
+  const TIKTOK_EVENTS: Record<string, string> = {
+    view_item: 'ViewContent',
+    add_to_cart: 'AddToCart',
+    begin_checkout: 'InitiateCheckout',
+    search: 'Search',
+    add_to_wishlist: 'AddToWishlist',
+    sign_up: 'CompleteRegistration',
+  };
+  const tiktokEvent = TIKTOK_EVENTS[name];
+  if (tiktokEvent) target.ttq?.track(tiktokEvent, params);
 }
 
 export function track<K extends keyof AnalyticsEvents>(name: K, params: AnalyticsEvents[K]): void {
   if (typeof window === 'undefined') return;
-
-  const consent = readConsent();
-  if (!consent?.analytics) {
-    if (queue.length < MAX_QUEUE) queue.push({ name, params: params as Record<string, unknown> });
-    return;
-  }
-
-  flushQueue();
   dispatch(name, params as Record<string, unknown>);
-}
-
-export function flushQueue(): void {
-  const consent = readConsent();
-  if (!consent?.analytics) return;
-  while (queue.length > 0) {
-    const event = queue.shift();
-    if (event) dispatch(event.name, event.params);
-  }
 }
 
 /** Catalog product -> GA4 item. Keeps event shape consistent across the app. */

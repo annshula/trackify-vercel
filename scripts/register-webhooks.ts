@@ -16,6 +16,10 @@ const REQUIRED_TOPICS = [
   "INVENTORY_LEVELS_UPDATE",
   "PRODUCT_LISTINGS_ADD",
   "PRODUCT_LISTINGS_REMOVE",
+  // Drives the server-side purchase conversions (Meta CAPI / GA4 MP / TikTok
+  // Events API) in services/webhooks/conversions.ts — the browser pixels
+  // never see a Shopify-hosted-checkout purchase on their own.
+  "ORDERS_PAID",
 ] as const;
 
 type SubscriptionsResult = {

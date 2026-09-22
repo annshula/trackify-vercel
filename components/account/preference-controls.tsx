@@ -4,7 +4,6 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Alert } from "@/components/ui/primitives";
 import { CheckIcon } from "@/components/ui/icons";
-import { useConsent } from "@/lib/analytics/consent-store";
 import { useRecentlyViewed } from "@/hooks/use-recently-viewed";
 import { useWishlist } from "@/hooks/use-wishlist";
 
@@ -16,7 +15,6 @@ import { useWishlist } from "@/hooks/use-wishlist";
  * useful escape hatch.
  */
 export function PreferenceControls() {
-  const { consent, setConsent } = useConsent();
   const [notice, setNotice] = React.useState<string | null>(null);
   const { handles: recent, clear: clearRecent } = useRecentlyViewed();
   const { handles: saved, clear: clearWishlist } = useWishlist();
@@ -28,44 +26,6 @@ export function PreferenceControls() {
           {notice}
         </Alert>
       )}
-
-      <section
-        aria-labelledby="privacy-heading"
-        className="rounded-lg border border-line bg-surface p-5"
-      >
-        <h2 id="privacy-heading" className="text-base font-medium">
-          Analytics &amp; cookies
-        </h2>
-        <p className="mt-1 text-sm text-ink-muted">
-          {consent === null
-            ? "You have not made a choice yet."
-            : consent.analytics
-              ? "Analytics are on for this browser."
-              : "Analytics are off for this browser."}
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Button
-            variant={consent?.analytics ? "primary" : "outline"}
-            size="sm"
-            onClick={() => {
-              setConsent({ analytics: true, marketing: true });
-              setNotice("Preferences saved.");
-            }}
-          >
-            Allow
-          </Button>
-          <Button
-            variant={consent && !consent.analytics ? "primary" : "outline"}
-            size="sm"
-            onClick={() => {
-              setConsent({ analytics: false, marketing: false });
-              setNotice("Preferences saved.");
-            }}
-          >
-            Decline
-          </Button>
-        </div>
-      </section>
 
       <section
         aria-labelledby="local-heading"

@@ -77,7 +77,9 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   try {
-    const result = await handleWebhook(topic, payload);
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null;
+    const userAgent = request.headers.get('user-agent') ?? null;
+    const result = await handleWebhook(topic, payload, { ip, userAgent });
     console.info('[webhook] processed', { topic, webhookId, action: result.action, detail: result.detail });
     return NextResponse.json({ ok: true, ...result }, { status: 200 });
   } catch (error) {

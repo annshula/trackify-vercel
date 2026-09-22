@@ -87,7 +87,7 @@ const CSP = [
   // own RSC hydration payload ships as inline <script> tags whose content is
   // per-request and cannot be nonced without forfeiting static generation, or
   // hashed since it differs on every page.
-  `script-src 'self' 'unsafe-inline'${IS_DEV ? ` 'unsafe-eval'` : ""} https://www.googletagmanager.com https://connect.facebook.net https://static.cloudflareinsights.com`,
+  `script-src 'self' 'unsafe-inline'${IS_DEV ? ` 'unsafe-eval'` : ""} https://www.googletagmanager.com https://connect.facebook.net https://static.cloudflareinsights.com https://analytics.tiktok.com https://www.clarity.ms`,
   // Nonces are not honored on style *attributes* per the CSP spec (only on
   // <style> elements/<link>), and several components set dynamic inline
   // styles (progress bars, color swatches, CSS custom properties). Without a
@@ -100,7 +100,7 @@ const CSP = [
   // <video> falls back to default-src 'self' and every request is blocked.
   `media-src 'self' https://cdn.shopify.com https://*.myshopify.com`,
   `font-src 'self' data:`,
-  `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com https://cloudflareinsights.com${IS_DEV ? " ws://localhost:* wss://localhost:*" : ""}`,
+  `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com https://cloudflareinsights.com https://analytics.tiktok.com https://www.clarity.ms${IS_DEV ? " ws://localhost:* wss://localhost:*" : ""}`,
   // Shopify's ExternalVideo media type is YouTube or Vimeo only.
   `frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com`,
   `object-src 'none'`,

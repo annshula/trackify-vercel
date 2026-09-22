@@ -154,6 +154,4 @@ export const publicEnv = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ).replace(/\/+$/, ""),
   siteName: process.env.NEXT_PUBLIC_SITE_NAME || "Trackify",
-  ga4Id: process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || "",
-  metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || "",
 };

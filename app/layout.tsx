@@ -4,7 +4,6 @@ import "./globals.css";
 
 import { rootMetadata } from "@/lib/seo/metadata";
 import { JsonLd, organizationSchema, websiteSchema } from "@/lib/seo/jsonld";
-import { publicEnv } from "@/lib/validation/env";
 import {
   getFooterCollections,
   getNavigation,
@@ -17,8 +16,12 @@ import { CartDrawer } from "@/components/cart/cart-drawer";
 import { LocalizationProvider } from "@/components/localization/localization-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { ConsentBanner } from "@/components/layout/consent-banner";
 import { PageView } from "@/components/analytics/page-view";
+import { GTM } from "@/components/analytics/gtm";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { MetaPixel } from "@/components/analytics/meta-pixel";
+import { TikTokPixel } from "@/components/analytics/tiktok-pixel";
+import { ClarityAnalytics } from "@/components/analytics/clarity";
 
 /**
  * Root layout.
@@ -78,6 +81,10 @@ export default async function RootLayout({
     >
       <head />
       <body suppressHydrationWarning>
+        {/* Must stay the very first child of <body> — its <noscript> iframe
+            fallback and beforeInteractive script both assume that position. */}
+        <GTM />
+
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
 
         <ToastProvider>
@@ -101,10 +108,10 @@ export default async function RootLayout({
         </ToastProvider>
 
         <PageView />
-        <ConsentBanner
-          ga4Id={publicEnv.ga4Id}
-          metaPixelId={publicEnv.metaPixelId}
-        />
+        <GoogleAnalytics />
+        <MetaPixel />
+        <TikTokPixel />
+        <ClarityAnalytics />
       </body>
     </html>
   );
