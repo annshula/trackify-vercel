@@ -7,7 +7,6 @@ import { Drawer } from "@/components/ui/drawer";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { ChevronRightIcon, LogoutIcon } from "@/components/ui/icons";
 import { useCart } from "@/components/cart/cart-provider";
-import { CurrencySelector } from "@/components/localization/currency-selector";
 import type { NavLink } from "./header";
 
 /**
@@ -66,7 +65,6 @@ export function MobileNav({
               <p className="text-xs text-ink-subtle">Smart Secure Seamless</p>
             </div>
           </div>
-          <CurrencySelector />
         </div>
       }
       footer={

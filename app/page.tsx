@@ -67,7 +67,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero heroProduct={heroProduct} fallbackProducts={arrivals} />
+      <Hero fallbackProducts={arrivals} />
 
       {/* ── New collection ───────────────────────────────────────────── */}
       {arrivalsBelowHero.length > 0 && (

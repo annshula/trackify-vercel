@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useCart } from "@/components/cart/cart-provider";
 import { SearchOverlay } from "@/components/search/search-overlay";
-import { CurrencySelector } from "@/components/localization/currency-selector";
 import { MobileNav } from "./mobile-nav";
 
 export type NavChild = {
@@ -77,8 +76,10 @@ export function Header({
   // transparent there too (keeping dark text) and lets that tint show through
   // seamlessly; it reverts to solid accent-soft once scrolled.
   const overTintedHero = (isHome || hasTintedHero) && !scrolled;
-  // Homepage-only: over the dark full-viewport hero the header needs light
-  // text and an inverted (white) logo, plus light hover surfaces.
+  // Homepage-only flag, kept distinct from overTintedHero for the one thing
+  // that's still homepage-specific below (hiding the duplicate mobile logo
+  // lockup) — the hero background itself is bright now, so this no longer
+  // switches to light text or an inverted logo the way it once did.
   const overHero = isHome && !scrolled;
 
   /*
@@ -159,10 +160,7 @@ export function Header({
           // same padding cleanly, with no collapse to worry about.
           "fixed inset-x-0 top-0 z-40 border-b transition-[border-color,background-color,box-shadow,color] duration-300",
           overTintedHero
-            ? cn(
-                "border-transparent bg-transparent",
-                overHero ? "text-white" : "text-ink",
-              )
+            ? "border-transparent bg-transparent text-ink"
             : cn(
                 "text-ink bg-canvas/85 backdrop-blur-md",
                 scrolled ? "border-line shadow-e1" : "border-transparent",
@@ -188,10 +186,7 @@ export function Header({
                 type="button"
                 onClick={() => setNavOpen(true)}
                 aria-label="Open menu"
-                className={cn(
-                  "-ml-2.5 grid size-11 place-items-center rounded-md transition-colors lg:hidden",
-                  overHero ? "hover:bg-white/15" : "hover:bg-surface-sunken",
-                )}
+                className="-ml-2.5 grid size-11 place-items-center rounded-md transition-colors hover:bg-surface-sunken lg:hidden"
               >
                 <MenuIcon size={26} />
               </button>
@@ -201,11 +196,8 @@ export function Header({
                 aria-label="Trackify home"
                 className="hidden shrink-0 leading-none lg:block"
               >
-                {/* Self-hosted site logo — same shrink-0 position as the wordmark it replaces.
-                    White variant over the dark hero, not a CSS filter — a real
-                    white asset instead of approximating one with invert(). */}
                 <Image
-                  src={overHero ? "/logo-white.png" : "/logo.png"}
+                  src="/logo.png"
                   alt="Trackify"
                   width={84}
                   height={64}
@@ -232,7 +224,7 @@ export function Header({
                 )}
               >
                 <Image
-                  src={overHero ? "/logo-white.png" : "/logo.png"}
+                  src="/logo.png"
                   alt="Trackify"
                   width={84}
                   height={64}
@@ -255,11 +247,7 @@ export function Header({
                       return (
                         <NavigationMenuItem key={link.href}>
                           <NavigationMenuTrigger
-                            className={cn(
-                              "relative",
-                              overHero &&
-                                "text-white/90 hover:text-white focus:bg-white/15 data-active:text-white data-[state=open]:text-white",
-                            )}
+                            className="relative"
                             // Hover opens the category mega menu; a click goes to
                             // the full Shop page (all items).
                             onClick={() => router.push(link.href)}
@@ -336,13 +324,9 @@ export function Header({
                             aria-current={active ? "page" : undefined}
                             className={cn(
                               "relative inline-flex h-10 items-center rounded-md px-3.5 text-sm font-medium transition-colors",
-                              overHero
-                                ? active
-                                  ? "text-white"
-                                  : "text-white/80 hover:text-white"
-                                : active
-                                  ? "text-ink"
-                                  : "text-ink-muted hover:text-ink",
+                              active
+                                ? "text-ink"
+                                : "text-ink-muted hover:text-ink",
                             )}
                           >
                             {link.label}
@@ -363,18 +347,16 @@ export function Header({
             </div>
 
             <div className="flex items-center justify-end gap-0.5">
-              <div className="hidden sm:block">
-                <CurrencySelector overHero={overHero} />
-              </div>
+              {/* Currency is auto-detected from the visitor's location
+                  server-side (lib/localization/geo.ts) and drives pricing
+                  regardless of this UI, so the manual switcher is hidden
+                  rather than shown here. */}
 
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search"
-                className={cn(
-                  "grid size-11 place-items-center rounded-md transition-colors",
-                  overHero ? "hover:bg-white/15" : "hover:bg-surface-sunken",
-                )}
+                className="grid size-11 place-items-center rounded-md transition-colors hover:bg-surface-sunken"
               >
                 <SearchIcon size={24} />
               </button>
@@ -382,10 +364,7 @@ export function Header({
               <Link
                 href={signedIn ? "/account" : "/account/login"}
                 aria-label={signedIn ? "Your account" : "Sign in"}
-                className={cn(
-                  "hidden size-11 place-items-center rounded-md transition-colors sm:grid",
-                  overHero ? "hover:bg-white/15" : "hover:bg-surface-sunken",
-                )}
+                className="hidden size-11 place-items-center rounded-md transition-colors hover:bg-surface-sunken sm:grid"
               >
                 <UserIcon size={20} />
               </Link>
@@ -393,10 +372,7 @@ export function Header({
               <button
                 type="button"
                 onClick={open}
-                className={cn(
-                  "relative -mr-2.5 grid size-11 place-items-center rounded-md transition-colors",
-                  overHero ? "hover:bg-white/15" : "hover:bg-surface-sunken",
-                )}
+                className="relative -mr-2.5 grid size-11 place-items-center rounded-md transition-colors hover:bg-surface-sunken"
                 aria-label={`Open bag, ${itemCount} item${itemCount === 1 ? "" : "s"}`}
               >
                 <BagIcon size={24} />

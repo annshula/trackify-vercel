@@ -106,19 +106,10 @@ export function HeroCarousel({
         </div>
       ))}
 
-      {/* Two layers, not one, because real photography (unlike the old flat
-          gradient placeholders) can be bright anywhere in the frame:
-          - A uniform base tint guarantees a contrast floor no matter what the
-            photo looks like, so a bright/busy image never breaks readability.
-          - The directional gradient on top adds extra darkening exactly where
-            it's needed: the top strip (transparent header text/icons sit
-            there) and the bottom strip (the headline/CTAs sit there), while
-            staying lighter through the middle so the photo still reads. */}
-      <div className="absolute inset-0 bg-black/25" aria-hidden="true" />
-      <div
-        className="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/80"
-        aria-hidden="true"
-      />
+      {/* No scrim: the hero photography is composed with its own built-in
+          negative space (empty left/bottom-left for the headline and CTAs,
+          product art on the right), so it blends with the text directly
+          instead of needing a darkening or lightening layer on top. */}
 
       {/* Anchored to the right edge, not centered — the hero's own
           scroll-down chevron (see hero.tsx) occupies the centered spot at
@@ -137,8 +128,8 @@ export function HeroCarousel({
               className={cn(
                 "h-1.5 rounded-full transition-[width,background-color] duration-300",
                 index === active
-                  ? "w-6 bg-white"
-                  : "w-1.5 bg-white/50 hover:bg-white/75",
+                  ? "w-6 bg-ink"
+                  : "w-1.5 bg-ink/40 hover:bg-ink/60",
               )}
             />
           ))}
