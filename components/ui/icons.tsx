@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 /**
  * Inline SVG icon set (Lucide-derived geometry, hand-tuned to 1.6 stroke).
@@ -10,7 +10,11 @@ import * as React from 'react';
 
 export type IconProps = React.SVGProps<SVGSVGElement> & { size?: number };
 
-function Icon({ size = 20, children, ...props }: IconProps & { children: React.ReactNode }) {
+function Icon({
+  size = 20,
+  children,
+  ...props
+}: IconProps & { children: React.ReactNode }) {
   return (
     <svg
       width={size}
@@ -51,8 +55,11 @@ export const UserIcon = (props: IconProps) => (
   </Icon>
 );
 
-export const HeartIcon = ({ filled, ...props }: IconProps & { filled?: boolean }) => (
-  <Icon {...props} fill={filled ? 'currentColor' : 'none'}>
+export const HeartIcon = ({
+  filled,
+  ...props
+}: IconProps & { filled?: boolean }) => (
+  <Icon {...props} fill={filled ? "currentColor" : "none"}>
     <path d="M12 20.5s-7.5-4.6-7.5-9.6a4.4 4.4 0 0 1 7.5-3.1 4.4 4.4 0 0 1 7.5 3.1c0 5-7.5 9.6-7.5 9.6Z" />
   </Icon>
 );
@@ -176,14 +183,28 @@ export const XCircleIcon = (props: IconProps) => (
   </Icon>
 );
 
-export const StarIcon = ({ fillLevel = 0, ...props }: IconProps & { fillLevel?: number }) => {
+export const StarIcon = ({
+  fillLevel = 0,
+  ...props
+}: IconProps & { fillLevel?: number }) => {
   // A stable id is required so two stars on the page cannot collide.
   const clipId = React.useId();
   return (
-    <svg width={props.size ?? 16} height={props.size ?? 16} viewBox="0 0 24 24" aria-hidden="true" {...props}>
+    <svg
+      width={props.size ?? 16}
+      height={props.size ?? 16}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      {...props}
+    >
       <defs>
         <clipPath id={clipId}>
-          <rect x="0" y="0" width={24 * Math.max(0, Math.min(1, fillLevel))} height="24" />
+          <rect
+            x="0"
+            y="0"
+            width={24 * Math.max(0, Math.min(1, fillLevel))}
+            height="24"
+          />
         </clipPath>
       </defs>
       <path
@@ -313,5 +334,94 @@ export const LinkIcon = (props: IconProps) => (
 export const QuoteIcon = (props: IconProps) => (
   <Icon {...props} fill="currentColor" stroke="none">
     <path d="M9.5 6.5C6.5 8 5 10.3 5 13.2c0 2.4 1.6 4.1 3.7 4.1 1.9 0 3.3-1.4 3.3-3.2 0-1.7-1.2-3-2.8-3-.2 0-.4 0-.6.1.3-1.7 1.7-3.2 3.4-4.1L9.5 6.5Zm9 0C15.5 8 14 10.3 14 13.2c0 2.4 1.6 4.1 3.7 4.1 1.9 0 3.3-1.4 3.3-3.2 0-1.7-1.2-3-2.8-3-.2 0-.4 0-.6.1.3-1.7 1.7-3.2 3.4-4.1l-1.5-1.6Z" />
+  </Icon>
+);
+
+/* ── Social platform marks ─────────────────────────────────────────────── */
+
+/**
+ * Instagram's camera glyph. Chunkier stroke than the rest of the set
+ * (2px vs 1.6) because the real mark is a heavy outline — at 18px a 1.6
+ * stroke reads as a generic "camera" icon rather than Instagram.
+ */
+export const InstagramIcon = (props: IconProps) => (
+  <Icon strokeWidth={1.8} {...props}>
+    <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="4.8" />
+    <circle cx="12" cy="12" r="4.1" />
+    <circle cx="17.1" cy="6.9" r="1" fill="currentColor" stroke="none" />
+  </Icon>
+);
+
+/**
+ * Facebook's mark, brand blue (#1877F2) with the white counter-form — the
+ * filled disc is what makes it read as Facebook rather than a letter "f".
+ * Brand colour is hard-coded rather than currentColor so it stays correct
+ * regardless of surrounding text colour.
+ */
+export const FacebookIcon = ({ size = 20, ...props }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    focusable="false"
+    {...props}
+  >
+    <circle cx="12" cy="12" r="10" fill="#1877F2" />
+    <path
+      d="M13.4 21.5v-8.2h2.6l.4-3.1h-3v-2c0-.9.3-1.5 1.6-1.5h1.6V3.8c-.3 0-1.4-.1-2.6-.1-2.5 0-4.2 1.5-4.2 4.3v2.2H7.5v3.1h2.7v8.2h3.2Z"
+      fill="#fff"
+    />
+  </svg>
+);
+
+/** Platform verified tick — solid blue disc, white check (both platforms use the same shape). */
+export const VerifiedIcon = ({ size = 14, ...props }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label="Verified"
+    focusable="false"
+    {...props}
+  >
+    <circle cx="12" cy="12" r="10" fill="#0095F6" />
+    <path
+      d="m7.4 12.4 3 3 6-6.4"
+      fill="none"
+      stroke="#fff"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+/* ── Engagement glyphs (post/comment chrome) ───────────────────────────── */
+
+export const CommentIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M7.9 20A9 9 0 1 0 4 16.1L2.4 21.6 7.9 20Z" />
+  </Icon>
+);
+
+export const ShareIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M21.5 2.5 10.8 13.2" />
+    <path d="M21.5 2.5 14.8 21.4l-4-8.2-8.2-4 18.9-6.7Z" />
+  </Icon>
+);
+
+export const BookmarkIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M6.6 3.5h10.8a1 1 0 0 1 1 1v16.2L12 16.4l-6.4 4.3V4.5a1 1 0 0 1 1-1Z" />
+  </Icon>
+);
+
+export const ThumbsUpIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M3.5 10.6h3.4v10.2H3.5a.9.9 0 0 1-.9-.9v-8.4a.9.9 0 0 1 .9-.9Z" />
+    <path d="M6.9 11 10.6 3.4a1.9 1.9 0 0 1 3.6 1.1v4.1h4.3a2 2 0 0 1 2 2.4l-1.1 5.2a2 2 0 0 1-2 1.6H6.9" />
   </Icon>
 );
