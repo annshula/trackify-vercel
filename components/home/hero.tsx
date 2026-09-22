@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CatalogProduct } from "@/types/catalog";
 import { primaryImage, imageAlt } from "@/lib/utils/image";
-import { listHeroImages, listHeroMobileImages } from "@/lib/home/hero-images";
+import {
+  listHeroImages,
+  listHeroMobileImages,
+  findHeroVideo,
+} from "@/lib/home/hero-images";
 import { ButtonLink } from "@/components/ui/button";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
 
@@ -26,9 +30,10 @@ export async function Hero({
 }: {
   fallbackProducts: CatalogProduct[];
 }) {
-  const [custom, customMobile] = await Promise.all([
+  const [custom, customMobile, video] = await Promise.all([
     listHeroImages(),
     listHeroMobileImages(),
+    findHeroVideo(),
   ]);
 
   const slides: HeroSlide[] =
@@ -63,7 +68,11 @@ export async function Hero({
       {/* Vertically centered at every breakpoint — the content block sits in
           the middle of the hero rather than anchored to the bottom. */}
       <div className="relative flex min-h-hero flex-col justify-center">
-        <HeroCarousel slides={slides} mobileSlides={mobileSlides} />
+        <HeroCarousel
+          slides={slides}
+          mobileSlides={mobileSlides}
+          video={video ? { src: video, poster: slides[0]?.src } : null}
+        />
 
         {/* Compact, deliberately: this whole block has to fit between the
             fixed header and the screen bottom on the shortest phones in
