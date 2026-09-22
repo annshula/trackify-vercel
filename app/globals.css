@@ -299,6 +299,21 @@
   to { background-position: 200% 0; }
 }
 
+/*
+ * Marquee pair for the testimonials rail: the track's content is rendered
+ * twice back to back (see Testimonials component), so translating exactly
+ * -50% moves through one full, un-duplicated pass before looping — the
+ * repeat is invisible because the second half is identical to the first.
+ */
+@keyframes tf-marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes tf-marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 @utility animate-fade-up {
   animation: tf-fade-up 0.45s var(--ease-out-soft) both;
 }
@@ -326,6 +341,29 @@
 @utility reveal-item {
   animation: tf-fade-up 0.5s var(--ease-out-soft) both;
   animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+/*
+ * Continuous marquee row — width must be exactly 200% of the visible track
+ * (the content duplicated once) for the -50% translation to loop seamlessly.
+ * Pauses on hover or keyboard focus so a reader can actually read a card
+ * instead of chasing it, and respects prefers-reduced-motion globally (see
+ * that media query at the bottom of this file) rather than repeating the
+ * guard here.
+ */
+@utility animate-marquee-left {
+  width: max-content;
+  animation: tf-marquee-left 42s linear infinite;
+  &:hover, &:focus-within {
+    animation-play-state: paused;
+  }
+}
+@utility animate-marquee-right {
+  width: max-content;
+  animation: tf-marquee-right 42s linear infinite;
+  &:hover, &:focus-within {
+    animation-play-state: paused;
+  }
 }
 
 @utility skeleton {

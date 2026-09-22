@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { CatalogProduct } from "@/types/catalog";
 import { primaryImage, imageAlt } from "@/lib/utils/image";
@@ -6,6 +5,7 @@ import {
   listHeroImages,
   listHeroMobileImages,
   findHeroVideo,
+  findHeroMobileVideo,
 } from "@/lib/home/hero-images";
 import { ButtonLink } from "@/components/ui/button";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
@@ -30,10 +30,11 @@ export async function Hero({
 }: {
   fallbackProducts: CatalogProduct[];
 }) {
-  const [custom, customMobile, video] = await Promise.all([
+  const [custom, customMobile, video, mobileVideo] = await Promise.all([
     listHeroImages(),
     listHeroMobileImages(),
     findHeroVideo(),
+    findHeroMobileVideo(),
   ]);
 
   const slides: HeroSlide[] =
@@ -72,6 +73,11 @@ export async function Hero({
           slides={slides}
           mobileSlides={mobileSlides}
           video={video ? { src: video, poster: slides[0]?.src } : null}
+          mobileVideo={
+            mobileVideo
+              ? { src: mobileVideo, poster: mobileSlides[0]?.src }
+              : null
+          }
         />
 
         {/* Compact, deliberately: this whole block has to fit between the
@@ -85,26 +91,6 @@ export async function Hero({
               the conventional left-aligned column, where there's room for it
               to read as a proper block of copy instead of a centered badge. */}
           <div className="flex flex-col items-center text-center sm:max-w-xl sm:items-start sm:text-left">
-            {/* Mobile only — this space isn't empty at sm and up, where the
-                header itself sits over the same photo with its full nav, so a
-                second lockup there would just duplicate it. */}
-            <div className="animate-fade-up mb-8 flex flex-col items-center gap-1 sm:hidden">
-              <Image
-                src="/logo.png"
-                alt=""
-                width={84}
-                height={64}
-                priority
-                className="h-14 w-auto xs:h-16"
-              />
-              <p className="font-display text-3xl text-ink xs:text-4xl">
-                Trackify
-              </p>
-              <p className="text-sm text-ink-muted">
-                Considered goods, properly tracked.
-              </p>
-            </div>
-
             <h1
               className="animate-fade-up text-3xl text-ink sm:mt-4 sm:text-5xl lg:text-6xl"
               style={{ animationDelay: "120ms" }}

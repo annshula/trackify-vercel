@@ -7,11 +7,17 @@ import {
   newArrivals,
   onSaleProducts,
 } from "@/lib/catalog/recommendations";
+import { catalogRatingSummary } from "@/lib/catalog/selectors";
 import { primaryImage, imageAlt } from "@/lib/utils/image";
 
 import { ButtonLink } from "@/components/ui/button";
 import { ProductGrid } from "@/components/product/product-card";
-import { SectionHeading, EmptyState, Badge } from "@/components/ui/primitives";
+import {
+  SectionHeading,
+  EmptyState,
+  Badge,
+  Rating,
+} from "@/components/ui/primitives";
 import { Accordion } from "@/components/ui/accordion";
 import { RecentlyViewedSection } from "@/components/product/recently-viewed-section";
 import { Hero } from "@/components/home/hero";
@@ -64,51 +70,20 @@ export default async function HomePage() {
     bestSellers[0] ??
     heroProduct;
   const spotlightImage = primaryImage(spotlight);
+  // Real aggregate across whichever products actually publish a rating
+  // metafield — see catalogRatingSummary's own doc for why this is never a
+  // placeholder. null when nothing in the catalog has a rating yet.
+  const ratingSummary = catalogRatingSummary(products);
 
   return (
     <>
       <Hero fallbackProducts={arrivals} />
 
-      {/* ── New collection ───────────────────────────────────────────── */}
-      {arrivalsBelowHero.length > 0 && (
-        <section
-          id="new-collection"
-          className="container-page scroll-mt-24 py-16"
-          aria-labelledby="new-heading"
-        >
-          <SectionHeading
-            eyebrow="Just landed"
-            title="Our new collection"
-            description="Freshly added pieces, chosen the same way as everything else here: to earn their place."
-            align="center"
-            className="scroll-reveal mb-10"
-          />
-          <h2 id="new-heading" className="sr-only">
-            New collection
-          </h2>
-          <ProductGrid
-            products={arrivalsBelowHero}
-            listName="New collection"
-            priorityCount={3}
-            className="sm:grid-cols-3 xl:grid-cols-4"
-          />
-          <div className="mt-10 flex justify-center">
-            <ButtonLink
-              href="/collections?sort=newest"
-              variant="outline"
-              size="lg"
-              className="rounded-full"
-            >
-              See more collection
-            </ButtonLink>
-          </div>
-        </section>
-      )}
-
       {/* ── Most recommended (bento) ─────────────────────────────────── */}
       {featuredCollections.length > 0 && (
         <section
-          className="container-page py-16"
+          id="new-collection"
+          className="container-page scroll-mt-24 py-16"
           aria-labelledby="recommended-heading"
         >
           <SectionHeading
@@ -182,52 +157,77 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── What we can offer ────────────────────────────────────────── */}
+      {/* ── New collection ───────────────────────────────────────────── */}
+      {arrivalsBelowHero.length > 0 && (
+        <section className="container-page py-16" aria-labelledby="new-heading">
+          <SectionHeading
+            eyebrow="Just landed"
+            title="Our new collection"
+            description="Freshly added pieces, chosen the same way as everything else here: to earn their place."
+            align="center"
+            className="scroll-reveal mb-10"
+          />
+          <h2 id="new-heading" className="sr-only">
+            New collection
+          </h2>
+          <ProductGrid
+            products={arrivalsBelowHero}
+            listName="New collection"
+            priorityCount={3}
+            className="sm:grid-cols-3 xl:grid-cols-4"
+          />
+          <div className="mt-10 flex justify-center">
+            <ButtonLink
+              href="/collections?sort=newest"
+              variant="outline"
+              size="lg"
+              className="rounded-full"
+            >
+              See more collection
+            </ButtonLink>
+          </div>
+        </section>
+      )}
+
+      {/* ── Trust strip ──────────────────────────────────────────────── */}
+      {/* Compact, single row: a real rating (built only from products that
+          publish one, never invented — see catalogRatingSummary) alongside
+          the store's service promises, as short label pairs rather than
+          full cards with paragraphs. This is a quick scan on the way to the
+          next section, not a section that asks to be read. */}
       <section
-        className="container-page py-16"
+        className="container-page py-8"
         aria-labelledby="promise-heading"
       >
-        <SectionHeading
-          title="What we can offer you"
-          align="center"
-          className="scroll-reveal mb-10"
-        />
         <h2 id="promise-heading" className="sr-only">
-          Our promise
+          Why shop here
         </h2>
-        <ul className="grid gap-5 sm:grid-cols-3">
+        <ul className="scroll-reveal flex flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-xl border border-line bg-surface px-6 py-4 sm:justify-between sm:px-8">
+          {ratingSummary && (
+            <li className="flex items-center gap-2">
+              <Rating
+                value={ratingSummary.value}
+                count={ratingSummary.count}
+                size={15}
+              />
+              <span className="hidden text-xs text-ink-subtle sm:inline">
+                rated by customers
+              </span>
+            </li>
+          )}
           {[
-            {
-              icon: TruckIcon,
-              title: "Tracked, always",
-              body: "Follow every order from dispatch to delivery inside your account.",
-            },
-            {
-              icon: RefreshIcon,
-              title: "Returns without friction",
-              body: "Change your mind? Start a return straight from your order history.",
-            },
-            {
-              icon: ShieldIcon,
-              title: "Checkout you can trust",
-              body: "Payments handled entirely by our secure payment provider. Your card details never touch us.",
-            },
+            { icon: TruckIcon, label: "Tracked delivery" },
+            { icon: RefreshIcon, label: "Easy returns" },
+            { icon: ShieldIcon, label: "Secure checkout" },
           ].map((item) => {
             const Icon = item.icon;
             return (
               <li
-                key={item.title}
-                className="scroll-reveal flex flex-col items-center gap-3 rounded-xl border border-line bg-surface p-8 text-center"
+                key={item.label}
+                className="flex items-center gap-2 text-sm font-medium text-ink-muted"
               >
-                <span className="grid size-12 place-items-center rounded-full bg-accent-soft text-accent">
-                  <Icon size={24} />
-                </span>
-                <h3 className="font-sans text-base font-medium tracking-normal">
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-ink-muted">
-                  {item.body}
-                </p>
+                <Icon size={18} className="shrink-0 text-accent" />
+                {item.label}
               </li>
             );
           })}
@@ -260,6 +260,8 @@ export default async function HomePage() {
         </section>
       )}
 
+      <Testimonials />
+
       {/* ── Sale ─────────────────────────────────────────────────────── */}
       {sale.length > 0 && (
         <section
@@ -276,8 +278,6 @@ export default async function HomePage() {
           <ProductGrid products={sale} listName="Sale" priorityCount={0} />
         </section>
       )}
-
-      <Testimonials />
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
       <section className="container-page py-16" aria-labelledby="faq-heading">

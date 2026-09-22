@@ -46,16 +46,9 @@ export async function listHeroMobileImages(): Promise<string[]> {
   return listImagesIn(HERO_MOBILE_DIR, "/hero/mobile");
 }
 
-/**
- * Desktop/tablet hero video, dropped into public/hero/ alongside the still
- * photography. Only the first match (by filename) is used — one looping
- * background video, not a rotation. Returns null when none exists, so the
- * caller falls back to the image carousel; there is no mobile equivalent
- * yet, so mobile always uses the image path.
- */
-export async function findHeroVideo(): Promise<string | null> {
+async function findVideoIn(dir: string, baseUrl: string): Promise<string | null> {
   try {
-    const entries = await readdir(HERO_DIR, { withFileTypes: true });
+    const entries = await readdir(dir, { withFileTypes: true });
     const match = entries
       .filter(
         (entry) =>
@@ -64,8 +57,27 @@ export async function findHeroVideo(): Promise<string | null> {
       )
       .map((entry) => entry.name)
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))[0];
-    return match ? `/hero/${match}` : null;
+    return match ? `${baseUrl}/${match}` : null;
   } catch {
     return null;
   }
+}
+
+/**
+ * Desktop/tablet hero video, dropped into public/hero/ alongside the still
+ * photography. Only the first match (by filename) is used — one looping
+ * background video, not a rotation. Returns null when none exists, so the
+ * caller falls back to the image carousel.
+ */
+export async function findHeroVideo(): Promise<string | null> {
+  return findVideoIn(HERO_DIR, "/hero");
+}
+
+/**
+ * Mobile-only hero video, dropped into public/hero/mobile/. Same
+ * one-match-wins rule as the desktop video; returns null when none exists,
+ * so the caller falls back to the mobile image cover.
+ */
+export async function findHeroMobileVideo(): Promise<string | null> {
+  return findVideoIn(HERO_MOBILE_DIR, "/hero/mobile");
 }

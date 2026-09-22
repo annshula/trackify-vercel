@@ -76,11 +76,6 @@ export function Header({
   // transparent there too (keeping dark text) and lets that tint show through
   // seamlessly; it reverts to solid accent-soft once scrolled.
   const overTintedHero = (isHome || hasTintedHero) && !scrolled;
-  // Homepage-only flag, kept distinct from overTintedHero for the one thing
-  // that's still homepage-specific below (hiding the duplicate mobile logo
-  // lockup) — the hero background itself is bright now, so this no longer
-  // switches to light text or an inverted logo the way it once did.
-  const overHero = isHome && !scrolled;
 
   /*
    * Hysteresis + rAF throttle.
@@ -209,19 +204,10 @@ export function Header({
 
             {/* Center: mobile logo / desktop nav */}
             <div className="flex min-w-0 items-center justify-center">
-              {/* Hidden on mobile specifically while the transparent hero
-                  header is active — the hero itself now shows its own,
-                  bigger centered "Trackify" lockup just below, so this one
-                  would be a redundant second logo stacked right above it. It
-                  reappears the moment overHero turns off (scrolled, or any
-                  other route). */}
               <Link
                 href="/"
                 aria-label="Trackify home"
-                className={cn(
-                  "shrink-0 leading-none lg:hidden",
-                  overHero && "max-lg:hidden",
-                )}
+                className="shrink-0 leading-none lg:hidden"
               >
                 <Image
                   src="/logo.png"

@@ -93,6 +93,34 @@ export function productRating(product: CatalogProduct): { value: number; count: 
   return { value, count: Number.isFinite(count) ? count : 0 };
 }
 
+/**
+ * Store-wide rating summary, built only from products that actually publish
+ * a rating metafield — never a placeholder or invented figure. Weighted by
+ * each product's own review count so a product with 200 reviews doesn't
+ * count the same as one with 2; falls back to an unweighted average if no
+ * product reports a count. Returns null when nothing in the catalog has a
+ * rating yet, so the caller can hide the trust signal entirely rather than
+ * show a hollow 0.0.
+ */
+export function catalogRatingSummary(
+  products: CatalogProduct[],
+): { value: number; count: number } | null {
+  const rated = products
+    .map((product) => productRating(product))
+    .filter((rating): rating is { value: number; count: number } => rating !== null);
+
+  if (rated.length === 0) return null;
+
+  const totalCount = rated.reduce((sum, rating) => sum + rating.count, 0);
+  const weightedSum =
+    totalCount > 0
+      ? rated.reduce((sum, rating) => sum + rating.value * rating.count, 0)
+      : rated.reduce((sum, rating) => sum + rating.value, 0);
+  const value = totalCount > 0 ? weightedSum / totalCount : weightedSum / rated.length;
+
+  return { value, count: totalCount };
+}
+
 /** The photo Shopify shows for a color swatch: the image of the first variant carrying that value. */
 export function variantImageFor(
   product: CatalogProduct,
