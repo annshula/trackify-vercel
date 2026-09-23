@@ -6,6 +6,8 @@ import {
   listHeroMobileImages,
   findHeroVideo,
   findHeroMobileVideo,
+  findHeroVideoPoster,
+  findHeroMobileVideoPoster,
 } from "@/lib/home/hero-images";
 import { ButtonLink } from "@/components/ui/button";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
@@ -30,12 +32,15 @@ export async function Hero({
 }: {
   fallbackProducts: CatalogProduct[];
 }) {
-  const [custom, customMobile, video, mobileVideo] = await Promise.all([
-    listHeroImages(),
-    listHeroMobileImages(),
-    findHeroVideo(),
-    findHeroMobileVideo(),
-  ]);
+  const [custom, customMobile, video, mobileVideo, videoPoster, mobileVideoPoster] =
+    await Promise.all([
+      listHeroImages(),
+      listHeroMobileImages(),
+      findHeroVideo(),
+      findHeroMobileVideo(),
+      findHeroVideoPoster(),
+      findHeroMobileVideoPoster(),
+    ]);
 
   const slides: HeroSlide[] =
     custom.length > 0
@@ -72,10 +77,15 @@ export async function Hero({
         <HeroCarousel
           slides={slides}
           mobileSlides={mobileSlides}
-          video={video ? { src: video, poster: slides[0]?.src } : null}
+          video={
+            video ? { src: video, poster: videoPoster ?? slides[0]?.src } : null
+          }
           mobileVideo={
             mobileVideo
-              ? { src: mobileVideo, poster: mobileSlides[0]?.src }
+              ? {
+                  src: mobileVideo,
+                  poster: mobileVideoPoster ?? mobileSlides[0]?.src,
+                }
               : null
           }
         />

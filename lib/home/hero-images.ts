@@ -64,6 +64,32 @@ async function findVideoIn(dir: string, baseUrl: string): Promise<string | null>
 }
 
 /**
+ * A real extracted frame from the hero video (e.g. trackify-hero-desktop.avif),
+ * dropped in the same folder as the video. Used as the <video poster> so the
+ * still shown before playback starts is a frame of the footage itself, not an
+ * unrelated catalog photo — the video then plays in place with no visible
+ * swap once it's ready.
+ */
+async function findPosterIn(dir: string, baseUrl: string): Promise<string | null> {
+  try {
+    const entries = await readdir(dir, { withFileTypes: true });
+    const match = entries
+      .filter(
+        (entry) =>
+          entry.isFile() &&
+          IMAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase()) &&
+          entry.name.toLowerCase().includes("poster") === false &&
+          entry.name.toLowerCase().includes("hero"),
+      )
+      .map((entry) => entry.name)
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))[0];
+    return match ? `${baseUrl}/${match}` : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Desktop/tablet hero video, dropped into public/hero/ alongside the still
  * photography. Only the first match (by filename) is used — one looping
  * background video, not a rotation. Returns null when none exists, so the
@@ -80,4 +106,20 @@ export async function findHeroVideo(): Promise<string | null> {
  */
 export async function findHeroMobileVideo(): Promise<string | null> {
   return findVideoIn(HERO_MOBILE_DIR, "/hero/mobile");
+}
+
+/**
+ * Poster frame for the desktop/tablet hero video (public/hero/*.avif etc,
+ * named with "hero" in it). Falls back to null — caller then falls back to
+ * the first carousel slide — when no such frame was extracted.
+ */
+export async function findHeroVideoPoster(): Promise<string | null> {
+  return findPosterIn(HERO_DIR, "/hero");
+}
+
+/**
+ * Poster frame for the mobile hero video (public/hero/mobile/*.avif etc).
+ */
+export async function findHeroMobileVideoPoster(): Promise<string | null> {
+  return findPosterIn(HERO_MOBILE_DIR, "/hero/mobile");
 }
