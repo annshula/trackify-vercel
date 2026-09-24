@@ -38,7 +38,7 @@ export function ProductCard({
   index = 0,
   listName,
   className,
-  sizes = "(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 50vw",
+  sizes = "(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw",
 }: {
   product: CatalogProduct;
   priority?: boolean;
@@ -365,7 +365,7 @@ export function ProductGrid({
   return (
     <ul
       className={cn(
-        "grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-7 xl:grid-cols-4",
+        "grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-7 xl:grid-cols-4",
         className,
       )}
     >

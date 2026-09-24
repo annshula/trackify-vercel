@@ -140,7 +140,13 @@ export const OPTION_IS_COLOR = /^(colour|color)$/i;
 
 /** Best-effort CSS color for a swatch. Returns null when we cannot be sure. */
 export function colorSwatch(value: string): string | null {
-  const named = value.trim().toLowerCase().replace(/\s+/g, '');
+  // Supplier values often pad a colour with noise — "Brown Small",
+  // "Carbon Fiber Color", "Off-White" — so drop those words and punctuation.
+  const named = value
+    .trim()
+    .toLowerCase()
+    .replace(/\b(colou?r|small|medium|large)\b/g, '')
+    .replace(/[^a-z]/g, '');
   const KNOWN: Record<string, string> = {
     black: '#111111',
     white: '#f8f8f6',
@@ -149,6 +155,7 @@ export function colorSwatch(value: string): string | null {
     beige: '#e3d5c0',
     sand: '#d9c7ab',
     tan: '#c9a87c',
+    khaki: '#b8a77e',
     camel: '#bb9464',
     brown: '#6f4f34',
     chocolate: '#4b2f1f',
@@ -174,6 +181,18 @@ export function colorSwatch(value: string): string | null {
     orange: '#d1702a',
     gold: '#b08d3e',
     rosegold: '#c68d7d',
+    golden: '#b08d3e',
+    offwhite: '#f2efe6',
+    lightblue: '#9cc3e6',
+    darkgrey: '#555553',
+    darkgray: '#555553',
+    darknavy: '#141d33',
+    navyblue: '#1c2a45',
+    armygreen: '#4b5320',
+    olivegreen: '#6b6b3a',
+    winered: '#6d1f2c',
+    coffeebrown: '#5a3d2b',
+    carbonfiber: '#2e2e2e',
   };
   return KNOWN[named] ?? null;
 }

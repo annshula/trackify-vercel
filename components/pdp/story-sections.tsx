@@ -236,14 +236,17 @@ export function UseCases({ items }: { items: CatalogFeatureHighlight[] }) {
                 <Image src={item.image.url} alt={item.image.altText || item.label} fill sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw" className="object-cover" />
               </div>
             )}
-            <div className="p-6">
+            {/* Icon beside the text on phones (compact list), above it from sm. */}
+            <div className="flex gap-4 p-5 sm:block sm:p-6">
               {!item.image && (
-                <span className="mb-5 grid size-11 place-items-center rounded-full bg-accent-soft text-accent">
+                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-accent-soft text-accent sm:mb-5">
                   <PdpIcon icon={item.icon} size={22} />
                 </span>
               )}
-              <h3 className="text-lg">{item.label}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.body}</p>
+              <div>
+                <h3 className="text-lg">{item.label}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink-muted sm:mt-2">{item.body}</p>
+              </div>
             </div>
           </li>
         ))}

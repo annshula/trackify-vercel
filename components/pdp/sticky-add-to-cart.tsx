@@ -71,7 +71,11 @@ export function StickyAddToCart() {
             )}
             {hasOptions && variant && <span> · {variant.title}</span>}
           </p>
-          <a href="#purchase" className="text-xs text-ink-subtle underline underline-offset-2 sm:hidden">
+          <a
+            href="#purchase"
+            // Padding widens the tap target to ~44px without changing the bar's height.
+            className="-my-3 inline-block py-3 pr-4 text-xs text-ink-subtle underline underline-offset-2 sm:hidden"
+          >
             Change options
           </a>
         </div>

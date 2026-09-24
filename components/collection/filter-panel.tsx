@@ -91,9 +91,14 @@ function filterModel(facets: ProductFacets) {
   const options = facets.options.filter(
     (option) => OPTION_FILTERS.test(option.name) && option.values.length > 1,
   );
+  // Only values that are actually colours: supplier imports put model names
+  // ("Magnetic 7", "No.6 non magnetic") in the Colour option, which would
+  // otherwise flood the panel with blank dots.
+  const rawColour = options.find((option) => OPTION_IS_COLOR.test(option.name));
+  const colourValues = rawColour?.values.filter((value) => colorSwatch(value.label) !== null) ?? [];
   return {
     categories: facets.productTypes.length > 1 ? facets.productTypes : [],
-    colour: options.find((option) => OPTION_IS_COLOR.test(option.name)) ?? null,
+    colour: rawColour && colourValues.length > 1 ? { ...rawColour, values: colourValues } : null,
     others: options.filter((option) => !OPTION_IS_COLOR.test(option.name)),
     hasPrice: facets.priceBounds.max > facets.priceBounds.min,
   };
@@ -390,7 +395,7 @@ function FilterPopover({
           role="dialog"
           aria-label={`${label} filter`}
           className={cn(
-            "absolute top-full left-0 z-30 mt-2 w-80 origin-top-left animate-[pop-in_160ms_var(--ease-out-soft)] rounded-2xl border border-line/80 bg-surface-raised p-5 shadow-e4 motion-reduce:animate-none",
+            "absolute top-full left-0 z-30 mt-2 max-h-[min(70vh,30rem)] w-80 origin-top-left overflow-y-auto overscroll-contain animate-[pop-in_160ms_var(--ease-out-soft)] rounded-2xl border border-line/80 bg-surface-raised p-5 shadow-e4 motion-reduce:animate-none",
             panelClassName,
           )}
         >

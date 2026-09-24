@@ -106,10 +106,12 @@ export function ReturnsGuarantee({ points }: { points: ShopTrustPoint[] }) {
       <SectionHeading id="trust-heading" eyebrow="Buy with confidence" title="If it isn't right, we'll make it right" align="center" />
       <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {points.map((point) => (
-          <li key={point.label} className="bg-surface-raised p-7">
-            <PdpIcon icon={point.icon} size={26} className="text-accent" />
-            <h3 className="mt-5 text-lg">{point.label}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</p>
+          <li key={point.label} className="flex gap-4 bg-surface-raised p-5 sm:block sm:p-7">
+            <PdpIcon icon={point.icon} size={26} className="shrink-0 text-accent" />
+            <div>
+              <h3 className="text-lg sm:mt-5">{point.label}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-ink-muted sm:mt-2">{point.body}</p>
+            </div>
           </li>
         ))}
       </ul>
