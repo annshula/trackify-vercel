@@ -20,7 +20,8 @@
     "shopify:validate": "tsx scripts/validate.ts",
     "shopify:test-webhook": "tsx scripts/test-webhook.ts",
     "shopify:webhooks": "tsx scripts/register-webhooks.ts",
-    "shopify:push-pdp": "tsx scripts/push-pdp-content.ts"
+    "shopify:push-pdp": "tsx scripts/push-pdp-content.ts",
+    "shopify:organize": "tsx scripts/organize-catalog.ts"
   },
   "dependencies": {
     "@microsoft/clarity": "^1.0.2",

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T17:51:46.161Z",
+  "generatedAt": "2026-09-24T18:24:22.141Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -14,9 +14,14 @@
       "description": "【Scalp Massage】Designed as an electric massage hair brush, the soft rounded bristles help stimulate the scalp while providing a relaxing brushing experience that feels soothing during busy mornings or nighttime routines 【Anti-Static Care】This electric steam brush helps tame flyaways and static while adding natural-looking volume at the roots. Enjoy softer, fuller-looking hair with less puffiness and smoother styling results 【Rechargeable Convenience】Compact and cordless, this electric spray brush is easy to carry for home, office, gym, or travel use. This electric hair brush for women men delivers salon-inspired hair care anytime, anywhere 【Hydrating Mist】This Electric Spray & Massage Hair Brush releases a fine moisturizing mist while brushing to help hydrate dry strands, reduce frizz, and leave hair smoother, shinier, and easier to manage every day 【Easy Detangling】The flexible cushion bristles on this electric spray hair brush glide gently through knots without pulling or breakage. Perfect for thick, curly, straight, or damaged hair for both women and men",
       "descriptionHtml": "<ul>\n<li>【Scalp Massage】Designed as an electric massage hair brush, the soft rounded bristles help stimulate the scalp while providing a relaxing brushing experience that feels soothing during busy mornings or nighttime routines</li>\n<li>【Anti-Static Care】This electric steam brush helps tame flyaways and static while adding natural-looking volume at the roots. Enjoy softer, fuller-looking hair with less puffiness and smoother styling results</li>\n<li>【Rechargeable Convenience】Compact and cordless, this electric spray brush is easy to carry for home, office, gym, or travel use. This electric hair brush for women men delivers salon-inspired hair care anytime, anywhere</li>\n<li>【Hydrating Mist】This Electric Spray &amp; Massage Hair Brush releases a fine moisturizing mist while brushing to help hydrate dry strands, reduce frizz, and leave hair smoother, shinier, and easier to manage every day</li>\n<li>【Easy Detangling】The flexible cushion bristles on this electric spray hair brush glide gently through knots without pulling or breakage. Perfect for thick, curly, straight, or damaged hair for both women and men</li>\n</ul>",
       "vendor": "Trackify",
-      "productType": "Bags",
+      "productType": "Beauty & Wellness",
       "tags": [],
       "collections": [
+        {
+          "id": "gid://shopify/Collection/490778951907",
+          "handle": "beauty-wellness",
+          "title": "Beauty & Wellness"
+        },
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
@@ -211,7 +216,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-24T15:37:22Z",
       "createdAt": "2026-09-24T15:37:18Z",
-      "updatedAt": "2026-09-24T17:51:41Z",
+      "updatedAt": "2026-09-24T18:15:26Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/13137656185059",
@@ -591,7 +596,7 @@
       "description": "Keep your wallet, passport holder, or bag trackable anywhere in the world with the Ultra-Slim Smart Wallet Tracker Card. Designed with credit card dimensions, this sleek smart tag slides effortlessly into any card slot and integrates natively with the Apple Find My network for seamless, encrypted location tracking. Key Features & Advanced Tech: Official Apple Find My Compatibility: Track your wallet in real time on your iPhone, iPad, or Mac using millions of Apple devices worldwide. Siri Voice Integration: Ask \"Hey Siri, find my wallet\" to trigger a loud audio ring directly from the card. Wireless Rechargeable Power: Charge easily with standard Qi wireless chargers—a single full charge delivers up to 3 months of continuous battery life. Built-in Privacy & Encryption: Anonymized location communications guarantee your location data stays private and secure. \"Left Behind\" Separation Alerts: Get instant phone push notifications the moment you walk away from your wallet or leave it behind. Ultra-Thin Credit Card Profile: Fits smoothly into standard wallet slots, luggage tags, or passport sleeves without causing pocket bulk. Important Compatibility Note: iOS Exclusive: Compatible only with Apple iOS devices (iPhone, iPad, Mac). Does not support Android devices.",
       "descriptionHtml": "<p>Keep your wallet, passport holder, or bag trackable anywhere in the world with the <b>Ultra-Slim Smart Wallet Tracker Card</b>. Designed with credit card dimensions, this sleek smart tag slides effortlessly into any card slot and integrates natively with the <b>Apple Find My network</b> for seamless, encrypted location tracking.</p>\n<h3><b>Key Features &amp; Advanced Tech:</b></h3>\n<ul>\n<li>\n<p><b>Official Apple Find My Compatibility:</b> Track your wallet in real time on your iPhone, iPad, or Mac using millions of Apple devices worldwide.</p>\n</li>\n<li>\n<p><b>Siri Voice Integration:</b> Ask <i>\"Hey Siri, find my wallet\"</i> to trigger a loud audio ring directly from the card.</p>\n</li>\n<li>\n<p><b>Wireless Rechargeable Power:</b> Charge easily with standard Qi wireless chargers—a single full charge delivers up to <b>3 months</b> of continuous battery life.</p>\n</li>\n<li>\n<p><b>Built-in Privacy &amp; Encryption:</b> Anonymized location communications guarantee your location data stays private and secure.</p>\n</li>\n<li>\n<p><b>\"Left Behind\" Separation Alerts:</b> Get instant phone push notifications the moment you walk away from your wallet or leave it behind.</p>\n</li>\n<li>\n<p><b>Ultra-Thin Credit Card Profile:</b> Fits smoothly into standard wallet slots, luggage tags, or passport sleeves without causing pocket bulk.</p>\n</li>\n</ul>\n<h3><b>Important Compatibility Note:</b></h3>\n<ul>\n<li>\n<p><b>iOS Exclusive:</b> Compatible only with Apple iOS devices (iPhone, iPad, Mac). <i>Does not support Android devices.</i></p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Smart Trackers",
       "tags": [],
       "collections": [
         {
@@ -600,9 +605,9 @@
           "title": "Best Seller"
         },
         {
-          "id": "gid://shopify/Collection/448151355619",
-          "handle": "smart-wallet-trackers",
-          "title": "Smart Wallet Trackers"
+          "id": "gid://shopify/Collection/490778820835",
+          "handle": "smart-trackers",
+          "title": "Smart Trackers"
         }
       ],
       "images": [
@@ -837,7 +842,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T13:46:17Z",
       "createdAt": "2025-02-26T13:46:17Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:14:55Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157340848355",
@@ -908,7 +913,7 @@
       "description": "Upgrade your pocket carry with the RFID-Blocking Pop-Up Minimalist Wallet. Engineered from premium space-grade aluminum with dual-grip outer plates, this ultra-slim wallet protects your credit cards and personal data against electronic pickpocketing and RFID skimming while giving you instant, one-touch card access. Key Features & Modern Utility: Quick-Trigger Pop-Up Access: Side slider lever instantly fans out your credit cards in a neat cascade for fast, single-handed access. Advanced RFID/NFC Protection: Heavy-duty aluminum inner casing acts as a protective Faraday cage, blocking 13.56 MHz signals to stop digital theft and unauthorized scans. Flexible Cash & Receipt Band: High-durability elastic band keeps paper bills, receipts, or business cards tightly secured to the wallet frame. Dual Outer Grip Slots: Quick-swipe exterior cutouts allow you to store daily access cards or IDs for easy sliding without opening the main compartment. Ultra-Slim & Lightweight: Replaces fat, bulky leather wallets with a compact front-pocket design that reduces pocket bulge and strain. Specifications & Style: Capacity: Holds up to 5–7 cards in the aluminum chamber plus cash and extra cards under the elastic band. Premium Finishes: Built from rust-proof, anodized aluminum alloy with non-slip exterior panels (Available in Copper/Rust Brown & Metallic Slate Gray).",
       "descriptionHtml": "<p>Upgrade your pocket carry with the <b>RFID-Blocking Pop-Up Minimalist Wallet</b>. Engineered from premium space-grade aluminum with dual-grip outer plates, this ultra-slim wallet protects your credit cards and personal data against electronic pickpocketing and RFID skimming while giving you instant, one-touch card access.</p>\n<h3><b>Key Features &amp; Modern Utility:</b></h3>\n<ul>\n<li>\n<p><b>Quick-Trigger Pop-Up Access:</b> Side slider lever instantly fans out your credit cards in a neat cascade for fast, single-handed access.</p>\n</li>\n<li>\n<p><b>Advanced RFID/NFC Protection:</b> Heavy-duty aluminum inner casing acts as a protective Faraday cage, blocking 13.56 MHz signals to stop digital theft and unauthorized scans.</p>\n</li>\n<li>\n<p><b>Flexible Cash &amp; Receipt Band:</b> High-durability elastic band keeps paper bills, receipts, or business cards tightly secured to the wallet frame.</p>\n</li>\n<li>\n<p><b>Dual Outer Grip Slots:</b> Quick-swipe exterior cutouts allow you to store daily access cards or IDs for easy sliding without opening the main compartment.</p>\n</li>\n<li>\n<p><b>Ultra-Slim &amp; Lightweight:</b> Replaces fat, bulky leather wallets with a compact front-pocket design that reduces pocket bulge and strain.</p>\n</li>\n</ul>\n<h3><b>Specifications &amp; Style:</b></h3>\n<ul>\n<li>\n<p><b>Capacity:</b> Holds up to 5–7 cards in the aluminum chamber plus cash and extra cards under the elastic band.</p>\n</li>\n<li>\n<p><b>Premium Finishes:</b> Built from rust-proof, anodized aluminum alloy with non-slip exterior panels (Available in Copper/Rust Brown &amp; Metallic Slate Gray).</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Wallets & Everyday Carry",
       "tags": [
         "Smart Tracker"
       ],
@@ -919,14 +924,9 @@
           "title": "Best Seller"
         },
         {
-          "id": "gid://shopify/Collection/448151388387",
-          "handle": "rfid-card-holders",
-          "title": "RFID Card Holders"
-        },
-        {
-          "id": "gid://shopify/Collection/450145091811",
-          "handle": "smart-tracker",
-          "title": "SecurePocket Bundle"
+          "id": "gid://shopify/Collection/490778853603",
+          "handle": "everyday-carry",
+          "title": "Wallets & Everyday Carry"
         }
       ],
       "images": [
@@ -1145,7 +1145,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-09-22T13:16:54Z",
+      "updatedAt": "2026-09-24T18:15:03Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -1410,7 +1410,7 @@
       "description": "The Last Backpack You'll Ever Need for Travel & Work Ever had that moment of panic at the airport gate wondering if your bag went missing or where your wallet is? Meet the Smart Travel Backpack—designed for seamless airport navigation, daily commutes, and long-weekend getaways. Packed with integrated tracking, anti-theft security, and rapid charging, this bag takes the headache out of travel so you can focus on the journey. Why Travelers Love It Never Lose Your Bag Again: Integrated GPS tracking lets you keep tabs on your backpack in real-time, whether it's under your plane seat or across the terminal. Charge on the Fly: Plug your phone into the exterior USB port and keep your battery topped up without fishing out a power bank. Ironclad Security: Secret zipping channels, RFID-blocking card slots, and an integrated TSA-approved lock keep pickpockets out of your valuables. Fits Up to 17\" Laptops: A padded compartment cradles extra-large devices without adding bulk. Weatherproof Oxford Shell: Sudden downpour between flights? High-density water-resistant fabric keeps your electronics and clothes bone-dry. ✈️ TSA-Friendly & Airport-Ready: Unzips flat at security checkpoints so you can breeze through TSA lines in seconds. Specifications Dimensions: 18 x 12 x 6 inches Capacity: 30 Liters Weight: 2.8 lbs Material: High-Density Water-Resistant Oxford Fabric Laptop Compatibility: Fits laptops up to 17.3 inches Lock Type: Integrated TSA-Approved Combination Lock What’s Included 1x Smart Travel Backpack 1x Integrated USB Charging Cable 1x Built-In TSA-Approved Lock 1x Quick Start Setup Guide",
       "descriptionHtml": "<h3>The Last Backpack You'll Ever Need for Travel &amp; Work</h3>\n<p>Ever had that moment of panic at the airport gate wondering if your bag went missing or where your wallet is?</p>\n<p>Meet the <b>Smart Travel Backpack</b>—designed for seamless airport navigation, daily commutes, and long-weekend getaways. Packed with integrated tracking, anti-theft security, and rapid charging, this bag takes the headache out of travel so you can focus on the journey.</p>\n<h3>Why Travelers Love It</h3>\n<ul>\n<li>\n<p><b>Never Lose Your Bag Again:</b> Integrated GPS tracking lets you keep tabs on your backpack in real-time, whether it's under your plane seat or across the terminal.</p>\n</li>\n<li>\n<p><b>Charge on the Fly:</b> Plug your phone into the exterior USB port and keep your battery topped up without fishing out a power bank.</p>\n</li>\n<li>\n<p><b>Ironclad Security:</b> Secret zipping channels, RFID-blocking card slots, and an integrated TSA-approved lock keep pickpockets out of your valuables.</p>\n</li>\n<li>\n<p><b>Fits Up to 17\" Laptops:</b> A padded compartment cradles extra-large devices without adding bulk.</p>\n</li>\n<li>\n<p><b>Weatherproof Oxford Shell:</b> Sudden downpour between flights? High-density water-resistant fabric keeps your electronics and clothes bone-dry.</p>\n</li>\n<li>\n<p>✈️ <b>TSA-Friendly &amp; Airport-Ready:</b> Unzips flat at security checkpoints so you can breeze through TSA lines in seconds.</p>\n</li>\n</ul>\n<h3>Specifications</h3>\n<ul>\n<li>\n<p><b>Dimensions:</b> 18 x 12 x 6 inches</p>\n</li>\n<li>\n<p><b>Capacity:</b> 30 Liters</p>\n</li>\n<li>\n<p><b>Weight:</b> 2.8 lbs</p>\n</li>\n<li>\n<p><b>Material:</b> High-Density Water-Resistant Oxford Fabric</p>\n</li>\n<li>\n<p><b>Laptop Compatibility:</b> Fits laptops up to 17.3 inches</p>\n</li>\n<li>\n<p><b>Lock Type:</b> Integrated TSA-Approved Combination Lock</p>\n</li>\n</ul>\n<h3>What’s Included</h3>\n<ul>\n<li>\n<p>1x Smart Travel Backpack</p>\n</li>\n<li>\n<p>1x Integrated USB Charging Cable</p>\n</li>\n<li>\n<p>1x Built-In TSA-Approved Lock</p>\n</li>\n<li>\n<p>1x Quick Start Setup Guide</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Travel & Security",
       "tags": [
         "Travel Gear"
       ],
@@ -1421,14 +1421,9 @@
           "title": "Best Seller"
         },
         {
-          "id": "gid://shopify/Collection/448151421155",
-          "handle": "smart-travel-bags",
-          "title": "Smart Travel Bags"
-        },
-        {
-          "id": "gid://shopify/Collection/450145419491",
-          "handle": "travel-gear",
-          "title": "Travel Gear"
+          "id": "gid://shopify/Collection/490778919139",
+          "handle": "travel-security",
+          "title": "Travel & Security"
         }
       ],
       "images": [
@@ -1752,7 +1747,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:58:35Z",
       "createdAt": "2025-02-26T14:58:35Z",
-      "updatedAt": "2026-09-19T09:53:08Z",
+      "updatedAt": "2026-09-24T18:15:15Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157414445283",
@@ -1995,7 +1990,7 @@
       "description": "Ditch lost keys and forgotten combinations with the Smart Fingerprint Padlock. Featuring advanced biometric sensor technology and optional Bluetooth app connectivity, this keyless lock unlocks in under half a second with a simple touch of your finger. Perfect for gym lockers, travel luggage, backpacks, storage units, and shed doors. Key Features & Advanced Security: 0.5-Second Rapid Biometric Recognition: Advanced 360° fingerprint scanner recognizes registered prints instantly from any angle. Keyless Convenience: Store multiple user fingerprints—ideal for sharing access with family, roomies, or team members without physical keys. USB Rechargeable Long-Life Battery: Built-in rechargeable lithium battery provides thousands of unlocks on a single charge. Features a protected bottom USB charging port for emergency power-ups. Heavy-Duty Cut-Resistant Construction: Crafted with a high-strength aluminum alloy body and a hardened stainless steel shackle to resist prying, cutting, and unauthorized entry. LED Status Indicator: Visual feedback light signals successful unlocks, low battery warnings, and fingerprint registration mode. Ideal Use Cases: Travel & Luggage: Secure backpacks, suitcases, and duffel bags while commuting or flying. Gym & School Lockers: Fast, hassle-free access before and after workouts. Home & Storage: Lock up toolboxes, cabinets, storage lockers, and gates effortlessly.",
       "descriptionHtml": "<p>Ditch lost keys and forgotten combinations with the <b>Smart Fingerprint Padlock</b>. Featuring advanced biometric sensor technology and optional Bluetooth app connectivity, this keyless lock unlocks in under half a second with a simple touch of your finger. Perfect for gym lockers, travel luggage, backpacks, storage units, and shed doors.</p>\n<h3><b>Key Features &amp; Advanced Security:</b></h3>\n<ul>\n<li>\n<p><b>0.5-Second Rapid Biometric Recognition:</b> Advanced 360° fingerprint scanner recognizes registered prints instantly from any angle.</p>\n</li>\n<li>\n<p><b>Keyless Convenience:</b> Store multiple user fingerprints—ideal for sharing access with family, roomies, or team members without physical keys.</p>\n</li>\n<li>\n<p><b>USB Rechargeable Long-Life Battery:</b> Built-in rechargeable lithium battery provides thousands of unlocks on a single charge. Features a protected bottom USB charging port for emergency power-ups.</p>\n</li>\n<li>\n<p><b>Heavy-Duty Cut-Resistant Construction:</b> Crafted with a high-strength aluminum alloy body and a hardened stainless steel shackle to resist prying, cutting, and unauthorized entry.</p>\n</li>\n<li>\n<p><b>LED Status Indicator:</b> Visual feedback light signals successful unlocks, low battery warnings, and fingerprint registration mode.</p>\n</li>\n</ul>\n<h3><b>Ideal Use Cases:</b></h3>\n<ul>\n<li>\n<p><b>Travel &amp; Luggage:</b> Secure backpacks, suitcases, and duffel bags while commuting or flying.</p>\n</li>\n<li>\n<p><b>Gym &amp; School Lockers:</b> Fast, hassle-free access before and after workouts.</p>\n</li>\n<li>\n<p><b>Home &amp; Storage:</b> Lock up toolboxes, cabinets, storage lockers, and gates effortlessly.</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Travel & Security",
       "tags": [
         "Smart Security",
         "Travel Gear"
@@ -2007,19 +2002,9 @@
           "title": "Best Seller"
         },
         {
-          "id": "gid://shopify/Collection/448151453923",
-          "handle": "fingerprint-electronic-lock",
-          "title": "Fingerprint Electronic Lock"
-        },
-        {
-          "id": "gid://shopify/Collection/450145452259",
-          "handle": "smart-security",
-          "title": "Smart Security"
-        },
-        {
-          "id": "gid://shopify/Collection/450145419491",
-          "handle": "travel-gear",
-          "title": "Travel Gear"
+          "id": "gid://shopify/Collection/490778919139",
+          "handle": "travel-security",
+          "title": "Travel & Security"
         }
       ],
       "images": [
@@ -2172,7 +2157,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T15:45:51Z",
       "createdAt": "2025-02-26T15:45:51Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:15:17Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157428175075",
@@ -2267,20 +2252,15 @@
       "description": "Keep track of your most essential belongings wherever you go with the Smart Bluetooth Tracker Tag. Compact, stylish, and lightweight, this wireless item finder pairs seamlessly with your smartphone to offer real-time location tracking, separation alerts, and loud audio rings for keys, wallets, backpacks, and luggage. Key Features & Functionality: Real-Time Map Tracking: View the last known location of your tagged item directly on your phone's map interface. One-Touch Audio Search: Trigger a loud built-in chime from your smartphone app to pinpoint lost items hidden under cushions, in drawers, or inside bags. Built-In Lanyard Hole: Integrated keyhole top design makes it effortless to loop onto keyrings, zippers, pet collars, or bag straps (includes detachable lanyard cord). Two-Way Search Function: Can't find your phone? Press the button on the Smart Tag to ring your misplaced phone, even if it's on silent. Long Battery Life & Compact Design: Low-power Bluetooth technology ensures months of continuous monitoring with easily replaceable standard coin batteries. Why Choose the Smart Tag? Stress-Free Travel: Attach it to carry-ons or checked luggage for instant peace of mind at airports and hotels. Minimalist & Durable: Smooth matte finish available in versatile neutral colors (White & Charcoal Black). Universal App Compatibility: Simple multi-step setup for seamless connectivity.",
       "descriptionHtml": "<p>Keep track of your most essential belongings wherever you go with the <b>Smart Bluetooth Tracker Tag</b>. Compact, stylish, and lightweight, this wireless item finder pairs seamlessly with your smartphone to offer real-time location tracking, separation alerts, and loud audio rings for keys, wallets, backpacks, and luggage.</p>\n<h3><b>Key Features &amp; Functionality:</b></h3>\n<ul>\n<li>\n<p><b>Real-Time Map Tracking:</b> View the last known location of your tagged item directly on your phone's map interface.</p>\n</li>\n<li>\n<p><b>One-Touch Audio Search:</b> Trigger a loud built-in chime from your smartphone app to pinpoint lost items hidden under cushions, in drawers, or inside bags.</p>\n</li>\n<li>\n<p><b>Built-In Lanyard Hole:</b> Integrated keyhole top design makes it effortless to loop onto keyrings, zippers, pet collars, or bag straps (includes detachable lanyard cord).</p>\n</li>\n<li>\n<p><b>Two-Way Search Function:</b> Can't find your phone? Press the button on the Smart Tag to ring your misplaced phone, even if it's on silent.</p>\n</li>\n<li>\n<p><b>Long Battery Life &amp; Compact Design:</b> Low-power Bluetooth technology ensures months of continuous monitoring with easily replaceable standard coin batteries.</p>\n</li>\n</ul>\n<h3><b>Why Choose the Smart Tag?</b></h3>\n<ul>\n<li>\n<p><b>Stress-Free Travel:</b> Attach it to carry-ons or checked luggage for instant peace of mind at airports and hotels.</p>\n</li>\n<li>\n<p><b>Minimalist &amp; Durable:</b> Smooth matte finish available in versatile neutral colors (White &amp; Charcoal Black).</p>\n</li>\n<li>\n<p><b>Universal App Compatibility:</b> Simple multi-step setup for seamless connectivity.</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Smart Trackers",
       "tags": [
         "Smart Tracker"
       ],
       "collections": [
         {
-          "id": "gid://shopify/Collection/448151486691",
-          "handle": "smart-tag",
-          "title": "Smart Tag"
-        },
-        {
-          "id": "gid://shopify/Collection/450145091811",
-          "handle": "smart-tracker",
-          "title": "SecurePocket Bundle"
+          "id": "gid://shopify/Collection/490778820835",
+          "handle": "smart-trackers",
+          "title": "Smart Trackers"
         }
       ],
       "images": [
@@ -2406,7 +2386,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T16:10:45Z",
       "createdAt": "2025-02-26T16:10:45Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:14:57Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157445443811",
@@ -2501,11 +2481,17 @@
       "description": "Equip yourself for any emergency, job site, or outdoor adventure with the Tactical Credit Card Multitool Knife. Masterfully crafted from heat-treated stainless steel, this wallet-sized powerhouse integrates double-duty cutting edges, a wire cutter, screwdriver, and survival tools into an ultra-slim card profile that fits neatly into any standard wallet slot. Precision Integrated Features: Dual-Blade Edge (Sharp & Blunt): Features a razor-sharp cutting edge for slicing, ropes, and boxes, along with a dull/blunt edge designed for scraping, prying, and safe handling. Built-In Wire Cutter Notch: Dedicated stripping and cutting notch to handle electrical wires, ties, and cables quickly. Corner Flathead Screwdriver: Integrated screwdriver tip on the edge corner for quick screw adjustments, repairs, and tightening on the go. Heavy-Duty Can & Bottle Opener: Reinforced leverage notch to effortlessly pop bottle caps and open tin cans in the field. Serrated Saw Edge: Multi-tooth saw for sawing through wood, cordage, and tough plastics. Emergency Paracord Grip: Tactical braided cord wrap provides an ergonomic, non-slip handle grip and can be unraveled for emergency rope utility. Ruler & SOS Signals: Marked edge measuring guide and engraved Morse code (SOS/HELP) reference for wilderness survival. Key Highlights: Ultra-Slim Wallet Fit: Standard credit card dimensions slide directly into your wallet, money clip, or pouch without adding pocket weight. Tough Stainless Steel: Corrosion-resistant, matte-black coated steel built to withstand rugged outdoor and daily use. Essential Everyday & Emergency Gear: Must-have utility tool for camping, hiking, DIY repairs, auto kits, and urban survival.",
       "descriptionHtml": "<p>Equip yourself for any emergency, job site, or outdoor adventure with the <b>Tactical Credit Card Multitool Knife</b>. Masterfully crafted from heat-treated stainless steel, this wallet-sized powerhouse integrates double-duty cutting edges, a wire cutter, screwdriver, and survival tools into an ultra-slim card profile that fits neatly into any standard wallet slot.</p>\n<h3><b>Precision Integrated Features:</b></h3>\n<ul>\n<li>\n<p><b>Dual-Blade Edge (Sharp &amp; Blunt):</b> Features a razor-sharp cutting edge for slicing, ropes, and boxes, along with a dull/blunt edge designed for scraping, prying, and safe handling.</p>\n</li>\n<li>\n<p><b>Built-In Wire Cutter Notch:</b> Dedicated stripping and cutting notch to handle electrical wires, ties, and cables quickly.</p>\n</li>\n<li>\n<p><b>Corner Flathead Screwdriver:</b> Integrated screwdriver tip on the edge corner for quick screw adjustments, repairs, and tightening on the go.</p>\n</li>\n<li>\n<p><b>Heavy-Duty Can &amp; Bottle Opener:</b> Reinforced leverage notch to effortlessly pop bottle caps and open tin cans in the field.</p>\n</li>\n<li>\n<p><b>Serrated Saw Edge:</b> Multi-tooth saw for sawing through wood, cordage, and tough plastics.</p>\n</li>\n<li>\n<p><b>Emergency Paracord Grip:</b> Tactical braided cord wrap provides an ergonomic, non-slip handle grip and can be unraveled for emergency rope utility.</p>\n</li>\n<li>\n<p><b>Ruler &amp; SOS Signals:</b> Marked edge measuring guide and engraved Morse code (SOS/HELP) reference for wilderness survival.</p>\n</li>\n</ul>\n<h3><b>Key Highlights:</b></h3>\n<ul>\n<li>\n<p><b>Ultra-Slim Wallet Fit:</b> Standard credit card dimensions slide directly into your wallet, money clip, or pouch without adding pocket weight.</p>\n</li>\n<li>\n<p><b>Tough Stainless Steel:</b> Corrosion-resistant, matte-black coated steel built to withstand rugged outdoor and daily use.</p>\n</li>\n<li>\n<p><b>Essential Everyday &amp; Emergency Gear:</b> Must-have utility tool for camping, hiking, DIY repairs, auto kits, and urban survival.</p>\n</li>\n</ul>\n<h3><br></h3>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Wallets & Everyday Carry",
       "tags": [
         "bogos-gift"
       ],
-      "collections": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/490778853603",
+          "handle": "everyday-carry",
+          "title": "Wallets & Everyday Carry"
+        }
+      ],
       "images": [
         {
           "id": "gid://shopify/MediaImage/36062833213667",
@@ -2607,7 +2593,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:15:07Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -2675,13 +2661,18 @@
       "description": "Streamline your everyday carry and stay prepared on every trip with the 4-in-1 Essential Travel Kit. Designed for commuters, outdoor enthusiasts, and frequent flyers, this compact bundle combines modern tracking tech with tactical utility essentials to keep your wallet, keys, and gear secure and functional. What’s Included in the Kit: Ultra-Slim Smart Card Tracker: Credit-card-sized Bluetooth card designed to slide smoothly into any wallet slot or passport pouch for seamless global tracking. Compact Smart Tag Finder: Lightweight Bluetooth key tag that clips onto keys, luggage, or bag zippers for quick location alerts. Forged Carbon Fiber Key Organizer: Compact fold-out holder that secures multiple keys, eliminating pocket bulge and key noise. Multifunctional Tactical Wallet Card: Stainless steel survival tool sized like a credit card—featuring a bottle opener, edge ruler, wrench slots, and an elastic cash strap. Key Features: Total Trackability: Connect your wallet and keys to smart tracking networks for instant location pinpointing. Everyday Utility: Built-in multi-tool handles quick repairs, bottle opening, and measuring on the go. Sleek & Durable Build: Constructed from space-grade aluminum, carbon fiber finish, and tactical steel. Pocket-Friendly & TSA-Conscious: Minimalist design fits comfortably in front pockets without bulk.",
       "descriptionHtml": "<p>Streamline your everyday carry and stay prepared on every trip with the <b>4-in-1 Essential Travel Kit</b>. Designed for commuters, outdoor enthusiasts, and frequent flyers, this compact bundle combines modern tracking tech with tactical utility essentials to keep your wallet, keys, and gear secure and functional.</p>\n<h3><b>What’s Included in the Kit:</b></h3>\n<ul>\n<li>\n<p><b>Ultra-Slim Smart Card Tracker:</b> Credit-card-sized Bluetooth card designed to slide smoothly into any wallet slot or passport pouch for seamless global tracking.</p>\n</li>\n<li>\n<p><b>Compact Smart Tag Finder:</b> Lightweight Bluetooth key tag that clips onto keys, luggage, or bag zippers for quick location alerts.</p>\n</li>\n<li>\n<p><b>Forged Carbon Fiber Key Organizer:</b> Compact fold-out holder that secures multiple keys, eliminating pocket bulge and key noise.</p>\n</li>\n<li>\n<p><b>Multifunctional Tactical Wallet Card:</b> Stainless steel survival tool sized like a credit card—featuring a bottle opener, edge ruler, wrench slots, and an elastic cash strap.</p>\n</li>\n</ul>\n<h3><b>Key Features:</b></h3>\n<ul>\n<li>\n<p><b>Total Trackability:</b> Connect your wallet and keys to smart tracking networks for instant location pinpointing.</p>\n</li>\n<li>\n<p><b>Everyday Utility:</b> Built-in multi-tool handles quick repairs, bottle opening, and measuring on the go.</p>\n</li>\n<li>\n<p><b>Sleek &amp; Durable Build:</b> Constructed from space-grade aluminum, carbon fiber finish, and tactical steel.</p>\n</li>\n<li>\n<p><b>Pocket-Friendly &amp; TSA-Conscious:</b> Minimalist design fits comfortably in front pockets without bulk.</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Travel & Security",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449903853795",
           "handle": "kits-bundle",
-          "title": "Kits & bundle"
+          "title": "Bundles"
+        },
+        {
+          "id": "gid://shopify/Collection/490778919139",
+          "handle": "travel-security",
+          "title": "Travel & Security"
         }
       ],
       "images": [
@@ -2718,7 +2709,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-09-19T09:53:05Z",
+      "updatedAt": "2026-09-24T18:15:19Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -2785,13 +2776,18 @@
       "description": "Stop misplacing your essential valuables with the Smart Tracker Duo Kit. Combining an ultra-slim smart card finder and a versatile keychain smart tag, this two-in-one set provides full-coverage location tracking for your wallet, passport, bags, and keys anywhere in the world. What’s Included in the Set: Ultra-Thin Smart Card Tracker: Engineered with a razor-thin profile to fit seamlessly into any standard wallet card slot, passport holder, or slim billfold without adding bulk. Compact Smart Tag Finder: Lightweight, durable keychain-style tracker designed to attach instantly to house keys, car fobs, backpacks, or travel luggage. Key Features: Real-Time Global Tracking: Syncs with smart global location networks for accurate, worldwide item retrieval. Instant Separation Alerts: Receive immediate notifications on your phone whenever you leave a tagged item behind. Loud Audio Beeper: Trigger an audible ring directly from your smartphone to locate items tucked under furniture or inside deep bags. Long Battery Life & Sleek Design: Features low-power Bluetooth technology encased in scratch-resistant, travel-ready materials.",
       "descriptionHtml": "<p>Stop misplacing your essential valuables with the <b>Smart Tracker Duo Kit</b>. Combining an ultra-slim smart card finder and a versatile keychain smart tag, this two-in-one set provides full-coverage location tracking for your wallet, passport, bags, and keys anywhere in the world.</p>\n<h3><b>What’s Included in the Set:</b></h3>\n<ul>\n<li>\n<p><b>Ultra-Thin Smart Card Tracker:</b> Engineered with a razor-thin profile to fit seamlessly into any standard wallet card slot, passport holder, or slim billfold without adding bulk.</p>\n</li>\n<li>\n<p><b>Compact Smart Tag Finder:</b> Lightweight, durable keychain-style tracker designed to attach instantly to house keys, car fobs, backpacks, or travel luggage.</p>\n</li>\n</ul>\n<h3><b>Key Features:</b></h3>\n<ul>\n<li>\n<p><b>Real-Time Global Tracking:</b> Syncs with smart global location networks for accurate, worldwide item retrieval.</p>\n</li>\n<li>\n<p><b>Instant Separation Alerts:</b> Receive immediate notifications on your phone whenever you leave a tagged item behind.</p>\n</li>\n<li>\n<p><b>Loud Audio Beeper:</b> Trigger an audible ring directly from your smartphone to locate items tucked under furniture or inside deep bags.</p>\n</li>\n<li>\n<p><b>Long Battery Life &amp; Sleek Design:</b> Features low-power Bluetooth technology encased in scratch-resistant, travel-ready materials.</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Smart Trackers",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449903853795",
           "handle": "kits-bundle",
-          "title": "Kits & bundle"
+          "title": "Bundles"
+        },
+        {
+          "id": "gid://shopify/Collection/490778820835",
+          "handle": "smart-trackers",
+          "title": "Smart Trackers"
         }
       ],
       "images": [
@@ -2828,7 +2824,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:14:59Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -2895,13 +2891,18 @@
       "description": "Upgrade your everyday carry and travel security with the 4-in-1 Ultimate Smart Travel Essentials Bundle. Designed for modern travelers, digital nomads, and commuters, this high-tech set keeps your cards, cash, and keys organized, lightweight, and completely trackable anywhere in the world. What’s Included in the Bundle: RFID-Blocking Pop-Up Smart Wallet: Heavy-duty aluminum construct with quick-trigger card ejection. Holds up to 6 cards securely while protecting your identity against electronic pickpocketing and RFID skimming. Includes an expandable elastic strap for cash or receipts. Forged Carbon Fiber Key Organizer: Eliminate pocket clutter and key jangling. Sleek, lightweight, and durable design holds multiple keys silently in a compact fold-out frame. Ultra-Slim Smart Card Tracker: Credit-card-sized Bluetooth tracker that fits directly into your wallet or passport sleeve. Compatible with smart tracking networks for effortless global location monitoring. Compact Smart Tag Keychain Tracker: Attach to your keys, backpack, or luggage to track missing items directly from your smartphone. Features single-touch pairing and real-time proximity alerts. Key Features: Global Peace of Mind: Track your wallet and keys anywhere with integrated smart Bluetooth technology. Anti-Theft Protection: Advanced RFID-blocking shield prevents unauthorized wireless scans. Minimalist & Lightweight: Durable space-grade materials (carbon fiber motif and aircraft aluminum) reduce pocket bulk. Universal Compatibility: Works seamlessly with iOS and Android devices.",
       "descriptionHtml": "<p>Upgrade your everyday carry and travel security with the <b>4-in-1 Ultimate Smart Travel Essentials Bundle</b>. Designed for modern travelers, digital nomads, and commuters, this high-tech set keeps your cards, cash, and keys organized, lightweight, and completely trackable anywhere in the world.</p>\n<h3><b>What’s Included in the Bundle:</b></h3>\n<ul>\n<li>\n<p><b>RFID-Blocking Pop-Up Smart Wallet:</b> Heavy-duty aluminum construct with quick-trigger card ejection. Holds up to 6 cards securely while protecting your identity against electronic pickpocketing and RFID skimming. Includes an expandable elastic strap for cash or receipts.</p>\n</li>\n<li>\n<p><b>Forged Carbon Fiber Key Organizer:</b> Eliminate pocket clutter and key jangling. Sleek, lightweight, and durable design holds multiple keys silently in a compact fold-out frame.</p>\n</li>\n<li>\n<p><b>Ultra-Slim Smart Card Tracker:</b> Credit-card-sized Bluetooth tracker that fits directly into your wallet or passport sleeve. Compatible with smart tracking networks for effortless global location monitoring.</p>\n</li>\n<li>\n<p><b>Compact Smart Tag Keychain Tracker:</b> Attach to your keys, backpack, or luggage to track missing items directly from your smartphone. Features single-touch pairing and real-time proximity alerts.</p>\n</li>\n</ul>\n<h3><b>Key Features:</b></h3>\n<ul>\n<li>\n<p><b>Global Peace of Mind:</b> Track your wallet and keys anywhere with integrated smart Bluetooth technology.</p>\n</li>\n<li>\n<p><b>Anti-Theft Protection:</b> Advanced RFID-blocking shield prevents unauthorized wireless scans.</p>\n</li>\n<li>\n<p><b>Minimalist &amp; Lightweight:</b> Durable space-grade materials (carbon fiber motif and aircraft aluminum) reduce pocket bulk.</p>\n</li>\n<li>\n<p><b>Universal Compatibility:</b> Works seamlessly with iOS and Android devices.</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Travel & Security",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449903853795",
           "handle": "kits-bundle",
-          "title": "Kits & bundle"
+          "title": "Bundles"
+        },
+        {
+          "id": "gid://shopify/Collection/490778919139",
+          "handle": "travel-security",
+          "title": "Travel & Security"
         }
       ],
       "images": [
@@ -2938,7 +2939,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-09-19T09:53:02Z",
+      "updatedAt": "2026-09-24T18:15:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -3005,13 +3006,18 @@
       "description": "The Modern Commuter Anti-Theft Backpack (Beige): Minimalist design that doesn't compromise on security. Featuring concealed zippers and durable water-resistant materials, this backpack is built to keep your gear safe. Multiple dedicated compartments for your laptop, tablet, water bottle, and daily essentials. Padded shoulder straps and an ergonomic back panel make all-day carry comfortable. The Biometric Fingerprint Smart Padlock: Forget about lost keys or remembering complex combinations. This heavy-duty padlock uses advanced biometric technology to unlock instantly with your unique fingerprint. Program multiple fingerprints for family members or trusted companions. Perfect for locking the backpack's zippers, a gym locker, or your luggage. Long-lasting rechargeable battery. The Carbon Fiber Key Smart Organizer & Holder: Declutter your pockets with this compact, lightweight key organizer. Made from premium forged carbon fiber for a tactical, modern look and extreme durability. Keys stack neatly and swivel out with a simple motion, preventing scratches on other items in your pocket or bag. Add on various tools or accessories (sold separately) to create your perfect everyday carry. Why Choose the Smart Security Kit Bundle? Integrated Security: All your travel and daily items work together seamlessly. Instant Access: No searching for keys or combinations. Biometrics and organizers save you time and frustration. Sleek, Modern Aesthetic: Every component is designed with a premium, coordinated look that elevates your style. Great Value: Save more when you buy these essentials together as a kit.",
       "descriptionHtml": "<p><b class=\"\">The Modern Commuter Anti-Theft Backpack (Beige):</b><span class=\"\"> Minimalist design that doesn't compromise on security.</span><span class=\"\"> Featuring concealed zippers and durable water-resistant materials,</span><span class=\"\"> this backpack is built to keep your gear safe. </span><span class=\"\">Multiple dedicated compartments for your laptop,</span><span class=\"\"> tablet,</span><span class=\"\"> water bottle,</span><span class=\"\"> and daily essentials. </span><span class=\"\">Padded shoulder straps and an ergonomic back panel make all-day carry comfortable.</span></p>\n<p><b class=\"\">The Biometric Fingerprint Smart Padlock: </b><span class=\"\">Forget about lost keys or remembering complex combinations.</span><span class=\"\"> This heavy-duty padlock uses advanced biometric technology to unlock instantly with your unique fingerprint. </span><span class=\"\">Program multiple fingerprints for family members or trusted companions.</span><span class=\"\"> Perfect for locking the backpack's zippers,</span><span class=\"\"> a gym locker,</span><span class=\"\"> or your luggage.</span><span class=\"\"> Long-lasting rechargeable battery.</span></p>\n<p><b class=\"\">The Carbon Fiber Key Smart Organizer &amp; Holder: </b><span class=\"\">Declutter your pockets with this compact,</span><span class=\"\"> lightweight key organizer.</span><span class=\"\"> Made from premium forged carbon fiber for a tactical,</span><span class=\"\"> modern look and extreme durability. </span><span class=\"\">Keys stack neatly and swivel out with a simple motion,</span><span class=\"\"> preventing scratches on other items in your pocket or bag.</span><span class=\"\"> Add on various tools or accessories (sold separately) to create your perfect everyday carry.</span></p>\n<h2 class=\"\">Why Choose the Smart Security Kit Bundle?</h2>\n<ul>\n<li>\n<p><b class=\"\">Integrated Security:</b><span class=\"\"> All your travel and daily items work together seamlessly.</span></p>\n</li>\n<li>\n<p><b class=\"\">Instant Access:</b><span class=\"\"> No searching for keys or combinations.</span><span class=\"\"> Biometrics and organizers save you time and frustration.</span></p>\n</li>\n<li>\n<p><b class=\"\">Sleek, Modern Aesthetic:</b><span class=\"\"> Every component is designed with a premium,</span><span class=\"\"> coordinated look that elevates your style.</span></p>\n</li>\n<li>\n<p><b class=\"\">Great Value:</b><span class=\"\"> Save more when you buy these essentials together as a kit.</span></p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Travel & Security",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449903853795",
           "handle": "kits-bundle",
-          "title": "Kits & bundle"
+          "title": "Bundles"
+        },
+        {
+          "id": "gid://shopify/Collection/490778919139",
+          "handle": "travel-security",
+          "title": "Travel & Security"
         }
       ],
       "images": [
@@ -3048,7 +3054,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-09-19T09:53:05Z",
+      "updatedAt": "2026-09-24T18:15:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -3115,7 +3121,7 @@
       "description": "Perfect Your Swing Anytime, Anywhere! Tired of needing a partner or an expensive ball machine to practice your tennis skills? Meet the ultimate Solo Tennis Trainer, a portable self-training device designed for beginners and novices looking to level up their game. This rebound baseboard allows you to practice your forehand, backhand, and footwork without ever chasing a ball. Simply fill the base, unwind the cord, and start hitting! Why You'll Love This Solo Tennis Trainer: Solo Practice Perfected: The high-elasticity bungee cord returns the ball to you after every hit, simulating a real rally without needing a partner. Ultra-Stable & Portable: The durable base features a secure fill valve—simply add water or sand to anchor it firmly in place during intense practice sessions. When empty, it's lightweight and easy to carry to the park, driveway, or court. Tangle-Free Design: The built-in anti-tangle swivel ring prevents the cord from twisting, ensuring smooth, uninterrupted practice. Convenient Storage: The grooved base is specifically designed to neatly wrap the string and securely hold the tennis ball when not in use. Great for All Ages: An excellent tool for kids learning the basics, adults picking up a new hobby, or anyone wanting to improve hand-eye coordination and fitness. How to Use: Fill the base with water or sand for stability. Unwind the elastic string to your desired length. Hit the ball forward and upwards, and get ready for the rebound! Stop waiting for a court or a partner. Grab your Solo Tennis Trainer today and start dominating the baseline!",
       "descriptionHtml": "<p><b>Perfect Your Swing Anytime, Anywhere!</b></p>\n<p>Tired of needing a partner or an expensive ball machine to practice your tennis skills? Meet the ultimate <b>Solo Tennis Trainer</b>, a portable self-training device designed for beginners and novices looking to level up their game.</p>\n<p>This rebound baseboard allows you to practice your forehand, backhand, and footwork without ever chasing a ball. Simply fill the base, unwind the cord, and start hitting!</p>\n<p><b>Why You'll Love This Solo Tennis Trainer:</b></p>\n<ul>\n<li>\n<p><b>Solo Practice Perfected:</b> The high-elasticity bungee cord returns the ball to you after every hit, simulating a real rally without needing a partner.</p>\n</li>\n<li>\n<p><b>Ultra-Stable &amp; Portable:</b> The durable base features a secure fill valve—simply add water or sand to anchor it firmly in place during intense practice sessions. When empty, it's lightweight and easy to carry to the park, driveway, or court.</p>\n</li>\n<li>\n<p><b>Tangle-Free Design:</b> The built-in anti-tangle swivel ring prevents the cord from twisting, ensuring smooth, uninterrupted practice.</p>\n</li>\n<li>\n<p><b>Convenient Storage:</b> The grooved base is specifically designed to neatly wrap the string and securely hold the tennis ball when not in use.</p>\n</li>\n<li>\n<p><b>Great for All Ages:</b> An excellent tool for kids learning the basics, adults picking up a new hobby, or anyone wanting to improve hand-eye coordination and fitness.</p>\n</li>\n</ul>\n<p><b>How to Use:</b></p>\n<ol start=\"1\">\n<li>\n<p>Fill the base with water or sand for stability.</p>\n</li>\n<li>\n<p>Unwind the elastic string to your desired length.</p>\n</li>\n<li>\n<p>Hit the ball forward and upwards, and get ready for the rebound!</p>\n</li>\n</ol>\n<p><b>Stop waiting for a court or a partner. Grab your Solo Tennis Trainer today and start dominating the baseline!</b></p>",
       "vendor": "Trackify.com",
-      "productType": "Sports",
+      "productType": "Sports & Fitness",
       "tags": [
         "Beginner Tennis Gear",
         "Portable Tennis Trainer",
@@ -3128,9 +3134,9 @@
       ],
       "collections": [
         {
-          "id": "gid://shopify/Collection/474794000611",
-          "handle": "sports",
-          "title": "Sports"
+          "id": "gid://shopify/Collection/490779050211",
+          "handle": "sports-fitness",
+          "title": "Sports & Fitness"
         }
       ],
       "images": [
@@ -3365,7 +3371,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-09-19T09:53:02Z",
+      "updatedAt": "2026-09-24T18:15:51Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -3483,7 +3489,7 @@
       "description": "Give Your Little Explorer the Confidence to Play Safely! Is your baby starting to crawl, stand, or take their first steps? Keep their precious head safe from those inevitable tumbles with this Baby Head Protector Backpack. Designed for ages 5 to 24 months, this adorable anti-fall safety cushion absorbs impact, giving you total peace of mind and your baby the confidence to keep exploring. Why Parents Love This Head Protector: Ultimate Fall Protection: Cushions the back of the head and upper back to prevent bumps and bruises on hard floors during crucial developmental months. Feather-Light & Comfy: Your baby will barely notice it! The ultra-lightweight design ensures it won’t restrict their playtime or throw off their balance. Fully Adjustable Fit: Features flexible, soft straps that grow with your child, ensuring a snug, secure fit from the crawling phase right through to the walking phase. Breathable & Machine Washable: Made from soft, skin-friendly fabric with high-elastic cotton filler. When it gets dirty, simply toss it in the wash. Adorable Angel Wings Design: Safety doesn't have to be boring. The cute angel wings make this a stylish and fun accessory your little one will love to wear. The Secret to a Tear-Free Baby Just like training wheels on a bike, this head protection cushion softens the blow of falling, encouraging your baby to get right back up without the tears. Don't wait for the next slip—equip your baby with the essential safety net for little explorers. Order yours today and protect every step of their journey!",
       "descriptionHtml": "<p><b>Give Your Little Explorer the Confidence to Play Safely!</b></p>\n<p>Is your baby starting to crawl, stand, or take their first steps? Keep their precious head safe from those inevitable tumbles with this <b>Baby Head Protector Backpack</b>. Designed for ages 5 to 24 months, this adorable anti-fall safety cushion absorbs impact, giving you total peace of mind and your baby the confidence to keep exploring.</p>\n<p><b>Why Parents Love This Head Protector:</b></p>\n<ul>\n<li>\n<p><b>Ultimate Fall Protection:</b> Cushions the back of the head and upper back to prevent bumps and bruises on hard floors during crucial developmental months.</p>\n</li>\n<li>\n<p><b>Feather-Light &amp; Comfy:</b> Your baby will barely notice it! The ultra-lightweight design ensures it won’t restrict their playtime or throw off their balance.</p>\n</li>\n<li>\n<p><b>Fully Adjustable Fit:</b> Features flexible, soft straps that grow with your child, ensuring a snug, secure fit from the crawling phase right through to the walking phase.</p>\n</li>\n<li>\n<p><b>Breathable &amp; Machine Washable:</b> Made from soft, skin-friendly fabric with high-elastic cotton filler. When it gets dirty, simply toss it in the wash.</p>\n</li>\n<li>\n<p><b>Adorable Angel Wings Design:</b> Safety doesn't have to be boring. The cute angel wings make this a stylish and fun accessory your little one will love to wear.</p>\n</li>\n</ul>\n<p><b>The Secret to a Tear-Free Baby</b> Just like training wheels on a bike, this head protection cushion softens the blow of falling, encouraging your baby to get right back up without the tears. Don't wait for the next slip—equip your baby with the essential safety net for little explorers.</p>\n<p><b>Order yours today and protect every step of their journey!</b></p>",
       "vendor": "Trackify",
-      "productType": "Kids & Toddler",
+      "productType": "Baby & Kids",
       "tags": [
         "Angel Wings Cushion",
         "Anti-Fall Cushion",
@@ -3497,9 +3503,9 @@
       ],
       "collections": [
         {
-          "id": "gid://shopify/Collection/474949320931",
-          "handle": "kids-toddler",
-          "title": "Kids & Toddler"
+          "id": "gid://shopify/Collection/490779017443",
+          "handle": "baby-kids",
+          "title": "Baby & Kids"
         }
       ],
       "images": [
@@ -4010,7 +4016,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T16:08:19Z",
       "createdAt": "2026-08-14T16:08:16Z",
-      "updatedAt": "2026-09-20T08:45:56Z",
+      "updatedAt": "2026-09-24T18:15:47Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081001890019",
@@ -4317,7 +4323,7 @@
       "description": "Upgrade your everyday carry and transform your chaotic key ring into a silent, organized tool with the Compact Smart Key Organizer. Engineered with lightweight aircraft-grade aluminum and carbon fiber finishes, this sleek key holder securely folds your keys inside a pocket-knife-style frame—protecting your phone screen from scratches and stopping key jangling in its tracks. Key Features & Premium Design: Silent & Scratch-Free Storage: Locks keys firmly in place so they won't jingle, poke holes in pockets, or scratch nearby items in your bag. Integrated Deep-Carry Pocket Clip: Includes a sturdy removable clip on the back to attach easily to belt loops, jeans pockets, or bag dividers for quick access. Bottom D-Ring Loop Attachment: Features a built-in bottom D-ring to connect car key fobs, smart trackers, or larger keys effortlessly. Easy Assembly & Universal Fit: Simple screw-locking system fits most standard household keys without special tools needed. Premium Tactical Finishes: Available in multiple sleek colors—Matte Black, Slate Blue, Olive Green, Gold, Titanium Gradient, and Forged Carbon Fiber. Why You'll Love It: Minimalist Pocket Profile: Holds multiple keys while taking up half the pocket space of a standard keychain. Built to Last: High-grade metal construction designed for heavy daily use, commuting, and travel.",
       "descriptionHtml": "<p>Upgrade your everyday carry and transform your chaotic key ring into a silent, organized tool with the <b>Compact Smart Key Organizer</b>. Engineered with lightweight aircraft-grade aluminum and carbon fiber finishes, this sleek key holder securely folds your keys inside a pocket-knife-style frame—protecting your phone screen from scratches and stopping key jangling in its tracks.</p>\n<h3><b>Key Features &amp; Premium Design:</b></h3>\n<ul>\n<li>\n<p><b>Silent &amp; Scratch-Free Storage:</b> Locks keys firmly in place so they won't jingle, poke holes in pockets, or scratch nearby items in your bag.</p>\n</li>\n<li>\n<p><b>Integrated Deep-Carry Pocket Clip:</b> Includes a sturdy removable clip on the back to attach easily to belt loops, jeans pockets, or bag dividers for quick access.</p>\n</li>\n<li>\n<p><b>Bottom D-Ring Loop Attachment:</b> Features a built-in bottom D-ring to connect car key fobs, smart trackers, or larger keys effortlessly.</p>\n</li>\n<li>\n<p><b>Easy Assembly &amp; Universal Fit:</b> Simple screw-locking system fits most standard household keys without special tools needed.</p>\n</li>\n<li>\n<p><b>Premium Tactical Finishes:</b> Available in multiple sleek colors—Matte Black, Slate Blue, Olive Green, Gold, Titanium Gradient, and Forged Carbon Fiber.</p>\n</li>\n</ul>\n<h3><b>Why You'll Love It:</b></h3>\n<ul>\n<li>\n<p><b>Minimalist Pocket Profile:</b> Holds multiple keys while taking up half the pocket space of a standard keychain.</p>\n</li>\n<li>\n<p><b>Built to Last:</b> High-grade metal construction designed for heavy daily use, commuting, and travel.</p>\n</li>\n</ul>",
       "vendor": "Trackify.com",
-      "productType": "",
+      "productType": "Wallets & Everyday Carry",
       "tags": [
         "Everyday Essentials",
         "Smart Tracker",
@@ -4325,24 +4331,9 @@
       ],
       "collections": [
         {
-          "id": "gid://shopify/Collection/450145550563",
-          "handle": "everyday-essentials",
-          "title": "Everyday Essentials"
-        },
-        {
-          "id": "gid://shopify/Collection/448158105827",
-          "handle": "smart-key-organizer-compact-key-holder",
-          "title": "Smart Key Organizer & Compact Key Holder"
-        },
-        {
-          "id": "gid://shopify/Collection/450145091811",
-          "handle": "smart-tracker",
-          "title": "SecurePocket Bundle"
-        },
-        {
-          "id": "gid://shopify/Collection/450145419491",
-          "handle": "travel-gear",
-          "title": "Travel Gear"
+          "id": "gid://shopify/Collection/490778853603",
+          "handle": "everyday-carry",
+          "title": "Wallets & Everyday Carry"
         }
       ],
       "images": [
@@ -4555,7 +4546,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-09-19T09:53:04Z",
+      "updatedAt": "2026-09-24T18:15:05Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -4790,7 +4781,7 @@
       "description": "An acupressure pen you can actually check the specs on. Most listings in this category tell you what the device will do for your body. This one tells you what it is: a 158 g pen in an ABS and aluminium-alloy body, nine intensity levels on a lit display, five screw-on heads, and a single AA cell. Press the tip to a point, pick a level, and that is the whole machine. What you actually get Five heads, oil-free — rounded ball, ridged, fine point and flat spoon, plus the fitted tip on the pen. Every head is in the box. None is held back as a paid extra. Nine levels, held on the display — the level you set stays on screen until you change it, so the setting that suited you yesterday is the one you return to, not a guess at the same number of button presses. Auto point-sensing tip — the tip responds as it passes over an active point, so you do not need a meridian chart memorised before you start. One AA cell — no charger, no cable, no charging cradle, and no battery that dies at three years old and takes the device with it. It travels in hand luggage without an argument. 170 mm, 158 g — long enough to reach between your own shoulder blades one-handed, light enough to hold there. Honest specifications Body: ABS and aluminium alloy Weight: 158 g, oil-free build, without packaging Heads: five, interchangeable, threaded (not friction-fit) Intensity: nine selectable levels Power: one AA cell, not included What it is, and what it is not This is a consumer wellness and massage tool that applies pressure through a metal tip along with a low-level electrical pulse, in the same broad family as the TENS units sold in any pharmacy. It is not a medical device. It is not cleared by the FDA or Health Canada, and nothing here is a health claim or a treatment for any condition. If a listing for one of these tells you it cures something, that is the moment to close the tab. Do not use it if you have a pacemaker or any implanted electronic device, or if you are pregnant. Avoid broken skin, the front and sides of the neck, and the area near the eyes. If you have a heart condition, epilepsy or reduced sensation, ask a doctor first. Common questions Do I need to know the pressure points first?No. The auto-sensing tip responds as it passes over an active point, which is what most people use to find where to work. How long should a session be?Five to fifteen minutes across a few points, once or twice a day. Longer is not better. If a spot goes numb, sore or red, stop and move on. What is the difference between the heads?The fine point concentrates on one spot, the ball and spoon spread the same pressure over a wider area, and the ridged head suits a broad muscle like a calf or a forearm. Is a battery included?No. It takes one standard AA cell, which keeps the pen cheap to run and legal to fly with.",
       "descriptionHtml": "<p><b>An acupressure pen you can actually check the specs on.</b> Most listings in this category tell you what the device will do for your body. This one tells you what it is: a 158 g pen in an ABS and aluminium-alloy body, nine intensity levels on a lit display, five screw-on heads, and a single AA cell. Press the tip to a point, pick a level, and that is the whole machine.</p>\n\n<h3>What you actually get</h3>\n<ul>\n<li>\n<b>Five heads, oil-free</b> — rounded ball, ridged, fine point and flat spoon, plus the fitted tip on the pen. Every head is in the box. None is held back as a paid extra.</li>\n<li>\n<b>Nine levels, held on the display</b> — the level you set stays on screen until you change it, so the setting that suited you yesterday is the one you return to, not a guess at the same number of button presses.</li>\n<li>\n<b>Auto point-sensing tip</b> — the tip responds as it passes over an active point, so you do not need a meridian chart memorised before you start.</li>\n<li>\n<b>One AA cell</b> — no charger, no cable, no charging cradle, and no battery that dies at three years old and takes the device with it. It travels in hand luggage without an argument.</li>\n<li>\n<b>170 mm, 158 g</b> — long enough to reach between your own shoulder blades one-handed, light enough to hold there.</li>\n</ul>\n\n<h3>Honest specifications</h3>\n<ul>\n<li>Body: ABS and aluminium alloy</li>\n<li>Weight: 158 g, oil-free build, without packaging</li>\n<li>Heads: five, interchangeable, threaded (not friction-fit)</li>\n<li>Intensity: nine selectable levels</li>\n<li>Power: one AA cell, not included</li>\n</ul>\n\n<h3>What it is, and what it is not</h3>\n<p>This is a consumer wellness and massage tool that applies pressure through a metal tip along with a low-level electrical pulse, in the same broad family as the TENS units sold in any pharmacy. It is <b>not a medical device</b>. It is not cleared by the FDA or Health Canada, and nothing here is a health claim or a treatment for any condition. If a listing for one of these tells you it cures something, that is the moment to close the tab.</p>\n\n<p>Do not use it if you have a pacemaker or any implanted electronic device, or if you are pregnant. Avoid broken skin, the front and sides of the neck, and the area near the eyes. If you have a heart condition, epilepsy or reduced sensation, ask a doctor first.</p>\n\n<h3>Common questions</h3>\n<p><b>Do I need to know the pressure points first?</b><br>No. The auto-sensing tip responds as it passes over an active point, which is what most people use to find where to work.</p>\n<p><b>How long should a session be?</b><br>Five to fifteen minutes across a few points, once or twice a day. Longer is not better. If a spot goes numb, sore or red, stop and move on.</p>\n<p><b>What is the difference between the heads?</b><br>The fine point concentrates on one spot, the ball and spoon spread the same pressure over a wider area, and the ridged head suits a broad muscle like a calf or a forearm.</p>\n<p><b>Is a battery included?</b><br>No. It takes one standard AA cell, which keeps the pen cheap to run and legal to fly with.</p>\n",
       "vendor": "Trackify",
-      "productType": "Kids & Toddler",
+      "productType": "Beauty & Wellness",
       "tags": [
         "acupoint pen",
         "acupressure pen",
@@ -4801,6 +4792,11 @@
         "wellness gadget"
       ],
       "collections": [
+        {
+          "id": "gid://shopify/Collection/490778951907",
+          "handle": "beauty-wellness",
+          "title": "Beauty & Wellness"
+        },
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
@@ -5377,7 +5373,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-06T18:43:31Z",
       "createdAt": "2026-08-16T17:55:30Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:15:29Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12083713900771",
@@ -5594,13 +5590,18 @@
       "description": "Weight you can feel. Quiet you can wear. Fourteen rectangular beads of polished black tourmaline, three of them faced in mirror steel, strung on a hidden elastic core. No clasp. No logo. Nothing to fasten and nothing to announce. It goes on in one motion and it stays. HIMVOLT is built around a single idea: a physical object on your wrist is a better reminder than a notification. The stone is cool when you put it on and warm within a minute. When you notice that, you notice yourself. That is the whole ritual. Specification Stone: natural black tourmaline, hand-polished to a mirror gloss Accents: three mirror-steel inlay faces, polished steel spacer bars Bead: approx. 10 × 10 mm, softly radiused corners Fit: elastic stretch core, one size, fits approx. 16–21 cm wrists Weight: approx. 40 g — present, never heavy Wear: Mens Care Wipe with a dry cloth. Remove before swimming, showering or the gym — elastic and chlorine are not friends. Roll it on rather than stretching it wide, and it will outlast the habit you bought it for. In the box Bracelet(s), protective pouch, care card. HIMVOLT is jewellery. It is not a medical device and makes no health, therapeutic or diagnostic claims.",
       "descriptionHtml": "<p><strong>Weight you can feel. Quiet you can wear.</strong></p>\n<p>Fourteen rectangular beads of polished black tourmaline, three of them faced in mirror steel, strung on a hidden elastic core. No clasp. No logo. Nothing to fasten and nothing to announce. It goes on in one motion and it stays.</p>\n<p>HIMVOLT is built around a single idea: a physical object on your wrist is a better reminder than a notification. The stone is cool when you put it on and warm within a minute. When you notice that, you notice yourself. That is the whole ritual.</p>\n<h3>Specification</h3>\n<ul>\n<li>\n<strong>Stone:</strong> natural black tourmaline, hand-polished to a mirror gloss</li>\n<li>\n<strong>Accents:</strong> three mirror-steel inlay faces, polished steel spacer bars</li>\n<li>\n<strong>Bead:</strong> approx. 10 × 10 mm, softly radiused corners</li>\n<li>\n<strong>Fit:</strong> elastic stretch core, one size, fits approx. 16–21 cm wrists</li>\n<li>\n<strong>Weight:</strong> approx. 40 g — present, never heavy</li>\n<li>\n<strong>Wear:</strong> Mens</li>\n</ul>\n<h3>Care</h3>\n<p>Wipe with a dry cloth. Remove before swimming, showering or the gym — elastic and chlorine are not friends. Roll it on rather than stretching it wide, and it will outlast the habit you bought it for.</p>\n<h3>In the box</h3>\n<p>Bracelet(s), protective pouch, care card.</p>\n<p><small>HIMVOLT is jewellery. It is not a medical device and makes no health, therapeutic or diagnostic claims.</small></p>",
       "vendor": "Trackify.com",
-      "productType": "Kids & Toddler",
+      "productType": "Stone Jewelry",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
           "title": "Best Seller"
+        },
+        {
+          "id": "gid://shopify/Collection/490778984675",
+          "handle": "stone-jewelry",
+          "title": "Stone Jewelry"
         }
       ],
       "images": [
@@ -5747,7 +5748,7 @@
       "publishedOnline": false,
       "publishedAt": null,
       "createdAt": "2026-08-17T18:46:20Z",
-      "updatedAt": "2026-09-24T07:48:08Z",
+      "updatedAt": "2026-09-24T18:15:43Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12085045461219",
@@ -5879,13 +5880,18 @@
       "description": "Hand-strung hematite beads in a geometric cut, polished to a dark gunmetal shine. The heaviest piece in the collection at 107g — built to be felt, not just seen.",
       "descriptionHtml": "<p>Hand-strung hematite beads in a geometric cut, polished to a dark gunmetal shine. The heaviest piece in the collection at 107g — built to be felt, not just seen.</p>",
       "vendor": "HIMVOLT",
-      "productType": "Bracelet",
+      "productType": "Stone Jewelry",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
           "title": "Best Seller"
+        },
+        {
+          "id": "gid://shopify/Collection/490778984675",
+          "handle": "stone-jewelry",
+          "title": "Stone Jewelry"
         }
       ],
       "images": [
@@ -6010,7 +6016,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:51:23Z",
       "createdAt": "2026-08-23T15:51:20Z",
-      "updatedAt": "2026-09-19T09:53:07Z",
+      "updatedAt": "2026-09-24T18:15:32Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097363902691",
@@ -6243,13 +6249,18 @@
       "description": "A solid hematite band, polished to a dark metallic shine. No plating, no coating — the colour is the stone. Not magnetic; this is the natural, unmodified mineral.",
       "descriptionHtml": "<p>A solid hematite band, polished to a dark metallic shine. No plating, no coating — the colour is the stone. Not magnetic; this is the natural, unmodified mineral.</p>",
       "vendor": "HIMVOLT",
-      "productType": "Bracelet",
+      "productType": "Stone Jewelry",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
           "title": "Best Seller"
+        },
+        {
+          "id": "gid://shopify/Collection/490778984675",
+          "handle": "stone-jewelry",
+          "title": "Stone Jewelry"
         }
       ],
       "images": [
@@ -6374,7 +6385,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:54:11Z",
       "createdAt": "2026-08-23T15:54:07Z",
-      "updatedAt": "2026-09-22T13:49:08Z",
+      "updatedAt": "2026-09-24T18:15:35Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097375731939",
@@ -6774,13 +6785,18 @@
       "description": "A curved hematite band in two finishes: natural non-magnetic hematite, or a man-made magnetic hematite (often called \"hematine\") for the magnetic variants. Natural hematite itself is only weakly magnetic — the strongly magnetic feel in the \"Magnetic\" sizes comes from that man-made version, same as most magnetic hematite jewellery on the market. We would rather tell you that than let you assume otherwise.",
       "descriptionHtml": "<p>A curved hematite band in two finishes: natural non-magnetic hematite, or a man-made magnetic hematite (often called \"hematine\") for the magnetic variants. Natural hematite itself is only weakly magnetic — the strongly magnetic feel in the \"Magnetic\" sizes comes from that man-made version, same as most magnetic hematite jewellery on the market. We would rather tell you that than let you assume otherwise.</p>",
       "vendor": "HIMVOLT",
-      "productType": "Bracelet",
+      "productType": "Stone Jewelry",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
           "title": "Best Seller"
+        },
+        {
+          "id": "gid://shopify/Collection/490778984675",
+          "handle": "stone-jewelry",
+          "title": "Stone Jewelry"
         }
       ],
       "images": [
@@ -6905,7 +6921,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:59:47Z",
       "createdAt": "2026-08-23T15:59:44Z",
-      "updatedAt": "2026-09-19T09:53:08Z",
+      "updatedAt": "2026-09-24T18:15:37Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097393361123",
@@ -7341,13 +7357,18 @@
       "description": "Round hematite beads on a stretch cord, in the stone's natural gunmetal finish or gold-, silver- or rose-gold-plated. Seven bead sizes from a subtle 2mm to a substantial 12mm — the most customizable piece in the collection.",
       "descriptionHtml": "<p>Round hematite beads on a stretch cord, in the stone's natural gunmetal finish or gold-, silver- or rose-gold-plated. Seven bead sizes from a subtle 2mm to a substantial 12mm — the most customizable piece in the collection.</p>",
       "vendor": "HIMVOLT",
-      "productType": "Bracelet",
+      "productType": "Stone Jewelry",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
           "title": "Best Seller"
+        },
+        {
+          "id": "gid://shopify/Collection/490778984675",
+          "handle": "stone-jewelry",
+          "title": "Stone Jewelry"
         }
       ],
       "images": [
@@ -7560,7 +7581,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T16:33:21Z",
       "createdAt": "2026-08-23T16:33:18Z",
-      "updatedAt": "2026-09-19T09:53:09Z",
+      "updatedAt": "2026-09-24T18:15:39Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097481933027",
@@ -8498,13 +8519,18 @@
       "description": "Reclaim Your Edge Confidence Natural Hematite Stone Beaded Stretch Healing Bracelets Gift Jewelry Polished hematite beads on a stretch elastic core, no clasp, no hardware, nothing to break. Metallic gunmetal-black, dense enough to notice the moment you pick it up. Hematite is an iron oxide, one of the most abundant iron ores on Earth, cut and polished here for jewellery rather than industrial use. That iron content is what gives every bead its weight: pick the bracelet up and it sits heavier in the hand than its size suggests, and under the black polish it streaks red-brown when scratched, the same test a mineralogist would use to confirm the real stone rather than dyed glass or resin. At 5.5-6.5 on the Mohs scale, it's roughly as hard as hardened steel, hard enough to take daily knocks against a desk, a doorframe or a dumbbell without dulling, and hard enough that the hand-polished gunmetal finish stays a finish, not a coating that wears through. There's no plating to chip and no coating over the stone: what you see the day it arrives is what you'll still see years in. The build is as low-maintenance as the material: a single stretch elastic core threaded through the beads, no clasp and no sizing chart. Roll it over your hand and forget it's there, it fits a range of wrist sizes without ever needing adjustment, and there's no clasp mechanism to eventually fail. Genuine stone, not imitation: real hematite (iron oxide), verifiable by its red-brown streak, not resin or dyed glass standing in for it. Built to take daily wear: 5.5-6.5 Mohs hardness holds up to knocks, desks and gym bags without dulling the polish. No clasp to break: one stretch elastic core, on in one motion, nothing to fasten or eventually snap. Fits without sizing: the elastic core stretches across a wide range of wrist sizes, so there's no chart to check before you order. Substantial by design: 70g of dense, iron-rich stone on a single strand, present enough to feel deliberate under a cuff. Finish that lasts: hand-polished directly on the stone, with no plating or coating to wear through over time. Pairs with anything black or steel-toned: the gunmetal shine reads as understated metal, so it layers cleanly with a watch or a second bracelet without competing for attention. We describe hematite for what it verifiably is composition, hardness, the streak test, not what it will do for you beyond that. No health claims, just a genuine stone built into a bracelet that's easy to wear every day and hard to wear out.",
       "descriptionHtml": "<p>Reclaim Your Edge Confidence Natural Hematite Stone Beaded Stretch Healing Bracelets Gift Jewelry</p>\n<p>Polished hematite beads on a stretch elastic core, no clasp, no hardware, nothing to break. Metallic gunmetal-black, dense enough to notice the moment you pick it up.</p>\n<p>Hematite is an iron oxide, one of the most abundant iron ores on Earth, cut and polished here for jewellery rather than industrial use. That iron content is what gives every bead its weight: pick the bracelet up and it sits heavier in the hand than its size suggests, and under the black polish it streaks red-brown when scratched, the same test a mineralogist would use to confirm the real stone rather than dyed glass or resin.</p>\n<p>At 5.5-6.5 on the Mohs scale, it's roughly as hard as hardened steel, hard enough to take daily knocks against a desk, a doorframe or a dumbbell without dulling, and hard enough that the hand-polished gunmetal finish stays a finish, not a coating that wears through. There's no plating to chip and no coating over the stone: what you see the day it arrives is what you'll still see years in.</p>\n<p>The build is as low-maintenance as the material: a single stretch elastic core threaded through the beads, no clasp and no sizing chart. Roll it over your hand and forget it's there, it fits a range of wrist sizes without ever needing adjustment, and there's no clasp mechanism to eventually fail.</p>\n<ul>\n<li>\n<strong>Genuine stone, not imitation:</strong> real hematite (iron oxide), verifiable by its red-brown streak, not resin or dyed glass standing in for it.</li>\n<li>\n<strong>Built to take daily wear:</strong> 5.5-6.5 Mohs hardness holds up to knocks, desks and gym bags without dulling the polish.</li>\n<li>\n<strong>No clasp to break:</strong> one stretch elastic core, on in one motion, nothing to fasten or eventually snap.</li>\n<li>\n<strong>Fits without sizing</strong>: the elastic core stretches across a wide range of wrist sizes, so there's no chart to check before you order.</li>\n<li>\n<strong>Substantial by design:</strong> 70g of dense, iron-rich stone on a single strand, present enough to feel deliberate under a cuff.</li>\n<li>\n<strong>Finish that lasts</strong>: hand-polished directly on the stone, with no plating or coating to wear through over time.</li>\n<li>\n<strong>Pairs with anything black or steel-toned</strong>: the gunmetal shine reads as understated metal, so it layers cleanly with a watch or a second bracelet without competing for attention.</li>\n</ul>\n<p>We describe hematite for what it verifiably is composition, hardness, the streak test, not what it will do for you beyond that. No health claims, just a genuine stone built into a bracelet that's easy to wear every day and hard to wear out.</p>",
       "vendor": "HIMVOLT",
-      "productType": "Bracelet",
+      "productType": "Stone Jewelry",
       "tags": [],
       "collections": [
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
           "title": "Best Seller"
+        },
+        {
+          "id": "gid://shopify/Collection/490778984675",
+          "handle": "stone-jewelry",
+          "title": "Stone Jewelry"
         }
       ],
       "images": [
@@ -8806,7 +8832,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-02T09:53:50Z",
       "createdAt": "2026-09-02T09:53:47Z",
-      "updatedAt": "2026-09-19T09:53:06Z",
+      "updatedAt": "2026-09-24T18:15:41Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12133518475491",
@@ -9064,7 +9090,7 @@
       "description": "Polyester canvas, a keychain-sized fold, and a full shopping bag's worth of capacity the moment you shake it open. Built for the errand you didn't plan for — the extra grocery run, the gift that needs carrying, the gym bag that overflowed. Reinforced seams and a durable weave mean this is a bag meant to be unfolded and refolded hundreds of times, not a disposable liner. Dual handles are sized for a comfortable grip by hand or over a shoulder, and it folds back down small enough to clip to a keyring, bag strap, or belt loop. Available in Black, Brown, Wine Red, Army Green, Green, and Khaki — every colorway is the same reinforced build underneath. Ships as one tote bag per order.",
       "descriptionHtml": "<p>Polyester canvas, a keychain-sized fold, and a full shopping bag's worth of capacity the moment you shake it open. Built for the errand you didn't plan for — the extra grocery run, the gift that needs carrying, the gym bag that overflowed.</p>\n<p>Reinforced seams and a durable weave mean this is a bag meant to be unfolded and refolded hundreds of times, not a disposable liner. Dual handles are sized for a comfortable grip by hand or over a shoulder, and it folds back down small enough to clip to a keyring, bag strap, or belt loop.</p>\n<p>Available in Black, Brown, Wine Red, Army Green, Green, and Khaki — every colorway is the same reinforced build underneath. Ships as one tote bag per order.</p>",
       "vendor": "FoldNAway",
-      "productType": "Bags",
+      "productType": "Wallets & Everyday Carry",
       "tags": [],
       "collections": [
         {
@@ -9073,9 +9099,9 @@
           "title": "Best Seller"
         },
         {
-          "id": "gid://shopify/Collection/448151421155",
-          "handle": "smart-travel-bags",
-          "title": "Smart Travel Bags"
+          "id": "gid://shopify/Collection/490778853603",
+          "handle": "everyday-carry",
+          "title": "Wallets & Everyday Carry"
         }
       ],
       "images": [
@@ -9432,7 +9458,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-18T19:03:32Z",
       "createdAt": "2026-09-18T19:03:28Z",
-      "updatedAt": "2026-09-24T04:57:29Z",
+      "updatedAt": "2026-09-24T18:15:09Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12170150838499",
@@ -9737,13 +9763,13 @@
       "description": "Overview Keychain Storage Bag - Compact and versatile design with multiple color options for daily convenience. Specifications Material: Nylon Size: Medium Style: Retro European and American Closure: Drawstring with buckle Shape: Vertical rectangular Hardness: Soft Interior: No inner pockets",
       "descriptionHtml": "<h3>Overview</h3>\n<p style=\"max-width: 100%; width: auto;\">Keychain Storage Bag - Compact and versatile design with multiple color options for daily convenience.</p>\n<p style=\"max-width: 100%; width: auto;\"> </p>\n<h3>Specifications</h3>\n<p style=\"max-width: 100%; width: auto;\">Material: Nylon</p>\n<p style=\"max-width: 100%; width: auto;\">Size: Medium</p>\n<p style=\"max-width: 100%; width: auto;\">Style: Retro European and American</p>\n<p style=\"max-width: 100%; width: auto;\">Closure: Drawstring with buckle</p>\n<p style=\"max-width: 100%; width: auto;\">Shape: Vertical rectangular</p>\n<p style=\"max-width: 100%; width: auto;\">Hardness: Soft</p>\n<p style=\"max-width: 100%; width: auto;\">Interior: No inner pockets</p>\n<p style=\"max-width: 100%; width: auto;\"> </p>\n<div id=\"offer-template-0\" style=\"max-width: 100%; width: auto;\"></div>\n<div style=\"max-width: 100%; width: auto;\">\n<div class=\"rich-text-component\" style=\"padding: 10px; word-break: break-all; white-space: break-spaces; font-family: ali-webfont; zoom: 2; font-size: 0px; box-sizing: border-box; max-width: 100%; width: auto;\"></div>\n<br><br><br><br><br><br><br>\n</div>\n<div style=\"max-width: 100%; width: auto;\"> </div>\n<p style=\"max-width: 100%; width: auto;\"> </p>",
       "vendor": "FoldNAway",
-      "productType": "Bags",
+      "productType": "Wallets & Everyday Carry",
       "tags": [],
       "collections": [
         {
-          "id": "gid://shopify/Collection/448151421155",
-          "handle": "smart-travel-bags",
-          "title": "Smart Travel Bags"
+          "id": "gid://shopify/Collection/490778853603",
+          "handle": "everyday-carry",
+          "title": "Wallets & Everyday Carry"
         }
       ],
       "images": [
@@ -10198,7 +10224,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-22T06:18:42Z",
       "createdAt": "2026-09-22T05:52:35Z",
-      "updatedAt": "2026-09-24T16:56:50Z",
+      "updatedAt": "2026-09-24T18:15:11Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12176922214627",
@@ -10628,167 +10654,6 @@
   ],
   "collections": [
     {
-      "id": "gid://shopify/Collection/448151355619",
-      "handle": "smart-wallet-trackers",
-      "title": "Smart Wallet Trackers",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689752404195",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_9_5.png?v=1744292401",
-        "altText": null,
-        "width": 411,
-        "height": 474
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:00Z",
-      "productIds": [
-        "gid://shopify/Product/8783771533539"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/448151388387",
-      "handle": "rfid-card-holders",
-      "title": "RFID Card Holders",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689752436963",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_10_1.png?v=1740577142",
-        "altText": null,
-        "width": 624,
-        "height": 720
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-22T13:16:55Z",
-      "productIds": [
-        "gid://shopify/Product/8783841493219"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/448151421155",
-      "handle": "smart-travel-bags",
-      "title": "Smart Travel Bags",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689752469731",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_11_3.png?v=1740577154",
-        "altText": null,
-        "width": 624,
-        "height": 720
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-24T04:57:30Z",
-      "productIds": [
-        "gid://shopify/Product/8783842672867",
-        "gid://shopify/Product/9680566649059",
-        "gid://shopify/Product/9686373662947"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/448151453923",
-      "handle": "fingerprint-electronic-lock",
-      "title": "Fingerprint Electronic Lock",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689752502499",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_12_2.png?v=1740577170",
-        "altText": null,
-        "width": 624,
-        "height": 720
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:00Z",
-      "productIds": [
-        "gid://shopify/Product/8783853551843"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/448151486691",
-      "handle": "smart-tag",
-      "title": "Smart Tag",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689752535267",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_14_1.png?v=1740577189",
-        "altText": null,
-        "width": 624,
-        "height": 720
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:00Z",
-      "productIds": [
-        "gid://shopify/Product/8783869280483"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/448158040291",
-      "handle": "emergency-tool-edc-credit-card-multitool",
-      "title": "Emergency Multi Tool Card Kit",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689753649379",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_3951.png?v=1740594697",
-        "altText": null,
-        "width": 1248,
-        "height": 1440
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:00Z",
-      "productIds": [],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/448158105827",
-      "handle": "smart-key-organizer-compact-key-holder",
-      "title": "Smart Key Organizer & Compact Key Holder",
-      "description": "",
-      "descriptionHtml": "",
-      "image": {
-        "id": "gid://shopify/CollectionImage/1689753682147",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Frame_3952_1.png?v=1740594723",
-        "altText": null,
-        "width": 1248,
-        "height": 1440
-      },
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:00Z",
-      "productIds": [
-        "gid://shopify/Product/9603356328163"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
       "id": "gid://shopify/Collection/449724088547",
       "handle": "best-seller",
       "title": "Best Seller",
@@ -10799,7 +10664,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T17:17:27Z",
+      "updatedAt": "2026-09-24T18:15:44Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/8783771533539",
@@ -10820,7 +10685,7 @@
     {
       "id": "gid://shopify/Collection/449903853795",
       "handle": "kits-bundle",
-      "title": "Kits & bundle",
+      "title": "Bundles",
       "description": "",
       "descriptionHtml": "",
       "image": null,
@@ -10828,7 +10693,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-19T07:14:00Z",
+      "updatedAt": "2026-09-24T18:24:05Z",
       "productIds": [
         "gid://shopify/Product/8819139641571",
         "gid://shopify/Product/8819140165859",
@@ -10838,114 +10703,179 @@
       "sortOrder": "BEST_SELLING"
     },
     {
-      "id": "gid://shopify/Collection/450145091811",
-      "handle": "smart-tracker",
-      "title": "SecurePocket Bundle",
-      "description": "",
-      "descriptionHtml": "",
-      "image": null,
+      "id": "gid://shopify/Collection/490778820835",
+      "handle": "smart-trackers",
+      "title": "Smart Trackers",
+      "description": "Slim Bluetooth finders for your wallet, keys and bags — so the things you carry stop going missing.",
+      "descriptionHtml": "<p>Slim Bluetooth finders for your wallet, keys and bags — so the things you carry stop going missing.</p>",
+      "image": {
+        "id": "gid://shopify/CollectionImage/1758033051875",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/IMAGE3.png?v=1790273702",
+        "altText": "Smart Trackers",
+        "width": 1024,
+        "height": 1024
+      },
       "seo": {
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-22T13:16:55Z",
+      "updatedAt": "2026-09-24T18:15:02Z",
       "productIds": [
-        "gid://shopify/Product/8783841493219",
+        "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783869280483",
-        "gid://shopify/Product/9603356328163"
+        "gid://shopify/Product/8819140165859"
       ],
       "sortOrder": "BEST_SELLING"
     },
     {
-      "id": "gid://shopify/Collection/450145419491",
-      "handle": "travel-gear",
-      "title": "Travel Gear",
-      "description": "",
-      "descriptionHtml": "",
-      "image": null,
+      "id": "gid://shopify/Collection/490778853603",
+      "handle": "everyday-carry",
+      "title": "Wallets & Everyday Carry",
+      "description": "Compact wallets, key holders and pocket tools that keep what you carry every day organised and protected.",
+      "descriptionHtml": "<p>Compact wallets, key holders and pocket tools that keep what you carry every day organised and protected.</p>",
+      "image": {
+        "id": "gid://shopify/CollectionImage/1758033084643",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/Rectangle41.png?v=1790273714",
+        "altText": "Wallets & Everyday Carry",
+        "width": 1033,
+        "height": 1007
+      },
       "seo": {
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-19T07:14:01Z",
+      "updatedAt": "2026-09-24T18:15:14Z",
+      "productIds": [
+        "gid://shopify/Product/8783841493219",
+        "gid://shopify/Product/8816700162275",
+        "gid://shopify/Product/9603356328163",
+        "gid://shopify/Product/9680566649059",
+        "gid://shopify/Product/9686373662947"
+      ],
+      "sortOrder": "BEST_SELLING"
+    },
+    {
+      "id": "gid://shopify/Collection/490778919139",
+      "handle": "travel-security",
+      "title": "Travel & Security",
+      "description": "Anti-theft bags, keyless locks and ready-made kits for travelling lighter and safer.",
+      "descriptionHtml": "<p>Anti-theft bags, keyless locks and ready-made kits for travelling lighter and safer.</p>",
+      "image": {
+        "id": "gid://shopify/CollectionImage/1758033117411",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/bags_1.png?v=1790273725",
+        "altText": "Travel & Security",
+        "width": 1033,
+        "height": 1007
+      },
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "updatedAt": "2026-09-24T18:15:25Z",
       "productIds": [
         "gid://shopify/Product/8783842672867",
         "gid://shopify/Product/8783853551843",
-        "gid://shopify/Product/9603356328163"
+        "gid://shopify/Product/8819139641571",
+        "gid://shopify/Product/8819141378275",
+        "gid://shopify/Product/8819143049443"
       ],
       "sortOrder": "BEST_SELLING"
     },
     {
-      "id": "gid://shopify/Collection/450145452259",
-      "handle": "smart-security",
-      "title": "Smart Security",
-      "description": "",
-      "descriptionHtml": "",
-      "image": null,
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:01Z",
-      "productIds": [
-        "gid://shopify/Product/8783853551843"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/450145550563",
-      "handle": "everyday-essentials",
-      "title": "Everyday Essentials",
-      "description": "",
-      "descriptionHtml": "",
-      "image": null,
-      "seo": {
-        "title": null,
-        "description": null
-      },
-      "updatedAt": "2026-09-19T07:14:01Z",
-      "productIds": [
-        "gid://shopify/Product/9603356328163"
-      ],
-      "sortOrder": "BEST_SELLING"
-    },
-    {
-      "id": "gid://shopify/Collection/474794000611",
-      "handle": "sports",
-      "title": "Sports",
-      "description": "",
-      "descriptionHtml": "",
+      "id": "gid://shopify/Collection/490778951907",
+      "handle": "beauty-wellness",
+      "title": "Beauty & Wellness",
+      "description": "Hair care and self-care tools for small daily routines that feel good.",
+      "descriptionHtml": "<p>Hair care and self-care tools for small daily routines that feel good.</p>",
       "image": {
-        "id": "gid://shopify/CollectionImage/1730296578275",
-        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/best-image-for-sports-category.png?v=1786449717",
-        "altText": "",
-        "width": 1248,
-        "height": 832
+        "id": "gid://shopify/CollectionImage/1758033150179",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/f0bffc3a-0e84-4333-bd0d-9691d4b4ad1d.jpg?v=1790273731",
+        "altText": "Beauty & Wellness",
+        "width": 723,
+        "height": 700
       },
       "seo": {
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-19T07:14:01Z",
+      "updatedAt": "2026-09-24T18:15:31Z",
       "productIds": [
-        "gid://shopify/Product/9599352864995"
+        "gid://shopify/Product/10216256372963",
+        "gid://shopify/Product/9605585436899"
       ],
       "sortOrder": "BEST_SELLING"
     },
     {
-      "id": "gid://shopify/Collection/474949320931",
-      "handle": "kids-toddler",
-      "title": "Kids & Toddler",
-      "description": "",
-      "descriptionHtml": "",
-      "image": null,
+      "id": "gid://shopify/Collection/490778984675",
+      "handle": "stone-jewelry",
+      "title": "Stone Jewelry",
+      "description": "Hematite and natural stone bracelets and rings with a clean, understated finish.",
+      "descriptionHtml": "<p>Hematite and natural stone bracelets and rings with a clean, understated finish.</p>",
+      "image": {
+        "id": "gid://shopify/CollectionImage/1758033182947",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/e3368477-3791-431c-99ac-c15d8ad141b3.jpg?v=1790273746",
+        "altText": "Stone Jewelry",
+        "width": 1000,
+        "height": 1000
+      },
       "seo": {
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-20T08:45:57Z",
+      "updatedAt": "2026-09-24T18:15:46Z",
+      "productIds": [
+        "gid://shopify/Product/9606653313251",
+        "gid://shopify/Product/9617569120483",
+        "gid://shopify/Product/9617580785891",
+        "gid://shopify/Product/9617597890787",
+        "gid://shopify/Product/9617681973475",
+        "gid://shopify/Product/9650571346147"
+      ],
+      "sortOrder": "BEST_SELLING"
+    },
+    {
+      "id": "gid://shopify/Collection/490779017443",
+      "handle": "baby-kids",
+      "title": "Baby & Kids",
+      "description": "Thoughtful gear that makes the early years a little easier for parents and little ones.",
+      "descriptionHtml": "<p>Thoughtful gear that makes the early years a little easier for parents and little ones.</p>",
+      "image": {
+        "id": "gid://shopify/CollectionImage/1758033215715",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/1614912163811.jpg?v=1790273750",
+        "altText": "Baby & Kids",
+        "width": 800,
+        "height": 800
+      },
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "updatedAt": "2026-09-24T18:15:50Z",
       "productIds": [
         "gid://shopify/Product/9603256975587"
+      ],
+      "sortOrder": "BEST_SELLING"
+    },
+    {
+      "id": "gid://shopify/Collection/490779050211",
+      "handle": "sports-fitness",
+      "title": "Sports & Fitness",
+      "description": "Training gear that lets you practise on your own time, at your own pace.",
+      "descriptionHtml": "<p>Training gear that lets you practise on your own time, at your own pace.</p>",
+      "image": {
+        "id": "gid://shopify/CollectionImage/1758033248483",
+        "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/collections/tennis_buddy_main.png?v=1790273755",
+        "altText": "Sports & Fitness",
+        "width": 1254,
+        "height": 1254
+      },
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "updatedAt": "2026-09-24T18:15:55Z",
+      "productIds": [
+        "gid://shopify/Product/9599352864995"
       ],
       "sortOrder": "BEST_SELLING"
     }

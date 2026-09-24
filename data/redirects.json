@@ -1,6 +1,20 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T15:53:20.925Z",
+  "updatedAt": "2026-09-24T18:24:04.531Z",
   "products": {},
-  "collections": {}
+  "collections": {
+    "smart-wallet-trackers": "smart-trackers",
+    "smart-tag": "smart-trackers",
+    "smart-tracker": "smart-trackers",
+    "rfid-card-holders": "everyday-carry",
+    "emergency-tool-edc-credit-card-multitool": "everyday-carry",
+    "smart-key-organizer-compact-key-holder": "everyday-carry",
+    "everyday-essentials": "everyday-carry",
+    "smart-travel-bags": "travel-security",
+    "fingerprint-electronic-lock": "travel-security",
+    "travel-gear": "travel-security",
+    "smart-security": "travel-security",
+    "sports": "sports-fitness",
+    "kids-toddler": "baby-kids"
+  }
 }

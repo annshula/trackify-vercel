@@ -48,6 +48,8 @@ type JudgeMeReviewsResponse = {
 
 type JudgeMeProductResponse = {
   product?: {
+    /** Judge.me's own product id — the only key its review endpoints filter by. */
+    id?: number;
     review_number?: number;
     average_rating?: number;
     rating_histogram?: number[]; // index 0 = 1★ … index 4 = 5★, per Judge.me docs
@@ -113,12 +115,22 @@ export const judgeMeReviewProvider: ReviewProvider = {
       distribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } as Record<1 | 2 | 3 | 4 | 5, number>,
     };
 
+    // `/reviews` and `/reviews/count` silently IGNORE a `handle` param and
+    // return the whole store's reviews — every product showed the same list.
+    // They only filter by Judge.me's own product id, so resolve that first
+    // (`/products/-1?handle=` is the documented handle lookup). No id means
+    // Judge.me doesn't know the product: show nothing rather than the store's
+    // reviews under the wrong product.
+    const productRes = await judgeMeFetch<JudgeMeProductResponse>("/products/-1", { handle });
+    const productId = productRes?.product?.id;
+    if (!productId) return empty;
+    const scope = { product_id: String(productId), published: "true" };
+
     const page = options.page ?? 1;
     const params: Record<string, string> = {
-      handle,
+      ...scope,
       page: String(page),
       per_page: String(PAGE_SIZE),
-      published: "true",
     };
     if (options.rating) params.rating = String(options.rating);
 
@@ -128,16 +140,11 @@ export const judgeMeReviewProvider: ReviewProvider = {
     // per-star breakdown across all reviews. `/reviews/count` does, and
     // supports the same `rating` filter, so six cheap count calls (one
     // overall + one per star) replace the unreliable/incomplete fields.
-    const [reviewsRes, productRes, totalCount, ...starCounts] = await Promise.all([
+    const [reviewsRes, totalCount, ...starCounts] = await Promise.all([
       judgeMeFetch<JudgeMeReviewsResponse>("/reviews", params),
-      judgeMeFetch<JudgeMeProductResponse>("/products/-1", { handle }),
-      judgeMeFetch<JudgeMeCountResponse>("/reviews/count", { handle, published: "true" }),
+      judgeMeFetch<JudgeMeCountResponse>("/reviews/count", scope),
       ...([1, 2, 3, 4, 5] as const).map((star) =>
-        judgeMeFetch<JudgeMeCountResponse>("/reviews/count", {
-          handle,
-          published: "true",
-          rating: String(star),
-        }),
+        judgeMeFetch<JudgeMeCountResponse>("/reviews/count", { ...scope, rating: String(star) }),
       ),
     ]);
 
