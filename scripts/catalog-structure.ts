@@ -111,6 +111,6 @@ export const RETIRED_COLLECTIONS: Record<string, string> = {
 
 /** Merchandising collections kept alongside the categories, by handle → title. */
 export const KEPT_COLLECTIONS: Record<string, string> = {
-  "best-seller": "Best Seller",
+  "best-seller": "Best Sellers",
   "kits-bundle": "Bundles",
 };

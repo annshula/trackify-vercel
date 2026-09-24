@@ -56,3 +56,18 @@ export type ShopPdpContent = {
   shippingRegions: string;
   trustPoints: Block[];
 };
+
+export type HomeContent = {
+  /** Collection GID for the featured products rail. */
+  featuredCollection: string;
+  /** Product GID for the spotlight section. */
+  spotlightProduct: string;
+  /** [0] headline + explanation + image, then benefit points. */
+  intro: Block[];
+  differentiators: Block[];
+  /** [0] headline + line + image. */
+  lifestyle: Block[];
+  /** [0] headline + 2–4 sentences + image. */
+  story: Block[];
+  faq: Faq[];
+};

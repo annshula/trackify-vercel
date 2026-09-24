@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
       // Judge.me-hosted customer review photos/videos (services/reviews/judgeme.ts).
       { protocol: "https", hostname: "cdn.judge.me" },
       { protocol: "https", hostname: "judgeme.imgix.net" },
+      // Photos on reviews written on this store (Judge.me's "web" source).
+      { protocol: "https", hostname: "review-images.judgeme.com" },
       // Reviews imported from AliExpress (Judge.me's "aliexpress" source)
       // keep the original AliExpress-hosted photo URLs rather than re-hosting.
       { protocol: "https", hostname: "ae-pic-a1.aliexpress-media.com" },

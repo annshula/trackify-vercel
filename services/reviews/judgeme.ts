@@ -68,7 +68,11 @@ function env(): { shopDomain: string; apiToken: string } | null {
 function mapReview(raw: JudgeMeReview): Review {
   const attachments = (raw.pictures ?? [])
     .map((pic) => pic.urls?.huge ?? pic.urls?.original ?? pic.urls?.compact ?? pic.urls?.small)
-    .filter((url): url is string => Boolean(url));
+    .filter((url): url is string => Boolean(url))
+    // Reviews imported from AliExpress link photos on ae01.alicdn.com, which
+    // often doesn't connect at all; the same /kf/ files are served by
+    // AliExpress's other image host, which does.
+    .map((url) => url.replace(/^https:\/\/ae01\.alicdn\.com\/kf\//, "https://ae-pic-a1.aliexpress-media.com/kf/"));
 
   return {
     id: String(raw.id),
@@ -180,3 +184,59 @@ export const judgeMeReviewProvider: ReviewProvider = {
     return { reviews, total, average, distribution };
   },
 };
+
+/** A review from anywhere in the store, with the product it's about. */
+export type StoreReview = Review & {
+  /** Shopify product id (numeric) — matches the catalog's `gid://shopify/Product/<id>`. */
+  productExternalId: number | null;
+  productTitle: string | null;
+  /** Merchant pinned or featured it in Judge.me — preferred for homepage picks. */
+  highlighted: boolean;
+  /** Where Judge.me got it: "web" (written on this store), "aliexpress" (imported), … */
+  source: string | null;
+};
+
+type JudgeMeStoreReview = JudgeMeReview & {
+  product_external_id?: number | null;
+  product_title?: string | null;
+  featured?: boolean;
+  pinned?: boolean;
+  source?: string | null;
+};
+
+/**
+ * Store-wide review aggregate plus the most recent published reviews, for the
+ * homepage. The aggregate is computed from Judge.me's own per-star counts —
+ * never estimated — and `null` when the store has no reviews or Judge.me
+ * isn't configured, so the page hides social proof instead of faking it.
+ */
+export async function getStoreReviewHighlights(): Promise<{
+  total: number;
+  average: number;
+  reviews: StoreReview[];
+} | null> {
+  const [list, ...starCounts] = await Promise.all([
+    judgeMeFetch<{ reviews: JudgeMeStoreReview[] }>("/reviews", { published: "true", per_page: "100" }),
+    ...([1, 2, 3, 4, 5] as const).map((star) =>
+      judgeMeFetch<JudgeMeCountResponse>("/reviews/count", { published: "true", rating: String(star) }),
+    ),
+  ]);
+  if (!list) return null;
+
+  const counts = starCounts.map((res) => res?.count ?? 0);
+  const total = counts.reduce((sum, n) => sum + n, 0);
+  if (total === 0) return null;
+  const average = counts.reduce((sum, n, i) => sum + n * (i + 1), 0) / total;
+
+  const reviews = list.reviews
+    .filter((raw) => raw.curated !== "spam")
+    .map((raw) => ({
+      ...mapReview(raw),
+      productExternalId: raw.product_external_id ?? null,
+      productTitle: raw.product_title ?? null,
+      highlighted: Boolean(raw.featured || raw.pinned),
+      source: raw.source ?? null,
+    }));
+
+  return { total, average, reviews };
+}

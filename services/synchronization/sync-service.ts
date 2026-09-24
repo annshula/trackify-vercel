@@ -11,7 +11,7 @@ import type {
   BlogCatalog,
   BlogSyncStats,
 } from "@/types/blog";
-import type { ShopCatalog, ShopPdpContent, ShopSyncStats, ShopTrustPoint } from "@/types/shop";
+import type { ShopCatalog, ShopContentBlock, ShopHomeContent, ShopPdpContent, ShopSyncStats } from "@/types/shop";
 import { adminRequest, paginateAdmin } from "@/lib/shopify/admin";
 import { storefrontRequest } from "@/lib/shopify/storefront";
 import {
@@ -577,48 +577,103 @@ type ShopContactQueryResult = {
   };
 };
 
+type ShopMetaobjectNode = {
+  id: string;
+  fields?: {
+    key: string;
+    value: string | null;
+    reference?: { image?: { url: string; width: number | null; height: number | null; altText: string | null } | null } | null;
+  }[];
+} | null;
+
 /**
- * Shop `custom.*` metafields -> ShopPdpContent. Unset strings stay null so the
- * PDP hides the row; trust points resolve through the same metaobject batch
- * query products use.
+ * Shop `custom.*` metafields -> the PDP's store-wide content and the
+ * homepage's content. Unset strings stay null and unset lists stay empty so
+ * the storefront hides the matching section instead of guessing. Every
+ * metaobject list resolves through the same batch query products use.
  */
-async function fetchShopPdpContent(): Promise<ShopPdpContent> {
+async function fetchShopContent(): Promise<{ pdp: ShopPdpContent; home: ShopHomeContent }> {
   const { shop } = await adminRequest<{
     shop: { metafields: { nodes: { key: string; value: string }[] } };
   }>({ query: SHOP_PDP_QUERY });
   const value = (key: string) =>
     shop.metafields.nodes.find((node) => node.key === key)?.value.trim() || null;
-
-  let trustIds: string[] = [];
-  try {
-    const parsed: unknown = JSON.parse(value("trust_points") ?? "[]");
-    if (Array.isArray(parsed)) trustIds = parsed.filter((id): id is string => typeof id === "string");
-  } catch {
-    // Malformed list — render no trust points rather than fail the sync.
-  }
-
-  const trustPoints: ShopTrustPoint[] = [];
-  if (trustIds.length) {
-    const data = await adminRequest<{
-      nodes: ({ id: string; fields?: { key: string; value: string | null }[] } | null)[];
-    }>({ query: METAOBJECTS_BY_IDS_QUERY, variables: { ids: trustIds } });
-    for (const node of data.nodes) {
-      const field = (key: string) => node?.fields?.find((f) => f.key === key)?.value ?? null;
-      const label = field("label");
-      const body = field("body");
-      if (label && body) trustPoints.push({ icon: field("icon"), label, body });
+  const ids = (key: string): string[] => {
+    try {
+      const parsed: unknown = JSON.parse(value(key) ?? "[]");
+      return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string") : [];
+    } catch {
+      return []; // Malformed list — render nothing rather than fail the sync.
     }
+  };
+
+  const lists = {
+    trust: ids("trust_points"),
+    intro: ids("home_intro"),
+    differentiators: ids("home_differentiators"),
+    lifestyle: ids("home_lifestyle"),
+    story: ids("home_story"),
+    faq: ids("home_faq"),
+  };
+  const allIds = [...new Set(Object.values(lists).flat())];
+  const index = new Map<string, NonNullable<ShopMetaobjectNode>>();
+  if (allIds.length) {
+    const data = await adminRequest<{ nodes: ShopMetaobjectNode[] }>({
+      query: METAOBJECTS_BY_IDS_QUERY,
+      variables: { ids: allIds },
+    });
+    for (const node of data.nodes) if (node?.id) index.set(node.id, node);
   }
+  const field = (node: NonNullable<ShopMetaobjectNode>, key: string) =>
+    node.fields?.find((f) => f.key === key);
+
+  const blocks = (list: string[]): ShopContentBlock[] =>
+    list.flatMap((id) => {
+      const node = index.get(id);
+      if (!node) return [];
+      const label = field(node, "label")?.value;
+      const body = field(node, "body")?.value;
+      if (!label || !body) return [];
+      const image = field(node, "image")?.reference?.image;
+      return [
+        {
+          icon: field(node, "icon")?.value ?? null,
+          label,
+          body,
+          image: image?.url
+            ? { url: image.url, width: image.width ?? null, height: image.height ?? null, altText: image.altText ?? null }
+            : null,
+        },
+      ];
+    });
+
+  const faq = lists.faq.flatMap((id) => {
+    const node = index.get(id);
+    const question = node && field(node, "question")?.value;
+    const answer = node && field(node, "answer")?.value;
+    return question && answer ? [{ question, answer }] : [];
+  });
 
   return {
-    announcement: value("announcement"),
-    shipping: {
-      processingTime: value("shipping_processing_time"),
-      deliveryEstimate: value("shipping_delivery_estimate"),
-      costNote: value("shipping_cost_note"),
-      regions: value("shipping_regions"),
+    pdp: {
+      announcement: value("announcement"),
+      shipping: {
+        processingTime: value("shipping_processing_time"),
+        deliveryEstimate: value("shipping_delivery_estimate"),
+        costNote: value("shipping_cost_note"),
+        regions: value("shipping_regions"),
+      },
+      trustPoints: blocks(lists.trust).map(({ icon, label, body }) => ({ icon, label, body })),
     },
-    trustPoints,
+    home: {
+      featuredCollectionId: value("home_featured_collection"),
+      spotlightProductId: value("home_spotlight_product"),
+      intro: blocks(lists.intro),
+      differentiators: blocks(lists.differentiators),
+      lifestyle: blocks(lists.lifestyle),
+      story: blocks(lists.story),
+      faq,
+    },
   };
 }
 
@@ -667,9 +722,9 @@ export async function fullSyncShopContent(
         };
       });
 
-    report("Fetching store-wide PDP content…");
-    const pdp = await fetchShopPdpContent().catch((error) => {
-      warnings.push(`Store PDP content: ${(error as Error).message}`);
+    report("Fetching store-wide page content…");
+    const content = await fetchShopContent().catch((error) => {
+      warnings.push(`Store page content: ${(error as Error).message}`);
       return undefined;
     });
 
@@ -678,7 +733,7 @@ export async function fullSyncShopContent(
       generatedAt: new Date().toISOString(),
       contact,
       policies,
-      ...(pdp ? { pdp } : {}),
+      ...(content ? { pdp: content.pdp, home: content.home } : {}),
     };
 
     report("Writing data/shop.json…");

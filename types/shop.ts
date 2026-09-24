@@ -62,6 +62,32 @@ export type ShopPdpContent = {
   trustPoints: ShopTrustPoint[];
 };
 
+/** A `feature_highlight` metaobject as rendered on content pages. */
+export type ShopContentBlock = {
+  icon: string | null;
+  label: string;
+  body: string;
+  image: { url: string; width: number | null; height: number | null; altText: string | null } | null;
+};
+
+/**
+ * Homepage content from shop metafields `custom.home_*` (pushed from
+ * scripts/pdp-content/_shop.ts). Product/collection references stay as GIDs
+ * and are resolved against the synced catalog at render time.
+ */
+export type ShopHomeContent = {
+  featuredCollectionId: string | null;
+  spotlightProductId: string | null;
+  /** [0] headline + explanation + image, then benefit points. */
+  intro: ShopContentBlock[];
+  differentiators: ShopContentBlock[];
+  /** [0] only. */
+  lifestyle: ShopContentBlock[];
+  /** [0] only. */
+  story: ShopContentBlock[];
+  faq: { question: string; answer: string }[];
+};
+
 export type ShopCatalog = {
   version: number;
   generatedAt: string;
@@ -69,6 +95,8 @@ export type ShopCatalog = {
   policies: ShopPolicies;
   /** Optional so shop.json files written before it existed still load. */
   pdp?: ShopPdpContent;
+  /** Optional for the same reason as `pdp`. */
+  home?: ShopHomeContent;
 };
 
 export type ShopSyncStats = {

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T18:24:22.141Z",
+  "generatedAt": "2026-09-24T18:49:35.883Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -25,7 +25,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         }
       ],
       "images": [
@@ -602,7 +602,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778820835",
@@ -921,7 +921,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778853603",
@@ -1418,7 +1418,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778919139",
@@ -1999,7 +1999,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778919139",
@@ -4800,7 +4800,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         }
       ],
       "images": [
@@ -5596,7 +5596,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778984675",
@@ -5886,7 +5886,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778984675",
@@ -6255,7 +6255,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778984675",
@@ -6791,7 +6791,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778984675",
@@ -7363,7 +7363,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778984675",
@@ -8525,7 +8525,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778984675",
@@ -9096,7 +9096,7 @@
         {
           "id": "gid://shopify/Collection/449724088547",
           "handle": "best-seller",
-          "title": "Best Seller"
+          "title": "Best Sellers"
         },
         {
           "id": "gid://shopify/Collection/490778853603",
@@ -10656,7 +10656,7 @@
     {
       "id": "gid://shopify/Collection/449724088547",
       "handle": "best-seller",
-      "title": "Best Seller",
+      "title": "Best Sellers",
       "description": "",
       "descriptionHtml": "",
       "image": null,
@@ -10664,7 +10664,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:44Z",
+      "updatedAt": "2026-09-24T18:48:47Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/8783771533539",

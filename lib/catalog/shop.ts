@@ -11,8 +11,19 @@ declare global {
   var __tfShopRepository: JsonShopRepository | undefined;
 }
 
-// Survives dev-server hot reloads so the in-memory shop catalog is not rebuilt per edit.
-const shopRepositoryInstance = globalThis.__tfShopRepository ?? new JsonShopRepository();
+// Survives dev-server hot reloads (and is shared between the page and API
+// route bundles, which each load their own copy of the class) so every caller
+// sees — and invalidates — the same in-memory shop catalog. Replaced only when
+// it predates a method the current class has; reusing it then would fail with
+// e.g. "getHomeContent is not a function". Not `instanceof`: separate bundles
+// have separate class identities, which would split the cache per bundle.
+const cached = globalThis.__tfShopRepository;
+const isCurrent =
+  cached !== undefined &&
+  Object.getOwnPropertyNames(JsonShopRepository.prototype).every(
+    (method) => typeof (cached as unknown as Record<string, unknown>)[method] === "function",
+  );
+const shopRepositoryInstance = isCurrent ? cached : new JsonShopRepository();
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.__tfShopRepository = shopRepositoryInstance;

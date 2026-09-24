@@ -1,5 +1,15 @@
 import 'server-only';
-import type { ShopCatalog, ShopContact, ShopPdpContent, ShopPolicies } from '@/types/shop';
+import type { ShopCatalog, ShopContact, ShopHomeContent, ShopPdpContent, ShopPolicies } from '@/types/shop';
+
+const EMPTY_HOME: ShopHomeContent = {
+  featuredCollectionId: null,
+  spotlightProductId: null,
+  intro: [],
+  differentiators: [],
+  lifestyle: [],
+  story: [],
+  faq: [],
+};
 
 const EMPTY_PDP: ShopPdpContent = {
   announcement: null,
@@ -38,6 +48,8 @@ export interface ShopRepository {
   getPolicies(): Promise<ShopPolicies>;
   /** Store-wide PDP content; empty (never defaulted) when shop.json predates it. */
   getPdpContent(): Promise<ShopPdpContent>;
+  /** Homepage content; empty (never defaulted) when shop.json predates it. */
+  getHomeContent(): Promise<ShopHomeContent>;
 
   /** Write path — used by sync only. */
   replaceCatalog(catalog: ShopCatalog): Promise<void>;
@@ -88,6 +100,11 @@ export class JsonShopRepository implements ShopRepository {
   async getPdpContent(): Promise<ShopPdpContent> {
     const catalog = await this.#load();
     return catalog.pdp ?? EMPTY_PDP;
+  }
+
+  async getHomeContent(): Promise<ShopHomeContent> {
+    const catalog = await this.#load();
+    return catalog.home ?? EMPTY_HOME;
   }
 
   async replaceCatalog(catalog: ShopCatalog): Promise<void> {

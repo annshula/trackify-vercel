@@ -193,6 +193,25 @@ async function main(): Promise<void> {
       { ownerId, namespace: "custom", key: "trust_points", type: ref, value: list(trust) },
     ]);
     success("Shop: metafields set");
+
+    const { homeContent: home } = await import("./pdp-content/_shop");
+    const [intro, diffs, life, story, homeFaq] = await Promise.all([
+      blocks("home-intro", home.intro),
+      blocks("home-diff", home.differentiators),
+      blocks("home-life", home.lifestyle),
+      blocks("home-story", home.story),
+      faqs("home-faq", home.faq),
+    ]);
+    await setMetafields([
+      { ownerId, namespace: "custom", key: "home_featured_collection", type: "collection_reference", value: home.featuredCollection },
+      { ownerId, namespace: "custom", key: "home_spotlight_product", type: "product_reference", value: home.spotlightProduct },
+      { ownerId, namespace: "custom", key: "home_intro", type: ref, value: list(intro) },
+      { ownerId, namespace: "custom", key: "home_differentiators", type: ref, value: list(diffs) },
+      { ownerId, namespace: "custom", key: "home_lifestyle", type: ref, value: list(life) },
+      { ownerId, namespace: "custom", key: "home_story", type: ref, value: list(story) },
+      { ownerId, namespace: "custom", key: "home_faq", type: ref, value: list(homeFaq) },
+    ]);
+    success("Home: metafields set");
   }
 
   console.log(`\n${colors.dim}Next: npm run shopify:sync && npm run shopify:sync-shop${colors.reset}`);
