@@ -85,6 +85,9 @@ export function ReviewGallery({
     [data.reviews],
   );
   const visibleReviews = photoOnly ? photoReviews : data.reviews;
+  // Flat photo list across the current page, in review order — powers the
+  // lightbox so opening one review's photo lets you arrow through every
+  // photo on the page, not just that review's own attachments.
   const allAttachments = React.useMemo(
     () => data.reviews.flatMap((r) => r.attachments),
     [data.reviews],
@@ -190,30 +193,7 @@ export function ReviewGallery({
           )}
         </div>
 
-        {/* Photo strip — every customer attachment across the current page, at a glance */}
         <div ref={listRef} className="min-w-0">
-          {allAttachments.length > 0 && !photoOnly && (
-            <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
-              {allAttachments.slice(0, 12).map((src, i) => (
-                <button
-                  key={`${src}-${i}`}
-                  type="button"
-                  onClick={() => openLightbox(src)}
-                  aria-label="Open customer photo"
-                  className="group relative size-16 shrink-0 overflow-hidden rounded-md border border-line bg-surface-sunken"
-                >
-                  <Image
-                    src={src}
-                    alt="Customer photo"
-                    fill
-                    sizes="64px"
-                    className="object-cover transition-transform duration-200 group-hover:scale-105"
-                  />
-                </button>
-              ))}
-            </div>
-          )}
-
           <ul
             className={cn(
               "divide-y divide-line transition-opacity",
