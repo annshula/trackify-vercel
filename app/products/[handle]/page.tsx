@@ -118,19 +118,24 @@ export default async function ProductPage({ params }: PageProps) {
             <BuyBox product={product} />
           </Suspense>
         </div>
+
+        {/* Reviews — the 2nd section, immediately after the buy box. Kept at
+            the measured container width (not full-bleed like ProductSpecs)
+            since review text needs a readable line length. */}
+        <Suspense fallback={null}>
+          <Reviews product={product} />
+        </Suspense>
       </div>
 
       {/* Story — full-bleed by design: each spec is a full-width visual
           moment, which is only possible outside container-page. */}
       <ProductSpecs product={product} />
 
-      {/* Detail — back to a measured column. Long-form prose and review text
-          need a readable line length, not the full viewport width. */}
+      {/* Detail — back to a measured column. */}
       <div className="container-page pb-20">
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-14">
           <div className="lg:col-span-7">
             <ProductDetails product={product} />
-            <Reviews product={product} />
           </div>
         </div>
       </div>
