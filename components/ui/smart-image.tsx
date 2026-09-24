@@ -23,11 +23,20 @@ import { cn } from "@/lib/utils/cn";
  */
 export function SmartImage({
   showLoader = true,
+  wrapperClassName,
   className,
   onLoad,
   style,
   ...props
-}: ImageProps & { showLoader?: boolean }) {
+}: ImageProps & {
+  showLoader?: boolean;
+  /**
+   * Classes for the wrapper span. A `fill` wrapper sits in normal flow, so a
+   * second `fill` image stacked in the same box (e.g. a hover swap) needs
+   * `absolute inset-0` here — otherwise the two wrappers split the height.
+   */
+  wrapperClassName?: string;
+}) {
   const [loaded, setLoaded] = React.useState(false);
   // Base64 data URLs never need a loading state — they're already inline.
   const isDataUrl = typeof props.src === "string" && props.src.startsWith("data:");
@@ -46,6 +55,7 @@ export function SmartImage({
       className={cn(
         "relative block",
         props.fill ? "size-full" : "inline-block",
+        wrapperClassName,
       )}
       style={props.fill ? undefined : style}
     >

@@ -9,7 +9,7 @@ import { noIndex } from '@/lib/seo/metadata';
 import { Breadcrumb, EmptyState, SectionHeading } from '@/components/ui/primitives';
 import { ButtonLink } from '@/components/ui/button';
 import { ProductGrid } from '@/components/product/product-card';
-import { ActiveFilterChips, FilterControls, FilterSidebar } from '@/components/collection/filter-panel';
+import { ActiveFilterChips, FilterControls } from '@/components/collection/filter-panel';
 import { Pagination } from '@/components/collection/pagination';
 import { SearchIcon } from '@/components/ui/icons';
 
@@ -96,9 +96,6 @@ export default async function SearchPage({ searchParams }: PageProps) {
           </Suspense>
 
           <div className="flex gap-10">
-            <Suspense fallback={null}>
-              <FilterSidebar facets={results.facets} activeCount={activeCount} />
-            </Suspense>
 
             <div className="min-w-0 flex-1">
               <Suspense fallback={null}>

@@ -1,4 +1,6 @@
-import type { Catalog, CatalogProduct } from "@/types/catalog";
+import type { Catalog, CatalogPdpContent, CatalogProduct } from "@/types/catalog";
+
+const list = <T,>(value: T[] | undefined): T[] => (Array.isArray(value) ? value : []);
 
 /**
  * Storage → memory coercion for the synchronized catalog.
@@ -25,6 +27,23 @@ export function hydrateCatalogProduct(product: CatalogProduct): CatalogProduct {
     featureHighlights: Array.isArray(product.featureHighlights)
       ? product.featureHighlights
       : [],
+    comparisonTable: Array.isArray(product.comparisonTable)
+      ? product.comparisonTable
+      : [],
+    pdp: hydratePdp(product.pdp),
+  };
+}
+
+/** Same rule as above: a missing section means "no content", never invented copy. */
+function hydratePdp(pdp: Partial<CatalogPdpContent> | undefined): CatalogPdpContent {
+  return {
+    benefits: list(pdp?.benefits),
+    story: list(pdp?.story),
+    howItWorks: list(pdp?.howItWorks),
+    useCases: list(pdp?.useCases),
+    whatsIncluded: list(pdp?.whatsIncluded),
+    faq: list(pdp?.faq),
+    demoVideo: pdp?.demoVideo ?? null,
   };
 }
 

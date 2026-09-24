@@ -86,7 +86,7 @@ const PRODUCT_FIELDS = /* GraphQL */ `
         title
       }
     }
-    metafields(first: 15) {
+    metafields(first: 40) {
       nodes {
         namespace
         key
@@ -164,6 +164,19 @@ export const PRODUCT_BY_ID_QUERY = /* GraphQL */ `
 export const METAOBJECTS_BY_IDS_QUERY = /* GraphQL */ `
   query MetaobjectsByIds($ids: [ID!]!) {
     nodes(ids: $ids) {
+      ... on Video {
+        id
+        sources {
+          url
+          mimeType
+          format
+        }
+        preview {
+          image {
+            url
+          }
+        }
+      }
       ... on Metaobject {
         id
         fields {
@@ -352,6 +365,20 @@ export const SHOP_QUERY = /* GraphQL */ `
       name
       myshopifyDomain
       currencyCode
+    }
+  }
+`;
+
+/** Store-wide PDP content: announcement, shipping facts, trust point references. */
+export const SHOP_PDP_QUERY = /* GraphQL */ `
+  query ShopPdp {
+    shop {
+      metafields(namespace: "custom", first: 20) {
+        nodes {
+          key
+          value
+        }
+      }
     }
   }
 `;

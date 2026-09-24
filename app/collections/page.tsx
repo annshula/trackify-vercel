@@ -21,8 +21,7 @@ import { ProductGrid } from "@/components/product/product-card";
 import {
   ActiveFilterChips,
   FilterControls,
-  FilterSidebar,
-} from "@/components/collection/filter-panel";
+  } from "@/components/collection/filter-panel";
 import { Pagination } from "@/components/collection/pagination";
 import { DragScroll } from "@/components/ui/drag-scroll";
 import { GridIcon } from "@/components/ui/icons";
@@ -171,9 +170,6 @@ export default async function CollectionsPage({ searchParams }: PageProps) {
         </Suspense>
 
         <div className="flex gap-10">
-          <Suspense fallback={null}>
-            <FilterSidebar facets={page.facets} activeCount={activeCount} />
-          </Suspense>
 
           <div className="min-w-0 flex-1">
             <Suspense fallback={null}>

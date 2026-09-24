@@ -1,8 +1,11 @@
 import type {
   CatalogCollection,
+  CatalogComparisonRow,
+  CatalogFaqItem,
   CatalogFeatureHighlight,
   CatalogImage,
   CatalogMedia,
+  CatalogPdpContent,
   CatalogProduct,
   CatalogProductSpec,
   CatalogSpecVideo,
@@ -95,6 +98,9 @@ type AdminMetaobjectRef = {
     value: string | null;
     reference?: AdminMetaobjectFileRef | null;
   }[];
+  /** Set when the node is a Video file (`custom.demo_video`) rather than a metaobject. */
+  sources?: { url: string; mimeType: string; format: string }[] | null;
+  preview?: { image?: { url?: string | null } | null } | null;
 };
 
 type AdminMetafieldNode = {
@@ -288,15 +294,33 @@ function parseGidList(value: string | undefined): string[] {
 }
 
 /**
- * Every metaobject GID a product's spec/feature metafields point at, so the
- * sync can batch-resolve them in one request before normalizing.
+ * Every metaobject GID a product's spec/feature/comparison metafields point
+ * at, so the sync can batch-resolve them in one request before normalizing.
  */
 export function referencedMetaobjectIds(node: AdminProductNode): string[] {
   const nodes = node.metafields?.nodes ?? [];
-  return ["specs", "feature_highlights"].flatMap((key) =>
+  const lists = [
+    "specs",
+    "feature_highlights",
+    "comparison_table",
+    ...PDP_BLOCK_KEYS.map(([key]) => key),
+    "faq",
+  ].flatMap((key) =>
     parseGidList(nodes.find((n) => n.namespace === "custom" && n.key === key)?.value),
   );
+  // The demo video is a single file reference, resolved by the same batch.
+  const demo = nodes.find((n) => n.namespace === "custom" && n.key === "demo_video")?.value;
+  return demo?.startsWith("gid://") ? [...lists, demo] : lists;
 }
+
+/** Product metafields that hold `feature_highlight` lists, and where each lands in CatalogPdpContent. */
+const PDP_BLOCK_KEYS = [
+  ["benefits", "benefits"],
+  ["story", "story"],
+  ["how_it_works", "howItWorks"],
+  ["use_cases", "useCases"],
+  ["whats_included", "whatsIncluded"],
+] as const;
 
 /** Plain lookup of a metaobject's own fields by key, tolerating nulls. */
 function fieldValue(metaobject: AdminMetaobjectRef, key: string): string | null {
@@ -401,6 +425,92 @@ function normalizeSpecsAndFeatures(
   return { specs, featureHighlights };
 }
 
+/**
+ * Resolves the `custom.comparison_table` (comparison_row) metaobject list —
+ * the "this product vs. others" feature table a merchant sets per product.
+ * Rows missing any of the three fields are dropped rather than rendered with
+ * a blank cell.
+ */
+function normalizeComparisonTable(
+  nodes: AdminMetafieldNode[],
+  metaobjects: MetaobjectIndex,
+): CatalogComparisonRow[] {
+  const refs = parseGidList(
+    nodes.find((n) => n.namespace === "custom" && n.key === "comparison_table")?.value,
+  )
+    .map((gid) => metaobjects.get(gid))
+    .filter((entry): entry is AdminMetaobjectRef => entry !== undefined);
+
+  return refs
+    .filter(
+      (ref) =>
+        fieldValue(ref, "feature") &&
+        fieldValue(ref, "us_value") &&
+        fieldValue(ref, "others_value"),
+    )
+    .map((ref) => ({
+      feature: fieldValue(ref, "feature")!,
+      usValue: fieldValue(ref, "us_value")!,
+      othersValue: fieldValue(ref, "others_value")!,
+    }));
+}
+
+/** A resolved `feature_highlight` metaobject -> render-ready block, or null when incomplete. */
+function toFeatureHighlight(
+  ref: AdminMetaobjectRef,
+  imageMap: Map<string, CatalogImage>,
+): CatalogFeatureHighlight | null {
+  const label = fieldValue(ref, "label");
+  const body = fieldValue(ref, "body");
+  if (!label || !body) return null;
+  return {
+    icon: fieldValue(ref, "icon"),
+    label,
+    body,
+    image: specImage(ref, "image", imageMap),
+    video: specVideo(ref, "video"),
+  };
+}
+
+/**
+ * Resolves the PDP section metafields (see CatalogPdpContent). Same rules as
+ * specs/features: incomplete entries are dropped, unresolved references are
+ * skipped, and an unset metafield yields an empty section.
+ */
+function normalizePdpContent(
+  nodes: AdminMetafieldNode[],
+  imageMap: Map<string, CatalogImage>,
+  metaobjects: MetaobjectIndex,
+): CatalogPdpContent {
+  const resolve = (key: string): AdminMetaobjectRef[] =>
+    parseGidList(nodes.find((n) => n.namespace === "custom" && n.key === key)?.value)
+      .map((gid) => metaobjects.get(gid))
+      .filter((entry): entry is AdminMetaobjectRef => entry !== undefined);
+
+  const blocks = (key: string) =>
+    resolve(key)
+      .map((ref) => toFeatureHighlight(ref, imageMap))
+      .filter((block): block is CatalogFeatureHighlight => block !== null);
+
+  const faq: CatalogFaqItem[] = resolve("faq").flatMap((ref) => {
+    const question = fieldValue(ref, "question");
+    const answer = fieldValue(ref, "answer");
+    return question && answer ? [{ question, answer }] : [];
+  });
+
+  const demoId = nodes.find((n) => n.namespace === "custom" && n.key === "demo_video")?.value;
+  const demo = demoId ? metaobjects.get(demoId) : undefined;
+  const demoVideo: CatalogSpecVideo | null = demo?.sources?.length
+    ? { id: demo.id, sources: demo.sources, previewUrl: demo.preview?.image?.url ?? null }
+    : null;
+
+  const content = Object.fromEntries(
+    PDP_BLOCK_KEYS.map(([key, field]) => [field, blocks(key)]),
+  ) as Pick<CatalogPdpContent, (typeof PDP_BLOCK_KEYS)[number][1]>;
+
+  return { ...content, faq, demoVideo };
+}
+
 function normalizeVariant(
   node: AdminVariantNode,
   currencyCode: string,
@@ -488,6 +598,10 @@ export function normalizeProduct(
     imageMap,
     metaobjects,
   );
+  const comparisonTable = normalizeComparisonTable(
+    node.metafields?.nodes ?? [],
+    metaobjects,
+  );
 
   return {
     id: node.id,
@@ -538,6 +652,8 @@ export function normalizeProduct(
     metafields: normalizeMetafields(node.metafields?.nodes ?? []),
     specs,
     featureHighlights,
+    comparisonTable,
+    pdp: normalizePdpContent(node.metafields?.nodes ?? [], imageMap, metaobjects),
     totalInventory: node.totalInventory ?? null,
   };
 }

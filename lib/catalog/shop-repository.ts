@@ -1,5 +1,11 @@
 import 'server-only';
-import type { ShopCatalog, ShopContact, ShopPolicies } from '@/types/shop';
+import type { ShopCatalog, ShopContact, ShopPdpContent, ShopPolicies } from '@/types/shop';
+
+const EMPTY_PDP: ShopPdpContent = {
+  announcement: null,
+  shipping: { processingTime: null, deliveryEstimate: null, costNote: null, regions: null },
+  trustPoints: [],
+};
 import { SHOP_PATH, readJsonFile, withMutex, writeJsonFileAtomic } from './storage';
 
 const EMPTY_SHOP_CATALOG: ShopCatalog = {
@@ -30,6 +36,8 @@ export interface ShopRepository {
   getCatalogMeta(): Promise<Pick<ShopCatalog, 'version' | 'generatedAt'>>;
   getContact(): Promise<ShopContact>;
   getPolicies(): Promise<ShopPolicies>;
+  /** Store-wide PDP content; empty (never defaulted) when shop.json predates it. */
+  getPdpContent(): Promise<ShopPdpContent>;
 
   /** Write path — used by sync only. */
   replaceCatalog(catalog: ShopCatalog): Promise<void>;
@@ -75,6 +83,11 @@ export class JsonShopRepository implements ShopRepository {
   async getPolicies(): Promise<ShopPolicies> {
     const catalog = await this.#load();
     return catalog.policies;
+  }
+
+  async getPdpContent(): Promise<ShopPdpContent> {
+    const catalog = await this.#load();
+    return catalog.pdp ?? EMPTY_PDP;
   }
 
   async replaceCatalog(catalog: ShopCatalog): Promise<void> {

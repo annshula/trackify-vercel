@@ -39,11 +39,36 @@ export type ShopContact = {
   address: ShopAddress | null;
 };
 
+/** A store-wide reassurance point (`custom.trust_points`, `feature_highlight` metaobjects). */
+export type ShopTrustPoint = {
+  icon: string | null;
+  label: string;
+  body: string;
+};
+
+/**
+ * Store-wide PDP content from shop metafields (`custom.*`). Every string is
+ * null until the merchant sets it, and the PDP hides the matching row rather
+ * than guessing — delivery times in particular are never invented.
+ */
+export type ShopPdpContent = {
+  announcement: string | null;
+  shipping: {
+    processingTime: string | null;
+    deliveryEstimate: string | null;
+    costNote: string | null;
+    regions: string | null;
+  };
+  trustPoints: ShopTrustPoint[];
+};
+
 export type ShopCatalog = {
   version: number;
   generatedAt: string;
   contact: ShopContact;
   policies: ShopPolicies;
+  /** Optional so shop.json files written before it existed still load. */
+  pdp?: ShopPdpContent;
 };
 
 export type ShopSyncStats = {

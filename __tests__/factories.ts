@@ -59,6 +59,8 @@ export function makeProduct(overrides: Partial<CatalogProduct> = {}): CatalogPro
     metafields: {},
     specs: [],
     featureHighlights: [],
+    comparisonTable: [],
+    pdp: { benefits: [], story: [], howItWorks: [], useCases: [], whatsIncluded: [], faq: [], demoVideo: null },
     totalInventory: 25,
     ...overrides,
   };

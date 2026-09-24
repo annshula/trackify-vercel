@@ -87,6 +87,49 @@ export type CatalogFeatureHighlight = {
   video: CatalogSpecVideo | null;
 };
 
+/**
+ * One row of the "this vs. other products" comparison table, from the
+ * `custom.comparison_table` metaobject list (Shopify metaobject type
+ * `comparison_row`). `usValue`/`othersValue` are short freeform text set by
+ * the merchant per product — e.g. feature "Battery life", us "8 hours",
+ * others "2–3 hours" — not a fixed enum, since what's worth comparing
+ * differs by product.
+ */
+export type CatalogComparisonRow = {
+  feature: string;
+  usValue: string;
+  othersValue: string;
+};
+
+/** One entry from a product's `custom.faq` list (Shopify metaobject type `faq_item`). */
+export type CatalogFaqItem = {
+  question: string;
+  answer: string;
+};
+
+/**
+ * Editorial PDP content, all merchant-controlled in Shopify. Every list reuses
+ * the `feature_highlight` metaobject (icon + label + body + optional media),
+ * so one Shopify type covers every section; the metafield key decides where
+ * an entry renders. Empty lists hide their section — nothing is defaulted.
+ */
+export type CatalogPdpContent = {
+  /** `custom.benefits` — the short USP strip under the buy box. */
+  benefits: CatalogFeatureHighlight[];
+  /** `custom.story` — [problem, solution]. */
+  story: CatalogFeatureHighlight[];
+  /** `custom.how_it_works` — ordered steps. */
+  howItWorks: CatalogFeatureHighlight[];
+  /** `custom.use_cases` */
+  useCases: CatalogFeatureHighlight[];
+  /** `custom.whats_included` — one entry per item in the box. */
+  whatsIncluded: CatalogFeatureHighlight[];
+  /** `custom.faq` */
+  faq: CatalogFaqItem[];
+  /** `custom.demo_video` — real usage footage; the demo section needs it. */
+  demoVideo: CatalogSpecVideo | null;
+};
+
 export type CatalogProduct = {
   /** Shopify GID, e.g. gid://shopify/Product/123 */
   id: string;
@@ -118,6 +161,10 @@ export type CatalogProduct = {
   specs: CatalogProductSpec[];
   /** Resolved from the `custom.feature_highlights` metaobject list, when the merchant set it. */
   featureHighlights: CatalogFeatureHighlight[];
+  /** Resolved from the `custom.comparison_table` metaobject list, when the merchant set it. */
+  comparisonTable: CatalogComparisonRow[];
+  /** Section content for the product page, resolved from `custom.*` metafields. */
+  pdp: CatalogPdpContent;
   totalInventory: number | null;
 };
 

@@ -512,3 +512,54 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   Product page
+   ========================================================================== */
+
+/* The sticky purchase bar pads the page while it's showing, so the footer is
+   never underneath it (toggled by components/pdp/sticky-add-to-cart.tsx). */
+.pdp-sticky-open body {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+}
+
+.pdp-faq summary {
+  list-style: none;
+}
+.pdp-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Smooth accordion open/close where supported; instant elsewhere. */
+@supports (interpolate-size: allow-keywords) {
+  .pdp-faq {
+    interpolate-size: allow-keywords;
+  }
+  .pdp-faq details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 250ms var(--ease-out-soft),
+      content-visibility 250ms allow-discrete;
+  }
+  .pdp-faq details[open]::details-content {
+    block-size: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pdp-faq details::details-content {
+      transition: none;
+    }
+  }
+}
+
+/* Filter popovers (components/collection/filter-panel.tsx) */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

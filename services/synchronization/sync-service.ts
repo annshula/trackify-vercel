@@ -11,7 +11,7 @@ import type {
   BlogCatalog,
   BlogSyncStats,
 } from "@/types/blog";
-import type { ShopCatalog, ShopSyncStats } from "@/types/shop";
+import type { ShopCatalog, ShopPdpContent, ShopSyncStats, ShopTrustPoint } from "@/types/shop";
 import { adminRequest, paginateAdmin } from "@/lib/shopify/admin";
 import { storefrontRequest } from "@/lib/shopify/storefront";
 import {
@@ -25,6 +25,7 @@ import {
   PRODUCTS_PAGE_QUERY,
   PRODUCT_BY_ID_QUERY,
   SHOP_QUERY,
+  SHOP_PDP_QUERY,
   SHOP_CONTACT_QUERY,
 } from "@/lib/shopify/queries/admin";
 import { SHOP_POLICIES_QUERY } from "@/lib/shopify/queries/storefront";
@@ -96,11 +97,14 @@ async function fetchMetaobjects(
     const batch = ids.slice(offset, offset + METAOBJECT_BATCH_SIZE);
     try {
       const data = await adminRequest<{
-        nodes: ({ id: string; fields: { key: string; value: string | null }[] } | null)[];
+        nodes: (Omit<MetaobjectIndex extends Map<string, infer V> ? V : never, "fields"> & {
+          fields?: { key: string; value: string | null }[];
+        } | null)[];
       }>({ query: METAOBJECTS_BY_IDS_QUERY, variables: { ids: batch } });
 
       for (const node of data.nodes) {
-        if (node?.id) index.set(node.id, node);
+        // Video nodes (custom.demo_video) have sources instead of fields.
+        if (node?.id) index.set(node.id, { ...node, fields: node.fields ?? [] });
       }
     } catch (error) {
       report(
@@ -573,6 +577,51 @@ type ShopContactQueryResult = {
   };
 };
 
+/**
+ * Shop `custom.*` metafields -> ShopPdpContent. Unset strings stay null so the
+ * PDP hides the row; trust points resolve through the same metaobject batch
+ * query products use.
+ */
+async function fetchShopPdpContent(): Promise<ShopPdpContent> {
+  const { shop } = await adminRequest<{
+    shop: { metafields: { nodes: { key: string; value: string }[] } };
+  }>({ query: SHOP_PDP_QUERY });
+  const value = (key: string) =>
+    shop.metafields.nodes.find((node) => node.key === key)?.value.trim() || null;
+
+  let trustIds: string[] = [];
+  try {
+    const parsed: unknown = JSON.parse(value("trust_points") ?? "[]");
+    if (Array.isArray(parsed)) trustIds = parsed.filter((id): id is string => typeof id === "string");
+  } catch {
+    // Malformed list — render no trust points rather than fail the sync.
+  }
+
+  const trustPoints: ShopTrustPoint[] = [];
+  if (trustIds.length) {
+    const data = await adminRequest<{
+      nodes: ({ id: string; fields?: { key: string; value: string | null }[] } | null)[];
+    }>({ query: METAOBJECTS_BY_IDS_QUERY, variables: { ids: trustIds } });
+    for (const node of data.nodes) {
+      const field = (key: string) => node?.fields?.find((f) => f.key === key)?.value ?? null;
+      const label = field("label");
+      const body = field("body");
+      if (label && body) trustPoints.push({ icon: field("icon"), label, body });
+    }
+  }
+
+  return {
+    announcement: value("announcement"),
+    shipping: {
+      processingTime: value("shipping_processing_time"),
+      deliveryEstimate: value("shipping_delivery_estimate"),
+      costNote: value("shipping_cost_note"),
+      regions: value("shipping_regions"),
+    },
+    trustPoints,
+  };
+}
+
 export async function fullSyncShopContent(
   options: SyncOptions = {},
 ): Promise<ShopSyncStats> {
@@ -618,11 +667,18 @@ export async function fullSyncShopContent(
         };
       });
 
+    report("Fetching store-wide PDP content…");
+    const pdp = await fetchShopPdpContent().catch((error) => {
+      warnings.push(`Store PDP content: ${(error as Error).message}`);
+      return undefined;
+    });
+
     const catalog: ShopCatalog = {
       version: SHOP_CATALOG_VERSION,
       generatedAt: new Date().toISOString(),
       contact,
       policies,
+      ...(pdp ? { pdp } : {}),
     };
 
     report("Writing data/shop.json…");

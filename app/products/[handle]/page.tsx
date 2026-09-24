@@ -3,38 +3,50 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { productRepository, redirectRepository } from "@/lib/catalog";
+import { shopRepository } from "@/lib/catalog/shop";
+import { productRating } from "@/lib/catalog/selectors";
 import { productMetadata } from "@/lib/seo/metadata";
 import { JsonLd, breadcrumbSchema, productSchema } from "@/lib/seo/jsonld";
 
-import { Breadcrumb, Skeleton } from "@/components/ui/primitives";
-import { BuyBox } from "@/components/product/buy-box";
-import { ProductSpecs } from "@/components/product/product-specs";
-import { ProductDetails } from "@/components/product/product-details";
-import { Reviews } from "@/components/product/reviews";
+import { Breadcrumb } from "@/components/ui/primitives";
+import { Reviews, reviewProvider } from "@/components/product/reviews";
+import { ComparisonTable } from "@/components/product/comparison-table";
 import { RecentlyViewedRecorder } from "@/hooks/use-recently-viewed";
+import { PurchaseProvider } from "@/components/pdp/purchase-context";
+import { ProductGallery } from "@/components/pdp/product-gallery";
+import { PurchasePanel, type Reassurance } from "@/components/pdp/purchase-panel";
+import {
+  HowItWorks,
+  ProblemSolution,
+  ProductBenefits,
+  ProductDemo,
+  ProductFeatures,
+  UseCases,
+} from "@/components/pdp/story-sections";
+import { ProductDetails, ProductFAQ, ReturnsGuarantee } from "@/components/pdp/detail-sections";
+import { FinalCTA } from "@/components/pdp/final-cta";
+import { StickyAddToCart } from "@/components/pdp/sticky-add-to-cart";
 
 /**
  * /products/[handle]
  *
- * Rendered entirely from the local catalog: full product HTML reaches Google
- * and the customer without a single Shopify request. Live Shopify data is only
- * consulted when the customer transacts.
+ * Rendered entirely from the synced catalog (products.json + shop.json) — no
+ * Shopify request to render, only to transact. Every section's copy lives in
+ * Shopify metafields/metaobjects (see scripts/pdp-content/ and
+ * CatalogPdpContent); a section with no data renders nothing, so a product
+ * without editorial content still gets a clean hero → reviews → details page.
  *
- * Deliberately carries no cross-sell rails (no "complete the look", no
- * related grid, no recently-viewed). Each product page is meant to read as
- * that product's own brand page rather than a storefront listing with
- * merchandising strips attached — the page ends on the product's own story.
- * `RecentlyViewedRecorder` stays because other surfaces still read that
- * history; this page just doesn't display it.
+ * Order follows the first-time visitor's questions: what is it and how do I
+ * buy it (hero) → why would I want it (benefits, story, features) → how does
+ * it work, where would I use it → do other people like it (reviews) → what
+ * exactly do I get, when, and what if it's wrong (details, trust, FAQ) → buy.
  */
 
-// Statically generated at build, then kept fresh by webhook revalidation.
 export const revalidate = 3600;
 export const dynamicParams = true;
 
 type PageProps = {
   params: Promise<{ handle: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
 export async function generateStaticParams() {
@@ -42,16 +54,10 @@ export async function generateStaticParams() {
   return products.map((product) => ({ handle: product.handle }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { handle } = await params;
   const product = await productRepository.getProductByHandle(handle);
-  if (!product)
-    return {
-      title: "Product not found",
-      robots: { index: false, follow: false },
-    };
+  if (!product) return { title: "Product not found", robots: { index: false, follow: false } };
   return productMetadata(product);
 }
 
@@ -66,17 +72,42 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
+  const [shopPdp, contact, liveReviews] = await Promise.all([
+    shopRepository.getPdpContent(),
+    shopRepository.getContact(),
+    // Same cached Judge.me request the reviews section makes, so the hero
+    // count always matches the section below it (the synced metafield lags).
+    reviewProvider?.list(product.handle).catch(() => null) ?? null,
+  ]);
+  const rating =
+    liveReviews && liveReviews.total > 0
+      ? { value: liveReviews.average, count: liveReviews.total }
+      : productRating(product);
+  const { pdp } = product;
+  const subtitle = product.metafields["custom.subtitle"] ?? null;
+  const ctaHeadline = product.metafields["custom.cta_headline"] ?? `Ready to try the ${product.title}?`;
+
+  // Above-the-fold reassurance: how it ships, then the store's own guarantees.
+  const { shipping, trustPoints } = shopPdp;
+  const shippingLine = shipping.deliveryEstimate
+    ? `Delivery ${shipping.deliveryEstimate}`
+    : shipping.costNote
+      ? `Shipping ${shipping.costNote.charAt(0).toLowerCase()}${shipping.costNote.slice(1)}`
+      : null;
+  const reassurance: Reassurance[] = [
+    ...(shippingLine ? [{ icon: "truck", label: shippingLine }] : []),
+    ...trustPoints
+      .filter((point) => point.icon !== "truck" && point.icon !== "support")
+      .slice(0, 2)
+      .map((point) => ({ icon: point.icon, label: point.label })),
+  ];
+
   const primaryCollection = product.collections[0];
   const crumbs = [
     { href: "/", label: "Home" },
-    ...(primaryCollection
-      ? [
-          {
-            href: `/collections/${primaryCollection.handle}`,
-            label: primaryCollection.title,
-          },
-        ]
-      : [{ href: "/collections", label: "Shop" }]),
+    primaryCollection
+      ? { href: `/collections/${primaryCollection.handle}`, label: primaryCollection.title }
+      : { href: "/collections", label: "Shop" },
     { label: product.title },
   ];
 
@@ -88,12 +119,7 @@ export default async function ProductPage({ params }: PageProps) {
           breadcrumbSchema([
             { name: "Home", url: "/" },
             ...(primaryCollection
-              ? [
-                  {
-                    name: primaryCollection.title,
-                    url: `/collections/${primaryCollection.handle}`,
-                  },
-                ]
+              ? [{ name: primaryCollection.title, url: `/collections/${primaryCollection.handle}` }]
               : []),
             { name: product.title, url: `/products/${product.handle}` },
           ]),
@@ -101,82 +127,59 @@ export default async function ProductPage({ params }: PageProps) {
       />
       <RecentlyViewedRecorder handle={product.handle} />
 
-      {/* The page reads in four movements: buy, story, detail, discover.
-          Each gets its own full-width band so the transitions between them
-          are legible, rather than one long column of stacked sections. */}
-      <div className="container-page">
-        <div className="py-4">
-          <Breadcrumb items={crumbs} />
+      <PurchaseProvider product={product}>
+        {shopPdp.announcement && (
+          <p className="bg-primary px-4 py-2 text-center text-xs font-medium tracking-wide text-on-primary">
+            {shopPdp.announcement}
+          </p>
+        )}
+
+        <div className="container-page">
+          <div className="hidden py-4 sm:block">
+            <Breadcrumb items={crumbs} />
+          </div>
+
+          <section
+            id="purchase"
+            aria-label={`Buy ${product.title}`}
+            className="scroll-mt-24 pb-14 lg:grid lg:grid-cols-12 lg:gap-x-14 lg:pb-20"
+          >
+            <div className="-mx-4 self-start sm:-mx-6 lg:sticky lg:top-24 lg:col-span-7 lg:mx-0">
+              <ProductGallery />
+            </div>
+            <div className="pt-7 lg:col-span-5 lg:pt-2">
+              <PurchasePanel subtitle={subtitle} rating={rating} reassurance={reassurance} />
+            </div>
+          </section>
         </div>
 
-        <div id="buy-box" className="scroll-mt-24">
-          <Suspense
-            fallback={
-              <BuyBoxSkeleton title={product.title} vendor={product.vendor} />
-            }
-          >
-            <BuyBox product={product} />
+        <ProductBenefits items={pdp.benefits} />
+        <ProblemSolution story={pdp.story} />
+        <ProductDemo video={pdp.demoVideo} title={product.title} />
+        <ProductFeatures items={product.featureHighlights} />
+        <HowItWorks steps={pdp.howItWorks} />
+        <UseCases items={pdp.useCases} />
+
+        <div className="container-page">
+          <ComparisonTable product={product} />
+          <Suspense fallback={null}>
+            <div className="pb-20 lg:pb-28">
+              <Reviews product={product} />
+            </div>
           </Suspense>
         </div>
 
-        {/* Reviews — the 2nd section, immediately after the buy box. Kept at
-            the measured container width (not full-bleed like ProductSpecs)
-            since review text needs a readable line length. */}
-        <Suspense fallback={null}>
-          <Reviews product={product} />
-        </Suspense>
-      </div>
+        <ProductDetails included={pdp.whatsIncluded} specs={product.specs} shipping={shipping} />
+        <ReturnsGuarantee points={trustPoints} />
+        <ProductFAQ items={pdp.faq} supportEmail={contact.email} />
+        <FinalCTA
+          headline={ctaHeadline}
+          subtitle={subtitle}
+          assurances={[...trustPoints.map((point) => point.label), ...(shipping.costNote ? [`Shipping ${shipping.costNote.split(" — ")[0]!.toLowerCase()}`] : [])]}
+        />
 
-      {/* Story — full-bleed by design: each spec is a full-width visual
-          moment, which is only possible outside container-page. */}
-      <ProductSpecs product={product} />
-
-      {/* Detail — back to a measured column. */}
-      <div className="container-page pb-20">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-14">
-          <div className="lg:col-span-7">
-            <ProductDetails product={product} />
-          </div>
-        </div>
-      </div>
+        <StickyAddToCart />
+      </PurchaseProvider>
     </>
-  );
-}
-
-/**
- * Mirrors the real BuyBox proportions so nothing shifts when it swaps in.
- *
- * BuyBox is a client component gated on useSearchParams(), so Next.js ships
- * this fallback — not BuyBox's own markup — in the static/prerendered HTML
- * that crawlers see. The title and vendor are real server-rendered text
- * (not skeleton bars) so every product page has a proper H1 before
- * hydration ever runs.
- */
-function BuyBoxSkeleton({
-  title,
-  vendor,
-}: {
-  title: string;
-  vendor?: string | null;
-}) {
-  return (
-    <div className="lg:grid lg:grid-cols-12 lg:gap-x-14">
-      <div className="-mx-4 sm:-mx-6 lg:col-span-7 lg:mx-0">
-        <Skeleton className="h-[min(92vw,360px)] w-full lg:h-125 lg:rounded-2xl" />
-      </div>
-      <div className="space-y-4 px-4 pt-7 sm:px-6 lg:col-span-5 lg:px-0 lg:pt-0">
-        {vendor && (
-          <p className="text-2xs font-semibold tracking-[0.2em] text-ink-subtle uppercase">
-            {vendor}
-          </p>
-        )}
-        <h1 className="font-display text-3xl leading-[1.1] tracking-tight text-balance">
-          {title}
-        </h1>
-        <Skeleton className="h-9 w-32" />
-        <Skeleton className="h-7 w-48 rounded-full" />
-        <Skeleton className="h-12 w-full rounded-lg" />
-      </div>
-    </div>
   );
 }

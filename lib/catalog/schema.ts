@@ -76,6 +76,27 @@ export const featureHighlightSchema = z.object({
   video: specVideoSchema.nullable(),
 });
 
+export const comparisonRowSchema = z.object({
+  feature: z.string().min(1),
+  usValue: z.string().min(1),
+  othersValue: z.string().min(1),
+});
+
+export const faqItemSchema = z.object({
+  question: z.string().min(1),
+  answer: z.string().min(1),
+});
+
+export const pdpContentSchema = z.object({
+  benefits: z.array(featureHighlightSchema),
+  story: z.array(featureHighlightSchema),
+  howItWorks: z.array(featureHighlightSchema),
+  useCases: z.array(featureHighlightSchema),
+  whatsIncluded: z.array(featureHighlightSchema),
+  faq: z.array(faqItemSchema),
+  demoVideo: specVideoSchema.nullable(),
+});
+
 export const variantSchema = z.object({
   id: z.string().min(1),
   title: z.string(),
@@ -140,6 +161,8 @@ export const productSchema = z.object({
   metafields: z.record(z.string()),
   specs: z.array(productSpecSchema),
   featureHighlights: z.array(featureHighlightSchema),
+  comparisonTable: z.array(comparisonRowSchema),
+  pdp: pdpContentSchema,
   totalInventory: z.number().int().nullable(),
 });
 
