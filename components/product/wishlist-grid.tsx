@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import Link from "next/link";
 import { useWishlist } from "@/hooks/use-wishlist";
 import { Button, ButtonLink } from "@/components/ui/button";

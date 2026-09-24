@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import type { Order } from '@/types/commerce';
 import { formatMoneyV2 } from '@/lib/utils/money';
 import { cn } from '@/lib/utils/cn';

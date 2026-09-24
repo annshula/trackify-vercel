@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import { NewsletterForm } from "./newsletter-form";
 import { RefreshIcon, ShieldIcon, TruckIcon } from "@/components/ui/icons";
 
@@ -57,6 +57,7 @@ export function Footer({
                 alt="Trackify"
                 width={84}
                 height={64}
+                showLoader={false}
                 className="h-12 w-auto"
               />
             </Link>

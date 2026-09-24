@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import Link from 'next/link';
 import type { OrderSummary } from '@/types/commerce';
 import { Badge } from '@/components/ui/primitives';

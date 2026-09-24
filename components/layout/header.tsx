@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
@@ -197,6 +197,7 @@ export function Header({
                   width={84}
                   height={64}
                   priority
+                  showLoader={false}
                   className="h-9 w-auto sm:h-11"
                 />
               </Link>
@@ -215,6 +216,7 @@ export function Header({
                   width={84}
                   height={64}
                   priority
+                  showLoader={false}
                   className="h-9 w-auto sm:h-11"
                 />
               </Link>

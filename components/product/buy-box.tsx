@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import { useRouter, useSearchParams } from "next/navigation";
 import type { CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { cn } from "@/lib/utils/cn";

@@ -54,6 +54,8 @@ type JudgeMeProductResponse = {
   };
 };
 
+type JudgeMeCountResponse = { count: number };
+
 function env(): { shopDomain: string; apiToken: string } | null {
   const shopDomain = process.env.SHOPIFY_STORE_DOMAIN;
   const apiToken = process.env.JUDGEME_API_TOKEN;
@@ -120,35 +122,53 @@ export const judgeMeReviewProvider: ReviewProvider = {
     };
     if (options.rating) params.rating = String(options.rating);
 
-    const [reviewsRes, productRes] = await Promise.all([
+    // `/products/-1` doesn't return `review_number` / `rating_histogram` on
+    // this store's plan (confirmed empty), and the reviews page itself only
+    // ever holds PAGE_SIZE items — neither can tell us the *true* total or
+    // per-star breakdown across all reviews. `/reviews/count` does, and
+    // supports the same `rating` filter, so six cheap count calls (one
+    // overall + one per star) replace the unreliable/incomplete fields.
+    const [reviewsRes, productRes, totalCount, ...starCounts] = await Promise.all([
       judgeMeFetch<JudgeMeReviewsResponse>("/reviews", params),
       judgeMeFetch<JudgeMeProductResponse>("/products/-1", { handle }),
+      judgeMeFetch<JudgeMeCountResponse>("/reviews/count", { handle, published: "true" }),
+      ...([1, 2, 3, 4, 5] as const).map((star) =>
+        judgeMeFetch<JudgeMeCountResponse>("/reviews/count", {
+          handle,
+          published: "true",
+          rating: String(star),
+        }),
+      ),
     ]);
 
     if (!reviewsRes) return empty;
 
     const reviews = reviewsRes.reviews.map(mapReview);
 
-    // `rating_histogram` / `average_rating` are absent on some Judge.me plans
-    // (confirmed empty on this store's /products/-1 response) — derive both
-    // from the current page of reviews whenever Judge.me doesn't supply them,
-    // rather than showing a false "0.0".
     const histogram = productRes?.product?.rating_histogram;
     const distribution: Record<1 | 2 | 3 | 4 | 5, number> = histogram
       ? { 1: histogram[0] ?? 0, 2: histogram[1] ?? 0, 3: histogram[2] ?? 0, 4: histogram[3] ?? 0, 5: histogram[4] ?? 0 }
-      : reviews.reduce(
-          (acc, r) => {
-            const star = Math.min(5, Math.max(1, Math.round(r.rating))) as 1 | 2 | 3 | 4 | 5;
-            acc[star] += 1;
-            return acc;
-          },
-          { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } as Record<1 | 2 | 3 | 4 | 5, number>,
-        );
+      : {
+          1: starCounts[0]?.count ?? 0,
+          2: starCounts[1]?.count ?? 0,
+          3: starCounts[2]?.count ?? 0,
+          4: starCounts[3]?.count ?? 0,
+          5: starCounts[4]?.count ?? 0,
+        };
 
-    const total = productRes?.product?.review_number ?? reviews.length;
+    const total = productRes?.product?.review_number ?? totalCount?.count ?? reviews.length;
     const average =
       productRes?.product?.average_rating ??
-      (reviews.length > 0 ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length : 0);
+      (total > 0
+        ? ((distribution[1] * 1 +
+            distribution[2] * 2 +
+            distribution[3] * 3 +
+            distribution[4] * 4 +
+            distribution[5] * 5) /
+            total) || (reviews.length > 0
+            ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+            : 0)
+        : 0);
 
     return { reviews, total, average, distribution };
   },

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import Link from "next/link";
 import type { CatalogProduct } from "@/types/catalog";
 import { cn } from "@/lib/utils/cn";

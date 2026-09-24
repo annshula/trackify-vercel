@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import Lightbox, { type Slide } from "yet-another-react-lightbox";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
@@ -136,7 +136,7 @@ export function ProductGallery({
           onScroll={onScroll}
           // Square corners edge-to-edge on mobile so it reads as a native image
           // viewer; a flat rounded frame once the layout has margins at lg.
-          className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-surface lg:overflow-hidden lg:rounded-2xl"
+          className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain lg:overflow-hidden lg:rounded-2xl"
           role="group"
           aria-roledescription="carousel"
           aria-label={`${product.title} images`}

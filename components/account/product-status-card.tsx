@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import type { Order, OrderLineItem, OrderReturnDetail, OrderReturnSummary, ReturnDeclineInfo } from '@/types/commerce';
 import {
   shipmentSteps,

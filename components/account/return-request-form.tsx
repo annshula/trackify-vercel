@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import { useRouter } from 'next/navigation';
 import type { Order, OrderLineItem, ReturnLineItemInput, ReturnReason } from '@/types/commerce';
 import { requestReturnAction } from '@/lib/account/order-actions';

@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react';
-import Image from 'next/image';
+import { SmartImage as Image } from '@/components/ui/smart-image';
 import type { CatalogFeatureHighlight, CatalogProduct, CatalogProductSpec } from '@/types/catalog';
 import { imageAlt, shopifyImageUrl } from '@/lib/utils/image';
 import { GemIcon, RulerIcon, TruckIcon } from '@/components/ui/icons';

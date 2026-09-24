@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T16:54:43.729Z",
+  "generatedAt": "2026-09-24T17:09:58.891Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -10,7 +10,7 @@
     {
       "id": "gid://shopify/Product/10216256372963",
       "handle": "electric-spray-massage-hair-brush",
-      "title": "Trackify Premium Electric Spray Massage Hair Brush",
+      "title": "Trackify Premium Elecspray Hair Brush",
       "description": "【Scalp Massage】Designed as an electric massage hair brush, the soft rounded bristles help stimulate the scalp while providing a relaxing brushing experience that feels soothing during busy mornings or nighttime routines 【Anti-Static Care】This electric steam brush helps tame flyaways and static while adding natural-looking volume at the roots. Enjoy softer, fuller-looking hair with less puffiness and smoother styling results 【Rechargeable Convenience】Compact and cordless, this electric spray brush is easy to carry for home, office, gym, or travel use. This electric hair brush for women men delivers salon-inspired hair care anytime, anywhere 【Hydrating Mist】This Electric Spray & Massage Hair Brush releases a fine moisturizing mist while brushing to help hydrate dry strands, reduce frizz, and leave hair smoother, shinier, and easier to manage every day 【Easy Detangling】The flexible cushion bristles on this electric spray hair brush glide gently through knots without pulling or breakage. Perfect for thick, curly, straight, or damaged hair for both women and men",
       "descriptionHtml": "<ul>\n<li>【Scalp Massage】Designed as an electric massage hair brush, the soft rounded bristles help stimulate the scalp while providing a relaxing brushing experience that feels soothing during busy mornings or nighttime routines</li>\n<li>【Anti-Static Care】This electric steam brush helps tame flyaways and static while adding natural-looking volume at the roots. Enjoy softer, fuller-looking hair with less puffiness and smoother styling results</li>\n<li>【Rechargeable Convenience】Compact and cordless, this electric spray brush is easy to carry for home, office, gym, or travel use. This electric hair brush for women men delivers salon-inspired hair care anytime, anywhere</li>\n<li>【Hydrating Mist】This Electric Spray &amp; Massage Hair Brush releases a fine moisturizing mist while brushing to help hydrate dry strands, reduce frizz, and leave hair smoother, shinier, and easier to manage every day</li>\n<li>【Easy Detangling】The flexible cushion bristles on this electric spray hair brush glide gently through knots without pulling or breakage. Perfect for thick, curly, straight, or damaged hair for both women and men</li>\n</ul>",
       "vendor": "FoldNAway",
@@ -211,7 +211,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-24T15:37:22Z",
       "createdAt": "2026-09-24T15:37:18Z",
-      "updatedAt": "2026-09-24T16:52:57Z",
+      "updatedAt": "2026-09-24T17:02:53Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/13137656185059",
@@ -9711,7 +9711,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-22T06:18:42Z",
       "createdAt": "2026-09-22T05:52:35Z",
-      "updatedAt": "2026-09-24T04:56:45Z",
+      "updatedAt": "2026-09-24T16:56:50Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12176922214627",
@@ -10302,7 +10302,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T16:53:00Z",
+      "updatedAt": "2026-09-24T17:02:56Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/8783771533539",
