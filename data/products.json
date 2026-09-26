@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T19:15:03.130Z",
+  "generatedAt": "2026-09-26T19:23:05.610Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -1053,7 +1053,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T19:13:24Z",
+      "updatedAt": "2026-09-26T19:22:57Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -1287,7 +1287,7 @@
         "custom.meta_pixel_id": "973254138358742",
         "custom.perks": "[\"Hydrates skin for up to 24hrs\",\"Suitable for sensitive skin\",\"Removes short, stubborn hair\",\"Minimizes ingrown hair\",\"Long lasting smoothness\",\"35% less chemical ingredients\"]",
         "custom.promo_banner": "Back to School Sale — Smooth Skin, Zero Pain",
-        "custom.sale_ends_at": "2026-09-28T19:06:27Z",
+        "custom.sale_ends_at": "2026-09-27T19:22:48Z",
         "custom.specs": "[\"gid://shopify/Metaobject/606872207587\",\"gid://shopify/Metaobject/606872404195\",\"gid://shopify/Metaobject/606872600803\",\"gid://shopify/Metaobject/606872240355\",\"gid://shopify/Metaobject/606872535267\",\"gid://shopify/Metaobject/606872338659\",\"gid://shopify/Metaobject/606872273123\",\"gid://shopify/Metaobject/606872666339\"]",
         "custom.story": "[\"gid://shopify/Metaobject/606871716067\",\"gid://shopify/Metaobject/606871650531\"]",
         "custom.subtitle": "A gentle spray mousse that removes hair in 5–10 minutes — no razor, no wax.",
