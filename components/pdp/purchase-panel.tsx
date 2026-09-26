@@ -245,7 +245,7 @@ export function PurchasePanel({
           {reassurance.map((item) => (
             <li
               key={item.label}
-              className="flex flex-col items-center gap-1.5 rounded-lg bg-surface-sunken/70 px-2 py-3 text-center text-xs font-medium text-ink"
+              className="flex h-full flex-col items-center justify-center gap-1.5 rounded-lg bg-surface-sunken/70 px-2 py-3 text-center text-xs font-medium text-ink"
             >
               <PdpIcon icon={item.icon} size={22} className="text-accent" />
               {item.label}

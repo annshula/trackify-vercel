@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T18:31:25.097Z",
+  "generatedAt": "2026-09-26T18:54:29.292Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -1053,7 +1053,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T18:30:33Z",
+      "updatedAt": "2026-09-26T18:54:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -1277,6 +1277,7 @@
         "max": 180
       },
       "metafields": {
+        "custom.announcement_override": "[\"FDA & CPNP documented\",\"Tracked delivery on every order\",\"Secure checkout with Shop Pay, Apple Pay & Google Pay\"]",
         "custom.benefits": "[\"gid://shopify/Metaobject/606871486691\",\"gid://shopify/Metaobject/606871519459\",\"gid://shopify/Metaobject/606871879907\",\"gid://shopify/Metaobject/606871748835\"]",
         "custom.cta_headline": "Ready for smooth, pain-free skin?",
         "custom.delivery_estimate": "3–8 days",
@@ -1289,6 +1290,7 @@
         "custom.specs": "[\"gid://shopify/Metaobject/606872207587\",\"gid://shopify/Metaobject/606872404195\",\"gid://shopify/Metaobject/606872600803\",\"gid://shopify/Metaobject/606872240355\",\"gid://shopify/Metaobject/606872535267\",\"gid://shopify/Metaobject/606872338659\",\"gid://shopify/Metaobject/606872273123\",\"gid://shopify/Metaobject/606872666339\"]",
         "custom.story": "[\"gid://shopify/Metaobject/606871716067\",\"gid://shopify/Metaobject/606871650531\"]",
         "custom.subtitle": "A gentle spray mousse that removes hair in 5–10 minutes — no razor, no wax.",
+        "custom.trust_point_override": "{\"replaces\":\"returns\",\"icon\":\"shield\",\"label\":\"FDA & CPNP documented\",\"body\":\"Formulated to cosmetic compliance standards — FDA, CPNP and MSDS documentation available on request.\"}",
         "custom.use_cases": "[\"gid://shopify/Metaobject/606872502499\",\"gid://shopify/Metaobject/606871781603\",\"gid://shopify/Metaobject/606872010979\",\"gid://shopify/Metaobject/606872043747\"]",
         "custom.whats_included": "[\"gid://shopify/Metaobject/606872469731\",\"gid://shopify/Metaobject/606871978211\",\"gid://shopify/Metaobject/606872174819\"]"
       },

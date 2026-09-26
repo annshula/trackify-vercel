@@ -106,7 +106,44 @@ export default async function ProductPage({ params }: PageProps) {
   // The store's own guarantees as an icon strip under the buy buttons — short
   // labels only; the shipping cost note is already covered by the "calculated
   // at checkout" line under the price.
-  const { trustPoints } = shopPdp;
+  //
+  // custom.trust_point_override lets one product swap out a single store-wide
+  // trust point for its own (e.g. this product doesn't accept returns, so its
+  // "returns" entry is replaced rather than just dropped) — JSON
+  // {"replaces": "<icon key of the store trust point to swap>", "icon", "label", "body"}.
+  // A malformed/missing metafield leaves the store's trust points untouched.
+  const trustPoints = (() => {
+    const raw = product.metafields["custom.trust_point_override"];
+    if (!raw) return shopPdp.trustPoints;
+    try {
+      const override = JSON.parse(raw) as { replaces: string; icon: string; label: string; body: string };
+      if (!override.replaces || !override.label || !override.body) return shopPdp.trustPoints;
+      return shopPdp.trustPoints.map((point) =>
+        point.icon === override.replaces
+          ? { icon: override.icon ?? point.icon, label: override.label, body: override.body }
+          : point,
+      );
+    } catch {
+      return shopPdp.trustPoints;
+    }
+  })();
+  // A product's own announcement bar (custom.announcement_override) replaces
+  // the store-wide messages entirely — e.g. this product doesn't accept
+  // returns, so "30-day returns on every order" would be wrong here even
+  // though it's true for the rest of the catalog. JSON array of strings; a
+  // malformed/missing metafield falls back to the store-wide announcements.
+  const announcements: string[] = (() => {
+    const raw = product.metafields["custom.announcement_override"];
+    if (!raw) return shopPdp.announcements;
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) && parsed.every((m) => typeof m === "string")
+        ? parsed
+        : shopPdp.announcements;
+    } catch {
+      return shopPdp.announcements;
+    }
+  })();
   // A product's own delivery estimate (custom.delivery_estimate) beats the
   // store-wide one — both the buy panel and the specs section read this.
   const shipping = {
@@ -144,7 +181,7 @@ export default async function ProductPage({ params }: PageProps) {
       <ProductMetaPixel pixelId={product.metafields["custom.meta_pixel_id"] ?? null} />
 
       <PurchaseProvider product={product}>
-        <AnnouncementBar messages={shopPdp.announcements} />
+        <AnnouncementBar messages={announcements} />
 
         <div className="container-page">
           <div className="hidden py-4 sm:block">
