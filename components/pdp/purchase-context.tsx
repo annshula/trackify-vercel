@@ -104,6 +104,10 @@ export function PurchaseProvider({
     window.history.replaceState(window.history.state, "", url);
   }, [variant]);
 
+  // Per-product Meta pixel routing is CAPI-only (server-side, orders/paid —
+  // see services/webhooks/conversions.ts): custom.meta_pixel_id never inits a
+  // second pixel client-side, so client events only ever go to the global
+  // pixel here.
   React.useEffect(() => {
     track("view_item", {
       currency: product.priceRange.currencyCode,
