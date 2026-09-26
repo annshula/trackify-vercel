@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T16:18:12.936Z",
+  "generatedAt": "2026-09-26T17:24:59.837Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -997,7 +997,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T16:17:44Z",
+      "updatedAt": "2026-09-26T17:24:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -1026,8 +1026,8 @@
           "title": "Spray / 1PC",
           "sku": "CJPF253602701AZ",
           "barcode": null,
-          "price": 20.77,
-          "compareAtPrice": null,
+          "price": 49.99,
+          "compareAtPrice": 70,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1053,8 +1053,8 @@
           "title": "Spray / 2PCS",
           "sku": "CJPF253602702BY",
           "barcode": null,
-          "price": 36.54,
-          "compareAtPrice": null,
+          "price": 79.99,
+          "compareAtPrice": 90,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1080,8 +1080,8 @@
           "title": "Spray / 3PCS",
           "sku": "CJPF253602710JQ",
           "barcode": null,
-          "price": 51.93,
-          "compareAtPrice": null,
+          "price": 109.99,
+          "compareAtPrice": 150,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1107,8 +1107,8 @@
           "title": "Spray & Serum / 1PC",
           "sku": "CJPF253602703CX",
           "barcode": null,
-          "price": 30.18,
-          "compareAtPrice": null,
+          "price": 59.99,
+          "compareAtPrice": 79.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1134,8 +1134,8 @@
           "title": "Spray & Serum / 3PCS",
           "sku": "CJPF253602712LO",
           "barcode": null,
-          "price": 78.05,
-          "compareAtPrice": null,
+          "price": 119.99,
+          "compareAtPrice": 180,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1161,8 +1161,8 @@
           "title": "Spray & Cream / 1PC",
           "sku": "CJPF253602705EV",
           "barcode": null,
-          "price": 43.11,
-          "compareAtPrice": null,
+          "price": 59.99,
+          "compareAtPrice": 79.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1188,8 +1188,8 @@
           "title": "Spray & Cream / 3PCS",
           "sku": "CJPF253602714NM",
           "barcode": null,
-          "price": 111.33,
-          "compareAtPrice": null,
+          "price": 119.99,
+          "compareAtPrice": 180,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1212,11 +1212,14 @@
         }
       ],
       "priceRange": {
-        "min": 20.77,
-        "max": 111.33,
+        "min": 49.99,
+        "max": 119.99,
         "currencyCode": "USD"
       },
-      "compareAtPriceRange": null,
+      "compareAtPriceRange": {
+        "min": 70,
+        "max": 180
+      },
       "metafields": {
         "custom.benefits": "[\"gid://shopify/Metaobject/606871486691\",\"gid://shopify/Metaobject/606871519459\",\"gid://shopify/Metaobject/606871879907\",\"gid://shopify/Metaobject/606871748835\"]",
         "custom.cta_headline": "Ready for smooth, pain-free skin?",
@@ -11607,7 +11610,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T13:13:34Z",
+      "updatedAt": "2026-09-26T17:24:03Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -11742,7 +11745,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T13:13:34Z",
+      "updatedAt": "2026-09-26T17:24:03Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
