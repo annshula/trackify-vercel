@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { SmartImage as Image } from "@/components/ui/smart-image";
-import { Price, Rating } from "@/components/ui/primitives";
+import { Price, Rating, Skeleton } from "@/components/ui/primitives";
 import { cn } from "@/lib/utils/cn";
 import { formatMoney } from "@/lib/utils/money";
 import {
@@ -19,6 +19,7 @@ import { usePurchase } from "./purchase-context";
 import { AddToCartButton } from "./add-to-cart-button";
 import { UgcMedia } from "./ugc-media";
 import { SaleCountdown } from "./sale-countdown";
+import { useLocalizedAmount } from "@/components/localization/localization-provider";
 
 export type Reassurance = { icon: string | null; label: string };
 
@@ -78,12 +79,30 @@ export function PurchasePanel({
   } = usePurchase();
 
   const options = product.options.filter(
-    (option) => option.values.length > 1 || option.values[0] !== "Default Title",
+    (option) =>
+      option.values.length > 1 || option.values[0] !== "Default Title",
   );
   const price = variant?.price ?? product.priceRange.min;
   const compareAt = variant?.compareAtPrice ?? null;
+  // The PDP's main price display goes through the same live, Shopify-
+  // reported localization as list views (LocalizedPrice) instead of always
+  // showing the store's base currency — same skeleton-while-loading,
+  // no-flash-of-wrong-currency behavior.
+  const {
+    amount: localizedPrice,
+    currencyCode: localizedCurrencyCode,
+    compareAtAmount: localizedCompareAt,
+    loading: priceLoading,
+  } = useLocalizedAmount(
+    variant?.id ?? null,
+    price,
+    product.priceRange.currencyCode,
+    compareAt,
+  );
   const lowStock = lowStockCount(variant);
-  const hasQuantityOption = options.some((option) => QUANTITY_OPTION_NAME.test(option.name));
+  const hasQuantityOption = options.some((option) =>
+    QUANTITY_OPTION_NAME.test(option.name),
+  );
 
   return (
     <div className="flex flex-col">
@@ -93,7 +112,9 @@ export function PurchasePanel({
           className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-ink-muted transition hover:border-line-strong"
         >
           <Rating value={rating.value} showValue={false} size={14} />
-          <span className="font-medium text-ink tabular-nums">{rating.value.toFixed(1)}</span>
+          <span className="font-medium text-ink tabular-nums">
+            {rating.value.toFixed(1)}
+          </span>
           <span className="tabular-nums">
             ({rating.count} review{rating.count === 1 ? "" : "s"})
           </span>
@@ -114,12 +135,19 @@ export function PurchasePanel({
       >
         {product.title}
       </h1>
-      {subtitle && <p className="mt-3 text-sm leading-relaxed text-ink-muted text-pretty">{subtitle}</p>}
+      {subtitle && (
+        <p className="mt-3 text-sm leading-relaxed text-ink-muted text-pretty">
+          {subtitle}
+        </p>
+      )}
 
       {perks.length > 0 && (
         <ul className="mt-5 grid gap-x-5 gap-y-2.5 sm:grid-cols-2">
           {perks.map((perk) => (
-            <li key={perk} className="flex items-start gap-2.5 text-sm text-ink">
+            <li
+              key={perk}
+              className="flex items-start gap-2.5 text-sm text-ink"
+            >
               <span className="mt-px grid size-5 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
                 <CheckMark className="size-3" />
               </span>
@@ -151,9 +179,16 @@ export function PurchasePanel({
 
           // A style whose values each have their own photo is picked by
           // picture; colours and plain text options stay a pill row.
-          const photos = option.values.map((value) => variantImageFor(product, option.name, value));
-          const distinctPhotos = new Set(photos.filter(Boolean).map((image) => image!.url)).size;
-          if (!OPTION_IS_COLOR.test(option.name) && distinctPhotos === option.values.length) {
+          const photos = option.values.map((value) =>
+            variantImageFor(product, option.name, value),
+          );
+          const distinctPhotos = new Set(
+            photos.filter(Boolean).map((image) => image!.url),
+          ).size;
+          if (
+            !OPTION_IS_COLOR.test(option.name) &&
+            distinctPhotos === option.values.length
+          ) {
             return (
               <ImageOptionPicker
                 key={option.id}
@@ -180,14 +215,18 @@ export function PurchasePanel({
       </div>
 
       <div className="mt-7">
-        <Price
-          amount={price}
-          compareAt={compareAt}
-          currencyCode={product.priceRange.currencyCode}
-          size="xl"
-          priceClassName="font-display font-semibold"
-          compareAtFirst
-        />
+        {priceLoading ? (
+          <Skeleton className="h-9 w-40" />
+        ) : (
+          <Price
+            amount={localizedPrice}
+            compareAt={localizedCompareAt}
+            currencyCode={localizedCurrencyCode}
+            size="xl"
+            priceClassName="font-display font-semibold"
+            compareAtFirst
+          />
+        )}
         <SaleCountdown endsAt={saleEndsAt} />
       </div>
 
@@ -222,7 +261,10 @@ export function PurchasePanel({
         <PaymentIcons />
         {delivery && <DeliveryEstimate estimate={delivery} />}
         {error && (
-          <p role="alert" className="rounded-md bg-danger-soft px-4 py-3 text-sm text-danger">
+          <p
+            role="alert"
+            className="rounded-md bg-danger-soft px-4 py-3 text-sm text-danger"
+          >
             {error}
           </p>
         )}
@@ -234,7 +276,10 @@ export function PurchasePanel({
         )}
         {lowStock !== null && (
           <p className="flex items-center gap-2 text-sm text-warning">
-            <span className="size-2 rounded-full bg-warning" aria-hidden="true" />
+            <span
+              className="size-2 rounded-full bg-warning"
+              aria-hidden="true"
+            />
             Only {lowStock} left in {variant?.title}
           </p>
         )}
@@ -244,7 +289,9 @@ export function PurchasePanel({
         <ul
           className={cn(
             "mt-6 grid gap-2",
-            reassurance.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3",
+            reassurance.length >= 4
+              ? "grid-cols-2 sm:grid-cols-4"
+              : "grid-cols-3",
           )}
         >
           {reassurance.map((item) => (
@@ -281,7 +328,13 @@ function CheckMark({ className }: { className?: string }) {
   );
 }
 
-function OptionLegend({ name, chosen }: { name: string; chosen: string | undefined }) {
+function OptionLegend({
+  name,
+  chosen,
+}: {
+  name: string;
+  chosen: string | undefined;
+}) {
   return (
     <legend className="text-sm text-ink-muted">
       {name}: <span className="font-medium text-ink">{chosen}</span>
@@ -331,7 +384,9 @@ function ImageOptionPicker({
                 className={cn(
                   "flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border bg-surface-raised transition duration-200",
                   "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
-                  selected ? "border-ink ring-1 ring-ink" : "border-line hover:border-line-strong",
+                  selected
+                    ? "border-ink ring-1 ring-ink"
+                    : "border-line hover:border-line-strong",
                 )}
               >
                 {/* Short, contained thumbnails keep the pickers, price and
@@ -342,7 +397,10 @@ function ImageOptionPicker({
                     alt=""
                     fill
                     sizes="(min-width: 1024px) 10rem, 30vw"
-                    className={cn("object-contain p-1.5", outOfStock && "opacity-40 grayscale")}
+                    className={cn(
+                      "object-contain p-1.5",
+                      outOfStock && "opacity-40 grayscale",
+                    )}
                   />
                   {selected && (
                     <span className="absolute top-1.5 right-1.5 grid size-5 place-items-center rounded-full bg-ink text-ink-inverse">
@@ -357,7 +415,11 @@ function ImageOptionPicker({
                   )}
                 >
                   {value}
-                  {outOfStock && <span className="block text-2xs text-ink-subtle">Sold out</span>}
+                  {outOfStock && (
+                    <span className="block text-2xs text-ink-subtle">
+                      Sold out
+                    </span>
+                  )}
                 </span>
               </label>
             </div>
@@ -392,7 +454,9 @@ function PillOptionPicker({
           const selected = chosen === value;
           const outOfStock = !available.has(value);
           // The variant's own photo beats a guessed hex ("purple" is often lilac).
-          const photo = isColor ? variantImageFor(product, option.name, value) : null;
+          const photo = isColor
+            ? variantImageFor(product, option.name, value)
+            : null;
           const swatch = isColor && !photo ? colorSwatch(value) : null;
           return (
             <div key={value}>
@@ -414,7 +478,8 @@ function PillOptionPicker({
                   selected
                     ? "border-ink bg-surface-raised text-ink shadow-e1"
                     : "border-line-strong text-ink-muted hover:border-ink-subtle",
-                  outOfStock && "text-ink-subtle line-through decoration-ink-subtle/60",
+                  outOfStock &&
+                    "text-ink-subtle line-through decoration-ink-subtle/60",
                   isColor && "pl-1.5",
                 )}
               >
@@ -424,7 +489,15 @@ function PillOptionPicker({
                     className="relative size-8 overflow-hidden rounded-full border border-line"
                     style={swatch ? { backgroundColor: swatch } : undefined}
                   >
-                    {photo && <Image src={photo.url} alt="" fill sizes="32px" className="object-cover" />}
+                    {photo && (
+                      <Image
+                        src={photo.url}
+                        alt=""
+                        fill
+                        sizes="32px"
+                        className="object-cover"
+                      />
+                    )}
                   </span>
                 )}
                 {value}
@@ -461,7 +534,10 @@ function PackPicker({
   selection: Record<string, string>;
   onSelect: (value: string) => void;
 }) {
-  const baseVariant = findVariantByOptions(product, { ...selection, [option.name]: option.values[0]! });
+  const baseVariant = findVariantByOptions(product, {
+    ...selection,
+    [option.name]: option.values[0]!,
+  });
   const baseUnitPrice = baseVariant?.price ?? null;
 
   // "Best value" goes on whichever in-stock pack has the lowest real
@@ -471,7 +547,10 @@ function PackPicker({
     let best: { value: string; perUnit: number } | null = null;
     for (const [index, value] of option.values.entries()) {
       if (!available.has(value)) continue;
-      const variant = findVariantByOptions(product, { ...selection, [option.name]: value });
+      const variant = findVariantByOptions(product, {
+        ...selection,
+        [option.name]: value,
+      });
       if (!variant) continue;
       const count = parseInt(value, 10) || index + 1;
       if (count <= 1) continue; // a single pack can't be "better value" than itself
@@ -486,113 +565,188 @@ function PackPicker({
       <legend className="text-sm text-ink-muted">Choose your pack</legend>
       <div className="mt-3 space-y-2.5">
         {option.values.map((value, index) => {
-          const tileVariant = findVariantByOptions(product, { ...selection, [option.name]: value });
-          const selected = chosen === value;
-          const outOfStock = !available.has(value) || !tileVariant;
+          const tileVariant = findVariantByOptions(product, {
+            ...selection,
+            [option.name]: value,
+          });
           const count = parseInt(value, 10) || index + 1;
-          const perUnit = tileVariant ? tileVariant.price / count : null;
-          const inputId = optionInputId(option, value);
           const popular = index === 1 && option.values.length >= 3;
-          const bestValue = value === bestValueValue && !popular;
-          const money = (amount: number) =>
-            formatMoney(amount, tileVariant?.currencyCode ?? product.priceRange.currencyCode, { trimZeroCents: true });
-          // The variant's own Shopify compareAtPrice — real data, not a
-          // computed "N singles" estimate, so it shows on every pack
-          // (including pack 1) whenever Shopify actually has one set.
-          const compareAtPrice =
-            tileVariant?.compareAtPrice && tileVariant.compareAtPrice > tileVariant.price
-              ? tileVariant.compareAtPrice
-              : null;
-          // "Save X%" prefers the variant's real compareAtPrice discount —
-          // works on every pack, including pack 1, which has no "N singles"
-          // to compare against. Only falls back to the bundle-vs-buying-
-          // separately estimate when Shopify has no compareAtPrice set.
-          const savePercent =
-            compareAtPrice !== null && tileVariant
-              ? Math.round((1 - tileVariant.price / compareAtPrice) * 100)
-              : baseUnitPrice && tileVariant && count > 1
-                ? Math.round((1 - tileVariant.price / (baseUnitPrice * count)) * 100)
-                : null;
           return (
-            <div key={value}>
-              <input
-                type="radio"
-                id={inputId}
-                name={`option-${option.id}`}
-                value={value}
-                checked={selected}
-                onChange={() => onSelect(value)}
-                className="peer sr-only"
-              />
-              <label
-                htmlFor={inputId}
-                title={outOfStock ? `${value} — sold out` : value}
-                className={cn(
-                  "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 transition duration-200",
-                  "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
-                  selected
-                    ? "border-ink bg-surface-raised ring-1 ring-ink"
-                    : "border-line bg-surface-raised/60 hover:border-line-strong",
-                  outOfStock && "opacity-50",
-                )}
-              >
-                {/* Radio mark */}
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "grid size-5 shrink-0 place-items-center rounded-full border-2 transition",
-                    selected ? "border-ink" : "border-line-strong",
-                  )}
-                >
-                  {selected && <span className="size-2.5 rounded-full bg-ink" />}
-                </span>
-
-                <UnitIcons count={count} selected={selected} />
-
-                <span className="min-w-0 flex-1">
-                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span className="text-sm font-semibold text-ink">
-                      {count} {count === 1 ? "pack" : "packs"}
-                    </span>
-                    {popular && (
-                      <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
-                        Most popular
-                      </span>
-                    )}
-                    {bestValue && (
-                      <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
-                        Best value
-                      </span>
-                    )}
-                    {savePercent !== null && savePercent > 0 && (
-                      <span className="rounded-full bg-success-soft px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-success">
-                        Save {savePercent}%
-                      </span>
-                    )}
-                  </span>
-                  <span className="mt-0.5 block text-xs tabular-nums text-ink-subtle">
-                    {outOfStock
-                      ? "Sold out"
-                      : count > 1 && perUnit !== null
-                        ? `${money(perUnit)} each`
-                        : "Standard price"}
-                  </span>
-                </span>
-
-                {tileVariant && (
-                  <span className="shrink-0 text-right">
-                    <span className="block text-base font-semibold tabular-nums text-ink">{money(tileVariant.price)}</span>
-                    {compareAtPrice !== null && (
-                      <span className="block text-xs tabular-nums text-ink-subtle line-through">{money(compareAtPrice)}</span>
-                    )}
-                  </span>
-                )}
-              </label>
-            </div>
+            <PackTile
+              key={value}
+              option={option}
+              value={value}
+              count={count}
+              tileVariant={tileVariant}
+              selected={chosen === value}
+              outOfStock={!available.has(value) || !tileVariant}
+              popular={popular}
+              bestValue={value === bestValueValue && !popular}
+              baseUnitPrice={baseUnitPrice}
+              fallbackCurrencyCode={product.priceRange.currencyCode}
+              onSelect={onSelect}
+            />
           );
         })}
       </div>
     </fieldset>
+  );
+}
+
+/**
+ * One "Choose your pack" row. Its own component (rather than inline in
+ * PackPicker's map) because it needs useLocalizedAmount for its own variant —
+ * a Hook can't be called from inside a .map() callback. Every derived number
+ * (per-unit price, Save %) is computed from the *localized* amount, not the
+ * store's base-currency one, so "Save 29%" is never a mismatch between a
+ * localized display price and a base-currency percentage.
+ */
+function PackTile({
+  option,
+  value,
+  count,
+  tileVariant,
+  selected,
+  outOfStock,
+  popular,
+  bestValue,
+  baseUnitPrice,
+  fallbackCurrencyCode,
+  onSelect,
+}: {
+  option: ProductOption;
+  value: string;
+  count: number;
+  tileVariant: ReturnType<typeof findVariantByOptions>;
+  selected: boolean;
+  outOfStock: boolean;
+  popular: boolean;
+  bestValue: boolean;
+  baseUnitPrice: number | null;
+  fallbackCurrencyCode: string;
+  onSelect: (value: string) => void;
+}) {
+  const inputId = optionInputId(option, value);
+  const {
+    amount: localizedPrice,
+    currencyCode: localizedCurrencyCode,
+    compareAtAmount: localizedCompareAt,
+    loading: priceLoading,
+  } = useLocalizedAmount(
+    tileVariant?.id ?? null,
+    tileVariant?.price ?? 0,
+    tileVariant?.currencyCode ?? fallbackCurrencyCode,
+    tileVariant?.compareAtPrice ?? null,
+  );
+  const perUnit = tileVariant ? localizedPrice / count : null;
+  const money = (amount: number) =>
+    formatMoney(amount, localizedCurrencyCode, { trimZeroCents: true });
+  // The variant's own Shopify compareAtPrice — real data, not a computed "N
+  // singles" estimate, so it shows on every pack (including pack 1) whenever
+  // Shopify actually has one set.
+  const compareAtPrice =
+    localizedCompareAt !== null && localizedCompareAt > localizedPrice
+      ? localizedCompareAt
+      : null;
+  // "Save X%" prefers the variant's real compareAtPrice discount — works on
+  // every pack, including pack 1, which has no "N singles" to compare
+  // against. Only falls back to the bundle-vs-buying-separately estimate when
+  // Shopify has no compareAtPrice set. baseUnitPrice is still the base
+  // currency's, but this fallback only fires when there's no localized
+  // compareAtPrice to use instead, and is itself a same-currency ratio either
+  // way, so the percentage is correct regardless of which currency it's in.
+  const savePercent =
+    compareAtPrice !== null && tileVariant
+      ? Math.round((1 - localizedPrice / compareAtPrice) * 100)
+      : baseUnitPrice && tileVariant && count > 1
+        ? Math.round((1 - tileVariant.price / (baseUnitPrice * count)) * 100)
+        : null;
+
+  return (
+    <div>
+      <input
+        type="radio"
+        id={inputId}
+        name={`option-${option.id}`}
+        value={value}
+        checked={selected}
+        onChange={() => onSelect(value)}
+        className="peer sr-only"
+      />
+      <label
+        htmlFor={inputId}
+        title={outOfStock ? `${value} — sold out` : value}
+        className={cn(
+          "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 transition duration-200",
+          "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
+          selected
+            ? "border-ink bg-surface-raised ring-1 ring-ink"
+            : "border-line bg-surface-raised/60 hover:border-line-strong",
+          outOfStock && "opacity-50",
+        )}
+      >
+        {/* Radio mark */}
+        <span
+          aria-hidden="true"
+          className={cn(
+            "grid size-5 shrink-0 place-items-center rounded-full border-2 transition",
+            selected ? "border-ink" : "border-line-strong",
+          )}
+        >
+          {selected && <span className="size-2.5 rounded-full bg-ink" />}
+        </span>
+
+        <UnitIcons count={count} selected={selected} />
+
+        <span className="min-w-0 flex-1">
+          <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="text-sm font-semibold text-ink">
+              {count} {count === 1 ? "pack" : "packs"}
+            </span>
+            {popular && (
+              <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
+                Most popular
+              </span>
+            )}
+            {bestValue && (
+              <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
+                Best value
+              </span>
+            )}
+            {savePercent !== null && savePercent > 0 && (
+              <span className="rounded-full bg-success-soft px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-success">
+                Save {savePercent}%
+              </span>
+            )}
+          </span>
+          <span className="mt-0.5 block text-xs tabular-nums text-ink-subtle">
+            {outOfStock
+              ? "Sold out"
+              : priceLoading
+                ? "…"
+                : count > 1 && perUnit !== null
+                  ? `${money(perUnit)} each`
+                  : "Standard price"}
+          </span>
+        </span>
+
+        {tileVariant &&
+          (priceLoading ? (
+            <Skeleton className="h-5 w-16 shrink-0" />
+          ) : (
+            <span className="shrink-0 text-right">
+              <span className="block text-base font-semibold tabular-nums text-ink">
+                {money(localizedPrice)}
+              </span>
+              {compareAtPrice !== null && (
+                <span className="block text-xs tabular-nums text-ink-subtle line-through">
+                  {money(compareAtPrice)}
+                </span>
+              )}
+            </span>
+          ))}
+      </label>
+    </div>
   );
 }
 
@@ -607,12 +761,17 @@ function DeliveryEstimate({ estimate }: { estimate: string }) {
   const [arrives, setArrives] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    const match = estimate.match(/(\d+)\s*(?:–|-|to)\s*(\d+)\s*(?:business\s*)?days?/i);
+    const match = estimate.match(
+      /(\d+)\s*(?:–|-|to)\s*(\d+)\s*(?:business\s*)?days?/i,
+    );
     if (!match) return;
     const format = (days: number) => {
       const date = new Date();
       date.setDate(date.getDate() + days);
-      return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+      return date.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+      });
     };
     // Today's date is only knowable in the browser; this is a one-time sync from it.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -624,7 +783,11 @@ function DeliveryEstimate({ estimate }: { estimate: string }) {
       <PdpIcon icon="truck" size={20} className="mt-px shrink-0 text-accent" />
       <span>
         <span className="font-medium text-ink">Delivery in {estimate}</span>
-        {arrives && <span className="block text-xs text-ink-muted">Order today, arrives {arrives}</span>}
+        {arrives && (
+          <span className="block text-xs text-ink-muted">
+            Order today, arrives {arrives}
+          </span>
+        )}
       </span>
     </p>
   );
@@ -634,14 +797,27 @@ function DeliveryEstimate({ estimate }: { estimate: string }) {
 function UnitIcons({ count, selected }: { count: number; selected: boolean }) {
   const shown = Math.min(count, 3);
   return (
-    <span className={cn("flex h-6 w-11 shrink-0 items-end justify-center gap-0.5", selected ? "text-accent" : "text-ink-subtle")} aria-hidden="true">
+    <span
+      className={cn(
+        "flex h-6 w-11 shrink-0 items-end justify-center gap-0.5",
+        selected ? "text-accent" : "text-ink-subtle",
+      )}
+      aria-hidden="true"
+    >
       {Array.from({ length: shown }, (_, i) => (
-        <svg key={i} viewBox="0 0 12 24" className="h-6 w-3" fill="currentColor">
+        <svg
+          key={i}
+          viewBox="0 0 12 24"
+          className="h-6 w-3"
+          fill="currentColor"
+        >
           <rect x="3" y="0" width="6" height="4" rx="1.5" opacity="0.55" />
           <rect x="1" y="4" width="10" height="20" rx="2.5" />
         </svg>
       ))}
-      {count > 3 && <span className="ml-0.5 text-xs font-semibold">+{count - 3}</span>}
+      {count > 3 && (
+        <span className="ml-0.5 text-xs font-semibold">+{count - 3}</span>
+      )}
     </span>
   );
 }
@@ -715,8 +891,20 @@ function PaymentIcons() {
       mark: (
         <svg viewBox="0 0 44 18" className="h-4 w-auto" aria-hidden="true">
           <rect width="44" height="18" rx="3" fill="#5A31F4" />
-          <text x="22" y="12.5" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="800" fontStyle="italic" fill="#fff">
-            shop<tspan fontWeight="600" fontStyle="normal">Pay</tspan>
+          <text
+            x="22"
+            y="12.5"
+            textAnchor="middle"
+            fontFamily="Arial, sans-serif"
+            fontSize="9"
+            fontWeight="800"
+            fontStyle="italic"
+            fill="#fff"
+          >
+            shop
+            <tspan fontWeight="600" fontStyle="normal">
+              Pay
+            </tspan>
           </text>
         </svg>
       ),
@@ -725,7 +913,15 @@ function PaymentIcons() {
       name: "Visa",
       mark: (
         <svg viewBox="0 0 40 16" className="h-3.5 w-auto" aria-hidden="true">
-          <text x="0" y="13" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="800" fontStyle="italic" fill="#1A1F71">
+          <text
+            x="0"
+            y="13"
+            fontFamily="Arial, sans-serif"
+            fontSize="14"
+            fontWeight="800"
+            fontStyle="italic"
+            fill="#1A1F71"
+          >
             VISA
           </text>
         </svg>
@@ -746,7 +942,15 @@ function PaymentIcons() {
       mark: (
         <svg viewBox="0 0 40 16" className="h-4 w-auto" aria-hidden="true">
           <rect width="40" height="16" rx="2" fill="#1F72CD" />
-          <text x="20" y="11.5" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="8" fontWeight="800" fill="#fff">
+          <text
+            x="20"
+            y="11.5"
+            textAnchor="middle"
+            fontFamily="Arial, sans-serif"
+            fontSize="8"
+            fontWeight="800"
+            fill="#fff"
+          >
             AMEX
           </text>
         </svg>
@@ -756,11 +960,25 @@ function PaymentIcons() {
       name: "Discover",
       mark: (
         <svg viewBox="0 0 52 16" className="h-3.5 w-auto" aria-hidden="true">
-          <text x="0" y="12" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="800" fill="#231F20">
+          <text
+            x="0"
+            y="12"
+            fontFamily="Arial, sans-serif"
+            fontSize="10"
+            fontWeight="800"
+            fill="#231F20"
+          >
             DISC
           </text>
           <circle cx="32.5" cy="8.5" r="4.6" fill="#F58220" />
-          <text x="38" y="12" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="800" fill="#231F20">
+          <text
+            x="38"
+            y="12"
+            fontFamily="Arial, sans-serif"
+            fontSize="10"
+            fontWeight="800"
+            fill="#231F20"
+          >
             VER
           </text>
         </svg>
@@ -772,7 +990,10 @@ function PaymentIcons() {
         <svg viewBox="0 0 24 18" className="h-4 w-auto" aria-hidden="true">
           <circle cx="12" cy="9" r="8" fill="#0079BE" />
           <circle cx="12" cy="9" r="5.2" fill="#fff" />
-          <path d="M10.4 5.4v7.2a3.8 3.8 0 0 1 0-7.2zM13.6 5.4a3.8 3.8 0 0 1 0 7.2z" fill="#0079BE" />
+          <path
+            d="M10.4 5.4v7.2a3.8 3.8 0 0 1 0-7.2zM13.6 5.4a3.8 3.8 0 0 1 0 7.2z"
+            fill="#0079BE"
+          />
         </svg>
       ),
     },
@@ -784,7 +1005,14 @@ function PaymentIcons() {
             d="M7.4 4.3c.4-.5.7-1.2.6-1.8-.6 0-1.3.4-1.7.9-.4.4-.7 1.1-.6 1.7.6 0 1.2-.3 1.7-.8zM8 5.3c-.9-.1-1.7.5-2.1.5-.4 0-1.1-.5-1.8-.5-1 0-1.8.6-2.3 1.4-1 1.7-.3 4.3.7 5.7.5.7 1 1.5 1.8 1.4.7 0 1-.5 1.9-.5s1.1.5 1.9.5c.8 0 1.3-.7 1.8-1.4.5-.8.8-1.5.8-1.6 0 0-1.5-.6-1.5-2.3 0-1.5 1.2-2.1 1.3-2.2-.7-1-1.8-1.1-2.2-1.1z"
             fill="currentColor"
           />
-          <text x="12.5" y="13" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="600" fill="currentColor">
+          <text
+            x="12.5"
+            y="13"
+            fontFamily="Arial, sans-serif"
+            fontSize="10"
+            fontWeight="600"
+            fill="currentColor"
+          >
             Pay
           </text>
         </svg>
@@ -794,9 +1022,17 @@ function PaymentIcons() {
       name: "Google Pay",
       mark: (
         <svg viewBox="0 0 38 18" className="h-4 w-auto" aria-hidden="true">
-          <text x="0" y="13" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="700">
+          <text
+            x="0"
+            y="13"
+            fontFamily="Arial, sans-serif"
+            fontSize="12"
+            fontWeight="700"
+          >
             <tspan fill="#4285F4">G</tspan>
-            <tspan fill="#5F6368" dx="1">Pay</tspan>
+            <tspan fill="#5F6368" dx="1">
+              Pay
+            </tspan>
           </text>
         </svg>
       ),
@@ -804,7 +1040,10 @@ function PaymentIcons() {
   ];
 
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-1.5" aria-label="Accepted payment methods">
+    <ul
+      className="flex flex-wrap items-center justify-center gap-1.5"
+      aria-label="Accepted payment methods"
+    >
       {methods.map((m) => (
         <li
           key={m.name}
