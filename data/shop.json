@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T19:09:48.198Z",
+  "generatedAt": "2026-09-26T13:57:22.234Z",
   "contact": {
     "email": "support@shoptrackify.com",
     "phone": "",
@@ -26,6 +26,11 @@
   },
   "pdp": {
     "announcement": "30-day returns on every order",
+    "announcements": [
+      "30-day returns on every order",
+      "Tracked delivery on every order",
+      "Secure checkout with Shop Pay, Apple Pay & Google Pay"
+    ],
     "shipping": {
       "processingTime": null,
       "deliveryEstimate": null,

@@ -14,9 +14,17 @@ declare global {
   var __tfRedirectRepository: JsonRedirectRepository | undefined;
 }
 
-// Survives dev-server hot reloads so the in-memory catalog is not rebuilt per edit.
-const productRepositoryInstance = globalThis.__tfProductRepository ?? new JsonProductRepository();
-const redirectRepositoryInstance = globalThis.__tfRedirectRepository ?? new JsonRedirectRepository();
+// Survives dev-server hot reloads so the in-memory catalog is not rebuilt per
+// edit — but only while the repository code itself is unchanged. An edit to
+// json-repository or anything it imports (hydrate, normalize…) re-evaluates
+// the class, and an instance of the old class would keep running the old
+// code, so it's replaced.
+const cachedProducts = globalThis.__tfProductRepository;
+const cachedRedirects = globalThis.__tfRedirectRepository;
+const productRepositoryInstance =
+  cachedProducts instanceof JsonProductRepository ? cachedProducts : new JsonProductRepository();
+const redirectRepositoryInstance =
+  cachedRedirects instanceof JsonRedirectRepository ? cachedRedirects : new JsonRedirectRepository();
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.__tfProductRepository = productRepositoryInstance;

@@ -44,6 +44,7 @@ function hydratePdp(pdp: Partial<CatalogPdpContent> | undefined): CatalogPdpCont
     whatsIncluded: list(pdp?.whatsIncluded),
     faq: list(pdp?.faq),
     demoVideo: pdp?.demoVideo ?? null,
+    ugcMedia: list(pdp?.ugcMedia),
   };
 }
 

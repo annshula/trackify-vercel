@@ -95,6 +95,7 @@ export const pdpContentSchema = z.object({
   whatsIncluded: z.array(featureHighlightSchema),
   faq: z.array(faqItemSchema),
   demoVideo: specVideoSchema.nullable(),
+  ugcMedia: z.array(mediaSchema),
 });
 
 export const variantSchema = z.object({

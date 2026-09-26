@@ -53,6 +53,8 @@ export type ShopTrustPoint = {
  */
 export type ShopPdpContent = {
   announcement: string | null;
+  /** `custom.announcements` — every message in the bar under the header; falls back to `[announcement]`. */
+  announcements: string[];
   shipping: {
     processingTime: string | null;
     deliveryEstimate: string | null;

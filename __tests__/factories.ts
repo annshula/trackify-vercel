@@ -60,7 +60,7 @@ export function makeProduct(overrides: Partial<CatalogProduct> = {}): CatalogPro
     specs: [],
     featureHighlights: [],
     comparisonTable: [],
-    pdp: { benefits: [], story: [], howItWorks: [], useCases: [], whatsIncluded: [], faq: [], demoVideo: null },
+    pdp: { benefits: [], story: [], howItWorks: [], useCases: [], whatsIncluded: [], faq: [], demoVideo: null, ugcMedia: [] },
     totalInventory: 25,
     ...overrides,
   };

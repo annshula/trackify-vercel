@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T13:13:44.267Z",
+  "generatedAt": "2026-09-26T14:25:46.328Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -585,7 +585,8 @@
             "answer": "Yes — within 30 days of receiving it. Because it's a personal-care item, it needs to be unused and in its original packaging. Email support@shoptrackify.com to start a return and we'll send you a return label."
           }
         ],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 20844
     },
@@ -614,7 +615,7 @@
         {
           "id": "gid://shopify/MediaImage/46203185103075",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-          "altText": "adf770775166ccea3cd942238a726605",
+          "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
           "width": 1500,
           "height": 1500
         },
@@ -628,112 +629,112 @@
         {
           "id": "gid://shopify/MediaImage/46203185135843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
-          "altText": "b8e6093aad95cfff2c24ab029bc2f6f5",
+          "altText": "Cloud Sense mousse beside the bikini line brightening serum",
           "width": 1200,
           "height": 1200
         },
         {
           "id": "gid://shopify/MediaImage/46203185168611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-          "altText": "7ebdcbd2468a73a5b443775660a207c3",
+          "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
           "width": 2720,
           "height": 2720
         },
         {
           "id": "gid://shopify/MediaImage/46203372142819",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "",
+          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
           "width": 548,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203185332451",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
-          "altText": "2bd1f50639e83afc8ed8b13870366734",
+          "altText": "Couple with smooth, hair-free skin",
           "width": 1500,
           "height": 1500
         },
         {
           "id": "gid://shopify/MediaImage/46203185201379",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "4bd2aff1b47cfbe20758693177cae678",
+          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
           "width": 1200,
           "height": 1200
         },
         {
           "id": "gid://shopify/MediaImage/46203185234147",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-          "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
           "width": 1500,
           "height": 1500
         },
         {
           "id": "gid://shopify/MediaImage/46203372568803",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203185299683",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "6706ca206cab3afb399648b2779be80",
+          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
           "width": 2048,
           "height": 2048
         },
         {
           "id": "gid://shopify/MediaImage/46203185365219",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7331394c-d1f2-439e-8ec7-91f6d25a898c.jpg?v=1790421362",
-          "altText": "292fe2445a08d4da93c8a0b1e4fdf540",
+          "altText": "Cloud Sense compared with other hair removal creams",
           "width": 1500,
           "height": 1500
         },
         {
           "id": "gid://shopify/MediaImage/46203372470499",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
-          "altText": "",
+          "altText": "How to use the hair removal mousse in four steps",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203372536035",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Customer before and after on back, chest, armpit, leg and arm",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203372503267",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Friends with Cloud Sense gift bags",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203372437731",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203372830947",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
-          "altText": "",
+          "altText": "PHOFAY lab testing overview",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/46203185266915",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
-          "altText": "65fb561185161d7b53a07f626a97ed61",
+          "altText": "Cloud Sense mousse can next to its box",
           "width": 3060,
           "height": 4080
         },
         {
           "id": "gid://shopify/ProductImage/49461856108771",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-          "altText": "adf770775166ccea3cd942238a726605",
+          "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
           "width": 1500,
           "height": 1500
         },
@@ -747,105 +748,105 @@
         {
           "id": "gid://shopify/ProductImage/49461856141539",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
-          "altText": "b8e6093aad95cfff2c24ab029bc2f6f5",
+          "altText": "Cloud Sense mousse beside the bikini line brightening serum",
           "width": 1200,
           "height": 1200
         },
         {
           "id": "gid://shopify/ProductImage/49461856174307",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-          "altText": "7ebdcbd2468a73a5b443775660a207c3",
+          "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
           "width": 2720,
           "height": 2720
         },
         {
           "id": "gid://shopify/ProductImage/49462049013987",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "",
+          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
           "width": 548,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49461856338147",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
-          "altText": "2bd1f50639e83afc8ed8b13870366734",
+          "altText": "Couple with smooth, hair-free skin",
           "width": 1500,
           "height": 1500
         },
         {
           "id": "gid://shopify/ProductImage/49461856207075",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "4bd2aff1b47cfbe20758693177cae678",
+          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
           "width": 1200,
           "height": 1200
         },
         {
           "id": "gid://shopify/ProductImage/49461856239843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-          "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
           "width": 1500,
           "height": 1500
         },
         {
           "id": "gid://shopify/ProductImage/49462049439971",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49461856305379",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "6706ca206cab3afb399648b2779be80",
+          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
           "width": 2048,
           "height": 2048
         },
         {
           "id": "gid://shopify/ProductImage/49461856370915",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7331394c-d1f2-439e-8ec7-91f6d25a898c.jpg?v=1790421362",
-          "altText": "292fe2445a08d4da93c8a0b1e4fdf540",
+          "altText": "Cloud Sense compared with other hair removal creams",
           "width": 1500,
           "height": 1500
         },
         {
           "id": "gid://shopify/ProductImage/49462049341667",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
-          "altText": "",
+          "altText": "How to use the hair removal mousse in four steps",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49462049407203",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Customer before and after on back, chest, armpit, leg and arm",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49462049374435",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Friends with Cloud Sense gift bags",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49462049308899",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49462049702115",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
-          "altText": "",
+          "altText": "PHOFAY lab testing overview",
           "width": 1600,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/49461856272611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
-          "altText": "65fb561185161d7b53a07f626a97ed61",
+          "altText": "Cloud Sense mousse can next to its box",
           "width": 3060,
           "height": 4080
         }
@@ -855,7 +856,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185103075",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-          "altText": "adf770775166ccea3cd942238a726605",
+          "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
           "width": 1500,
           "height": 1500
         },
@@ -871,7 +872,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185135843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
-          "altText": "b8e6093aad95cfff2c24ab029bc2f6f5",
+          "altText": "Cloud Sense mousse beside the bikini line brightening serum",
           "width": 1200,
           "height": 1200
         },
@@ -879,7 +880,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185168611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-          "altText": "7ebdcbd2468a73a5b443775660a207c3",
+          "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
           "width": 2720,
           "height": 2720
         },
@@ -887,7 +888,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372142819",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "",
+          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
           "width": 548,
           "height": 800
         },
@@ -895,7 +896,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185332451",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
-          "altText": "2bd1f50639e83afc8ed8b13870366734",
+          "altText": "Couple with smooth, hair-free skin",
           "width": 1500,
           "height": 1500
         },
@@ -903,7 +904,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185201379",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "4bd2aff1b47cfbe20758693177cae678",
+          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
           "width": 1200,
           "height": 1200
         },
@@ -911,7 +912,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185234147",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-          "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
           "width": 1500,
           "height": 1500
         },
@@ -919,7 +920,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372568803",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
         },
@@ -927,7 +928,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185299683",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "6706ca206cab3afb399648b2779be80",
+          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
           "width": 2048,
           "height": 2048
         },
@@ -935,7 +936,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185365219",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7331394c-d1f2-439e-8ec7-91f6d25a898c.jpg?v=1790421362",
-          "altText": "292fe2445a08d4da93c8a0b1e4fdf540",
+          "altText": "Cloud Sense compared with other hair removal creams",
           "width": 1500,
           "height": 1500
         },
@@ -943,7 +944,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372470499",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
-          "altText": "",
+          "altText": "How to use the hair removal mousse in four steps",
           "width": 1600,
           "height": 800
         },
@@ -951,7 +952,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372536035",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Customer before and after on back, chest, armpit, leg and arm",
           "width": 1600,
           "height": 800
         },
@@ -959,7 +960,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372503267",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Friends with Cloud Sense gift bags",
           "width": 1600,
           "height": 800
         },
@@ -967,7 +968,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372437731",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "",
+          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
           "width": 1600,
           "height": 800
         },
@@ -975,7 +976,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372830947",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
-          "altText": "",
+          "altText": "PHOFAY lab testing overview",
           "width": 1600,
           "height": 800
         },
@@ -983,7 +984,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/46203185266915",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
-          "altText": "65fb561185161d7b53a07f626a97ed61",
+          "altText": "Cloud Sense mousse can next to its box",
           "width": 3060,
           "height": 4080
         }
@@ -996,7 +997,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T13:13:37Z",
+      "updatedAt": "2026-09-26T13:56:42Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -1217,58 +1218,73 @@
       },
       "compareAtPriceRange": null,
       "metafields": {
-        "custom.benefits": "[\"gid://shopify/Metaobject/606860542179\",\"gid://shopify/Metaobject/606860574947\",\"gid://shopify/Metaobject/606860476643\",\"gid://shopify/Metaobject/606860509411\"]",
-        "custom.cta_headline": "Ready to try pain-free hair removal?",
-        "custom.faq": "[\"gid://shopify/Metaobject/606861000931\",\"gid://shopify/Metaobject/606861033699\",\"gid://shopify/Metaobject/606860935395\",\"gid://shopify/Metaobject/606860968163\",\"gid://shopify/Metaobject/606861066467\",\"gid://shopify/Metaobject/606861099235\",\"gid://shopify/Metaobject/606861132003\"]",
-        "custom.feature_highlights": "[\"gid://shopify/Metaobject/606861918435\",\"gid://shopify/Metaobject/606862082275\",\"gid://shopify/Metaobject/606862016739\",\"gid://shopify/Metaobject/606861983971\",\"gid://shopify/Metaobject/606861951203\",\"gid://shopify/Metaobject/606862049507\",\"gid://shopify/Metaobject/606862115043\"]",
-        "custom.how_it_works": "[\"gid://shopify/Metaobject/606860673251\",\"gid://shopify/Metaobject/606860706019\",\"gid://shopify/Metaobject/606860738787\"]",
+        "custom.benefits": "[\"gid://shopify/Metaobject/606871486691\",\"gid://shopify/Metaobject/606871519459\",\"gid://shopify/Metaobject/606871879907\",\"gid://shopify/Metaobject/606871748835\"]",
+        "custom.cta_headline": "Ready for smooth, pain-free skin?",
+        "custom.delivery_estimate": "3–8 days",
+        "custom.faq": "[\"gid://shopify/Metaobject/606872142051\",\"gid://shopify/Metaobject/606872109283\",\"gid://shopify/Metaobject/606872076515\",\"gid://shopify/Metaobject/606872633571\",\"gid://shopify/Metaobject/606872305891\",\"gid://shopify/Metaobject/606872699107\",\"gid://shopify/Metaobject/606872568035\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/606871552227\",\"gid://shopify/Metaobject/606871847139\",\"gid://shopify/Metaobject/606872436963\",\"gid://shopify/Metaobject/606871617763\",\"gid://shopify/Metaobject/606871683299\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/606871584995\",\"gid://shopify/Metaobject/606871814371\",\"gid://shopify/Metaobject/606871912675\",\"gid://shopify/Metaobject/606871945443\"]",
         "custom.meta_pixel_id": "973254138358742",
         "custom.perks": "[\"Hydrates skin for up to 24hrs\",\"Suitable for sensitive skin\",\"Removes short, stubborn hair\",\"Minimizes ingrown hair\",\"Long lasting smoothness\",\"35% less chemical ingredients\"]",
-        "custom.specs": "[\"gid://shopify/Metaobject/606861164771\",\"gid://shopify/Metaobject/606861295843\",\"gid://shopify/Metaobject/606861328611\",\"gid://shopify/Metaobject/606861197539\",\"gid://shopify/Metaobject/606861230307\",\"gid://shopify/Metaobject/606861263075\"]",
-        "custom.story": "[\"gid://shopify/Metaobject/606860640483\",\"gid://shopify/Metaobject/606860607715\"]",
-        "custom.subtitle": "Gentle, fast-acting hair removal cream for sensitive skin — no razor, no wax.",
-        "custom.use_cases": "[\"gid://shopify/Metaobject/606860869859\",\"gid://shopify/Metaobject/606860771555\",\"gid://shopify/Metaobject/606860804323\",\"gid://shopify/Metaobject/606860837091\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/606860902627\"]"
+        "custom.specs": "[\"gid://shopify/Metaobject/606872207587\",\"gid://shopify/Metaobject/606872404195\",\"gid://shopify/Metaobject/606872600803\",\"gid://shopify/Metaobject/606872240355\",\"gid://shopify/Metaobject/606872535267\",\"gid://shopify/Metaobject/606872338659\",\"gid://shopify/Metaobject/606872273123\",\"gid://shopify/Metaobject/606872666339\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/606871716067\",\"gid://shopify/Metaobject/606871650531\"]",
+        "custom.subtitle": "A gentle spray mousse that removes hair in 5–10 minutes — no razor, no wax.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/606872502499\",\"gid://shopify/Metaobject/606871781603\",\"gid://shopify/Metaobject/606872010979\",\"gid://shopify/Metaobject/606872043747\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/606872469731\",\"gid://shopify/Metaobject/606871978211\",\"gid://shopify/Metaobject/606872174819\"]"
       },
       "specs": [
         {
+          "label": "Brand",
+          "value": "PHOFAY Cloud Sense",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
           "label": "Format",
-          "value": "Spray & Serum Cream",
+          "value": "Spray mousse, 140ML / 4.73 FL.OZ",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Cream (Spray & Cream style)",
+          "value": "Smooth cream tube, 100ML / 3.5 FL.OZ",
           "description": null,
           "image": null,
           "video": null
         },
         {
           "label": "Key ingredients",
-          "value": "Aloe, Hyaluronic Acid, Citrus Scent",
+          "value": "Ginseng, portulaca oleracea, aloe leaf water, glycerin, hyaluronic acid",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Scent",
+          "value": "Orange Spring Cologne",
           "description": null,
           "image": null,
           "video": null
         },
         {
           "label": "Skin type",
-          "value": "Sensitive skin, hypoallergenic formula",
+          "value": "Sensitive skin — hypoallergenic, no additives",
           "description": null,
           "image": null,
           "video": null
         },
         {
-          "label": "Recommended use areas",
-          "value": "See product packaging for approved areas",
+          "label": "Time on skin",
+          "value": "5–10 minutes",
           "description": null,
           "image": null,
           "video": null
         },
         {
           "label": "Suitable for",
-          "value": "Men & Women",
-          "description": null,
-          "image": null,
-          "video": null
-        },
-        {
-          "label": "Pack sizes available",
-          "value": "1PC, 2PCS, 3PCS, 4PCS, 6PCS, 8PCS — Set / Set A / Spray depilatory cream styles",
+          "value": "Men & women",
           "description": null,
           "image": null,
           "video": null
@@ -1277,12 +1293,12 @@
       "featureHighlights": [
         {
           "icon": "shield",
-          "label": "Hypoallergenic, no additives",
-          "body": "Marked hypoallergenic, non-irritating and additive-free on the product packaging — always patch test on a small area first.",
+          "label": "Made for sensitive skin",
+          "body": "Hypoallergenic, additive-free and non-irritating per the packaging. Patch test a small area 24 hours before first use.",
           "image": {
             "id": "gid://shopify/MediaImage/46203185103075",
             "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-            "altText": "adf770775166ccea3cd942238a726605",
+            "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
             "width": 1500,
             "height": 1500
           },
@@ -1290,51 +1306,38 @@
         },
         {
           "icon": "droplet",
-          "label": "Aloe, ginseng & crocus flower",
-          "body": "The Cloud Sense formula is presented with aloe vera, ginseng root and crocus flower, in an Orange Spring Cologne scent.",
+          "label": "Herbal extracts, not harsh chemicals",
+          "body": "Ginseng extract, portulaca oleracea extract, aloe leaf water and glycerin, with hyaluronic acid — 35% less chemical ingredients.",
           "image": {
-            "id": "gid://shopify/MediaImage/46203185103075",
-            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-            "altText": "adf770775166ccea3cd942238a726605",
-            "width": 1500,
-            "height": 1500
-          },
-          "video": null
-        },
-        {
-          "icon": "check",
-          "label": "Shown on armpit, leg, back, arm & chest",
-          "body": "The brand's own before/after photos cover the armpit, leg, back, arm and chest — always check your product's packaging for its approved areas of use.",
-          "image": {
-            "id": "gid://shopify/MediaImage/46203185168611",
-            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-            "altText": "7ebdcbd2468a73a5b443775660a207c3",
-            "width": 2720,
-            "height": 2720
-          },
-          "video": null
-        },
-        {
-          "icon": "ruler",
-          "label": "4 simple steps",
-          "body": "Per the printed instructions: clean & dry skin, apply evenly to the area, wait 5 to 10 minutes, then remove with the provided scraper and rinse.",
-          "image": {
-            "id": "gid://shopify/MediaImage/46203185234147",
-            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-            "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
-            "width": 1500,
-            "height": 1500
+            "id": "gid://shopify/MediaImage/46203185299683",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+            "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
+            "width": 2048,
+            "height": 2048
           },
           "video": null
         },
         {
           "icon": "sparkle",
           "label": "Works at the root",
-          "body": "The formula is shown softening and loosening hair at the root, without the diagram claiming any effect on the surrounding skin.",
+          "body": "The formula softens hair down at the root so it wipes away cleanly, instead of cutting it off at the surface.",
           "image": {
             "id": "gid://shopify/MediaImage/46203372568803",
             "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-            "altText": "",
+            "altText": "Diagram of the mousse softening hair at the root",
+            "width": 1600,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Real results, head to toe",
+          "body": "Before-and-after on back, chest, underarms, legs and arms — one formula for the whole body.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203372536035",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
+            "altText": "Customer before and after on back, chest, armpit, leg and arm",
             "width": 1600,
             "height": 800
           },
@@ -1343,26 +1346,13 @@
         {
           "icon": "package",
           "label": "Spray mousse or cream",
-          "body": "Available as the Cloud Sense spray mousse (140ML) or the Smooth cream tube (100ML) — pick the format you prefer at checkout.",
+          "body": "The Cloud Sense spray mousse (140ML), paired with a serum or the Smooth cream tube (100ML) depending on the style you pick.",
           "image": {
             "id": "gid://shopify/MediaImage/46203185201379",
             "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-            "altText": "4bd2aff1b47cfbe20758693177cae678",
+            "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
             "width": 1200,
             "height": 1200
-          },
-          "video": null
-        },
-        {
-          "icon": "returns",
-          "label": "Certifications on file",
-          "body": "The brand states it can provide FDA, CPNP, SCPN and MSDS certificates for this product on request — contact support if you need documentation.",
-          "image": {
-            "id": "gid://shopify/MediaImage/46203372142819",
-            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-            "altText": "",
-            "width": 548,
-            "height": 800
           },
           "video": null
         }
@@ -1371,30 +1361,30 @@
       "pdp": {
         "benefits": [
           {
-            "icon": "droplet",
-            "label": "Gentle, fragrance-forward formula",
-            "body": "Citrus scent with aloe and hyaluronic acid, formulated for sensitive skin. Always patch test 24 hours before first use.",
-            "image": null,
-            "video": null
-          },
-          {
-            "icon": "sparkle",
-            "label": "Fast application",
-            "body": "Spray or apply, leave on for the time stated on your product packaging, then rinse — no razor, no wax strips.",
+            "icon": "feather",
+            "label": "Pain-free",
+            "body": "No blade, no pulling — spray, wait, wipe away.",
             "image": null,
             "video": null
           },
           {
             "icon": "shield",
-            "label": "Hypoallergenic formula",
-            "body": "Designed for sensitive skin. If irritation occurs, rinse immediately and discontinue use.",
+            "label": "Sensitive-skin safe",
+            "body": "Hypoallergenic, no additives, non-irritating.",
             "image": null,
             "video": null
           },
           {
-            "icon": "check",
-            "label": "Suitable for men & women",
-            "body": "One formula for the bikini area and other body areas listed on the packaging.",
+            "icon": "droplet",
+            "label": "24hr hydration",
+            "body": "Aloe and hyaluronic acid keep skin soft after.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Long-lasting smooth",
+            "body": "Works at the root, not just the surface.",
             "image": null,
             "video": null
           }
@@ -1402,68 +1392,87 @@
         "story": [
           {
             "icon": "feather",
-            "label": "The problem with razors and wax",
-            "body": "Shaving causes nicks and razor burn; waxing pulls and hurts, especially on sensitive skin.",
+            "label": "Razors nick. Wax pulls.",
+            "body": "Shaving leaves bumps and ingrown hairs; waxing hurts — especially on sensitive skin.",
             "image": null,
             "video": null
           },
           {
             "icon": "sparkle",
-            "label": "A gentler way",
-            "body": "A cream/spray depilatory lifts hair away from the skin without a blade or hot wax — always check the instructions on your product for use and timing.",
-            "image": null,
+            "label": "A gentler way to go smooth",
+            "body": "Spray the mousse, wait 5–10 minutes, and wipe hair away with the scraper. No blade, no strips.",
+            "image": {
+              "id": "gid://shopify/MediaImage/46203185332451",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+              "altText": "Couple with smooth, hair-free skin",
+              "width": 1500,
+              "height": 1500
+            },
             "video": null
           }
         ],
         "howItWorks": [
           {
-            "icon": "shield",
-            "label": "Patch test first",
-            "body": "Apply a small amount to a small area of skin and wait 24 hours. Do not proceed if you see irritation.",
-            "image": null,
+            "icon": "clean",
+            "label": "Clean & dry",
+            "body": "Start on clean, dry skin. Patch test first if it's your first time.",
+            "image": {
+              "id": "gid://shopify/MediaImage/46203185234147",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+              "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
+              "width": 1500,
+              "height": 1500
+            },
             "video": null
           },
           {
             "icon": "droplet",
-            "label": "Apply",
-            "body": "Apply an even layer to clean, dry skin, following the timing on the product's packaging.",
+            "label": "Apply evenly",
+            "body": "Spray an even layer over the area you want smooth.",
             "image": null,
             "video": null
           },
           {
-            "icon": "clean",
-            "label": "Rinse & moisturize",
-            "body": "Rinse thoroughly with warm water and follow with a gentle, fragrance-free moisturizer.",
+            "icon": "moon",
+            "label": "Wait 5–10 minutes",
+            "body": "Let the mousse soften the hair at the root.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "hand",
+            "label": "Scrape & rinse",
+            "body": "Wipe hair away with the provided scraper, then rinse with water.",
             "image": null,
             "video": null
           }
         ],
         "useCases": [
           {
+            "icon": "fit",
+            "label": "Legs & arms",
+            "body": "Large areas done in one go.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "hand",
+            "label": "Underarms",
+            "body": "Smooth without razor burn.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gym",
+            "label": "Back & chest",
+            "body": "Shown in the brand's before-and-after.",
+            "image": null,
+            "video": null
+          },
+          {
             "icon": "sparkle",
             "label": "Bikini line",
-            "body": "Formulated for use on the bikini area — always check your packaging for the exact areas of use it's approved for.",
-            "image": null,
-            "video": null
-          },
-          {
-            "icon": "sparkle",
-            "label": "Underarms",
-            "body": "Suitable for underarm use per the product's labeled directions.",
-            "image": null,
-            "video": null
-          },
-          {
-            "icon": "sparkle",
-            "label": "Legs & arms",
-            "body": "Works on larger areas too — follow the same patch-test-first routine.",
-            "image": null,
-            "video": null
-          },
-          {
-            "icon": "shield",
-            "label": "Sensitive skin",
-            "body": "Hypoallergenic formula intended for those who find razors and wax irritating.",
+            "body": "Gentle formula for sensitive areas — follow the packaging directions.",
             "image": null,
             "video": null
           }
@@ -1471,43 +1480,58 @@
         "whatsIncluded": [
           {
             "icon": "package",
-            "label": "1x Depilatory Cream/Spray",
-            "body": "Comes in the pack size you selected at checkout — see the variant options above.",
+            "label": "Cloud Sense hair removal mousse",
+            "body": "140ML / 4.73 FL.OZ spray can, per pack.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "hand",
+            "label": "Scraper",
+            "body": "For wiping the mousse and hair away.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "Serum or Smooth cream",
+            "body": "Included with the Spray & Serum and Spray & Cream styles.",
             "image": null,
             "video": null
           }
         ],
         "faq": [
           {
-            "question": "Is this safe for sensitive skin?",
-            "answer": "It's formulated to be hypoallergenic, but everyone's skin reacts differently. Always do a 24-hour patch test on a small area before your first full use."
+            "question": "Is it safe for sensitive skin?",
+            "answer": "It's labelled hypoallergenic, additive-free and non-irritating, but every skin is different. Patch test a small area 24 hours before your first full use."
           },
           {
             "question": "How long do I leave it on?",
-            "answer": "Follow the timing printed on your product's packaging — leaving it on longer than directed can increase the risk of irritation."
+            "answer": "5 to 10 minutes, per the instructions. Don't leave it on longer than directed."
           },
           {
-            "question": "Can I use this on my face?",
-            "answer": "Only use this product on the areas listed as approved on its packaging. When in doubt, don't use it on facial skin."
+            "question": "How do I remove it?",
+            "answer": "Wipe the mousse and hair away with the provided scraper, then rinse the skin with water."
           },
           {
-            "question": "How often can I use it?",
-            "answer": "Follow the frequency guidance on your product's packaging; depilatory creams are generally not meant for daily use."
+            "question": "Where can I use it?",
+            "answer": "The brand shows results on the back, chest, underarms, legs and arms. Follow the packaging directions for sensitive areas, and don't use it on your face."
           },
           {
-            "question": "What if I feel a burning or stinging sensation?",
-            "answer": "Rinse the area immediately with cool water and discontinue use. If irritation persists, consult a doctor."
+            "question": "What's the difference between the styles?",
+            "answer": "Spray is the mousse on its own. Spray & Serum adds a serum, and Spray & Cream adds the Smooth hair removal cream tube (100ML)."
           },
           {
-            "question": "Is this suitable for men and women?",
-            "answer": "Yes — the formula itself isn't gender-specific; use it on any area listed as approved on the packaging."
+            "question": "What if it stings?",
+            "answer": "Rinse the area straight away with cool water and stop using it. If irritation continues, see a doctor."
           },
           {
-            "question": "Does it have a strong smell?",
-            "answer": "It's scented with citrus. If you're sensitive to fragrance, patch test first."
+            "question": "Does it have a scent?",
+            "answer": "Yes — a light Orange Spring Cologne scent."
           }
         ],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 187270
     },
@@ -1824,7 +1848,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 0
     },
@@ -2321,7 +2346,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 900
     },
@@ -2901,7 +2927,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 80
     },
@@ -3163,7 +3190,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 0
     },
@@ -3392,7 +3420,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 0
     },
@@ -3572,7 +3601,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 0
     },
@@ -3687,7 +3717,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 11
     },
@@ -3802,7 +3833,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 10
     },
@@ -3917,7 +3949,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 10
     },
@@ -4032,7 +4065,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 10
     },
@@ -4400,7 +4434,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 35607
     },
@@ -5209,7 +5244,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 293489
     },
@@ -5667,7 +5703,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 58941
     },
@@ -6476,7 +6513,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 83718
     },
@@ -6766,7 +6804,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 24568
     },
@@ -7135,7 +7174,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 47229
     },
@@ -7671,7 +7711,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 206439
     },
@@ -8243,7 +8284,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 400004
     },
@@ -9405,7 +9447,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 211876
     },
@@ -9976,7 +10019,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 12062
     },
@@ -10649,7 +10693,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 50194
     },
@@ -11544,7 +11589,8 @@
         "useCases": [],
         "whatsIncluded": [],
         "faq": [],
-        "demoVideo": null
+        "demoVideo": null,
+        "ugcMedia": []
       },
       "totalInventory": 13000
     }

@@ -164,8 +164,19 @@ export const PRODUCT_BY_ID_QUERY = /* GraphQL */ `
 export const METAOBJECTS_BY_IDS_QUERY = /* GraphQL */ `
   query MetaobjectsByIds($ids: [ID!]!) {
     nodes(ids: $ids) {
+      ... on MediaImage {
+        id
+        alt
+        image {
+          url
+          width
+          height
+          altText
+        }
+      }
       ... on Video {
         id
+        alt
         sources {
           url
           mimeType
@@ -373,7 +384,7 @@ export const SHOP_QUERY = /* GraphQL */ `
 export const SHOP_PDP_QUERY = /* GraphQL */ `
   query ShopPdp {
     shop {
-      metafields(namespace: "custom", first: 20) {
+      metafields(namespace: "custom", first: 40) {
         nodes {
           key
           value

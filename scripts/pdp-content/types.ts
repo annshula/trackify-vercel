@@ -29,10 +29,19 @@ export type Spec = { label: string; value: string; description?: string };
 
 export type Faq = { question: string; answer: string };
 
+/** One `comparison_row` metaobject — this product vs. the usual alternatives. */
+export type ComparisonRow = { feature: string; us: string; others: string };
+
 export type ProductPdpContent = {
   handle: string;
   /** Written to `custom.subtitle` — the one-line value proposition. */
   subtitle: string;
+  /** Written to `custom.perks` — the short filled-tick lines under the PDP title. */
+  perks?: string[];
+  /** Written to `custom.comparison_table` as `comparison_row` metaobjects. */
+  comparison?: ComparisonRow[];
+  /** Written to `custom.delivery_estimate` — overrides the store-wide estimate for this product, e.g. "3–8 days". */
+  deliveryEstimate?: string;
   /** Written to `custom.cta_headline` — the closing "Ready to …?" line. */
   ctaHeadline: string;
   benefits: Block[];
@@ -50,6 +59,8 @@ export type ProductPdpContent = {
 
 export type ShopPdpContent = {
   announcement: string;
+  /** Written to `custom.announcements` — every message in the bar under the header, in order. */
+  announcements: string[];
   shippingProcessingTime: string;
   shippingDeliveryEstimate: string;
   shippingCostNote: string;

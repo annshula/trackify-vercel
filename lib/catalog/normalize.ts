@@ -98,9 +98,13 @@ type AdminMetaobjectRef = {
     value: string | null;
     reference?: AdminMetaobjectFileRef | null;
   }[];
-  /** Set when the node is a Video file (`custom.demo_video`) rather than a metaobject. */
+  /** Set when the node is a Video file (`custom.demo_video`, `custom.ugc_media`) rather than a metaobject. */
   sources?: { url: string; mimeType: string; format: string }[] | null;
   preview?: { image?: { url?: string | null } | null } | null;
+  /** Set when the node is a MediaImage file (`custom.ugc_media`). */
+  image?: { url?: string | null; width?: number | null; height?: number | null; altText?: string | null } | null;
+  /** The file's own alt text (Video and MediaImage files). */
+  alt?: string | null;
 };
 
 type AdminMetafieldNode = {
@@ -308,9 +312,11 @@ export function referencedMetaobjectIds(node: AdminProductNode): string[] {
   ].flatMap((key) =>
     parseGidList(nodes.find((n) => n.namespace === "custom" && n.key === key)?.value),
   );
-  // The demo video is a single file reference, resolved by the same batch.
+  // The demo video is a single file reference and the UGC clips a list of
+  // them — both resolved by the same batch.
   const demo = nodes.find((n) => n.namespace === "custom" && n.key === "demo_video")?.value;
-  return demo?.startsWith("gid://") ? [...lists, demo] : lists;
+  const ugc = parseGidList(nodes.find((n) => n.namespace === "custom" && n.key === "ugc_media")?.value);
+  return [...lists, ...(demo?.startsWith("gid://") ? [demo] : []), ...ugc];
 }
 
 /** Product metafields that hold `feature_highlight` lists, and where each lands in CatalogPdpContent. */
@@ -504,11 +510,41 @@ function normalizePdpContent(
     ? { id: demo.id, sources: demo.sources, previewUrl: demo.preview?.image?.url ?? null }
     : null;
 
+  // Customer photos and clips, in the order set in admin. A clip Shopify
+  // hasn't finished processing has no sources yet (and a photo no URL) — it's
+  // skipped until a later sync picks it up ready.
+  const ugcMedia: CatalogPdpContent["ugcMedia"] = parseGidList(
+    nodes.find((n) => n.namespace === "custom" && n.key === "ugc_media")?.value,
+  ).flatMap((gid): CatalogPdpContent["ugcMedia"] => {
+    const file = metaobjects.get(gid);
+    if (!file) return [];
+    if (file.sources?.length) {
+      return [{
+        type: "video",
+        id: file.id,
+        sources: file.sources,
+        previewUrl: file.preview?.image?.url ?? null,
+        altText: file.alt ?? null,
+      }];
+    }
+    if (file.image?.url) {
+      return [{
+        type: "image",
+        id: file.id,
+        url: file.image.url,
+        altText: file.image.altText ?? file.alt ?? null,
+        width: file.image.width ?? null,
+        height: file.image.height ?? null,
+      }];
+    }
+    return [];
+  });
+
   const content = Object.fromEntries(
     PDP_BLOCK_KEYS.map(([key, field]) => [field, blocks(key)]),
   ) as Pick<CatalogPdpContent, (typeof PDP_BLOCK_KEYS)[number][1]>;
 
-  return { ...content, faq, demoVideo };
+  return { ...content, faq, demoVideo, ugcMedia };
 }
 
 function normalizeVariant(

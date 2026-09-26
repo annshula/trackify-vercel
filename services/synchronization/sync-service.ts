@@ -654,9 +654,23 @@ async function fetchShopContent(): Promise<{ pdp: ShopPdpContent; home: ShopHome
     return question && answer ? [{ question, answer }] : [];
   });
 
+  const announcement = value("announcement");
+  const announcements = (() => {
+    try {
+      const parsed: unknown = JSON.parse(value("announcements") ?? "[]");
+      const list = Array.isArray(parsed)
+        ? parsed.filter((line): line is string => typeof line === "string" && line.trim() !== "")
+        : [];
+      return list.length ? list : announcement ? [announcement] : [];
+    } catch {
+      return announcement ? [announcement] : [];
+    }
+  })();
+
   return {
     pdp: {
-      announcement: value("announcement"),
+      announcement,
+      announcements,
       shipping: {
         processingTime: value("shipping_processing_time"),
         deliveryEstimate: value("shipping_delivery_estimate"),

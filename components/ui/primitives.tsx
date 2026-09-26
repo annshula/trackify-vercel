@@ -207,14 +207,21 @@ export function Breadcrumb({ items }: { items: { href?: string; label: string }[
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={`${item.label}-${index}`} className="flex items-center gap-1">
+            <li key={`${item.label}-${index}`} className={cn('flex items-center gap-1', isLast && 'min-w-0 shrink')}>
               {index > 0 && <ChevronRightIcon size={13} className="shrink-0 opacity-50" />}
               {item.href && !isLast ? (
-                <Link href={item.href} className="hover:text-ink hover:underline underline-offset-4">
+                <Link href={item.href} className="shrink-0 hover:text-ink hover:underline underline-offset-4">
                   {item.label}
                 </Link>
               ) : (
-                <span className={cn(isLast && 'font-medium text-ink-muted')} aria-current={isLast ? 'page' : undefined}>
+                // Long product titles end in an ellipsis instead of running off the edge.
+                // The fixed cap (not just min-w-0) is what actually makes truncate bite —
+                // a flex item with only min-w-0 can still grow to its content's full width.
+                <span
+                  className={cn(isLast && 'block max-w-40 truncate font-medium text-ink-muted sm:max-w-xs')}
+                  title={isLast ? item.label : undefined}
+                  aria-current={isLast ? 'page' : undefined}
+                >
                   {item.label}
                 </span>
               )}

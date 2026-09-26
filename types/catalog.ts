@@ -128,6 +128,8 @@ export type CatalogPdpContent = {
   faq: CatalogFaqItem[];
   /** `custom.demo_video` — real usage footage; the demo section needs it. */
   demoVideo: CatalogSpecVideo | null;
+  /** `custom.ugc_media` — customer photos and clips (uploaded in Shopify admin), shown as a portrait row in the hero. */
+  ugcMedia: Extract<CatalogMedia, { type: "image" | "video" }>[];
 };
 
 export type CatalogProduct = {

@@ -26,6 +26,7 @@ import {
 import { ProductDetails, ProductFAQ, ReturnsGuarantee } from "@/components/pdp/detail-sections";
 import { FinalCTA } from "@/components/pdp/final-cta";
 import { StickyAddToCart } from "@/components/pdp/sticky-add-to-cart";
+import { AnnouncementBar } from "@/components/pdp/announcement-bar";
 
 /**
  * /products/[handle]
@@ -101,20 +102,19 @@ export default async function ProductPage({ params }: PageProps) {
     }
   })();
 
-  // Above-the-fold reassurance: how it ships, then the store's own guarantees.
-  const { shipping, trustPoints } = shopPdp;
-  const shippingLine = shipping.deliveryEstimate
-    ? `Delivery ${shipping.deliveryEstimate}`
-    : shipping.costNote
-      ? `Shipping ${shipping.costNote.charAt(0).toLowerCase()}${shipping.costNote.slice(1)}`
-      : null;
-  const reassurance: Reassurance[] = [
-    ...(shippingLine ? [{ icon: "truck", label: shippingLine }] : []),
-    ...trustPoints
-      .filter((point) => point.icon !== "truck" && point.icon !== "support")
-      .slice(0, 2)
-      .map((point) => ({ icon: point.icon, label: point.label })),
-  ];
+  // The store's own guarantees as an icon strip under the buy buttons — short
+  // labels only; the shipping cost note is already covered by the "calculated
+  // at checkout" line under the price.
+  const { trustPoints } = shopPdp;
+  // A product's own delivery estimate (custom.delivery_estimate) beats the
+  // store-wide one — both the buy panel and the specs section read this.
+  const shipping = {
+    ...shopPdp.shipping,
+    deliveryEstimate: product.metafields["custom.delivery_estimate"]?.trim() || shopPdp.shipping.deliveryEstimate,
+  };
+  const reassurance: Reassurance[] = trustPoints
+    .slice(0, 4)
+    .map((point) => ({ icon: point.icon, label: point.label }));
 
   const primaryCollection = product.collections[0];
   const crumbs = [
@@ -142,11 +142,7 @@ export default async function ProductPage({ params }: PageProps) {
       <RecentlyViewedRecorder handle={product.handle} />
 
       <PurchaseProvider product={product}>
-        {shopPdp.announcement && (
-          <p className="bg-primary px-4 py-2 text-center text-xs font-medium tracking-wide text-on-primary">
-            {shopPdp.announcement}
-          </p>
-        )}
+        <AnnouncementBar messages={shopPdp.announcements} />
 
         <div className="container-page">
           <div className="hidden py-4 sm:block">
@@ -156,28 +152,39 @@ export default async function ProductPage({ params }: PageProps) {
           <section
             id="purchase"
             aria-label={`Buy ${product.title}`}
-            className="scroll-mt-24 pb-14 lg:grid lg:grid-cols-12 lg:gap-x-14 lg:pb-20"
+            className="scroll-mt-24 pb-14 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:pb-20 xl:gap-x-16"
           >
-            <div className="-mx-4 self-start sm:-mx-6 lg:sticky lg:top-24 lg:col-span-7 lg:mx-0">
-              <ProductGallery />
+            {/* Desktop: a viewport-tall sticky box (below the fixed header)
+                that centres the gallery vertically while the panel scrolls. */}
+            <div className="-mx-4 self-start sm:-mx-6 lg:sticky lg:top-18 lg:col-span-5 lg:mx-0 lg:flex lg:h-[calc(100svh-4.5rem)] lg:items-center">
+              <div className="w-full">
+                <ProductGallery />
+              </div>
             </div>
-            <div className="pt-7 lg:col-span-5 lg:pt-2">
-              <PurchasePanel subtitle={subtitle} perks={perks} rating={rating} reassurance={reassurance} />
+            <div className="pt-7 lg:col-span-7 lg:pt-2 xl:pr-8">
+              <PurchasePanel
+                subtitle={subtitle}
+                perks={perks}
+                rating={rating}
+                reassurance={reassurance}
+                delivery={shipping.deliveryEstimate}
+              />
             </div>
           </section>
         </div>
 
+        {/* Why this one → proof it works → how to use it → what people say. */}
         <ProductBenefits items={pdp.benefits} />
-        <ProblemSolution story={pdp.story} />
-        <ProductDemo video={pdp.demoVideo} title={product.title} />
+        <ComparisonTable product={product} />
         <ProductFeatures items={product.featureHighlights} />
+        <ProductDemo video={pdp.demoVideo} title={product.title} />
         <HowItWorks steps={pdp.howItWorks} />
+        <ProblemSolution story={pdp.story} />
         <UseCases items={pdp.useCases} />
 
         <div className="container-page">
-          <ComparisonTable product={product} />
           <Suspense fallback={null}>
-            <div className="pb-20 lg:pb-28">
+            <div className="pb-20 empty:hidden lg:pb-28">
               <Reviews product={product} />
             </div>
           </Suspense>

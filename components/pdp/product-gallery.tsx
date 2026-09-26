@@ -76,9 +76,13 @@ export function ProductGallery() {
   }
 
   return (
-    <div className="lg:grid lg:grid-cols-[4.5rem_1fr] lg:gap-4">
+    <div className="lg:grid lg:max-w-136 lg:grid-cols-[4.75rem_1fr] lg:gap-3">
       {/* Thumbnail rail — desktop only; mobile uses swipe + dots. */}
-      <ul className="hidden max-h-[40rem] flex-col gap-3 overflow-y-auto pr-1 lg:flex" aria-label="Product media">
+      {/* h-0 + min-h-full: the rail takes the main image's height instead of
+          growing the row, and scrolls (scrollbar hidden) when there are more
+          thumbs than fit. p-1 leaves room for the selected thumb's ring +
+          offset, which the scroll container would otherwise clip. */}
+      <ul className="hidden h-0 min-h-full flex-col gap-2.5 overflow-y-auto p-1 hide-scrollbar lg:flex" aria-label="Product media">
         {items.map((item, index) => (
           <li key={item.id}>
             <button

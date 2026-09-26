@@ -13,6 +13,7 @@ const EMPTY_HOME: ShopHomeContent = {
 
 const EMPTY_PDP: ShopPdpContent = {
   announcement: null,
+  announcements: [],
   shipping: { processingTime: null, deliveryEstimate: null, costNote: null, regions: null },
   trustPoints: [],
 };
@@ -99,7 +100,9 @@ export class JsonShopRepository implements ShopRepository {
 
   async getPdpContent(): Promise<ShopPdpContent> {
     const catalog = await this.#load();
-    return catalog.pdp ?? EMPTY_PDP;
+    // Merged over the defaults so a shop.json written before a field existed
+    // still yields the full shape.
+    return { ...EMPTY_PDP, ...catalog.pdp };
   }
 
   async getHomeContent(): Promise<ShopHomeContent> {

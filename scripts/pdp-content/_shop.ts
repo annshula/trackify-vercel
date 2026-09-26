@@ -10,6 +10,13 @@ import type { HomeContent, ShopPdpContent } from "./types";
  */
 export const shopContent: ShopPdpContent = {
   announcement: "30-day returns on every order",
+  // Each line restates a trust point below / a real Shopify payment setting
+  // (Shop Pay, Apple Pay and Google Pay are the store's enabled wallets).
+  announcements: [
+    "30-day returns on every order",
+    "Tracked delivery on every order",
+    "Secure checkout with Shop Pay, Apple Pay & Google Pay",
+  ],
   shippingProcessingTime: "",
   shippingDeliveryEstimate: "",
   shippingCostNote: "Calculated at checkout — you see the exact cost before you pay",

@@ -12,7 +12,7 @@
  * and is not managed here — the app token has no write_metaobject_definitions.
  */
 import { colors, fatal, heading, info, success } from "./bootstrap";
-import type { Block, Faq, ProductPdpContent, Spec } from "./pdp-content/types";
+import type { Block, ComparisonRow, Faq, ProductPdpContent, Spec } from "./pdp-content/types";
 
 type UserError = { field?: string[]; message: string };
 
@@ -82,6 +82,16 @@ async function main(): Promise<void> {
         upsert("faq_item", `${prefix}-${i + 1}`, { question: faq.question, answer: faq.answer }),
       ),
     );
+  const comparisonRows = (prefix: string, items: ComparisonRow[]) =>
+    Promise.all(
+      items.map((row, i) =>
+        upsert("comparison_row", `${prefix}-${i + 1}`, {
+          feature: row.feature,
+          us_value: row.us,
+          others_value: row.others,
+        }),
+      ),
+    );
 
   type MetafieldInput = { ownerId: string; namespace: string; key: string; type: string; value: string };
 
@@ -133,7 +143,18 @@ async function main(): Promise<void> {
     const ownerId = lookup.productByIdentifier?.id;
     if (!ownerId) fatal(`Product "${handle}" not found in Shopify`);
 
-    const [benefits, story, features, how, uses, included, specIds, faqIds] = await Promise.all([
+    // The comparison_row type has to be created in Shopify admin (the token
+    // can't write metaobject definitions) — skip the table, rather than fail
+    // the whole push, until it exists.
+    const comparisonTypeExists = await adminRequest<{ metaobjectDefinitionByType: { id: string } | null }>({
+      query: `query { metaobjectDefinitionByType(type: "comparison_row") { id } }`,
+    }).then((data) => data.metaobjectDefinitionByType !== null);
+    if (content.comparison?.length && !comparisonTypeExists) {
+      info(`  ${colors.dim}Skipping comparison table: no "comparison_row" metaobject definition in Shopify yet${colors.reset}`);
+    }
+    const comparison = comparisonTypeExists ? (content.comparison ?? []) : [];
+
+    const [benefits, story, features, how, uses, included, specIds, faqIds, compareIds] = await Promise.all([
       blocks(`${handle}-benefit`, content.benefits),
       blocks(`${handle}-story`, content.story),
       blocks(`${handle}-feature`, content.featureHighlights),
@@ -142,8 +163,9 @@ async function main(): Promise<void> {
       blocks(`${handle}-included`, content.whatsIncluded),
       specs(`${handle}-spec`, content.specs),
       faqs(`${handle}-faq`, content.faq),
+      comparisonRows(`${handle}-compare`, comparison),
     ]);
-    info(`  Upserted ${[benefits, story, features, how, uses, included, specIds, faqIds].flat().length} metaobjects`);
+    info(`  Upserted ${[benefits, story, features, how, uses, included, specIds, faqIds, compareIds].flat().length} metaobjects`);
 
     const mf = (key: string, type: string, value: string): MetafieldInput => ({ ownerId, namespace: "custom", key, type, value });
     await setMetafields([
@@ -157,6 +179,11 @@ async function main(): Promise<void> {
       mf("whats_included", ref, list(included)),
       mf("specs", ref, list(specIds)),
       mf("faq", ref, list(faqIds)),
+      // Leave an existing table alone when the type is missing, instead of the
+      // empty list deleting it.
+      ...(comparisonTypeExists ? [mf("comparison_table", ref, list(compareIds))] : []),
+      mf("perks", "list.single_line_text_field", JSON.stringify(content.perks ?? [])),
+      mf("delivery_estimate", "single_line_text_field", content.deliveryEstimate ?? ""),
     ]);
     success(`${handle}: metafields set`);
 
@@ -186,6 +213,10 @@ async function main(): Promise<void> {
     });
     await setMetafields([
       text("announcement", shopContent.announcement),
+      {
+        ownerId, namespace: "custom", key: "announcements",
+        type: "list.single_line_text_field", value: JSON.stringify(shopContent.announcements),
+      },
       text("shipping_processing_time", shopContent.shippingProcessingTime),
       text("shipping_delivery_estimate", shopContent.shippingDeliveryEstimate),
       text("shipping_cost_note", shopContent.shippingCostNote),

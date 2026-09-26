@@ -1,91 +1,121 @@
 import type { CatalogProduct } from "@/types/catalog";
-import { CheckIcon, MinusIcon } from "@/components/ui/icons";
+import { SmartImage as Image } from "@/components/ui/smart-image";
 import { cn } from "@/lib/utils/cn";
 
 /**
- * "This product vs. others" — a per-product feature comparison table set by
- * the merchant in Shopify admin (`custom.comparison_table`, a list of
- * `comparison_row` metaobjects: feature / us_value / others_value — see
+ * "This product vs. others" — a per-product comparison set by the merchant in
+ * Shopify admin (`custom.comparison_table`, a list of `comparison_row`
+ * metaobjects: feature / us_value / others_value — see
  * lib/catalog/normalize.ts's `normalizeComparisonTable`).
  *
- * Hidden entirely when the merchant hasn't set any rows for this product —
- * never renders an invented comparison, same rule as Reviews.
+ * Hidden entirely when the merchant hasn't set any rows — never renders an
+ * invented comparison, same rule as Reviews.
  *
- * Desktop is a real 3-column table with a sticky header; phones stack each
- * row into feature → "This product" → "Others", since a 3-column table at
- * phone width crushes the value text unreadably.
+ * Desktop: a three-column table whose "This product" column is lifted onto
+ * its own raised band, so the eye reads straight down the winning side.
+ * Phones: each row stacks into feature → this product → others, since three
+ * columns at phone width crush the text.
  */
 export function ComparisonTable({ product }: { product: CatalogProduct }) {
   const rows = product.comparisonTable;
   if (rows.length === 0) return null;
+  const thumb = product.images[0] ?? null;
+  const last = rows.length - 1;
 
   return (
     <section
       id="comparison"
       aria-labelledby="comparison-heading"
-      className="mt-14 scroll-mt-24"
+      className="scroll-mt-24 py-20 lg:py-28"
     >
-      <h2 id="comparison-heading" className="text-2xl">
-        How {product.title} compares
-      </h2>
-      <p className="mt-1.5 text-sm text-ink-muted">
-        Based on this product&apos;s own specs against commonly sold
-        alternatives.
-      </p>
-
-      <div className="mt-5 overflow-hidden rounded-lg border border-line">
-        {/* Column header — sm and up only; phones get inline labels per row instead. */}
-        <div className="hidden grid-cols-[1.2fr_1fr_1fr] border-b border-line bg-surface sm:grid">
-          <div className="p-4" />
-          <div className="border-x border-line bg-accent-soft p-4 text-center text-sm font-semibold text-ink">
-            {product.title}
-          </div>
-          <div className="p-4 text-center text-sm font-medium text-ink-muted">
-            Others
-          </div>
+      <div className="container-page">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 id="comparison-heading" className="text-3xl tracking-tight text-balance">
+            How it compares
+          </h2>
+          <p className="mt-2 text-ink-muted">Side by side with the usual alternatives.</p>
         </div>
 
-        <ul className="divide-y divide-line">
-          {rows.map((row) => (
-            <li
-              key={row.feature}
-              className="p-4 sm:grid sm:grid-cols-[1.2fr_1fr_1fr] sm:items-stretch sm:p-0 odd:bg-surface/60"
+        <div className="mx-auto mt-12 max-w-4xl" role="table" aria-label="Comparison with alternatives">
+          {/* Column header — sm and up; phones label each cell inline instead. */}
+          <div role="row" className="hidden grid-cols-[1.1fr_1.2fr_1fr] items-end sm:grid">
+            <div role="columnheader" className="sr-only">
+              Feature
+            </div>
+            <div
+              role="columnheader"
+              className="flex flex-col items-center gap-2 rounded-t-2xl border-x border-t border-ink/10 bg-surface-raised px-4 pt-5 pb-4"
             >
-              <div className="text-sm font-medium text-ink sm:flex sm:items-center sm:p-4">
-                {row.feature}
-              </div>
-
-              <div className="mt-2 flex items-start gap-2 sm:mt-0 sm:items-center sm:border-x sm:border-line sm:bg-accent-soft/40 sm:p-4">
-                <CheckIcon
-                  className="mt-0.5 size-4 shrink-0 text-accent sm:mt-0"
-                  strokeWidth={2.5}
-                />
-                <span className="text-sm text-ink">
-                  <span className="mr-1.5 text-2xs font-semibold tracking-wide text-accent uppercase sm:hidden">
-                    This product:
-                  </span>
-                  {row.usValue}
+              {thumb && (
+                <span className="relative size-14 overflow-hidden rounded-xl bg-surface-sunken">
+                  <Image src={thumb.url} alt="" fill sizes="56px" className="object-cover" />
                 </span>
-              </div>
+              )}
+              <span className="text-sm font-semibold text-ink">This product</span>
+            </div>
+            <div role="columnheader" className="pb-4 text-center text-sm font-medium text-ink-subtle">
+              Others
+            </div>
+          </div>
 
-              <div className="mt-1.5 flex items-start gap-2 text-ink-subtle sm:mt-0 sm:items-center sm:p-4">
-                <MinusIcon className="mt-0.5 size-4 shrink-0 sm:mt-0" />
-                <span className="text-sm">
-                  <span className="mr-1.5 text-2xs font-semibold tracking-wide uppercase sm:hidden">
-                    Others:
+          <div className="space-y-3 sm:space-y-0">
+            {rows.map((row, index) => (
+              <div
+                key={row.feature}
+                role="row"
+                className="rounded-xl border border-line bg-surface p-4 sm:grid sm:grid-cols-[1.1fr_1.2fr_1fr] sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0"
+              >
+                <div
+                  role="rowheader"
+                  className={cn(
+                    "text-sm font-semibold text-ink sm:flex sm:items-center sm:py-5 sm:pr-4",
+                    index !== last && "sm:border-b sm:border-line",
+                  )}
+                >
+                  {row.feature}
+                </div>
+
+                <div
+                  role="cell"
+                  className={cn(
+                    "mt-3 flex items-start gap-3 sm:mt-0 sm:items-center sm:border-x sm:border-ink/10 sm:bg-surface-raised sm:px-5 sm:py-5",
+                    index !== last && "sm:border-b sm:border-b-line",
+                    index === last && "sm:rounded-b-2xl sm:border-b",
+                  )}
+                >
+                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-success text-white" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
                   </span>
-                  {row.othersValue}
-                </span>
+                  <span className="text-sm text-ink">
+                    <span className="sr-only sm:hidden">This product: </span>
+                    {row.usValue}
+                  </span>
+                </div>
+
+                <div
+                  role="cell"
+                  className={cn(
+                    "mt-2.5 flex items-start gap-3 sm:mt-0 sm:items-center sm:py-5 sm:pl-5",
+                    index !== last && "sm:border-b sm:border-line",
+                  )}
+                >
+                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-surface-sunken text-ink-subtle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round">
+                      <path d="M6 6l12 12M18 6 6 18" />
+                    </svg>
+                  </span>
+                  <span className="text-sm text-ink-muted">
+                    <span className="sr-only sm:hidden">Others: </span>
+                    {row.othersValue}
+                  </span>
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </div>
       </div>
-
-      <p className={cn("mt-3 text-xs text-ink-subtle")}>
-        Comparison set by the merchant for this product — always check the
-        listing for the exact item you&apos;re comparing.
-      </p>
     </section>
   );
 }
