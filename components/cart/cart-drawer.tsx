@@ -58,9 +58,6 @@ export function CartDrawer() {
                 {formatMoneyV2(cart?.cost.subtotalAmount)}
               </span>
             </div>
-            <p className="text-xs text-ink-subtle">
-              Shipping and taxes are calculated at checkout.
-            </p>
             <Button
               fullWidth
               size="lg"

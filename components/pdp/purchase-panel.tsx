@@ -186,8 +186,8 @@ export function PurchasePanel({
           currencyCode={product.priceRange.currencyCode}
           size="xl"
           priceClassName="font-display font-semibold"
+          compareAtFirst
         />
-        <p className="mt-1 text-xs text-ink-subtle">Taxes and shipping calculated at checkout.</p>
         <SaleCountdown endsAt={saleEndsAt} />
       </div>
 

@@ -273,10 +273,6 @@ export function ProductGallery() {
             </div>
           ))}
         </div>
-
-        <span className="pointer-events-none absolute top-3 right-3 hidden rounded-full bg-surface/90 px-3 py-1 text-xs font-medium text-ink-muted backdrop-blur lg:block">
-          Click to zoom
-        </span>
       </div>
 
       {/* Mobile thumbnail strip — below the main image; swipe still works on

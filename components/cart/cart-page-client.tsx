@@ -171,15 +171,6 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
               </div>
             ))}
 
-            <div className="flex justify-between">
-              <dt className="text-ink-muted">Shipping</dt>
-              <dd className="text-ink-subtle">Calculated at checkout</dd>
-            </div>
-            <div className="flex justify-between">
-              <dt className="text-ink-muted">Taxes</dt>
-              <dd className="text-ink-subtle">Calculated at checkout</dd>
-            </div>
-
             <div className="flex items-baseline justify-between border-t border-line pt-3.5 text-base">
               <dt className="font-medium">Total</dt>
               <dd className="text-xl font-medium tabular-nums">

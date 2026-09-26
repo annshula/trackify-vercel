@@ -48,6 +48,7 @@ export function Price({
   size = 'md',
   className,
   priceClassName,
+  compareAtFirst = false,
 }: {
   amount: number;
   compareAt?: number | null;
@@ -56,6 +57,14 @@ export function Price({
   className?: string;
   /** Overrides just the main amount's color/weight — the compare-at and discount-percent stay their usual colors. */
   priceClassName?: string;
+  /**
+   * Reads "was $70 → now $49.99" instead of "$49.99, was $70" — the PDP's
+   * headline price wants the discount to be the first thing seen, with the
+   * struck-through amount sized up to actually read at a glance rather than
+   * the small print it is in a cart line or collection card. Every other
+   * call site (cart drawer, cart page, localized price) keeps the default.
+   */
+  compareAtFirst?: boolean;
 }) {
   const percent = discountPercent(amount, compareAt);
   const sizes = {
@@ -65,18 +74,41 @@ export function Price({
     // Editorial scale for the product page's headline price.
     xl: { price: 'text-3xl tracking-tight', compare: 'text-base' },
   }[size];
+  // compareAtFirst's own scale — one step up from the default compare size,
+  // so it reads clearly next to the (still-larger) actual price rather than
+  // as fine print.
+  const compareAtFirstSizes = {
+    sm: 'text-sm',
+    md: 'text-lg',
+    lg: 'text-xl',
+    xl: 'text-2xl',
+  }[size];
+
+  const hasDiscount = percent !== null && compareAt;
+  const compareAtNode = hasDiscount ? (
+    <span
+      className={cn(
+        'tabular-nums text-ink-subtle line-through',
+        compareAtFirst ? compareAtFirstSizes : sizes.compare,
+      )}
+    >
+      {formatMoney(compareAt, currencyCode, { trimZeroCents: true })}
+    </span>
+  ) : null;
+  const percentNode = hasDiscount ? (
+    <span className={cn('font-semibold text-danger', sizes.compare)}>−{percent}%</span>
+  ) : null;
 
   return (
     <span className={cn('inline-flex flex-wrap items-baseline gap-x-2 gap-y-0.5', className)}>
+      {compareAtFirst && compareAtNode}
       <span className={cn('font-medium tabular-nums text-ink', sizes.price, priceClassName)}>
         {formatMoney(amount, currencyCode, { trimZeroCents: true })}
       </span>
-      {percent !== null && compareAt ? (
+      {hasDiscount ? (
         <>
-          <span className={cn('tabular-nums text-ink-subtle line-through', sizes.compare)}>
-            {formatMoney(compareAt, currencyCode, { trimZeroCents: true })}
-          </span>
-          <span className={cn('font-semibold text-danger', sizes.compare)}>−{percent}%</span>
+          {!compareAtFirst && compareAtNode}
+          {percentNode}
           {/* Screen readers get the saving spelled out, not just a percentage. */}
           <span className="sr-only">
             , reduced from {formatMoney(compareAt, currencyCode)}, saving {percent} percent
