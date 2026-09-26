@@ -115,7 +115,7 @@ export function ProductDemo({ video, title }: { video: CatalogSpecVideo | null; 
         <SectionHeading id="demo-heading" eyebrow="See it work" title={`${title}, in real use`} align="center" inverse />
         <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl bg-black shadow-e4">
           <video
-            className="aspect-video w-full object-cover"
+            className="aspect-video w-full object-cover [&:fullscreen]:object-contain [&:-webkit-full-screen]:object-contain"
             controls
             muted
             loop

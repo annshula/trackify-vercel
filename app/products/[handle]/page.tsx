@@ -158,12 +158,12 @@ export default async function ProductPage({ params }: PageProps) {
           >
             {/* Desktop: a viewport-tall sticky box (below the fixed header)
                 that centres the gallery vertically while the panel scrolls. */}
-            <div className="-mx-4 self-start sm:-mx-6 lg:sticky lg:top-18 lg:col-span-5 lg:mx-0 lg:flex lg:h-[calc(100svh-4.5rem)] lg:items-center">
+            <div className="-mx-4 self-start sm:-mx-6 lg:sticky lg:top-18 lg:col-span-6 lg:mx-0 lg:flex lg:h-[calc(100svh-4.5rem)] lg:items-center">
               <div className="w-full">
                 <ProductGallery />
               </div>
             </div>
-            <div className="pt-7 lg:col-span-7 lg:pt-2 xl:pr-8">
+            <div className="pt-7 lg:col-span-6 lg:pt-2 xl:pr-8">
               <PurchasePanel
                 subtitle={subtitle}
                 perks={perks}

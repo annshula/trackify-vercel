@@ -8,14 +8,17 @@ import { cn } from "@/lib/utils/cn";
 import type { CatalogMedia } from "@/types/catalog";
 import { usePurchase } from "./purchase-context";
 
-const GalleryLightbox = dynamic(() => import("./gallery-lightbox"), { ssr: false });
+const GalleryLightbox = dynamic(() => import("./gallery-lightbox"), {
+  ssr: false,
+});
 
 type GalleryItem = Exclude<CatalogMedia, { type: "model_3d" }>;
 
 const stripQuery = (url: string) => url.split("?")[0];
 
 /** Supplier imports often leave a file hash as alt text — worse than none for screen readers. */
-const usableAlt = (alt: string | null) => (alt && !/^[0-9a-f]{24,}$/i.test(alt.trim()) ? alt : null);
+const usableAlt = (alt: string | null) =>
+  alt && !/^[0-9a-f]{24,}$/i.test(alt.trim()) ? alt : null;
 
 /**
  * Product media gallery.
@@ -31,15 +34,31 @@ export function ProductGallery() {
     [product.media],
   );
   const trackRef = React.useRef<HTMLDivElement>(null);
+  const videoRefs = React.useRef<Map<number, HTMLVideoElement>>(new Map());
   const [active, setActive] = React.useState(0);
   const [zoomAt, setZoomAt] = React.useState<number | null>(null);
 
+  // Explicit navigation (thumbnail click, arrow key) — as opposed to a swipe —
+  // is a clear enough signal to start a video slide playing right away
+  // instead of leaving it sitting on its poster until the visitor also taps
+  // the native play button. Muted, so autoplay from this click is always
+  // allowed. Swiping past a video on mobile still lands paused, same as
+  // scrolling past any slide.
   const scrollTo = React.useCallback((index: number, smooth = true) => {
     const track = trackRef.current;
     if (!track) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    track.scrollTo({ left: index * track.clientWidth, behavior: smooth && !reduce ? "smooth" : "auto" });
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    track.scrollTo({
+      left: index * track.clientWidth,
+      behavior: smooth && !reduce ? "smooth" : "auto",
+    });
     setActive(index);
+    for (const [i, videoEl] of videoRefs.current) {
+      if (i === index) videoEl.play().catch(() => {});
+      else videoEl.pause();
+    }
   }, []);
 
   // Variant image ids are ProductImage ids; media ids are MediaImage ids — match on URL.
@@ -47,7 +66,9 @@ export function ProductGallery() {
     if (!variant?.imageId) return;
     const image = product.images.find((img) => img.id === variant.imageId);
     if (!image) return;
-    const index = items.findIndex((m) => m.type === "image" && stripQuery(m.url) === stripQuery(image.url));
+    const index = items.findIndex(
+      (m) => m.type === "image" && stripQuery(m.url) === stripQuery(image.url),
+    );
     if (index >= 0) scrollTo(index);
   }, [variant?.imageId, product.images, items, scrollTo]);
 
@@ -55,34 +76,57 @@ export function ProductGallery() {
     const track = trackRef.current;
     if (!track) return;
     const index = Math.round(track.scrollLeft / track.clientWidth);
-    if (index !== active) setActive(index);
+    if (index === active) return;
+    setActive(index);
+    // A swipe (unlike a thumbnail/arrow click, via scrollTo) doesn't
+    // autoplay the slide it lands on, but it should still stop a video
+    // that's been scrolled away from.
+    videoRefs.current.get(active)?.pause();
   };
 
   const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "ArrowRight") scrollTo(Math.min(items.length - 1, active + 1));
+    if (event.key === "ArrowRight")
+      scrollTo(Math.min(items.length - 1, active + 1));
     if (event.key === "ArrowLeft") scrollTo(Math.max(0, active - 1));
   };
 
   const slides: Slide[] = items.map((m) =>
     m.type === "image"
-      ? { src: m.url, alt: usableAlt(m.altText) ?? product.title, width: m.width ?? undefined, height: m.height ?? undefined }
+      ? {
+          src: m.url,
+          alt: usableAlt(m.altText) ?? product.title,
+          width: m.width ?? undefined,
+          height: m.height ?? undefined,
+        }
       : m.type === "video"
-        ? { type: "video", poster: m.previewUrl ?? undefined, sources: m.sources.map((s) => ({ src: s.url, type: s.mimeType })) }
+        ? {
+            type: "video",
+            poster: m.previewUrl ?? undefined,
+            sources: m.sources.map((s) => ({ src: s.url, type: s.mimeType })),
+          }
         : { src: m.previewUrl ?? "", alt: m.altText ?? product.title },
   );
 
   if (items.length === 0) {
-    return <div className="aspect-square w-full rounded-2xl bg-surface-sunken" aria-hidden="true" />;
+    return (
+      <div
+        className="aspect-square w-full rounded-2xl bg-surface-sunken"
+        aria-hidden="true"
+      />
+    );
   }
 
   return (
-    <div className="lg:grid lg:max-w-136 lg:grid-cols-[4.75rem_1fr] lg:gap-3">
+    <div className="lg:grid lg:max-w-160 lg:grid-cols-[4.75rem_1fr] lg:gap-3">
       {/* Thumbnail rail — desktop only; mobile uses swipe + dots. */}
       {/* h-0 + min-h-full: the rail takes the main image's height instead of
           growing the row, and scrolls (scrollbar hidden) when there are more
           thumbs than fit. p-1 leaves room for the selected thumb's ring +
           offset, which the scroll container would otherwise clip. */}
-      <ul className="hidden h-0 min-h-full flex-col gap-2.5 overflow-y-auto p-1 hide-scrollbar lg:flex" aria-label="Product media">
+      <ul
+        className="hidden h-0 min-h-full flex-col gap-2.5 overflow-y-auto p-1 hide-scrollbar lg:flex"
+        aria-label="Product media"
+      >
         {items.map((item, index) => (
           <li key={item.id}>
             <button
@@ -92,10 +136,18 @@ export function ProductGallery() {
               aria-current={index === active}
               className={cn(
                 "relative block aspect-square w-full cursor-pointer overflow-hidden rounded-md bg-surface-sunken ring-offset-2 ring-offset-canvas transition",
-                index === active ? "ring-2 ring-ink" : "opacity-70 hover:opacity-100",
+                index === active
+                  ? "ring-2 ring-ink"
+                  : "opacity-70 hover:opacity-100",
               )}
             >
-              <Image src={thumbOf(item)} alt="" fill sizes="72px" className="object-cover" />
+              <Image
+                src={thumbOf(item)}
+                alt=""
+                fill
+                sizes="72px"
+                className="object-cover"
+              />
               {item.type !== "image" && <PlayBadge small />}
             </button>
           </li>
@@ -111,7 +163,7 @@ export function ProductGallery() {
           role="region"
           aria-roledescription="carousel"
           aria-label={`${product.title} media, ${active + 1} of ${items.length}`}
-          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-surface-sunken [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-offset-2 lg:rounded-2xl [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-surface-sunken scrollbar-none focus-visible:outline-2 focus-visible:outline-offset-2 lg:rounded-2xl [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, index) => (
             <div
@@ -122,7 +174,13 @@ export function ProductGallery() {
             >
               {item.type === "video" ? (
                 <video
-                  className="size-full object-cover"
+                  ref={(element) => {
+                    if (element) videoRefs.current.set(index, element);
+                    else videoRefs.current.delete(index);
+                  }}
+                  // cover fills the square slide; fullscreen switches to
+                  // contain so the whole frame shows instead of a crop.
+                  className="size-full object-cover [&:fullscreen]:object-contain [&:-webkit-full-screen]:object-contain"
                   controls
                   playsInline
                   muted
@@ -141,8 +199,13 @@ export function ProductGallery() {
                   aria-label={`Zoom image ${index + 1}`}
                 >
                   <Image
-                    src={item.type === "image" ? item.url : (item.previewUrl ?? "")}
-                    alt={usableAlt(item.altText) ?? `${product.title} — view ${index + 1}`}
+                    src={
+                      item.type === "image" ? item.url : (item.previewUrl ?? "")
+                    }
+                    alt={
+                      usableAlt(item.altText) ??
+                      `${product.title} — view ${index + 1}`
+                    }
                     fill
                     // The LCP image must paint from the server HTML, not wait for
                     // hydration to lift the shimmer's opacity-0.
@@ -159,7 +222,10 @@ export function ProductGallery() {
         </div>
 
         {/* Mobile position indicator */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center gap-1.5 lg:hidden" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center gap-1.5 lg:hidden"
+          aria-hidden="true"
+        >
           {items.map((item, index) => (
             <span
               key={item.id}
@@ -197,7 +263,13 @@ function thumbOf(item: GalleryItem): string {
 function PlayBadge({ small }: { small?: boolean }) {
   return (
     <span className="absolute inset-0 grid place-items-center bg-ink/20">
-      <svg width={small ? 16 : 28} height={small ? 16 : 28} viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <svg
+        width={small ? 16 : 28}
+        height={small ? 16 : 28}
+        viewBox="0 0 24 24"
+        fill="white"
+        aria-hidden="true"
+      >
         <path d="M8 5v14l11-7z" />
       </svg>
     </span>
