@@ -18,6 +18,7 @@ import { PdpIcon } from "./pdp-icon";
 import { usePurchase } from "./purchase-context";
 import { AddToCartButton } from "./add-to-cart-button";
 import { UgcMedia } from "./ugc-media";
+import { SaleCountdown } from "./sale-countdown";
 
 export type Reassurance = { icon: string | null; label: string };
 
@@ -48,6 +49,7 @@ export function PurchasePanel({
   rating,
   reassurance,
   delivery,
+  saleEndsAt,
 }: {
   subtitle: string | null;
   /** Short benefit lines under the title — filled-tick list, 4–6 lines. */
@@ -56,6 +58,8 @@ export function PurchasePanel({
   reassurance: Reassurance[];
   /** Delivery estimate, e.g. "3–8 days" — the product's own, else the store's; null hides the line. */
   delivery: string | null;
+  /** ISO datetime a live sale ends at (custom.sale_ends_at); null shows nothing. */
+  saleEndsAt: string | null;
 }) {
   const {
     product,
@@ -184,6 +188,7 @@ export function PurchasePanel({
           priceClassName="font-display font-semibold"
         />
         <p className="mt-1 text-xs text-ink-subtle">Taxes and shipping calculated at checkout.</p>
+        <SaleCountdown endsAt={saleEndsAt} />
       </div>
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -459,6 +464,23 @@ function PackPicker({
   const baseVariant = findVariantByOptions(product, { ...selection, [option.name]: option.values[0]! });
   const baseUnitPrice = baseVariant?.price ?? null;
 
+  // "Best value" goes on whichever in-stock pack has the lowest real
+  // per-unit price — computed from the variants themselves, not assumed to
+  // be the last option, so it stays honest if pricing or pack order changes.
+  const bestValueValue = (() => {
+    let best: { value: string; perUnit: number } | null = null;
+    for (const [index, value] of option.values.entries()) {
+      if (!available.has(value)) continue;
+      const variant = findVariantByOptions(product, { ...selection, [option.name]: value });
+      if (!variant) continue;
+      const count = parseInt(value, 10) || index + 1;
+      if (count <= 1) continue; // a single pack can't be "better value" than itself
+      const perUnit = variant.price / count;
+      if (!best || perUnit < best.perUnit) best = { value, perUnit };
+    }
+    return best?.value ?? null;
+  })();
+
   return (
     <fieldset>
       <legend className="text-sm text-ink-muted">Choose your pack</legend>
@@ -469,15 +491,28 @@ function PackPicker({
           const outOfStock = !available.has(value) || !tileVariant;
           const count = parseInt(value, 10) || index + 1;
           const perUnit = tileVariant ? tileVariant.price / count : null;
-          const savePercent =
-            baseUnitPrice && tileVariant && count > 1
-              ? Math.round((1 - tileVariant.price / (baseUnitPrice * count)) * 100)
-              : null;
           const inputId = optionInputId(option, value);
           const popular = index === 1 && option.values.length >= 3;
+          const bestValue = value === bestValueValue && !popular;
           const money = (amount: number) =>
             formatMoney(amount, tileVariant?.currencyCode ?? product.priceRange.currencyCode, { trimZeroCents: true });
-          const singlesTotal = baseUnitPrice && count > 1 ? baseUnitPrice * count : null;
+          // The variant's own Shopify compareAtPrice — real data, not a
+          // computed "N singles" estimate, so it shows on every pack
+          // (including pack 1) whenever Shopify actually has one set.
+          const compareAtPrice =
+            tileVariant?.compareAtPrice && tileVariant.compareAtPrice > tileVariant.price
+              ? tileVariant.compareAtPrice
+              : null;
+          // "Save X%" prefers the variant's real compareAtPrice discount —
+          // works on every pack, including pack 1, which has no "N singles"
+          // to compare against. Only falls back to the bundle-vs-buying-
+          // separately estimate when Shopify has no compareAtPrice set.
+          const savePercent =
+            compareAtPrice !== null && tileVariant
+              ? Math.round((1 - tileVariant.price / compareAtPrice) * 100)
+              : baseUnitPrice && tileVariant && count > 1
+                ? Math.round((1 - tileVariant.price / (baseUnitPrice * count)) * 100)
+                : null;
           return (
             <div key={value}>
               <input
@@ -524,6 +559,11 @@ function PackPicker({
                         Most popular
                       </span>
                     )}
+                    {bestValue && (
+                      <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
+                        Best value
+                      </span>
+                    )}
                     {savePercent !== null && savePercent > 0 && (
                       <span className="rounded-full bg-success-soft px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-success">
                         Save {savePercent}%
@@ -542,8 +582,8 @@ function PackPicker({
                 {tileVariant && (
                   <span className="shrink-0 text-right">
                     <span className="block text-base font-semibold tabular-nums text-ink">{money(tileVariant.price)}</span>
-                    {singlesTotal !== null && singlesTotal > tileVariant.price && (
-                      <span className="block text-xs tabular-nums text-ink-subtle line-through">{money(singlesTotal)}</span>
+                    {compareAtPrice !== null && (
+                      <span className="block text-xs tabular-nums text-ink-subtle line-through">{money(compareAtPrice)}</span>
                     )}
                   </span>
                 )}

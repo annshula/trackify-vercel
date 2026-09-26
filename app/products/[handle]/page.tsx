@@ -207,6 +207,7 @@ export default async function ProductPage({ params }: PageProps) {
                 rating={rating}
                 reassurance={reassurance}
                 delivery={shipping.deliveryEstimate}
+                saleEndsAt={product.metafields["custom.sale_ends_at"] ?? null}
               />
             </div>
           </section>
