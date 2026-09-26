@@ -90,6 +90,50 @@ export function ProductGallery() {
     if (event.key === "ArrowLeft") scrollTo(Math.max(0, active - 1));
   };
 
+  // Native scroll-snap lets a fast flick carry momentum through more than one
+  // slide before it decelerates — it only guarantees landing *on* a snap
+  // point, not on the *next* one. Tracking the touch ourselves and always
+  // stepping by exactly one keeps a swipe to one slide per gesture, like a
+  // native app carousel, while a trackpad/mouse-wheel scroll (no touch
+  // events) still falls back to the track's own scroll-snap.
+  const touchStart = React.useRef<{ x: number; y: number } | null>(null);
+  const dragging = React.useRef(false);
+  const SWIPE_THRESHOLD_PX = 40;
+
+  const onTouchStart = (event: React.TouchEvent) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+    dragging.current = false;
+  };
+
+  const onTouchMove = (event: React.TouchEvent) => {
+    const start = touchStart.current;
+    const touch = event.touches[0];
+    if (!start || !touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    // Once it's clearly a horizontal drag, own the gesture so the browser
+    // doesn't also scroll the track (which is what causes the multi-slide
+    // flick) or the page vertically.
+    if (!dragging.current && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      dragging.current = true;
+    }
+    if (dragging.current) event.preventDefault();
+  };
+
+  const onTouchEnd = (event: React.TouchEvent) => {
+    const start = touchStart.current;
+    const touch = event.changedTouches[0];
+    touchStart.current = null;
+    if (!start || !touch || !dragging.current) return;
+    dragging.current = false;
+    const dx = touch.clientX - start.x;
+    if (dx <= -SWIPE_THRESHOLD_PX) scrollTo(Math.min(items.length - 1, active + 1));
+    else if (dx >= SWIPE_THRESHOLD_PX) scrollTo(Math.max(0, active - 1));
+    // Otherwise a tap or too-short a drag — leave the slide as it is.
+  };
+
   const slides: Slide[] = items.map((m) =>
     m.type === "image"
       ? {
@@ -118,7 +162,8 @@ export function ProductGallery() {
 
   return (
     <div className="lg:grid lg:max-w-160 lg:grid-cols-[4.75rem_1fr] lg:gap-3">
-      {/* Thumbnail rail — desktop only; mobile uses swipe + dots. */}
+      {/* Thumbnail rail — desktop only, beside the main image; mobile gets its
+          own horizontal strip below the main image instead (further down). */}
       {/* h-0 + min-h-full: the rail takes the main image's height instead of
           growing the row, and scrolls (scrollbar hidden) when there are more
           thumbs than fit. p-1 leaves room for the selected thumb's ring +
@@ -159,11 +204,19 @@ export function ProductGallery() {
           ref={trackRef}
           onScroll={onScroll}
           onKeyDown={onKeyDown}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
           tabIndex={0}
           role="region"
           aria-roledescription="carousel"
           aria-label={`${product.title} media, ${active + 1} of ${items.length}`}
-          className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-surface-sunken scrollbar-none focus-visible:outline-2 focus-visible:outline-offset-2 lg:rounded-2xl [&::-webkit-scrollbar]:hidden"
+          // touch-action: pan-y (via touch-pan-y) stops the browser's own
+          // horizontal scroll-snap from also reacting to the same swipe —
+          // that's what let a fast flick carry through more than one slide.
+          // Horizontal movement is driven entirely by the touch handlers
+          // above now; vertical page scroll still passes through untouched.
+          className="flex snap-x snap-mandatory touch-pan-y overflow-x-auto overscroll-x-contain bg-surface-sunken scrollbar-none focus-visible:outline-2 focus-visible:outline-offset-2 lg:rounded-2xl [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, index) => (
             <div
@@ -221,26 +274,43 @@ export function ProductGallery() {
           ))}
         </div>
 
-        {/* Mobile position indicator */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center gap-1.5 lg:hidden"
-          aria-hidden="true"
-        >
-          {items.map((item, index) => (
-            <span
-              key={item.id}
-              className={cn(
-                "h-1.5 rounded-full bg-ink/80 transition-all duration-300",
-                index === active ? "w-5" : "w-1.5 bg-ink/25",
-              )}
-            />
-          ))}
-        </div>
-
         <span className="pointer-events-none absolute top-3 right-3 hidden rounded-full bg-surface/90 px-3 py-1 text-xs font-medium text-ink-muted backdrop-blur lg:block">
           Click to zoom
         </span>
       </div>
+
+      {/* Mobile thumbnail strip — below the main image; swipe still works on
+          the track above, this just adds tap-to-jump like the desktop rail. */}
+      <ul
+        className="mt-2.5 flex gap-2 overflow-x-auto p-1 hide-scrollbar lg:hidden"
+        aria-label="Product media"
+      >
+        {items.map((item, index) => (
+          <li key={item.id} className="shrink-0">
+            <button
+              type="button"
+              onClick={() => scrollTo(index)}
+              aria-label={`Show ${item.type === "image" ? "image" : "video"} ${index + 1} of ${items.length}`}
+              aria-current={index === active}
+              className={cn(
+                "relative block size-14 cursor-pointer overflow-hidden rounded-md bg-surface-sunken ring-offset-2 ring-offset-canvas transition",
+                index === active
+                  ? "ring-2 ring-ink"
+                  : "opacity-70 hover:opacity-100",
+              )}
+            >
+              <Image
+                src={thumbOf(item)}
+                alt=""
+                fill
+                sizes="56px"
+                className="object-cover"
+              />
+              {item.type !== "image" && <PlayBadge small />}
+            </button>
+          </li>
+        ))}
+      </ul>
 
       {zoomAt !== null && (
         <GalleryLightbox

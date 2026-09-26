@@ -195,7 +195,7 @@ export function PurchasePanel({
             disabled={soldOut || unavailable}
           />
         )}
-        <div className="grid flex-1 grid-cols-2 gap-3">
+        <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="min-w-0" ref={setHeroCta}>
             <AddToCartButton size="lg" showPrice={false} announce />
           </div>
@@ -323,7 +323,7 @@ function ImageOptionPicker({
                 htmlFor={inputId}
                 title={outOfStock ? `${value} — sold out` : value}
                 className={cn(
-                  "flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border bg-surface-raised transition duration-200",
+                  "flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border bg-surface-raised transition duration-200",
                   "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
                   selected ? "border-ink ring-1 ring-ink" : "border-line hover:border-line-strong",
                 )}
@@ -492,7 +492,7 @@ function PackPicker({
                 htmlFor={inputId}
                 title={outOfStock ? `${value} — sold out` : value}
                 className={cn(
-                  "flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 transition duration-200",
+                  "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 transition duration-200",
                   "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
                   selected
                     ? "border-ink bg-surface-raised ring-1 ring-ink"
