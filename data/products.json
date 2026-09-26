@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T12:55:57.937Z",
+  "generatedAt": "2026-09-26T13:13:44.267Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -592,7 +592,7 @@
     {
       "id": "gid://shopify/Product/15395256467683",
       "handle": "bikini-pain-free-hair-removal-cream",
-      "title": "Bikini Pain-Free Hair Removal Cream",
+      "title": "Bikini Pain-Free Hair Removal Cream for Sensitive Skin, Hypoallergenic Formula-Gentle & Fast-Acting Depilatory with Citrus Scent, Aloe & Hyaluronic Acid for Soothing Care, Suitable for Men & Women,backtoschool",
       "description": "",
       "descriptionHtml": "",
       "vendor": "Trackify",
@@ -996,7 +996,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T12:55:51Z",
+      "updatedAt": "2026-09-26T13:13:37Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -1223,7 +1223,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/606861918435\",\"gid://shopify/Metaobject/606862082275\",\"gid://shopify/Metaobject/606862016739\",\"gid://shopify/Metaobject/606861983971\",\"gid://shopify/Metaobject/606861951203\",\"gid://shopify/Metaobject/606862049507\",\"gid://shopify/Metaobject/606862115043\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/606860673251\",\"gid://shopify/Metaobject/606860706019\",\"gid://shopify/Metaobject/606860738787\"]",
         "custom.meta_pixel_id": "973254138358742",
-        "custom.perks": "[\"Hypoallergenic formula — marked non-irritating on the packaging\",\"Formulated with aloe vera, ginseng root and crocus flower\",\"4-step routine: apply, wait 5–10 minutes, scrape, rinse\",\"Removes hair at the root — no razor, no wax strips\",\"Suitable for men & women, citrus-scented\"]",
+        "custom.perks": "[\"Hydrates skin for up to 24hrs\",\"Suitable for sensitive skin\",\"Removes short, stubborn hair\",\"Minimizes ingrown hair\",\"Long lasting smoothness\",\"35% less chemical ingredients\"]",
         "custom.specs": "[\"gid://shopify/Metaobject/606861164771\",\"gid://shopify/Metaobject/606861295843\",\"gid://shopify/Metaobject/606861328611\",\"gid://shopify/Metaobject/606861197539\",\"gid://shopify/Metaobject/606861230307\",\"gid://shopify/Metaobject/606861263075\"]",
         "custom.story": "[\"gid://shopify/Metaobject/606860640483\",\"gid://shopify/Metaobject/606860607715\"]",
         "custom.subtitle": "Gentle, fast-acting hair removal cream for sensitive skin — no razor, no wax.",
@@ -11561,7 +11561,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T12:55:47Z",
+      "updatedAt": "2026-09-26T13:13:34Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -11696,7 +11696,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T12:55:47Z",
+      "updatedAt": "2026-09-26T13:13:34Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
