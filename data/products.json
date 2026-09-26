@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T18:49:35.883Z",
+  "generatedAt": "2026-09-26T11:50:53.566Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -216,7 +216,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-24T15:37:22Z",
       "createdAt": "2026-09-24T15:37:18Z",
-      "updatedAt": "2026-09-24T18:15:26Z",
+      "updatedAt": "2026-09-25T03:37:26Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/13137656185059",
@@ -590,6 +590,818 @@
       "totalInventory": 20844
     },
     {
+      "id": "gid://shopify/Product/15395256467683",
+      "handle": "bikini-pain-free-hair-removal-cream-for-sensitive-skin-hypoallergenic-formula-gentle-fast-acting-depilatory-with-citrus-scent-aloe-hyaluronic-acid-for-soothing-care-suitable-for-men-women-backtoschool",
+      "title": "Bikini Pain-Free Hair Removal Cream for Sensitive Skin, Hypoallergenic Formula-Gentle & Fast-Acting Depilatory with Citrus Scent, Aloe & Hyaluronic Acid for Soothing Care, Suitable for Men & Women,backtoschool",
+      "description": "",
+      "descriptionHtml": "",
+      "vendor": "Trackify",
+      "productType": "Beauty & Wellness",
+      "tags": [],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/490778951907",
+          "handle": "beauty-wellness",
+          "title": "Beauty & Wellness"
+        },
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Sellers"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/46203185103075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
+          "altText": "adf770775166ccea3cd942238a726605",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185135843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
+          "altText": "b8e6093aad95cfff2c24ab029bc2f6f5",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185168611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
+          "altText": "7ebdcbd2468a73a5b443775660a207c3",
+          "width": 2720,
+          "height": 2720
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372142819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+          "altText": "",
+          "width": 548,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185332451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+          "altText": "2bd1f50639e83afc8ed8b13870366734",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185201379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+          "altText": "4bd2aff1b47cfbe20758693177cae678",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185234147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+          "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372568803",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185299683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+          "altText": "6706ca206cab3afb399648b2779be80",
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185365219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7331394c-d1f2-439e-8ec7-91f6d25a898c.jpg?v=1790421362",
+          "altText": "292fe2445a08d4da93c8a0b1e4fdf540",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372470499",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372536035",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372503267",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372437731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372830947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185266915",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
+          "altText": "65fb561185161d7b53a07f626a97ed61",
+          "width": 3060,
+          "height": 4080
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856108771",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
+          "altText": "adf770775166ccea3cd942238a726605",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856141539",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
+          "altText": "b8e6093aad95cfff2c24ab029bc2f6f5",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856174307",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
+          "altText": "7ebdcbd2468a73a5b443775660a207c3",
+          "width": 2720,
+          "height": 2720
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049013987",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+          "altText": "",
+          "width": 548,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856338147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+          "altText": "2bd1f50639e83afc8ed8b13870366734",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856207075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+          "altText": "4bd2aff1b47cfbe20758693177cae678",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856239843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+          "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049439971",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856305379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+          "altText": "6706ca206cab3afb399648b2779be80",
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856370915",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7331394c-d1f2-439e-8ec7-91f6d25a898c.jpg?v=1790421362",
+          "altText": "292fe2445a08d4da93c8a0b1e4fdf540",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049341667",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049407203",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049374435",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049308899",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049702115",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856272611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
+          "altText": "65fb561185161d7b53a07f626a97ed61",
+          "width": 3060,
+          "height": 4080
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185103075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
+          "altText": "adf770775166ccea3cd942238a726605",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185135843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
+          "altText": "b8e6093aad95cfff2c24ab029bc2f6f5",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185168611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
+          "altText": "7ebdcbd2468a73a5b443775660a207c3",
+          "width": 2720,
+          "height": 2720
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372142819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+          "altText": "",
+          "width": 548,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185332451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+          "altText": "2bd1f50639e83afc8ed8b13870366734",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185201379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+          "altText": "4bd2aff1b47cfbe20758693177cae678",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185234147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+          "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372568803",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185299683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+          "altText": "6706ca206cab3afb399648b2779be80",
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185365219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/7331394c-d1f2-439e-8ec7-91f6d25a898c.jpg?v=1790421362",
+          "altText": "292fe2445a08d4da93c8a0b1e4fdf540",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372470499",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372536035",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372503267",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372437731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372830947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
+          "altText": "",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185266915",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
+          "altText": "65fb561185161d7b53a07f626a97ed61",
+          "width": 3060,
+          "height": 4080
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2026-09-26T11:16:04Z",
+      "createdAt": "2026-09-26T11:16:00Z",
+      "updatedAt": "2026-09-26T11:50:36Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/17856708575459",
+          "name": "Style",
+          "position": 1,
+          "values": [
+            "Spray & Serum",
+            "Spray",
+            "Spray & Cream"
+          ]
+        },
+        {
+          "id": "gid://shopify/ProductOption/17856708608227",
+          "name": "Quantity",
+          "position": 2,
+          "values": [
+            "1PC",
+            "2PCS",
+            "8PCS",
+            "3PCS",
+            "4PCS",
+            "6PCS"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/67582703468771",
+          "title": "Spray & Serum / 1PC",
+          "sku": "CJPF253602703CX",
+          "barcode": null,
+          "price": 30.18,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Serum"
+            },
+            {
+              "name": "Quantity",
+              "value": "1PC"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856141539",
+          "availableForSale": true,
+          "inventoryQuantity": 14808,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 307,
+          "weightUnit": "GRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703501539",
+          "title": "Spray / 1PC",
+          "sku": "CJPF253602701AZ",
+          "barcode": null,
+          "price": 20.77,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray"
+            },
+            {
+              "name": "Quantity",
+              "value": "1PC"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856108771",
+          "availableForSale": true,
+          "inventoryQuantity": 114518,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 237,
+          "weightUnit": "GRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703534307",
+          "title": "Spray / 2PCS",
+          "sku": "CJPF253602702BY",
+          "barcode": null,
+          "price": 36.54,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray"
+            },
+            {
+              "name": "Quantity",
+              "value": "2PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 22547,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 445,
+          "weightUnit": "GRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703567075",
+          "title": "Spray / 8PCS",
+          "sku": "CJPF253602716PK",
+          "barcode": null,
+          "price": 128.04,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray"
+            },
+            {
+              "name": "Quantity",
+              "value": "8PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 22164,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1700,
+          "weightUnit": "GRAMS",
+          "position": 4
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703599843",
+          "title": "Spray & Cream / 1PC",
+          "sku": "CJPF253602705EV",
+          "barcode": null,
+          "price": 43.11,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Cream"
+            },
+            {
+              "name": "Quantity",
+              "value": "1PC"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856207075",
+          "availableForSale": true,
+          "inventoryQuantity": 12600,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 372,
+          "weightUnit": "GRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703632611",
+          "title": "Spray & Cream / 3PCS",
+          "sku": "CJPF253602714NM",
+          "barcode": null,
+          "price": 111.33,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Cream"
+            },
+            {
+              "name": "Quantity",
+              "value": "3PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 6042,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1116,
+          "weightUnit": "GRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703665379",
+          "title": "Spray & Cream / 4PCS",
+          "sku": "CJPF253602709IR",
+          "barcode": null,
+          "price": 144.98,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Cream"
+            },
+            {
+              "name": "Quantity",
+              "value": "4PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856207075",
+          "availableForSale": true,
+          "inventoryQuantity": 12494,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1488,
+          "weightUnit": "GRAMS",
+          "position": 7
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703698147",
+          "title": "Spray & Cream / 6PCS",
+          "sku": "CJPF253602715OL",
+          "barcode": null,
+          "price": 216.41,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Cream"
+            },
+            {
+              "name": "Quantity",
+              "value": "6PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 5278,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 2232,
+          "weightUnit": "GRAMS",
+          "position": 8
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703730915",
+          "title": "Spray & Serum / 3PCS",
+          "sku": "CJPF253602712LO",
+          "barcode": null,
+          "price": 78.05,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Serum"
+            },
+            {
+              "name": "Quantity",
+              "value": "3PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856141539",
+          "availableForSale": true,
+          "inventoryQuantity": 9890,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 648,
+          "weightUnit": "GRAMS",
+          "position": 9
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703763683",
+          "title": "Spray & Serum / 4PCS",
+          "sku": "CJPF253602708HS",
+          "barcode": null,
+          "price": 103.82,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Serum"
+            },
+            {
+              "name": "Quantity",
+              "value": "4PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856141539",
+          "availableForSale": true,
+          "inventoryQuantity": 13583,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1117,
+          "weightUnit": "GRAMS",
+          "position": 10
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703796451",
+          "title": "Spray & Serum / 6PCS",
+          "sku": "CJPF253602713MN",
+          "barcode": null,
+          "price": 149.85,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Serum"
+            },
+            {
+              "name": "Quantity",
+              "value": "6PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856141539",
+          "availableForSale": true,
+          "inventoryQuantity": 7773,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1296,
+          "weightUnit": "GRAMS",
+          "position": 11
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703829219",
+          "title": "Spray / 3PCS",
+          "sku": "CJPF253602710JQ",
+          "barcode": null,
+          "price": 51.93,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray"
+            },
+            {
+              "name": "Quantity",
+              "value": "3PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 6865,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 660,
+          "weightUnit": "GRAMS",
+          "position": 12
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703861987",
+          "title": "Spray / 4PCS",
+          "sku": "CJPF253602707GT",
+          "barcode": null,
+          "price": 67.17,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray"
+            },
+            {
+              "name": "Quantity",
+              "value": "4PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 10098,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 860,
+          "weightUnit": "GRAMS",
+          "position": 13
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703894755",
+          "title": "Spray / 6PCS",
+          "sku": "CJPF253602711KP",
+          "barcode": null,
+          "price": 97.45,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray"
+            },
+            {
+              "name": "Quantity",
+              "value": "6PCS"
+            }
+          ],
+          "imageId": null,
+          "availableForSale": true,
+          "inventoryQuantity": 5810,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1300,
+          "weightUnit": "GRAMS",
+          "position": 14
+        }
+      ],
+      "priceRange": {
+        "min": 20.77,
+        "max": 216.41,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
+      "comparisonTable": [],
+      "pdp": {
+        "benefits": [],
+        "story": [],
+        "howItWorks": [],
+        "useCases": [],
+        "whatsIncluded": [],
+        "faq": [],
+        "demoVideo": null
+      },
+      "totalInventory": 264470
+    },
+    {
       "id": "gid://shopify/Product/8783771533539",
       "handle": "smart-wallet-tracker",
       "title": "The FindCard Pro: Ultra-Slim Wireless Tracker Card",
@@ -842,7 +1654,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T13:46:17Z",
       "createdAt": "2025-02-26T13:46:17Z",
-      "updatedAt": "2026-09-24T18:14:55Z",
+      "updatedAt": "2026-09-25T06:14:59Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157340848355",
@@ -1145,7 +1957,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-09-24T18:15:03Z",
+      "updatedAt": "2026-09-25T06:15:10Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -1747,7 +2559,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:58:35Z",
       "createdAt": "2025-02-26T14:58:35Z",
-      "updatedAt": "2026-09-24T18:15:15Z",
+      "updatedAt": "2026-09-25T06:15:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157414445283",
@@ -2157,7 +2969,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T15:45:51Z",
       "createdAt": "2025-02-26T15:45:51Z",
-      "updatedAt": "2026-09-24T18:15:17Z",
+      "updatedAt": "2026-09-25T06:15:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157428175075",
@@ -2386,7 +3198,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T16:10:45Z",
       "createdAt": "2025-02-26T16:10:45Z",
-      "updatedAt": "2026-09-24T18:14:57Z",
+      "updatedAt": "2026-09-25T06:15:01Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157445443811",
@@ -2593,7 +3405,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-09-24T18:15:07Z",
+      "updatedAt": "2026-09-25T06:15:13Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -2709,7 +3521,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-09-24T18:15:19Z",
+      "updatedAt": "2026-09-25T06:15:24Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -2824,7 +3636,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-09-24T18:14:59Z",
+      "updatedAt": "2026-09-25T06:15:04Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -2939,7 +3751,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-09-24T18:15:21Z",
+      "updatedAt": "2026-09-25T06:15:27Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -3054,7 +3866,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-09-24T18:15:22Z",
+      "updatedAt": "2026-09-25T06:15:27Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -3371,7 +4183,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-09-24T18:15:51Z",
+      "updatedAt": "2026-09-25T06:15:57Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -3401,7 +4213,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48758336061667",
           "availableForSale": true,
-          "inventoryQuantity": 14488,
+          "inventoryQuantity": 14489,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 240,
@@ -3480,7 +4292,7 @@
         "faq": [],
         "demoVideo": null
       },
-      "totalInventory": 35606
+      "totalInventory": 35607
     },
     {
       "id": "gid://shopify/Product/9603256975587",
@@ -3801,58 +4613,30 @@
         },
         {
           "type": "video",
-          "id": "gid://shopify/Video/40119848435939",
+          "id": "gid://shopify/Video/40070762987747",
           "sources": [
             {
-              "url": "https://cdn.shopify.com/videos/c/vp/43684eaa97654b078f0639ba0edd30f8/43684eaa97654b078f0639ba0edd30f8.SD-480p-1.0Mbps-94933372.mp4",
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.SD-480p-1.2Mbps-94610342.mp4",
               "mimeType": "video/mp4",
               "format": "mp4"
             },
             {
-              "url": "https://cdn.shopify.com/videos/c/vp/43684eaa97654b078f0639ba0edd30f8/43684eaa97654b078f0639ba0edd30f8.HD-1080p-3.3Mbps-94933372.mp4",
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.HD-1080p-4.8Mbps-94610342.mp4",
               "mimeType": "video/mp4",
               "format": "mp4"
             },
             {
-              "url": "https://cdn.shopify.com/videos/c/vp/43684eaa97654b078f0639ba0edd30f8/43684eaa97654b078f0639ba0edd30f8.HD-720p-2.1Mbps-94933372.mp4",
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.HD-720p-3.0Mbps-94610342.mp4",
               "mimeType": "video/mp4",
               "format": "mp4"
             },
             {
-              "url": "https://cdn.shopify.com/videos/c/vp/43684eaa97654b078f0639ba0edd30f8/43684eaa97654b078f0639ba0edd30f8.m3u8",
+              "url": "https://cdn.shopify.com/videos/c/vp/aa2383647ce7411b833d6c87c5b90fa5/aa2383647ce7411b833d6c87c5b90fa5.m3u8",
               "mimeType": "application/x-mpegURL",
               "format": "m3u8"
             }
           ],
-          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/43684eaa97654b078f0639ba0edd30f8.thumbnail.0000000000.jpg?v=1789828402",
-          "altText": ""
-        },
-        {
-          "type": "video",
-          "id": "gid://shopify/Video/40119848468707",
-          "sources": [
-            {
-              "url": "https://cdn.shopify.com/videos/c/vp/491736c5c6124f90bc2f4714b1c7a51c/491736c5c6124f90bc2f4714b1c7a51c.SD-480p-1.0Mbps-94933371.mp4",
-              "mimeType": "video/mp4",
-              "format": "mp4"
-            },
-            {
-              "url": "https://cdn.shopify.com/videos/c/vp/491736c5c6124f90bc2f4714b1c7a51c/491736c5c6124f90bc2f4714b1c7a51c.HD-1080p-3.3Mbps-94933371.mp4",
-              "mimeType": "video/mp4",
-              "format": "mp4"
-            },
-            {
-              "url": "https://cdn.shopify.com/videos/c/vp/491736c5c6124f90bc2f4714b1c7a51c/491736c5c6124f90bc2f4714b1c7a51c.HD-720p-2.1Mbps-94933371.mp4",
-              "mimeType": "video/mp4",
-              "format": "mp4"
-            },
-            {
-              "url": "https://cdn.shopify.com/videos/c/vp/491736c5c6124f90bc2f4714b1c7a51c/491736c5c6124f90bc2f4714b1c7a51c.m3u8",
-              "mimeType": "application/x-mpegURL",
-              "format": "m3u8"
-            }
-          ],
-          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/491736c5c6124f90bc2f4714b1c7a51c.thumbnail.0000000000.jpg?v=1789828397",
+          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/aa2383647ce7411b833d6c87c5b90fa5.thumbnail.0000000000.jpg?v=1789568755",
           "altText": ""
         },
         {
@@ -4016,7 +4800,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T16:08:19Z",
       "createdAt": "2026-08-14T16:08:16Z",
-      "updatedAt": "2026-09-24T18:15:47Z",
+      "updatedAt": "2026-09-26T05:56:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081001890019",
@@ -4301,7 +5085,10 @@
         "min": 45.24,
         "max": 45.24
       },
-      "metafields": {},
+      "metafields": {
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.85\"}",
+        "reviews.rating_count": "211"
+      },
       "specs": [],
       "featureHighlights": [],
       "comparisonTable": [],
@@ -4546,7 +5333,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-09-24T18:15:05Z",
+      "updatedAt": "2026-09-25T06:15:10Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -5373,7 +6160,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-06T18:43:31Z",
       "createdAt": "2026-08-16T17:55:30Z",
-      "updatedAt": "2026-09-24T18:15:29Z",
+      "updatedAt": "2026-09-25T06:15:34Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12083713900771",
@@ -5748,7 +6535,7 @@
       "publishedOnline": false,
       "publishedAt": null,
       "createdAt": "2026-08-17T18:46:20Z",
-      "updatedAt": "2026-09-24T18:15:43Z",
+      "updatedAt": "2026-09-25T06:15:47Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12085045461219",
@@ -6016,7 +6803,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:51:23Z",
       "createdAt": "2026-08-23T15:51:20Z",
-      "updatedAt": "2026-09-24T18:15:32Z",
+      "updatedAt": "2026-09-25T06:15:38Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097363902691",
@@ -6385,7 +7172,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:54:11Z",
       "createdAt": "2026-08-23T15:54:07Z",
-      "updatedAt": "2026-09-24T18:15:35Z",
+      "updatedAt": "2026-09-25T06:15:40Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097375731939",
@@ -6921,7 +7708,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:59:47Z",
       "createdAt": "2026-08-23T15:59:44Z",
-      "updatedAt": "2026-09-24T18:15:37Z",
+      "updatedAt": "2026-09-25T06:15:42Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097393361123",
@@ -7581,7 +8368,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T16:33:21Z",
       "createdAt": "2026-08-23T16:33:18Z",
-      "updatedAt": "2026-09-24T18:15:39Z",
+      "updatedAt": "2026-09-25T06:15:45Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097481933027",
@@ -8832,7 +9619,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-02T09:53:50Z",
       "createdAt": "2026-09-02T09:53:47Z",
-      "updatedAt": "2026-09-24T18:15:41Z",
+      "updatedAt": "2026-09-25T06:15:47Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12133518475491",
@@ -9458,7 +10245,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-18T19:03:32Z",
       "createdAt": "2026-09-18T19:03:28Z",
-      "updatedAt": "2026-09-24T18:15:09Z",
+      "updatedAt": "2026-09-25T06:15:15Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12170150838499",
@@ -10224,7 +11011,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-22T06:18:42Z",
       "createdAt": "2026-09-22T05:52:35Z",
-      "updatedAt": "2026-09-24T18:15:11Z",
+      "updatedAt": "2026-09-25T06:15:16Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12176922214627",
@@ -10664,9 +11451,10 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:48:47Z",
+      "updatedAt": "2026-09-26T11:30:43Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
+        "gid://shopify/Product/15395256467683",
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8783842672867",
@@ -10798,9 +11586,10 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:31Z",
+      "updatedAt": "2026-09-26T11:31:20Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
+        "gid://shopify/Product/15395256467683",
         "gid://shopify/Product/9605585436899"
       ],
       "sortOrder": "BEST_SELLING"
