@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T17:24:59.837Z",
+  "generatedAt": "2026-09-26T17:29:40.275Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -593,7 +593,7 @@
     {
       "id": "gid://shopify/Product/15395256467683",
       "handle": "bikini-pain-free-hair-removal-cream",
-      "title": "Bikini Pain-Free Hair Removal Cream for Sensitive Skin, Hypoallergenic Formula-Gentle & Fast-Acting Depilatory with Citrus Scent, Aloe & Hyaluronic Acid for Soothing Care, Suitable for Men & Women,backtoschool",
+      "title": "Bikini Pain-Free Hair Removal Cream for Sensitive Skin, Hypoallergenic Formula-Gentle & Fast-Acting Depilatory with Citrus Scent, Aloe & Hyaluronic Acid for Soothing Care, Suitable for Men & Women",
       "description": "",
       "descriptionHtml": "",
       "vendor": "Trackify",
@@ -997,7 +997,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T17:24:21Z",
+      "updatedAt": "2026-09-26T17:28:28Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -11610,7 +11610,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T17:24:03Z",
+      "updatedAt": "2026-09-26T17:28:30Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -11745,7 +11745,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T17:24:03Z",
+      "updatedAt": "2026-09-26T17:28:30Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
