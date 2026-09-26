@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T14:25:46.328Z",
+  "generatedAt": "2026-09-26T15:45:11.725Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -627,6 +627,55 @@
           "height": 2048
         },
         {
+          "id": "gid://shopify/MediaImage/46203185332451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+          "altText": "Couple with smooth, hair-free skin",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372142819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
+          "width": 548,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185299683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185234147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372437731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
+          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203372830947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
+          "altText": "PHOFAY lab testing overview",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203185201379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
+          "width": 1200,
+          "height": 1200
+        },
+        {
           "id": "gid://shopify/MediaImage/46203185135843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
           "altText": "Cloud Sense mousse beside the bikini line brightening serum",
@@ -641,46 +690,11 @@
           "height": 2720
         },
         {
-          "id": "gid://shopify/MediaImage/46203372142819",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
-          "width": 548,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185332451",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
-          "altText": "Couple with smooth, hair-free skin",
-          "width": 1500,
-          "height": 1500
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185201379",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185234147",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
-          "width": 1500,
-          "height": 1500
-        },
-        {
           "id": "gid://shopify/MediaImage/46203372568803",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
           "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185299683",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
-          "width": 2048,
-          "height": 2048
         },
         {
           "id": "gid://shopify/MediaImage/46203185365219",
@@ -711,20 +725,6 @@
           "height": 800
         },
         {
-          "id": "gid://shopify/MediaImage/46203372437731",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203372830947",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
-          "altText": "PHOFAY lab testing overview",
-          "width": 1600,
-          "height": 800
-        },
-        {
           "id": "gid://shopify/MediaImage/46203185266915",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
           "altText": "Cloud Sense mousse can next to its box",
@@ -746,6 +746,55 @@
           "height": 2048
         },
         {
+          "id": "gid://shopify/ProductImage/49461856338147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+          "altText": "Couple with smooth, hair-free skin",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049013987",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
+          "width": 548,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856305379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856239843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049308899",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
+          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462049702115",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
+          "altText": "PHOFAY lab testing overview",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "id": "gid://shopify/ProductImage/49461856207075",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
+          "width": 1200,
+          "height": 1200
+        },
+        {
           "id": "gid://shopify/ProductImage/49461856141539",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
           "altText": "Cloud Sense mousse beside the bikini line brightening serum",
@@ -760,46 +809,11 @@
           "height": 2720
         },
         {
-          "id": "gid://shopify/ProductImage/49462049013987",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
-          "width": 548,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856338147",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
-          "altText": "Couple with smooth, hair-free skin",
-          "width": 1500,
-          "height": 1500
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856207075",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856239843",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
-          "width": 1500,
-          "height": 1500
-        },
-        {
           "id": "gid://shopify/ProductImage/49462049439971",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
           "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856305379",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
-          "width": 2048,
-          "height": 2048
         },
         {
           "id": "gid://shopify/ProductImage/49461856370915",
@@ -830,20 +844,6 @@
           "height": 800
         },
         {
-          "id": "gid://shopify/ProductImage/49462049308899",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49462049702115",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
-          "altText": "PHOFAY lab testing overview",
-          "width": 1600,
-          "height": 800
-        },
-        {
           "id": "gid://shopify/ProductImage/49461856272611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
           "altText": "Cloud Sense mousse can next to its box",
@@ -870,6 +870,62 @@
         },
         {
           "type": "image",
+          "id": "gid://shopify/MediaImage/46203185332451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
+          "altText": "Couple with smooth, hair-free skin",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372142819",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
+          "width": 548,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185299683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
+          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185234147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
+          "width": 1500,
+          "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372437731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
+          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203372830947",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
+          "altText": "PHOFAY lab testing overview",
+          "width": 1600,
+          "height": 800
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203185201379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "type": "image",
           "id": "gid://shopify/MediaImage/46203185135843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
           "altText": "Cloud Sense mousse beside the bikini line brightening serum",
@@ -886,51 +942,11 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203372142819",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
-          "width": 548,
-          "height": 800
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185332451",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
-          "altText": "Couple with smooth, hair-free skin",
-          "width": 1500,
-          "height": 1500
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185201379",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185234147",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
-          "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
-          "width": 1500,
-          "height": 1500
-        },
-        {
-          "type": "image",
           "id": "gid://shopify/MediaImage/46203372568803",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
           "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185299683",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
-          "width": 2048,
-          "height": 2048
         },
         {
           "type": "image",
@@ -966,22 +982,6 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203372437731",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203372830947",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
-          "altText": "PHOFAY lab testing overview",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "type": "image",
           "id": "gid://shopify/MediaImage/46203185266915",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
           "altText": "Cloud Sense mousse can next to its box",
@@ -997,7 +997,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T13:56:42Z",
+      "updatedAt": "2026-09-26T15:44:42Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
