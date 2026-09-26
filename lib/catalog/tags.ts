@@ -29,12 +29,18 @@ export function revalidateProduct(handle: string): void {
   purgeTag(CACHE_TAGS.product(handle));
   purgeTag(CACHE_TAGS.catalog);
   purgePath(`/products/${handle}`);
+  // Product type changes can add/remove a nav category — the root layout
+  // (header mega menu, footer) isn't tied to any tag, so purge it directly.
+  purgePath("/", "layout");
 }
 
 export function revalidateCollection(handle: string): void {
   purgeTag(CACHE_TAGS.collection(handle));
   purgeTag(CACHE_TAGS.catalog);
   purgePath(`/collections/${handle}`);
+  // A new/renamed/emptied collection changes the "Shop by category" menu,
+  // which is rendered from the root layout, not this collection's own path.
+  purgePath("/", "layout");
 }
 
 export function revalidateBlog(handle: string): void {
