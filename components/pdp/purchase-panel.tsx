@@ -213,6 +213,8 @@ export function PurchasePanel({
       </div>
 
       <div className="mt-4 space-y-3">
+        {/* Payment icons read first, above delivery — both mobile and desktop. */}
+        <PaymentIcons />
         {delivery && <DeliveryEstimate estimate={delivery} />}
         {error && (
           <p role="alert" className="rounded-md bg-danger-soft px-4 py-3 text-sm text-danger">
@@ -231,7 +233,6 @@ export function PurchasePanel({
             Only {lowStock} left in {variant?.title}
           </p>
         )}
-        <PaymentIcons />
       </div>
 
       {reassurance.length > 0 && (
@@ -763,7 +764,7 @@ function PaymentIcons() {
   ];
 
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-1.5 sm:justify-start" aria-label="Accepted payment methods">
+    <ul className="flex flex-wrap items-center justify-center gap-1.5" aria-label="Accepted payment methods">
       {methods.map((m) => (
         <li
           key={m.name}
