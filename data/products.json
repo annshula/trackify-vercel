@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T12:19:39.856Z",
+  "generatedAt": "2026-09-26T12:55:57.937Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -592,7 +592,7 @@
     {
       "id": "gid://shopify/Product/15395256467683",
       "handle": "bikini-pain-free-hair-removal-cream",
-      "title": "Bikini Pain-Free Hair Removal Cream for Sensitive Skin, Hypoallergenic Formula-Gentle & Fast-Acting Depilatory with Citrus Scent, Aloe & Hyaluronic Acid for Soothing Care, Suitable for Men & Women,backtoschool",
+      "title": "Bikini Pain-Free Hair Removal Cream",
       "description": "",
       "descriptionHtml": "",
       "vendor": "Trackify",
@@ -617,6 +617,13 @@
           "altText": "adf770775166ccea3cd942238a726605",
           "width": 1500,
           "height": 1500
+        },
+        {
+          "id": "gid://shopify/MediaImage/46203948073187",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf39c26c52ded46f7914c00cb05024a7af.avif?v=1790426727",
+          "altText": "",
+          "width": 2048,
+          "height": 2048
         },
         {
           "id": "gid://shopify/MediaImage/46203185135843",
@@ -729,6 +736,13 @@
           "altText": "adf770775166ccea3cd942238a726605",
           "width": 1500,
           "height": 1500
+        },
+        {
+          "id": "gid://shopify/ProductImage/49462649520355",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf39c26c52ded46f7914c00cb05024a7af.avif?v=1790426727",
+          "altText": "",
+          "width": 2048,
+          "height": 2048
         },
         {
           "id": "gid://shopify/ProductImage/49461856141539",
@@ -844,6 +858,14 @@
           "altText": "adf770775166ccea3cd942238a726605",
           "width": 1500,
           "height": 1500
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46203948073187",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf39c26c52ded46f7914c00cb05024a7af.avif?v=1790426727",
+          "altText": "",
+          "width": 2048,
+          "height": 2048
         },
         {
           "type": "image",
@@ -974,15 +996,15 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T12:19:29Z",
+      "updatedAt": "2026-09-26T12:55:51Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
           "name": "Style",
           "position": 1,
           "values": [
-            "Spray & Serum",
             "Spray",
+            "Spray & Serum",
             "Spray & Cream"
           ]
         },
@@ -993,41 +1015,11 @@
           "values": [
             "1PC",
             "2PCS",
-            "8PCS",
-            "3PCS",
-            "4PCS",
-            "6PCS"
+            "3PCS"
           ]
         }
       ],
       "variants": [
-        {
-          "id": "gid://shopify/ProductVariant/67582703468771",
-          "title": "Spray & Serum / 1PC",
-          "sku": "CJPF253602703CX",
-          "barcode": null,
-          "price": 30.18,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Serum"
-            },
-            {
-              "name": "Quantity",
-              "value": "1PC"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856141539",
-          "availableForSale": true,
-          "inventoryQuantity": 14808,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 307,
-          "weightUnit": "GRAMS",
-          "position": 1
-        },
         {
           "id": "gid://shopify/ProductVariant/67582703501539",
           "title": "Spray / 1PC",
@@ -1053,7 +1045,7 @@
           "requiresShipping": true,
           "weight": 237,
           "weightUnit": "GRAMS",
-          "position": 2
+          "position": 1
         },
         {
           "id": "gid://shopify/ProductVariant/67582703534307",
@@ -1080,223 +1072,7 @@
           "requiresShipping": true,
           "weight": 445,
           "weightUnit": "GRAMS",
-          "position": 3
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703567075",
-          "title": "Spray / 8PCS",
-          "sku": "CJPF253602716PK",
-          "barcode": null,
-          "price": 128.04,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray"
-            },
-            {
-              "name": "Quantity",
-              "value": "8PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856108771",
-          "availableForSale": true,
-          "inventoryQuantity": 22164,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 1700,
-          "weightUnit": "GRAMS",
-          "position": 4
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703599843",
-          "title": "Spray & Cream / 1PC",
-          "sku": "CJPF253602705EV",
-          "barcode": null,
-          "price": 43.11,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Cream"
-            },
-            {
-              "name": "Quantity",
-              "value": "1PC"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856207075",
-          "availableForSale": true,
-          "inventoryQuantity": 12600,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 372,
-          "weightUnit": "GRAMS",
-          "position": 5
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703632611",
-          "title": "Spray & Cream / 3PCS",
-          "sku": "CJPF253602714NM",
-          "barcode": null,
-          "price": 111.33,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Cream"
-            },
-            {
-              "name": "Quantity",
-              "value": "3PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856207075",
-          "availableForSale": true,
-          "inventoryQuantity": 6042,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 1116,
-          "weightUnit": "GRAMS",
-          "position": 6
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703665379",
-          "title": "Spray & Cream / 4PCS",
-          "sku": "CJPF253602709IR",
-          "barcode": null,
-          "price": 144.98,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Cream"
-            },
-            {
-              "name": "Quantity",
-              "value": "4PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856207075",
-          "availableForSale": true,
-          "inventoryQuantity": 12494,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 1488,
-          "weightUnit": "GRAMS",
-          "position": 7
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703698147",
-          "title": "Spray & Cream / 6PCS",
-          "sku": "CJPF253602715OL",
-          "barcode": null,
-          "price": 216.41,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Cream"
-            },
-            {
-              "name": "Quantity",
-              "value": "6PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856207075",
-          "availableForSale": true,
-          "inventoryQuantity": 5278,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 2232,
-          "weightUnit": "GRAMS",
-          "position": 8
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703730915",
-          "title": "Spray & Serum / 3PCS",
-          "sku": "CJPF253602712LO",
-          "barcode": null,
-          "price": 78.05,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Serum"
-            },
-            {
-              "name": "Quantity",
-              "value": "3PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856141539",
-          "availableForSale": true,
-          "inventoryQuantity": 9890,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 648,
-          "weightUnit": "GRAMS",
-          "position": 9
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703763683",
-          "title": "Spray & Serum / 4PCS",
-          "sku": "CJPF253602708HS",
-          "barcode": null,
-          "price": 103.82,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Serum"
-            },
-            {
-              "name": "Quantity",
-              "value": "4PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856141539",
-          "availableForSale": true,
-          "inventoryQuantity": 13583,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 1117,
-          "weightUnit": "GRAMS",
-          "position": 10
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703796451",
-          "title": "Spray & Serum / 6PCS",
-          "sku": "CJPF253602713MN",
-          "barcode": null,
-          "price": 149.85,
-          "compareAtPrice": null,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Serum"
-            },
-            {
-              "name": "Quantity",
-              "value": "6PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856141539",
-          "availableForSale": true,
-          "inventoryQuantity": 7773,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 1296,
-          "weightUnit": "GRAMS",
-          "position": 11
+          "position": 2
         },
         {
           "id": "gid://shopify/ProductVariant/67582703829219",
@@ -1323,85 +1099,417 @@
           "requiresShipping": true,
           "weight": 660,
           "weightUnit": "GRAMS",
-          "position": 12
+          "position": 3
         },
         {
-          "id": "gid://shopify/ProductVariant/67582703861987",
-          "title": "Spray / 4PCS",
-          "sku": "CJPF253602707GT",
+          "id": "gid://shopify/ProductVariant/67582703468771",
+          "title": "Spray & Serum / 1PC",
+          "sku": "CJPF253602703CX",
           "barcode": null,
-          "price": 67.17,
+          "price": 30.18,
           "compareAtPrice": null,
           "currencyCode": "USD",
           "selectedOptions": [
             {
               "name": "Style",
-              "value": "Spray"
+              "value": "Spray & Serum"
             },
             {
               "name": "Quantity",
-              "value": "4PCS"
+              "value": "1PC"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/49461856108771",
+          "imageId": "gid://shopify/ProductImage/49461856141539",
           "availableForSale": true,
-          "inventoryQuantity": 10098,
+          "inventoryQuantity": 14808,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
-          "weight": 860,
+          "weight": 307,
           "weightUnit": "GRAMS",
-          "position": 13
+          "position": 4
         },
         {
-          "id": "gid://shopify/ProductVariant/67582703894755",
-          "title": "Spray / 6PCS",
-          "sku": "CJPF253602711KP",
+          "id": "gid://shopify/ProductVariant/67582703730915",
+          "title": "Spray & Serum / 3PCS",
+          "sku": "CJPF253602712LO",
           "barcode": null,
-          "price": 97.45,
+          "price": 78.05,
           "compareAtPrice": null,
           "currencyCode": "USD",
           "selectedOptions": [
             {
               "name": "Style",
-              "value": "Spray"
+              "value": "Spray & Serum"
             },
             {
               "name": "Quantity",
-              "value": "6PCS"
+              "value": "3PCS"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/49461856108771",
+          "imageId": "gid://shopify/ProductImage/49461856141539",
           "availableForSale": true,
-          "inventoryQuantity": 5810,
+          "inventoryQuantity": 9890,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
-          "weight": 1300,
+          "weight": 648,
           "weightUnit": "GRAMS",
-          "position": 14
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703599843",
+          "title": "Spray & Cream / 1PC",
+          "sku": "CJPF253602705EV",
+          "barcode": null,
+          "price": 43.11,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Cream"
+            },
+            {
+              "name": "Quantity",
+              "value": "1PC"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856207075",
+          "availableForSale": true,
+          "inventoryQuantity": 12600,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 372,
+          "weightUnit": "GRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67582703632611",
+          "title": "Spray & Cream / 3PCS",
+          "sku": "CJPF253602714NM",
+          "barcode": null,
+          "price": 111.33,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Style",
+              "value": "Spray & Cream"
+            },
+            {
+              "name": "Quantity",
+              "value": "3PCS"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49461856207075",
+          "availableForSale": true,
+          "inventoryQuantity": 6042,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 1116,
+          "weightUnit": "GRAMS",
+          "position": 7
         }
       ],
       "priceRange": {
         "min": 20.77,
-        "max": 216.41,
+        "max": 111.33,
         "currencyCode": "USD"
       },
       "compareAtPriceRange": null,
       "metafields": {
-        "custom.meta_pixel_id": "973254138358742"
+        "custom.benefits": "[\"gid://shopify/Metaobject/606860542179\",\"gid://shopify/Metaobject/606860574947\",\"gid://shopify/Metaobject/606860476643\",\"gid://shopify/Metaobject/606860509411\"]",
+        "custom.cta_headline": "Ready to try pain-free hair removal?",
+        "custom.faq": "[\"gid://shopify/Metaobject/606861000931\",\"gid://shopify/Metaobject/606861033699\",\"gid://shopify/Metaobject/606860935395\",\"gid://shopify/Metaobject/606860968163\",\"gid://shopify/Metaobject/606861066467\",\"gid://shopify/Metaobject/606861099235\",\"gid://shopify/Metaobject/606861132003\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/606861918435\",\"gid://shopify/Metaobject/606862082275\",\"gid://shopify/Metaobject/606862016739\",\"gid://shopify/Metaobject/606861983971\",\"gid://shopify/Metaobject/606861951203\",\"gid://shopify/Metaobject/606862049507\",\"gid://shopify/Metaobject/606862115043\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/606860673251\",\"gid://shopify/Metaobject/606860706019\",\"gid://shopify/Metaobject/606860738787\"]",
+        "custom.meta_pixel_id": "973254138358742",
+        "custom.perks": "[\"Hypoallergenic formula — marked non-irritating on the packaging\",\"Formulated with aloe vera, ginseng root and crocus flower\",\"4-step routine: apply, wait 5–10 minutes, scrape, rinse\",\"Removes hair at the root — no razor, no wax strips\",\"Suitable for men & women, citrus-scented\"]",
+        "custom.specs": "[\"gid://shopify/Metaobject/606861164771\",\"gid://shopify/Metaobject/606861295843\",\"gid://shopify/Metaobject/606861328611\",\"gid://shopify/Metaobject/606861197539\",\"gid://shopify/Metaobject/606861230307\",\"gid://shopify/Metaobject/606861263075\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/606860640483\",\"gid://shopify/Metaobject/606860607715\"]",
+        "custom.subtitle": "Gentle, fast-acting hair removal cream for sensitive skin — no razor, no wax.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/606860869859\",\"gid://shopify/Metaobject/606860771555\",\"gid://shopify/Metaobject/606860804323\",\"gid://shopify/Metaobject/606860837091\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/606860902627\"]"
       },
-      "specs": [],
-      "featureHighlights": [],
+      "specs": [
+        {
+          "label": "Format",
+          "value": "Spray & Serum Cream",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Key ingredients",
+          "value": "Aloe, Hyaluronic Acid, Citrus Scent",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Skin type",
+          "value": "Sensitive skin, hypoallergenic formula",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Recommended use areas",
+          "value": "See product packaging for approved areas",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Suitable for",
+          "value": "Men & Women",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Pack sizes available",
+          "value": "1PC, 2PCS, 3PCS, 4PCS, 6PCS, 8PCS — Set / Set A / Spray depilatory cream styles",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "shield",
+          "label": "Hypoallergenic, no additives",
+          "body": "Marked hypoallergenic, non-irritating and additive-free on the product packaging — always patch test on a small area first.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203185103075",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
+            "altText": "adf770775166ccea3cd942238a726605",
+            "width": 1500,
+            "height": 1500
+          },
+          "video": null
+        },
+        {
+          "icon": "droplet",
+          "label": "Aloe, ginseng & crocus flower",
+          "body": "The Cloud Sense formula is presented with aloe vera, ginseng root and crocus flower, in an Orange Spring Cologne scent.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203185103075",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
+            "altText": "adf770775166ccea3cd942238a726605",
+            "width": 1500,
+            "height": 1500
+          },
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Shown on armpit, leg, back, arm & chest",
+          "body": "The brand's own before/after photos cover the armpit, leg, back, arm and chest — always check your product's packaging for its approved areas of use.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203185168611",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
+            "altText": "7ebdcbd2468a73a5b443775660a207c3",
+            "width": 2720,
+            "height": 2720
+          },
+          "video": null
+        },
+        {
+          "icon": "ruler",
+          "label": "4 simple steps",
+          "body": "Per the printed instructions: clean & dry skin, apply evenly to the area, wait 5 to 10 minutes, then remove with the provided scraper and rinse.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203185234147",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
+            "altText": "1e28e684b8a6f27c774a2eabb79e1e5",
+            "width": 1500,
+            "height": 1500
+          },
+          "video": null
+        },
+        {
+          "icon": "sparkle",
+          "label": "Works at the root",
+          "body": "The formula is shown softening and loosening hair at the root, without the diagram claiming any effect on the surrounding skin.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203372568803",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
+            "altText": "",
+            "width": 1600,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "icon": "package",
+          "label": "Spray mousse or cream",
+          "body": "Available as the Cloud Sense spray mousse (140ML) or the Smooth cream tube (100ML) — pick the format you prefer at checkout.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203185201379",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
+            "altText": "4bd2aff1b47cfbe20758693177cae678",
+            "width": 1200,
+            "height": 1200
+          },
+          "video": null
+        },
+        {
+          "icon": "returns",
+          "label": "Certifications on file",
+          "body": "The brand states it can provide FDA, CPNP, SCPN and MSDS certificates for this product on request — contact support if you need documentation.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46203372142819",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
+            "altText": "",
+            "width": 548,
+            "height": 800
+          },
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "droplet",
+            "label": "Gentle, fragrance-forward formula",
+            "body": "Citrus scent with aloe and hyaluronic acid, formulated for sensitive skin. Always patch test 24 hours before first use.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Fast application",
+            "body": "Spray or apply, leave on for the time stated on your product packaging, then rinse — no razor, no wax strips.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "shield",
+            "label": "Hypoallergenic formula",
+            "body": "Designed for sensitive skin. If irritation occurs, rinse immediately and discontinue use.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Suitable for men & women",
+            "body": "One formula for the bikini area and other body areas listed on the packaging.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "feather",
+            "label": "The problem with razors and wax",
+            "body": "Shaving causes nicks and razor burn; waxing pulls and hurts, especially on sensitive skin.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "A gentler way",
+            "body": "A cream/spray depilatory lifts hair away from the skin without a blade or hot wax — always check the instructions on your product for use and timing.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "shield",
+            "label": "Patch test first",
+            "body": "Apply a small amount to a small area of skin and wait 24 hours. Do not proceed if you see irritation.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "droplet",
+            "label": "Apply",
+            "body": "Apply an even layer to clean, dry skin, following the timing on the product's packaging.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "clean",
+            "label": "Rinse & moisturize",
+            "body": "Rinse thoroughly with warm water and follow with a gentle, fragrance-free moisturizer.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "sparkle",
+            "label": "Bikini line",
+            "body": "Formulated for use on the bikini area — always check your packaging for the exact areas of use it's approved for.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Underarms",
+            "body": "Suitable for underarm use per the product's labeled directions.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Legs & arms",
+            "body": "Works on larger areas too — follow the same patch-test-first routine.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "shield",
+            "label": "Sensitive skin",
+            "body": "Hypoallergenic formula intended for those who find razors and wax irritating.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "package",
+            "label": "1x Depilatory Cream/Spray",
+            "body": "Comes in the pack size you selected at checkout — see the variant options above.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "Is this safe for sensitive skin?",
+            "answer": "It's formulated to be hypoallergenic, but everyone's skin reacts differently. Always do a 24-hour patch test on a small area before your first full use."
+          },
+          {
+            "question": "How long do I leave it on?",
+            "answer": "Follow the timing printed on your product's packaging — leaving it on longer than directed can increase the risk of irritation."
+          },
+          {
+            "question": "Can I use this on my face?",
+            "answer": "Only use this product on the areas listed as approved on its packaging. When in doubt, don't use it on facial skin."
+          },
+          {
+            "question": "How often can I use it?",
+            "answer": "Follow the frequency guidance on your product's packaging; depilatory creams are generally not meant for daily use."
+          },
+          {
+            "question": "What if I feel a burning or stinging sensation?",
+            "answer": "Rinse the area immediately with cool water and discontinue use. If irritation persists, consult a doctor."
+          },
+          {
+            "question": "Is this suitable for men and women?",
+            "answer": "Yes — the formula itself isn't gender-specific; use it on any area listed as approved on the packaging."
+          },
+          {
+            "question": "Does it have a strong smell?",
+            "answer": "It's scented with citrus. If you're sensitive to fragrance, patch test first."
+          }
+        ],
         "demoVideo": null
       },
-      "totalInventory": 264470
+      "totalInventory": 187270
     },
     {
       "id": "gid://shopify/Product/8783771533539",
@@ -11453,7 +11561,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T11:30:43Z",
+      "updatedAt": "2026-09-26T12:55:47Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -11588,7 +11696,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-26T11:31:20Z",
+      "updatedAt": "2026-09-26T12:55:47Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",

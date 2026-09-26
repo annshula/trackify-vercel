@@ -25,10 +25,13 @@ export type Reassurance = { icon: string | null; label: string };
  */
 export function PurchasePanel({
   subtitle,
+  perks,
   rating,
   reassurance,
 }: {
   subtitle: string | null;
+  /** Short benefit lines under the title — filled-tick list, 4-5 lines is the sweet spot. */
+  perks: string[];
   rating: { value: number; count: number } | null;
   reassurance: Reassurance[];
 }) {
@@ -78,6 +81,21 @@ export function PurchasePanel({
         {product.title}
       </h1>
       {subtitle && <p className="mt-3 text-lg leading-relaxed text-ink-muted text-pretty">{subtitle}</p>}
+
+      {perks.length > 0 && (
+        <ul className="mt-4 flex flex-col gap-2.5">
+          {perks.map((perk) => (
+            <li key={perk} className="flex items-start gap-3 text-sm text-ink-muted">
+              <span className="mt-0.5 grid size-4.5 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
+                <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              {perk}
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <Price amount={price} compareAt={compareAt} currencyCode={product.priceRange.currencyCode} size="xl" />

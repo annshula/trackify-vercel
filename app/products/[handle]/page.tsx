@@ -86,6 +86,20 @@ export default async function ProductPage({ params }: PageProps) {
   const { pdp } = product;
   const subtitle = product.metafields["custom.subtitle"] ?? null;
   const ctaHeadline = product.metafields["custom.cta_headline"] ?? `Ready to try the ${product.title}?`;
+  // Short filled-tick benefit lines directly under the title — a plain JSON
+  // array of strings (custom.perks), separate from custom.benefits' richer
+  // icon+label+body cards further down the page. Malformed/missing metafield
+  // yields no perks rather than breaking the page.
+  const perks: string[] = (() => {
+    const raw = product.metafields["custom.perks"];
+    if (!raw) return [];
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed.filter((p): p is string => typeof p === "string") : [];
+    } catch {
+      return [];
+    }
+  })();
 
   // Above-the-fold reassurance: how it ships, then the store's own guarantees.
   const { shipping, trustPoints } = shopPdp;
@@ -148,7 +162,7 @@ export default async function ProductPage({ params }: PageProps) {
               <ProductGallery />
             </div>
             <div className="pt-7 lg:col-span-5 lg:pt-2">
-              <PurchasePanel subtitle={subtitle} rating={rating} reassurance={reassurance} />
+              <PurchasePanel subtitle={subtitle} perks={perks} rating={rating} reassurance={reassurance} />
             </div>
           </section>
         </div>
