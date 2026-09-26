@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T15:45:11.725Z",
+  "generatedAt": "2026-09-26T16:18:12.936Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -990,14 +990,14 @@
         }
       ],
       "seo": {
-        "title": null,
-        "description": null
+        "title": "Bikini Pain-Free Hair Removal Cream | Trackify",
+        "description": "Gentle, hypoallergenic hair removal cream with aloe and hyaluronic acid. Fast-acting, citrus-scented, safe for sensitive skin. Shop now at Trackify."
       },
       "status": "ACTIVE",
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-26T15:44:42Z",
+      "updatedAt": "2026-09-26T16:17:44Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
