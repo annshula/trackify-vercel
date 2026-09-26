@@ -104,17 +104,24 @@ export function PurchaseProvider({
     window.history.replaceState(window.history.state, "", url);
   }, [variant]);
 
-  // Per-product Meta pixel routing is CAPI-only (server-side, orders/paid —
-  // see services/webhooks/conversions.ts): custom.meta_pixel_id never inits a
-  // second pixel client-side, so client events only ever go to the global
-  // pixel here.
+  // custom.meta_pixel_id, when set, also inits a second Meta pixel client-side
+  // (ProductMetaPixel, rendered in app/products/[handle]/page.tsx) — passing
+  // it here routes this product's browser events to both the global pixel and
+  // its own dedicated one, alongside the existing CAPI-only Purchase routing
+  // in services/webhooks/conversions.ts.
+  const metaPixelId = product.metafields["custom.meta_pixel_id"] || undefined;
+
   React.useEffect(() => {
-    track("view_item", {
-      currency: product.priceRange.currencyCode,
-      value: product.priceRange.min,
-      items: [toEcommerceItem(product)],
-    });
-  }, [product]);
+    track(
+      "view_item",
+      {
+        currency: product.priceRange.currencyCode,
+        value: product.priceRange.min,
+        items: [toEcommerceItem(product)],
+      },
+      metaPixelId,
+    );
+  }, [product, metaPixelId]);
 
   // "Added" is a moment, not a state — fall back to the normal label.
   React.useEffect(() => {
@@ -158,12 +165,16 @@ export function PurchaseProvider({
       return;
     }
     setStatus("added");
-    track("add_to_cart", {
-      currency: variant.currencyCode,
-      value: variant.price * quantity,
-      items: [toEcommerceItem(product, { item_variant: variant.title, quantity, price: variant.price })],
-    });
-  }, [variant, soldOut, status, run, quantity, product]);
+    track(
+      "add_to_cart",
+      {
+        currency: variant.currencyCode,
+        value: variant.price * quantity,
+        items: [toEcommerceItem(product, { item_variant: variant.title, quantity, price: variant.price })],
+      },
+      metaPixelId,
+    );
+  }, [variant, soldOut, status, run, quantity, product, metaPixelId]);
 
   const buyNow = React.useCallback(async () => {
     if (!variant || soldOut || buying) return;
@@ -178,7 +189,11 @@ export function PurchaseProvider({
       setError(added.error ?? "We couldn't start checkout. Please try again.");
       return;
     }
-    track("begin_checkout", { currency: variant.currencyCode, value: variant.price * quantity });
+    track(
+      "begin_checkout",
+      { currency: variant.currencyCode, value: variant.price * quantity },
+      metaPixelId,
+    );
     const result = await run(() => proceedToCheckout());
     if (result.ok && result.checkoutUrl) {
       window.location.href = result.checkoutUrl;
@@ -186,7 +201,7 @@ export function PurchaseProvider({
     }
     setBuying(false);
     open();
-  }, [variant, soldOut, buying, run, quantity, product.handle, open]);
+  }, [variant, soldOut, buying, run, quantity, product.handle, open, metaPixelId]);
 
   const value: PurchaseContextValue = {
     product,

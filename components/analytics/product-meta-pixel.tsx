@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 /**
@@ -8,12 +9,15 @@ import { useEffect, useRef } from "react";
  * `custom.meta_pixel_id` metafield, alongside the global pixel from
  * MetaPixel (components/analytics/meta-pixel.tsx). Lets a merchant route a
  * specific product's ad conversions to its own ad account/pixel without
- * losing site-wide tracking on the global one.
+ * losing site-wide tracking on the global one. Rendered from
+ * app/products/[handle]/page.tsx.
  *
  * fbq requires `trackSingle`/`trackSingleCustom` once more than one pixel is
  * inited — a plain `fbq('track', ...)` fires to every inited pixel. See
- * lib/analytics/index.ts's dispatch(), which reads this pixel id back out of
- * the same metafield to route ecommerce events here with trackSingle.
+ * lib/analytics/index.ts's dispatch(), which purchase-context.tsx feeds this
+ * same pixel id to route ecommerce events here with trackSingle. Purchase
+ * itself stays CAPI-only server-side (services/webhooks/conversions.ts) since
+ * Shopify's hosted checkout never returns to a client-side success page here.
  *
  * `pixelId` comes from a merchant-editable Shopify metafield, not a build-time
  * env var — treat it as untrusted input. It's validated against Meta's pixel
@@ -25,6 +29,8 @@ const PIXEL_ID_PATTERN = /^[0-9]{6,20}$/;
 
 export function ProductMetaPixel({ pixelId: rawPixelId }: { pixelId: string | null }) {
   const pixelId = rawPixelId && PIXEL_ID_PATTERN.test(rawPixelId) ? rawPixelId : null;
+  const pathname = usePathname();
+  /** Skips the initial render — the inline init script below already sent that one. */
   const bootstrapped = useRef(false);
 
   useEffect(() => {
@@ -33,9 +39,11 @@ export function ProductMetaPixel({ pixelId: rawPixelId }: { pixelId: string | nu
       bootstrapped.current = true;
       return;
     }
-    // Route changes are handled by MetaPixel's PageView; ViewContent for this
-    // product is sent by purchase-context's view_item, via dispatch().
-  }, [pixelId]);
+    // Client-side route change while this pixel is already inited (e.g. the
+    // shopper navigates to another product without a full reload). ViewContent
+    // for this product is sent by purchase-context's view_item, via dispatch().
+    window.fbq?.("trackSingle", pixelId, "PageView");
+  }, [pixelId, pathname]);
 
   if (!pixelId) return null;
 
@@ -50,7 +58,8 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${pixelId}');`}
+fbq('init', '${pixelId}');
+fbq('trackSingle', '${pixelId}', 'PageView');`}
       </Script>
       <noscript>
         {/* eslint-disable-next-line @next/next/no-img-element */}

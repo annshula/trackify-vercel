@@ -27,6 +27,7 @@ import { ProductDetails, ProductFAQ, ReturnsGuarantee } from "@/components/pdp/d
 import { FinalCTA } from "@/components/pdp/final-cta";
 import { StickyAddToCart } from "@/components/pdp/sticky-add-to-cart";
 import { AnnouncementBar } from "@/components/pdp/announcement-bar";
+import { ProductMetaPixel } from "@/components/analytics/product-meta-pixel";
 
 /**
  * /products/[handle]
@@ -140,6 +141,7 @@ export default async function ProductPage({ params }: PageProps) {
         ]}
       />
       <RecentlyViewedRecorder handle={product.handle} />
+      <ProductMetaPixel pixelId={product.metafields["custom.meta_pixel_id"] ?? null} />
 
       <PurchaseProvider product={product}>
         <AnnouncementBar messages={shopPdp.announcements} />
