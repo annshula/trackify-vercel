@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T04:51:47.288Z",
+  "generatedAt": "2026-09-27T06:19:27.589Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -1053,16 +1053,14 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-27T04:51:02Z",
+      "updatedAt": "2026-09-27T06:18:51Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
           "name": "Style",
           "position": 1,
           "values": [
-            "Spray",
-            "Spray & Serum",
-            "Spray & Cream"
+            "Spray"
           ]
         },
         {
@@ -1082,8 +1080,8 @@
           "title": "Spray / 1PC",
           "sku": "CJPF253602701AZ",
           "barcode": null,
-          "price": 39.99,
-          "compareAtPrice": 45.99,
+          "price": 49.99,
+          "compareAtPrice": 59.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1097,7 +1095,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/49461856108771",
           "availableForSale": true,
-          "inventoryQuantity": 90932,
+          "inventoryQuantity": 90931,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 237,
@@ -1109,7 +1107,7 @@
           "title": "Spray / 2PCS",
           "sku": "CJPF253602702BY",
           "barcode": null,
-          "price": 69.99,
+          "price": 59.99,
           "compareAtPrice": 89.99,
           "currencyCode": "USD",
           "selectedOptions": [
@@ -1136,8 +1134,8 @@
           "title": "Spray / 3PCS",
           "sku": "CJPF253602710JQ",
           "barcode": null,
-          "price": 99.99,
-          "compareAtPrice": 140.99,
+          "price": 69.99,
+          "compareAtPrice": 120.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1157,124 +1155,16 @@
           "weight": 660,
           "weightUnit": "GRAMS",
           "position": 3
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703468771",
-          "title": "Spray & Serum / 1PC",
-          "sku": "CJPF253602703CX",
-          "barcode": null,
-          "price": 49.99,
-          "compareAtPrice": 79.99,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Serum"
-            },
-            {
-              "name": "Quantity",
-              "value": "1PC"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856141539",
-          "availableForSale": true,
-          "inventoryQuantity": 14798,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 307,
-          "weightUnit": "GRAMS",
-          "position": 4
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703730915",
-          "title": "Spray & Serum / 3PCS",
-          "sku": "CJPF253602712LO",
-          "barcode": null,
-          "price": 109.99,
-          "compareAtPrice": 239.99,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Serum"
-            },
-            {
-              "name": "Quantity",
-              "value": "3PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856141539",
-          "availableForSale": true,
-          "inventoryQuantity": 9890,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 648,
-          "weightUnit": "GRAMS",
-          "position": 5
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703599843",
-          "title": "Spray & Cream / 1PC",
-          "sku": "CJPF253602705EV",
-          "barcode": null,
-          "price": 49.99,
-          "compareAtPrice": 79.99,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Cream"
-            },
-            {
-              "name": "Quantity",
-              "value": "1PC"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856207075",
-          "availableForSale": true,
-          "inventoryQuantity": 12600,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 372,
-          "weightUnit": "GRAMS",
-          "position": 6
-        },
-        {
-          "id": "gid://shopify/ProductVariant/67582703632611",
-          "title": "Spray & Cream / 3PCS",
-          "sku": "CJPF253602714NM",
-          "barcode": null,
-          "price": 109.99,
-          "compareAtPrice": 239.99,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray & Cream"
-            },
-            {
-              "name": "Quantity",
-              "value": "3PCS"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/49461856207075",
-          "availableForSale": true,
-          "inventoryQuantity": 6042,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 1116,
-          "weightUnit": "GRAMS",
-          "position": 7
         }
       ],
       "priceRange": {
-        "min": 39.99,
-        "max": 109.99,
+        "min": 49.99,
+        "max": 69.99,
         "currencyCode": "USD"
       },
       "compareAtPriceRange": {
-        "min": 45.99,
-        "max": 239.99
+        "min": 59.99,
+        "max": 120.99
       },
       "metafields": {
         "custom.announcement_override": "[\"FDA & CPNP documented\",\"Tracked delivery on every order\",\"Secure checkout with Shop Pay, Apple Pay & Google Pay\"]",
@@ -1625,7 +1515,7 @@
         },
         "ugcMedia": []
       },
-      "totalInventory": 178158
+      "totalInventory": 134827
     },
     {
       "id": "gid://shopify/Product/15395997253859",
@@ -12267,7 +12157,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T04:48:22Z",
+      "updatedAt": "2026-09-27T06:17:32Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -12402,7 +12292,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T04:48:22Z",
+      "updatedAt": "2026-09-27T06:17:32Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
