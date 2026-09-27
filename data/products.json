@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T06:19:27.589Z",
+  "generatedAt": "2026-09-27T06:20:28.042Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -1975,11 +1975,11 @@
         "title": null,
         "description": null
       },
-      "status": "ACTIVE",
+      "status": "DRAFT",
       "publishedOnline": false,
       "publishedAt": null,
       "createdAt": "2026-09-27T04:44:15Z",
-      "updatedAt": "2026-09-27T04:44:41Z",
+      "updatedAt": "2026-09-27T06:20:18Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17857605632227",
