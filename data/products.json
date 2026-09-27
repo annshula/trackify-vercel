@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T04:04:56.399Z",
+  "generatedAt": "2026-09-27T04:51:47.288Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -555,9 +555,6 @@
             "video": null
           }
         ],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [
           {
             "question": "What can I put in the tank?",
@@ -1056,7 +1053,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-27T04:04:08Z",
+      "updatedAt": "2026-09-27T04:51:02Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708575459",
@@ -1085,8 +1082,8 @@
           "title": "Spray / 1PC",
           "sku": "CJPF253602701AZ",
           "barcode": null,
-          "price": 49.99,
-          "compareAtPrice": 59.99,
+          "price": 39.99,
+          "compareAtPrice": 45.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1112,8 +1109,8 @@
           "title": "Spray / 2PCS",
           "sku": "CJPF253602702BY",
           "barcode": null,
-          "price": 79.99,
-          "compareAtPrice": 101.99,
+          "price": 69.99,
+          "compareAtPrice": 89.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1139,8 +1136,8 @@
           "title": "Spray / 3PCS",
           "sku": "CJPF253602710JQ",
           "barcode": null,
-          "price": 109.99,
-          "compareAtPrice": 150,
+          "price": 99.99,
+          "compareAtPrice": 140.99,
           "currencyCode": "USD",
           "selectedOptions": [
             {
@@ -1166,7 +1163,7 @@
           "title": "Spray & Serum / 1PC",
           "sku": "CJPF253602703CX",
           "barcode": null,
-          "price": 59.99,
+          "price": 49.99,
           "compareAtPrice": 79.99,
           "currencyCode": "USD",
           "selectedOptions": [
@@ -1193,7 +1190,7 @@
           "title": "Spray & Serum / 3PCS",
           "sku": "CJPF253602712LO",
           "barcode": null,
-          "price": 119.99,
+          "price": 109.99,
           "compareAtPrice": 239.99,
           "currencyCode": "USD",
           "selectedOptions": [
@@ -1220,7 +1217,7 @@
           "title": "Spray & Cream / 1PC",
           "sku": "CJPF253602705EV",
           "barcode": null,
-          "price": 59.99,
+          "price": 49.99,
           "compareAtPrice": 79.99,
           "currencyCode": "USD",
           "selectedOptions": [
@@ -1247,7 +1244,7 @@
           "title": "Spray & Cream / 3PCS",
           "sku": "CJPF253602714NM",
           "barcode": null,
-          "price": 119.99,
+          "price": 109.99,
           "compareAtPrice": 239.99,
           "currencyCode": "USD",
           "selectedOptions": [
@@ -1271,12 +1268,12 @@
         }
       ],
       "priceRange": {
-        "min": 49.99,
-        "max": 119.99,
+        "min": 39.99,
+        "max": 109.99,
         "currencyCode": "USD"
       },
       "compareAtPriceRange": {
-        "min": 59.99,
+        "min": 45.99,
         "max": 239.99
       },
       "metafields": {
@@ -1296,7 +1293,11 @@
         "custom.subtitle": "A gentle spray mousse that removes hair in 5–10 minutes — no razor, no wax.",
         "custom.trust_point_override": "{\"replaces\":\"returns\",\"icon\":\"shield\",\"label\":\"FDA & CPNP documented\",\"body\":\"Formulated to cosmetic compliance standards — FDA, CPNP and MSDS documentation available on request.\"}",
         "custom.use_cases": "[\"gid://shopify/Metaobject/606872502499\",\"gid://shopify/Metaobject/606871781603\",\"gid://shopify/Metaobject/606872010979\",\"gid://shopify/Metaobject/606872043747\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/606872469731\",\"gid://shopify/Metaobject/606871978211\",\"gid://shopify/Metaobject/606872174819\"]"
+        "custom.whats_included": "[\"gid://shopify/Metaobject/606872469731\",\"gid://shopify/Metaobject/606871978211\",\"gid://shopify/Metaobject/606872174819\"]",
+        "shopify.body-area": "[\"gid://shopify/Metaobject/607125962979\"]",
+        "shopify.product-form": "[\"gid://shopify/Metaobject/607125995747\",\"gid://shopify/Metaobject/607126028515\",\"gid://shopify/Metaobject/607126061283\"]",
+        "shopify.suitable-for-skin-type": "[\"gid://shopify/Metaobject/607126094051\"]",
+        "shopify.target-gender": "[\"gid://shopify/Metaobject/100900798691\"]"
       },
       "specs": [
         {
@@ -1566,9 +1567,6 @@
             "video": null
           }
         ],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [
           {
             "question": "Is it safe for sensitive skin?",
@@ -1599,10 +1597,603 @@
             "answer": "Yes — a light Orange Spring Cologne scent."
           }
         ],
-        "demoVideo": null,
+        "demoVideo": {
+          "id": "gid://shopify/Video/46204819472611",
+          "sources": [
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/74ba0718398e4a489491f0fe2f56a802/74ba0718398e4a489491f0fe2f56a802.SD-480p-0.9Mbps-95631171.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/74ba0718398e4a489491f0fe2f56a802/74ba0718398e4a489491f0fe2f56a802.HD-1080p-2.5Mbps-95631171.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/74ba0718398e4a489491f0fe2f56a802/74ba0718398e4a489491f0fe2f56a802.HD-720p-1.6Mbps-95631171.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/74ba0718398e4a489491f0fe2f56a802/74ba0718398e4a489491f0fe2f56a802.m3u8",
+              "mimeType": "application/x-mpegURL",
+              "format": "m3u8"
+            }
+          ],
+          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/74ba0718398e4a489491f0fe2f56a802.thumbnail.0000000000.jpg?v=1790432057"
+        },
         "ugcMedia": []
       },
       "totalInventory": 178158
+    },
+    {
+      "id": "gid://shopify/Product/15395997253859",
+      "handle": "hair-removal-spray-underarm-private-body-leg-hair-remove-cream-growth-inhibitor-depilatory-full-body-care-for-men-women-140ml",
+      "title": "Hair Removal Spray Underarm Private Body Leg Hair Remove Cream Growth Inhibitor Depilatory Full Body Care for Men Women 140ml",
+      "description": "SPECIFICATIONSBrand Name: NONEChoice: yesFeature: Hair Removal FoamGender: WomenHigh-concerned chemical: noneIngredient: Hair Removal CreamItem Type: Hair Removal CreamModel Number: Mild FormulaNET WT: 140mlNumber of Pieces: One UnitOrigin: Mainland ChinaPeriod After Opening: 36 MonthsProduction License: Remove Hair SpraySmell: Mild Hair Removal SpraySpecial Purpose Cosmetics: YesHair Removal Spray Underarm Private Body Leg Hair Remove Cream Growth Inhibitor Depilatory Full Body Care for Men Women 140ml Condition: 100% brand new and high quality. Specifications: 140ml / Boxed Storage method: Store in a cool dry place Features: Mild gentle formula removes body hair quickly cleanly without dark spots left on skin Fresh non sticky texture easy to clean comfortable for full body daily use Portable spray design simple operation saves time convenient for home and travel Skin friendly and non irritating effectively protects skin during hair removal Easy to control dosage evenly covers skin for thorough depilatory effect How to use:Clean and dry the skin, evenly spray an appropriate amount of hair removal spray 15cm away from the skin. After 5-8 minutes of standing, gently scrape the hair with a scraper against the direction of hair growth. After use, the spray is designed to be convenient and fast, fresh, non sticky, easy to clean, and gentle without hurting the skin.",
+      "descriptionHtml": "<h1>SPECIFICATIONS</h1><p><span>Brand Name</span>: <span style=\"color:#333\">NONE</span></p><p><span>Choice</span>: <span style=\"color:#333\">yes</span></p><p><span>Feature</span>: <span style=\"color:#333\">Hair Removal Foam</span></p><p><span>Gender</span>: <span style=\"color:#333\">Women</span></p><p><span>High-concerned chemical</span>: <span style=\"color:#333\">none</span></p><p><span>Ingredient</span>: <span style=\"color:#333\">Hair Removal Cream</span></p><p><span>Item Type</span>: <span style=\"color:#333\">Hair Removal Cream</span></p><p><span>Model Number</span>: <span style=\"color:#333\">Mild Formula</span></p><p><span>NET WT</span>: <span style=\"color:#333\">140ml</span></p><p><span>Number of Pieces</span>: <span style=\"color:#333\">One Unit</span></p><p><span>Origin</span>: <span style=\"color:#333\">Mainland China</span></p><p><span>Period After Opening</span>: <span style=\"color:#333\">36 Months</span></p><p><span>Production License</span>: <span style=\"color:#333\">Remove Hair Spray</span></p><p><span>Smell</span>: <span style=\"color:#333\">Mild Hair Removal Spray</span></p><p><span>Special Purpose Cosmetics</span>: <span style=\"color:#333\">Yes</span></p><p><strong><span style=\"font-size:24px\">Hair Removal Spray Underarm Private Body Leg Hair Remove Cream Growth Inhibitor Depilatory Full Body Care for Men Women 140ml</span></strong></p><p><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/Sc5ce77cb51484e34b014a00413615426P.jpg\" slate-data-type=\"image\"><br></p><div class=\"detailmodule_html\"><div class=\"detail-desc-decorate-richtext\">\n<p><span style=\"font-size:18px\"><br></span></p>\n<p><span style=\"font-size:18px\">Condition: 100% brand new and high quality.<br></span></p>\n<p><span style=\"font-size:18px\">Specifications: 140ml / Boxed</span></p>\n<p><span style=\"font-size:18px\">Storage method: Store in a cool dry place</span><br></p>\n<div><br></div>\n<p><strong><span style=\"font-size:22px\">Features:</span></strong></p>\n<p><span style=\"font-size:18px\">Mild gentle formula removes body hair quickly cleanly without dark spots left on skin</span></p>\n<p><span style=\"font-size:18px\">Fresh non sticky texture easy to clean comfortable for full body daily use</span></p>\n<p><span style=\"font-size:18px\">Portable spray design simple operation saves time convenient for home and travel</span></p>\n<p><span style=\"font-size:18px\">Skin friendly and non irritating effectively protects skin during hair removal</span></p>\n<p><span style=\"font-size:18px\">Easy to control dosage evenly covers skin for thorough depilatory effect</span></p>\n<p><br></p>\n<p><strong><span style=\"font-size:22px\">How to use:</span></strong><br><span style=\"font-size:18px\">Clean and dry the skin, evenly spray an appropriate amount of hair removal spray 15cm away from the skin. After 5-8 minutes of standing, gently scrape the hair with a scraper against the direction of hair growth. After use, the spray is designed to be convenient and fast, fresh, non sticky, easy to clean, and gentle without hurting the skin.</span></p>\n<p><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S555b60b8e7d04c8d9eaaaf29e7b2e6c2L.jpg\" slate-data-type=\"image\"><br></p>\n</div></div><p><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S44e03fdb89604a619c6aa569e2674aebw.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S4c5f03be4b5e40b69234444ec8c7f8a7v.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S75c8bc5eed2b4200874997febda588e3v.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S35f6e487ed36453bae40093212a78ddan.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S2dcc9702db7f49e0bbaa27bcd7e89210o.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/Sf2f3ae3bd5b04b1c8570984a089b19c5d.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S60207597b3a04e4b96fd211f367220fc2.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S728f510a654049d99b291f585501f645R.jpg\" slate-data-type=\"image\"><img src=\"https://ae-pic-a1.aliexpress-media.com/kf/S0c903b3a57564616985de94fe7a044bbO.jpg\" slate-data-type=\"image\"></p>",
+      "vendor": "Trackify",
+      "productType": "",
+      "tags": [],
+      "collections": [],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/46208116752611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44e03fdb89604a619c6aa569e2674aebw.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116785379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2dcc9702db7f49e0bbaa27bcd7e89210o_271b051d-6568-46b1-8b6b-20ddb7516782.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116818147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S75c8bc5eed2b4200874997febda588e3v_f31c6989-731b-45b6-a15f-b2f0f2d6b7ee.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116850915",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c5f03be4b5e40b69234444ec8c7f8a7v.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116883683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S728f510a654049d99b291f585501f645R_9b70b1ec-5cca-49d6-9675-7d460bbcecf5.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116916451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S35f6e487ed36453bae40093212a78ddan_184463d8-1bed-4295-84bf-3c7b61d84283.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116949219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc5ce77cb51484e34b014a00413615426P.webp?v=1790484259",
+          "altText": "",
+          "width": 960,
+          "height": 85
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208116981987",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S555b60b8e7d04c8d9eaaaf29e7b2e6c2L.webp?v=1790484259",
+          "altText": "",
+          "width": 960,
+          "height": 85
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117014755",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44e03fdb89604a619c6aa569e2674aebw_33324ec8-dc79-4cca-8392-ee7f941d9680.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117047523",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c5f03be4b5e40b69234444ec8c7f8a7v_8f51d7cf-7900-43c6-b899-76036c06a074.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117080291",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S75c8bc5eed2b4200874997febda588e3v.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117113059",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S35f6e487ed36453bae40093212a78ddan.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117145827",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2dcc9702db7f49e0bbaa27bcd7e89210o.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117178595",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf2f3ae3bd5b04b1c8570984a089b19c5d.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117211363",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S60207597b3a04e4b96fd211f367220fc2.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117244131",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S728f510a654049d99b291f585501f645R.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117276899",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S0c903b3a57564616985de94fe7a044bbO.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117309667",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S659bb9ac025a434cbf082bddc94c9ad3o.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117342435",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44b7c192fdb44aa29b22b17088ce7367n.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/MediaImage/46208117375203",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc26f3feae68a45e1a34a57eb0d36fd8dx.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199095011",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44e03fdb89604a619c6aa569e2674aebw.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199127779",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2dcc9702db7f49e0bbaa27bcd7e89210o_271b051d-6568-46b1-8b6b-20ddb7516782.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199160547",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S75c8bc5eed2b4200874997febda588e3v_f31c6989-731b-45b6-a15f-b2f0f2d6b7ee.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199193315",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c5f03be4b5e40b69234444ec8c7f8a7v.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199226083",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S728f510a654049d99b291f585501f645R_9b70b1ec-5cca-49d6-9675-7d460bbcecf5.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199258851",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S35f6e487ed36453bae40093212a78ddan_184463d8-1bed-4295-84bf-3c7b61d84283.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199291619",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc5ce77cb51484e34b014a00413615426P.webp?v=1790484259",
+          "altText": "",
+          "width": 960,
+          "height": 85
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199324387",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S555b60b8e7d04c8d9eaaaf29e7b2e6c2L.webp?v=1790484259",
+          "altText": "",
+          "width": 960,
+          "height": 85
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199357155",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44e03fdb89604a619c6aa569e2674aebw_33324ec8-dc79-4cca-8392-ee7f941d9680.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199389923",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c5f03be4b5e40b69234444ec8c7f8a7v_8f51d7cf-7900-43c6-b899-76036c06a074.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199422691",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S75c8bc5eed2b4200874997febda588e3v.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199455459",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S35f6e487ed36453bae40093212a78ddan.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199488227",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2dcc9702db7f49e0bbaa27bcd7e89210o.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199520995",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf2f3ae3bd5b04b1c8570984a089b19c5d.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199553763",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S60207597b3a04e4b96fd211f367220fc2.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199586531",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S728f510a654049d99b291f585501f645R.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199619299",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S0c903b3a57564616985de94fe7a044bbO.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199652067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S659bb9ac025a434cbf082bddc94c9ad3o.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199684835",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44b7c192fdb44aa29b22b17088ce7367n.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "id": "gid://shopify/ProductImage/49467199717603",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc26f3feae68a45e1a34a57eb0d36fd8dx.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116752611",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44e03fdb89604a619c6aa569e2674aebw.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116785379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2dcc9702db7f49e0bbaa27bcd7e89210o_271b051d-6568-46b1-8b6b-20ddb7516782.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116818147",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S75c8bc5eed2b4200874997febda588e3v_f31c6989-731b-45b6-a15f-b2f0f2d6b7ee.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116850915",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c5f03be4b5e40b69234444ec8c7f8a7v.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116883683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S728f510a654049d99b291f585501f645R_9b70b1ec-5cca-49d6-9675-7d460bbcecf5.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116916451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S35f6e487ed36453bae40093212a78ddan_184463d8-1bed-4295-84bf-3c7b61d84283.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116949219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc5ce77cb51484e34b014a00413615426P.webp?v=1790484259",
+          "altText": "",
+          "width": 960,
+          "height": 85
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208116981987",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S555b60b8e7d04c8d9eaaaf29e7b2e6c2L.webp?v=1790484259",
+          "altText": "",
+          "width": 960,
+          "height": 85
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117014755",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44e03fdb89604a619c6aa569e2674aebw_33324ec8-dc79-4cca-8392-ee7f941d9680.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117047523",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S4c5f03be4b5e40b69234444ec8c7f8a7v_8f51d7cf-7900-43c6-b899-76036c06a074.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117080291",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S75c8bc5eed2b4200874997febda588e3v.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117113059",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S35f6e487ed36453bae40093212a78ddan.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117145827",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S2dcc9702db7f49e0bbaa27bcd7e89210o.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117178595",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf2f3ae3bd5b04b1c8570984a089b19c5d.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117211363",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S60207597b3a04e4b96fd211f367220fc2.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117244131",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S728f510a654049d99b291f585501f645R.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117276899",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S0c903b3a57564616985de94fe7a044bbO.webp?v=1790484259",
+          "altText": "",
+          "width": 1638,
+          "height": 1638
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117309667",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S659bb9ac025a434cbf082bddc94c9ad3o.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117342435",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S44b7c192fdb44aa29b22b17088ce7367n.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46208117375203",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc26f3feae68a45e1a34a57eb0d36fd8dx.webp?v=1790484259",
+          "altText": "",
+          "width": 1600,
+          "height": 1600
+        }
+      ],
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "status": "ACTIVE",
+      "publishedOnline": false,
+      "publishedAt": null,
+      "createdAt": "2026-09-27T04:44:15Z",
+      "updatedAt": "2026-09-27T04:44:41Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/17857605632227",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Buy 1 Get 1 Free",
+            "140ml",
+            "Buy 1 Get 2 Free"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/67587097788643",
+          "title": "Buy 1 Get 1 Free",
+          "sku": "14:350853#Buy 1 Get 1 Free",
+          "barcode": null,
+          "price": 11.09,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Buy 1 Get 1 Free"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49467199652067",
+          "availableForSale": true,
+          "inventoryQuantity": 12,
+          "inventoryPolicy": "CONTINUE",
+          "requiresShipping": true,
+          "weight": 0.401,
+          "weightUnit": "KILOGRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67587097821411",
+          "title": "140ml",
+          "sku": "14:350852#140ml",
+          "barcode": null,
+          "price": 6.86,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "140ml"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49467199684835",
+          "availableForSale": true,
+          "inventoryQuantity": 10,
+          "inventoryPolicy": "CONTINUE",
+          "requiresShipping": true,
+          "weight": 0.401,
+          "weightUnit": "KILOGRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/67587097854179",
+          "title": "Buy 1 Get 2 Free",
+          "sku": "14:350850#Buy 1 Get 2 Free",
+          "barcode": null,
+          "price": 16.53,
+          "compareAtPrice": null,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Buy 1 Get 2 Free"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/49467199717603",
+          "availableForSale": true,
+          "inventoryQuantity": 31,
+          "inventoryPolicy": "CONTINUE",
+          "requiresShipping": true,
+          "weight": 0.401,
+          "weightUnit": "KILOGRAMS",
+          "position": 3
+        }
+      ],
+      "priceRange": {
+        "min": 6.86,
+        "max": 16.53,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": null,
+      "metafields": {},
+      "specs": [],
+      "featureHighlights": [],
+      "comparisonTable": [],
+      "pdp": {
+        "benefits": [],
+        "story": [],
+        "howItWorks": [],
+        "useCases": [],
+        "whatsIncluded": [],
+        "faq": [],
+        "demoVideo": null,
+        "ugcMedia": []
+      },
+      "totalInventory": 53
     },
     {
       "id": "gid://shopify/Product/8783771533539",
@@ -1916,9 +2507,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -2417,9 +3005,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -3001,9 +3586,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -3267,9 +3849,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -3500,9 +4079,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -3684,9 +4260,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -3803,9 +4376,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -3922,9 +4492,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -4041,9 +4608,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -4160,9 +4724,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -4532,9 +5093,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -5345,9 +5903,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -5807,9 +6362,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -6620,9 +7172,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -6914,9 +7463,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -7287,9 +7833,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -7827,9 +8370,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -8403,9 +8943,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -9569,9 +10106,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -10144,9 +10678,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -10821,9 +11352,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -11720,9 +12248,6 @@
         "howItWorks": [],
         "useCases": [],
         "whatsIncluded": [],
-        "experts": [],
-        "badges": [],
-        "community": [],
         "faq": [],
         "demoVideo": null,
         "ugcMedia": []
@@ -11742,7 +12267,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T04:03:55Z",
+      "updatedAt": "2026-09-27T04:48:22Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -11877,7 +12402,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T04:03:55Z",
+      "updatedAt": "2026-09-27T04:48:22Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
