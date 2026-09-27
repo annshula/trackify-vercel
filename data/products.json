@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T11:27:56.142Z",
+  "generatedAt": "2026-09-27T14:58:30.160Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -596,19 +596,16 @@
       "title": "Bikini Pain-Free Hair Removal Spray",
       "description": "",
       "descriptionHtml": "",
-      "vendor": "Trackify",
+      "vendor": "Belurae",
       "productType": "Beauty & Wellness",
-      "tags": [],
+      "tags": [
+        "Skincare"
+      ],
       "collections": [
         {
           "id": "gid://shopify/Collection/490778951907",
           "handle": "beauty-wellness",
           "title": "Beauty & Wellness"
-        },
-        {
-          "id": "gid://shopify/Collection/449724088547",
-          "handle": "best-seller",
-          "title": "Best Sellers"
         }
       ],
       "images": [
@@ -987,7 +984,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-27T11:27:20Z",
+      "updatedAt": "2026-09-27T14:57:27Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708608227",
@@ -1015,9 +1012,9 @@
               "value": "1PC"
             }
           ],
-          "imageId": null,
+          "imageId": "gid://shopify/ProductImage/49471107858659",
           "availableForSale": true,
-          "inventoryQuantity": 90944,
+          "inventoryQuantity": 90943,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 237,
@@ -1038,7 +1035,7 @@
               "value": "2PCS"
             }
           ],
-          "imageId": null,
+          "imageId": "gid://shopify/ProductImage/49471107858659",
           "availableForSale": true,
           "inventoryQuantity": 44349,
           "inventoryPolicy": "DENY",
@@ -1061,7 +1058,7 @@
               "value": "3PCS"
             }
           ],
-          "imageId": null,
+          "imageId": "gid://shopify/ProductImage/49471107858659",
           "availableForSale": true,
           "inventoryQuantity": 6865,
           "inventoryPolicy": "DENY",
@@ -1429,7 +1426,7 @@
         },
         "ugcMedia": []
       },
-      "totalInventory": 142158
+      "totalInventory": 142157
     },
     {
       "id": "gid://shopify/Product/15395997253859",
@@ -12071,10 +12068,9 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T11:26:41Z",
+      "updatedAt": "2026-09-27T13:13:04Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
-        "gid://shopify/Product/15395256467683",
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8783842672867",
@@ -12206,7 +12202,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T11:26:41Z",
+      "updatedAt": "2026-09-27T13:08:09Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
