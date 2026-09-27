@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T06:20:28.042Z",
+  "generatedAt": "2026-09-27T06:22:37.564Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -669,20 +669,6 @@
           "height": 800
         },
         {
-          "id": "gid://shopify/MediaImage/46203185201379",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185135843",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
-          "altText": "Cloud Sense mousse beside the bikini line brightening serum",
-          "width": 1200,
-          "height": 1200
-        },
-        {
           "id": "gid://shopify/MediaImage/46203185168611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
           "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
@@ -786,20 +772,6 @@
           "altText": "PHOFAY lab testing overview",
           "width": 1600,
           "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856207075",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856141539",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
-          "altText": "Cloud Sense mousse beside the bikini line brightening serum",
-          "width": 1200,
-          "height": 1200
         },
         {
           "id": "gid://shopify/ProductImage/49461856174307",
@@ -974,22 +946,6 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203185201379",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/4bfe1451-a1e1-49cd-9ed0-fa23851a83ef.jpg?v=1790421362",
-          "altText": "Smooth hair removal cream tube and Cloud Sense spray mousse",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185135843",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/f9bf984c-40e6-4046-860f-4c88749a89ef.jpg?v=1790421362",
-          "altText": "Cloud Sense mousse beside the bikini line brightening serum",
-          "width": 1200,
-          "height": 1200
-        },
-        {
-          "type": "image",
           "id": "gid://shopify/MediaImage/46203185168611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
           "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
@@ -1053,20 +1009,12 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-27T06:18:51Z",
+      "updatedAt": "2026-09-27T06:22:31Z",
       "options": [
-        {
-          "id": "gid://shopify/ProductOption/17856708575459",
-          "name": "Style",
-          "position": 1,
-          "values": [
-            "Spray"
-          ]
-        },
         {
           "id": "gid://shopify/ProductOption/17856708608227",
           "name": "Quantity",
-          "position": 2,
+          "position": 1,
           "values": [
             "1PC",
             "2PCS",
@@ -1077,17 +1025,13 @@
       "variants": [
         {
           "id": "gid://shopify/ProductVariant/67582703501539",
-          "title": "Spray / 1PC",
+          "title": "1PC",
           "sku": "CJPF253602701AZ",
           "barcode": null,
           "price": 49.99,
           "compareAtPrice": 59.99,
           "currencyCode": "USD",
           "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray"
-            },
             {
               "name": "Quantity",
               "value": "1PC"
@@ -1104,17 +1048,13 @@
         },
         {
           "id": "gid://shopify/ProductVariant/67582703534307",
-          "title": "Spray / 2PCS",
+          "title": "2PCS",
           "sku": "CJPF253602702BY",
           "barcode": null,
           "price": 59.99,
           "compareAtPrice": 89.99,
           "currencyCode": "USD",
           "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray"
-            },
             {
               "name": "Quantity",
               "value": "2PCS"
@@ -1131,17 +1071,13 @@
         },
         {
           "id": "gid://shopify/ProductVariant/67582703829219",
-          "title": "Spray / 3PCS",
+          "title": "3PCS",
           "sku": "CJPF253602710JQ",
           "barcode": null,
           "price": 69.99,
           "compareAtPrice": 120.99,
           "currencyCode": "USD",
           "selectedOptions": [
-            {
-              "name": "Style",
-              "value": "Spray"
-            },
             {
               "name": "Quantity",
               "value": "3PCS"
