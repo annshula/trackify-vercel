@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T06:22:37.564Z",
+  "generatedAt": "2026-09-27T11:27:56.142Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -216,7 +216,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-24T15:37:22Z",
       "createdAt": "2026-09-24T15:37:18Z",
-      "updatedAt": "2026-09-25T03:37:26Z",
+      "updatedAt": "2026-09-27T09:17:23Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/13137656185059",
@@ -593,7 +593,7 @@
     {
       "id": "gid://shopify/Product/15395256467683",
       "handle": "bikini-pain-free-hair-removal-spray",
-      "title": "Bikini Pain-Free Hair Removal Spray for Sensitive Skin, Hypoallergenic Formula-Gentle & Fast-Acting Depilatory with Citrus Scent, Aloe & Hyaluronic Acid for Soothing Care, Suitable for Men & Women",
+      "title": "Bikini Pain-Free Hair Removal Spray",
       "description": "",
       "descriptionHtml": "",
       "vendor": "Trackify",
@@ -613,18 +613,11 @@
       ],
       "images": [
         {
-          "id": "gid://shopify/MediaImage/46203185103075",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-          "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
-          "width": 1500,
-          "height": 1500
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203948073187",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf39c26c52ded46f7914c00cb05024a7af.avif?v=1790426727",
-          "altText": "Product packaging with herbal extracts on a purple background",
-          "width": 2048,
-          "height": 2048
+          "id": "gid://shopify/MediaImage/46211851649251",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Img1.png?v=1790508379",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
         },
         {
           "id": "gid://shopify/MediaImage/46203185332451",
@@ -634,20 +627,6 @@
           "height": 1500
         },
         {
-          "id": "gid://shopify/MediaImage/46203372142819",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
-          "width": 548,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185299683",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
-          "width": 2048,
-          "height": 2048
-        },
-        {
           "id": "gid://shopify/MediaImage/46203185234147",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
           "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
@@ -655,30 +634,37 @@
           "height": 1500
         },
         {
-          "id": "gid://shopify/MediaImage/46203372437731",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
-          "width": 1600,
-          "height": 800
+          "id": "gid://shopify/MediaImage/46211851747555",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_2.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46211851813091",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_3.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46211854663907",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Sep_27_2026_04_56_24_PM.png?v=1790508401",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46211852075235",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_5.png?v=1790508381",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
         },
         {
           "id": "gid://shopify/MediaImage/46203372830947",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
           "altText": "PHOFAY lab testing overview",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203185168611",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-          "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
-          "width": 2720,
-          "height": 2720
-        },
-        {
-          "id": "gid://shopify/MediaImage/46203372568803",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-          "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
         },
@@ -690,18 +676,32 @@
           "height": 1500
         },
         {
-          "id": "gid://shopify/MediaImage/46203372470499",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
-          "altText": "How to use the hair removal mousse in four steps",
-          "width": 1600,
-          "height": 800
-        },
-        {
           "id": "gid://shopify/MediaImage/46203372536035",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
           "altText": "Customer before and after on back, chest, armpit, leg and arm",
           "width": 1600,
           "height": 800
+        },
+        {
+          "id": "gid://shopify/MediaImage/46211851682019",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_7_64ee64af-d00b-49e0-a05e-fb48c3c8dace.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46211851714787",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_4_30fbfd03-d318-4f73-bee7-be4220e3f92a.png?v=1790508380",
+          "altText": "",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "id": "gid://shopify/MediaImage/46211851780323",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_6_006e6318-e3ac-45c3-9c70-4a7eef2e5362.png?v=1790508380",
+          "altText": "",
+          "width": 1774,
+          "height": 887
         },
         {
           "id": "gid://shopify/MediaImage/46203372503267",
@@ -711,25 +711,11 @@
           "height": 800
         },
         {
-          "id": "gid://shopify/MediaImage/46203185266915",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
-          "altText": "Cloud Sense mousse can next to its box",
-          "width": 3060,
-          "height": 4080
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856108771",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-          "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
-          "width": 1500,
-          "height": 1500
-        },
-        {
-          "id": "gid://shopify/ProductImage/49462649520355",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf39c26c52ded46f7914c00cb05024a7af.avif?v=1790426727",
-          "altText": "Product packaging with herbal extracts on a purple background",
-          "width": 2048,
-          "height": 2048
+          "id": "gid://shopify/ProductImage/49471107858659",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Img1.png?v=1790508379",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
         },
         {
           "id": "gid://shopify/ProductImage/49461856338147",
@@ -739,20 +725,6 @@
           "height": 1500
         },
         {
-          "id": "gid://shopify/ProductImage/49462049013987",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
-          "width": 548,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856305379",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
-          "width": 2048,
-          "height": 2048
-        },
-        {
           "id": "gid://shopify/ProductImage/49461856239843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ff825bef-274d-4c64-af38-1f73c47fa0a8.jpg?v=1790421362",
           "altText": "Four-step instructions: clean, apply, wait 5 to 10 minutes, scrape and rinse",
@@ -760,30 +732,37 @@
           "height": 1500
         },
         {
-          "id": "gid://shopify/ProductImage/49462049308899",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
-          "width": 1600,
-          "height": 800
+          "id": "gid://shopify/ProductImage/49471107956963",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_2.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49471108055267",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_3.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49471111004387",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Sep_27_2026_04_56_24_PM.png?v=1790508401",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49471108284643",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_5.png?v=1790508381",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
         },
         {
           "id": "gid://shopify/ProductImage/49462049702115",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
           "altText": "PHOFAY lab testing overview",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856174307",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-          "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
-          "width": 2720,
-          "height": 2720
-        },
-        {
-          "id": "gid://shopify/ProductImage/49462049439971",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-          "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
         },
@@ -795,13 +774,6 @@
           "height": 1500
         },
         {
-          "id": "gid://shopify/ProductImage/49462049341667",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
-          "altText": "How to use the hair removal mousse in four steps",
-          "width": 1600,
-          "height": 800
-        },
-        {
           "id": "gid://shopify/ProductImage/49462049407203",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
           "altText": "Customer before and after on back, chest, armpit, leg and arm",
@@ -809,28 +781,42 @@
           "height": 800
         },
         {
+          "id": "gid://shopify/ProductImage/49471107891427",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_7_64ee64af-d00b-49e0-a05e-fb48c3c8dace.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49471107924195",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_4_30fbfd03-d318-4f73-bee7-be4220e3f92a.png?v=1790508380",
+          "altText": "",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "id": "gid://shopify/ProductImage/49471107989731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_6_006e6318-e3ac-45c3-9c70-4a7eef2e5362.png?v=1790508380",
+          "altText": "",
+          "width": 1774,
+          "height": 887
+        },
+        {
           "id": "gid://shopify/ProductImage/49462049374435",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
           "altText": "Friends with Cloud Sense gift bags",
           "width": 1600,
           "height": 800
-        },
-        {
-          "id": "gid://shopify/ProductImage/49461856272611",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
-          "altText": "Cloud Sense mousse can next to its box",
-          "width": 3060,
-          "height": 4080
         }
       ],
       "media": [
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203185103075",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cb532d83-a143-4d81-ab23-15d34150eabb.jpg?v=1790421362",
-          "altText": "PHOFAY Cloud Sense hair removal mousse with aloe and ginseng",
-          "width": 1500,
-          "height": 1500
+          "id": "gid://shopify/MediaImage/46211851649251",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Img1.png?v=1790508379",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
         },
         {
           "type": "video",
@@ -890,35 +876,11 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203948073187",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sf39c26c52ded46f7914c00cb05024a7af.avif?v=1790426727",
-          "altText": "Product packaging with herbal extracts on a purple background",
-          "width": 2048,
-          "height": 2048
-        },
-        {
-          "type": "image",
           "id": "gid://shopify/MediaImage/46203185332451",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/10bdfcb3-dd92-4ffe-b02b-f3339991ee62.jpg?v=1790421362",
           "altText": "Couple with smooth, hair-free skin",
           "width": 1500,
           "height": 1500
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203372142819",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/adc3e136-2068-44bd-872e-635b293be876.jpg?v=1790422409",
-          "altText": "PHOFAY certificate card: FDA, CPNP, SCPN, MSDS",
-          "width": 548,
-          "height": 800
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185299683",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/5c6a8008-1a3a-420f-985f-1523d35e536f.jpg?v=1790421362",
-          "altText": "Herbal extracts: ginseng, portulaca oleracea, aloe leaf water, glycerin",
-          "width": 2048,
-          "height": 2048
         },
         {
           "type": "image",
@@ -930,33 +892,41 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203372437731",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/eabdec77-54a8-493e-8053-f6a258e34e38.jpg?v=1790422411",
-          "altText": "Six benefits: hydrates 24hrs, sensitive skin, stubborn hair, ingrown hair, smoothness, fewer chemicals",
-          "width": 1600,
-          "height": 800
+          "id": "gid://shopify/MediaImage/46211851747555",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_2.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46211851813091",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_3.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46211854663907",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Sep_27_2026_04_56_24_PM.png?v=1790508401",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46211852075235",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_5.png?v=1790508381",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
         },
         {
           "type": "image",
           "id": "gid://shopify/MediaImage/46203372830947",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/a397bcea-f1b9-4237-88a4-8836e059abe8.jpg?v=1790422412",
           "altText": "PHOFAY lab testing overview",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185168611",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ecfeda2c-07aa-43b6-a4a7-17eb74191e91.jpg?v=1790421362",
-          "altText": "Before and after hair removal on armpit, leg, back, arm and chest",
-          "width": 2720,
-          "height": 2720
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203372568803",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/e6943bdf-6094-4e93-aa74-b3c4017259ae.jpg?v=1790422411",
-          "altText": "Diagram of the mousse softening hair at the root",
           "width": 1600,
           "height": 800
         },
@@ -970,14 +940,6 @@
         },
         {
           "type": "image",
-          "id": "gid://shopify/MediaImage/46203372470499",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/0f29a5a7-8678-4b3b-88a4-88f83971311b.jpg?v=1790422411",
-          "altText": "How to use the hair removal mousse in four steps",
-          "width": 1600,
-          "height": 800
-        },
-        {
-          "type": "image",
           "id": "gid://shopify/MediaImage/46203372536035",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8d871669-27e7-4e8f-9e8f-c7a00ec2198a.jpg?v=1790422411",
           "altText": "Customer before and after on back, chest, armpit, leg and arm",
@@ -986,19 +948,35 @@
         },
         {
           "type": "image",
+          "id": "gid://shopify/MediaImage/46211851682019",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_7_64ee64af-d00b-49e0-a05e-fb48c3c8dace.png?v=1790508380",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46211851714787",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_4_30fbfd03-d318-4f73-bee7-be4220e3f92a.png?v=1790508380",
+          "altText": "",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46211851780323",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/image_6_006e6318-e3ac-45c3-9c70-4a7eef2e5362.png?v=1790508380",
+          "altText": "",
+          "width": 1774,
+          "height": 887
+        },
+        {
+          "type": "image",
           "id": "gid://shopify/MediaImage/46203372503267",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/cac920f9-4b70-404b-8f48-2f28a0d05f61.jpg?v=1790422411",
           "altText": "Friends with Cloud Sense gift bags",
           "width": 1600,
           "height": 800
-        },
-        {
-          "type": "image",
-          "id": "gid://shopify/MediaImage/46203185266915",
-          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/d18c159e-c89c-4767-abce-80c0c49ffde9.jpg?v=1790421362",
-          "altText": "Cloud Sense mousse can next to its box",
-          "width": 3060,
-          "height": 4080
         }
       ],
       "seo": {
@@ -1009,7 +987,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-26T11:16:04Z",
       "createdAt": "2026-09-26T11:16:00Z",
-      "updatedAt": "2026-09-27T06:22:31Z",
+      "updatedAt": "2026-09-27T11:27:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17856708608227",
@@ -1037,9 +1015,9 @@
               "value": "1PC"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/49461856108771",
+          "imageId": null,
           "availableForSale": true,
-          "inventoryQuantity": 90931,
+          "inventoryQuantity": 90944,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 237,
@@ -1060,9 +1038,9 @@
               "value": "2PCS"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/49461856108771",
+          "imageId": null,
           "availableForSale": true,
-          "inventoryQuantity": 37031,
+          "inventoryQuantity": 44349,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 445,
@@ -1083,7 +1061,7 @@
               "value": "3PCS"
             }
           ],
-          "imageId": "gid://shopify/ProductImage/49461856108771",
+          "imageId": null,
           "availableForSale": true,
           "inventoryQuantity": 6865,
           "inventoryPolicy": "DENY",
@@ -1111,7 +1089,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/606871552227\",\"gid://shopify/Metaobject/606871847139\",\"gid://shopify/Metaobject/606872436963\",\"gid://shopify/Metaobject/606871617763\",\"gid://shopify/Metaobject/606871683299\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/606871584995\",\"gid://shopify/Metaobject/606871814371\",\"gid://shopify/Metaobject/606871912675\",\"gid://shopify/Metaobject/606871945443\"]",
         "custom.meta_pixel_id": "973254138358742",
-        "custom.perks": "[\"Hydrates skin for up to 24hrs\",\"Suitable for sensitive skin\",\"Removes short, stubborn hair\",\"Minimizes ingrown hair\",\"Long lasting smoothness\",\"35% less chemical ingredients\"]",
+        "custom.perks": "[\"Hydrates skin for up to 24hrs\",\"Suitable for sensitive skin\",\"Removes short, stubborn hair\",\"Minimizes ingrown hair\",\"Long lasting smoothness\",\"35% less chemical ingredients\",\"Hypoallergenic formula\",\"Light citrus scent (Orange Spring Cologne)\",\"Aloe leaf water, glycerin & hyaluronic acid\",\"Suitable for men and women\"]",
         "custom.promo_banner": "Back to School Sale — Smooth Skin, Zero Pain",
         "custom.sale_ends_at": "2026-09-27T19:22:48Z",
         "custom.specs": "[\"gid://shopify/Metaobject/606872207587\",\"gid://shopify/Metaobject/606872404195\",\"gid://shopify/Metaobject/606872600803\",\"gid://shopify/Metaobject/606872240355\",\"gid://shopify/Metaobject/606872535267\",\"gid://shopify/Metaobject/606872338659\",\"gid://shopify/Metaobject/606872273123\",\"gid://shopify/Metaobject/606872666339\"]",
@@ -1451,7 +1429,7 @@
         },
         "ugcMedia": []
       },
-      "totalInventory": 134827
+      "totalInventory": 142158
     },
     {
       "id": "gid://shopify/Product/15395997253859",
@@ -1915,7 +1893,7 @@
       "publishedOnline": false,
       "publishedAt": null,
       "createdAt": "2026-09-27T04:44:15Z",
-      "updatedAt": "2026-09-27T06:20:18Z",
+      "updatedAt": "2026-09-27T09:17:23Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/17857605632227",
@@ -2274,7 +2252,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T13:46:17Z",
       "createdAt": "2025-02-26T13:46:17Z",
-      "updatedAt": "2026-09-25T06:14:59Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157340848355",
@@ -2578,7 +2556,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-09-25T06:15:10Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -3181,7 +3159,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:58:35Z",
       "createdAt": "2025-02-26T14:58:35Z",
-      "updatedAt": "2026-09-25T06:15:21Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157414445283",
@@ -3592,7 +3570,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T15:45:51Z",
       "createdAt": "2025-02-26T15:45:51Z",
-      "updatedAt": "2026-09-25T06:15:22Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157428175075",
@@ -3822,7 +3800,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T16:10:45Z",
       "createdAt": "2025-02-26T16:10:45Z",
-      "updatedAt": "2026-09-25T06:15:01Z",
+      "updatedAt": "2026-09-27T09:17:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157445443811",
@@ -4030,7 +4008,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-09-25T06:15:13Z",
+      "updatedAt": "2026-09-27T09:17:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -4147,7 +4125,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-09-25T06:15:24Z",
+      "updatedAt": "2026-09-27T09:17:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -4263,7 +4241,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-09-25T06:15:04Z",
+      "updatedAt": "2026-09-27T09:17:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -4379,7 +4357,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-09-25T06:15:27Z",
+      "updatedAt": "2026-09-27T09:17:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -4495,7 +4473,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-09-25T06:15:27Z",
+      "updatedAt": "2026-09-27T09:17:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -4813,7 +4791,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-09-25T06:15:57Z",
+      "updatedAt": "2026-09-27T09:17:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -5431,7 +5409,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T16:08:19Z",
       "createdAt": "2026-08-14T16:08:16Z",
-      "updatedAt": "2026-09-26T05:56:21Z",
+      "updatedAt": "2026-09-27T09:17:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081001890019",
@@ -5965,7 +5943,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-09-25T06:15:10Z",
+      "updatedAt": "2026-09-27T09:17:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -6793,7 +6771,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-06T18:43:31Z",
       "createdAt": "2026-08-16T17:55:30Z",
-      "updatedAt": "2026-09-25T06:15:34Z",
+      "updatedAt": "2026-09-27T09:17:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12083713900771",
@@ -7169,7 +7147,7 @@
       "publishedOnline": false,
       "publishedAt": null,
       "createdAt": "2026-08-17T18:46:20Z",
-      "updatedAt": "2026-09-25T06:15:47Z",
+      "updatedAt": "2026-09-27T09:17:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12085045461219",
@@ -7438,7 +7416,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:51:23Z",
       "createdAt": "2026-08-23T15:51:20Z",
-      "updatedAt": "2026-09-25T06:15:38Z",
+      "updatedAt": "2026-09-27T09:17:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097363902691",
@@ -7808,7 +7786,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:54:11Z",
       "createdAt": "2026-08-23T15:54:07Z",
-      "updatedAt": "2026-09-25T06:15:40Z",
+      "updatedAt": "2026-09-27T09:17:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097375731939",
@@ -8345,7 +8323,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T15:59:47Z",
       "createdAt": "2026-08-23T15:59:44Z",
-      "updatedAt": "2026-09-25T06:15:42Z",
+      "updatedAt": "2026-09-27T09:17:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097393361123",
@@ -9006,7 +8984,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-23T16:33:21Z",
       "createdAt": "2026-08-23T16:33:18Z",
-      "updatedAt": "2026-09-25T06:15:45Z",
+      "updatedAt": "2026-09-27T09:17:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12097481933027",
@@ -10258,7 +10236,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-02T09:53:50Z",
       "createdAt": "2026-09-02T09:53:47Z",
-      "updatedAt": "2026-09-25T06:15:47Z",
+      "updatedAt": "2026-09-27T09:17:22Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12133518475491",
@@ -10885,7 +10863,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-18T19:03:32Z",
       "createdAt": "2026-09-18T19:03:28Z",
-      "updatedAt": "2026-09-25T06:15:15Z",
+      "updatedAt": "2026-09-27T09:17:23Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12170150838499",
@@ -11652,7 +11630,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-09-22T06:18:42Z",
       "createdAt": "2026-09-22T05:52:35Z",
-      "updatedAt": "2026-09-25T06:15:16Z",
+      "updatedAt": "2026-09-27T09:17:23Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12176922214627",
@@ -12093,7 +12071,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T06:17:32Z",
+      "updatedAt": "2026-09-27T11:26:41Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -12123,7 +12101,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:24:05Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/8819139641571",
         "gid://shopify/Product/8819140165859",
@@ -12149,7 +12127,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:02Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/8783771533539",
         "gid://shopify/Product/8783869280483",
@@ -12174,7 +12152,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:14Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8816700162275",
@@ -12201,7 +12179,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:25Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/8783842672867",
         "gid://shopify/Product/8783853551843",
@@ -12228,7 +12206,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-27T06:17:32Z",
+      "updatedAt": "2026-09-27T11:26:41Z",
       "productIds": [
         "gid://shopify/Product/10216256372963",
         "gid://shopify/Product/15395256467683",
@@ -12253,7 +12231,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:46Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/9606653313251",
         "gid://shopify/Product/9617569120483",
@@ -12281,7 +12259,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:50Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/9603256975587"
       ],
@@ -12304,7 +12282,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-09-24T18:15:55Z",
+      "updatedAt": "2026-09-27T09:17:19Z",
       "productIds": [
         "gid://shopify/Product/9599352864995"
       ],
