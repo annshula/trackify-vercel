@@ -1,12 +1,510 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T10:08:39.175Z",
+  "generatedAt": "2026-10-18T08:31:43.087Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
     "currencyCode": "USD"
   },
   "products": [
+    {
+      "id": "gid://shopify/Product/8783841493219",
+      "handle": "rfid-enabled-card-holder",
+      "title": "Trackify RFID Wallet Quick-Access Pop-Up",
+      "description": "Upgrade your pocket carry with the RFID-Blocking Pop-Up Minimalist Wallet. Engineered from premium space-grade aluminum with dual-grip outer plates, this ultra-slim wallet protects your credit cards and personal data against electronic pickpocketing and RFID skimming while giving you instant, one-touch card access. Key Features & Modern Utility: Quick-Trigger Pop-Up Access: Side slider lever instantly fans out your credit cards in a neat cascade for fast, single-handed access. Advanced RFID/NFC Protection: Heavy-duty aluminum inner casing acts as a protective Faraday cage, blocking 13.56 MHz signals to stop digital theft and unauthorized scans. Flexible Cash & Receipt Band: High-durability elastic band keeps paper bills, receipts, or business cards tightly secured to the wallet frame. Dual Outer Grip Slots: Quick-swipe exterior cutouts allow you to store daily access cards or IDs for easy sliding without opening the main compartment. Ultra-Slim & Lightweight: Replaces fat, bulky leather wallets with a compact front-pocket design that reduces pocket bulge and strain. Specifications & Style: Capacity: Holds up to 5–7 cards in the aluminum chamber plus cash and extra cards under the elastic band. Premium Finishes: Built from rust-proof, anodized aluminum alloy with non-slip exterior panels (Available in Copper/Rust Brown & Metallic Slate Gray).",
+      "descriptionHtml": "<p>Upgrade your pocket carry with the <b>RFID-Blocking Pop-Up Minimalist Wallet</b>. Engineered from premium space-grade aluminum with dual-grip outer plates, this ultra-slim wallet protects your credit cards and personal data against electronic pickpocketing and RFID skimming while giving you instant, one-touch card access.</p>\n<h3><b>Key Features &amp; Modern Utility:</b></h3>\n<ul>\n<li>\n<p><b>Quick-Trigger Pop-Up Access:</b> Side slider lever instantly fans out your credit cards in a neat cascade for fast, single-handed access.</p>\n</li>\n<li>\n<p><b>Advanced RFID/NFC Protection:</b> Heavy-duty aluminum inner casing acts as a protective Faraday cage, blocking 13.56 MHz signals to stop digital theft and unauthorized scans.</p>\n</li>\n<li>\n<p><b>Flexible Cash &amp; Receipt Band:</b> High-durability elastic band keeps paper bills, receipts, or business cards tightly secured to the wallet frame.</p>\n</li>\n<li>\n<p><b>Dual Outer Grip Slots:</b> Quick-swipe exterior cutouts allow you to store daily access cards or IDs for easy sliding without opening the main compartment.</p>\n</li>\n<li>\n<p><b>Ultra-Slim &amp; Lightweight:</b> Replaces fat, bulky leather wallets with a compact front-pocket design that reduces pocket bulge and strain.</p>\n</li>\n</ul>\n<h3><b>Specifications &amp; Style:</b></h3>\n<ul>\n<li>\n<p><b>Capacity:</b> Holds up to 5–7 cards in the aluminum chamber plus cash and extra cards under the elastic band.</p>\n</li>\n<li>\n<p><b>Premium Finishes:</b> Built from rust-proof, anodized aluminum alloy with non-slip exterior panels (Available in Copper/Rust Brown &amp; Metallic Slate Gray).</p>\n</li>\n</ul>",
+      "vendor": "Trackify",
+      "productType": "Wallets & Everyday Carry",
+      "tags": [
+        "Smart Tracker"
+      ],
+      "collections": [
+        {
+          "id": "gid://shopify/Collection/449724088547",
+          "handle": "best-seller",
+          "title": "Best Sellers"
+        },
+        {
+          "id": "gid://shopify/Collection/490778853603",
+          "handle": "everyday-carry",
+          "title": "Wallets & Everyday Carry"
+        }
+      ],
+      "images": [
+        {
+          "id": "gid://shopify/MediaImage/36062642340067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "id": "gid://shopify/MediaImage/36062642307299",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "id": "gid://shopify/MediaImage/36062642372835",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle40.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "id": "gid://shopify/MediaImage/36348450799843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_32_14_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/MediaImage/36348450865379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_34_00_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/MediaImage/36348450963683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_35_23_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/MediaImage/36348451029219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_36_37_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/MediaImage/36348450996451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/ProductImage/44220445556963",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "id": "gid://shopify/ProductImage/44220445524195",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "id": "gid://shopify/ProductImage/44220445491427",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle40.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "id": "gid://shopify/ProductImage/44704119914723",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_32_14_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/ProductImage/44704120013027",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_34_00_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/ProductImage/44704120045795",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_35_23_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/ProductImage/44704120111331",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_36_37_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "id": "gid://shopify/ProductImage/44704120078563",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        }
+      ],
+      "media": [
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36062642340067",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "type": "video",
+          "id": "gid://shopify/Video/36094942544099",
+          "sources": [
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/2c9c9561953a4c95a8d67dda5a8b1a95/2c9c9561953a4c95a8d67dda5a8b1a95.SD-480p-1.5Mbps-43569819.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/2c9c9561953a4c95a8d67dda5a8b1a95/2c9c9561953a4c95a8d67dda5a8b1a95.HD-1080p-7.2Mbps-43569819.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/2c9c9561953a4c95a8d67dda5a8b1a95/2c9c9561953a4c95a8d67dda5a8b1a95.HD-720p-4.5Mbps-43569819.mp4",
+              "mimeType": "video/mp4",
+              "format": "mp4"
+            },
+            {
+              "url": "https://cdn.shopify.com/videos/c/vp/2c9c9561953a4c95a8d67dda5a8b1a95/2c9c9561953a4c95a8d67dda5a8b1a95.m3u8",
+              "mimeType": "application/x-mpegURL",
+              "format": "m3u8"
+            }
+          ],
+          "previewUrl": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/preview_images/2c9c9561953a4c95a8d67dda5a8b1a95.thumbnail.0000000000.jpg?v=1741080283",
+          "altText": ""
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36062642307299",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
+          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36062642372835",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle40.png?v=1740581441",
+          "altText": "",
+          "width": 1033,
+          "height": 1007
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36348450799843",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_32_14_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36348450865379",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_34_00_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36348450963683",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_35_23_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36348451029219",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_36_37_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/36348450996451",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
+          "altText": "",
+          "width": 1024,
+          "height": 1024
+        }
+      ],
+      "seo": {
+        "title": "Smart Pop-Up Metal Wallet | Anti-Theft RFID Blocking Slim Card Holder for Men & Women",
+        "description": "Protect your cards from electronic theft. Features instant pop-up card access, heavy-duty RFID blocking aluminum, cash band, and extra outer card slots. Fast worldwide shipping!"
+      },
+      "status": "ACTIVE",
+      "publishedOnline": true,
+      "publishedAt": "2025-02-26T14:52:57Z",
+      "createdAt": "2025-02-26T14:52:57Z",
+      "updatedAt": "2026-10-18T08:28:56Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/11157413134563",
+          "name": "Color",
+          "position": 1,
+          "values": [
+            "Black",
+            "White",
+            "Gray",
+            "Gold",
+            "Pink",
+            "Red",
+            "Yellow",
+            "Brown",
+            "Blue"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46060361580771",
+          "title": "Black",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Black"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44704119914723",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 1
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361613539",
+          "title": "White",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "White"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44220445491427",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 2
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361646307",
+          "title": "Gray",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Gray"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44220445524195",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 3
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361679075",
+          "title": "Gold",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Gold"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44704120111331",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 4
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361711843",
+          "title": "Pink",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Pink"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44704120045795",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 5
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361744611",
+          "title": "Red",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Red"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44220445556963",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 6
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361777379",
+          "title": "Yellow",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Yellow"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44704120013027",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 7
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361810147",
+          "title": "Brown",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Brown"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44704120078563",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 8
+        },
+        {
+          "id": "gid://shopify/ProductVariant/46060361842915",
+          "title": "Blue",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44220445524195",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 9
+        }
+      ],
+      "priceRange": {
+        "min": 29.99,
+        "max": 29.99,
+        "currencyCode": "USD"
+      },
+      "compareAtPriceRange": {
+        "min": 39.99,
+        "max": 39.99
+      },
+      "metafields": {
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"5.0\"}",
+        "reviews.rating_count": "5",
+        "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900765923\",\"gid://shopify/Metaobject/100900831459\",\"gid://shopify/Metaobject/100900864227\",\"gid://shopify/Metaobject/100900929763\",\"gid://shopify/Metaobject/100900995299\",\"gid://shopify/Metaobject/100901028067\",\"gid://shopify/Metaobject/100901060835\",\"gid://shopify/Metaobject/100901093603\"]",
+        "shopify.target-gender": "[\"gid://shopify/Metaobject/100900798691\"]",
+        "shopify.wallet-features": "[\"gid://shopify/Metaobject/100900896995\",\"gid://shopify/Metaobject/100900962531\"]"
+      },
+      "specs": [],
+      "featureHighlights": [],
+      "comparisonTable": [],
+      "pdp": {
+        "benefits": [],
+        "story": [],
+        "howItWorks": [],
+        "useCases": [],
+        "whatsIncluded": [],
+        "faq": [],
+        "demoVideo": null,
+        "ugcMedia": []
+      },
+      "totalInventory": 900
+    },
     {
       "id": "gid://shopify/Product/8816700162275",
       "handle": "emergency-tool-edc-credit-card-multitool-100-off",
@@ -126,7 +624,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-10-06T10:05:50Z",
+      "updatedAt": "2026-10-13T16:27:02Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -243,7 +741,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-10-06T10:05:50Z",
+      "updatedAt": "2026-10-13T16:27:07Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -359,7 +857,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-10-06T10:05:50Z",
+      "updatedAt": "2026-10-13T16:27:11Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -475,7 +973,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-10-06T10:05:50Z",
+      "updatedAt": "2026-10-13T16:27:06Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -591,7 +1089,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-10-06T10:05:15Z",
+      "updatedAt": "2026-10-13T16:27:07Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -909,7 +1407,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-10-06T10:05:01Z",
+      "updatedAt": "2026-10-13T16:27:07Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -939,7 +1437,7 @@
           ],
           "imageId": "gid://shopify/ProductImage/48758336061667",
           "availableForSale": true,
-          "inventoryQuantity": 14489,
+          "inventoryQuantity": 14488,
           "inventoryPolicy": "DENY",
           "requiresShipping": true,
           "weight": 240,
@@ -1019,7 +1517,7 @@
         "demoVideo": null,
         "ugcMedia": []
       },
-      "totalInventory": 35607
+      "totalInventory": 35606
     },
     {
       "id": "gid://shopify/Product/9603356328163",
@@ -1251,7 +1749,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-10-06T10:05:01Z",
+      "updatedAt": "2026-10-13T16:27:10Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -1493,8 +1991,10 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-10-06T10:04:22Z",
-      "productIds": [],
+      "updatedAt": "2026-10-18T08:28:58Z",
+      "productIds": [
+        "gid://shopify/Product/8783841493219"
+      ],
       "sortOrder": "BEST_SELLING"
     },
     {
@@ -1557,8 +2057,9 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-10-06T10:05:52Z",
+      "updatedAt": "2026-10-18T08:28:58Z",
       "productIds": [
+        "gid://shopify/Product/8783841493219",
         "gid://shopify/Product/8816700162275",
         "gid://shopify/Product/9603356328163"
       ],
@@ -1606,7 +2107,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-10-06T10:04:22Z",
+      "updatedAt": "2026-10-17T11:50:13Z",
       "productIds": [],
       "sortOrder": "BEST_SELLING"
     },
@@ -1648,7 +2149,7 @@
         "title": null,
         "description": null
       },
-      "updatedAt": "2026-10-06T10:02:57Z",
+      "updatedAt": "2026-10-17T11:50:13Z",
       "productIds": [],
       "sortOrder": "BEST_SELLING"
     },
@@ -1673,6 +2174,21 @@
       "productIds": [
         "gid://shopify/Product/9599352864995"
       ],
+      "sortOrder": "BEST_SELLING"
+    },
+    {
+      "id": "gid://shopify/Collection/512982745315",
+      "handle": "wellness",
+      "title": "Wellness",
+      "description": "",
+      "descriptionHtml": "",
+      "image": null,
+      "seo": {
+        "title": null,
+        "description": null
+      },
+      "updatedAt": "2026-10-17T11:50:13Z",
+      "productIds": [],
       "sortOrder": "BEST_SELLING"
     }
   ]
