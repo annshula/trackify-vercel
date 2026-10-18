@@ -16,7 +16,6 @@ import {
 import type { CatalogImage, CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { useLocalizedAmount } from "@/components/localization/localization-provider";
 import { Icon } from "./icon";
-import { DeliveryTimeline } from "./delivery-timeline";
 import type { PaymentMethod } from "@/lib/shopify/payments";
 import { PaymentIcons } from "./payment-icons";
 import { SaleCountdown } from "./sale-countdown";
@@ -41,15 +40,12 @@ const QUANTITY_OPTION_NAME = /^(quantity|qty|pack)$/i;
 export function PurchasePanel({
   saleEndsAt,
   freeShipping,
-  delivery,
   payments,
 }: {
   /** ISO datetime a live sale ends at (custom.sale_ends_at); null shows nothing. */
   saleEndsAt: string | null;
   /** True only when the store's shipping note actually says shipping is free. */
   freeShipping: boolean;
-  /** Delivery estimate, e.g. "5–11 days" — the product's own, else the store's; null hides the card. */
-  delivery: string | null;
   /** Methods checkout accepts, for the logo row under the button. */
   payments: PaymentMethod[];
 }) {
@@ -165,7 +161,6 @@ export function PurchasePanel({
 
         <PaymentIcons methods={payments} className="mt-3" />
 
-        {delivery && <DeliveryTimeline estimate={delivery} />}
 
         <div className="mt-3 space-y-3 empty:hidden">
           {error && (

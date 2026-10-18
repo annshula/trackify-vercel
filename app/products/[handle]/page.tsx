@@ -30,6 +30,7 @@ import { RecentlyViewedRecorder } from "@/hooks/use-recently-viewed";
 import { PurchaseProvider } from "@/components/pdp/purchase-context";
 import { ProductGallery } from "@/components/pdp/product-gallery";
 import { PurchasePanel } from "@/components/pdp/purchase-panel";
+import { DeliveryTimeline } from "@/components/pdp/delivery-timeline";
 // import { PurchaseFeedback } from "@/components/pdp/purchase-feedback"; // switched off, see below
 import { ProductAccordion } from "@/components/pdp/product-accordion";
 import { SaleCountdown } from "@/components/pdp/sale-countdown";
@@ -231,8 +232,6 @@ export default async function ProductPage({ params }: PageProps) {
   const saleEndsAt = product.metafields["custom.sale_ends_at"] ?? null;
 
   const chips = trustPoints.slice(0, 4);
-  const securePoint = trustPoints.find((p) => p.icon === "lock");
-  const deliveryPoint = trustPoints.find((p) => p.icon === "truck");
 
   const primaryCollection = product.collections[0];
   const crumbs = [
@@ -417,35 +416,14 @@ export default async function ProductPage({ params }: PageProps) {
                 <PurchasePanel
                   saleEndsAt={saleEndsAt}
                   freeShipping={freeShipping}
-                  delivery={shipping.deliveryEstimate}
                   payments={payments}
                 />
               </div>
 
               <ProductAccordion items={accordion} />
 
-              {(deliveryPoint || securePoint) && (
-                <ul className="mt-6 space-y-3.5 rounded-card bg-cream/80 p-5 text-body-sm md:p-6">
-                  {deliveryPoint && (
-                    <li className="flex gap-3">
-                      <Icon name="truck" className="size-5 shrink-0" />
-                      <span>
-                        {shipping.deliveryEstimate
-                          ? `${deliveryPoint.label} in ${shipping.deliveryEstimate}.`
-                          : `${deliveryPoint.label} on every order.`}{" "}
-                        <Link href="/pages/shipping" className="link-underline">
-                          Shipping details
-                        </Link>
-                      </span>
-                    </li>
-                  )}
-                  {securePoint && (
-                    <li className="flex gap-3">
-                      <Icon name="shield" className="size-5 shrink-0" />
-                      <span>{securePoint.label} by Shopify.</span>
-                    </li>
-                  )}
-                </ul>
+              {shipping.deliveryEstimate && (
+                <DeliveryTimeline estimate={shipping.deliveryEstimate} />
               )}
 
               {/* "What customers say" carousel: switched off for now.
