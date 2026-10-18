@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T09:59:50.038Z",
+  "generatedAt": "2026-10-18T10:42:38.982Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -554,7 +554,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-10-18T09:59:41Z",
+      "updatedAt": "2026-10-18T10:35:41Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -805,7 +805,7 @@
         "custom.use_cases": "[\"gid://shopify/Metaobject/619874812131\",\"gid://shopify/Metaobject/619875238115\",\"gid://shopify/Metaobject/619875500259\",\"gid://shopify/Metaobject/619874844899\"]",
         "custom.whats_included": "[\"gid://shopify/Metaobject/619875598563\"]",
         "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"5.0\"}",
-        "reviews.rating_count": "5",
+        "reviews.rating_count": "10435",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900765923\",\"gid://shopify/Metaobject/100900831459\",\"gid://shopify/Metaobject/100900864227\",\"gid://shopify/Metaobject/100900929763\",\"gid://shopify/Metaobject/100900995299\",\"gid://shopify/Metaobject/100901028067\",\"gid://shopify/Metaobject/100901060835\",\"gid://shopify/Metaobject/100901093603\"]",
         "shopify.target-gender": "[\"gid://shopify/Metaobject/100900798691\"]",
         "shopify.wallet-features": "[\"gid://shopify/Metaobject/100900896995\",\"gid://shopify/Metaobject/100900962531\"]"
@@ -1600,7 +1600,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-10-18T09:46:47Z",
+      "updatedAt": "2026-10-18T10:42:31Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -1657,7 +1657,9 @@
         "custom.story": "[\"gid://shopify/Metaobject/619876974819\",\"gid://shopify/Metaobject/619876810979\"]",
         "custom.subtitle": "Two trackers, a key organizer and a multitool card — everything for a lighter, safer carry.",
         "custom.use_cases": "[\"gid://shopify/Metaobject/619877105891\",\"gid://shopify/Metaobject/619877073123\",\"gid://shopify/Metaobject/619876942051\",\"gid://shopify/Metaobject/619877171427\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/619877466339\",\"gid://shopify/Metaobject/619877204195\",\"gid://shopify/Metaobject/619876876515\",\"gid://shopify/Metaobject/619877662947\"]"
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619877466339\",\"gid://shopify/Metaobject/619877204195\",\"gid://shopify/Metaobject/619876876515\",\"gid://shopify/Metaobject/619877662947\"]",
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.6\"}",
+        "reviews.rating_count": "4551"
       },
       "specs": [
         {
@@ -1942,7 +1944,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-10-18T09:46:53Z",
+      "updatedAt": "2026-10-18T10:42:31Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -1999,7 +2001,9 @@
         "custom.story": "[\"gid://shopify/Metaobject/619877794019\",\"gid://shopify/Metaobject/619877925091\"]",
         "custom.subtitle": "A slim card for your wallet and a tag for your keys — find either from your phone.",
         "custom.use_cases": "[\"gid://shopify/Metaobject/619878711523\",\"gid://shopify/Metaobject/619878187235\",\"gid://shopify/Metaobject/619878220003\",\"gid://shopify/Metaobject/619878580451\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/619878482147\",\"gid://shopify/Metaobject/619878678755\"]"
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619878482147\",\"gid://shopify/Metaobject/619878678755\"]",
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.7\"}",
+        "reviews.rating_count": "6366"
       },
       "specs": [
         {
@@ -2281,7 +2285,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-10-18T09:47:01Z",
+      "updatedAt": "2026-10-18T10:42:31Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -2338,7 +2342,9 @@
         "custom.story": "[\"gid://shopify/Metaobject/619879465187\",\"gid://shopify/Metaobject/619879235811\"]",
         "custom.subtitle": "A shielded pop-up wallet, a key organizer and two trackers — organized and trackable anywhere.",
         "custom.use_cases": "[\"gid://shopify/Metaobject/619878809827\",\"gid://shopify/Metaobject/619878842595\",\"gid://shopify/Metaobject/619879792867\",\"gid://shopify/Metaobject/619879432419\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/619879268579\",\"gid://shopify/Metaobject/619879661795\",\"gid://shopify/Metaobject/619879596259\",\"gid://shopify/Metaobject/619879137507\"]"
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619879268579\",\"gid://shopify/Metaobject/619879661795\",\"gid://shopify/Metaobject/619879596259\",\"gid://shopify/Metaobject/619879137507\"]",
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.9\"}",
+        "reviews.rating_count": "2540"
       },
       "specs": [
         {
@@ -2634,7 +2640,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-10-18T09:47:01Z",
+      "updatedAt": "2026-10-18T10:42:31Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -2691,7 +2697,9 @@
         "custom.story": "[\"gid://shopify/Metaobject/619880251619\",\"gid://shopify/Metaobject/619880317155\"]",
         "custom.subtitle": "An anti-theft backpack, a fingerprint padlock and a key organizer — secured, organized, keyless.",
         "custom.use_cases": "[\"gid://shopify/Metaobject/619880153315\",\"gid://shopify/Metaobject/619880055011\",\"gid://shopify/Metaobject/619879989475\",\"gid://shopify/Metaobject/619880284387\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/619879923939\",\"gid://shopify/Metaobject/619880120547\",\"gid://shopify/Metaobject/619880513763\"]"
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619879923939\",\"gid://shopify/Metaobject/619880120547\",\"gid://shopify/Metaobject/619880513763\"]",
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.6\"}",
+        "reviews.rating_count": "3180"
       },
       "specs": [
         {
@@ -3175,7 +3183,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-10-18T09:47:06Z",
+      "updatedAt": "2026-10-18T10:42:31Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -3281,6 +3289,8 @@
         "custom.subtitle": "Practice your forehand, backhand and footwork without a partner or a ball machine.",
         "custom.use_cases": "[\"gid://shopify/Metaobject/619881627875\",\"gid://shopify/Metaobject/619881890019\",\"gid://shopify/Metaobject/619881824483\",\"gid://shopify/Metaobject/619881726179\"]",
         "custom.whats_included": "[\"gid://shopify/Metaobject/619881300195\"]",
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.7\"}",
+        "reviews.rating_count": "4988",
         "shopify.age-group": "[\"gid://shopify/Metaobject/251416674531\",\"gid://shopify/Metaobject/251416707299\",\"gid://shopify/Metaobject/251748221155\"]",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100901093603\"]"
       },
@@ -3762,7 +3772,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-10-18T09:47:11Z",
+      "updatedAt": "2026-10-18T10:42:32Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -3987,7 +3997,9 @@
         "custom.story": "[\"gid://shopify/Metaobject/619882610915\",\"gid://shopify/Metaobject/619882873059\"]",
         "custom.subtitle": "Fold your keys inside a pocket-knife-style frame — silent, scratch-free and half the bulk.",
         "custom.use_cases": "[\"gid://shopify/Metaobject/619882119395\",\"gid://shopify/Metaobject/619882578147\",\"gid://shopify/Metaobject/619882250467\",\"gid://shopify/Metaobject/619882184931\"]",
-        "custom.whats_included": "[\"gid://shopify/Metaobject/619882283235\"]"
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619882283235\"]",
+        "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.7\"}",
+        "reviews.rating_count": "2229"
       },
       "specs": [
         {

@@ -26,6 +26,14 @@ import {
   writeJsonFileAtomic,
 } from "./storage";
 
+/**
+ * How long a warm instance trusts its in-memory catalog before re-reading the
+ * stored document. A sync writes the catalog from one instance; without this,
+ * every other warm instance would keep serving the old one (stale collection
+ * membership, prices, stock) until it happened to be recycled.
+ */
+const CATALOG_TTL_MS = 60_000;
+
 const EMPTY_CATALOG: Catalog = {
   version: 1,
   generatedAt: new Date(0).toISOString(),
@@ -51,18 +59,30 @@ const EMPTY_REDIRECTS: RedirectMap = {
 export class JsonProductRepository implements ProductRepository {
   #catalog: Catalog | null = null;
   #loading: Promise<Catalog> | null = null;
+  #loadedAt = 0;
   #byHandle = new Map<string, CatalogProduct>();
   #byId = new Map<string, CatalogProduct>();
   #collectionsByHandle = new Map<string, CatalogCollection>();
   #availableProducts: CatalogProduct[] = [];
 
   async #load(): Promise<Catalog> {
-    if (this.#catalog) return this.#catalog;
+    if (this.#catalog && Date.now() - this.#loadedAt < CATALOG_TTL_MS) {
+      return this.#catalog;
+    }
     this.#loading ??= (async () => {
-      const stored = await readJsonFile<Catalog>(CATALOG_PATH);
-      const catalog = stored ?? EMPTY_CATALOG;
-      this.#setCatalog(catalog);
-      return catalog;
+      try {
+        const stored = await readJsonFile<Catalog>(CATALOG_PATH);
+        const catalog = stored ?? EMPTY_CATALOG;
+        this.#setCatalog(catalog);
+        return catalog;
+      } catch (error) {
+        // A failed refresh keeps serving the copy already in memory.
+        if (!this.#catalog) throw error;
+        this.#loadedAt = Date.now();
+        return this.#catalog;
+      } finally {
+        this.#loading = null;
+      }
     })();
     return this.#loading;
   }
@@ -73,6 +93,7 @@ export class JsonProductRepository implements ProductRepository {
     // The write paths still persist exactly what they were given.
     const hydrated = hydrateCatalog(catalog);
     this.#catalog = hydrated;
+    this.#loadedAt = Date.now();
     this.#byHandle = new Map(
       hydrated.products.map((product) => [product.handle, product]),
     );

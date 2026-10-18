@@ -8,7 +8,12 @@ import { relatedProducts } from "@/lib/catalog/recommendations";
 import { getPaymentMethods } from "@/lib/shopify/payments";
 import { productRating } from "@/lib/catalog/selectors";
 import { productMetadata } from "@/lib/seo/metadata";
-import { JsonLd, breadcrumbSchema, faqSchema, productSchema } from "@/lib/seo/jsonld";
+import {
+  JsonLd,
+  breadcrumbSchema,
+  faqSchema,
+  productSchema,
+} from "@/lib/seo/jsonld";
 import { blogRepository } from "@/lib/catalog/blog";
 import { articleTeaser, relatedArticles } from "@/lib/catalog/related-articles";
 import { pdpFontVariables } from "@/lib/pdp/fonts";
@@ -32,6 +37,8 @@ import { AnchorScroll } from "@/components/pdp/anchor-scroll";
 import { Icon, type IconName } from "@/components/pdp/icon";
 import { PdpIcon } from "@/components/pdp/pdp-icon";
 import { Stars } from "@/components/pdp/stars";
+import { ReviewerAvatars } from "@/components/pdp/reviewer-avatars";
+import { reviewerAvatars } from "@/lib/pdp/reviewer-avatars";
 import {
   HowItWorks,
   ProblemSolution,
@@ -40,7 +47,11 @@ import {
   ProductVideos,
   UseCases,
 } from "@/components/pdp/story-sections";
-import { ProductDetails, ProductFAQ, TrustPoints } from "@/components/pdp/detail-sections";
+import {
+  ProductDetails,
+  ProductFAQ,
+  TrustPoints,
+} from "@/components/pdp/detail-sections";
 import { StickyAddToCart } from "@/components/pdp/sticky-add-to-cart";
 import { ProductMetaPixel } from "@/components/analytics/product-meta-pixel";
 
@@ -71,10 +82,16 @@ export async function generateStaticParams() {
   return products.map((product) => ({ handle: product.handle }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { handle } = await params;
   const product = await productRepository.getProductByHandle(handle);
-  if (!product) return { title: "Product not found", robots: { index: false, follow: false } };
+  if (!product)
+    return {
+      title: "Product not found",
+      robots: { index: false, follow: false },
+    };
   return productMetadata(product);
 }
 
@@ -99,7 +116,9 @@ const PERK_ICON_RULES: [pattern: RegExp, icon: IconName][] = [
 ];
 
 function perkIcon(perk: string): IconName {
-  return PERK_ICON_RULES.find(([pattern]) => pattern.test(perk))?.[1] ?? "check";
+  return (
+    PERK_ICON_RULES.find(([pattern]) => pattern.test(perk))?.[1] ?? "check"
+  );
 }
 
 export default async function ProductPage({ params }: PageProps) {
@@ -116,15 +135,23 @@ export default async function ProductPage({ params }: PageProps) {
   const [shopPdp, contact, liveReviews, payments] = await Promise.all([
     shopRepository.getPdpContent(),
     shopRepository.getContact(),
-    // Same cached Judge.me request the reviews section makes, so the count shown
-    // here matches it (the synced metafield lags).
+    // Same cached Judge.me request the reviews section makes.
     reviewProvider?.list(product.handle).catch(() => null) ?? null,
     getPaymentMethods(),
   ]);
+  // The store-published aggregate wins when it exists: merchants can carry a
+  // full lifetime count (e.g. imported from a marketplace) that Judge.me only
+  // sees the on-site slice of. Judge.me is the fallback for products with no
+  // published metafield.
   const rating =
-    liveReviews && liveReviews.total > 0
+    productRating(product) ??
+    (liveReviews && liveReviews.total > 0
       ? { value: liveReviews.average, count: liveReviews.total }
-      : productRating(product);
+      : null);
+
+  // Decorative portraits for the rating line — stable per product, and never
+  // a claim about who wrote a review (the stack is aria-hidden).
+  const avatarPhotos = reviewerAvatars(product.handle);
 
   // The "What customers say" carousel is switched off for now. To bring it back,
   // restore its import (PurchaseFeedback, commented out above) and:
@@ -132,8 +159,16 @@ export default async function ProductPage({ params }: PageProps) {
   //   const feedbackReviews = (liveReviews?.reviews ?? []).filter((r) => r.rating === 5).slice(0, 5);
   //
   // then uncomment the JSX block marked "switched off" further down.
-  const related = relatedProducts(product, await productRepository.getAllProducts(), 4);
-  const articles = relatedArticles(product, await blogRepository.getAllArticles(), 3);
+  const related = relatedProducts(
+    product,
+    await productRepository.getAllProducts(),
+    4,
+  );
+  const articles = relatedArticles(
+    product,
+    await blogRepository.getAllArticles(),
+    3,
+  );
 
   const { pdp } = product;
   const subtitle = product.metafields["custom.subtitle"] ?? null;
@@ -144,7 +179,9 @@ export default async function ProductPage({ params }: PageProps) {
     if (!raw) return [];
     try {
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed.filter((p): p is string => typeof p === "string") : [];
+      return Array.isArray(parsed)
+        ? parsed.filter((p): p is string => typeof p === "string")
+        : [];
     } catch {
       return [];
     }
@@ -159,11 +196,21 @@ export default async function ProductPage({ params }: PageProps) {
     const raw = product.metafields["custom.trust_point_override"];
     if (!raw) return shopPdp.trustPoints;
     try {
-      const override = JSON.parse(raw) as { replaces: string; icon: string; label: string; body: string };
-      if (!override.replaces || !override.label || !override.body) return shopPdp.trustPoints;
+      const override = JSON.parse(raw) as {
+        replaces: string;
+        icon: string;
+        label: string;
+        body: string;
+      };
+      if (!override.replaces || !override.label || !override.body)
+        return shopPdp.trustPoints;
       return shopPdp.trustPoints.map((point) =>
         point.icon === override.replaces
-          ? { icon: override.icon ?? point.icon, label: override.label, body: override.body }
+          ? {
+              icon: override.icon ?? point.icon,
+              label: override.label,
+              body: override.body,
+            }
           : point,
       );
     } catch {
@@ -174,7 +221,9 @@ export default async function ProductPage({ params }: PageProps) {
   // store-wide one — both the buy box and the specs section read this.
   const shipping = {
     ...shopPdp.shipping,
-    deliveryEstimate: product.metafields["custom.delivery_estimate"]?.trim() || shopPdp.shipping.deliveryEstimate,
+    deliveryEstimate:
+      product.metafields["custom.delivery_estimate"]?.trim() ||
+      shopPdp.shipping.deliveryEstimate,
   };
   // The "free delivery unlocked" strip is only honest when the store really
   // says shipping is free; "calculated at checkout" must not trigger it.
@@ -189,14 +238,21 @@ export default async function ProductPage({ params }: PageProps) {
   const crumbs = [
     { name: "Home", url: "/" },
     ...(primaryCollection
-      ? [{ name: primaryCollection.title, url: `/collections/${primaryCollection.handle}` }]
+      ? [
+          {
+            name: primaryCollection.title,
+            url: `/collections/${primaryCollection.handle}`,
+          },
+        ]
       : []),
     { name: product.title, url: `/products/${product.handle}` },
   ];
 
   // Real footage only: the demo video and customer clips (custom.ugc_media).
   const videos = [
-    ...(pdp.demoVideo ? [{ ...pdp.demoVideo, altText: `${product.title} demo` }] : []),
+    ...(pdp.demoVideo
+      ? [{ ...pdp.demoVideo, altText: `${product.title} demo` }]
+      : []),
     ...pdp.ugcMedia.filter((m) => m.type === "video"),
   ];
 
@@ -208,7 +264,8 @@ export default async function ProductPage({ params }: PageProps) {
         <ol className="flex flex-col gap-2">
           {pdp.howItWorks.map((step) => (
             <li key={step.label}>
-              <strong className="font-medium text-ink">{step.label}.</strong> {step.body}
+              <strong className="font-medium text-ink">{step.label}.</strong>{" "}
+              {step.body}
             </li>
           ))}
         </ol>
@@ -222,7 +279,8 @@ export default async function ProductPage({ params }: PageProps) {
         <ul className="flex flex-col gap-1.5">
           {pdp.whatsIncluded.map((item) => (
             <li key={item.label}>
-              <strong className="font-medium text-ink">{item.label}:</strong> {item.body}
+              <strong className="font-medium text-ink">{item.label}:</strong>{" "}
+              {item.body}
             </li>
           ))}
         </ul>
@@ -234,7 +292,9 @@ export default async function ProductPage({ params }: PageProps) {
       title: "Shipping",
       body: (
         <div className="flex flex-col gap-2">
-          {shipping.deliveryEstimate && <p>Delivery in {shipping.deliveryEstimate}.</p>}
+          {shipping.deliveryEstimate && (
+            <p>Delivery in {shipping.deliveryEstimate}.</p>
+          )}
           {shipping.costNote && <p>{shipping.costNote}.</p>}
         </div>
       ),
@@ -249,12 +309,21 @@ export default async function ProductPage({ params }: PageProps) {
           productSchema(product),
           breadcrumbSchema(crumbs),
           ...(pdp.faq.length > 0
-            ? [faqSchema(pdp.faq.map((item) => ({ question: item.question, answer: item.answer })))]
+            ? [
+                faqSchema(
+                  pdp.faq.map((item) => ({
+                    question: item.question,
+                    answer: item.answer,
+                  })),
+                ),
+              ]
             : []),
         ]}
       />
       <RecentlyViewedRecorder handle={product.handle} />
-      <ProductMetaPixel pixelId={product.metafields["custom.meta_pixel_id"] ?? null} />
+      <ProductMetaPixel
+        pixelId={product.metafields["custom.meta_pixel_id"] ?? null}
+      />
 
       <PurchaseProvider product={product}>
         {/* ── Offer countdown: a real, merchant-set deadline, shown first ── */}
@@ -277,7 +346,11 @@ export default async function ProductPage({ params }: PageProps) {
                       key={point.label}
                       className="inline-flex min-w-0 items-center gap-1.5 rounded-full bg-sage-100 px-3 py-1.5 text-[0.78rem] leading-none font-medium text-sage-800 sm:px-2.5 sm:text-[0.72rem]"
                     >
-                      <PdpIcon icon={point.icon} size={16} className="shrink-0" />
+                      <PdpIcon
+                        icon={point.icon}
+                        size={16}
+                        className="shrink-0"
+                      />
                       <span>{point.label}</span>
                     </li>
                   ))}
@@ -290,10 +363,14 @@ export default async function ProductPage({ params }: PageProps) {
                   className="flex flex-wrap items-center gap-x-1.5 gap-y-1 font-ui text-body-sm"
                   aria-label={`Rated ${rating.value.toFixed(1)} out of 5 from ${rating.count.toLocaleString("en-US")} reviews`}
                 >
+                  <ReviewerAvatars photos={avatarPhotos} />
                   <Stars value={rating.value} />
-                  <span className="font-numeral font-semibold tabular-nums">{rating.value.toFixed(1)}</span>
+                  <span className="font-numeral font-semibold tabular-nums">
+                    {rating.value.toFixed(1)}
+                  </span>
                   <span className="text-ink-soft">
-                    {rating.count.toLocaleString("en-US")} review{rating.count === 1 ? "" : "s"}
+                    {rating.count.toLocaleString("en-US")} review
+                    {rating.count === 1 ? "" : "s"}
                   </span>
                 </p>
               )}
@@ -310,12 +387,17 @@ export default async function ProductPage({ params }: PageProps) {
               >
                 {product.title}
               </h1>
-              {subtitle && <p className="mt-2 text-body text-ink-soft">{subtitle}</p>}
+              {subtitle && (
+                <p className="mt-2 text-body text-ink-soft">{subtitle}</p>
+              )}
 
               {perks.length > 0 && (
                 <ul className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
                   {perks.map((perk) => (
-                    <li key={perk} className="flex items-start gap-2.5 text-body-sm">
+                    <li
+                      key={perk}
+                      className="flex items-start gap-2.5 text-body-sm"
+                    >
                       {/* items-start, not items-center: an icon centred on the
                           whole row drifts down whenever a perk wraps to two
                           lines. It belongs on the first line. */}
@@ -398,7 +480,11 @@ export default async function ProductPage({ params }: PageProps) {
         {articles.length > 0 && (
           <section className="py-12 lg:py-16" aria-labelledby="learn">
             <div className="container-page">
-              <SectionHeading eyebrow="From the journal" title="Good to know." id="learn" />
+              <SectionHeading
+                eyebrow="From the journal"
+                title="Good to know."
+                id="learn"
+              />
               <ul className="mt-6 grid gap-3 sm:grid-cols-3">
                 {articles.map((article) => (
                   <li key={article.id}>
@@ -406,9 +492,15 @@ export default async function ProductPage({ params }: PageProps) {
                       href={`/blogs/${article.blogHandle}/${article.handle}`}
                       className="group block h-full rounded-media bg-porcelain p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float lg:p-7"
                     >
-                      {article.tags[0] && <p className="eyebrow">{article.tags[0]}</p>}
-                      <h3 className="mt-5 font-serif text-heading-3">{article.title}</h3>
-                      <p className="mt-2 text-body-sm text-ink-soft">{articleTeaser(article)}</p>
+                      {article.tags[0] && (
+                        <p className="eyebrow">{article.tags[0]}</p>
+                      )}
+                      <h3 className="mt-5 font-serif text-heading-3">
+                        {article.title}
+                      </h3>
+                      <p className="mt-2 text-body-sm text-ink-soft">
+                        {articleTeaser(article)}
+                      </p>
                     </Link>
                   </li>
                 ))}
