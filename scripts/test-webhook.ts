@@ -30,6 +30,21 @@ function buildPayload(topic: string, id: string): Record<string, unknown> {
   switch (topic) {
     case 'inventory_levels/update':
       return { inventory_item_id: Number(numericId), location_id: 1, available: 7, updated_at: new Date().toISOString() };
+    case 'orders/paid':
+      return {
+        id: Number(numericId),
+        name: `#${numericId}`,
+        currency: 'USD',
+        total_price: '49.00',
+        email: 'test.buyer@example.com',
+        note_attributes: [
+          { name: '_fbp', value: 'fb.1.1700000000000.1234567890' },
+          { name: '_fbc', value: 'fb.1.1700000000000.AbCdEfGh' },
+          { name: '_external_id', value: '00000000-0000-4000-8000-000000000000' },
+        ],
+        billing_address: { first_name: 'Test', last_name: 'Buyer', city: 'Austin', province_code: 'TX', zip: '78701', country_code: 'US' },
+        line_items: [{ id: 1, product_id: 1, variant_id: 1, quantity: 1, price: '49.00', title: 'Test product' }],
+      };
     case 'collections/create':
     case 'collections/update':
     case 'collections/delete':

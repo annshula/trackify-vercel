@@ -1,6 +1,7 @@
 import "server-only";
 import { createHash } from "node:crypto";
 import { productRepository } from "@/lib/catalog";
+import { publicEnv } from "@/lib/validation/env";
 
 /**
  * Server-side purchase conversions — Meta Conversions API, GA4 Measurement
@@ -47,7 +48,29 @@ export type ShopifyOrder = {
   phone?: string | null;
   customer?: { email?: string | null; phone?: string | null } | null;
   billing_address?: ShopifyAddress | null;
+  note_attributes?: { name?: string; value?: string }[];
 };
+
+/** Mirrors the cart attribute keys proceedToCheckout (lib/cart/actions.ts) writes at checkout. */
+const AD_IDENTITY_ATTRIBUTE_KEYS = {
+  fbp: "_fbp",
+  fbc: "_fbc",
+  externalId: "_external_id",
+} as const;
+
+/**
+ * Reads back the fbp/fbc/external_id the checkout action put on the cart —
+ * this webhook has no cookies of its own, so note_attributes is the only way
+ * these values survive from the shopper's browser to this server-to-server call.
+ */
+function adIdentityFromOrder(order: ShopifyOrder) {
+  const byName = new Map((order.note_attributes ?? []).map((a) => [a.name, a.value]));
+  return {
+    fbp: byName.get(AD_IDENTITY_ATTRIBUTE_KEYS.fbp) || undefined,
+    fbc: byName.get(AD_IDENTITY_ATTRIBUTE_KEYS.fbc) || undefined,
+    externalId: byName.get(AD_IDENTITY_ATTRIBUTE_KEYS.externalId) || undefined,
+  };
+}
 
 /** Meta/TikTok require PII lowercased + trimmed, then SHA-256 hex — never sent raw. */
 function sha256(value: string): string {
@@ -154,6 +177,11 @@ async function postMetaPurchaseEvent(params: {
               event_time: Math.floor(Date.now() / 1000),
               event_id: eventId,
               action_source: "website",
+              // Required for web action_source per Meta's docs. Deliberately
+              // not order.order_status_url: that URL embeds an access key
+              // (/orders/<token>/authenticate?key=...) that grants view access
+              // to the order, and must not be handed to a third party.
+              event_source_url: publicEnv.siteUrl,
               user_data: userData,
               custom_data: {
                 currency: order.currency ?? "USD",
@@ -233,6 +261,10 @@ export async function sendMetaPurchase(
   // strongest signals in Event Match Quality — stronger than IP/UA combined —
   // and each takes an array of hashed values per Meta's spec.
   const match = customerMatchData(order);
+  // fbp/fbc/external_id come back from the cart's note_attributes. external_id
+  // isn't hashed: it's a random per-browser UUID with no personal meaning, not
+  // PII like em/ph.
+  const adIdentity = adIdentityFromOrder(order);
   const userData = {
     client_ip_address: ip ?? undefined,
     client_user_agent: userAgent ?? undefined,
@@ -244,6 +276,9 @@ export async function sendMetaPurchase(
     st: match.st ? [match.st] : undefined,
     zp: match.zp ? [match.zp] : undefined,
     country: match.country ? [match.country] : undefined,
+    fbp: adIdentity.fbp,
+    fbc: adIdentity.fbc,
+    external_id: adIdentity.externalId ? [adIdentity.externalId] : undefined,
   };
 
   const productPixelGroups = await groupLineItemsByProductPixel(items);

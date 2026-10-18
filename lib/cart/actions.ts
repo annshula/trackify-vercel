@@ -11,6 +11,7 @@ import {
   mergeCartInto,
   removeLines,
   setBuyerIdentity,
+  setCartAttributes,
   setDiscountCodes,
   updateLines,
   validateCart,
@@ -352,11 +353,30 @@ export async function removeDiscountCode(input: { code: string }): Promise<CartA
   }
 }
 
+/** Short opaque tokens only — anything longer than Meta's own formats is dropped, never trusted into an attribute. */
+const adIdentitySchema = z.object({
+  fbc: z.string().min(1).max(200).optional(),
+  fbp: z.string().min(1).max(200).optional(),
+  externalId: z.string().min(1).max(200).optional(),
+});
+
+/** Keys mirror services/webhooks/conversions.ts's AD_IDENTITY_ATTRIBUTE_KEYS. */
+function adIdentityAttributes(input: unknown): { key: string; value: string }[] {
+  const parsed = adIdentitySchema.safeParse(input);
+  if (!parsed.success) return [];
+  const { fbc, fbp, externalId } = parsed.data;
+  return [
+    ...(fbc ? [{ key: '_fbc', value: fbc }] : []),
+    ...(fbp ? [{ key: '_fbp', value: fbp }] : []),
+    ...(externalId ? [{ key: '_external_id', value: externalId }] : []),
+  ];
+}
+
 /**
  * Validates against live Shopify data, self-heals what it safely can, then
  * hands off to Shopify Checkout. Payment never touches this application.
  */
-export async function proceedToCheckout(): Promise<CartActionState> {
+export async function proceedToCheckout(adIdentity?: unknown): Promise<CartActionState> {
   const cartId = await readCartId();
   if (!cartId) return failure('Your bag is empty.');
 
@@ -411,6 +431,19 @@ export async function proceedToCheckout(): Promise<CartActionState> {
         error: 'Your bag changed. Review the updates, then continue.',
         issues,
       };
+    }
+
+    // Carry the browser's Meta identifiers onto the order (cart attributes
+    // become note_attributes) so the orders/paid webhook's server-side
+    // Purchase can include fbc/fbp/external_id. Best-effort: never block
+    // checkout over an analytics nicety.
+    const attributes = adIdentityAttributes(adIdentity);
+    if (attributes.length > 0) {
+      try {
+        cart = await setCartAttributes(cart.id, attributes, country);
+      } catch {
+        // Checkout still works; the Purchase event just matches less well.
+      }
     }
 
     // Shopify's checkout lives on its own domain — the client navigates

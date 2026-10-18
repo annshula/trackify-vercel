@@ -9,13 +9,6 @@ import { colors, fatal, heading, info, success, warn } from "./bootstrap";
 const REQUIRED_TOPICS = [
   "PRODUCTS_CREATE",
   "PRODUCTS_UPDATE",
-  "PRODUCTS_DELETE",
-  "COLLECTIONS_CREATE",
-  "COLLECTIONS_UPDATE",
-  "COLLECTIONS_DELETE",
-  "INVENTORY_LEVELS_UPDATE",
-  "PRODUCT_LISTINGS_ADD",
-  "PRODUCT_LISTINGS_REMOVE",
   // Drives the server-side purchase conversions (Meta CAPI / GA4 MP / TikTok
   // Events API) in services/webhooks/conversions.ts — the browser pixels
   // never see a Shopify-hosted-checkout purchase on their own.

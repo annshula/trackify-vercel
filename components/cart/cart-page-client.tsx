@@ -22,6 +22,7 @@ import { Alert, Price } from "@/components/ui/primitives";
 import { AlertIcon, TrashIcon } from "@/components/ui/icons";
 import { formatMoneyV2, moneyToNumber } from "@/lib/utils/money";
 import { track } from "@/lib/analytics";
+import { readAdIdentity } from "@/lib/analytics/ad-identity";
 
 /**
  * Full cart page.
@@ -56,7 +57,7 @@ export function CartPageClient({ initialCart }: { initialCart: Cart | null }) {
       value: moneyToNumber(cart?.cost.subtotalAmount),
     });
 
-    const result = await run(() => proceedToCheckout());
+    const result = await run(() => proceedToCheckout(readAdIdentity()));
     if (result.ok && result.checkoutUrl) {
       window.location.href = result.checkoutUrl;
       return;

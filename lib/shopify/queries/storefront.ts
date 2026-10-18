@@ -209,6 +209,26 @@ export const CART_DISCOUNT_CODES_UPDATE_MUTATION = /* GraphQL */ `
   }
 `;
 
+export const CART_ATTRIBUTES_UPDATE_MUTATION = /* GraphQL */ `
+  ${CART_FRAGMENT}
+  mutation CartAttributesUpdate(
+    $cartId: ID!
+    $attributes: [AttributeInput!]!
+    $country: CountryCode
+  ) @inContext(country: $country) {
+    cartAttributesUpdate(cartId: $cartId, attributes: $attributes) {
+      cart {
+        ...CartFields
+      }
+      userErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
 export const CART_BUYER_IDENTITY_UPDATE_MUTATION = /* GraphQL */ `
   ${CART_FRAGMENT}
   mutation CartBuyerIdentityUpdate(

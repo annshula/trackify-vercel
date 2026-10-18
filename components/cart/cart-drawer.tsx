@@ -15,6 +15,7 @@ import { CartSignInPrompt } from './sign-in-prompt';
 import { proceedToCheckout, removeCartLine, updateCartLine } from '@/lib/cart/actions';
 import { formatMoneyV2, moneyToNumber } from '@/lib/utils/money';
 import { track } from '@/lib/analytics';
+import { readAdIdentity } from '@/lib/analytics/ad-identity';
 import type { CartLine } from '@/types/commerce';
 
 /** Free-shipping threshold in store currency. 0 disables the meter entirely. */
@@ -33,7 +34,7 @@ export function CartDrawer() {
     if (checkingOut) return;
     setCheckingOut(true);
     track('begin_checkout', { currency, value: subtotal });
-    const result = await run(() => proceedToCheckout());
+    const result = await run(() => proceedToCheckout(readAdIdentity()));
     if (result.ok && result.checkoutUrl) {
       window.location.href = result.checkoutUrl;
       return;

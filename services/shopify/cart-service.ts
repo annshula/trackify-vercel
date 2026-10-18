@@ -2,6 +2,7 @@ import "server-only";
 import type { Cart, CartLine } from "@/types/commerce";
 import { storefrontRequest } from "@/lib/shopify/storefront";
 import {
+  CART_ATTRIBUTES_UPDATE_MUTATION,
   CART_BUYER_IDENTITY_UPDATE_MUTATION,
   CART_CREATE_MUTATION,
   CART_DISCOUNT_CODES_UPDATE_MUTATION,
@@ -203,6 +204,23 @@ export async function setDiscountCodes(
     variables: { cartId, discountCodes, country: country ?? null },
   });
   return unwrap(data.cartDiscountCodesUpdate, "cartDiscountCodesUpdate");
+}
+
+/**
+ * Replaces the cart's custom attributes. Shopify copies them onto the order's
+ * `note_attributes`, which is how browser-only values (fbp/fbc/external_id)
+ * reach the orders/paid webhook.
+ */
+export async function setCartAttributes(
+  cartId: string,
+  attributes: { key: string; value: string }[],
+  country?: string | null,
+): Promise<Cart> {
+  const data = await storefrontRequest<{ cartAttributesUpdate: MutationPayload }>({
+    query: CART_ATTRIBUTES_UPDATE_MUTATION,
+    variables: { cartId, attributes, country: country ?? null },
+  });
+  return unwrap(data.cartAttributesUpdate, "cartAttributesUpdate");
 }
 
 export async function setBuyerIdentity(

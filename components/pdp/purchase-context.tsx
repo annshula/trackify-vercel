@@ -5,6 +5,7 @@ import type { CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { useCart } from "@/components/cart/cart-provider";
 import { addToCart, proceedToCheckout } from "@/lib/cart/actions";
 import { track, toEcommerceItem } from "@/lib/analytics";
+import { readAdIdentity } from "@/lib/analytics/ad-identity";
 import {
   defaultVariant,
   findVariantByOptions,
@@ -194,7 +195,7 @@ export function PurchaseProvider({
       { currency: variant.currencyCode, value: variant.price * quantity },
       metaPixelId,
     );
-    const result = await run(() => proceedToCheckout());
+    const result = await run(() => proceedToCheckout(readAdIdentity()));
     if (result.ok && result.checkoutUrl) {
       window.location.href = result.checkoutUrl;
       return;
