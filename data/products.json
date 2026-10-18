@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T10:47:27.368Z",
+  "generatedAt": "2026-10-18T10:50:13.874Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -554,19 +554,19 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-10-18T10:47:21Z",
+      "updatedAt": "2026-10-18T10:50:01Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
           "name": "Color",
           "position": 1,
           "values": [
+            "Red",
             "Black",
             "White",
             "Gray",
             "Gold",
             "Pink",
-            "Red",
             "Yellow",
             "Brown",
             "Blue"
@@ -574,6 +574,29 @@
         }
       ],
       "variants": [
+        {
+          "id": "gid://shopify/ProductVariant/46060361744611",
+          "title": "Red",
+          "sku": null,
+          "barcode": null,
+          "price": 29.99,
+          "compareAtPrice": 39.99,
+          "currencyCode": "USD",
+          "selectedOptions": [
+            {
+              "name": "Color",
+              "value": "Red"
+            }
+          ],
+          "imageId": "gid://shopify/ProductImage/44220445556963",
+          "availableForSale": true,
+          "inventoryQuantity": 100,
+          "inventoryPolicy": "DENY",
+          "requiresShipping": true,
+          "weight": 0,
+          "weightUnit": "KILOGRAMS",
+          "position": 1
+        },
         {
           "id": "gid://shopify/ProductVariant/46060361580771",
           "title": "Black",
@@ -595,7 +618,7 @@
           "requiresShipping": true,
           "weight": 0,
           "weightUnit": "KILOGRAMS",
-          "position": 1
+          "position": 2
         },
         {
           "id": "gid://shopify/ProductVariant/46060361613539",
@@ -618,7 +641,7 @@
           "requiresShipping": true,
           "weight": 0,
           "weightUnit": "KILOGRAMS",
-          "position": 2
+          "position": 3
         },
         {
           "id": "gid://shopify/ProductVariant/46060361646307",
@@ -641,7 +664,7 @@
           "requiresShipping": true,
           "weight": 0,
           "weightUnit": "KILOGRAMS",
-          "position": 3
+          "position": 4
         },
         {
           "id": "gid://shopify/ProductVariant/46060361679075",
@@ -664,7 +687,7 @@
           "requiresShipping": true,
           "weight": 0,
           "weightUnit": "KILOGRAMS",
-          "position": 4
+          "position": 5
         },
         {
           "id": "gid://shopify/ProductVariant/46060361711843",
@@ -681,29 +704,6 @@
             }
           ],
           "imageId": "gid://shopify/ProductImage/44704120045795",
-          "availableForSale": true,
-          "inventoryQuantity": 100,
-          "inventoryPolicy": "DENY",
-          "requiresShipping": true,
-          "weight": 0,
-          "weightUnit": "KILOGRAMS",
-          "position": 5
-        },
-        {
-          "id": "gid://shopify/ProductVariant/46060361744611",
-          "title": "Red",
-          "sku": null,
-          "barcode": null,
-          "price": 29.99,
-          "compareAtPrice": 39.99,
-          "currencyCode": "USD",
-          "selectedOptions": [
-            {
-              "name": "Color",
-              "value": "Red"
-            }
-          ],
-          "imageId": "gid://shopify/ProductImage/44220445556963",
           "availableForSale": true,
           "inventoryQuantity": 100,
           "inventoryPolicy": "DENY",
@@ -806,7 +806,7 @@
         "custom.whats_included": "[\"gid://shopify/Metaobject/619875598563\"]",
         "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"5.0\"}",
         "reviews.rating_count": "10435",
-        "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900765923\",\"gid://shopify/Metaobject/100900831459\",\"gid://shopify/Metaobject/100900864227\",\"gid://shopify/Metaobject/100900929763\",\"gid://shopify/Metaobject/100900995299\",\"gid://shopify/Metaobject/100901028067\",\"gid://shopify/Metaobject/100901060835\",\"gid://shopify/Metaobject/100901093603\"]",
+        "shopify.color-pattern": "[\"gid://shopify/Metaobject/100900995299\",\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900765923\",\"gid://shopify/Metaobject/100900831459\",\"gid://shopify/Metaobject/100900864227\",\"gid://shopify/Metaobject/100900929763\",\"gid://shopify/Metaobject/100901028067\",\"gid://shopify/Metaobject/100901060835\",\"gid://shopify/Metaobject/100901093603\"]",
         "shopify.target-gender": "[\"gid://shopify/Metaobject/100900798691\"]",
         "shopify.wallet-features": "[\"gid://shopify/Metaobject/100900896995\",\"gid://shopify/Metaobject/100900962531\"]"
       },
