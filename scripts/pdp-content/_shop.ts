@@ -14,11 +14,11 @@ export const shopContent: ShopPdpContent = {
   // (Shop Pay, Apple Pay and Google Pay are the store's enabled wallets).
   announcements: [
     "Free shipping on every order",
-    "Delivery in 5–11 days, fully tracked",
+    "Delivery in 5–11 working days, fully tracked",
     "Secure checkout with Shop Pay, Apple Pay & Google Pay",
   ],
   shippingProcessingTime: "",
-  shippingDeliveryEstimate: "5–11 days",
+  shippingDeliveryEstimate: "5–11 working days",
   shippingCostNote: "Free shipping on every order",
   shippingRegions: "",
   trustPoints: [
@@ -30,7 +30,7 @@ export const shopContent: ShopPdpContent = {
     {
       icon: "truck",
       label: "Tracked delivery",
-      body: "Delivery in 5–11 days. Every order gets a tracking link as soon as the carrier scans it — also visible under Account → Orders.",
+      body: "Delivery in 5–11 working days. Every order gets a tracking link as soon as the carrier scans it — also visible under Account → Orders.",
     },
     {
       icon: "support",
@@ -83,7 +83,7 @@ export const homeContent: HomeContent = {
     },
   ],
   faq: [
-    { question: "How long does shipping take?", answer: "Shipping is free on every order, and orders arrive in 5–11 days." },
+    { question: "How long does shipping take?", answer: "Shipping is free on every order, and orders arrive in 5–11 working days." },
     { question: "How do I track my order?", answer: "Every order gets a tracking link as soon as the carrier scans it. If you're signed in, you'll also find it under Account → Orders." },
     { question: "What is your return policy?", answer: "Items need to be unused and in their original packaging. Email support@shoptrackify.com after delivery and we'll send you a return label." },
     { question: "How can I contact you?", answer: "Email support@shoptrackify.com — we reply within one working day. If it's about an order, include your order number so we can help straight away." },

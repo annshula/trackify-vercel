@@ -112,7 +112,7 @@ export const content: ProductPdpContent = {
     },
     {
       question: "How long does delivery take?",
-      answer: "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it.",
+      answer: "Shipping is free, and orders arrive in 5–11 working days. Every order gets a tracking link once the carrier scans it.",
     },
   ],
 };

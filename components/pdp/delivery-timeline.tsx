@@ -1,46 +1,11 @@
-"use client";
-
-import * as React from "react";
 import { Icon } from "./icon";
 
-/** "5–11 days", "5-11 days", "5 to 11 business days" → [5, 11]. A single number → [n, n]. */
-function parseRange(estimate: string): [number, number] | null {
-  const range = estimate.match(/(\d+)\s*(?:–|-|—|to)\s*(\d+)/i);
-  if (range) return [Number(range[1]), Number(range[2])];
-  const single = estimate.match(/(\d+)\s*(?:business\s*)?days?/i);
-  return single ? [Number(single[1]), Number(single[1])] : null;
-}
-
-const day = (offset: number) => {
-  const date = new Date();
-  date.setDate(date.getDate() + offset);
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-};
-
 /**
- * Delivery estimate as a small journey: placed today → a truck drives the
- * route → "at your door" between two real calendar dates. The dates depend on
- * the visitor's clock, so they are worked out after mount (the page is static;
- * a server-side "today" would be stale) and the card reads fine without them.
+ * Delivery estimate as a small journey: placed → a truck drives the route →
+ * delivered. It shows the working-day range as written ("5–11 working days"),
+ * not calendar dates, so the card never promises a day the carrier may miss.
  */
 export function DeliveryTimeline({ estimate }: { estimate: string }) {
-  const range = parseRange(estimate);
-  const [dates, setDates] = React.useState<{ today: string; from: string; to: string } | null>(null);
-
-  React.useEffect(() => {
-    if (!range) return;
-    // Today's date is only knowable in the browser; this is a one-time sync from it.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setDates({ today: day(0), from: day(range[0]), to: day(range[1]) });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [estimate]);
-
-  const arrival = dates
-    ? dates.from === dates.to
-      ? dates.from
-      : `${dates.from} – ${dates.to}`
-    : null;
-
   return (
     <section
       aria-label="Estimated delivery"
@@ -50,11 +15,9 @@ export function DeliveryTimeline({ estimate }: { estimate: string }) {
         <div className="min-w-0">
           <p className="eyebrow eyebrow-dot">Estimated delivery</p>
           <p className="mt-2 font-numeral text-heading-3 font-semibold tabular-nums text-sage-800">
-            {arrival ?? estimate}
+            {estimate}
           </p>
-          <p className="mt-0.5 text-body-sm text-ink-soft">
-            {arrival ? `${estimate} · ` : ""}tracked from dispatch to your door
-          </p>
+          <p className="mt-0.5 text-body-sm text-ink-soft">tracked from dispatch to your door</p>
         </div>
         <span className="grid size-11 shrink-0 place-items-center rounded-control bg-sage-600 text-ivory">
           <Icon name="package" className="size-5" />
@@ -76,8 +39,8 @@ export function DeliveryTimeline({ estimate }: { estimate: string }) {
           </span>
         </div>
         <div className="mt-1.5 flex justify-between font-ui text-[0.72rem] font-medium text-ink-soft">
-          <span>Ordered{dates ? ` · ${dates.today}` : " today"}</span>
-          <span>{arrival ? `Delivered · ${arrival}` : "At your door"}</span>
+          <span>Ordered</span>
+          <span>At your door</span>
         </div>
       </div>
     </section>
