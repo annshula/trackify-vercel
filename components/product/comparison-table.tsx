@@ -26,14 +26,15 @@ export function ComparisonTable({ product }: { product: CatalogProduct }) {
     <section
       id="comparison"
       aria-labelledby="comparison-heading"
-      className="scroll-mt-24 py-20 lg:py-28"
+      className="scroll-mt-24 px-2 sm:px-3"
     >
+      <div className="rounded-media bg-ivory py-12 lg:py-16">
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 id="comparison-heading" className="text-3xl tracking-tight text-balance">
+          <h2 id="comparison-heading" className="font-pdp-heading text-heading-1 font-semibold">
             How it compares
           </h2>
-          <p className="mt-2 text-ink-muted">Side by side with the usual alternatives.</p>
+          <p className="mt-3 text-body text-ink-soft">Side by side with the usual alternatives.</p>
         </div>
 
         <div className="mx-auto mt-12 max-w-4xl" role="table" aria-label="Comparison with alternatives">
@@ -115,6 +116,7 @@ export function ComparisonTable({ product }: { product: CatalogProduct }) {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

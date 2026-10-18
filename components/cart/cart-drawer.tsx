@@ -1,273 +1,95 @@
 'use client';
 
 import * as React from 'react';
-import { SmartImage as Image } from '@/components/ui/smart-image';
-import Link from 'next/link';
-import { Drawer } from '@/components/ui/drawer';
-import { Button } from '@/components/ui/button';
-import { QuantityStepper } from '@/components/ui/form';
-import { Price } from '@/components/ui/primitives';
-import { TrashIcon, TruckIcon } from '@/components/ui/icons';
+import { BagContents } from './bag-contents';
 import { useCart } from './cart-provider';
-import { CartEmptyState } from './cart-empty-state';
-import { CartSkeleton } from './cart-skeleton';
-import { CartSignInPrompt } from './sign-in-prompt';
-import { proceedToCheckout, removeCartLine, updateCartLine } from '@/lib/cart/actions';
-import { formatMoneyV2, moneyToNumber } from '@/lib/utils/money';
-import { track } from '@/lib/analytics';
-import { readAdIdentity } from '@/lib/analytics/ad-identity';
-import type { CartLine } from '@/types/commerce';
+import { Icon } from '@/components/pdp/icon';
+import { useScrollLock } from '@/lib/utils/scroll-lock';
+import type { CartUpsell } from '@/lib/cart/upsell';
+import type { PaymentMethod } from '@/lib/shopify/payments';
+import { cn } from '@/lib/utils/cn';
 
-/** Free-shipping threshold in store currency. 0 disables the meter entirely. */
-const FREE_SHIPPING_THRESHOLD = Number(process.env.NEXT_PUBLIC_FREE_SHIPPING_THRESHOLD ?? 0);
+/**
+ * Slide-in bag on a native modal <dialog>: focus trap, Esc and an inert page
+ * behind come from the platform. Focus returns to whatever opened it.
+ *
+ * Carries the `pdp-theme` scope itself (and the theme's font variables, passed
+ * in from the root layout) because it renders outside any page that does.
+ */
+export function CartDrawer({
+  payments,
+  upsells,
+  delivery,
+  freeShipping,
+  themeClassName,
+}: {
+  payments: PaymentMethod[];
+  upsells: CartUpsell[];
+  delivery: string | null;
+  freeShipping: boolean;
+  themeClassName: string;
+}) {
+  const { isOpen, close, itemCount } = useCart();
+  const ref = React.useRef<HTMLDialogElement>(null);
+  const returnFocus = React.useRef<Element | null>(null);
 
-export function CartDrawer() {
-  const { cart, isOpen, close, isPending, run, quantityOf, itemCount, ready, loading } =
-    useCart();
-  const [checkingOut, setCheckingOut] = React.useState(false);
+  // Freezes the page behind the bag while it is open. The lock is counted and
+  // released by the effect's cleanup, so closing the bag (button, Esc, backdrop
+  // click, a link inside it) or unmounting it can never leave the page stuck.
+  useScrollLock(isOpen);
 
-  const lines = cart?.lines ?? [];
-  const subtotal = moneyToNumber(cart?.cost.subtotalAmount);
-  const currency = cart?.cost.subtotalAmount.currencyCode ?? 'USD';
-
-  const onCheckout = async () => {
-    if (checkingOut) return;
-    setCheckingOut(true);
-    track('begin_checkout', { currency, value: subtotal });
-    const result = await run(() => proceedToCheckout(readAdIdentity()));
-    if (result.ok && result.checkoutUrl) {
-      window.location.href = result.checkoutUrl;
-      return;
+  React.useEffect(() => {
+    const dialog = ref.current;
+    if (!dialog) return;
+    if (isOpen && !dialog.open) {
+      returnFocus.current = document.activeElement;
+      dialog.showModal();
+    } else if (!isOpen && dialog.open) {
+      dialog.close();
     }
-    setCheckingOut(false);
-  };
+  }, [isOpen]);
 
   return (
-    <Drawer
-      open={isOpen}
-      onClose={close}
-      side="right"
-      className="max-h-[90vh]"
-      title="Your bag"
-      description={itemCount > 0 ? `${itemCount} item${itemCount === 1 ? '' : 's'}` : undefined}
-      footer={
-        lines.length > 0 ? (
-          <div className="space-y-3">
-            <div className="flex items-baseline justify-between">
-              <span className="text-sm text-ink-muted">Subtotal</span>
-              <span className="text-lg font-medium tabular-nums">
-                {formatMoneyV2(cart?.cost.subtotalAmount)}
-              </span>
-            </div>
-            <Button
-              fullWidth
-              size="lg"
-              onClick={onCheckout}
-              loading={checkingOut}
-              disabled={isPending && !checkingOut}
-            >
-              Checkout · {formatMoneyV2(cart?.cost.subtotalAmount)}
-            </Button>
-            <Link
-              href="/cart"
-              onClick={close}
-              className="block text-center text-sm font-medium text-ink underline underline-offset-4 hover:text-ink-muted"
-            >
-              View full bag
-            </Link>
-          </div>
-        ) : null
-      }
-    >
-      {/* Skeleton until there is something real to show: flashing "your bag
-          is empty" before the response lands reads as lost items. */}
-      {!ready || (loading && lines.length === 0) ? (
-        <CartSkeleton />
-      ) : lines.length === 0 ? (
-        <CartEmptyState onNavigate={close} />
-      ) : (
-        <div className="flex flex-col">
-          <CartSignInPrompt returnTo="/cart" onNavigate={close} />
-
-          {FREE_SHIPPING_THRESHOLD > 0 && (
-            <FreeShippingMeter subtotal={subtotal} threshold={FREE_SHIPPING_THRESHOLD} currency={currency} />
-          )}
-
-          <ul className="divide-y divide-line px-5">
-            {lines.map((line) => (
-              <CartDrawerLine
-                key={line.id}
-                line={line}
-                quantity={quantityOf(line.id)}
-                onClose={close}
-                onQuantity={(quantity) =>
-                  run(() => updateCartLine({ lineId: line.id, quantity }), {
-                    optimistic: { [line.id]: quantity },
-                    silent: true,
-                  })
-                }
-                onRemove={() => {
-                  track('remove_from_cart', {
-                    currency,
-                    value: moneyToNumber(line.cost.totalAmount),
-                    items: [
-                      {
-                        item_id: line.merchandise.product.handle,
-                        item_name: line.merchandise.product.title,
-                        quantity: line.quantity,
-                      },
-                    ],
-                  });
-                  return run(() => removeCartLine({ lineId: line.id }), {
-                    optimistic: { [line.id]: 0 },
-                  });
-                }}
-              />
-            ))}
-          </ul>
-        </div>
+    <dialog
+      ref={ref}
+      className={cn(
+        'pdp-theme sheet fixed inset-y-2 right-2 left-auto h-[calc(100dvh-1rem)] w-[calc(100%-1rem)] rounded-3xl shadow-drift sm:w-115',
+        themeClassName,
       )}
-    </Drawer>
-  );
-}
-
-function CartDrawerLine({
-  line,
-  quantity,
-  onQuantity,
-  onRemove,
-  onClose,
-}: {
-  line: CartLine;
-  quantity: number;
-  onQuantity: (quantity: number) => void;
-  onRemove: () => void;
-  onClose: () => void;
-}) {
-  const { merchandise } = line;
-  const options = merchandise.selectedOptions
-    .filter((option) => option.value !== 'Default Title')
-    .map((option) => option.value)
-    .join(' · ');
-
-  // Cap the stepper at real availability so the customer cannot exceed stock.
-  const max =
-    typeof merchandise.quantityAvailable === 'number' && merchandise.quantityAvailable > 0
-      ? Math.min(merchandise.quantityAvailable, 99)
-      : 99;
-
-  return (
-    <li className={quantity === 0 ? 'opacity-40 transition-opacity' : 'transition-opacity'}>
-      <div className="flex gap-4 py-4">
-        <Link
-          href={`/products/${merchandise.product.handle}`}
-          onClick={onClose}
-          className="relative size-20 shrink-0 overflow-hidden rounded-md bg-surface-sunken sm:size-24"
-        >
-          {merchandise.image ? (
-            <Image
-              src={merchandise.image.url}
-              alt={merchandise.image.altText ?? merchandise.product.title}
-              fill
-              sizes="96px"
-              className="object-cover"
-            />
-          ) : null}
-        </Link>
-
-        <div className="flex min-w-0 flex-1 flex-col">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <Link
-                href={`/products/${merchandise.product.handle}`}
-                onClick={onClose}
-                className="line-clamp-2 text-sm font-medium hover:underline underline-offset-4"
-              >
-                {merchandise.product.title}
-              </Link>
-              {options && <p className="mt-0.5 text-xs text-ink-subtle">{options}</p>}
-              {!merchandise.availableForSale && (
-                <p className="mt-1 text-xs font-medium text-danger">No longer available</p>
-              )}
-            </div>
-
-            <button
-              type="button"
-              onClick={onRemove}
-              aria-label={`Remove ${merchandise.product.title} from your bag`}
-              className="-mt-1 -mr-1 grid size-9 shrink-0 place-items-center rounded-sm text-ink-subtle transition-colors hover:bg-surface-sunken hover:text-danger"
-            >
-              <TrashIcon size={16} />
-            </button>
-          </div>
-
-          <div className="mt-auto flex items-end justify-between gap-3 pt-3">
-            <QuantityStepper
-              size="sm"
-              value={quantity}
-              min={1}
-              max={max}
-              onChange={onQuantity}
-              label={`Quantity of ${merchandise.product.title}`}
-            />
-            <Price
-              amount={moneyToNumber(line.cost.totalAmount)}
-              compareAt={
-                line.cost.compareAtAmountPerQuantity
-                  ? moneyToNumber(line.cost.compareAtAmountPerQuantity) * quantity
-                  : null
-              }
-              currencyCode={line.cost.totalAmount.currencyCode}
-              size="sm"
-            />
-          </div>
+      aria-labelledby="bag-title"
+      onClose={() => {
+        close();
+        (returnFocus.current as HTMLElement | null)?.focus?.();
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) close();
+      }}
+    >
+      <div className="flex h-full flex-col">
+        <div className="flex items-center justify-between px-4 pt-3.5 pb-2">
+          <h2 id="bag-title" className="font-serif text-lg" tabIndex={-1}>
+            Your bag{' '}
+            {itemCount > 0 && <span className="text-ink-soft">({itemCount})</span>}
+          </h2>
+          <button
+            type="button"
+            onClick={close}
+            className="grid size-9 place-items-center rounded-xl bg-sand/70 hover:bg-sand"
+            aria-label="Close bag"
+          >
+            <Icon name="close" />
+          </button>
         </div>
-      </div>
-    </li>
-  );
-}
-
-function FreeShippingMeter({
-  subtotal,
-  threshold,
-  currency,
-}: {
-  subtotal: number;
-  threshold: number;
-  currency: string;
-}) {
-  const remaining = Math.max(0, threshold - subtotal);
-  const progress = Math.min(100, Math.round((subtotal / threshold) * 100));
-  const qualified = remaining === 0;
-
-  return (
-    <div className="border-b border-line bg-surface-sunken px-5 py-3.5">
-      <p className="flex items-center gap-2 text-sm">
-        <TruckIcon size={18} className={qualified ? 'text-success' : 'text-ink-muted'} />
-        {qualified ? (
-          <span className="font-medium text-success">Your order ships free</span>
-        ) : (
-          <span className="text-ink-muted">
-            <span className="font-medium text-ink">
-              {new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(remaining)}
-            </span>{' '}
-            away from free shipping
-          </span>
+        {isOpen && (
+          <BagContents
+            onNavigate={close}
+            payments={payments}
+            upsells={upsells}
+            delivery={delivery}
+            freeShipping={freeShipping}
+          />
         )}
-      </p>
-      <div
-        className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-line"
-        role="progressbar"
-        aria-valuenow={progress}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label="Progress toward free shipping"
-      >
-        <div
-          className={`h-full rounded-full transition-[width] duration-500 ease-out-soft ${qualified ? 'bg-success' : 'bg-accent'}`}
-          style={{ width: `${progress}%` }}
-        />
       </div>
-    </div>
+    </dialog>
   );
 }

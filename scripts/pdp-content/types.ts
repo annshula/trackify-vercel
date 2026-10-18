@@ -25,7 +25,13 @@ export type Block = {
   image?: string;
 };
 
-export type Spec = { label: string; value: string; description?: string };
+export type Spec = {
+  label: string;
+  value: string;
+  description?: string;
+  /** Shopify MediaImage GID — shown as a card with the spec. */
+  image?: string;
+};
 
 export type Faq = { question: string; answer: string };
 

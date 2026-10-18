@@ -3,7 +3,6 @@ import { consumeOAuthTransaction, writeSession } from '@/lib/auth/session';
 import { timingSafeEqualString } from '@/lib/auth/pkce';
 import { idTokenNonce } from '@/lib/auth/jwt';
 import { exchangeCodeForTokens } from '@/lib/shopify/customer-account';
-import { associateCartWithCustomer, restoreCustomerCart } from '@/lib/cart/actions';
 import { getCustomer } from '@/services/shopify/customer-service';
 import { publicEnv } from '@/lib/validation/env';
 
@@ -80,12 +79,6 @@ export async function GET(request: Request): Promise<NextResponse> {
     console.error('[auth] token exchange failed:', (error as Error).message);
     return errorRedirect('exchange_failed');
   }
-
-  // Reconcile the bag before attaching it: restoreCustomerCart may swap the
-  // cart cookie to the one saved against this customer, and the buyer identity
-  // has to be set on whichever cart the shopper ends up with.
-  await restoreCustomerCart();
-  await associateCartWithCustomer();
 
   // The redirect target was checked when the OAuth transaction was created,
   // but re-validate it at the point of use: a crafted transaction must never

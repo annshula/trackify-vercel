@@ -3,9 +3,7 @@
 import * as React from "react";
 import type { CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { useCart } from "@/components/cart/cart-provider";
-import { addToCart, proceedToCheckout } from "@/lib/cart/actions";
 import { track, toEcommerceItem } from "@/lib/analytics";
-import { readAdIdentity } from "@/lib/analytics/ad-identity";
 import {
   defaultVariant,
   findVariantByOptions,
@@ -41,9 +39,7 @@ type PurchaseContextValue = {
   unavailable: boolean;
   status: AddStatus;
   error: string | null;
-  buying: boolean;
   add: () => Promise<void>;
-  buyNow: () => Promise<void>;
   /** The hero's primary button — the sticky bar shows once it scrolls away. */
   heroCta: HTMLElement | null;
   setHeroCta: (element: HTMLElement | null) => void;
@@ -66,7 +62,7 @@ export function PurchaseProvider({
   product: CatalogProduct;
   children: React.ReactNode;
 }) {
-  const { run, open } = useCart();
+  const { add: addToBag } = useCart();
   const [selection, setSelection] = React.useState<Record<string, string>>(() => {
     const initial = defaultVariant(product);
     return initial ? optionsOfVariant(initial) : {};
@@ -74,7 +70,6 @@ export function PurchaseProvider({
   const [quantity, setQuantityState] = React.useState(1);
   const [status, setStatus] = React.useState<AddStatus>("idle");
   const [error, setError] = React.useState<string | null>(null);
-  const [buying, setBuying] = React.useState(false);
   const [heroCta, setHeroCta] = React.useState<HTMLElement | null>(null);
 
   const variant = findVariantByOptions(product, selection);
@@ -153,18 +148,12 @@ export function PurchaseProvider({
     [maxQuantity],
   );
 
+  // The bag is browser-side, so adding is instant: the item is in the bag (and
+  // the bag is open) before this function returns.
   const add = React.useCallback(async () => {
-    if (!variant || soldOut || status === "adding") return;
-    setStatus("adding");
+    if (!variant || soldOut) return;
     setError(null);
-    const result = await run(() =>
-      addToCart({ variantId: variant.id, quantity, productHandle: product.handle }),
-    );
-    if (!result.ok) {
-      setStatus("error");
-      setError(result.error ?? "We couldn't add this to your bag. Please try again.");
-      return;
-    }
+    addToBag(variant.id, quantity);
     setStatus("added");
     track(
       "add_to_cart",
@@ -175,34 +164,7 @@ export function PurchaseProvider({
       },
       metaPixelId,
     );
-  }, [variant, soldOut, status, run, quantity, product, metaPixelId]);
-
-  const buyNow = React.useCallback(async () => {
-    if (!variant || soldOut || buying) return;
-    setBuying(true);
-    setError(null);
-    const added = await run(
-      () => addToCart({ variantId: variant.id, quantity, productHandle: product.handle }),
-      { silent: true },
-    );
-    if (!added.ok) {
-      setBuying(false);
-      setError(added.error ?? "We couldn't start checkout. Please try again.");
-      return;
-    }
-    track(
-      "begin_checkout",
-      { currency: variant.currencyCode, value: variant.price * quantity },
-      metaPixelId,
-    );
-    const result = await run(() => proceedToCheckout(readAdIdentity()));
-    if (result.ok && result.checkoutUrl) {
-      window.location.href = result.checkoutUrl;
-      return;
-    }
-    setBuying(false);
-    open();
-  }, [variant, soldOut, buying, run, quantity, product.handle, open, metaPixelId]);
+  }, [variant, soldOut, addToBag, quantity, product, metaPixelId]);
 
   const value: PurchaseContextValue = {
     product,
@@ -216,9 +178,7 @@ export function PurchaseProvider({
     unavailable,
     status,
     error,
-    buying,
     add,
-    buyNow,
     heroCta,
     setHeroCta,
   };

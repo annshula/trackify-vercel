@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { SmartImage as Image } from "@/components/ui/smart-image";
+import { LoadingImage } from "@/components/pdp/loading-image";
+import { Icon } from "@/components/pdp/icon";
+import { Stars } from "@/components/pdp/stars";
 import Lightbox from "yet-another-react-lightbox";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
@@ -9,9 +11,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 
 import type { CatalogProduct } from "@/types/catalog";
-import { Rating } from "@/components/ui/primitives";
 import { cn } from "@/lib/utils/cn";
-import { VerifiedIcon, ZoomIcon } from "@/components/ui/icons";
 import type { ReviewProvider } from "@/components/product/reviews";
 
 type ReviewData = Awaited<ReturnType<ReviewProvider["list"]>>;
@@ -104,197 +104,220 @@ export function ReviewGallery({
   };
 
   const totalPages = Math.max(1, Math.ceil(data.total / PAGE_SIZE));
+  const from = data.total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
+  const to = Math.min(page * PAGE_SIZE, data.total);
+  const fiveStarPercent = data.total
+    ? Math.round(((data.distribution[5] ?? 0) / data.total) * 100)
+    : 0;
+
+  type ChipId = "all" | "photo" | 1 | 2 | 3 | 4 | 5;
+  const chips: { id: ChipId; label: string; count: number; camera?: boolean }[] = [
+    { id: "all", label: "All reviews", count: data.total },
+    ...(allAttachments.length > 0
+      ? [{ id: "photo" as const, label: "With photos", count: photoReviews.length, camera: true }]
+      : []),
+    ...([5, 4, 3, 2, 1] as const).map((star) => ({
+      id: star,
+      label: `${star} star${star === 1 ? "" : "s"}`,
+      count: data.distribution[star] ?? 0,
+    })),
+  ];
+  const activeChip: ChipId = photoOnly ? "photo" : isFiltered ? ratingFilter : "all";
+
+  const chooseChip = (id: ChipId) => {
+    if (id === "all") {
+      setRatingFilter(0);
+      setPhotoOnly(false);
+      setPage(1);
+    } else if (id === "photo") {
+      setPhotoOnly((v) => !v);
+    } else {
+      setPhotoOnly(false);
+      chooseRating(id);
+    }
+    listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const goTo = (next: number) => {
+    setPage(Math.min(Math.max(1, next), totalPages));
+    listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
-    <section
-      id="reviews"
-      aria-labelledby="reviews-heading"
-      className="mt-14 scroll-mt-24"
-    >
-      <h2 id="reviews-heading" className="text-2xl">
-        Reviews
-      </h2>
+    <section id="reviews" aria-labelledby="reviews-heading" className="scroll-mt-24 pb-12 lg:pb-16">
+      <div className="container-page">
+        <h2
+          id="reviews-heading"
+          className="mb-6 text-center font-pdp-heading text-heading-1 font-semibold"
+        >
+          Reviews
+        </h2>
 
-      <div className="mt-4 grid gap-6 lg:grid-cols-[280px_1fr]">
-        {/* Summary + star breakdown, doubles as the filter control */}
-        <div className="h-fit rounded-lg border border-line bg-surface p-5 lg:sticky lg:top-24">
-          <div className="flex items-center gap-4">
-            <span className="text-4xl font-medium tabular-nums">
-              {data.average.toFixed(1)}
-            </span>
-            <div>
-              <Rating value={data.average} showValue={false} size={18} />
-              <p className="mt-1 text-sm text-ink-muted">
-                {data.total} review{data.total === 1 ? "" : "s"}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12">
+          {/* ── Aggregate ───────────────────────────────────────────────── */}
+          <aside
+            aria-label="Rating summary"
+            className="surface h-fit p-7 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start"
+          >
+            <div className="flex items-baseline gap-2">
+              <p className="font-serif text-heading-1 leading-none font-light">
+                {data.average.toFixed(1)}
               </p>
+              <p className="font-ui text-body-sm text-ink-faint">/ 5</p>
             </div>
-          </div>
+            <p className="mt-3 flex flex-wrap items-center gap-2">
+              <Stars value={data.average} />
+              <span className="font-ui text-body-sm text-ink-soft tabular-nums">
+                {data.total.toLocaleString("en-US")} review{data.total === 1 ? "" : "s"}
+              </span>
+            </p>
+            <p className="mt-3 text-body-sm text-ink-soft">
+              <strong className="font-numeral font-semibold text-ink tabular-nums">
+                {fiveStarPercent}%
+              </strong>{" "}
+              rated it 5 stars.
+            </p>
 
-          <ul className="mt-5 space-y-2">
-            {([5, 4, 3, 2, 1] as const).map((star) => {
-              const count = data.distribution[star] ?? 0;
-              const percent = data.total > 0 ? Math.round((count / data.total) * 100) : 0;
-              const active = ratingFilter === star;
-              return (
-                <li key={star}>
+            <ul className="mt-6 flex flex-col gap-0.5">
+              {([5, 4, 3, 2, 1] as const).map((star) => {
+                const n = data.distribution[star] ?? 0;
+                const percent = data.total > 0 ? Math.round((n / data.total) * 100) : 0;
+                const active = ratingFilter === star && !photoOnly;
+                return (
+                  <li key={star}>
+                    <button
+                      type="button"
+                      onClick={() => chooseChip(star)}
+                      aria-pressed={active}
+                      aria-label={`Show ${star} star reviews — ${n} of ${data.total}`}
+                      className={cn(
+                        "flex w-full items-center gap-3 rounded-control px-2 py-2 font-ui text-body-sm transition-colors duration-200",
+                        active ? "bg-sage-100" : "hover:bg-cream",
+                      )}
+                    >
+                      <span className="flex w-10 shrink-0 items-center gap-1 tabular-nums">
+                        {star}
+                        <Icon
+                          name="star"
+                          className="size-3.5 fill-current text-gold-500"
+                          strokeWidth={1}
+                        />
+                      </span>
+                      <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-sand" aria-hidden="true">
+                        <span
+                          className="block h-full rounded-full bg-sage-600"
+                          style={{ width: `${percent}%` }}
+                        />
+                      </span>
+                      <span className="w-10 shrink-0 text-right font-numeral text-ink-soft tabular-nums">
+                        {n}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </aside>
+
+          {/* ── Feed ────────────────────────────────────────────────────── */}
+          <div ref={listRef} className="scroll-mt-[calc(var(--header-h)+2rem)]">
+            <div role="group" aria-label="Filter reviews" className="flex flex-wrap items-center gap-2">
+              {chips.map((chip) => {
+                const active = activeChip === chip.id;
+                return (
                   <button
+                    key={chip.id}
                     type="button"
-                    onClick={() => chooseRating(star)}
+                    onClick={() => chooseChip(chip.id)}
                     aria-pressed={active}
-                    aria-label={`Filter to ${star} star reviews, ${count}`}
                     className={cn(
-                      "flex w-full items-center gap-3 rounded-md px-1.5 py-1 text-xs transition-colors",
-                      active ? "bg-accent-soft" : "hover:bg-surface-sunken",
+                      "inline-flex min-h-10 items-center gap-2 rounded-control px-4 font-ui text-body-sm font-medium transition-colors duration-200",
+                      active
+                        ? "bg-sage-600 text-ivory"
+                        : "bg-porcelain text-ink-soft shadow-soft hover:bg-sand hover:text-ink",
                     )}
                   >
-                    <span className="w-6 tabular-nums text-ink-muted">{star}★</span>
-                    <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-surface-sunken">
-                      <span
-                        className="block h-full rounded-full bg-accent"
-                        style={{ width: `${percent}%` }}
-                      />
+                    {chip.camera && <Icon name="camera" className="size-4" />}
+                    {chip.label}
+                    <span className={cn("font-numeral tabular-nums", active ? "text-ivory/70" : "text-ink-faint")}>
+                      {chip.count}
                     </span>
-                    <span className="w-8 text-right tabular-nums text-ink-subtle">{count}</span>
                   </button>
-                </li>
-              );
-            })}
-          </ul>
+                );
+              })}
+            </div>
 
-          {allAttachments.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setPhotoOnly((v) => !v)}
-              aria-pressed={photoOnly}
-              className={cn(
-                "mt-5 flex w-full items-center justify-between rounded-md border px-3 py-2 text-left text-xs font-medium transition-colors",
-                photoOnly
-                  ? "border-accent bg-accent-soft text-ink"
-                  : "border-line bg-surface text-ink-muted hover:border-ink/30",
-              )}
-            >
-              <span>With photos</span>
-              <span className="tabular-nums text-ink-subtle">{photoReviews.length}</span>
-            </button>
-          )}
+            <p aria-live="polite" className="mt-6 font-ui text-body-sm text-ink-faint tabular-nums">
+              {visibleReviews.length === 0
+                ? "No reviews match this filter."
+                : photoOnly
+                  ? `Showing ${visibleReviews.length} review${visibleReviews.length === 1 ? "" : "s"} with photos`
+                  : `Showing ${from}–${to} of ${data.total.toLocaleString("en-US")} reviews`}
+            </p>
 
-          {(isFiltered || photoOnly) && (
-            <button
-              type="button"
-              onClick={() => {
-                setRatingFilter(0);
-                setPhotoOnly(false);
-                setPage(1);
-              }}
-              className="mt-3 text-xs font-medium text-ink-muted underline underline-offset-4 hover:text-ink"
-            >
-              Clear filters
-            </button>
-          )}
-        </div>
-
-        <div ref={listRef} className="min-w-0">
-          <ul
-            className={cn(
-              "divide-y divide-line transition-opacity",
-              loading && "opacity-50",
-            )}
-          >
-            {visibleReviews.map((review) => (
-              <li key={review.id} className="py-5 first:pt-0">
-                <div className="flex flex-wrap items-center gap-3">
-                  <Rating value={review.rating} showValue={false} size={14} />
-                  <span className="text-sm font-medium">{review.author}</span>
-                  {review.verifiedPurchase && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-success-soft px-2 py-0.5 text-2xs font-semibold text-success uppercase">
-                      <VerifiedIcon size={11} />
-                      Verified purchase
-                    </span>
-                  )}
-                  <time
-                    dateTime={review.createdAt}
-                    className="ml-auto text-xs text-ink-subtle"
-                  >
-                    {formatDate(review.createdAt)}
-                  </time>
-                </div>
-                {review.title && <p className="mt-2 font-medium">{review.title}</p>}
-                {review.body && (
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                    {review.body}
-                  </p>
-                )}
-
-                {review.attachments.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {review.attachments.map((src, i) => (
-                      <button
-                        key={`${src}-${i}`}
-                        type="button"
-                        onClick={() => openLightbox(src)}
-                        aria-label="Open customer photo"
-                        className="group relative size-20 overflow-hidden rounded-md border border-line bg-surface-sunken"
-                      >
-                        <Image
-                          src={src}
-                          alt={`Customer photo from ${review.author}'s review`}
-                          fill
-                          sizes="80px"
-                          className="object-cover transition-transform duration-200 group-hover:scale-105"
-                        />
-                        <span className="absolute inset-0 hidden items-center justify-center bg-black/20 group-hover:flex">
-                          <ZoomIcon size={16} className="text-white" />
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </li>
-            ))}
-
-            {visibleReviews.length === 0 && (
-              <li className="py-8 text-sm text-ink-muted">
-                {photoOnly
-                  ? "No reviews with photos yet."
-                  : `No reviews match this filter yet.`}
-              </li>
-            )}
-          </ul>
-
-          {!photoOnly && totalPages > 1 && (
-            <nav
-              aria-label="Reviews pagination"
-              className="mt-8 flex items-center justify-between border-t border-line pt-5"
-            >
-              <p className="text-xs text-ink-subtle tabular-nums">
-                Page {page} of {totalPages}
-              </p>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  disabled={page === 1 || loading}
-                  onClick={() => {
-                    setPage((p) => Math.max(1, p - 1));
-                    listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
-                  className="rounded-md border border-line px-3 py-1.5 text-xs font-medium disabled:pointer-events-none disabled:opacity-40"
-                >
-                  Previous
-                </button>
-                <button
-                  type="button"
-                  disabled={page === totalPages || loading}
-                  onClick={() => {
-                    setPage((p) => Math.min(totalPages, p + 1));
-                    listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
-                  className="rounded-md border border-line px-3 py-1.5 text-xs font-medium disabled:pointer-events-none disabled:opacity-40"
-                >
-                  Next
+            {visibleReviews.length === 0 ? (
+              <div className="mt-4 rounded-card bg-cream px-6 py-14 text-center">
+                <p className="font-medium">No reviews match this filter yet.</p>
+                <p className="mx-auto mt-2 max-w-sm text-body-sm text-ink-soft">
+                  Try another star rating, or go back to the full list.
+                </p>
+                <button type="button" className="btn-secondary mt-6" onClick={() => chooseChip("all")}>
+                  Show all reviews
                 </button>
               </div>
-            </nav>
-          )}
+            ) : (
+              <ul
+                aria-busy={loading}
+                className={cn(
+                  "mt-4 flex flex-col gap-4 transition-opacity duration-200",
+                  loading && "pointer-events-none opacity-50",
+                )}
+              >
+                {visibleReviews.map((review) => (
+                  <ReviewCard key={review.id} review={review} onOpenPhoto={openLightbox} />
+                ))}
+              </ul>
+            )}
+
+            {!photoOnly && totalPages > 1 && (
+              <nav
+                aria-label="Reviews pagination"
+                className="mt-8 flex flex-wrap items-center justify-end gap-1.5"
+              >
+                <PageButton label="Previous page" disabled={page === 1 || loading} onClick={() => goTo(page - 1)}>
+                  <Icon name="chevron-right" className="size-4 rotate-180" />
+                </PageButton>
+                {pageWindow(page, totalPages).map((entry, i) =>
+                  entry === "…" ? (
+                    <span
+                      key={`gap-${i}`}
+                      aria-hidden="true"
+                      className="grid size-10 place-items-center font-ui text-body-sm text-ink-faint"
+                    >
+                      …
+                    </span>
+                  ) : (
+                    <PageButton
+                      key={entry}
+                      label={`Page ${entry}`}
+                      current={entry === page}
+                      disabled={loading}
+                      onClick={() => goTo(entry)}
+                    >
+                      {entry}
+                    </PageButton>
+                  ),
+                )}
+                <PageButton
+                  label="Next page"
+                  disabled={page === totalPages || loading}
+                  onClick={() => goTo(page + 1)}
+                >
+                  <Icon name="chevron-right" className="size-4" />
+                </PageButton>
+              </nav>
+            )}
+          </div>
         </div>
       </div>
 
@@ -311,14 +334,170 @@ export function ReviewGallery({
   );
 }
 
+/* ─────────────────────────────── pieces ─────────────────────────────── */
+
+type ReviewItem = ReviewData["reviews"][number];
+
+function ReviewCard({
+  review,
+  onOpenPhoto,
+}: {
+  review: ReviewItem;
+  onOpenPhoto: (src: string) => void;
+}) {
+  const [expanded, setExpanded] = React.useState(false);
+  const long = review.body.length > 280;
+  const photos = review.attachments.filter((src) => !/\.(mp4|mov|webm|m4v)(\?|$)/i.test(src));
+
+  return (
+    <li>
+      <article className="surface p-6 md:p-7">
+        <header className="flex items-baseline justify-between gap-3">
+          <p className="flex items-center gap-2">
+            <Stars value={review.rating} />
+            <span className="sr-only">{review.rating} out of 5 stars</span>
+          </p>
+          <time
+            dateTime={review.createdAt}
+            className="font-ui text-body-sm text-ink-faint tabular-nums"
+          >
+            {formatDate(review.createdAt)}
+          </time>
+        </header>
+
+        {review.title && <p className="mt-4 font-serif text-body-lg">{review.title}</p>}
+        {review.body && (
+          <p
+            className={cn(
+              "max-w-[68ch] text-body-sm text-ink-soft",
+              review.title ? "mt-1.5" : "mt-4",
+              !expanded && "line-clamp-4",
+            )}
+          >
+            {review.body}
+          </p>
+        )}
+        {long && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+            className="mt-1 font-ui text-body-sm font-medium text-ink link-underline"
+          >
+            {expanded ? "Show less" : "Read more"}
+          </button>
+        )}
+
+        {photos.length > 0 && (
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {photos.map((src, i) => (
+              <li key={`${src}-${i}`}>
+                <button
+                  type="button"
+                  onClick={() => onOpenPhoto(src)}
+                  aria-label="Open customer photo"
+                  className="relative block size-20 overflow-hidden rounded-xl bg-cream"
+                >
+                  <LoadingImage
+                    src={src}
+                    alt={`Customer photo from ${review.author}'s review`}
+                    sizes="80px"
+                    spinnerClassName="size-4"
+                    className="object-cover"
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <footer className="mt-5 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            className="grid size-9 shrink-0 place-items-center rounded-full bg-sage-100 font-ui text-body-sm font-semibold text-sage-700 uppercase"
+          >
+            {review.author.trim().charAt(0) || "?"}
+          </span>
+          <p className="min-w-0 leading-tight">
+            <span className="flex items-center gap-1.5 font-ui text-body-sm font-semibold">
+              {review.author}
+              {review.verifiedPurchase && (
+                <span
+                  className="grid size-4 place-items-center rounded-full bg-success text-white"
+                  title="Verified purchase"
+                >
+                  <Icon name="check" className="size-2.5" strokeWidth={3} />
+                  <span className="sr-only">Verified purchase</span>
+                </span>
+              )}
+            </span>
+            {review.verifiedPurchase && (
+              <span className="text-[0.72rem] text-ink-soft">Verified buyer</span>
+            )}
+          </p>
+        </footer>
+      </article>
+    </li>
+  );
+}
+
+function PageButton({
+  label,
+  children,
+  onClick,
+  current = false,
+  disabled = false,
+}: {
+  label: string;
+  children: React.ReactNode;
+  onClick: () => void;
+  current?: boolean;
+  disabled?: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      aria-current={current ? "page" : undefined}
+      className={cn(
+        "grid size-10 place-items-center rounded-control font-ui text-body-sm font-medium transition-colors duration-200",
+        current
+          ? "bg-sage-600 text-ivory"
+          : "bg-porcelain text-ink-soft shadow-soft hover:bg-sand hover:text-ink",
+        disabled && "pointer-events-none opacity-40",
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+
+/** Numeric page window with ellipsis gaps — e.g. [1, "…", 12, 13, 14, "…", 66]. */
+function pageWindow(page: number, total: number): (number | "…")[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const out: (number | "…")[] = [];
+  const push = (entry: number | "…") => {
+    if (out[out.length - 1] !== entry) out.push(entry);
+  };
+  push(1);
+  if (page > 4) push("…");
+  for (let i = Math.max(2, page - 1); i <= Math.min(total - 1, page + 1); i += 1) push(i);
+  if (page < total - 3) push("…");
+  push(total);
+  return out;
+}
+
+/** Same year → "Oct 17"; otherwise "Oct 17, 2025". Fixed locale + UTC so server and client agree. */
 function formatDate(iso: string): string {
-  try {
-    return new Date(iso).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  } catch {
-    return iso;
-  }
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  const sameYear = date.getUTCFullYear() === new Date().getUTCFullYear();
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    ...(sameYear ? {} : { year: "numeric" }),
+    timeZone: "UTC",
+  });
 }

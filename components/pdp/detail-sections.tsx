@@ -1,74 +1,109 @@
-import Link from "next/link";
 import type { CatalogFaqItem, CatalogFeatureHighlight, CatalogProductSpec } from "@/types/catalog";
-import type { ShopPdpContent, ShopTrustPoint } from "@/types/shop";
+import type { ShopTrustPoint } from "@/types/shop";
+import { Icon } from "./icon";
+import { LoadingImage } from "./loading-image";
 import { PdpIcon } from "./pdp-icon";
-import { ResponsiveDisclosure } from "./responsive-disclosure";
-import { SectionHeading } from "./story-sections";
+import { SectionHeading } from "./section-heading";
 
 /**
- * The reassurance half of the PDP: exactly what arrives, the facts, when it
- * ships, what if it's wrong, and the remaining questions. All data comes from
- * Shopify; rows and sections with no data are omitted, never guessed.
+ * The reassurance half of the PDP, exactly what arrives,
+ * the facts, what if it's wrong, and the remaining questions. All data comes
+ * from Shopify; rows and sections with no data are omitted, never guessed.
  */
 
-/* ── What's included + specifications + shipping ────────────────────── */
+/* ── Specifications + what's in the box ─────────────────────────────── */
 
 export function ProductDetails({
   included,
   specs,
-  shipping,
 }: {
   included: CatalogFeatureHighlight[];
   specs: CatalogProductSpec[];
-  shipping: ShopPdpContent["shipping"];
 }) {
-  const shippingRows = [
-    { label: "Processing", value: shipping.processingTime },
-    { label: "Delivery", value: shipping.deliveryEstimate },
-    { label: "Shipping cost", value: shipping.costNote },
-    { label: "Ships to", value: shipping.regions },
-  ].filter((row): row is { label: string; value: string } => Boolean(row.value));
-
-  if (included.length === 0 && specs.length === 0 && shippingRows.length === 0) return null;
+  if (included.length === 0 && specs.length === 0) return null;
+  const both = specs.length > 0 && included.length > 0;
+  // Specs the merchant attached a photo or infographic to read best as cards;
+  // every spec, photographed or not, still has its row in the table below.
+  const pictured = specs.filter((spec) => spec.image);
 
   return (
-    <section aria-labelledby="details-heading" className="border-t border-line bg-surface py-20 lg:py-28">
+    <section className="py-12 lg:py-16" aria-labelledby="details">
       <div className="container-page">
-        <SectionHeading id="details-heading" eyebrow="The details" title="Everything you'd want to know first" />
+        <h2
+          id="details"
+          className="text-center font-pdp-heading text-heading-1 font-semibold"
+        >
+          {specs.length > 0 ? "Specifications" : "What's in the box"}
+        </h2>
 
-        <div className="mt-12 grid gap-x-16 lg:grid-cols-12 lg:gap-y-16">
-          {included.length > 0 && (
-            <WhatsIncluded items={included} className="lg:col-span-12" />
-          )}
+        {pictured.length > 0 && (
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {pictured.map((spec) => (
+              <li
+                key={spec.label}
+                className="overflow-hidden rounded-media bg-porcelain shadow-soft"
+              >
+                <div className="relative aspect-square">
+                  <LoadingImage
+                    src={spec.image!.url}
+                    alt={spec.image!.altText || spec.label}
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-5">
+                  <p className="eyebrow">{spec.label}</p>
+                  <p className="mt-2 font-serif text-heading-3">{spec.value}</p>
+                  {spec.description && (
+                    <p className="mt-1 text-body-sm text-ink-soft">{spec.description}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div
+          className={
+            both
+              ? "mt-8 grid gap-8 lg:grid-cols-2 lg:gap-16"
+              : "mx-auto mt-8 max-w-3xl"
+          }
+        >
           {specs.length > 0 && (
-            <ResponsiveDisclosure id="specs" title="Specifications" className="lg:col-span-7">
-              <dl className="divide-y divide-line border-y border-line">
-                {specs.map((spec) => (
-                  <div key={spec.label} className="grid grid-cols-[minmax(7rem,2fr)_3fr] gap-4 py-3.5 text-sm">
-                    <dt className="text-ink-muted">{spec.label}</dt>
-                    <dd className="text-ink">
-                      {spec.value}
-                      {spec.description && <span className="mt-1 block text-ink-subtle">{spec.description}</span>}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </ResponsiveDisclosure>
+            <dl className="h-fit overflow-hidden rounded-card bg-porcelain text-body-sm shadow-soft">
+              {specs.map((spec) => (
+                <div
+                  key={spec.label}
+                  className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 px-5 py-3 even:bg-cream/60"
+                >
+                  <dt className="text-ink-soft">{spec.label}</dt>
+                  <dd>
+                    {spec.value}
+                    {spec.description && (
+                      <span className="mt-1 block text-ink-faint">{spec.description}</span>
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           )}
-          {shippingRows.length > 0 && (
-            <ResponsiveDisclosure id="shipping" title="Shipping" className="lg:col-span-5">
-              <dl className="divide-y divide-line border-y border-line">
-                {shippingRows.map((row) => (
-                  <div key={row.label} className="grid grid-cols-[minmax(7rem,2fr)_3fr] gap-4 py-3.5 text-sm">
-                    <dt className="text-ink-muted">{row.label}</dt>
-                    <dd>{row.value}</dd>
-                  </div>
+
+          {included.length > 0 && (
+            <div>
+              {specs.length > 0 && <h3 className="eyebrow mb-4 flex justify-center lg:justify-start">What&apos;s in the box</h3>}
+              <ul className="overflow-hidden rounded-card bg-porcelain text-body-sm shadow-soft">
+                {included.map((item) => (
+                  <li
+                    key={item.label}
+                    className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-4 px-5 py-3 even:bg-cream/60"
+                  >
+                    <span>{item.label}</span>
+                    <span className="text-ink-soft">{item.body}</span>
+                  </li>
                 ))}
-              </dl>
-              <Link href="/pages/shipping" className="mt-4 inline-block text-sm text-ink-muted underline underline-offset-4 hover:text-ink">
-                Shipping details
-              </Link>
-            </ResponsiveDisclosure>
+              </ul>
+            </div>
           )}
         </div>
       </div>
@@ -76,52 +111,33 @@ export function ProductDetails({
   );
 }
 
-function WhatsIncluded({ items, className }: { items: CatalogFeatureHighlight[]; className?: string }) {
-  return (
-    <div className={className}>
-      <h3 className="font-display text-xl">What&rsquo;s in the box</h3>
-      <ul className="mt-5 mb-10 grid gap-3 sm:grid-cols-2 lg:mb-0 lg:grid-cols-3">
-        {items.map((item) => (
-          <li key={item.label} className="flex items-start gap-4 rounded-xl border border-line bg-surface-raised p-5">
-            <span className="grid size-11 shrink-0 place-items-center rounded-full bg-accent-soft text-accent">
-              <PdpIcon icon={item.icon} size={22} />
-            </span>
-            <div>
-              <p className="font-medium">{item.label}</p>
-              <p className="mt-1 text-sm leading-snug text-ink-muted">{item.body}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 /* ── Returns / guarantee / trust ────────────────────────────────────── */
 
-export function ReturnsGuarantee({ points }: { points: ShopTrustPoint[] }) {
+export function TrustPoints({ points }: { points: ShopTrustPoint[] }) {
   if (points.length === 0) return null;
   return (
-    <section aria-labelledby="trust-heading" className="container-page py-20 lg:py-24">
-      <SectionHeading id="trust-heading" eyebrow="Buy with confidence" title="If it isn't right, we'll make it right" align="center" />
-      <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-        {points.map((point) => (
-          <li key={point.label} className="flex gap-4 bg-surface-raised p-5 sm:block sm:p-7">
-            <PdpIcon icon={point.icon} size={26} className="shrink-0 text-accent" />
-            <div>
-              <h3 className="text-lg sm:mt-5">{point.label}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-ink-muted sm:mt-2">{point.body}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-6 text-center text-sm text-ink-muted">
-        Read the full{" "}
-        <Link href="/pages/returns" className="underline underline-offset-4 hover:text-ink">
-          returns policy
-        </Link>
-        .
-      </p>
+    <section className="py-12 lg:py-16" aria-labelledby="trust-heading">
+      <div className="container-page">
+        <SectionHeading
+          eyebrow="Buy with confidence"
+          title="Shop with peace of mind."
+          id="trust-heading"
+        />
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {points.map((point) => (
+            <li
+              key={point.label}
+              className="rounded-media bg-porcelain p-6 shadow-soft lg:p-7"
+            >
+              <span className="grid size-10 place-items-center rounded-control bg-sage-100 text-sage-600">
+                <PdpIcon icon={point.icon} size={20} />
+              </span>
+              <h3 className="mt-5 font-serif text-heading-3">{point.label}</h3>
+              <p className="mt-2 text-body-sm text-ink-soft">{point.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
@@ -129,47 +145,56 @@ export function ReturnsGuarantee({ points }: { points: ShopTrustPoint[] }) {
 /* ── FAQ ────────────────────────────────────────────────────────────── */
 
 /**
- * Native <details> accordion: keyboard and screen-reader support for free, no
- * client JS, and content stays in the HTML for search engines. The shared
- * `name` makes it exclusive (one open at a time) where browsers support it.
+ * FAQ as native <details> in soft stacked cards — answers live in the server
+ * HTML (crawlable); keyboard and screen-reader support is built in.
  */
-export function ProductFAQ({ items, supportEmail }: { items: CatalogFaqItem[]; supportEmail: string | null }) {
+export function ProductFAQ({
+  items,
+  supportEmail,
+}: {
+  items: CatalogFaqItem[];
+  supportEmail: string | null;
+}) {
   if (items.length === 0) return null;
   return (
-    <section aria-labelledby="faq-heading" className="border-t border-line py-20 lg:py-28">
-      <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-4">
-          <SectionHeading id="faq-heading" eyebrow="Questions" title="Before you buy" />
-          {supportEmail && (
-            <p className="mt-6 text-ink-muted">
-              Didn&rsquo;t find your answer?{" "}
-              <a href={`mailto:${supportEmail}`} className="text-ink underline underline-offset-4">
-                {supportEmail}
-              </a>
-            </p>
-          )}
-        </div>
-        <div className="pdp-faq divide-y divide-line border-y border-line lg:col-span-8">
-          {items.map((item) => (
-            <details key={item.question} name="pdp-faq" className="group">
-              <summary className="flex min-h-16 cursor-pointer items-center justify-between gap-6 py-4 text-left text-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
-                {item.question}
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  aria-hidden="true"
-                  className="shrink-0 text-ink-muted transition-transform duration-200 group-open:rotate-45"
-                >
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </summary>
-              <p className="max-w-2xl pb-6 leading-relaxed text-ink-muted">{item.answer}</p>
-            </details>
-          ))}
+    <section className="px-2 sm:px-3" aria-labelledby="faq">
+      <div className="rounded-media bg-ivory py-12 lg:py-16">
+        <div className="container-page grid gap-8 lg:grid-cols-[4fr_8fr] lg:gap-16">
+          <SectionHeading
+            eyebrow="Questions"
+            title="Before you buy."
+            id="faq"
+            intro={
+              supportEmail && (
+                <>
+                  Didn&apos;t find your answer?{" "}
+                  <a href={`mailto:${supportEmail}`} className="link-underline text-ink">
+                    {supportEmail}
+                  </a>
+                </>
+              )
+            }
+          />
+          <div className="flex flex-col gap-2.5">
+            {items.map((item) => (
+              <details
+                key={item.question}
+                name="pdp-faq"
+                className="group rounded-card bg-porcelain px-6 shadow-soft transition-shadow duration-300 open:shadow-float md:px-7"
+              >
+                <summary className="flex min-h-18 items-center justify-between gap-6 py-5">
+                  <h3 className="text-body-lg font-medium">{item.question}</h3>
+                  <span className="grid size-9 shrink-0 place-items-center rounded-tag bg-cream transition-colors group-open:bg-sage-600 group-open:text-ivory">
+                    <Icon
+                      name="plus"
+                      className="size-4 transition-transform duration-300 group-open:rotate-45"
+                    />
+                  </span>
+                </summary>
+                <p className="max-w-[64ch] pb-7 text-ink-soft">{item.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </section>

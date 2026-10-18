@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T08:31:43.087Z",
+  "generatedAt": "2026-10-18T09:59:50.038Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -34,28 +34,126 @@
         {
           "id": "gid://shopify/MediaImage/36062642340067",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
-          "altText": "",
+          "altText": "Copper RFID pop-up wallet with cards fanned out of the top",
           "width": 1033,
           "height": 1007
         },
         {
+          "id": "gid://shopify/MediaImage/46510166376675",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd35a15b1278b4bdf9cf2d35d2a572aa7K.jpg?v=1792316021",
+          "altText": "RFID blocking comparison: the wallet held near a payment terminal",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166671587",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S6237b92cd74141bca3e7fe07e3c303aa0.jpg?v=1792316037",
+          "altText": "Hand sliding cards out of the pop-up wallet",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166737123",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sed11f39797d8400b8d029bdbfbcf91c74.jpg?v=1792316041",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166769891",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S41bf36d268a9458d96a2e0a5988b8135b.jpg?v=1792316044",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166933731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S42d5dd6276f246deb0d76e748ad6d588V.jpg?v=1792316048",
+          "altText": "Slim wallet being slipped into a front pocket",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166900963",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Scd672fb30b134eafa842972d7a53c629d.png?v=1792316047",
+          "altText": "RFID blocking protection infographic with a payment terminal",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166802659",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se106db09fce8421faba37477c22d1fa4W.png?v=1792316046",
+          "altText": "One-click pop-up infographic: press the side trigger to fan the cards out",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166966499",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3277fe42db4479f9311779e19de3b43F.png?v=1792316052",
+          "altText": "Product size infographic: 9.7 by 6.2 centimetres",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510167032035",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sba7759efba284626854f35f151cd3814S.png?v=1792316056",
+          "altText": "Slim and pocket-friendly infographic comparing the wallet with a bulky leather wallet",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510167261411",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S566b6fca15ff4c709859e99126ae49c53.jpg?v=1792316061",
+          "altText": "Capacity infographic: card chamber, backplate compartment and cash band",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510167294179",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5acd5b9a85e64c408cffd58297eda825i.jpg?v=1792316062",
+          "altText": "Black pop-up wallet unpacked beside its gift box",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510167228643",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa666a17ed4e24cdd9c6cc317ae0127c9Z.jpg?v=1792316061",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510166311139",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe7577acf8d7405fa140c00bb797193fa.jpg?v=1792316015",
+          "altText": "Black pop-up wallet shown from the front and side",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/MediaImage/46510167359715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S72cfd44f4dc941158cc4d84116996dd60.png?v=1792316064",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
           "id": "gid://shopify/MediaImage/36062642307299",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
-          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
+          "altText": "Slate gray RFID pop-up wallet with cards fanned out",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/MediaImage/36062642372835",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle40.png?v=1740581441",
-          "altText": "",
+          "altText": "Silver aluminum RFID pop-up wallet with elastic cash band",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/MediaImage/36348450799843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_32_14_PM.png?v=1744736438",
-          "altText": "",
+          "altText": "Black RFID pop-up wallet with red cards fanned out",
           "width": 1024,
           "height": 1024
         },
@@ -83,35 +181,133 @@
         {
           "id": "gid://shopify/MediaImage/36348450996451",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
-          "altText": "",
+          "altText": "Copper RFID pop-up wallet showing the outer grip cutouts",
           "width": 1024,
           "height": 1024
         },
         {
           "id": "gid://shopify/ProductImage/44220445556963",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
-          "altText": "",
+          "altText": "Copper RFID pop-up wallet with cards fanned out of the top",
           "width": 1033,
           "height": 1007
         },
         {
+          "id": "gid://shopify/ProductImage/49774947827939",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd35a15b1278b4bdf9cf2d35d2a572aa7K.jpg?v=1792316021",
+          "altText": "RFID blocking comparison: the wallet held near a payment terminal",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948155619",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S6237b92cd74141bca3e7fe07e3c303aa0.jpg?v=1792316037",
+          "altText": "Hand sliding cards out of the pop-up wallet",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948188387",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sed11f39797d8400b8d029bdbfbcf91c74.jpg?v=1792316041",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948221155",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S41bf36d268a9458d96a2e0a5988b8135b.jpg?v=1792316044",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948384995",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S42d5dd6276f246deb0d76e748ad6d588V.jpg?v=1792316048",
+          "altText": "Slim wallet being slipped into a front pocket",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948352227",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Scd672fb30b134eafa842972d7a53c629d.png?v=1792316047",
+          "altText": "RFID blocking protection infographic with a payment terminal",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948253923",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se106db09fce8421faba37477c22d1fa4W.png?v=1792316046",
+          "altText": "One-click pop-up infographic: press the side trigger to fan the cards out",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948417763",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3277fe42db4479f9311779e19de3b43F.png?v=1792316052",
+          "altText": "Product size infographic: 9.7 by 6.2 centimetres",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948483299",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sba7759efba284626854f35f151cd3814S.png?v=1792316056",
+          "altText": "Slim and pocket-friendly infographic comparing the wallet with a bulky leather wallet",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948712675",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S566b6fca15ff4c709859e99126ae49c53.jpg?v=1792316061",
+          "altText": "Capacity infographic: card chamber, backplate compartment and cash band",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948745443",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5acd5b9a85e64c408cffd58297eda825i.jpg?v=1792316062",
+          "altText": "Black pop-up wallet unpacked beside its gift box",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948679907",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa666a17ed4e24cdd9c6cc317ae0127c9Z.jpg?v=1792316061",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774947762403",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe7577acf8d7405fa140c00bb797193fa.jpg?v=1792316015",
+          "altText": "Black pop-up wallet shown from the front and side",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "id": "gid://shopify/ProductImage/49774948810979",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S72cfd44f4dc941158cc4d84116996dd60.png?v=1792316064",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
           "id": "gid://shopify/ProductImage/44220445524195",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
-          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
+          "altText": "Slate gray RFID pop-up wallet with cards fanned out",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/ProductImage/44220445491427",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle40.png?v=1740581441",
-          "altText": "",
+          "altText": "Silver aluminum RFID pop-up wallet with elastic cash band",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/ProductImage/44704119914723",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_32_14_PM.png?v=1744736438",
-          "altText": "",
+          "altText": "Black RFID pop-up wallet with red cards fanned out",
           "width": 1024,
           "height": 1024
         },
@@ -139,7 +335,7 @@
         {
           "id": "gid://shopify/ProductImage/44704120078563",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
-          "altText": "",
+          "altText": "Copper RFID pop-up wallet showing the outer grip cutouts",
           "width": 1024,
           "height": 1024
         }
@@ -149,7 +345,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36062642340067",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle41.png?v=1740581441",
-          "altText": "",
+          "altText": "Copper RFID pop-up wallet with cards fanned out of the top",
           "width": 1033,
           "height": 1007
         },
@@ -183,9 +379,121 @@
         },
         {
           "type": "image",
+          "id": "gid://shopify/MediaImage/46510166376675",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd35a15b1278b4bdf9cf2d35d2a572aa7K.jpg?v=1792316021",
+          "altText": "RFID blocking comparison: the wallet held near a payment terminal",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166671587",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S6237b92cd74141bca3e7fe07e3c303aa0.jpg?v=1792316037",
+          "altText": "Hand sliding cards out of the pop-up wallet",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166737123",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sed11f39797d8400b8d029bdbfbcf91c74.jpg?v=1792316041",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166769891",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S41bf36d268a9458d96a2e0a5988b8135b.jpg?v=1792316044",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166933731",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S42d5dd6276f246deb0d76e748ad6d588V.jpg?v=1792316048",
+          "altText": "Slim wallet being slipped into a front pocket",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166900963",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Scd672fb30b134eafa842972d7a53c629d.png?v=1792316047",
+          "altText": "RFID blocking protection infographic with a payment terminal",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166802659",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se106db09fce8421faba37477c22d1fa4W.png?v=1792316046",
+          "altText": "One-click pop-up infographic: press the side trigger to fan the cards out",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166966499",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3277fe42db4479f9311779e19de3b43F.png?v=1792316052",
+          "altText": "Product size infographic: 9.7 by 6.2 centimetres",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510167032035",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sba7759efba284626854f35f151cd3814S.png?v=1792316056",
+          "altText": "Slim and pocket-friendly infographic comparing the wallet with a bulky leather wallet",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510167261411",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S566b6fca15ff4c709859e99126ae49c53.jpg?v=1792316061",
+          "altText": "Capacity infographic: card chamber, backplate compartment and cash band",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510167294179",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5acd5b9a85e64c408cffd58297eda825i.jpg?v=1792316062",
+          "altText": "Black pop-up wallet unpacked beside its gift box",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510167228643",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sa666a17ed4e24cdd9c6cc317ae0127c9Z.jpg?v=1792316061",
+          "altText": "",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510166311139",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe7577acf8d7405fa140c00bb797193fa.jpg?v=1792316015",
+          "altText": "Black pop-up wallet shown from the front and side",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "type": "image",
+          "id": "gid://shopify/MediaImage/46510167359715",
+          "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S72cfd44f4dc941158cc4d84116996dd60.png?v=1792316064",
+          "altText": "",
+          "width": 1254,
+          "height": 1254
+        },
+        {
+          "type": "image",
           "id": "gid://shopify/MediaImage/36062642307299",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle39.png?v=1740581441",
-          "altText": "A black RFID-enabled card holder with multiple cards inserted, showcasing a sleek and minimalist design.",
+          "altText": "Slate gray RFID pop-up wallet with cards fanned out",
           "width": 1033,
           "height": 1007
         },
@@ -193,7 +501,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36062642372835",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle40.png?v=1740581441",
-          "altText": "",
+          "altText": "Silver aluminum RFID pop-up wallet with elastic cash band",
           "width": 1033,
           "height": 1007
         },
@@ -201,7 +509,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36348450799843",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_32_14_PM.png?v=1744736438",
-          "altText": "",
+          "altText": "Black RFID pop-up wallet with red cards fanned out",
           "width": 1024,
           "height": 1024
         },
@@ -233,7 +541,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36348450996451",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
-          "altText": "",
+          "altText": "Copper RFID pop-up wallet showing the outer grip cutouts",
           "width": 1024,
           "height": 1024
         }
@@ -246,7 +554,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-10-18T08:28:56Z",
+      "updatedAt": "2026-10-18T09:59:41Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -484,22 +792,348 @@
         "max": 39.99
       },
       "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619874615523\",\"gid://shopify/Metaobject/619875205347\",\"gid://shopify/Metaobject/619874713827\",\"gid://shopify/Metaobject/619874975971\"]",
+        "custom.cta_headline": "Ready for a slimmer, safer wallet?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619875533027\",\"gid://shopify/Metaobject/619874943203\",\"gid://shopify/Metaobject/619875139811\",\"gid://shopify/Metaobject/619875041507\",\"gid://shopify/Metaobject/619875303651\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619875107043\",\"gid://shopify/Metaobject/619874681059\",\"gid://shopify/Metaobject/619874779363\",\"gid://shopify/Metaobject/619875008739\",\"gid://shopify/Metaobject/619892605155\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619875074275\",\"gid://shopify/Metaobject/619874910435\",\"gid://shopify/Metaobject/619875369187\"]",
+        "custom.perks": "[\"One-touch pop-up card access\",\"RFID/NFC-blocking aluminum casing\",\"Holds 5–7 cards plus cash\",\"Slim front-pocket design\"]",
+        "custom.sale_ends_at": "2026-10-20T04:00:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619875172579\",\"gid://shopify/Metaobject/619875401955\",\"gid://shopify/Metaobject/619875270883\",\"gid://shopify/Metaobject/619875565795\",\"gid://shopify/Metaobject/619875336419\",\"gid://shopify/Metaobject/619875434723\",\"gid://shopify/Metaobject/619875467491\",\"gid://shopify/Metaobject/619875631331\",\"gid://shopify/Metaobject/619892637923\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619874648291\",\"gid://shopify/Metaobject/619874746595\"]",
+        "custom.subtitle": "One press fans your cards out. Aluminum shielding keeps contactless thieves out.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619874812131\",\"gid://shopify/Metaobject/619875238115\",\"gid://shopify/Metaobject/619875500259\",\"gid://shopify/Metaobject/619874844899\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619875598563\"]",
         "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"5.0\"}",
         "reviews.rating_count": "5",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\",\"gid://shopify/Metaobject/100900765923\",\"gid://shopify/Metaobject/100900831459\",\"gid://shopify/Metaobject/100900864227\",\"gid://shopify/Metaobject/100900929763\",\"gid://shopify/Metaobject/100900995299\",\"gid://shopify/Metaobject/100901028067\",\"gid://shopify/Metaobject/100901060835\",\"gid://shopify/Metaobject/100901093603\"]",
         "shopify.target-gender": "[\"gid://shopify/Metaobject/100900798691\"]",
         "shopify.wallet-features": "[\"gid://shopify/Metaobject/100900896995\",\"gid://shopify/Metaobject/100900962531\"]"
       },
-      "specs": [],
-      "featureHighlights": [],
+      "specs": [
+        {
+          "label": "Material",
+          "value": "Anodized aluminum alloy, rust-proof",
+          "description": "Space-grade aluminum with non-slip exterior panels",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510166311139",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sbe7577acf8d7405fa140c00bb797193fa.jpg?v=1792316015",
+            "altText": "Black pop-up wallet shown from the front and side",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "RFID/NFC protection",
+          "value": "Aluminum inner casing (Faraday cage)",
+          "description": "Blocks 13.56 MHz signals",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510166900963",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Scd672fb30b134eafa842972d7a53c629d.png?v=1792316047",
+            "altText": "RFID blocking protection infographic with a payment terminal",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        },
+        {
+          "label": "Card access",
+          "value": "Side slider lever, one-touch pop-up",
+          "description": null,
+          "image": {
+            "id": "gid://shopify/MediaImage/46510166802659",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se106db09fce8421faba37477c22d1fa4W.png?v=1792316046",
+            "altText": "One-click pop-up infographic: press the side trigger to fan the cards out",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        },
+        {
+          "label": "Card capacity",
+          "value": "5–7 cards in the aluminum chamber",
+          "description": "Extra cards and cash fit under the elastic band",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510167261411",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S566b6fca15ff4c709859e99126ae49c53.jpg?v=1792316061",
+            "altText": "Capacity infographic: card chamber, backplate compartment and cash band",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "label": "Dimensions",
+          "value": "9.7 × 6.2 cm (3.8 × 2.4 in)",
+          "description": null,
+          "image": {
+            "id": "gid://shopify/MediaImage/46510166966499",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sc3277fe42db4479f9311779e19de3b43F.png?v=1792316052",
+            "altText": "Product size infographic: 9.7 by 6.2 centimetres",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        },
+        {
+          "label": "Carry style",
+          "value": "Ultra-slim, front-pocket",
+          "description": "Replaces a bulky leather wallet",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510167032035",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sba7759efba284626854f35f151cd3814S.png?v=1792316056",
+            "altText": "Slim and pocket-friendly infographic comparing the wallet with a bulky leather wallet",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        },
+        {
+          "label": "Cash & receipts",
+          "value": "High-durability elastic band",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Outer storage",
+          "value": "Dual outer grip slots",
+          "description": "For daily access cards or IDs",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Finishes",
+          "value": "Copper/Rust Brown, Metallic Slate Gray",
+          "description": "More colours are available on the product page",
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "hand",
+          "label": "Quick-trigger pop-up access",
+          "body": "Slide the side lever and your credit cards fan out in a neat cascade. Pick one, push the rest back in — all with a single hand.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510166802659",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Se106db09fce8421faba37477c22d1fa4W.png?v=1792316046",
+            "altText": "One-click pop-up infographic: press the side trigger to fan the cards out",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        },
+        {
+          "icon": "shield",
+          "label": "A protective Faraday cage around your cards",
+          "body": "The heavy-duty aluminum inner casing blocks 13.56 MHz signals, so unauthorized scans can't read the cards inside — protection against electronic pickpocketing and RFID skimming.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510166900963",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Scd672fb30b134eafa842972d7a53c629d.png?v=1792316047",
+            "altText": "RFID blocking protection infographic with a payment terminal",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        },
+        {
+          "icon": "package",
+          "label": "A flexible band for cash and receipts",
+          "body": "A high-durability elastic band keeps paper bills, receipts or business cards tightly secured to the wallet frame, so loose paper stays out of your pocket.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510167261411",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S566b6fca15ff4c709859e99126ae49c53.jpg?v=1792316061",
+            "altText": "Capacity infographic: card chamber, backplate compartment and cash band",
+            "width": 1000,
+            "height": 1000
+          },
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Dual outer grip slots",
+          "body": "Quick-swipe exterior cutouts hold the access card or ID you use every day, so you can slide it out without opening the main compartment.",
+          "image": {
+            "id": "gid://shopify/MediaImage/36348450996451",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/ChatGPT_Image_Apr_15_2025_08_38_03_PM.png?v=1744736438",
+            "altText": "Copper RFID pop-up wallet showing the outer grip cutouts",
+            "width": 1024,
+            "height": 1024
+          },
+          "video": null
+        },
+        {
+          "icon": "feather",
+          "label": "Slim enough for a front pocket",
+          "body": "A compact, ultra-slim design replaces a fat, bulky leather wallet and reduces pocket bulge and strain.",
+          "image": {
+            "id": "gid://shopify/MediaImage/46510167032035",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sba7759efba284626854f35f151cd3814S.png?v=1792316056",
+            "altText": "Slim and pocket-friendly infographic comparing the wallet with a bulky leather wallet",
+            "width": 1254,
+            "height": 1254
+          },
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "hand",
+            "label": "Cards in one press",
+            "body": "A side slider lever fans your cards out in a neat cascade — single-handed.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "shield",
+            "label": "Blocks RFID skimming",
+            "body": "The aluminum inner casing acts as a Faraday cage against 13.56 MHz scans.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "feather",
+            "label": "Slim, not bulky",
+            "body": "Replaces a fat leather wallet with a compact front-pocket design.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "stone",
+            "label": "Rust-proof aluminum",
+            "body": "Anodized aluminum alloy with non-slip exterior panels.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "A fat wallet, and cards anyone could scan",
+            "body": "A fat wallet stretches your pocket out of shape, and digging for the right card slows you down at the till — while contactless cards sit open to electronic pickpocketing and RFID skimming.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the Pop-Up Wallet.",
+            "body": "A slim aluminum chamber holds your cards behind a shielded casing, and one slide of the side lever fans them out so the one you need is already in your hand. Cash and receipts ride on an elastic band; your daily card sits in an outer grip slot.",
+            "image": {
+              "id": "gid://shopify/MediaImage/46510166671587",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S6237b92cd74141bca3e7fe07e3c303aa0.jpg?v=1792316037",
+              "altText": "Hand sliding cards out of the pop-up wallet",
+              "width": 1000,
+              "height": 1000
+            },
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "package",
+            "label": "Load your cards",
+            "body": "Slide 5–7 cards into the aluminum chamber.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "hand",
+            "label": "Press the lever",
+            "body": "Push the side slider and the cards fan out in a cascade.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Grab and go",
+            "body": "Take the card you need and slide the rest back in.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "ship",
+            "label": "At the till",
+            "body": "Fan out the cards, tap, and put it away — no digging.",
+            "image": {
+              "id": "gid://shopify/MediaImage/46510166376675",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Sd35a15b1278b4bdf9cf2d35d2a572aa7K.jpg?v=1792316021",
+              "altText": "RFID blocking comparison: the wallet held near a payment terminal",
+              "width": 1000,
+              "height": 1000
+            },
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Crowded places",
+            "body": "Shielded cards in a slim front pocket, instead of a back-pocket wallet.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Daily commute",
+            "body": "Keep your transit card or ID in an outer grip slot for a quick swipe.",
+            "image": {
+              "id": "gid://shopify/MediaImage/46510166933731",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S42d5dd6276f246deb0d76e748ad6d588V.jpg?v=1792316048",
+              "altText": "Slim wallet being slipped into a front pocket",
+              "width": 1000,
+              "height": 1000
+            },
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "A practical gift",
+            "body": "Choose a finish that suits them from the colours on this page.",
+            "image": {
+              "id": "gid://shopify/MediaImage/46510167294179",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/S5acd5b9a85e64c408cffd58297eda825i.jpg?v=1792316062",
+              "altText": "Black pop-up wallet unpacked beside its gift box",
+              "width": 1000,
+              "height": 1000
+            },
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "package",
+            "label": "1 × RFID Pop-Up Wallet",
+            "body": "Aluminum chamber with side slider, elastic band and dual outer grip slots, in your chosen colour.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "Does it really block RFID and NFC?",
+            "answer": "The aluminum inner casing acts as a Faraday cage and blocks 13.56 MHz signals — the frequency used by contactless cards — so the cards inside can't be read by an unauthorized scan."
+          },
+          {
+            "question": "How many cards does it hold?",
+            "answer": "Up to 5–7 cards in the aluminum chamber. You can add cash and extra cards under the elastic band."
+          },
+          {
+            "question": "How do I get a card out?",
+            "answer": "Slide the side lever. The cards fan out in a cascade so you can pick the one you need with one hand."
+          },
+          {
+            "question": "Can I carry cash with it?",
+            "answer": "Yes. The high-durability elastic band holds paper bills, receipts or business cards against the wallet frame."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -527,42 +1161,42 @@
         {
           "id": "gid://shopify/MediaImage/36062833213667",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle49.png?v=1740593099",
-          "altText": "",
+          "altText": "Black stainless-steel credit-card multitool with paracord wrap",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/MediaImage/36062833180899",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle51_7.png?v=1740593099",
-          "altText": "",
+          "altText": "Back of the credit-card multitool showing ruler and Morse code engraving",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/MediaImage/36062833148131",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle50.png?v=1740593098",
-          "altText": "",
+          "altText": "Close-up of the multitool's saw teeth and bottle-opener notch",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/ProductImage/44220780708067",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle49.png?v=1740593099",
-          "altText": "",
+          "altText": "Black stainless-steel credit-card multitool with paracord wrap",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/ProductImage/44220780740835",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle51_7.png?v=1740593099",
-          "altText": "",
+          "altText": "Back of the credit-card multitool showing ruler and Morse code engraving",
           "width": 1033,
           "height": 1007
         },
         {
           "id": "gid://shopify/ProductImage/44220780675299",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle50.png?v=1740593098",
-          "altText": "",
+          "altText": "Close-up of the multitool's saw teeth and bottle-opener notch",
           "width": 1033,
           "height": 1007
         }
@@ -572,7 +1206,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36062833213667",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle49.png?v=1740593099",
-          "altText": "",
+          "altText": "Black stainless-steel credit-card multitool with paracord wrap",
           "width": 1033,
           "height": 1007
         },
@@ -580,7 +1214,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36062833180899",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle51_7.png?v=1740593099",
-          "altText": "",
+          "altText": "Back of the credit-card multitool showing ruler and Morse code engraving",
           "width": 1033,
           "height": 1007
         },
@@ -588,7 +1222,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/36062833148131",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle50.png?v=1740593098",
-          "altText": "",
+          "altText": "Close-up of the multitool's saw teeth and bottle-opener notch",
           "width": 1033,
           "height": 1007
         },
@@ -624,7 +1258,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-10-13T16:27:02Z",
+      "updatedAt": "2026-10-18T09:46:41Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -667,20 +1301,245 @@
       },
       "compareAtPriceRange": null,
       "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619875696867\",\"gid://shopify/Metaobject/619875795171\",\"gid://shopify/Metaobject/619875959011\",\"gid://shopify/Metaobject/619876319459\"]",
+        "custom.cta_headline": "Ready to carry a toolkit that fits in your wallet?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619876221155\",\"gid://shopify/Metaobject/619875926243\",\"gid://shopify/Metaobject/619875762403\",\"gid://shopify/Metaobject/619876516067\",\"gid://shopify/Metaobject/619876352227\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619876581603\",\"gid://shopify/Metaobject/619876024547\",\"gid://shopify/Metaobject/619875729635\",\"gid://shopify/Metaobject/619875827939\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619876090083\",\"gid://shopify/Metaobject/619876548835\",\"gid://shopify/Metaobject/619876614371\"]",
+        "custom.perks": "[\"Credit-card size, wallet-slot fit\",\"Dual-blade edge, saw, wire cutter and opener\",\"Heat-treated stainless steel\",\"Paracord grip, ruler and SOS reference\"]",
+        "custom.specs": "[\"gid://shopify/Metaobject/619876057315\",\"gid://shopify/Metaobject/619876647139\",\"gid://shopify/Metaobject/619876417763\",\"gid://shopify/Metaobject/619876188387\",\"gid://shopify/Metaobject/619876286691\",\"gid://shopify/Metaobject/619875860707\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619876122851\",\"gid://shopify/Metaobject/619875991779\"]",
+        "custom.subtitle": "A full multitool in the shape of a credit card — it slides into any wallet slot.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619875893475\",\"gid://shopify/Metaobject/619876253923\",\"gid://shopify/Metaobject/619876155619\",\"gid://shopify/Metaobject/619876450531\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619876483299\"]",
         "reviews.rating": "{\"scale_min\":\"1.0\",\"scale_max\":\"5.0\",\"value\":\"4.91\"}",
         "reviews.rating_count": "11",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100896604387\"]"
       },
-      "specs": [],
-      "featureHighlights": [],
+      "specs": [
+        {
+          "label": "Material",
+          "value": "Heat-treated stainless steel",
+          "description": "Corrosion-resistant, matte-black coated",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Size",
+          "value": "Standard credit-card dimensions",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Cutting edges",
+          "value": "Razor-sharp edge + blunt edge",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Tools",
+          "value": "Wire-cutter notch · flathead screwdriver · bottle/can opener · serrated saw",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Grip",
+          "value": "Braided paracord wrap",
+          "description": "Can be unraveled for emergency rope",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Markings",
+          "value": "Edge ruler · engraved Morse SOS/HELP reference",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "check",
+          "label": "Dual-blade edge: sharp and blunt",
+          "body": "A razor-sharp edge for slicing rope and boxes, and a dull, blunt edge made for scraping, prying and safe handling.",
+          "image": {
+            "id": "gid://shopify/MediaImage/36062833180899",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle51_7.png?v=1740593099",
+            "altText": "Back of the credit-card multitool showing ruler and Morse code engraving",
+            "width": 1033,
+            "height": 1007
+          },
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Saw, wire cutter and opener",
+          "body": "A multi-tooth serrated edge saws through wood, cordage and tough plastics. A dedicated notch strips and cuts electrical wire, ties and cables, and a reinforced leverage notch pops bottle caps and tin cans.",
+          "image": {
+            "id": "gid://shopify/MediaImage/36062833148131",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle50.png?v=1740593098",
+            "altText": "Close-up of the multitool's saw teeth and bottle-opener notch",
+            "width": 1033,
+            "height": 1007
+          },
+          "video": null
+        },
+        {
+          "icon": "hand",
+          "label": "Paracord grip that unravels",
+          "body": "A tactical braided cord wrap gives the card a non-slip, ergonomic handle — and can be unraveled for emergency rope.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "ruler",
+          "label": "Corner screwdriver, ruler and SOS signals",
+          "body": "A flathead screwdriver tip on the corner handles quick screw adjustments. The marked edge measures, and the engraved Morse code (SOS/HELP) reference is there if you ever need it.",
+          "image": null,
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "ruler",
+            "label": "Wallet-slot slim",
+            "body": "Standard credit-card dimensions — no extra pocket weight.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gym",
+            "label": "Tough stainless steel",
+            "body": "Heat-treated, corrosion-resistant, matte-black coated.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Many tools, one card",
+            "body": "Blade, saw, wire cutter, screwdriver, opener and ruler on one card.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "support",
+            "label": "Ready for emergencies",
+            "body": "Paracord wrap and an engraved Morse SOS/HELP reference.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "The right tool is never in your pocket",
+            "body": "A box needs cutting, a bottle needs opening, a screw has come loose — and the multitool is at home in a drawer.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the BladeCard Elite.",
+            "body": "It folds a razor-sharp edge, a blunt scraping edge, a wire-cutter notch, a screwdriver tip, a bottle and can opener and a saw edge into a stainless-steel card that sits in your wallet like any other.",
+            "image": {
+              "id": "gid://shopify/MediaImage/36062833213667",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Rectangle49.png?v=1740593099",
+              "altText": "Black stainless-steel credit-card multitool with paracord wrap",
+              "width": 1033,
+              "height": 1007
+            },
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "package",
+            "label": "Slip it in",
+            "body": "Keep it in a wallet slot, money clip or pouch like a standard card.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "hand",
+            "label": "Pick your edge",
+            "body": "Use the sharp edge, blunt edge, saw, notch or opener — whichever the job needs.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Put it back",
+            "body": "It goes straight back into your wallet, no case required.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "sun",
+            "label": "Camping & hiking",
+            "body": "A saw, cord and SOS reference in a pocket-sized package.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "ship",
+            "label": "DIY repairs",
+            "body": "Screwdriver tip, wire cutter notch and an edge for opening boxes.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Auto kits & urban survival",
+            "body": "A must-have utility tool for emergencies, in the shape of a card.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "Everyday carry",
+            "body": "A bottle opener and a ruler are handy more often than you'd expect.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "package",
+            "label": "1 × BladeCard Elite multitool card",
+            "body": "Stainless-steel card with integrated tools and paracord grip wrap.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "Will it fit in my wallet?",
+            "answer": "Yes. It has standard credit-card dimensions, so it slides into a wallet slot, a money clip or a pouch."
+          },
+          {
+            "question": "What can it cut?",
+            "answer": "The sharp edge slices rope and boxes, the serrated edge saws wood, cordage and tough plastics, and the notch cuts and strips electrical wire, ties and cables."
+          },
+          {
+            "question": "Why is there a blunt edge as well?",
+            "answer": "The dull edge is for scraping, prying and safe handling, so you aren't reaching for the sharp one every time."
+          },
+          {
+            "question": "Will it rust?",
+            "answer": "It is made from corrosion-resistant stainless steel with a matte-black coating, built for rugged outdoor and daily use."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -741,7 +1600,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-10-13T16:27:07Z",
+      "updatedAt": "2026-10-18T09:46:47Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -786,17 +1645,243 @@
         "min": 142.7,
         "max": 142.7
       },
-      "metafields": {},
-      "specs": [],
-      "featureHighlights": [],
+      "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619876679907\",\"gid://shopify/Metaobject/619876778211\",\"gid://shopify/Metaobject/619876712675\",\"gid://shopify/Metaobject/619876745443\"]",
+        "custom.cta_headline": "Ready to carry less and lose nothing?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619877040355\",\"gid://shopify/Metaobject/619877302499\",\"gid://shopify/Metaobject/619877564643\",\"gid://shopify/Metaobject/619877597411\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619877138659\",\"gid://shopify/Metaobject/619877269731\",\"gid://shopify/Metaobject/619876843747\",\"gid://shopify/Metaobject/619876909283\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619877630179\",\"gid://shopify/Metaobject/619877499107\",\"gid://shopify/Metaobject/619877695715\"]",
+        "custom.perks": "[\"4 essentials in one kit\",\"Bluetooth tracker card and key tag\",\"Carbon fiber key organizer\",\"Stainless-steel multitool wallet card\"]",
+        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619877531875\",\"gid://shopify/Metaobject/619877368035\",\"gid://shopify/Metaobject/619877400803\",\"gid://shopify/Metaobject/619877433571\",\"gid://shopify/Metaobject/619877007587\",\"gid://shopify/Metaobject/619877335267\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619876974819\",\"gid://shopify/Metaobject/619876810979\"]",
+        "custom.subtitle": "Two trackers, a key organizer and a multitool card — everything for a lighter, safer carry.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619877105891\",\"gid://shopify/Metaobject/619877073123\",\"gid://shopify/Metaobject/619876942051\",\"gid://shopify/Metaobject/619877171427\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619877466339\",\"gid://shopify/Metaobject/619877204195\",\"gid://shopify/Metaobject/619876876515\",\"gid://shopify/Metaobject/619877662947\"]"
+      },
+      "specs": [
+        {
+          "label": "Kit contents",
+          "value": "4 pieces",
+          "description": "Card tracker · tag finder · key organizer · multitool card",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Trackers",
+          "value": "Bluetooth smart card + smart tag",
+          "description": "Connect to smart tracking networks",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Key organizer",
+          "value": "Forged carbon fiber, fold-out",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Multitool card",
+          "value": "Stainless steel",
+          "description": "Bottle opener, edge ruler, wrench slots, elastic cash strap",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Materials",
+          "value": "Space-grade aluminum, carbon fiber finish, tactical steel",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Carry",
+          "value": "Front-pocket friendly, minimalist design",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "travel",
+          "label": "Ultra-slim smart card tracker",
+          "body": "A credit-card-sized Bluetooth card that slides into any wallet slot or passport pouch for seamless global tracking.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Compact smart tag finder",
+          "body": "A lightweight Bluetooth key tag that clips onto keys, luggage or bag zippers for quick location alerts.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "stone",
+          "label": "Forged carbon fiber key organizer",
+          "body": "A compact fold-out holder that secures multiple keys, eliminating pocket bulge and key noise.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "ruler",
+          "label": "Multifunctional tactical wallet card",
+          "body": "A stainless-steel survival tool the size of a credit card, with a bottle opener, edge ruler, wrench slots and an elastic cash strap.",
+          "image": null,
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "travel",
+            "label": "Track wallet and keys",
+            "body": "Connect your wallet and keys to smart tracking networks for instant location pinpointing.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Everyday utility",
+            "body": "A built-in multitool handles quick repairs, bottle opening and measuring.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "stone",
+            "label": "Durable build",
+            "body": "Space-grade aluminum, carbon fiber finish and tactical steel.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "feather",
+            "label": "No pocket bulk",
+            "body": "A minimalist design that fits comfortably in front pockets.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "Four small things to keep track of",
+            "body": "A wallet that vanishes, keys that jangle, a trip where nothing is where you left it — and no tool when you need one.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the Essential Travel Kit.",
+            "body": "A compact bundle that combines modern tracking tech with tactical utility, designed for commuters, outdoor enthusiasts and frequent flyers: a card tracker for the wallet, a tag finder for the keys, a key organizer and a multitool card.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "package",
+            "label": "Place the trackers",
+            "body": "Slide the card into your wallet and clip the tag to your keys or bag.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Connect",
+            "body": "Connect them to smart tracking networks for location pinpointing.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Carry on",
+            "body": "Keys folded into the organizer, the multitool card in your wallet slot.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "ship",
+            "label": "Daily commute",
+            "body": "Keys quiet and organized, wallet trackable.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Frequent flying",
+            "body": "Wallet and passport pouch trackable on the move.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sun",
+            "label": "Outdoors",
+            "body": "A multitool card with a bottle opener and wrench slots.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "A bundled gift",
+            "body": "Four useful essentials in one kit.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "travel",
+            "label": "Ultra-slim smart card tracker",
+            "body": "Credit-card-sized Bluetooth card for your wallet or passport pouch.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Compact smart tag finder",
+            "body": "Bluetooth key tag for keys, luggage or bag zippers.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "stone",
+            "label": "Forged carbon fiber key organizer",
+            "body": "Compact fold-out holder for multiple keys.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "ruler",
+            "label": "Multifunctional tactical wallet card",
+            "body": "Stainless steel, with bottle opener, ruler, wrench slots and cash strap.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "What's in the kit?",
+            "answer": "Four pieces: an ultra-slim smart card tracker, a compact smart tag finder, a forged carbon fiber key organizer and a multifunctional stainless-steel wallet card."
+          },
+          {
+            "question": "Where do the trackers go?",
+            "answer": "The card slides into a wallet slot or passport pouch. The tag clips onto keys, luggage or bag zippers."
+          },
+          {
+            "question": "What does the multitool card do?",
+            "answer": "It has a bottle opener, an edge ruler, wrench slots and an elastic cash strap, in a credit-card size."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -857,7 +1942,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-10-13T16:27:11Z",
+      "updatedAt": "2026-10-18T09:46:53Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -902,17 +1987,240 @@
         "min": 121.41,
         "max": 121.41
       },
-      "metafields": {},
-      "specs": [],
-      "featureHighlights": [],
+      "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619877728483\",\"gid://shopify/Metaobject/619877761251\",\"gid://shopify/Metaobject/619877826787\",\"gid://shopify/Metaobject/619878416611\"]",
+        "custom.cta_headline": "Ready to stop misplacing the things that matter?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619877957859\",\"gid://shopify/Metaobject/619878056163\",\"gid://shopify/Metaobject/619878547683\",\"gid://shopify/Metaobject/619878744291\",\"gid://shopify/Metaobject/619878285539\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619877859555\",\"gid://shopify/Metaobject/619878252771\",\"gid://shopify/Metaobject/619877892323\",\"gid://shopify/Metaobject/619878121699\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619878449379\",\"gid://shopify/Metaobject/619878154467\",\"gid://shopify/Metaobject/619878023395\"]",
+        "custom.perks": "[\"Ultra-thin card tracker for your wallet\",\"Keychain tag for keys and bags\",\"Separation alerts on your phone\",\"Loud beeper you trigger remotely\"]",
+        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619878318307\",\"gid://shopify/Metaobject/619878088931\",\"gid://shopify/Metaobject/619878645987\",\"gid://shopify/Metaobject/619878514915\",\"gid://shopify/Metaobject/619878613219\",\"gid://shopify/Metaobject/619877990627\",\"gid://shopify/Metaobject/619878383843\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619877794019\",\"gid://shopify/Metaobject/619877925091\"]",
+        "custom.subtitle": "A slim card for your wallet and a tag for your keys — find either from your phone.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619878711523\",\"gid://shopify/Metaobject/619878187235\",\"gid://shopify/Metaobject/619878220003\",\"gid://shopify/Metaobject/619878580451\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619878482147\",\"gid://shopify/Metaobject/619878678755\"]"
+      },
+      "specs": [
+        {
+          "label": "Set contents",
+          "value": "Smart card tracker + smart tag finder",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Tracking",
+          "value": "Real-time, via smart global location networks",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Alerts",
+          "value": "Instant separation alerts on your phone",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Audio",
+          "value": "Loud beeper, triggered from your smartphone",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Connectivity",
+          "value": "Low-power Bluetooth",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Build",
+          "value": "Scratch-resistant, travel-ready materials",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Card profile",
+          "value": "Razor-thin — fits a standard card slot",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "travel",
+          "label": "Ultra-thin smart card tracker",
+          "body": "A razor-thin profile that fits into any standard wallet card slot, passport holder or slim billfold without adding bulk.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Compact smart tag finder",
+          "body": "A lightweight, durable keychain-style tracker that attaches instantly to house keys, car fobs, backpacks or travel luggage.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "support",
+          "label": "Instant separation alerts",
+          "body": "Your phone notifies you the moment you walk away from a tagged item, so you notice before you're out the door.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "sparkle",
+          "label": "A loud ring on demand",
+          "body": "Trigger an audible ring straight from your smartphone to locate items tucked under furniture or inside deep bags.",
+          "image": null,
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "travel",
+            "label": "Global tracking",
+            "body": "Syncs with smart global location networks for worldwide item retrieval.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Separation alerts",
+            "body": "Get notified on your phone whenever you leave a tagged item behind.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Loud beeper",
+            "body": "Ring an item from your phone to find it under furniture or inside a deep bag.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "battery",
+            "label": "Low-power Bluetooth",
+            "body": "Scratch-resistant, travel-ready materials with long battery life.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "Where did I put it?",
+            "body": "Wallet, passport, keys, bag — the things you need most are the easiest to misplace, and a search wastes the time you don't have.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the TrackPack Duo.",
+            "body": "Two trackers, one set: an ultra-slim smart card that fits any wallet slot or passport holder, and a smart tag that clips on to keys, car fobs, backpacks and luggage — with full-coverage location tracking, anywhere in the world.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "package",
+            "label": "Attach",
+            "body": "Slide the card into your wallet; clip the tag to your keys or bag.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Sync",
+            "body": "Connect to smart global location networks from your phone.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Find",
+            "body": "Check the location, or ring the item to hear where it is.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "ship",
+            "label": "Wallet & passport",
+            "body": "A card that disappears into a slot and keeps watch.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "home",
+            "label": "House keys & car fobs",
+            "body": "Never turn the house upside down for keys again.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Luggage & backpacks",
+            "body": "Tag a bag you can't afford to lose on a trip.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "A useful gift",
+            "body": "Two trackers in one set.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "travel",
+            "label": "1 × Ultra-thin smart card tracker",
+            "body": "For wallets, passport holders and slim billfolds.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "1 × Compact smart tag finder",
+            "body": "Keychain-style tracker for keys, fobs, backpacks and luggage.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "What's in the set?",
+            "answer": "An ultra-thin smart card tracker for your wallet or passport holder and a compact smart tag finder for keys, bags and luggage."
+          },
+          {
+            "question": "Will it alert me if I leave something behind?",
+            "answer": "Yes. You receive an immediate notification on your phone whenever you leave a tagged item behind."
+          },
+          {
+            "question": "How do I find something nearby?",
+            "answer": "Trigger the loud beeper from your smartphone to hear where an item is — for example under furniture or inside a deep bag."
+          },
+          {
+            "question": "Does the card add bulk to my wallet?",
+            "answer": "No. It has a razor-thin profile designed to fit seamlessly into a standard wallet card slot without adding bulk."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -973,7 +2281,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-10-13T16:27:06Z",
+      "updatedAt": "2026-10-18T09:47:01Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -1018,17 +2326,254 @@
         "min": 157.13,
         "max": 157.13
       },
-      "metafields": {},
-      "specs": [],
-      "featureHighlights": [],
+      "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619878777059\",\"gid://shopify/Metaobject/619879170275\",\"gid://shopify/Metaobject/619879203043\",\"gid://shopify/Metaobject/619879760099\"]",
+        "custom.cta_headline": "Ready to travel lighter and lose nothing?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619879563491\",\"gid://shopify/Metaobject/619879497955\",\"gid://shopify/Metaobject/619879727331\",\"gid://shopify/Metaobject/619879825635\",\"gid://shopify/Metaobject/619879301347\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619879530723\",\"gid://shopify/Metaobject/619878908131\",\"gid://shopify/Metaobject/619879694563\",\"gid://shopify/Metaobject/619879399651\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619879366883\",\"gid://shopify/Metaobject/619878940899\",\"gid://shopify/Metaobject/619879071971\"]",
+        "custom.perks": "[\"RFID-blocking pop-up wallet\",\"Carbon fiber key organizer\",\"Smart card tracker and key tag\",\"Works with iOS and Android\"]",
+        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619879006435\",\"gid://shopify/Metaobject/619878875363\",\"gid://shopify/Metaobject/619879104739\",\"gid://shopify/Metaobject/619878973667\",\"gid://shopify/Metaobject/619879039203\",\"gid://shopify/Metaobject/619879629027\",\"gid://shopify/Metaobject/619879334115\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619879465187\",\"gid://shopify/Metaobject/619879235811\"]",
+        "custom.subtitle": "A shielded pop-up wallet, a key organizer and two trackers — organized and trackable anywhere.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619878809827\",\"gid://shopify/Metaobject/619878842595\",\"gid://shopify/Metaobject/619879792867\",\"gid://shopify/Metaobject/619879432419\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619879268579\",\"gid://shopify/Metaobject/619879661795\",\"gid://shopify/Metaobject/619879596259\",\"gid://shopify/Metaobject/619879137507\"]"
+      },
+      "specs": [
+        {
+          "label": "Bundle contents",
+          "value": "4 pieces",
+          "description": "Pop-up wallet · key organizer · card tracker · tag tracker",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Wallet",
+          "value": "Heavy-duty aluminum, RFID-blocking",
+          "description": "Quick-trigger card ejection, holds up to 6 cards",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Cash & receipts",
+          "value": "Expandable elastic strap",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Key organizer",
+          "value": "Forged carbon fiber, fold-out",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Trackers",
+          "value": "Bluetooth smart card + smart tag",
+          "description": "Single-touch pairing, real-time proximity alerts",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Compatibility",
+          "value": "iOS and Android",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Materials",
+          "value": "Space-grade carbon fiber motif and aircraft aluminum",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "shield",
+          "label": "RFID-blocking pop-up smart wallet",
+          "body": "A heavy-duty aluminum build with quick-trigger card ejection. It holds up to 6 cards securely and protects your identity against electronic pickpocketing and RFID skimming, with an expandable elastic strap for cash or receipts.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "stone",
+          "label": "Forged carbon fiber key organizer",
+          "body": "Eliminates pocket clutter and key jangling. A sleek, lightweight, durable design holds multiple keys silently in a compact fold-out frame.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "travel",
+          "label": "Ultra-slim smart card tracker",
+          "body": "A credit-card-sized Bluetooth tracker that fits directly into your wallet or passport sleeve, compatible with smart tracking networks for effortless global location monitoring.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Compact smart tag keychain tracker",
+          "body": "Attach it to your keys, backpack or luggage and track missing items from your smartphone, with single-touch pairing and real-time proximity alerts.",
+          "image": null,
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "shield",
+            "label": "Anti-theft protection",
+            "body": "An RFID-blocking shield prevents unauthorized wireless scans.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Global peace of mind",
+            "body": "Track your wallet and keys anywhere with smart Bluetooth technology.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "feather",
+            "label": "Minimal and lightweight",
+            "body": "Carbon fiber motif and aircraft aluminum reduce pocket bulk.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Universal compatibility",
+            "body": "Works with iOS and Android devices.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "Cards, cash and keys everywhere",
+            "body": "On the road your wallet, keys and cards are the things you can least afford to lose — and the hardest to keep organized.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the Nomad Guard.",
+            "body": "A high-tech set built for travelers, digital nomads and commuters that keeps your cards, cash and keys organized, lightweight and completely trackable.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "package",
+            "label": "Load your wallet",
+            "body": "Add up to 6 cards and slide in the smart card tracker.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Tag your keys",
+            "body": "Fold the keys into the organizer and attach the smart tag.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Track from your phone",
+            "body": "Pair with single-touch pairing and watch for proximity alerts.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "travel",
+            "label": "Digital nomads",
+            "body": "One organized set for cards, cash and keys.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "ship",
+            "label": "Daily commuters",
+            "body": "Quiet keys, a fast pop-up wallet and trackable essentials.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "shield",
+            "label": "Busy places",
+            "body": "RFID shielding against unauthorized wireless scans.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "A traveler's gift",
+            "body": "Four useful items in one bundle.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "shield",
+            "label": "RFID-blocking pop-up smart wallet",
+            "body": "Heavy-duty aluminum, holds up to 6 cards, with an expandable elastic strap.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "stone",
+            "label": "Forged carbon fiber key organizer",
+            "body": "Silent, lightweight fold-out frame for multiple keys.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Ultra-slim smart card tracker",
+            "body": "Credit-card-sized Bluetooth tracker for your wallet or passport sleeve.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Compact smart tag keychain tracker",
+            "body": "Single-touch pairing and real-time proximity alerts.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "What's in the bundle?",
+            "answer": "Four pieces: an RFID-blocking pop-up smart wallet, a forged carbon fiber key organizer, an ultra-slim smart card tracker and a compact smart tag keychain tracker."
+          },
+          {
+            "question": "How many cards does the wallet hold?",
+            "answer": "Up to 6 cards securely, plus cash or receipts under the expandable elastic strap."
+          },
+          {
+            "question": "Does it work with my phone?",
+            "answer": "Yes. It works with both iOS and Android devices."
+          },
+          {
+            "question": "How do the trackers pair?",
+            "answer": "The smart tag uses single-touch pairing, and both trackers are compatible with smart tracking networks for location monitoring from your phone."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -1089,7 +2634,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-10-13T16:27:07Z",
+      "updatedAt": "2026-10-18T09:47:01Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -1134,17 +2679,240 @@
         "min": 171.4,
         "max": 171.4
       },
-      "metafields": {},
-      "specs": [],
-      "featureHighlights": [],
+      "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619879891171\",\"gid://shopify/Metaobject/619880612067\",\"gid://shopify/Metaobject/619880677603\",\"gid://shopify/Metaobject/619879956707\"]",
+        "custom.cta_headline": "Ready to travel with less worry?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619880349923\",\"gid://shopify/Metaobject/619880546531\",\"gid://shopify/Metaobject/619880743139\",\"gid://shopify/Metaobject/619880022243\",\"gid://shopify/Metaobject/619880808675\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619880448227\",\"gid://shopify/Metaobject/619880579299\",\"gid://shopify/Metaobject/619880087779\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619880415459\",\"gid://shopify/Metaobject/619880874211\",\"gid://shopify/Metaobject/619880841443\"]",
+        "custom.perks": "[\"Anti-theft backpack, concealed zippers\",\"Unlock the padlock with your fingerprint\",\"Carbon fiber key organizer\",\"Save more as a kit\"]",
+        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619880906979\",\"gid://shopify/Metaobject/619880644835\",\"gid://shopify/Metaobject/619880382691\",\"gid://shopify/Metaobject/619880218851\",\"gid://shopify/Metaobject/619880186083\",\"gid://shopify/Metaobject/619880710371\",\"gid://shopify/Metaobject/619880775907\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619880251619\",\"gid://shopify/Metaobject/619880317155\"]",
+        "custom.subtitle": "An anti-theft backpack, a fingerprint padlock and a key organizer — secured, organized, keyless.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619880153315\",\"gid://shopify/Metaobject/619880055011\",\"gid://shopify/Metaobject/619879989475\",\"gid://shopify/Metaobject/619880284387\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619879923939\",\"gid://shopify/Metaobject/619880120547\",\"gid://shopify/Metaobject/619880513763\"]"
+      },
+      "specs": [
+        {
+          "label": "Bundle contents",
+          "value": "3 items",
+          "description": "Backpack · fingerprint padlock · key organizer",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Backpack colour",
+          "value": "Beige",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Backpack security",
+          "value": "Concealed zippers",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Backpack materials",
+          "value": "Durable, water-resistant",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Backpack storage",
+          "value": "Dedicated compartments for laptop, tablet and water bottle",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Padlock",
+          "value": "Biometric fingerprint unlock",
+          "description": "Multiple fingerprints; rechargeable battery",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Key organizer",
+          "value": "Forged carbon fiber",
+          "description": "Accessories sold separately",
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "travel",
+          "label": "The Modern Commuter Anti-Theft Backpack (Beige)",
+          "body": "A minimalist design with concealed zippers and durable water-resistant materials. Multiple dedicated compartments hold your laptop, tablet, water bottle and daily essentials, and padded shoulder straps with an ergonomic back panel keep all-day carry comfortable.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "lock",
+          "label": "The Biometric Fingerprint Smart Padlock",
+          "body": "Unlocks instantly with your unique fingerprint — no lost keys, no complex combinations. Program multiple fingerprints for family members or trusted companions, and use it on the backpack's zippers, a gym locker or luggage. The battery is rechargeable and long-lasting.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "stone",
+          "label": "The Carbon Fiber Key Smart Organizer",
+          "body": "Made from premium forged carbon fiber, it declutters your pockets. Keys stack neatly and swivel out with a simple motion, preventing scratches on other items. Tools and accessories can be added (sold separately).",
+          "image": null,
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "shield",
+            "label": "Integrated security",
+            "body": "A backpack, lock and key organizer designed to work together.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "lock",
+            "label": "Keyless access",
+            "body": "No keys or combinations to remember — biometrics unlock instantly.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Coordinated style",
+            "body": "Every component shares a premium, modern look.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "tag",
+            "label": "Great value",
+            "body": "Save more when you buy these essentials together as a kit.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "Lost keys, forgotten combinations, open zippers",
+            "body": "Bags get opened, locks need the right key or number, and a loose key ring makes a mess of your pockets.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the Smart Security Kit.",
+            "body": "A minimalist anti-theft backpack with concealed zippers, a padlock that opens with your fingerprint, and a forged carbon fiber key organizer — three things that work together so you spend less time searching and more time moving.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "hand",
+            "label": "Program your fingerprints",
+            "body": "Add yours — and others for family members or trusted companions.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "lock",
+            "label": "Lock it up",
+            "body": "Secure the backpack's zippers, a locker or your luggage.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Tap to open",
+            "body": "Unlock instantly with your fingerprint — no keys or combinations.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "ship",
+            "label": "Daily commute",
+            "body": "A backpack with dedicated compartments for laptop, tablet and bottle.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gym",
+            "label": "Gym lockers",
+            "body": "Lock a locker with a fingerprint instead of a key.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Luggage",
+            "body": "Use the padlock on your luggage.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "A coordinated gift",
+            "body": "Three matching essentials in one kit.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "travel",
+            "label": "Modern Commuter Anti-Theft Backpack (Beige)",
+            "body": "Concealed zippers, water-resistant materials, padded straps.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "lock",
+            "label": "Biometric Fingerprint Smart Padlock",
+            "body": "Multiple fingerprints, rechargeable battery.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "stone",
+            "label": "Carbon Fiber Key Smart Organizer",
+            "body": "Forged carbon fiber; accessories sold separately.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "What's in the kit?",
+            "answer": "A Modern Commuter Anti-Theft Backpack in beige, a Biometric Fingerprint Smart Padlock and a Carbon Fiber Key Smart Organizer."
+          },
+          {
+            "question": "Can more than one person use the padlock?",
+            "answer": "Yes. You can program multiple fingerprints for family members or trusted companions."
+          },
+          {
+            "question": "Where can I use the padlock?",
+            "answer": "On the backpack's zippers, a gym locker or your luggage."
+          },
+          {
+            "question": "Does the padlock need batteries?",
+            "answer": "It has a long-lasting rechargeable battery."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -1186,21 +2954,21 @@
         {
           "id": "gid://shopify/MediaImage/39543334437091",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer.jpg?v=1786450440",
-          "altText": "Blue tennis training device with a yellow ball on a white background",
+          "altText": "Blue solo tennis trainer base with tennis ball and elastic string",
           "width": 800,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/39543156211939",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.png?v=1786450483",
-          "altText": "A blue and black split pad or grip tool standing upright on a green outdoor court, with a fence visible in the background.",
+          "altText": "Solo tennis trainer base showing the fill valve",
           "width": 2048,
           "height": 2048
         },
         {
           "id": "gid://shopify/MediaImage/39543334469859",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.jpg?v=1786450502",
-          "altText": "Blue and black pet grooming tool on a white background",
+          "altText": "Underside of the tennis trainer base showing the grooves for wrapping the string",
           "width": 1100,
           "height": 1100
         },
@@ -1214,14 +2982,14 @@
         {
           "id": "gid://shopify/MediaImage/39538148049123",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_1.png?v=1786450543",
-          "altText": "A young boy smiling and holding a tennis racket on a concrete driveway, about to hit a tennis ball with a blue stringer device. The background shows a suburban house and trees during a golden hour.",
+          "altText": "Child practicing tennis in a driveway with the solo trainer",
           "width": 2048,
           "height": 2048
         },
         {
           "id": "gid://shopify/MediaImage/39538101551331",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_2.png?v=1786450563",
-          "altText": "Three children playing tennis on a suburban street, with one child in the foreground hitting a tennis ball with a racket and a string attached, while two other children watch and prepare.",
+          "altText": "Kids practicing tennis on a street with solo trainers",
           "width": 2048,
           "height": 2048
         },
@@ -1235,7 +3003,7 @@
         {
           "id": "gid://shopify/MediaImage/39543156179171",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Power.png?v=1786450589",
-          "altText": "A blue tennis ball machine sits on a green tennis court in the foreground, with a player in the background hitting a tennis ball with a racket.",
+          "altText": "Player returning a ball tethered to the solo tennis trainer on court",
           "width": 2048,
           "height": 2048
         },
@@ -1256,21 +3024,21 @@
         {
           "id": "gid://shopify/ProductImage/48758336061667",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer.jpg?v=1786450440",
-          "altText": "Blue tennis training device with a yellow ball on a white background",
+          "altText": "Blue solo tennis trainer base with tennis ball and elastic string",
           "width": 800,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/48758157148387",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.png?v=1786450483",
-          "altText": "A blue and black split pad or grip tool standing upright on a green outdoor court, with a fence visible in the background.",
+          "altText": "Solo tennis trainer base showing the fill valve",
           "width": 2048,
           "height": 2048
         },
         {
           "id": "gid://shopify/ProductImage/48758336094435",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.jpg?v=1786450502",
-          "altText": "Blue and black pet grooming tool on a white background",
+          "altText": "Underside of the tennis trainer base showing the grooves for wrapping the string",
           "width": 1100,
           "height": 1100
         },
@@ -1284,14 +3052,14 @@
         {
           "id": "gid://shopify/ProductImage/48753117102307",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_1.png?v=1786450543",
-          "altText": "A young boy smiling and holding a tennis racket on a concrete driveway, about to hit a tennis ball with a blue stringer device. The background shows a suburban house and trees during a golden hour.",
+          "altText": "Child practicing tennis in a driveway with the solo trainer",
           "width": 2048,
           "height": 2048
         },
         {
           "id": "gid://shopify/ProductImage/48753070473443",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_2.png?v=1786450563",
-          "altText": "Three children playing tennis on a suburban street, with one child in the foreground hitting a tennis ball with a racket and a string attached, while two other children watch and prepare.",
+          "altText": "Kids practicing tennis on a street with solo trainers",
           "width": 2048,
           "height": 2048
         },
@@ -1305,7 +3073,7 @@
         {
           "id": "gid://shopify/ProductImage/48758157115619",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Power.png?v=1786450589",
-          "altText": "A blue tennis ball machine sits on a green tennis court in the foreground, with a player in the background hitting a tennis ball with a racket.",
+          "altText": "Player returning a ball tethered to the solo tennis trainer on court",
           "width": 2048,
           "height": 2048
         },
@@ -1330,7 +3098,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39543334437091",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer.jpg?v=1786450440",
-          "altText": "Blue tennis training device with a yellow ball on a white background",
+          "altText": "Blue solo tennis trainer base with tennis ball and elastic string",
           "width": 800,
           "height": 800
         },
@@ -1338,7 +3106,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39543156211939",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.png?v=1786450483",
-          "altText": "A blue and black split pad or grip tool standing upright on a green outdoor court, with a fence visible in the background.",
+          "altText": "Solo tennis trainer base showing the fill valve",
           "width": 2048,
           "height": 2048
         },
@@ -1346,7 +3114,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39543334469859",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.jpg?v=1786450502",
-          "altText": "Blue and black pet grooming tool on a white background",
+          "altText": "Underside of the tennis trainer base showing the grooves for wrapping the string",
           "width": 1100,
           "height": 1100
         },
@@ -1362,7 +3130,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39538148049123",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_1.png?v=1786450543",
-          "altText": "A young boy smiling and holding a tennis racket on a concrete driveway, about to hit a tennis ball with a blue stringer device. The background shows a suburban house and trees during a golden hour.",
+          "altText": "Child practicing tennis in a driveway with the solo trainer",
           "width": 2048,
           "height": 2048
         },
@@ -1370,7 +3138,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39538101551331",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_2.png?v=1786450563",
-          "altText": "Three children playing tennis on a suburban street, with one child in the foreground hitting a tennis ball with a racket and a string attached, while two other children watch and prepare.",
+          "altText": "Kids practicing tennis on a street with solo trainers",
           "width": 2048,
           "height": 2048
         },
@@ -1386,7 +3154,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39543156179171",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Power.png?v=1786450589",
-          "altText": "A blue tennis ball machine sits on a green tennis court in the foreground, with a player in the background hitting a tennis ball with a racket.",
+          "altText": "Player returning a ball tethered to the solo tennis trainer on court",
           "width": 2048,
           "height": 2048
         },
@@ -1407,7 +3175,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-10-13T16:27:07Z",
+      "updatedAt": "2026-10-18T09:47:06Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -1501,19 +3269,264 @@
         "max": 65.27
       },
       "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619880939747\",\"gid://shopify/Metaobject/619880972515\",\"gid://shopify/Metaobject/619881038051\",\"gid://shopify/Metaobject/619881922787\"]",
+        "custom.cta_headline": "Ready to practice without waiting for a partner?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619881136355\",\"gid://shopify/Metaobject/619881857251\",\"gid://shopify/Metaobject/619881660643\",\"gid://shopify/Metaobject/619881529571\",\"gid://shopify/Metaobject/619881562339\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619881595107\",\"gid://shopify/Metaobject/619881201891\",\"gid://shopify/Metaobject/619881267427\",\"gid://shopify/Metaobject/619881332963\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619881169123\",\"gid://shopify/Metaobject/619881005283\",\"gid://shopify/Metaobject/619881234659\"]",
+        "custom.perks": "[\"Elastic cord returns every ball\",\"Fill with water or sand for stability\",\"Anti-tangle swivel ring\",\"For kids, beginners and adults\"]",
+        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619881758947\",\"gid://shopify/Metaobject/619881496803\",\"gid://shopify/Metaobject/619881070819\",\"gid://shopify/Metaobject/619881791715\",\"gid://shopify/Metaobject/619881398499\",\"gid://shopify/Metaobject/619881431267\",\"gid://shopify/Metaobject/619881464035\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619881103587\",\"gid://shopify/Metaobject/619881365731\"]",
+        "custom.subtitle": "Practice your forehand, backhand and footwork without a partner or a ball machine.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619881627875\",\"gid://shopify/Metaobject/619881890019\",\"gid://shopify/Metaobject/619881824483\",\"gid://shopify/Metaobject/619881726179\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619881300195\"]",
         "shopify.age-group": "[\"gid://shopify/Metaobject/251416674531\",\"gid://shopify/Metaobject/251416707299\",\"gid://shopify/Metaobject/251748221155\"]",
         "shopify.color-pattern": "[\"gid://shopify/Metaobject/100901093603\"]"
       },
-      "specs": [],
-      "featureHighlights": [],
+      "specs": [
+        {
+          "label": "Use",
+          "value": "Solo tennis practice",
+          "description": "Forehand, backhand and footwork",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Rebound",
+          "value": "High-elasticity bungee cord",
+          "description": "Returns the ball after every hit",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Stability",
+          "value": "Fill valve — add water or sand",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Cord",
+          "value": "Anti-tangle swivel ring",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Storage",
+          "value": "Grooved base wraps the string and holds the ball",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Suitable for",
+          "value": "Beginners and novices — kids to adults",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Options",
+          "value": "Trainer and ball with line · Trainer and ball with line, 2 pcs · Ball with line",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "gym",
+          "label": "A rally that never ends",
+          "body": "The high-elasticity bungee cord returns the ball to you after every hit, so you keep a real rally going alone — on forehand, backhand and footwork.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39543156179171",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Power.png?v=1786450589",
+            "altText": "Player returning a ball tethered to the solo tennis trainer on court",
+            "width": 2048,
+            "height": 2048
+          },
+          "video": null
+        },
+        {
+          "icon": "droplet",
+          "label": "Anchored when you need it, light when you don't",
+          "body": "A secure fill valve lets you add water or sand to hold the base firmly in place during intense sessions. Empty it and the base is lightweight and easy to carry.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39543156211939",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.png?v=1786450483",
+            "altText": "Solo tennis trainer base showing the fill valve",
+            "width": 2048,
+            "height": 2048
+          },
+          "video": null
+        },
+        {
+          "icon": "package",
+          "label": "Tidy storage built into the base",
+          "body": "The grooved base is shaped to wrap the string neatly and hold the tennis ball securely when you're not playing.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39543334469859",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Back_View.jpg?v=1786450502",
+            "altText": "Underside of the tennis trainer base showing the grooves for wrapping the string",
+            "width": 1100,
+            "height": 1100
+          },
+          "video": null
+        },
+        {
+          "icon": "check",
+          "label": "Great for all ages",
+          "body": "A good tool for kids learning the basics, adults picking up a new hobby, or anyone who wants to improve hand-eye coordination and fitness.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39538101551331",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_2.png?v=1786450563",
+            "altText": "Kids practicing tennis on a street with solo trainers",
+            "width": 2048,
+            "height": 2048
+          },
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "gym",
+            "label": "Solo practice",
+            "body": "A high-elasticity bungee cord returns the ball after every hit.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "droplet",
+            "label": "Stable when filled",
+            "body": "Add water or sand through the fill valve to anchor the base.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Portable when empty",
+            "body": "Lightweight and easy to carry to the park, driveway or court.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Tangle-free",
+            "body": "A built-in anti-tangle swivel ring keeps the cord from twisting.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "No partner, no court, no practice",
+            "body": "Practice usually needs another person or an expensive ball machine — and a lot of time spent chasing balls.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the Solo Tennis Trainer.",
+            "body": "A portable rebound baseboard: fill the base, unwind the cord and hit. The ball comes back to you after every swing, simulating a real rally, so you can work on forehand, backhand and footwork without chasing a ball.",
+            "image": {
+              "id": "gid://shopify/MediaImage/39538148049123",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/Solo_Tennis_Trainer_Customer_1.png?v=1786450543",
+              "altText": "Child practicing tennis in a driveway with the solo trainer",
+              "width": 2048,
+              "height": 2048
+            },
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "droplet",
+            "label": "Fill the base",
+            "body": "Add water or sand through the fill valve for stability.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Unwind the string",
+            "body": "Pull the elastic string out to your desired length.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gym",
+            "label": "Hit and rebound",
+            "body": "Hit the ball forward and upwards, and get ready for the rebound.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "sun",
+            "label": "At the park",
+            "body": "Carry the empty base to a field or court and fill it there.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "home",
+            "label": "In the driveway",
+            "body": "Practice at home without chasing balls.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gym",
+            "label": "Building fitness",
+            "body": "Work on hand-eye coordination and footwork.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "For young players",
+            "body": "A simple way for kids to learn the basics.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "package",
+            "label": "Solo tennis trainer",
+            "body": "Rebound baseboard with elastic string, anti-tangle swivel ring and fill valve. Choose the option that suits you on this page.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "Do I need a partner?",
+            "answer": "No. The bungee cord returns the ball to you after every hit, so you can practice a rally on your own."
+          },
+          {
+            "question": "What do I fill the base with?",
+            "answer": "Water or sand, through the secure fill valve. A filled base stays firmly in place during intense practice; empty, it is light enough to carry."
+          },
+          {
+            "question": "Who is it for?",
+            "answer": "It is designed for beginners and novices — kids learning the basics and adults picking up the game, or anyone who wants to improve hand-eye coordination and fitness."
+          },
+          {
+            "question": "Will the cord tangle?",
+            "answer": "The built-in anti-tangle swivel ring is there to keep the cord from twisting, so practice stays uninterrupted."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },
@@ -1543,14 +3556,14 @@
         {
           "id": "gid://shopify/MediaImage/39568734126307",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b36203db-7235-4edd-a947-dd6f2f6cde6a_fine.jpg?v=1786737876",
-          "altText": "ec6d8e34f8da091261b850fb94a1aa6e",
+          "altText": "Gold carbon fiber key organizer with keys and D-ring",
           "width": 800,
           "height": 800
         },
         {
           "id": "gid://shopify/MediaImage/39568734028003",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f3217c0-f7f6-4968-bd7c-e8a2ffca4418_fine.jpg?v=1786737876",
-          "altText": "19a303fb9aee713018386953a7b6cbf2",
+          "altText": "Carbon fiber key organizer with three keys fanned out",
           "width": 800,
           "height": 800
         },
@@ -1585,14 +3598,14 @@
         {
           "id": "gid://shopify/MediaImage/39568734224611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c1ebf58a-1b6b-48ca-be9f-ca64c2d17b38_fine.jpg?v=1786737876",
-          "altText": "c0bee514947377e178694f97fca0d3c3",
+          "altText": "Two key organizers shown open and folded with keys inside",
           "width": 1240,
           "height": 1240
         },
         {
           "id": "gid://shopify/MediaImage/39568734257379",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/fd9a027e-9115-4498-a7c6-414977c4ad96_fine.jpg?v=1786737876",
-          "altText": "5b3d86c067fc7130b67756910f835d99",
+          "altText": "Titanium gradient key organizer with keys and D-ring",
           "width": 800,
           "height": 800
         },
@@ -1606,14 +3619,14 @@
         {
           "id": "gid://shopify/ProductImage/48784152396003",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b36203db-7235-4edd-a947-dd6f2f6cde6a_fine.jpg?v=1786737876",
-          "altText": "ec6d8e34f8da091261b850fb94a1aa6e",
+          "altText": "Gold carbon fiber key organizer with keys and D-ring",
           "width": 800,
           "height": 800
         },
         {
           "id": "gid://shopify/ProductImage/48784152297699",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f3217c0-f7f6-4968-bd7c-e8a2ffca4418_fine.jpg?v=1786737876",
-          "altText": "19a303fb9aee713018386953a7b6cbf2",
+          "altText": "Carbon fiber key organizer with three keys fanned out",
           "width": 800,
           "height": 800
         },
@@ -1648,14 +3661,14 @@
         {
           "id": "gid://shopify/ProductImage/48784152494307",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c1ebf58a-1b6b-48ca-be9f-ca64c2d17b38_fine.jpg?v=1786737876",
-          "altText": "c0bee514947377e178694f97fca0d3c3",
+          "altText": "Two key organizers shown open and folded with keys inside",
           "width": 1240,
           "height": 1240
         },
         {
           "id": "gid://shopify/ProductImage/48784152527075",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/fd9a027e-9115-4498-a7c6-414977c4ad96_fine.jpg?v=1786737876",
-          "altText": "5b3d86c067fc7130b67756910f835d99",
+          "altText": "Titanium gradient key organizer with keys and D-ring",
           "width": 800,
           "height": 800
         },
@@ -1672,7 +3685,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39568734126307",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b36203db-7235-4edd-a947-dd6f2f6cde6a_fine.jpg?v=1786737876",
-          "altText": "ec6d8e34f8da091261b850fb94a1aa6e",
+          "altText": "Gold carbon fiber key organizer with keys and D-ring",
           "width": 800,
           "height": 800
         },
@@ -1680,7 +3693,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39568734028003",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f3217c0-f7f6-4968-bd7c-e8a2ffca4418_fine.jpg?v=1786737876",
-          "altText": "19a303fb9aee713018386953a7b6cbf2",
+          "altText": "Carbon fiber key organizer with three keys fanned out",
           "width": 800,
           "height": 800
         },
@@ -1720,7 +3733,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39568734224611",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c1ebf58a-1b6b-48ca-be9f-ca64c2d17b38_fine.jpg?v=1786737876",
-          "altText": "c0bee514947377e178694f97fca0d3c3",
+          "altText": "Two key organizers shown open and folded with keys inside",
           "width": 1240,
           "height": 1240
         },
@@ -1728,7 +3741,7 @@
           "type": "image",
           "id": "gid://shopify/MediaImage/39568734257379",
           "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/fd9a027e-9115-4498-a7c6-414977c4ad96_fine.jpg?v=1786737876",
-          "altText": "5b3d86c067fc7130b67756910f835d99",
+          "altText": "Titanium gradient key organizer with keys and D-ring",
           "width": 800,
           "height": 800
         },
@@ -1749,7 +3762,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-10-13T16:27:10Z",
+      "updatedAt": "2026-10-18T09:47:11Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -1962,17 +3975,257 @@
         "min": 51.93,
         "max": 58.26
       },
-      "metafields": {},
-      "specs": [],
-      "featureHighlights": [],
+      "metafields": {
+        "custom.benefits": "[\"gid://shopify/Metaobject/619881955555\",\"gid://shopify/Metaobject/619882021091\",\"gid://shopify/Metaobject/619882152163\",\"gid://shopify/Metaobject/619882381539\"]",
+        "custom.cta_headline": "Ready to end key jangle for good?",
+        "custom.faq": "[\"gid://shopify/Metaobject/619882316003\",\"gid://shopify/Metaobject/619882807523\",\"gid://shopify/Metaobject/619882905827\",\"gid://shopify/Metaobject/619882348771\",\"gid://shopify/Metaobject/619881988323\"]",
+        "custom.feature_highlights": "[\"gid://shopify/Metaobject/619882414307\",\"gid://shopify/Metaobject/619882217699\",\"gid://shopify/Metaobject/619882676451\",\"gid://shopify/Metaobject/619882086627\"]",
+        "custom.how_it_works": "[\"gid://shopify/Metaobject/619882741987\",\"gid://shopify/Metaobject/619882774755\",\"gid://shopify/Metaobject/619882938595\"]",
+        "custom.perks": "[\"Silent, scratch-free key storage\",\"Aircraft-grade aluminum, carbon fiber finish\",\"Removable pocket clip and D-ring\",\"Fits most standard keys, no tools needed\"]",
+        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.specs": "[\"gid://shopify/Metaobject/619882545379\",\"gid://shopify/Metaobject/619882447075\",\"gid://shopify/Metaobject/619882053859\",\"gid://shopify/Metaobject/619882709219\",\"gid://shopify/Metaobject/619882479843\",\"gid://shopify/Metaobject/619882643683\",\"gid://shopify/Metaobject/619882512611\"]",
+        "custom.story": "[\"gid://shopify/Metaobject/619882610915\",\"gid://shopify/Metaobject/619882873059\"]",
+        "custom.subtitle": "Fold your keys inside a pocket-knife-style frame — silent, scratch-free and half the bulk.",
+        "custom.use_cases": "[\"gid://shopify/Metaobject/619882119395\",\"gid://shopify/Metaobject/619882578147\",\"gid://shopify/Metaobject/619882250467\",\"gid://shopify/Metaobject/619882184931\"]",
+        "custom.whats_included": "[\"gid://shopify/Metaobject/619882283235\"]"
+      },
+      "specs": [
+        {
+          "label": "Material",
+          "value": "Aircraft-grade aluminum with carbon fiber finish",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Design",
+          "value": "Pocket-knife-style folding frame",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Assembly",
+          "value": "Screw-locking system — no special tools",
+          "description": "Fits most standard household keys",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Pocket clip",
+          "value": "Removable deep-carry clip",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Attachment",
+          "value": "Bottom D-ring",
+          "description": "For car key fobs, smart trackers or larger keys",
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Space saving",
+          "value": "About half the pocket space of a standard keychain",
+          "description": null,
+          "image": null,
+          "video": null
+        },
+        {
+          "label": "Finishes",
+          "value": "Matte Black, Slate Blue, Olive Green, Gold, Titanium Gradient, Forged Carbon Fiber",
+          "description": null,
+          "image": null,
+          "video": null
+        }
+      ],
+      "featureHighlights": [
+        {
+          "icon": "check",
+          "label": "Silent and scratch-free",
+          "body": "Keys are locked firmly in place, so they don't jingle, poke holes in your pockets or scratch nearby items in your bag. Your phone screen stays safe.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39568734028003",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/8f3217c0-f7f6-4968-bd7c-e8a2ffca4418_fine.jpg?v=1786737876",
+            "altText": "Carbon fiber key organizer with three keys fanned out",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "icon": "ship",
+          "label": "Deep-carry pocket clip",
+          "body": "A sturdy, removable clip on the back attaches to belt loops, jeans pockets or bag dividers for quick access.",
+          "image": null,
+          "video": null
+        },
+        {
+          "icon": "tag",
+          "label": "Bottom D-ring for fobs and trackers",
+          "body": "A built-in D-ring connects car key fobs, smart trackers or larger keys with no fuss.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39568734126307",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/b36203db-7235-4edd-a947-dd6f2f6cde6a_fine.jpg?v=1786737876",
+            "altText": "Gold carbon fiber key organizer with keys and D-ring",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        },
+        {
+          "icon": "sparkle",
+          "label": "Premium tactical finishes",
+          "body": "Matte Black, Slate Blue, Olive Green, Gold, Titanium Gradient and Forged Carbon Fiber — pick the one that suits you.",
+          "image": {
+            "id": "gid://shopify/MediaImage/39568734257379",
+            "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/fd9a027e-9115-4498-a7c6-414977c4ad96_fine.jpg?v=1786737876",
+            "altText": "Titanium gradient key organizer with keys and D-ring",
+            "width": 800,
+            "height": 800
+          },
+          "video": null
+        }
+      ],
       "comparisonTable": [],
       "pdp": {
-        "benefits": [],
-        "story": [],
-        "howItWorks": [],
-        "useCases": [],
-        "whatsIncluded": [],
-        "faq": [],
+        "benefits": [
+          {
+            "icon": "feather",
+            "label": "Half the pocket space",
+            "body": "Holds multiple keys in about half the space of a standard keychain.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "No jangle, no scratches",
+            "body": "Locks keys firmly in place so they won't jingle or scratch your phone.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "stone",
+            "label": "Aircraft-grade aluminum",
+            "body": "Lightweight aluminum with carbon fiber finishes.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "hand",
+            "label": "Easy assembly",
+            "body": "A simple screw-locking system fits most standard household keys.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "story": [
+          {
+            "icon": "check",
+            "label": "A chaotic key ring in your pocket",
+            "body": "A loose bunch of keys jingles, pokes holes in your pockets and scratches your phone and everything else in the bag.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "sparkle",
+            "label": "Meet the KeyFold Pro.",
+            "body": "Your keys fold inside a pocket-knife-style frame and lock firmly in place, so the whole set sits quiet and flat — with a clip to carry it and a D-ring for a fob or tracker.",
+            "image": {
+              "id": "gid://shopify/MediaImage/39568734224611",
+              "url": "https://cdn.shopify.com/s/files/1/0721/8869/0659/files/c1ebf58a-1b6b-48ca-be9f-ca64c2d17b38_fine.jpg?v=1786737876",
+              "altText": "Two key organizers shown open and folded with keys inside",
+              "width": 1240,
+              "height": 1240
+            },
+            "video": null
+          }
+        ],
+        "howItWorks": [
+          {
+            "icon": "hand",
+            "label": "Add your keys",
+            "body": "Stack your keys on the screw-locking system — no special tools.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "Lock them in",
+            "body": "Tighten so the keys sit firmly inside the frame.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "ship",
+            "label": "Clip and go",
+            "body": "Attach the pocket clip to a belt loop, pocket or bag divider.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "useCases": [
+          {
+            "icon": "ship",
+            "label": "Everyday carry",
+            "body": "Keys, folded down, in the front pocket of your jeans.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "travel",
+            "label": "Commuting & travel",
+            "body": "No jangling keys in a quiet carriage or at the airport.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "check",
+            "label": "With a tracker",
+            "body": "Hang a smart tracker or car fob from the D-ring.",
+            "image": null,
+            "video": null
+          },
+          {
+            "icon": "gift",
+            "label": "A tidy gift",
+            "body": "Choose from six finishes.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "whatsIncluded": [
+          {
+            "icon": "package",
+            "label": "1 × KeyFold Pro key organizer",
+            "body": "Aluminum frame with carbon fiber finish, screw-locking assembly, removable pocket clip and bottom D-ring.",
+            "image": null,
+            "video": null
+          }
+        ],
+        "faq": [
+          {
+            "question": "Will my keys fit?",
+            "answer": "The simple screw-locking system fits most standard household keys, and you don't need any special tools to assemble it."
+          },
+          {
+            "question": "Can I attach a car fob or tracker?",
+            "answer": "Yes. The built-in bottom D-ring connects car key fobs, smart trackers or larger keys."
+          },
+          {
+            "question": "How do I carry it?",
+            "answer": "Use the removable deep-carry pocket clip on the back to attach it to a belt loop, a jeans pocket or a bag divider — or take the clip off if you prefer."
+          },
+          {
+            "question": "Will it jingle or scratch my phone?",
+            "answer": "No. Keys lock firmly in place inside the frame, so they won't jingle, poke holes in pockets or scratch items nearby."
+          },
+          {
+            "question": "How long does delivery take?",
+            "answer": "Shipping is free, and orders arrive in 5–11 days. Every order gets a tracking link once the carrier scans it."
+          }
+        ],
         "demoVideo": null,
         "ugcMedia": []
       },

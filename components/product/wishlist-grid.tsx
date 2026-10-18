@@ -9,7 +9,6 @@ import { EmptyState, Skeleton, Badge } from "@/components/ui/primitives";
 import { LocalizedPrice } from "@/components/localization/localized-price";
 import { HeartIcon, TrashIcon } from "@/components/ui/icons";
 import { useCart } from "@/components/cart/cart-provider";
-import { addToCart } from "@/lib/cart/actions";
 
 type WishlistProduct = {
   handle: string;
@@ -31,7 +30,7 @@ type WishlistProduct = {
  */
 export function WishlistGrid() {
   const { handles, remove, hydrated } = useWishlist();
-  const { run } = useCart();
+  const { add } = useCart();
   const [products, setProducts] = React.useState<WishlistProduct[] | null>(
     null,
   );
@@ -167,9 +166,8 @@ export function WishlistGrid() {
                 };
                 if (!variantId) return;
 
-                // Not silent, and no drawer: the success toast plus the header
-                // badge confirm the add without covering the saved-items grid.
-                await run(() => addToCart({ variantId, quantity: 1 }));
+                // Instant: the bag is browser-side.
+                add(variantId, 1);
               }}
             >
               {product.available ? "Add to bag" : "Sold out"}

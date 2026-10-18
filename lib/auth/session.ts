@@ -13,7 +13,6 @@ import { serverEnv } from '@/lib/validation/env';
 
 export const SESSION_COOKIE = '_tf_session';
 export const OAUTH_STATE_COOKIE = '_tf_oauth';
-export const CART_COOKIE = '_tf_cart';
 
 const ALGORITHM = 'aes-256-gcm';
 const IV_LENGTH = 12;
@@ -119,35 +118,6 @@ export async function consumeOAuthTransaction(): Promise<OAuthTransaction | null
   store.delete(OAUTH_STATE_COOKIE);
   if (!raw) return null;
   return decryptJson<OAuthTransaction>(raw);
-}
-
-/**
- * Encrypted like the session cookie, not just httpOnly: Shopify's cart GID
- * embeds its own access token (`gid://shopify/Cart/<id>?key=<token>`), but
- * that token is only enforced by Shopify on cart mutations, not on reads —
- * a bare or wrong-keyed id will still be resolved by a raw GraphQL read. So
- * this app cannot rely on Shopify to reject a cart id someone else supplies;
- * it has to make the id itself unforgeable. Encrypting it means a value an
- * attacker sets on their own client (httpOnly only blocks JS, not a raw
- * Cookie header they write themselves) fails to decrypt and is treated as
- * no cart, instead of being forwarded to Shopify as if it were this
- * browser's own.
- */
-export async function readCartId(): Promise<string | null> {
-  const store = await cookies();
-  const raw = store.get(CART_COOKIE)?.value;
-  if (!raw) return null;
-  return decryptJson<string>(raw);
-}
-
-export async function writeCartId(cartId: string): Promise<void> {
-  const store = await cookies();
-  store.set(CART_COOKIE, encryptJson(cartId), { ...baseCookieOptions, maxAge: 60 * 60 * 24 * 30 });
-}
-
-export async function clearCartId(): Promise<void> {
-  const store = await cookies();
-  store.delete(CART_COOKIE);
 }
 
 /** True when the access token is expired or within the 60s refresh window. */

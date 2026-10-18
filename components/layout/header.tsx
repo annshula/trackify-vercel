@@ -153,7 +153,7 @@ export function Header({
           // entirely; <main>'s top padding (see layout.tsx) compensates on
           // every other page, and the hero's negative margin cancels that
           // same padding cleanly, with no collapse to worry about.
-          "fixed inset-x-0 top-0 z-40 border-b transition-[border-color,background-color,box-shadow,color] duration-300",
+          "fixed inset-x-0 top-(--announce-offset) z-40 border-b transition-[border-color,background-color,box-shadow,color] duration-300",
           overTintedHero
             ? "border-transparent bg-transparent text-ink"
             : cn(

@@ -5,7 +5,6 @@ import { ChevronDownIcon, CheckIcon, SearchIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils/cn";
 import { currencyDisplayName } from "@/lib/localization/format";
 import { useLocalization } from "./localization-provider";
-import { useCart } from "@/components/cart/cart-provider";
 import { setCountry, clearCountry } from "@/lib/cart/actions";
 
 type CurrencyOption = {
@@ -50,7 +49,6 @@ const CANONICAL_COUNTRY_BY_CURRENCY: Record<string, string> = {
 export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
   const { country, defaultCountry, countries, ready, setCountryCode } =
     useLocalization();
-  const { run } = useCart();
   const [open, setOpen] = React.useState(false);
   const [saving, setSaving] = React.useState<string | null>(null);
   const [query, setQuery] = React.useState("");
@@ -129,7 +127,7 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
   const chooseAuto = async () => {
     close();
     setSaving("auto");
-    const result = await run(() => clearCountry(), { silent: true });
+    const result = await clearCountry();
     setSaving(null);
     if (result.ok) setCountryCode(null);
   };
@@ -141,10 +139,7 @@ export function CurrencySelector({ overHero = false }: { overHero?: boolean }) {
     }
     close();
     setSaving(option.currencyCode);
-    const result = await run(
-      () => setCountry({ countryCode: option.countryCode }),
-      { silent: true },
-    );
+    const result = await setCountry({ countryCode: option.countryCode });
     setSaving(null);
     if (result.ok) setCountryCode(option.countryCode);
   };

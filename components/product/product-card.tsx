@@ -19,7 +19,6 @@ import { WishlistButton } from "@/components/product/wishlist-button";
 import { BagIcon, StarIcon } from "@/components/ui/icons";
 import { useCart } from "@/components/cart/cart-provider";
 import { useLocalizedAmount } from "@/components/localization/localization-provider";
-import { addToCart } from "@/lib/cart/actions";
 import { discountPercent, formatMoney } from "@/lib/utils/money";
 import { track, toEcommerceItem } from "@/lib/analytics";
 
@@ -98,30 +97,22 @@ export function ProductCard({
         ? "New"
         : null;
 
-  const { run } = useCart();
-  const [adding, setAdding] = React.useState(false);
+  const { add } = useCart();
   // Only offered when a single variant resolves the purchase unambiguously —
   // a size or colour choice still has to happen on the product page.
   const canQuickAdd =
     !soldOut && product.variants.length === 1 && variant !== null;
 
-  const onQuickAdd = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  // The bag is browser-side, so this is instant and opens the bag.
+  const onQuickAdd = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!variant) return;
-    setAdding(true);
-    const result = await run(() =>
-      addToCart({ variantId: variant.id, quantity: 1 }),
-    );
-    setAdding(false);
-    if (result.ok) {
-      track("add_to_cart", {
-        currency: variant.currencyCode,
-        value: variant.price,
-        items: [
-          toEcommerceItem(product, { quantity: 1, price: variant.price }),
-        ],
-      });
-    }
+    add(variant.id, 1);
+    track("add_to_cart", {
+      currency: variant.currencyCode,
+      value: variant.price,
+      items: [toEcommerceItem(product, { quantity: 1, price: variant.price })],
+    });
   };
 
   const href = `/products/${product.handle}`;
@@ -207,42 +198,16 @@ export function ProductCard({
           <button
             type="button"
             onClick={onQuickAdd}
-            disabled={adding}
-            aria-busy={adding || undefined}
             aria-label={`Add ${product.title} to bag`}
             className={cn(
-              "absolute right-3 bottom-3 z-10 grid size-11 cursor-pointer place-items-center rounded-full bg-surface-raised/90 text-ink shadow-e2 backdrop-blur-md transition duration-300 ease-out-soft hover:bg-primary hover:text-on-primary disabled:opacity-60",
+              "absolute right-3 bottom-3 z-10 grid size-11 cursor-pointer place-items-center rounded-full bg-surface-raised/90 text-ink shadow-e2 backdrop-blur-md transition duration-300 ease-out-soft hover:bg-primary hover:text-on-primary",
               // From sm: a full-width bar that rises in on hover/focus.
               "sm:left-3 sm:flex sm:h-11 sm:w-auto sm:translate-y-3 sm:items-center sm:justify-center sm:gap-2 sm:text-sm sm:font-medium sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:focus-visible:translate-y-0 sm:focus-visible:opacity-100",
             )}
           >
-            {adding ? (
-              <svg
-                viewBox="0 0 24 24"
-                className="size-4.5 animate-spin"
-                fill="none"
-                aria-hidden="true"
-              >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9"
-                  stroke="currentColor"
-                  strokeOpacity="0.25"
-                  strokeWidth="2.5"
-                />
-                <path
-                  d="M21 12a9 9 0 0 0-9-9"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              <BagIcon size={18} />
-            )}
+            <BagIcon size={18} />
             <span className="hidden sm:inline">
-              {adding ? "Adding…" : "Add to bag"}
+              Add to bag
             </span>
           </button>
         )}

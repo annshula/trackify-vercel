@@ -73,21 +73,26 @@ export async function Reviews({ product }: { product: CatalogProduct }) {
     <section
       id="reviews"
       aria-labelledby="reviews-heading"
-      className="mt-14 scroll-mt-24"
+      className="scroll-mt-24 pb-12 lg:pb-16"
     >
-      <h2 id="reviews-heading" className="text-2xl">
-        Reviews
-      </h2>
+      <div className="container-page">
+        <h2
+          id="reviews-heading"
+          className="mb-6 text-center font-pdp-heading text-heading-1 font-semibold"
+        >
+          Reviews
+        </h2>
 
-      <div className="mt-4 flex flex-wrap items-center gap-4 rounded-lg border border-line bg-surface p-5">
-        <span className="text-4xl font-medium tabular-nums">
-          {aggregate.value.toFixed(1)}
-        </span>
-        <div>
-          <Rating value={aggregate.value} showValue={false} size={18} />
-          <p className="mt-1 text-sm text-ink-muted">
-            Based on {aggregate.count} review{aggregate.count === 1 ? "" : "s"}
-          </p>
+        <div className="mx-auto flex max-w-md flex-wrap items-center justify-center gap-4 rounded-card bg-porcelain p-5 shadow-soft">
+          <span className="font-numeral text-4xl font-medium tabular-nums">
+            {aggregate.value.toFixed(1)}
+          </span>
+          <div>
+            <Rating value={aggregate.value} showValue={false} size={18} />
+            <p className="mt-1 text-sm text-ink-muted">
+              Based on {aggregate.count} review{aggregate.count === 1 ? "" : "s"}
+            </p>
+          </div>
         </div>
       </div>
     </section>

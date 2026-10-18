@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './pdp-theme.css';
 
 /* ==========================================================================
    TRACKIFY DESIGN SYSTEM
@@ -104,6 +105,21 @@
 /* ==========================================================================
    Base
    ========================================================================== */
+
+/* Store-wide announcement bar above the fixed header (components/layout/announcement-bar.tsx).
+   --announce-offset is how far the header sits below the top of the page: the
+   bar's height at the top, shrinking to 0 as the bar scrolls away. The home
+   page hides the bar, so its header sits flush. */
+:root {
+  --announce-h: 2.25rem;
+  --announce-offset: var(--announce-h);
+}
+body:has([data-home-hero]) {
+  --announce-offset: 0px;
+}
+body:has([data-home-hero]) [data-announcement] {
+  display: none;
+}
 
 @layer base {
   * {

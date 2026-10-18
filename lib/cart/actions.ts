@@ -1,357 +1,27 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-import type { Cart } from '@/types/commerce';
+import { productRepository } from '@/lib/catalog';
 import {
   CartError,
-  addLines,
-  createCart,
-  getCart,
-  mergeCartInto,
-  removeLines,
-  setBuyerIdentity,
-  setCartAttributes,
-  setDiscountCodes,
-  updateLines,
-  validateCart,
-  type CartValidationIssue,
+  createCheckoutCart,
+  validateLines,
 } from '@/services/shopify/cart-service';
-import {
-  getLinkedCartId,
-  isCartLinkAvailable,
-  setLinkedCartId,
-} from '@/services/shopify/customer-cart-link';
-import { getCustomer } from '@/services/shopify/customer-service';
-import { clearCartId, readCartId, writeCartId } from '@/lib/auth/session';
 import { getValidSession } from '@/lib/shopify/customer-account';
 import {
   resolveEffectiveCountry,
   writeSelectedCountry,
   clearSelectedCountry,
 } from '@/lib/localization/country';
+import { MAX_BAG_QUANTITY } from '@/lib/cart/bag-catalog';
 
 /**
- * Cart server actions.
+ * Server actions behind the bag.
  *
- * Every action validates its input, talks to Shopify, and returns a plain
- * serializable result. No cart state is stored anywhere but Shopify + the
- * cart-id cookie.
+ * The bag itself is browser-side (components/cart/cart-provider.tsx) and
+ * instant; the only Shopify cart this app ever creates is the one built here
+ * when the shopper presses Checkout.
  */
-
-export type CartActionState = {
-  ok: boolean;
-  cart: Cart | null;
-  error?: string;
-  notice?: string;
-  issues?: CartValidationIssue[];
-  /** Shopify's own checkout URL — an external, off-app domain, so the client navigates to it itself rather than this action calling next/navigation's redirect(). */
-  checkoutUrl?: string;
-};
-
-const variantIdSchema = z
-  .string()
-  .min(1)
-  .regex(/^gid:\/\/shopify\/ProductVariant\/\d+$/, 'Invalid variant id');
-
-const lineIdSchema = z.string().min(1).max(512);
-const quantitySchema = z.coerce.number().int().min(0).max(999);
-
-function failure(error: string, cart: Cart | null = null): CartActionState {
-  return { ok: false, cart, error };
-}
-
-function toMessage(error: unknown): string {
-  if (error instanceof CartError) return error.message;
-  return 'We could not update your cart. Please try again.';
-}
-
-/** Returns the current cart, or null. Never creates one. */
-export async function fetchCart(): Promise<Cart | null> {
-  const cartId = await readCartId();
-
-  // No cart in this browser: a signed-in shopper may still have one saved
-  // against their account from another device.
-  if (!cartId) return restoreLinkedCart();
-
-  try {
-    const country = await resolveEffectiveCountry();
-    let cart = await getCart(cartId, country);
-    if (!cart) {
-      await clearCartId();
-      return restoreLinkedCart();
-    }
-
-    // A cart's line costs are committed in whatever currency was actually
-    // set on its buyerIdentity when each line was added — @inContext on a
-    // read does not retroactively re-price them. A cart created (or last
-    // touched) under a different resolved country than the visitor has
-    // right now would keep showing its old currency's costs, which then
-    // mismatches a fresh price lookup at checkout and falsely trips "Your
-    // bag changed." Reconcile here, the one place every cart read goes
-    // through, so it self-heals before that ever surfaces.
-    if (country && cart.buyerIdentity?.countryCode !== country) {
-      try {
-        cart = await setBuyerIdentity(cart.id, { countryCode: country }, country);
-      } catch {
-        // Best-effort — proceedToCheckout's own validateCart still catches
-        // a real mismatch if this doesn't land.
-      }
-    }
-
-    return cart;
-  } catch {
-    // A cart lookup failure must not break page rendering.
-    return null;
-  }
-}
-
-/** Loads the cart saved against the signed-in customer, if there is one. */
-async function restoreLinkedCart(): Promise<Cart | null> {
-  // Nothing to restore without the customer scopes — skip the customer lookup.
-  if (!isCartLinkAvailable()) return null;
-
-  try {
-    const session = await getValidSession();
-    if (!session) return null;
-
-    const customer = await getCustomer();
-    const linkedCartId = await getLinkedCartId(customer.id);
-    if (!linkedCartId) return null;
-
-    const country = await resolveEffectiveCountry();
-    const cart = await getCart(linkedCartId, country);
-    if (!cart) return null;
-
-    await writeCartId(cart.id);
-    return cart;
-  } catch {
-    // Guests, missing customer scopes, or a transient failure — empty bag.
-    return null;
-  }
-}
-
-/**
- * Records `cartId` against the signed-in customer.
- *
- * Silent no-op for guests, and best-effort for everyone else: a failure here
- * costs cross-device persistence, never the sale.
- */
-async function linkCartToCustomer(cartId: string): Promise<void> {
-  if (!isCartLinkAvailable()) return;
-
-  try {
-    const session = await getValidSession();
-    if (!session) return;
-
-    const customer = await getCustomer();
-    await setLinkedCartId(customer.id, cartId);
-  } catch {
-    // Missing customer scopes or a transient failure — keep the guest cart.
-  }
-}
-
-/**
- * Reconciles the bag at sign-in.
- *
- * Shopify cannot look a cart up by customer, so the customer's cart id is kept
- * in a customer metafield. At sign-in there can be a bag in this browser and a
- * bag saved on the account, and discarding either would lose a shopper's items:
- *
- *  - only a guest bag      → adopt it as the account bag
- *  - only a saved bag      → restore it into this browser
- *  - both, the same        → nothing to do
- *  - both, different       → merge the guest bag into the saved one
- *
- * The saved bag wins as the merge target so the id already on the account
- * record stays stable.
- */
-export async function restoreCustomerCart(): Promise<void> {
-  if (!isCartLinkAvailable()) return;
-
-  try {
-    const session = await getValidSession();
-    if (!session) return;
-
-    const customer = await getCustomer();
-    const [linkedCartId, guestCartId] = await Promise.all([
-      getLinkedCartId(customer.id),
-      readCartId(),
-    ]);
-
-    // Nothing saved yet — claim whatever this browser is holding.
-    if (!linkedCartId) {
-      if (guestCartId) await setLinkedCartId(customer.id, guestCartId);
-      return;
-    }
-
-    const country = await resolveEffectiveCountry();
-
-    // Verify the saved cart still exists; Shopify expires idle carts.
-    const linkedCart = await getCart(linkedCartId, country);
-    if (!linkedCart) {
-      if (guestCartId) await setLinkedCartId(customer.id, guestCartId);
-      return;
-    }
-
-    if (!guestCartId || guestCartId === linkedCartId) {
-      await writeCartId(linkedCartId);
-      return;
-    }
-
-    const guestCart = await getCart(guestCartId, country);
-    if (guestCart && guestCart.lines.length > 0) {
-      await mergeCartInto(guestCart, linkedCartId, country);
-    }
-
-    await writeCartId(linkedCartId);
-  } catch (error) {
-    // Never block sign-in on cart reconciliation.
-    console.warn('[cart] could not restore customer cart:', (error as Error).message);
-  }
-}
-
-export async function addToCart(input: {
-  variantId: string;
-  quantity?: number;
-  productHandle?: string;
-}): Promise<CartActionState> {
-  const parsed = z
-    .object({
-      variantId: variantIdSchema,
-      quantity: quantitySchema.min(1).default(1),
-      productHandle: z.string().max(255).optional(),
-    })
-    .safeParse(input);
-
-  if (!parsed.success) return failure('That product option is not valid.');
-
-  try {
-    const country = await resolveEffectiveCountry();
-    const cart = await fetchCart();
-    const line = { merchandiseId: parsed.data.variantId, quantity: parsed.data.quantity };
-
-    // Shopify merges a merchandiseId already present in the cart into its
-    // existing line (summing quantity) rather than duplicating it, so adding
-    // through cartLinesAdd alone is correct under concurrent requests —
-    // unlike reading the current quantity and writing back a computed total,
-    // which silently drops updates under a race (each request overwrites the
-    // last one's work instead of summing on top of it).
-    const updated = cart
-      ? await addLines(cart.id, [line], country)
-      : await createCart([line], null, country);
-
-    await writeCartId(updated.id);
-
-    // A brand-new cart belonging to a signed-in shopper has to be recorded
-    // against the customer, or it will not follow them to another device.
-    // Only creation needs this — adding lines never changes the cart id.
-    if (!cart) await linkCartToCustomer(updated.id);
-
-    revalidatePath('/cart');
-    return { ok: true, cart: updated, notice: 'Added to bag' };
-  } catch (error) {
-    return failure(toMessage(error));
-  }
-}
-
-export async function updateCartLine(input: { lineId: string; quantity: number }): Promise<CartActionState> {
-  const parsed = z.object({ lineId: lineIdSchema, quantity: quantitySchema }).safeParse(input);
-  if (!parsed.success) return failure('That quantity is not valid.');
-
-  const cartId = await readCartId();
-  if (!cartId) return failure('Your bag is empty.');
-
-  try {
-    const country = await resolveEffectiveCountry();
-    const cart =
-      parsed.data.quantity === 0
-        ? await removeLines(cartId, [parsed.data.lineId], country)
-        : await updateLines(cartId, [{ id: parsed.data.lineId, quantity: parsed.data.quantity }], country);
-
-    revalidatePath('/cart');
-    return { ok: true, cart };
-  } catch (error) {
-    return failure(toMessage(error));
-  }
-}
-
-export async function removeCartLine(input: { lineId: string }): Promise<CartActionState> {
-  const parsed = z.object({ lineId: lineIdSchema }).safeParse(input);
-  if (!parsed.success) return failure('That item is not valid.');
-
-  const cartId = await readCartId();
-  if (!cartId) return failure('Your bag is empty.');
-
-  try {
-    const country = await resolveEffectiveCountry();
-    const cart = await removeLines(cartId, [parsed.data.lineId], country);
-    revalidatePath('/cart');
-    return { ok: true, cart, notice: 'Removed from bag' };
-  } catch (error) {
-    return failure(toMessage(error));
-  }
-}
-
-export async function applyDiscountCode(input: { code: string }): Promise<CartActionState> {
-  const parsed = z
-    .object({ code: z.string().trim().min(1, 'Enter a code').max(64) })
-    .safeParse(input);
-  if (!parsed.success) return failure(parsed.error.issues[0]?.message ?? 'Enter a valid code.');
-
-  const cartId = await readCartId();
-  if (!cartId) return failure('Add something to your bag first.');
-
-  try {
-    const country = await resolveEffectiveCountry();
-    const current = await getCart(cartId, country);
-    const existing = current?.discountCodes.map((discount) => discount.code) ?? [];
-    const next = [...new Set([...existing, parsed.data.code])];
-
-    const cart = await setDiscountCodes(cartId, next, country);
-    const applied = cart.discountCodes.find(
-      (discount) => discount.code.toLowerCase() === parsed.data.code.toLowerCase(),
-    );
-
-    revalidatePath('/cart');
-
-    // Shopify reports an unusable code by returning it with applicable: false —
-    // it does not distinguish expired from invalid from unmet-minimum.
-    if (!applied || !applied.applicable) {
-      return {
-        ok: false,
-        cart,
-        error: `"${parsed.data.code}" can't be applied to this order. It may have expired or not meet the requirements.`,
-      };
-    }
-
-    return { ok: true, cart, notice: 'Discount applied' };
-  } catch (error) {
-    return failure(toMessage(error));
-  }
-}
-
-export async function removeDiscountCode(input: { code: string }): Promise<CartActionState> {
-  const parsed = z.object({ code: z.string().trim().min(1).max(64) }).safeParse(input);
-  if (!parsed.success) return failure('That code is not valid.');
-
-  const cartId = await readCartId();
-  if (!cartId) return failure('Your bag is empty.');
-
-  try {
-    const country = await resolveEffectiveCountry();
-    const current = await getCart(cartId, country);
-    const remaining = (current?.discountCodes ?? [])
-      .map((discount) => discount.code)
-      .filter((code) => code.toLowerCase() !== parsed.data.code.toLowerCase());
-
-    const cart = await setDiscountCodes(cartId, remaining, country);
-    revalidatePath('/cart');
-    return { ok: true, cart };
-  } catch (error) {
-    return failure(toMessage(error));
-  }
-}
 
 /** Short opaque tokens only — anything longer than Meta's own formats is dropped, never trusted into an attribute. */
 const adIdentitySchema = z.object({
@@ -372,104 +42,139 @@ function adIdentityAttributes(input: unknown): { key: string; value: string }[] 
   ];
 }
 
+const linesSchema = z
+  .array(
+    z.object({
+      variantId: z.string().regex(/^gid:\/\/shopify\/ProductVariant\/\d+$/, 'Invalid variant id'),
+      quantity: z.coerce.number().int().min(1).max(MAX_BAG_QUANTITY),
+    }),
+  )
+  .min(1)
+  .max(20);
+
+export type CheckoutResult =
+  | { ok: true; checkoutUrl: string }
+  | {
+      ok: false;
+      error: string;
+      /** Changes the bag should apply before the shopper tries again (quantity 0 removes the line). */
+      fixes?: { variantId: string; quantity: number }[];
+      /** Plain-language reasons for those changes. */
+      issues?: string[];
+    };
+
 /**
- * Validates against live Shopify data, self-heals what it safely can, then
- * hands off to Shopify Checkout. Payment never touches this application.
+ * Turns the bag into Shopify's hosted checkout.
+ *
+ * Trust model: the browser sends only variant ids + quantities. Each id must be
+ * a purchasable variant in the synced catalog, quantities are clamped, live
+ * stock is checked against Shopify, and Shopify prices the cart itself — no
+ * price, discount or inventory value is ever accepted from the browser.
+ *
+ * When something in the bag can no longer be bought it returns the corrections
+ * instead of a URL, so the shopper sees what changed before paying.
  */
-export async function proceedToCheckout(adIdentity?: unknown): Promise<CartActionState> {
-  const cartId = await readCartId();
-  if (!cartId) return failure('Your bag is empty.');
+export async function startCheckout(input: {
+  lines: unknown;
+  adIdentity?: unknown;
+}): Promise<CheckoutResult> {
+  const parsed = linesSchema.safeParse(input.lines);
+  if (!parsed.success) return { ok: false, error: 'Your bag is empty.' };
+
+  // Fold duplicate variants into one line.
+  const merged = new Map<string, number>();
+  for (const line of parsed.data) {
+    merged.set(
+      line.variantId,
+      Math.min(MAX_BAG_QUANTITY, (merged.get(line.variantId) ?? 0) + line.quantity),
+    );
+  }
+
+  // Anything the catalog no longer sells never reaches Shopify.
+  const catalog = await productRepository.getAllProducts();
+  const purchasable = new Set(
+    catalog.flatMap((product) =>
+      product.variants.filter((variant) => variant.availableForSale).map((variant) => variant.id),
+    ),
+  );
+  const gone = [...merged.keys()].filter((id) => !purchasable.has(id));
+  if (gone.length > 0) {
+    const sellable = [...merged.keys()].some((id) => purchasable.has(id));
+    return {
+      ok: false,
+      error: sellable
+        ? 'Your bag changed. Review the updates, then continue.'
+        : 'Everything in your bag sold out.',
+      fixes: gone.map((variantId) => ({ variantId, quantity: 0 })),
+      issues: ['Some items in your bag are no longer available.'],
+    };
+  }
+
+  const lines = [...merged].map(([variantId, quantity]) => ({ variantId, quantity }));
 
   try {
     const country = await resolveEffectiveCountry();
-    let cart = await getCart(cartId, country);
-    if (!cart) {
-      await clearCartId();
-      return failure('Your bag expired. Please add your items again.');
-    }
-    if (cart.lines.length === 0) return failure('Your bag is empty.');
 
-    // Attach the signed-in customer so checkout is pre-filled and the order
-    // lands in their account history.
-    const session = await getValidSession();
-    if (session && !cart.buyerIdentity?.customerAccessToken) {
-      try {
-        cart = await setBuyerIdentity(cart.id, { customerAccessToken: session.accessToken }, country);
-      } catch {
-        // Not fatal — the customer can still check out as a guest.
-      }
+    // A signed-in shopper gets a pre-filled checkout and the order in their account.
+    let customerAccessToken: string | null = null;
+    try {
+      customerAccessToken = (await getValidSession())?.accessToken ?? null;
+    } catch {
+      // Not fatal — they can still check out as a guest.
     }
 
-    const issues = await validateCart(cart, country);
+    const create = (token: string | null) =>
+      createCheckoutCart({
+        lines: lines.map((line) => ({ merchandiseId: line.variantId, quantity: line.quantity })),
+        country,
+        attributes: adIdentityAttributes(input.adIdentity),
+        customerAccessToken: token,
+      });
+
+    // The cart and the live stock check don't depend on each other, so they run together.
+    const [cart, issues] = await Promise.all([
+      create(customerAccessToken).catch((error) => {
+        // A rejected customer token must not block the sale.
+        if (customerAccessToken && error instanceof CartError) return create(null);
+        throw error;
+      }),
+      validateLines(lines, country),
+    ]);
 
     if (issues.length > 0) {
-      const removals = issues
-        .filter((issue) => issue.reason === 'unavailable' || issue.availableQuantity === 0)
-        .map((issue) => issue.lineId);
-
-      const reductions = issues
-        .filter(
-          (issue): issue is CartValidationIssue & { availableQuantity: number } =>
-            issue.reason === 'insufficient-stock' &&
-            typeof issue.availableQuantity === 'number' &&
-            issue.availableQuantity > 0,
-        )
-        .map((issue) => ({ id: issue.lineId, quantity: issue.availableQuantity }));
-
-      if (removals.length > 0) cart = await removeLines(cart.id, removals, country);
-      if (reductions.length > 0) cart = await updateLines(cart.id, reductions, country);
-
-      revalidatePath('/cart');
-
-      if (cart.lines.length === 0) {
-        return { ok: false, cart, error: 'Everything in your bag sold out.', issues };
-      }
-      // Stop here so the customer sees what changed before paying.
+      const fixes = issues.map((issue) => ({
+        variantId: issue.variantId,
+        quantity:
+          issue.reason === 'insufficient-stock' && issue.availableQuantity
+            ? issue.availableQuantity
+            : 0,
+      }));
+      const everythingGone = fixes.length === lines.length && fixes.every((fix) => fix.quantity === 0);
       return {
         ok: false,
-        cart,
-        error: 'Your bag changed. Review the updates, then continue.',
-        issues,
+        error: everythingGone
+          ? 'Everything in your bag sold out.'
+          : 'Your bag changed. Review the updates, then continue.',
+        fixes,
+        issues: issues.map((issue) => issue.message),
       };
     }
 
-    // Carry the browser's Meta identifiers onto the order (cart attributes
-    // become note_attributes) so the orders/paid webhook's server-side
-    // Purchase can include fbc/fbp/external_id. Best-effort: never block
-    // checkout over an analytics nicety.
-    const attributes = adIdentityAttributes(adIdentity);
-    if (attributes.length > 0) {
-      try {
-        cart = await setCartAttributes(cart.id, attributes, country);
-      } catch {
-        // Checkout still works; the Purchase event just matches less well.
-      }
-    }
+    const url = new URL(cart.checkoutUrl);
+    if (url.protocol !== 'https:') throw new Error('Unexpected checkout URL');
 
-    // Shopify's checkout lives on its own domain — the client navigates
-    // there itself. Calling next/navigation's redirect() here would throw
-    // its internal NEXT_REDIRECT signal through this action's own client
-    // call site, which the cart provider's try/catch would (correctly, from
-    // its point of view) treat as a failed request even though the browser
-    // was already on its way to checkout.
-    return { ok: true, cart, checkoutUrl: cart.checkoutUrl };
+    // Shopify's checkout lives on its own domain — the client navigates there
+    // itself (a redirect() thrown from an action would read as a failed call).
+    return { ok: true, checkoutUrl: cart.checkoutUrl };
   } catch (error) {
-    return failure(toMessage(error));
-  }
-}
-
-export async function associateCartWithCustomer(): Promise<void> {
-  const cartId = await readCartId();
-  if (!cartId) return;
-
-  const session = await getValidSession();
-  if (!session) return;
-
-  try {
-    const country = await resolveEffectiveCountry();
-    await setBuyerIdentity(cartId, { customerAccessToken: session.accessToken }, country);
-  } catch {
-    // Best-effort only — never block sign-in on this.
+    console.error('[checkout] could not start:', (error as Error).message);
+    return {
+      ok: false,
+      error:
+        error instanceof CartError
+          ? error.message
+          : "We couldn't start checkout. Please try again.",
+    };
   }
 }
 
@@ -483,45 +188,19 @@ const countryCodeSchema = z
  * Sets the shopper's chosen country/market.
  *
  * Persists the choice as a cookie (an ISO code, never a currency value — see
- * lib/localization/country.ts), then updates the existing cart's buyer
- * identity so Shopify recomputes its own totals for that country. Every
- * price in the returned cart came straight from Shopify's response for this
- * request; nothing here converts a currency itself.
+ * lib/localization/country.ts). Prices everywhere are fetched live from
+ * Shopify for that country; nothing here converts a currency itself, and the
+ * bag has no Shopify cart to update until checkout.
  */
-export async function setCountry(input: { countryCode: string }): Promise<CartActionState> {
+export async function setCountry(input: { countryCode: string }): Promise<{ ok: boolean; error?: string }> {
   const parsed = countryCodeSchema.safeParse(input.countryCode);
-  if (!parsed.success) return failure('That country is not valid.');
-
+  if (!parsed.success) return { ok: false, error: 'That country is not valid.' };
   await writeSelectedCountry(parsed.data);
-
-  const cartId = await readCartId();
-  if (!cartId) return { ok: true, cart: null };
-
-  try {
-    const cart = await setBuyerIdentity(cartId, { countryCode: parsed.data }, parsed.data);
-    revalidatePath('/cart');
-    return { ok: true, cart };
-  } catch (error) {
-    // The country preference is saved either way — only the cart's own
-    // currency failed to update, and the next cart read will retry it.
-    return failure(toMessage(error));
-  }
+  return { ok: true };
 }
 
-/** "Auto" — clears the manual country override and reverts the cart to Shopify's own default market. */
-export async function clearCountry(): Promise<CartActionState> {
+/** "Auto" — clears the manual country override so Shopify's own default market applies. */
+export async function clearCountry(): Promise<{ ok: boolean }> {
   await clearSelectedCountry();
-
-  const cartId = await readCartId();
-  if (!cartId) return { ok: true, cart: null };
-
-  try {
-    // No buyerIdentity fields change — this call exists only to re-fetch the
-    // cart with @inContext(country: null), i.e. back to the shop's default.
-    const cart = await setBuyerIdentity(cartId, {}, null);
-    revalidatePath('/cart');
-    return { ok: true, cart };
-  } catch (error) {
-    return failure(toMessage(error));
-  }
+  return { ok: true };
 }

@@ -10,7 +10,7 @@ import * as React from 'react';
  * the visitor's chosen country. Nothing here does currency math.
  *
  * The list of countries and the current selection are fetched client-side
- * after mount (the same reason CartProvider fetches /api/cart instead of
+ * after mount (the same reason CartProvider fetches /api/session instead of
  * reading a cookie in the root layout: doing it there would force every
  * route in the app to render dynamically and forfeit static generation).
  */

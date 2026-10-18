@@ -70,7 +70,7 @@ export async function Hero({
     // browsers that don't understand dvh; min-h-dvh is what actually wins
     // everywhere modern, since mobile browser chrome showing/hiding
     // shouldn't leave a gap or crop the bottom.
-    <section className="relative -mt-16 overflow-hidden bg-primary sm:-mt-18">
+    <section data-home-hero className="relative -mt-16 overflow-hidden bg-primary sm:-mt-18">
       {/* Vertically centered at every breakpoint — the content block sits in
           the middle of the hero rather than anchored to the bottom. */}
       <div className="relative flex min-h-hero flex-col justify-center">

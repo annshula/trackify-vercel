@@ -1,49 +1,32 @@
 "use client";
 
 import * as React from "react";
-import { SmartImage as Image } from "@/components/ui/smart-image";
-import { formatMoney } from "@/lib/utils/money";
 import { cn } from "@/lib/utils/cn";
+import { formatMoney } from "@/lib/utils/money";
 import { usePurchase } from "./purchase-context";
 import { AddToCartButton } from "./add-to-cart-button";
 
 /**
- * Bottom purchase bar, all sizes.
+ * Floating add-to-bag bar for small screens.
  *
- * Appears only once the hero's own button has scrolled above the viewport,
- * and steps aside while the final CTA (#final-cta) is on screen so there are
- * never two buy buttons competing. While visible it pads the page bottom by
- * its own height, so nothing — footer links included — ends up underneath it.
+ * Appears once the hero's own button has scrolled above the viewport and is
+ * hidden from lg up, where the buy box sits beside the sticky gallery. It is a
+ * glass pill floating over the page rather than a full-width bar, so nothing
+ * needs padding beneath it.
  */
 export function StickyAddToCart() {
   const { product, variant, heroCta } = usePurchase();
-  const [pastHero, setPastHero] = React.useState(false);
-  const [finalInView, setFinalInView] = React.useState(false);
-  const visible = pastHero && !finalInView;
+  const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
     if (!heroCta) return;
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry) setPastHero(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      if (entry) setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
     });
     observer.observe(heroCta);
     return () => observer.disconnect();
   }, [heroCta]);
 
-  React.useEffect(() => {
-    const target = document.getElementById("final-cta");
-    if (!target) return;
-    const observer = new IntersectionObserver(([entry]) => setFinalInView(Boolean(entry?.isIntersecting)));
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, []);
-
-  React.useEffect(() => {
-    document.documentElement.classList.toggle("pdp-sticky-open", visible);
-    return () => document.documentElement.classList.remove("pdp-sticky-open");
-  }, [visible]);
-
-  const image = (variant?.imageId && product.images.find((img) => img.id === variant.imageId)) || product.images[0];
   const hasOptions = product.variants.length > 1;
 
   return (
@@ -51,36 +34,23 @@ export function StickyAddToCart() {
       aria-hidden={!visible}
       inert={!visible}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_-12px_rgb(36_26_16/0.18)] backdrop-blur-md transition-transform duration-300 ease-out-soft motion-reduce:transition-none",
-        visible ? "translate-y-0" : "translate-y-full",
+        "glass fixed inset-x-2 bottom-[max(0.5rem,env(safe-area-inset-bottom))] z-20 rounded-card p-3 pl-5 transition-transform duration-500 ease-out-soft motion-reduce:transition-none lg:hidden",
+        visible ? "translate-y-0" : "translate-y-[calc(100%+1.5rem)]",
       )}
     >
-      <div className="container-page flex h-18 items-center gap-4">
-        {image && (
-          <span className="relative hidden size-12 shrink-0 overflow-hidden rounded-md bg-surface-sunken sm:block">
-            <Image src={image.url} alt="" fill sizes="48px" className="object-cover" />
-          </span>
-        )}
+      <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="hidden truncate text-sm font-medium sm:block">{product.title}</p>
-          <p className="truncate text-sm text-ink-muted">
-            {variant && (
-              <span className="font-medium text-ink tabular-nums sm:font-normal sm:text-ink-muted">
-                {formatMoney(variant.price, variant.currencyCode, { trimZeroCents: true })}
-              </span>
-            )}
-            {hasOptions && variant && <span> · {variant.title}</span>}
+          <p className="truncate font-serif text-heading-3">
+            {hasOptions && variant ? variant.title : product.title}
           </p>
-          <a
-            href="#purchase"
-            // Padding widens the tap target to ~44px without changing the bar's height.
-            className="-my-3 inline-block py-3 pr-4 text-xs text-ink-subtle underline underline-offset-2 sm:hidden"
-          >
-            Change options
-          </a>
+          <p className="font-numeral text-body-sm font-medium text-ink-soft tabular-nums">
+            {variant
+              ? formatMoney(variant.price, variant.currencyCode, { trimZeroCents: true })
+              : ""}
+          </p>
         </div>
-        <div className="w-44 shrink-0 sm:w-60">
-          <AddToCartButton size="md" showPrice={false} />
+        <div className="shrink-0">
+          <AddToCartButton size="md" showPrice={false} className="w-auto" />
         </div>
       </div>
     </div>

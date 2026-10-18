@@ -1,241 +1,314 @@
 'use client';
 
 import * as React from 'react';
-import type { Cart } from '@/types/commerce';
-import type { CartActionState } from '@/lib/cart/actions';
-import { useToast } from '@/components/ui/toast';
+import { useLocalization } from '@/components/localization/localization-provider';
+import { startCheckout } from '@/lib/cart/actions';
+import { MAX_BAG_QUANTITY, type BagCatalog, type BagVariant } from '@/lib/cart/bag-catalog';
 import { track } from '@/lib/analytics';
+import { readAdIdentity } from '@/lib/analytics/ad-identity';
 
 /**
- * Client-side session state: the Shopify cart plus sign-in status.
+ * The bag.
  *
- * Shopify remains the source of truth. This holds the last cart Shopify
- * returned, plus an optimistic quantity overlay so the UI responds instantly
- * while a server action is in flight; a failed action rolls the overlay back.
+ * Lines live in localStorage as `{ variantId, quantity }` only; names, labels
+ * and prices are looked up in the server-provided `catalog`, so a stale browser
+ * can never show or submit a price. Because nothing waits on a server, adding,
+ * changing and deleting are instant. Shopify only hears about the bag when the
+ * shopper presses Checkout (`startCheckout`), which creates the hosted checkout
+ * and lets Shopify price it.
  *
- * The initial value is fetched from /api/cart after hydration rather than read
- * in the root layout. A layout that reads cookies makes every route dynamic,
- * which would cost static generation on product and collection pages.
+ * Prices are shown live in the visitor's currency once localization resolves,
+ * the same overlay the product page uses.
  */
 
-type PendingLines = Record<string, number>;
+export type BagLine = { variantId: string; quantity: number };
+
+export type ResolvedLine = BagLine &
+  BagVariant & {
+    lineTotal: number;
+    /** What the line would cost at its compare-at price (equals lineTotal when there is none). */
+    compareAtTotal: number;
+    /** Percent off the compare-at price; null when there is no markdown. */
+    savedPercent: number | null;
+  };
+
+type CheckoutOutcome = { ok: true } | { ok: false; error: string; issues?: string[] };
 
 type CartContextValue = {
-  cart: Cart | null;
-  signedIn: boolean;
-  /** False until the first /api/cart response lands. */
-  ready: boolean;
-  /** True while a cart fetch is in flight — drives the skeleton. */
-  loading: boolean;
-  /** Re-reads cart + session from the server. */
-  refresh: () => Promise<void>;
-  /** Quantity shown to the user — the optimistic value when one is pending. */
-  quantityOf: (lineId: string) => number;
-  /** Sum of all line quantities — units in the bag, not products. */
-  totalQuantity: number;
-  /** Distinct products in the bag. This is what the badge shows. */
+  lines: ResolvedLine[];
+  /** Distinct items in the bag — what the header badge shows. */
   itemCount: number;
+  subtotal: number;
+  /** Total saved against compare-at prices (0 when nothing has one). */
+  discount: number;
+  currency: string;
   isOpen: boolean;
-  isPending: boolean;
+  /** False until the saved bag has been read from this browser. */
+  hydrated: boolean;
+  signedIn: boolean;
   open: () => void;
   close: () => void;
-  /** Runs a cart server action with optimistic UI and toast feedback. */
-  run: (
-    action: () => Promise<CartActionState>,
-    options?: { optimistic?: PendingLines; silent?: boolean },
-  ) => Promise<CartActionState>;
-  setCart: (cart: Cart | null) => void;
+  /** Adds to the bag (summing with what is already there) and opens it. */
+  add: (variantId: string, quantity?: number) => void;
+  setQuantity: (variantId: string, quantity: number) => void;
+  remove: (variantId: string) => void;
+  checkout: () => Promise<CheckoutOutcome>;
+  /** Screen-reader announcement for the last change. */
+  announcement: string;
 };
 
 const CartContext = React.createContext<CartContextValue | null>(null);
 
+const STORAGE_KEY = 'trackify.bag.v1';
+
+function readStored(): BagLine[] {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') as unknown;
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter(
+        (line): line is BagLine =>
+          typeof line?.variantId === 'string' &&
+          Number.isInteger(line?.quantity) &&
+          line.quantity > 0,
+      )
+      .slice(0, 20);
+  } catch {
+    return [];
+  }
+}
+
+const round = (n: number) => Math.round(n * 100) / 100;
+
 export function CartProvider({
-  initialCart = null,
+  catalog,
   children,
 }: {
-  /** Server-provided cart, on the few routes that already render dynamically. */
-  initialCart?: Cart | null;
+  catalog: BagCatalog;
   children: React.ReactNode;
 }) {
-  const [cart, setCart] = React.useState<Cart | null>(initialCart);
-  const [signedIn, setSignedIn] = React.useState(false);
-  const [ready, setReady] = React.useState(initialCart !== null);
-  const [loading, setLoading] = React.useState(initialCart === null);
-  const [pending, setPending] = React.useState<PendingLines>({});
-  const [inFlight, setInFlight] = React.useState(0);
+  const [raw, setRaw] = React.useState<BagLine[]>([]);
+  const [hydrated, setHydrated] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
-  const { push } = useToast();
+  const [signedIn, setSignedIn] = React.useState(false);
+  const [announcement, setAnnouncement] = React.useState('');
+  const { localizedPriceFor, requestPrices } = useLocalization();
 
-  // Tracks the newest request so a slow earlier response cannot overwrite a
-  // fresher one that already landed.
-  const requestId = React.useRef(0);
-
-  /**
-   * Pulls cart + session from the server.
-   *
-   * Also runs whenever the bag is opened, not just once on mount: the cart can
-   * change outside this tab — another device for a signed-in shopper, or a
-   * second tab — and a stale bag at the moment of checkout is the worst place
-   * to be wrong.
-   */
-  const refresh = React.useCallback(async (signal?: AbortSignal, markLoading = true) => {
-    const id = ++requestId.current;
-    // The mount call passes false: `loading` already starts true when there is
-    // no server-provided cart, so flipping it here would be a synchronous
-    // setState inside an effect for no change in value.
-    if (markLoading) setLoading(true);
-
-    try {
-      const response = await fetch('/api/cart', { signal, cache: 'no-store' });
-      if (!response.ok) throw new Error('failed');
-
-      const data = (await response.json()) as { cart: Cart | null; signedIn: boolean };
-      if (id !== requestId.current) return;
-
-      setCart(data.cart);
-      setSignedIn(data.signedIn);
-      // The server is authoritative; drop any optimistic overlay it supersedes.
-      setPending({});
-    } catch (error) {
-      // An empty bag is the correct fallback; never block the storefront.
-      if ((error as Error).name === 'AbortError') return;
-    } finally {
-      if (id === requestId.current) {
-        setReady(true);
-        setLoading(false);
-      }
-    }
+  // The saved bag can only be read in the browser, after hydration.
+  React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setRaw(readStored());
+    setHydrated(true);
+    const sync = (event: StorageEvent) => {
+      if (event.key === STORAGE_KEY) setRaw(readStored());
+    };
+    window.addEventListener('storage', sync);
+    return () => window.removeEventListener('storage', sync);
   }, []);
 
   React.useEffect(() => {
+    if (!hydrated) return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(raw));
+    } catch {
+      // Private mode / quota — the bag still works for this tab.
+    }
+  }, [raw, hydrated]);
+
+  // Whether a customer is signed in is per-visitor, so it can't be baked into
+  // the statically rendered layout; one small request after hydration.
+  React.useEffect(() => {
     const controller = new AbortController();
-    /*
-     * Fetching on mount and storing the result is exactly what this effect is
-     * for. The rule flags any call to a function that contains setState and
-     * cannot see that every update here happens in an async continuation after
-     * the request resolves — the one synchronous update is skipped by passing
-     * markLoading: false. The request is aborted on unmount, and a stale
-     * response is discarded by the requestId check.
-     */
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    void refresh(controller.signal, false);
+    fetch('/api/session', { signal: controller.signal, cache: 'no-store' })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: { signedIn?: boolean } | null) => setSignedIn(Boolean(data?.signedIn)))
+      .catch(() => {});
     return () => controller.abort();
-  }, [refresh]);
+  }, []);
 
-  const run = React.useCallback<CartContextValue['run']>(
-    async (action, options = {}) => {
-      const optimistic = options.optimistic ?? {};
-      const rollback = { ...pending };
+  // Every line's live price is needed up front.
+  React.useEffect(() => {
+    if (raw.length > 0) requestPrices(raw.map((line) => line.variantId));
+  }, [raw, requestPrices]);
 
-      if (Object.keys(optimistic).length > 0) {
-        setPending((current) => ({ ...current, ...optimistic }));
-      }
-      setInFlight((count) => count + 1);
+  // Every line's live price must have landed before any of them is used.
+  // Mixing live and base-currency lines would add two currencies into one
+  // total, so until the whole bag is live it is shown in the catalog's currency.
+  const localized = React.useMemo(
+    () =>
+      raw.length > 0 &&
+      raw.every((line) => !catalog.variants[line.variantId] || localizedPriceFor(line.variantId) != null),
+    [raw, catalog, localizedPriceFor],
+  );
 
-      try {
-        const result = await action();
+  // Lines whose variant no longer exists in the catalog are dropped silently.
+  const lines = React.useMemo<ResolvedLine[]>(
+    () =>
+      raw.flatMap((line) => {
+        const variant = catalog.variants[line.variantId];
+        if (!variant) return [];
+        const live = localized ? localizedPriceFor(line.variantId) : null;
+        const liveAmount = live ? Number.parseFloat(live.amount) : NaN;
+        const price = Number.isFinite(liveAmount) ? liveAmount : variant.price;
+        const liveCompare = live?.compareAtAmount != null ? Number.parseFloat(live.compareAtAmount) : NaN;
+        const compareAt = live
+          ? Number.isFinite(liveCompare)
+            ? liveCompare
+            : null
+          : variant.compareAtPrice;
+        const hasMarkdown = compareAt != null && compareAt > price;
+        return [
+          {
+            ...line,
+            ...variant,
+            price,
+            lineTotal: round(price * line.quantity),
+            compareAtTotal: round((hasMarkdown ? compareAt : price) * line.quantity),
+            savedPercent: hasMarkdown ? Math.round((1 - price / compareAt) * 100) : null,
+          },
+        ];
+      }),
+    [raw, catalog, localized, localizedPriceFor],
+  );
 
-        if (result.ok) {
-          if (result.cart) setCart(result.cart);
-          // Clear the overlay only for the lines this call settled.
-          setPending((current) => {
-            const next = { ...current };
-            for (const lineId of Object.keys(optimistic)) delete next[lineId];
-            return next;
-          });
-          if (result.notice && !options.silent) push({ tone: 'success', message: result.notice });
-        } else {
-          setPending(rollback);
-          // A failed action may still return the corrected cart.
-          if (result.cart) setCart(result.cart);
-          if (result.error && !options.silent) push({ tone: 'error', message: result.error });
+  // Shopify localizes every line into one currency together, so the first
+  // resolved line's currency speaks for the whole bag.
+  const currency =
+    (localized
+      ? raw
+          .map((line) => localizedPriceFor(line.variantId)?.currencyCode)
+          .find((code): code is string => Boolean(code))
+      : undefined) ?? catalog.currency;
+
+  const itemCount = lines.length;
+  const subtotal = round(lines.reduce((sum, line) => sum + line.lineTotal, 0));
+  const discount = round(lines.reduce((sum, line) => sum + line.compareAtTotal, 0) - subtotal);
+
+  const add = React.useCallback(
+    (variantId: string, quantity = 1) => {
+      const variant = catalog.variants[variantId];
+      if (!variant || !variant.available) return;
+      const cap = Math.min(MAX_BAG_QUANTITY, variant.maxQuantity);
+      setRaw((prev) => {
+        const existing = prev.find((line) => line.variantId === variantId);
+        if (existing) {
+          return prev.map((line) =>
+            line.variantId === variantId
+              ? { ...line, quantity: Math.min(cap, line.quantity + quantity) }
+              : line,
+          );
         }
+        return [...prev, { variantId, quantity: Math.min(cap, quantity) }];
+      });
+      setAnnouncement(
+        `Added to bag: ${variant.productName}${variant.variantLabel ? `, ${variant.variantLabel}` : ''}.`,
+      );
+      setIsOpen(true);
+      track('view_cart', {});
+    },
+    [catalog],
+  );
 
-        return result;
-      } catch {
-        setPending(rollback);
-        const message = 'Network problem. Check your connection and try again.';
-        if (!options.silent) push({ tone: 'error', message });
-        return { ok: false, cart, error: message };
-      } finally {
-        setInFlight((count) => Math.max(0, count - 1));
+  const setQuantity = React.useCallback(
+    (variantId: string, quantity: number) => {
+      const cap = Math.min(MAX_BAG_QUANTITY, catalog.variants[variantId]?.maxQuantity ?? MAX_BAG_QUANTITY);
+      const next = Math.max(0, Math.min(cap, Math.round(quantity)));
+      setRaw((prev) =>
+        next === 0
+          ? prev.filter((line) => line.variantId !== variantId)
+          : prev.map((line) => (line.variantId === variantId ? { ...line, quantity: next } : line)),
+      );
+    },
+    [catalog],
+  );
+
+  const remove = React.useCallback(
+    (variantId: string) => {
+      const line = lines.find((entry) => entry.variantId === variantId);
+      if (line) {
+        track('remove_from_cart', {
+          currency,
+          value: line.lineTotal,
+          items: [{ item_id: line.handle, item_name: line.productName, quantity: line.quantity }],
+        });
+        setAnnouncement(`Removed from bag: ${line.productName}.`);
       }
+      setRaw((prev) => prev.filter((entry) => entry.variantId !== variantId));
     },
-    [cart, pending, push],
+    [lines, currency],
   );
 
-  const quantityOf = React.useCallback(
-    (lineId: string) => {
-      const optimistic = pending[lineId];
-      if (typeof optimistic === 'number') return optimistic;
-      return cart?.lines.find((line) => line.id === lineId)?.quantity ?? 0;
-    },
-    [cart, pending],
-  );
-
-  const totalQuantity = React.useMemo(() => {
-    if (!cart) return 0;
-    return cart.lines.reduce((sum, line) => {
-      const optimistic = pending[line.id];
-      return sum + (typeof optimistic === 'number' ? optimistic : line.quantity);
-    }, 0);
-  }, [cart, pending]);
-
-  /**
-   * Distinct products in the bag, not units.
-   *
-   * Two of the same t-shirt reads as "1 item" to a shopper, not "2" — the
-   * badge and "N items" copy count lines, and a line optimistically dropped to
-   * 0 (mid-removal) does not count until the server confirms it is gone.
-   */
-  const itemCount = React.useMemo(() => {
-    if (!cart) return 0;
-    return cart.lines.filter((line) => {
-      const optimistic = pending[line.id];
-      return typeof optimistic === 'number' ? optimistic > 0 : true;
-    }).length;
-  }, [cart, pending]);
+  const checkout = React.useCallback(async (): Promise<CheckoutOutcome> => {
+    if (lines.length === 0) return { ok: false, error: 'Your bag is empty.' };
+    track('begin_checkout', {
+      currency,
+      value: subtotal,
+      items: lines.map((line) => ({
+        item_id: line.handle,
+        item_name: line.productName,
+        item_variant: line.variantLabel,
+        price: line.price,
+        quantity: line.quantity,
+      })),
+    });
+    try {
+      const result = await startCheckout({
+        lines: lines.map(({ variantId, quantity }) => ({ variantId, quantity })),
+        adIdentity: readAdIdentity(),
+      });
+      if (result.ok) {
+        window.location.assign(result.checkoutUrl);
+        return { ok: true };
+      }
+      // Something in the bag can no longer be bought: apply the corrections so
+      // the shopper sees what changed before trying again.
+      for (const fix of result.fixes ?? []) setQuantity(fix.variantId, fix.quantity);
+      return { ok: false, error: result.error, issues: result.issues };
+    } catch {
+      return { ok: false, error: "We couldn't reach checkout. Check your connection and try again." };
+    }
+  }, [lines, currency, subtotal, setQuantity]);
 
   const open = React.useCallback(() => {
     setIsOpen(true);
     track('view_cart', {});
-    // Re-read on open so the bag reflects anything that changed elsewhere.
-    void refresh();
-  }, [refresh]);
-
+  }, []);
   const close = React.useCallback(() => setIsOpen(false), []);
 
   const value = React.useMemo<CartContextValue>(
     () => ({
-      cart,
-      signedIn,
-      ready,
-      loading,
-      quantityOf,
-      totalQuantity,
+      lines,
       itemCount,
+      subtotal,
+      discount,
+      currency,
       isOpen,
-      isPending: inFlight > 0,
+      hydrated,
+      signedIn,
       open,
       close,
-      refresh,
-      run,
-      setCart,
+      add,
+      setQuantity,
+      remove,
+      checkout,
+      announcement,
     }),
     [
-      cart,
-      signedIn,
-      ready,
-      loading,
-      quantityOf,
-      totalQuantity,
+      lines,
       itemCount,
+      subtotal,
+      discount,
+      currency,
       isOpen,
-      inFlight,
+      hydrated,
+      signedIn,
       open,
       close,
-      refresh,
-      run,
+      add,
+      setQuantity,
+      remove,
+      checkout,
+      announcement,
     ],
   );
 

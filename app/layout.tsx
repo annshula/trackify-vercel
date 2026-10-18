@@ -10,10 +10,19 @@ import {
   getPopularSearches,
 } from "@/lib/navigation";
 
+import { productRepository } from "@/lib/catalog";
+import { shopRepository } from "@/lib/catalog/shop";
+import { buildBagCatalog } from "@/lib/cart/bag-catalog";
+import { cartUpsellCandidates } from "@/lib/cart/upsell";
+import { getPaymentMethods } from "@/lib/shopify/payments";
+import { pdpFontVariables } from "@/lib/pdp/fonts";
+import { isFreeShipping } from "@/lib/pdp/shipping";
+
 import { ToastProvider } from "@/components/ui/toast";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { LocalizationProvider } from "@/components/localization/localization-provider";
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PageView } from "@/components/analytics/page-view";
@@ -29,7 +38,8 @@ import { ClarityAnalytics } from "@/components/analytics/clarity";
  * Deliberately reads only the local catalog — never cookies. Reading cookies
  * here would opt every route in the app into dynamic rendering, costing static
  * generation on product and collection pages and turning `notFound()` into a
- * soft 404. Cart and session are hydrated by CartProvider from /api/cart.
+ * soft 404. The bag lives in the browser (CartProvider); whether a customer is
+ * signed in is fetched from /api/session after hydration.
  */
 
 // Self-hosted at build time — no render-blocking request to Google's CDN.
@@ -66,11 +76,15 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [navigation, popularSearches, footerCollections] = await Promise.all([
-    getNavigation(),
-    getPopularSearches(),
-    getFooterCollections(),
-  ]);
+  const [navigation, popularSearches, footerCollections, products, payments, pdp] =
+    await Promise.all([
+      getNavigation(),
+      getPopularSearches(),
+      getFooterCollections(),
+      productRepository.getAllProducts(),
+      getPaymentMethods(),
+      shopRepository.getPdpContent(),
+    ]);
 
   return (
     <html
@@ -89,7 +103,8 @@ export default async function RootLayout({
 
         <ToastProvider>
           <LocalizationProvider>
-            <CartProvider>
+            <CartProvider catalog={buildBagCatalog(products)}>
+              <AnnouncementBar messages={pdp.announcements} />
               <Header navigation={navigation} popularSearches={popularSearches} />
 
               {/* Top padding clears the now-fixed header (see header.tsx); the
@@ -102,7 +117,13 @@ export default async function RootLayout({
               </main>
 
               <Footer collections={footerCollections} />
-              <CartDrawer />
+              <CartDrawer
+                payments={payments}
+                upsells={cartUpsellCandidates(products)}
+                delivery={pdp.shipping.deliveryEstimate}
+                freeShipping={isFreeShipping(pdp.shipping.costNote)}
+                themeClassName={pdpFontVariables}
+              />
             </CartProvider>
           </LocalizationProvider>
         </ToastProvider>

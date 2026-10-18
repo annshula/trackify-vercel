@@ -9,24 +9,19 @@ import type { HomeContent, ShopPdpContent } from "./types";
  * Shopify admin (Settings → Custom data → Shop) or here.
  */
 export const shopContent: ShopPdpContent = {
-  announcement: "30-day returns on every order",
+  announcement: "Free shipping on every order",
   // Each line restates a trust point below / a real Shopify payment setting
   // (Shop Pay, Apple Pay and Google Pay are the store's enabled wallets).
   announcements: [
-    "30-day returns on every order",
-    "Tracked delivery on every order",
+    "Free shipping on every order",
+    "Delivery in 5–11 days, fully tracked",
     "Secure checkout with Shop Pay, Apple Pay & Google Pay",
   ],
   shippingProcessingTime: "",
-  shippingDeliveryEstimate: "",
-  shippingCostNote: "Calculated at checkout — you see the exact cost before you pay",
+  shippingDeliveryEstimate: "5–11 days",
+  shippingCostNote: "Free shipping on every order",
   shippingRegions: "",
   trustPoints: [
-    {
-      icon: "returns",
-      label: "30-day returns",
-      body: "Changed your mind? Request a return within 30 days of delivery — unused and in its original packaging — and we'll send the label.",
-    },
     {
       icon: "lock",
       label: "Secure checkout",
@@ -35,7 +30,7 @@ export const shopContent: ShopPdpContent = {
     {
       icon: "truck",
       label: "Tracked delivery",
-      body: "Every order gets a tracking link as soon as the carrier scans it — also visible under Account → Orders.",
+      body: "Delivery in 5–11 days. Every order gets a tracking link as soon as the carrier scans it — also visible under Account → Orders.",
     },
     {
       icon: "support",
@@ -88,9 +83,9 @@ export const homeContent: HomeContent = {
     },
   ],
   faq: [
-    { question: "How long does shipping take?", answer: "Delivery options and estimated dates are calculated at checkout from your address, so you see the exact timeframe and cost before you pay." },
+    { question: "How long does shipping take?", answer: "Shipping is free on every order, and orders arrive in 5–11 days." },
     { question: "How do I track my order?", answer: "Every order gets a tracking link as soon as the carrier scans it. If you're signed in, you'll also find it under Account → Orders." },
-    { question: "What is your return policy?", answer: "You have 30 days from delivery to request a return. Items need to be unused and in their original packaging. Email support@shoptrackify.com and we'll send you a return label." },
+    { question: "What is your return policy?", answer: "Items need to be unused and in their original packaging. Email support@shoptrackify.com after delivery and we'll send you a return label." },
     { question: "How can I contact you?", answer: "Email support@shoptrackify.com — we reply within one working day. If it's about an order, include your order number so we can help straight away." },
     { question: "Do I need an account to order?", answer: "No. Guest checkout works for every order. An account just keeps your order history, tracking and saved addresses in one place." },
   ],

@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { SmartImage as Image } from "@/components/ui/smart-image";
-import { Price, Rating, Skeleton } from "@/components/ui/primitives";
+import { LoadingImage } from "./loading-image";
+import { Skeleton } from "@/components/ui/primitives";
 import { cn } from "@/lib/utils/cn";
 import { formatMoney } from "@/lib/utils/money";
 import {
@@ -13,54 +13,45 @@ import {
   lowStockCount,
   variantImageFor,
 } from "@/lib/catalog/selectors";
-import type { CatalogImage, CatalogProduct } from "@/types/catalog";
-import { PdpIcon } from "./pdp-icon";
-import { usePurchase } from "./purchase-context";
-import { AddToCartButton } from "./add-to-cart-button";
-import { UgcMedia } from "./ugc-media";
-import { SaleCountdown } from "./sale-countdown";
+import type { CatalogImage, CatalogProduct, CatalogVariant } from "@/types/catalog";
 import { useLocalizedAmount } from "@/components/localization/localization-provider";
-
-export type Reassurance = { icon: string | null; label: string };
+import { Icon } from "./icon";
+import { DeliveryTimeline } from "./delivery-timeline";
+import type { PaymentMethod } from "@/lib/shopify/payments";
+import { PaymentIcons } from "./payment-icons";
+import { SaleCountdown } from "./sale-countdown";
+import { AddToCartButton } from "./add-to-cart-button";
+import { usePurchase } from "./purchase-context";
 
 type ProductOption = CatalogProduct["options"][number];
 
 /**
- * Matches a variant option that's really a pack-size/quantity choice
- * (e.g. this catalog's "Quantity" option with values "1PC"/"2PCS"/"3PCS").
- * When a product already sells pack sizes as their own SKUs, the numeric
- * stepper would be a second, disagreeing answer to "how many", so it's hidden
- * whenever this option is present.
+ * Matches a variant option that's really a pack-size/quantity choice (e.g. a
+ * "Quantity" option with values "1PC"/"2PCS"/"3PCS"). When a product already
+ * sells pack sizes as their own SKUs, the numeric stepper would be a second,
+ * disagreeing answer to "how many", so it is hidden whenever this option exists.
  */
 const QUANTITY_OPTION_NAME = /^(quantity|qty|pack)$/i;
 
 /**
- * The above-the-fold purchase column, top to bottom: is it any good (rating)
- * → what is it (title, perks) → which one (style, pack) → what it costs →
- * buy → how they'll pay and what's promised after → real customers using it.
- *
- * Choices are shown as pictures and icons wherever the catalog has them — a
- * style with its own photo becomes an image card, a pack size shows its unit
- * count as icons — so the shopper sees what they're picking instead of
- * reading option labels.
+ * The buying controls — the purchase column's client island. Pack options as photo cards, other options as soft option cards, a
+ * single primary button, then the payment marks. Title, rating, perks and the
+ * reference accordion are server-rendered by the page around it.
  */
 export function PurchasePanel({
-  subtitle,
-  perks,
-  rating,
-  reassurance,
-  delivery,
   saleEndsAt,
+  freeShipping,
+  delivery,
+  payments,
 }: {
-  subtitle: string | null;
-  /** Short benefit lines under the title — filled-tick list, 4–6 lines. */
-  perks: string[];
-  rating: { value: number; count: number } | null;
-  reassurance: Reassurance[];
-  /** Delivery estimate, e.g. "3–8 days" — the product's own, else the store's; null hides the line. */
-  delivery: string | null;
   /** ISO datetime a live sale ends at (custom.sale_ends_at); null shows nothing. */
   saleEndsAt: string | null;
+  /** True only when the store's shipping note actually says shipping is free. */
+  freeShipping: boolean;
+  /** Delivery estimate, e.g. "5–11 days" — the product's own, else the store's; null hides the card. */
+  delivery: string | null;
+  /** Methods checkout accepts, for the logo row under the button. */
+  payments: PaymentMethod[];
 }) {
   const {
     product,
@@ -73,277 +64,185 @@ export function PurchasePanel({
     soldOut,
     unavailable,
     error,
-    buying,
-    buyNow,
     setHeroCta,
   } = usePurchase();
 
   const options = product.options.filter(
-    (option) =>
-      option.values.length > 1 || option.values[0] !== "Default Title",
+    (option) => option.values.length > 1 || option.values[0] !== "Default Title",
   );
-  const price = variant?.price ?? product.priceRange.min;
-  const compareAt = variant?.compareAtPrice ?? null;
-  // The PDP's main price display goes through the same live, Shopify-
-  // reported localization as list views (LocalizedPrice) instead of always
-  // showing the store's base currency — same skeleton-while-loading,
-  // no-flash-of-wrong-currency behavior.
-  const {
-    amount: localizedPrice,
-    currencyCode: localizedCurrencyCode,
-    compareAtAmount: localizedCompareAt,
-    loading: priceLoading,
-  } = useLocalizedAmount(
-    variant?.id ?? null,
-    price,
-    product.priceRange.currencyCode,
-    compareAt,
-  );
+  const hasQuantityOption = options.some((option) => QUANTITY_OPTION_NAME.test(option.name));
   const lowStock = lowStockCount(variant);
-  const hasQuantityOption = options.some((option) =>
-    QUANTITY_OPTION_NAME.test(option.name),
-  );
 
   return (
-    <div className="flex flex-col">
-      {rating && rating.count > 0 && (
-        <a
-          href="#reviews"
-          className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-ink-muted transition hover:border-line-strong"
-        >
-          <Rating value={rating.value} showValue={false} size={14} />
-          <span className="font-medium text-ink tabular-nums">
-            {rating.value.toFixed(1)}
-          </span>
-          <span className="tabular-nums">
-            ({rating.count} review{rating.count === 1 ? "" : "s"})
-          </span>
-        </a>
-      )}
+    <div>
+      {options.length > 0 && (
+        <div className="space-y-7">
+          {options.map((option) => {
+            const available = availableValuesFor(product, option.name, selection);
+            const chosen = selection[option.name];
+            const onSelect = (value: string) => selectOption(option.name, value);
 
-      <h1
-        className={cn(
-          "font-display leading-[1.2] tracking-tight text-balance text-ink",
-          // Dropshipped titles often run 150+ characters of search keywords;
-          // at display size they'd fill the fold, so long ones step down.
-          product.title.length > 90
-            ? "text-xl"
-            : product.title.length > 60
-              ? "text-2xl"
-              : "text-3xl",
-        )}
-      >
-        {product.title}
-      </h1>
-      {subtitle && (
-        <p className="mt-3 text-sm leading-relaxed text-ink-muted text-pretty">
-          {subtitle}
-        </p>
-      )}
+            if (QUANTITY_OPTION_NAME.test(option.name)) {
+              return (
+                <PackCards
+                  key={option.id}
+                  option={option}
+                  chosen={chosen}
+                  available={available}
+                  product={product}
+                  selection={selection}
+                  onSelect={onSelect}
+                />
+              );
+            }
 
-      {perks.length > 0 && (
-        <ul className="mt-5 grid gap-x-5 gap-y-2.5 sm:grid-cols-2">
-          {perks.map((perk) => (
-            <li
-              key={perk}
-              className="flex items-start gap-2.5 text-sm text-ink"
-            >
-              <span className="mt-px grid size-5 shrink-0 place-items-center rounded-full bg-accent text-on-accent">
-                <CheckMark className="size-3" />
-              </span>
-              {perk}
-            </li>
-          ))}
-        </ul>
-      )}
+            // A style whose values each have their own photo is picked by
+            // picture; colours and plain text options stay a compact card row.
+            const photos = option.values.map((value) =>
+              variantImageFor(product, option.name, value),
+            );
+            const distinctPhotos = new Set(
+              photos.filter(Boolean).map((image) => image!.url),
+            ).size;
+            if (!OPTION_IS_COLOR.test(option.name) && distinctPhotos === option.values.length) {
+              return (
+                <ImageOptionPicker
+                  key={option.id}
+                  option={option}
+                  chosen={chosen}
+                  available={available}
+                  photos={photos as CatalogImage[]}
+                  onSelect={onSelect}
+                />
+              );
+            }
 
-      <div className="mt-7 space-y-6">
-        {options.map((option) => {
-          const available = availableValuesFor(product, option.name, selection);
-          const chosen = selection[option.name];
-          const onSelect = (value: string) => selectOption(option.name, value);
-
-          if (QUANTITY_OPTION_NAME.test(option.name)) {
             return (
-              <PackPicker
+              <OptionCardPicker
                 key={option.id}
                 option={option}
                 chosen={chosen}
                 available={available}
                 product={product}
-                selection={selection}
                 onSelect={onSelect}
               />
             );
-          }
+          })}
+        </div>
+      )}
 
-          // A style whose values each have their own photo is picked by
-          // picture; colours and plain text options stay a pill row.
-          const photos = option.values.map((value) =>
-            variantImageFor(product, option.name, value),
-          );
-          const distinctPhotos = new Set(
-            photos.filter(Boolean).map((image) => image!.url),
-          ).size;
-          if (
-            !OPTION_IS_COLOR.test(option.name) &&
-            distinctPhotos === option.values.length
-          ) {
-            return (
-              <ImageOptionPicker
-                key={option.id}
-                option={option}
-                chosen={chosen}
-                available={available}
-                photos={photos as CatalogImage[]}
-                onSelect={onSelect}
-              />
-            );
-          }
+      <div className={options.length > 0 ? "mt-9" : undefined}>
+        {/* Pack cards carry their own prices; every other product needs the price here. */}
+        {!hasQuantityOption && <PriceLine />}
 
-          return (
-            <PillOptionPicker
-              key={option.id}
-              option={option}
-              chosen={chosen}
-              available={available}
-              product={product}
-              onSelect={onSelect}
-            />
-          );
-        })}
-      </div>
-
-      <div className="mt-7">
-        {priceLoading ? (
-          <Skeleton className="h-9 w-40" />
-        ) : (
-          <Price
-            amount={localizedPrice}
-            compareAt={localizedCompareAt}
-            currencyCode={localizedCurrencyCode}
-            size="xl"
-            priceClassName="font-display font-semibold"
-            compareAtFirst
-          />
-        )}
-        <SaleCountdown endsAt={saleEndsAt} />
-      </div>
-
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-        {!hasQuantityOption && (
-          <QuantityStepper
-            value={quantity}
-            max={maxQuantity}
-            onChange={setQuantity}
-            disabled={soldOut || unavailable}
-          />
-        )}
-        <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
-          <div className="min-w-0" ref={setHeroCta}>
-            <AddToCartButton size="lg" showPrice={false} announce />
+        {(freeShipping || saleEndsAt) && (
+          <div
+            className={cn(
+              "flex flex-wrap items-center justify-between gap-x-3 gap-y-2",
+              !hasQuantityOption && "mt-4",
+            )}
+          >
+            {freeShipping && <FreeDeliveryUnlocked />}
+            <SaleCountdown endsAt={saleEndsAt} variant="inline" />
           </div>
-          {!soldOut && !unavailable && (
-            <button
-              type="button"
-              onClick={buyNow}
-              disabled={buying}
-              className="h-14 min-w-0 cursor-pointer rounded-full border border-ink px-4 text-base font-medium text-ink transition duration-200 hover:bg-ink hover:text-ink-inverse focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:cursor-wait disabled:opacity-60"
-            >
-              {buying ? "Opening checkout…" : "Buy it now"}
-            </button>
+        )}
+
+        <div className="mt-4 flex flex-col gap-3">
+          <div className="flex gap-3">
+            {!hasQuantityOption && (
+              <QuantityStepper
+                value={quantity}
+                max={maxQuantity}
+                onChange={setQuantity}
+                disabled={soldOut || unavailable}
+              />
+            )}
+            <div className="min-w-0 flex-1" ref={setHeroCta}>
+              <AddToCartButton size="lg" showPrice={false} announce />
+            </div>
+          </div>
+        </div>
+
+        <PaymentIcons methods={payments} className="mt-3" />
+
+        {delivery && <DeliveryTimeline estimate={delivery} />}
+
+        <div className="mt-3 space-y-3 empty:hidden">
+          {error && (
+            <p role="alert" className="rounded-card bg-clay-100 px-4 py-3 text-body-sm text-error">
+              {error}
+            </p>
+          )}
+          {soldOut && (
+            <p className="rounded-card bg-cream px-4 py-3 text-body-sm text-ink-soft">
+              {variant?.title} is sold out right now.
+              {options.length > 0 && " Another option may still be available."}
+            </p>
+          )}
+          {lowStock !== null && (
+            <p className="flex items-center gap-2 text-body-sm text-warning">
+              <span className="size-2 rounded-full bg-warning" aria-hidden="true" />
+              Only {lowStock} left in {variant?.title}
+            </p>
           )}
         </div>
       </div>
-
-      <div className="mt-4 space-y-3">
-        {/* Payment icons read first, above delivery — both mobile and desktop. */}
-        <PaymentIcons />
-        {delivery && <DeliveryEstimate estimate={delivery} />}
-        {error && (
-          <p
-            role="alert"
-            className="rounded-md bg-danger-soft px-4 py-3 text-sm text-danger"
-          >
-            {error}
-          </p>
-        )}
-        {soldOut && (
-          <p className="rounded-md bg-surface-sunken px-4 py-3 text-sm text-ink-muted">
-            {variant?.title} is sold out right now.
-            {options.length > 0 && " Another option may still be available."}
-          </p>
-        )}
-        {lowStock !== null && (
-          <p className="flex items-center gap-2 text-sm text-warning">
-            <span
-              className="size-2 rounded-full bg-warning"
-              aria-hidden="true"
-            />
-            Only {lowStock} left in {variant?.title}
-          </p>
-        )}
-      </div>
-
-      {reassurance.length > 0 && (
-        <ul
-          className={cn(
-            "mt-6 grid gap-2",
-            reassurance.length >= 4
-              ? "grid-cols-2 sm:grid-cols-4"
-              : "grid-cols-3",
-          )}
-        >
-          {reassurance.map((item) => (
-            <li
-              key={item.label}
-              className="flex h-full flex-col items-center justify-center gap-1.5 rounded-lg bg-surface-sunken/70 px-2 py-3 text-center text-xs font-medium text-ink"
-            >
-              <PdpIcon icon={item.icon} size={22} className="text-accent" />
-              {item.label}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <UgcMedia items={product.pdp.ugcMedia} />
     </div>
   );
 }
 
-function CheckMark({ className }: { className?: string }) {
+/* ── Price (products with no pack option) ──────────────────────────────── */
+
+function PriceLine() {
+  const { product, variant } = usePurchase();
+  const price = variant?.price ?? product.priceRange.min;
+  const compareAt = variant?.compareAtPrice ?? null;
+  // Same live, Shopify-reported localization as list views, so the PDP never
+  // flashes the store's base currency before the visitor's own.
+  const {
+    amount,
+    currencyCode,
+    compareAtAmount,
+    loading,
+  } = useLocalizedAmount(variant?.id ?? null, price, product.priceRange.currencyCode, compareAt);
+
+  if (loading) return <Skeleton className="h-9 w-40" />;
+
+  const compareAtPrice = compareAtAmount !== null && compareAtAmount > amount ? compareAtAmount : null;
+  const percent = compareAtPrice ? Math.round((1 - amount / compareAtPrice) * 100) : null;
+
   return (
-    <svg
-      viewBox="0 0 24 24"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={3}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
+    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+      {compareAtPrice !== null && (
+        <p className="font-numeral text-body-lg text-ink-soft tabular-nums line-through">
+          {formatMoney(compareAtPrice, currencyCode, { trimZeroCents: true })}
+        </p>
+      )}
+      <p className="font-numeral text-heading-2 font-semibold tabular-nums" aria-live="polite">
+        {formatMoney(amount, currencyCode, { trimZeroCents: true })}
+      </p>
+      {percent !== null && percent > 0 && (
+        <p className="inline-flex items-center rounded-tag bg-clay-600 px-2.5 py-1 font-numeral text-[0.8rem] leading-none font-bold tracking-wide text-ivory tabular-nums">
+          −{percent}% OFF
+        </p>
+      )}
+    </div>
   );
 }
 
-function OptionLegend({
-  name,
-  chosen,
-}: {
-  name: string;
-  chosen: string | undefined;
-}) {
-  return (
-    <legend className="text-sm text-ink-muted">
-      {name}: <span className="font-medium text-ink">{chosen}</span>
-    </legend>
-  );
-}
+/* ── Option pickers ────────────────────────────────────────────────────── */
 
 const optionInputId = (option: ProductOption, value: string) =>
   `opt-${option.id}-${value}`.replace(/[^a-zA-Z0-9-_]/g, "-");
+
+function OptionLegend({ name, chosen }: { name: string; chosen: string | undefined }) {
+  return (
+    <legend className="mb-3 flex w-full items-baseline justify-between text-body-sm font-semibold">
+      {name}
+      <span className="font-normal text-ink-soft">{chosen}</span>
+    </legend>
+  );
+}
 
 /** Style picker by photo — each value is a card showing what that style actually contains. */
 function ImageOptionPicker({
@@ -360,69 +259,54 @@ function ImageOptionPicker({
   onSelect: (value: string) => void;
 }) {
   return (
-    <fieldset>
+    <fieldset className="min-w-0">
       <OptionLegend name={option.name} chosen={chosen} />
-      <div className="mt-3 grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2.5">
         {option.values.map((value, index) => {
-          const inputId = optionInputId(option, value);
           const selected = chosen === value;
           const outOfStock = !available.has(value);
           return (
-            <div key={value}>
+            <label
+              key={value}
+              data-checked={selected}
+              title={outOfStock ? `${value} — sold out` : value}
+              className="option-card flex cursor-pointer flex-col overflow-hidden has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-sage-600"
+            >
               <input
                 type="radio"
-                id={inputId}
+                id={optionInputId(option, value)}
                 name={`option-${option.id}`}
                 value={value}
                 checked={selected}
                 onChange={() => onSelect(value)}
-                className="peer sr-only"
+                className="sr-only"
               />
-              <label
-                htmlFor={inputId}
-                title={outOfStock ? `${value} — sold out` : value}
+              <span className="relative block h-24 sm:h-28">
+                <LoadingImage
+                  src={photos[index]!.url}
+                  alt=""
+                  sizes="(min-width: 1024px) 10rem, 30vw"
+                  className={cn(
+                    "object-contain p-1.5",
+                    outOfStock && "opacity-40 grayscale",
+                  )}
+                />
+                {selected && (
+                  <span className="absolute top-1.5 right-1.5 grid size-5 place-items-center rounded-full bg-ink text-ivory">
+                    <Icon name="check" className="size-3" />
+                  </span>
+                )}
+              </span>
+              <span
                 className={cn(
-                  "flex h-full cursor-pointer flex-col overflow-hidden rounded-lg border bg-surface-raised transition duration-200",
-                  "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
-                  selected
-                    ? "border-ink ring-1 ring-ink"
-                    : "border-line hover:border-line-strong",
+                  "px-2 py-2 text-center text-[0.8rem] leading-tight sm:text-body-sm",
+                  selected ? "font-medium text-ink" : "text-ink-soft",
                 )}
               >
-                {/* Short, contained thumbnails keep the pickers, price and
-                    buttons inside the first screen on a laptop. */}
-                <span className="relative block h-24 bg-white sm:h-28">
-                  <Image
-                    src={photos[index]!.url}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 10rem, 30vw"
-                    className={cn(
-                      "object-contain p-1.5",
-                      outOfStock && "opacity-40 grayscale",
-                    )}
-                  />
-                  {selected && (
-                    <span className="absolute top-1.5 right-1.5 grid size-5 place-items-center rounded-full bg-ink text-ink-inverse">
-                      <CheckMark className="size-3" />
-                    </span>
-                  )}
-                </span>
-                <span
-                  className={cn(
-                    "px-2 py-2 text-center text-xs leading-tight sm:text-sm",
-                    selected ? "font-medium text-ink" : "text-ink-muted",
-                  )}
-                >
-                  {value}
-                  {outOfStock && (
-                    <span className="block text-2xs text-ink-subtle">
-                      Sold out
-                    </span>
-                  )}
-                </span>
-              </label>
-            </div>
+                {value}
+                {outOfStock && <span className="block text-[0.7rem] text-ink-faint">Sold out</span>}
+              </span>
+            </label>
           );
         })}
       </div>
@@ -430,8 +314,8 @@ function ImageOptionPicker({
   );
 }
 
-/** Colour swatches and plain text options — the compact pill row. */
-function PillOptionPicker({
+/** Colour swatches and plain text options as soft option cards. */
+function OptionCardPicker({
   option,
   chosen,
   available,
@@ -446,64 +330,59 @@ function PillOptionPicker({
 }) {
   const isColor = OPTION_IS_COLOR.test(option.name);
   return (
-    <fieldset>
+    <fieldset className="min-w-0">
       <OptionLegend name={option.name} chosen={chosen} />
-      <div className="mt-3 flex flex-wrap gap-2.5">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
         {option.values.map((value) => {
-          const inputId = optionInputId(option, value);
           const selected = chosen === value;
           const outOfStock = !available.has(value);
           // The variant's own photo beats a guessed hex ("purple" is often lilac).
-          const photo = isColor
-            ? variantImageFor(product, option.name, value)
-            : null;
+          const photo = isColor ? variantImageFor(product, option.name, value) : null;
           const swatch = isColor && !photo ? colorSwatch(value) : null;
           return (
-            <div key={value}>
+            <label
+              key={value}
+              data-checked={selected}
+              data-disabled={outOfStock}
+              title={outOfStock ? `${value} — sold out` : value}
+              className={cn(
+                "option-card flex min-h-14 cursor-pointer items-center gap-2.5 px-3 py-2.5 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-sage-600",
+                isColor && "pl-2",
+              )}
+            >
               <input
                 type="radio"
-                id={inputId}
+                id={optionInputId(option, value)}
                 name={`option-${option.id}`}
                 value={value}
                 checked={selected}
                 onChange={() => onSelect(value)}
-                className="peer sr-only"
+                className="sr-only"
               />
-              <label
-                htmlFor={inputId}
-                title={outOfStock ? `${value} — sold out` : value}
-                className={cn(
-                  "relative flex min-h-11 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm transition duration-200",
-                  "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
-                  selected
-                    ? "border-ink bg-surface-raised text-ink shadow-e1"
-                    : "border-line-strong text-ink-muted hover:border-ink-subtle",
-                  outOfStock &&
-                    "text-ink-subtle line-through decoration-ink-subtle/60",
-                  isColor && "pl-1.5",
+              {isColor && (
+                <span
+                  aria-hidden="true"
+                  className="relative size-8 shrink-0 overflow-hidden rounded-full bg-cream shadow-[inset_0_0_0_1px_rgb(58_42_24/0.12)]"
+                  style={swatch ? { backgroundColor: swatch } : undefined}
+                >
+                  {photo && (
+                    <LoadingImage
+                      src={photo.url}
+                      alt=""
+                      sizes="32px"
+                      spinnerClassName="size-4"
+                      className="object-cover"
+                    />
+                  )}
+                </span>
+              )}
+              <span className="min-w-0">
+                <span className="block text-body-sm leading-tight font-medium">{value}</span>
+                {outOfStock && (
+                  <span className="block text-[0.7rem] text-ink-soft">Sold out</span>
                 )}
-              >
-                {isColor && (
-                  <span
-                    aria-hidden="true"
-                    className="relative size-8 overflow-hidden rounded-full border border-line"
-                    style={swatch ? { backgroundColor: swatch } : undefined}
-                  >
-                    {photo && (
-                      <Image
-                        src={photo.url}
-                        alt=""
-                        fill
-                        sizes="32px"
-                        className="object-cover"
-                      />
-                    )}
-                  </span>
-                )}
-                {value}
-                {outOfStock && <span className="sr-only">(sold out)</span>}
-              </label>
-            </div>
+              </span>
+            </label>
           );
         })}
       </div>
@@ -511,15 +390,26 @@ function PillOptionPicker({
   );
 }
 
+/* ── Pack cards ────────────────────────────────────────────────────────── */
+
+type PackRow = {
+  value: string;
+  count: number;
+  label: string;
+  variant: CatalogVariant | null;
+};
+
 /**
- * Pack sizes as stacked rows — the "bundle and save" layout Shopify themes
- * use: radio, unit icons, pack name with its per-unit price and saving on the
- * left; total (and what that many single packs would cost) on the right.
- * Each value is its own Shopify variant (SKU) with its own price, so every
- * number is that variant's real price — never a client-side multiplier. The
- * middle pack of three or more is marked most popular.
+ * "Choose your pack" as photo cards — one card per pack size, each
+ * with its own photo, price, per-pack price and saving. Phones get a stacked,
+ * thumb-first row per card; from sm up the cards sit side by side. Every number
+ * comes from that pack's own Shopify variant, never a client-side multiplier.
+ *
+ * The "Most popular" tag goes on the 3-pack (else the middle pack of three or
+ * more); "Best value" on whichever other in-stock pack has the lowest real
+ * per-unit price. Both are computed from the variants themselves.
  */
-function PackPicker({
+function PackCards({
   option,
   chosen,
   available,
@@ -534,293 +424,257 @@ function PackPicker({
   selection: Record<string, string>;
   onSelect: (value: string) => void;
 }) {
-  const baseVariant = findVariantByOptions(product, {
-    ...selection,
-    [option.name]: option.values[0]!,
-  });
-  const baseUnitPrice = baseVariant?.price ?? null;
+  const rows: PackRow[] = option.values
+    .map((value, index) => {
+      const parsed = parseInt(value, 10);
+      const count = parsed > 0 ? parsed : index + 1;
+      return {
+        value,
+        count,
+        label: parsed > 0 ? `${count} Pack` : value,
+        variant: findVariantByOptions(product, { ...selection, [option.name]: value }),
+      };
+    })
+    .sort((a, b) => a.count - b.count);
 
-  // "Best value" goes on whichever in-stock pack has the lowest real
-  // per-unit price — computed from the variants themselves, not assumed to
-  // be the last option, so it stays honest if pricing or pack order changes.
+  const popularValue =
+    rows.find((r) => r.count === 3 && r.variant)?.value ??
+    (rows.length >= 3 ? rows[Math.floor(rows.length / 2)]!.value : null);
+
   const bestValueValue = (() => {
     let best: { value: string; perUnit: number } | null = null;
-    for (const [index, value] of option.values.entries()) {
-      if (!available.has(value)) continue;
-      const variant = findVariantByOptions(product, {
-        ...selection,
-        [option.name]: value,
-      });
-      if (!variant) continue;
-      const count = parseInt(value, 10) || index + 1;
-      if (count <= 1) continue; // a single pack can't be "better value" than itself
-      const perUnit = variant.price / count;
-      if (!best || perUnit < best.perUnit) best = { value, perUnit };
+    for (const row of rows) {
+      if (!row.variant || !available.has(row.value) || row.count <= 1) continue;
+      const perUnit = row.variant.price / row.count;
+      if (!best || perUnit < best.perUnit) best = { value: row.value, perUnit };
     }
-    return best?.value ?? null;
+    return best && best.value !== popularValue ? best.value : null;
   })();
 
+  const photoOf = (row: PackRow): CatalogImage | null =>
+    (row.variant?.imageId && product.images.find((img) => img.id === row.variant!.imageId)) ||
+    product.images[0] ||
+    null;
+  // When every pack shares one photo, a bigger pack shows that shot once per
+  // unit, fanned out — so the card still says "2" or "3" at a glance without
+  // inventing imagery.
+  const sharedPhoto = rows.every((r) => photoOf(r)?.url === photoOf(rows[0]!)?.url);
+
   return (
-    <fieldset>
-      <legend className="text-sm text-ink-muted">Choose your pack</legend>
-      <div className="mt-3 space-y-2.5">
-        {option.values.map((value, index) => {
-          const tileVariant = findVariantByOptions(product, {
-            ...selection,
-            [option.name]: value,
-          });
-          const count = parseInt(value, 10) || index + 1;
-          const popular = index === 1 && option.values.length >= 3;
-          return (
-            <PackTile
-              key={value}
-              option={option}
-              value={value}
-              count={count}
-              tileVariant={tileVariant}
-              selected={chosen === value}
-              outOfStock={!available.has(value) || !tileVariant}
-              popular={popular}
-              bestValue={value === bestValueValue && !popular}
-              baseUnitPrice={baseUnitPrice}
-              fallbackCurrencyCode={product.priceRange.currencyCode}
-              onSelect={onSelect}
-            />
-          );
-        })}
+    <fieldset className="min-w-0">
+      <legend className="mb-3 text-body font-semibold">Choose your pack</legend>
+      <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-3 sm:gap-3 sm:pt-0">
+        {rows.map((row) => (
+          <PackCard
+            key={row.value}
+            option={option}
+            row={row}
+            photo={photoOf(row)}
+            fan={sharedPhoto}
+            selected={chosen === row.value}
+            soldOut={!available.has(row.value) || !row.variant}
+            tag={
+              row.value === popularValue
+                ? "Most popular"
+                : row.value === bestValueValue
+                  ? "Best value"
+                  : null
+            }
+            featured={row.value === popularValue}
+            fallbackCurrencyCode={product.priceRange.currencyCode}
+            onSelect={onSelect}
+          />
+        ))}
       </div>
     </fieldset>
   );
 }
 
+function PackPhoto({
+  src,
+  units,
+  fan,
+  sizes,
+}: {
+  src: string;
+  units: number;
+  fan: boolean;
+  sizes: string;
+}) {
+  const count = fan ? Math.min(Math.max(units, 1), 3) : 1;
+  if (count === 1) {
+    return (
+      <LoadingImage
+        src={src}
+        alt=""
+        sizes={sizes}
+        spinnerClassName="size-5"
+        className="object-contain"
+      />
+    );
+  }
+  const step = count === 2 ? 26 : 16;
+  const width = 100 - (count - 1) * step;
+  return (
+    <span className="absolute inset-0">
+      {Array.from({ length: count }, (_, i) => (
+        <span
+          key={i}
+          className="absolute inset-y-0"
+          style={{ left: `${i * step}%`, width: `${width}%` }}
+        >
+          <LoadingImage
+            src={src}
+            alt=""
+            sizes={sizes}
+            spinnerClassName="size-5"
+            className="object-contain"
+          />
+        </span>
+      ))}
+    </span>
+  );
+}
+
 /**
- * One "Choose your pack" row. Its own component (rather than inline in
- * PackPicker's map) because it needs useLocalizedAmount for its own variant —
- * a Hook can't be called from inside a .map() callback. Every derived number
- * (per-unit price, Save %) is computed from the *localized* amount, not the
- * store's base-currency one, so "Save 29%" is never a mismatch between a
- * localized display price and a base-currency percentage.
+ * One pack card. Its own component (rather than inline in PackCards' map)
+ * because it needs useLocalizedAmount for its own variant — a Hook can't be
+ * called from inside a .map() callback. Every derived number (per-unit price,
+ * saving) comes from the *localized* amount, never the base-currency one.
  */
-function PackTile({
+function PackCard({
   option,
-  value,
-  count,
-  tileVariant,
+  row,
+  photo,
+  fan,
   selected,
-  outOfStock,
-  popular,
-  bestValue,
-  baseUnitPrice,
+  soldOut,
+  tag,
+  featured,
   fallbackCurrencyCode,
   onSelect,
 }: {
   option: ProductOption;
-  value: string;
-  count: number;
-  tileVariant: ReturnType<typeof findVariantByOptions>;
+  row: PackRow;
+  photo: CatalogImage | null;
+  fan: boolean;
   selected: boolean;
-  outOfStock: boolean;
-  popular: boolean;
-  bestValue: boolean;
-  baseUnitPrice: number | null;
+  soldOut: boolean;
+  tag: string | null;
+  featured: boolean;
   fallbackCurrencyCode: string;
   onSelect: (value: string) => void;
 }) {
-  const inputId = optionInputId(option, value);
-  const {
-    amount: localizedPrice,
-    currencyCode: localizedCurrencyCode,
-    compareAtAmount: localizedCompareAt,
-    loading: priceLoading,
-  } = useLocalizedAmount(
-    tileVariant?.id ?? null,
-    tileVariant?.price ?? 0,
-    tileVariant?.currencyCode ?? fallbackCurrencyCode,
-    tileVariant?.compareAtPrice ?? null,
+  const { variant, count, label, value } = row;
+  const { amount, currencyCode, compareAtAmount, loading } = useLocalizedAmount(
+    variant?.id ?? null,
+    variant?.price ?? 0,
+    variant?.currencyCode ?? fallbackCurrencyCode,
+    variant?.compareAtPrice ?? null,
   );
-  const perUnit = tileVariant ? localizedPrice / count : null;
-  const money = (amount: number) =>
-    formatMoney(amount, localizedCurrencyCode, { trimZeroCents: true });
-  // The variant's own Shopify compareAtPrice — real data, not a computed "N
-  // singles" estimate, so it shows on every pack (including pack 1) whenever
-  // Shopify actually has one set.
-  const compareAtPrice =
-    localizedCompareAt !== null && localizedCompareAt > localizedPrice
-      ? localizedCompareAt
-      : null;
-  // "Save X%" prefers the variant's real compareAtPrice discount — works on
-  // every pack, including pack 1, which has no "N singles" to compare
-  // against. Only falls back to the bundle-vs-buying-separately estimate when
-  // Shopify has no compareAtPrice set. baseUnitPrice is still the base
-  // currency's, but this fallback only fires when there's no localized
-  // compareAtPrice to use instead, and is itself a same-currency ratio either
-  // way, so the percentage is correct regardless of which currency it's in.
-  const savePercent =
-    compareAtPrice !== null && tileVariant
-      ? Math.round((1 - localizedPrice / compareAtPrice) * 100)
-      : baseUnitPrice && tileVariant && count > 1
-        ? Math.round((1 - tileVariant.price / (baseUnitPrice * count)) * 100)
-        : null;
+  const money = (n: number) => formatMoney(n, currencyCode, { trimZeroCents: true });
+  const compareAtPrice = compareAtAmount !== null && compareAtAmount > amount ? compareAtAmount : null;
+  // The saving as an amount: the variant's own compare-at less its price.
+  const saved = compareAtPrice !== null ? Math.round((compareAtPrice - amount) * 100) / 100 : null;
+  // Pack price ÷ units, cut (not rounded) to the cent: 49.99 ÷ 2 → 24.99.
+  const unitPrice = count > 1 ? Math.floor((amount / count) * 100 + 1e-6) / 100 : null;
+
+  const surface = featured
+    ? cn("bg-sage-50", selected ? "border-sage-800" : "border-sage-600 hover:border-sage-800")
+    : cn("bg-transparent", selected ? "border-sage-800" : "border-sand hover:border-sage-300");
 
   return (
-    <div>
+    <label
+      data-checked={selected}
+      title={soldOut ? `${label} — sold out` : label}
+      className={cn(
+        "group relative flex cursor-pointer items-center gap-3 rounded-2xl border-2 px-3 py-3 transition-[border-color,transform] duration-200 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-sage-800 motion-safe:active:scale-[0.985] sm:flex-col sm:gap-0 sm:px-3 sm:pt-6 sm:pb-3 sm:text-center",
+        tag && "sm:pt-8",
+        surface,
+        soldOut && "cursor-not-allowed opacity-50",
+      )}
+    >
       <input
         type="radio"
-        id={inputId}
+        id={optionInputId(option, value)}
         name={`option-${option.id}`}
         value={value}
         checked={selected}
         onChange={() => onSelect(value)}
-        className="peer sr-only"
+        disabled={soldOut}
+        className="sr-only"
       />
-      <label
-        htmlFor={inputId}
-        title={outOfStock ? `${value} — sold out` : value}
+
+      {tag && (
+        <span className="absolute -top-2.5 right-3 z-10 inline-flex items-center gap-1 rounded-full bg-sage-800 px-2.5 py-1 font-ui text-[0.6rem] leading-none font-semibold tracking-[0.08em] text-ivory uppercase sm:-top-px sm:-left-px sm:right-auto sm:gap-0 sm:rounded-none sm:rounded-tl-2xl sm:rounded-br-[10px] sm:px-2.5 sm:py-1.5 sm:text-[0.68rem] sm:tracking-wide">
+          <Icon name="star" className="size-3 sm:hidden" />
+          {tag}
+        </span>
+      )}
+
+      {/* Selection marker: on the photo's corner on phones, top-right of the card from sm up. */}
+      <span
+        aria-hidden="true"
         className={cn(
-          "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 transition duration-200",
-          "peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring",
-          selected
-            ? "border-ink bg-surface-raised ring-1 ring-ink"
-            : "border-line bg-surface-raised/60 hover:border-line-strong",
-          outOfStock && "opacity-50",
+          "absolute top-2.5 right-2.5 hidden size-5 place-items-center rounded-full border-2 transition-colors duration-200 sm:grid",
+          selected ? "border-sage-800 bg-sage-800" : "border-sand bg-ivory",
         )}
       >
-        {/* Radio mark */}
+        {selected && <Icon name="check" className="size-3 text-ivory" />}
+      </span>
+
+      <span className="relative block size-12 shrink-0 sm:aspect-square sm:size-auto sm:w-full sm:max-w-24">
+        <span className="relative block size-full overflow-hidden rounded-xl sm:rounded-tag">
+          {photo && <PackPhoto src={photo.url} units={count} fan={fan} sizes="112px" />}
+        </span>
         <span
           aria-hidden="true"
           className={cn(
-            "grid size-5 shrink-0 place-items-center rounded-full border-2 transition",
-            selected ? "border-ink" : "border-line-strong",
+            "absolute -top-1.5 -left-1.5 grid size-4.5 place-items-center rounded-full border-2 bg-paper transition-colors duration-200 sm:hidden",
+            selected ? "border-sage-800 bg-sage-800" : "border-sand",
           )}
         >
-          {selected && <span className="size-2.5 rounded-full bg-ink" />}
+          {selected && <Icon name="check" className="size-2.5 text-ivory" />}
         </span>
+      </span>
 
-        <UnitIcons count={count} selected={selected} />
-
-        <span className="min-w-0 flex-1">
-          <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <span className="text-sm font-semibold text-ink">
-              {count} {count === 1 ? "pack" : "packs"}
-            </span>
-            {popular && (
-              <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
-                Most popular
-              </span>
-            )}
-            {bestValue && (
-              <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-on-accent">
-                Best value
-              </span>
-            )}
-            {savePercent !== null && savePercent > 0 && (
-              <span className="rounded-full bg-success-soft px-2 py-0.5 text-2xs font-semibold whitespace-nowrap text-success">
-                Save {savePercent}%
-              </span>
-            )}
-          </span>
-          <span className="mt-0.5 block text-xs tabular-nums text-ink-subtle">
-            {outOfStock
-              ? "Sold out"
-              : priceLoading
-                ? "…"
-                : count > 1 && perUnit !== null
-                  ? `${money(perUnit)} each`
-                  : "Standard price"}
-          </span>
+      <span className="flex min-w-0 flex-1 flex-col items-start sm:mt-2 sm:flex-none sm:items-center">
+        <span className="font-ui text-[0.92rem] leading-tight font-semibold text-ink sm:text-body-sm sm:font-medium">
+          {label}
         </span>
-
-        {tileVariant &&
-          (priceLoading ? (
-            <Skeleton className="h-5 w-16 shrink-0" />
-          ) : (
-            <span className="shrink-0 text-right">
-              <span className="block text-base font-semibold tabular-nums text-ink">
-                {money(localizedPrice)}
-              </span>
-              {compareAtPrice !== null && (
-                <span className="block text-xs tabular-nums text-ink-subtle line-through">
-                  {money(compareAtPrice)}
-                </span>
-              )}
-            </span>
-          ))}
-      </label>
-    </div>
-  );
-}
-
-/**
- * "Delivery in 3–8 days", plus the calendar dates that range lands on if
- * ordered today. The dates are worked out after mount — the page is
- * statically rendered, so a server-side "today" would be stale — and the
- * line reads fine without them. Falls back to the bare estimate when it
- * doesn't contain a day range.
- */
-function DeliveryEstimate({ estimate }: { estimate: string }) {
-  const [arrives, setArrives] = React.useState<string | null>(null);
-
-  React.useEffect(() => {
-    const match = estimate.match(
-      /(\d+)\s*(?:–|-|to)\s*(\d+)\s*(?:business\s*)?days?/i,
-    );
-    if (!match) return;
-    const format = (days: number) => {
-      const date = new Date();
-      date.setDate(date.getDate() + days);
-      return date.toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-      });
-    };
-    // Today's date is only knowable in the browser; this is a one-time sync from it.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setArrives(`${format(Number(match[1]))} – ${format(Number(match[2]))}`);
-  }, [estimate]);
-
-  return (
-    <p className="flex items-start gap-2.5 rounded-lg border border-line bg-surface-raised px-3.5 py-2.5 text-sm">
-      <PdpIcon icon="truck" size={20} className="mt-px shrink-0 text-accent" />
-      <span>
-        <span className="font-medium text-ink">Delivery in {estimate}</span>
-        {arrives && (
-          <span className="block text-xs text-ink-muted">
-            Order today, arrives {arrives}
+        {saved !== null && saved > 0 && (
+          <span className="mt-1 rounded-tag bg-sage-800 px-1.5 py-0.5 font-numeral text-[0.68rem] leading-none font-medium text-ivory tabular-nums sm:mt-1.5 sm:px-2 sm:text-[0.7rem]">
+            Save {money(saved)}
           </span>
         )}
+        {soldOut && variant && <span className="mt-1 text-[0.7rem] text-ink-soft">Sold out</span>}
       </span>
-    </p>
+
+      {variant &&
+        (loading ? (
+          <Skeleton className="h-5 w-14 shrink-0" />
+        ) : (
+          <span className="flex shrink-0 flex-col items-end sm:mt-1 sm:items-center">
+            {compareAtPrice !== null && (
+              <span className="font-numeral text-[0.7rem] text-ink-faint tabular-nums line-through decoration-1">
+                {money(compareAtPrice)}
+              </span>
+            )}
+            <span className="font-numeral text-[1.15rem] leading-none font-semibold tracking-tight text-ink tabular-nums sm:text-body-lg">
+              {money(amount)}
+            </span>
+            {unitPrice !== null && (
+              <span className="mt-1 font-numeral text-[0.66rem] leading-none text-ink-soft tabular-nums sm:mt-0.5 sm:text-[0.68rem]">
+                {money(unitPrice)} each
+              </span>
+            )}
+          </span>
+        ))}
+    </label>
   );
 }
 
-/** Up to three small canister marks, so pack size reads as a picture; bigger packs add "+N". */
-function UnitIcons({ count, selected }: { count: number; selected: boolean }) {
-  const shown = Math.min(count, 3);
-  return (
-    <span
-      className={cn(
-        "flex h-6 w-11 shrink-0 items-end justify-center gap-0.5",
-        selected ? "text-accent" : "text-ink-subtle",
-      )}
-      aria-hidden="true"
-    >
-      {Array.from({ length: shown }, (_, i) => (
-        <svg
-          key={i}
-          viewBox="0 0 12 24"
-          className="h-6 w-3"
-          fill="currentColor"
-        >
-          <rect x="3" y="0" width="6" height="4" rx="1.5" opacity="0.55" />
-          <rect x="1" y="4" width="10" height="20" rx="2.5" />
-        </svg>
-      ))}
-      {count > 3 && (
-        <span className="ml-0.5 text-xs font-semibold">+{count - 3}</span>
-      )}
-    </span>
-  );
-}
+/* ── Quantity ──────────────────────────────────────────────────────────── */
 
 function QuantityStepper({
   value,
@@ -834,13 +688,13 @@ function QuantityStepper({
   disabled?: boolean;
 }) {
   const button =
-    "grid size-11 cursor-pointer place-items-center rounded-full text-lg text-ink transition hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-ring disabled:cursor-not-allowed disabled:opacity-35";
+    "grid size-11 cursor-pointer place-items-center rounded-control text-lg text-ink transition hover:bg-sand focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-35";
   return (
-    <div>
+    <div className="shrink-0">
       <label htmlFor="pdp-quantity" className="sr-only">
         Quantity
       </label>
-      <div className="flex h-14 w-fit items-center rounded-full border border-line-strong px-1.5">
+      <div className="flex h-13 w-fit items-center rounded-control bg-porcelain px-1 shadow-[inset_0_0_0_1px_rgb(58_42_24/0.1)]">
         <button
           type="button"
           className={button}
@@ -859,7 +713,7 @@ function QuantityStepper({
           value={value}
           disabled={disabled}
           onChange={(event) => onChange(Number(event.target.value))}
-          className="w-8 [appearance:textfield] bg-transparent text-center text-base tabular-nums outline-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="w-8 [appearance:textfield] bg-transparent text-center font-numeral text-base tabular-nums outline-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <button
           type="button"
@@ -875,185 +729,74 @@ function QuantityStepper({
   );
 }
 
-/**
- * Accepted-payment marks under the buttons — the row itself is the "secure
- * checkout" reassurance. Inline SVG, so it never depends on a logo file.
- *
- * Only methods the store actually takes: the card brands and wallets are
- * what Shopify reports in `shop.paymentSettings` (Storefront API, checked
- * 2026-09-26). Update this list if Shopify Payments settings change —
- * showing a logo checkout doesn't offer is a broken promise at the till.
- */
-function PaymentIcons() {
-  const methods: { name: string; mark: React.ReactNode }[] = [
-    {
-      name: "Shop Pay",
-      mark: (
-        <svg viewBox="0 0 44 18" className="h-4 w-auto" aria-hidden="true">
-          <rect width="44" height="18" rx="3" fill="#5A31F4" />
-          <text
-            x="22"
-            y="12.5"
-            textAnchor="middle"
-            fontFamily="Arial, sans-serif"
-            fontSize="9"
-            fontWeight="800"
-            fontStyle="italic"
-            fill="#fff"
-          >
-            shop
-            <tspan fontWeight="600" fontStyle="normal">
-              Pay
-            </tspan>
-          </text>
-        </svg>
-      ),
-    },
-    {
-      name: "Visa",
-      mark: (
-        <svg viewBox="0 0 40 16" className="h-3.5 w-auto" aria-hidden="true">
-          <text
-            x="0"
-            y="13"
-            fontFamily="Arial, sans-serif"
-            fontSize="14"
-            fontWeight="800"
-            fontStyle="italic"
-            fill="#1A1F71"
-          >
-            VISA
-          </text>
-        </svg>
-      ),
-    },
-    {
-      name: "Mastercard",
-      mark: (
-        <svg viewBox="0 0 32 20" className="h-4 w-auto" aria-hidden="true">
-          <circle cx="12" cy="10" r="7" fill="#EB001B" />
-          <circle cx="20" cy="10" r="7" fill="#F79E1B" />
-          <path d="M16 4.5a7 7 0 0 1 0 11 7 7 0 0 1 0-11z" fill="#FF5F00" />
-        </svg>
-      ),
-    },
-    {
-      name: "American Express",
-      mark: (
-        <svg viewBox="0 0 40 16" className="h-4 w-auto" aria-hidden="true">
-          <rect width="40" height="16" rx="2" fill="#1F72CD" />
-          <text
-            x="20"
-            y="11.5"
-            textAnchor="middle"
-            fontFamily="Arial, sans-serif"
-            fontSize="8"
-            fontWeight="800"
-            fill="#fff"
-          >
-            AMEX
-          </text>
-        </svg>
-      ),
-    },
-    {
-      name: "Discover",
-      mark: (
-        <svg viewBox="0 0 52 16" className="h-3.5 w-auto" aria-hidden="true">
-          <text
-            x="0"
-            y="12"
-            fontFamily="Arial, sans-serif"
-            fontSize="10"
-            fontWeight="800"
-            fill="#231F20"
-          >
-            DISC
-          </text>
-          <circle cx="32.5" cy="8.5" r="4.6" fill="#F58220" />
-          <text
-            x="38"
-            y="12"
-            fontFamily="Arial, sans-serif"
-            fontSize="10"
-            fontWeight="800"
-            fill="#231F20"
-          >
-            VER
-          </text>
-        </svg>
-      ),
-    },
-    {
-      name: "Diners Club",
-      mark: (
-        <svg viewBox="0 0 24 18" className="h-4 w-auto" aria-hidden="true">
-          <circle cx="12" cy="9" r="8" fill="#0079BE" />
-          <circle cx="12" cy="9" r="5.2" fill="#fff" />
-          <path
-            d="M10.4 5.4v7.2a3.8 3.8 0 0 1 0-7.2zM13.6 5.4a3.8 3.8 0 0 1 0 7.2z"
-            fill="#0079BE"
-          />
-        </svg>
-      ),
-    },
-    {
-      name: "Apple Pay",
-      mark: (
-        <svg viewBox="0 0 36 18" className="h-4 w-auto" aria-hidden="true">
-          <path
-            d="M7.4 4.3c.4-.5.7-1.2.6-1.8-.6 0-1.3.4-1.7.9-.4.4-.7 1.1-.6 1.7.6 0 1.2-.3 1.7-.8zM8 5.3c-.9-.1-1.7.5-2.1.5-.4 0-1.1-.5-1.8-.5-1 0-1.8.6-2.3 1.4-1 1.7-.3 4.3.7 5.7.5.7 1 1.5 1.8 1.4.7 0 1-.5 1.9-.5s1.1.5 1.9.5c.8 0 1.3-.7 1.8-1.4.5-.8.8-1.5.8-1.6 0 0-1.5-.6-1.5-2.3 0-1.5 1.2-2.1 1.3-2.2-.7-1-1.8-1.1-2.2-1.1z"
-            fill="currentColor"
-          />
-          <text
-            x="12.5"
-            y="13"
-            fontFamily="Arial, sans-serif"
-            fontSize="10"
-            fontWeight="600"
-            fill="currentColor"
-          >
-            Pay
-          </text>
-        </svg>
-      ),
-    },
-    {
-      name: "Google Pay",
-      mark: (
-        <svg viewBox="0 0 38 18" className="h-4 w-auto" aria-hidden="true">
-          <text
-            x="0"
-            y="13"
-            fontFamily="Arial, sans-serif"
-            fontSize="12"
-            fontWeight="700"
-          >
-            <tspan fill="#4285F4">G</tspan>
-            <tspan fill="#5F6368" dx="1">
-              Pay
-            </tspan>
-          </text>
-        </svg>
-      ),
-    },
-  ];
+/* ── Free delivery strip ───────────────────────────────────────────────── */
 
+/** Confetti pieces: where each flies (px), its spin, and its colour. */
+const CONFETTI = [
+  { x: -46, y: -30, r: -200, c: "bg-gold-500" },
+  { x: -30, y: 34, r: 160, c: "bg-sage-400" },
+  { x: -64, y: 4, r: 240, c: "bg-clay-300" },
+  { x: 8, y: -42, r: -120, c: "bg-sage-400" },
+  { x: 44, y: -34, r: 220, c: "bg-gold-500" },
+  { x: 60, y: 6, r: -180, c: "bg-clay-300" },
+  { x: 34, y: 38, r: 140, c: "bg-sage-400" },
+  { x: -8, y: 44, r: -240, c: "bg-gold-500" },
+] as const;
+
+/**
+ * Celebratory "free delivery unlocked" strip, in the spirit of food-delivery
+ * apps: a green-toned bar, a truck that drives in, a one-off confetti burst and
+ * a soft light sweep. Decorative motion only; the text carries the message.
+ * Rendered only when the store's shipping note really says shipping is free.
+ */
+function FreeDeliveryUnlocked() {
   return (
-    <ul
-      className="flex flex-wrap items-center justify-center gap-1.5"
-      aria-label="Accepted payment methods"
-    >
-      {methods.map((m) => (
-        <li
-          key={m.name}
-          title={m.name}
-          className="flex h-7 min-w-11 items-center justify-center rounded-md border border-line bg-surface-raised px-2 text-ink"
-        >
-          {m.mark}
-          <span className="sr-only">{m.name}</span>
-        </li>
-      ))}
-    </ul>
+    <div className="relative min-w-0 flex-1 basis-56 overflow-hidden rounded-lg border border-dashed border-sage-300 bg-sage-50 py-1.5 pr-3 pl-2 text-sage-800">
+      <span
+        aria-hidden="true"
+        className="unlock-anim pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-transparent via-white/70 to-transparent motion-safe:animate-[unlock-sweep_3.6s_ease-in-out_infinite]"
+      />
+      <div className="relative flex items-center gap-3">
+        <span className="relative grid size-9 shrink-0 place-items-center">
+          <span
+            aria-hidden="true"
+            className="unlock-anim absolute inset-0 rounded-full border-2 border-sage-400/60 motion-safe:animate-[unlock-ring_1.8s_ease-out_0.5s_2]"
+          />
+          {CONFETTI.map((p, i) => (
+            <span
+              key={i}
+              aria-hidden="true"
+              className={cn(
+                "unlock-anim absolute top-1/2 left-1/2 h-1.5 w-1 rounded-[1px] opacity-0",
+                p.c,
+                "motion-safe:animate-[unlock-burst_1.1s_ease-out_0.35s_1_both]",
+              )}
+              style={
+                {
+                  "--bx": `${p.x}px`,
+                  "--by": `${p.y}px`,
+                  "--br": `${p.r}deg`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+          <span className="unlock-anim relative grid size-9 place-items-center text-sage-600 motion-safe:animate-[unlock-truck_0.7s_cubic-bezier(0.2,0.8,0.3,1)_both]">
+            <Icon name="truck" className="size-6" strokeWidth={1.6} />
+          </span>
+          <span
+            aria-hidden="true"
+            className="unlock-anim absolute -right-0.5 -bottom-0.5 grid size-4 place-items-center rounded-full border-2 border-sage-50 bg-success text-white motion-safe:animate-[unlock-tick_0.4s_cubic-bezier(0.3,1.6,0.5,1)_0.6s_both]"
+          >
+            <Icon name="check" className="size-2.5" strokeWidth={3} />
+          </span>
+        </span>
+        <p className="min-w-0 leading-tight">
+          <span className="block font-ui text-[0.82rem] font-semibold tracking-tight">
+            Yay! Free delivery unlocked
+          </span>
+          <span className="block text-[0.7rem] text-ink-soft">Applied to this order</span>
+        </p>
+      </div>
+    </div>
   );
 }

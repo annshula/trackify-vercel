@@ -1,24 +1,20 @@
 import "server-only";
-import type { Cart, CartLine } from "@/types/commerce";
+import type { Cart } from "@/types/commerce";
 import { storefrontRequest } from "@/lib/shopify/storefront";
 import {
-  CART_ATTRIBUTES_UPDATE_MUTATION,
-  CART_BUYER_IDENTITY_UPDATE_MUTATION,
   CART_CREATE_MUTATION,
-  CART_DISCOUNT_CODES_UPDATE_MUTATION,
-  CART_LINES_ADD_MUTATION,
-  CART_LINES_REMOVE_MUTATION,
-  CART_LINES_UPDATE_MUTATION,
-  CART_QUERY,
   VARIANTS_AVAILABILITY_QUERY,
 } from "@/lib/shopify/queries/storefront";
 import { firstUserError, type GraphQLUserError } from "@/lib/shopify/errors";
 
 /**
- * ShopifyCartService.
+ * Shopify cart, used only at checkout.
  *
- * A thin, typed wrapper over Shopify's cart. There is deliberately no local
- * cart persistence — Shopify owns quantities, pricing, discounts and totals.
+ * The shopper's bag lives in the browser (components/cart/cart-provider.tsx),
+ * so every add, change and delete is instant. A Shopify cart is created once,
+ * when they press Checkout, because that is what produces the hosted checkout
+ * URL. Prices, discounts and totals are Shopify's at that moment — nothing the
+ * browser holds is ever trusted for money.
  */
 
 type RawCart = {
@@ -42,7 +38,7 @@ type RawCart = {
     nodes: {
       id: string;
       quantity: number;
-      cost: CartLine["cost"];
+      cost: Cart["lines"][number]["cost"];
       merchandise: Record<string, unknown> | null;
     }[];
   };
@@ -82,7 +78,7 @@ function toCart(raw: RawCart): Cart {
         id: line.id,
         quantity: line.quantity,
         cost: line.cost,
-        merchandise: line.merchandise as unknown as CartLine["merchandise"],
+        merchandise: line.merchandise as unknown as Cart["lines"][number]["merchandise"],
       })),
   };
 }
@@ -96,43 +92,24 @@ export class CartError extends Error {
   }
 }
 
-function unwrap(payload: MutationPayload | undefined, operation: string): Cart {
-  if (!payload)
-    throw new CartError(`Shopify returned no result for ${operation}.`);
-
-  const userError = firstUserError(payload.userErrors);
-  if (userError)
-    throw new CartError(userError, payload.userErrors[0]?.code ?? null);
-
-  if (!payload.cart)
-    throw new CartError(
-      `Your cart could not be loaded. Please refresh and try again.`,
-    );
-  return toCart(payload.cart);
-}
-
-export async function getCart(
-  cartId: string,
-  country?: string | null,
-): Promise<Cart | null> {
-  const data = await storefrontRequest<{ cart: RawCart | null }>({
-    query: CART_QUERY,
-    variables: { id: cartId, country: country ?? null },
-  });
-  // Shopify expires carts after ~10 days of inactivity; null means "start over".
-  return data.cart ? toCart(data.cart) : null;
-}
-
-export async function createCart(
-  lines: { merchandiseId: string; quantity: number }[] = [],
-  buyerEmail?: string | null,
-  country?: string | null,
-): Promise<Cart> {
+/**
+ * Creates the checkout cart from the bag's lines, carrying the buyer's market
+ * (so Shopify prices it in their currency), the signed-in customer if any (so
+ * checkout is pre-filled) and the cart attributes the orders/paid webhook
+ * reads back (see services/webhooks/conversions.ts).
+ */
+export async function createCheckoutCart(input: {
+  lines: { merchandiseId: string; quantity: number }[];
+  country?: string | null;
+  attributes?: { key: string; value: string }[];
+  customerAccessToken?: string | null;
+}): Promise<Cart> {
+  const country = input.country ?? null;
   const buyerIdentity =
-    buyerEmail || country
+    country || input.customerAccessToken
       ? {
-          ...(buyerEmail ? { email: buyerEmail } : {}),
           ...(country ? { countryCode: country } : {}),
+          ...(input.customerAccessToken ? { customerAccessToken: input.customerAccessToken } : {}),
         }
       : undefined;
 
@@ -140,152 +117,55 @@ export async function createCart(
     query: CART_CREATE_MUTATION,
     variables: {
       input: {
-        lines: lines.map((line) => ({
+        lines: input.lines.map((line) => ({
           merchandiseId: line.merchandiseId,
           quantity: line.quantity,
         })),
+        ...(input.attributes && input.attributes.length > 0 ? { attributes: input.attributes } : {}),
         ...(buyerIdentity ? { buyerIdentity } : {}),
       },
-      country: country ?? null,
+      country,
     },
   });
-  return unwrap(data.cartCreate, "cartCreate");
+
+  const payload = data.cartCreate;
+  if (!payload) throw new CartError("Shopify returned no result for cartCreate.");
+  const userError = firstUserError(payload.userErrors);
+  if (userError) throw new CartError(userError, payload.userErrors[0]?.code ?? null);
+  if (!payload.cart) throw new CartError("Your cart could not be created. Please try again.");
+  return toCart(payload.cart);
 }
 
-export async function addLines(
-  cartId: string,
-  lines: {
-    merchandiseId: string;
-    quantity: number;
-    attributes?: { key: string; value: string }[];
-  }[],
-  country?: string | null,
-): Promise<Cart> {
-  const data = await storefrontRequest<{ cartLinesAdd: MutationPayload }>({
-    query: CART_LINES_ADD_MUTATION,
-    variables: { cartId, lines, country: country ?? null },
-  });
-  return unwrap(data.cartLinesAdd, "cartLinesAdd");
-}
-
-export async function updateLines(
-  cartId: string,
-  lines: { id: string; quantity: number }[],
-  country?: string | null,
-): Promise<Cart> {
-  const data = await storefrontRequest<{ cartLinesUpdate: MutationPayload }>({
-    query: CART_LINES_UPDATE_MUTATION,
-    variables: { cartId, lines, country: country ?? null },
-  });
-  return unwrap(data.cartLinesUpdate, "cartLinesUpdate");
-}
-
-export async function removeLines(
-  cartId: string,
-  lineIds: string[],
-  country?: string | null,
-): Promise<Cart> {
-  const data = await storefrontRequest<{ cartLinesRemove: MutationPayload }>({
-    query: CART_LINES_REMOVE_MUTATION,
-    variables: { cartId, lineIds, country: country ?? null },
-  });
-  return unwrap(data.cartLinesRemove, "cartLinesRemove");
-}
-
-export async function setDiscountCodes(
-  cartId: string,
-  discountCodes: string[],
-  country?: string | null,
-): Promise<Cart> {
-  const data = await storefrontRequest<{
-    cartDiscountCodesUpdate: MutationPayload;
-  }>({
-    query: CART_DISCOUNT_CODES_UPDATE_MUTATION,
-    variables: { cartId, discountCodes, country: country ?? null },
-  });
-  return unwrap(data.cartDiscountCodesUpdate, "cartDiscountCodesUpdate");
-}
-
-/**
- * Replaces the cart's custom attributes. Shopify copies them onto the order's
- * `note_attributes`, which is how browser-only values (fbp/fbc/external_id)
- * reach the orders/paid webhook.
- */
-export async function setCartAttributes(
-  cartId: string,
-  attributes: { key: string; value: string }[],
-  country?: string | null,
-): Promise<Cart> {
-  const data = await storefrontRequest<{ cartAttributesUpdate: MutationPayload }>({
-    query: CART_ATTRIBUTES_UPDATE_MUTATION,
-    variables: { cartId, attributes, country: country ?? null },
-  });
-  return unwrap(data.cartAttributesUpdate, "cartAttributesUpdate");
-}
-
-export async function setBuyerIdentity(
-  cartId: string,
-  buyerIdentity: {
-    email?: string | null;
-    customerAccessToken?: string | null;
-    countryCode?: string | null;
-  },
-  country?: string | null,
-): Promise<Cart> {
-  const data = await storefrontRequest<{
-    cartBuyerIdentityUpdate: MutationPayload;
-  }>({
-    query: CART_BUYER_IDENTITY_UPDATE_MUTATION,
-    variables: {
-      cartId,
-      buyerIdentity,
-      country: country ?? buyerIdentity.countryCode ?? null,
-    },
-  });
-  return unwrap(data.cartBuyerIdentityUpdate, "cartBuyerIdentityUpdate");
-}
-
-export type CartValidationIssue = {
-  lineId: string;
-  title: string;
-  reason: "unavailable" | "insufficient-stock" | "price-changed";
+export type LineIssue = {
+  variantId: string;
+  reason: "unavailable" | "insufficient-stock";
   message: string;
+  /** The most Shopify can supply right now, when stock is merely short. */
   availableQuantity?: number;
 };
 
 /**
- * Pre-checkout validation against LIVE Shopify data.
+ * Live availability for the bag's lines, straight from Shopify.
  *
  * The local catalog is never trusted for this — it can be minutes stale, and a
  * customer reaching checkout with an unavailable line is a lost order.
  */
-export async function validateCart(
-  cart: Cart,
+export async function validateLines(
+  lines: { variantId: string; quantity: number }[],
   country?: string | null,
-): Promise<CartValidationIssue[]> {
-  if (cart.lines.length === 0) return [];
+): Promise<LineIssue[]> {
+  if (lines.length === 0) return [];
 
-  // Must be fetched in the same country context as the cart itself — a live
-  // price fetched in the shop's default currency is not comparable to a cart
-  // total Shopify already converted to a different one, and would otherwise
-  // read as a false "price changed" on every checkout once a country is set.
-  const variantIds = [
-    ...new Set(cart.lines.map((line) => line.merchandise.id)),
-  ];
   const data = await storefrontRequest<{
     nodes: ({
       id: string;
       availableForSale: boolean;
       quantityAvailable: number | null;
-      currentlyNotInStock: boolean;
-      price: { amount: string; currencyCode: string };
+      product: { handle: string; title: string };
     } | null)[];
   }>({
     query: VARIANTS_AVAILABILITY_QUERY,
-    variables: {
-      ids: variantIds,
-      country: country ?? cart.buyerIdentity?.countryCode ?? null,
-    },
+    variables: { ids: lines.map((line) => line.variantId), country: country ?? null },
   });
 
   const live = new Map(
@@ -294,99 +174,30 @@ export async function validateCart(
       .map((node) => [node.id, node]),
   );
 
-  const issues: CartValidationIssue[] = [];
-
-  for (const line of cart.lines) {
-    const variant = live.get(line.merchandise.id);
-    const title = line.merchandise.product.title;
-
+  const issues: LineIssue[] = [];
+  for (const line of lines) {
+    const variant = live.get(line.variantId);
     if (!variant || !variant.availableForSale) {
+      const title = variant?.product.title ?? "An item in your bag";
       issues.push({
-        lineId: line.id,
-        title,
+        variantId: line.variantId,
         reason: "unavailable",
         message: `${title} is no longer available.`,
       });
       continue;
     }
-
     if (
       typeof variant.quantityAvailable === "number" &&
       variant.quantityAvailable > 0 &&
       variant.quantityAvailable < line.quantity
     ) {
       issues.push({
-        lineId: line.id,
-        title,
+        variantId: line.variantId,
         reason: "insufficient-stock",
-        message: `Only ${variant.quantityAvailable} of ${title} left — your quantity was reduced.`,
+        message: `Only ${variant.quantityAvailable} of ${variant.product.title} left — your quantity was reduced.`,
         availableQuantity: variant.quantityAvailable,
       });
-      continue;
-    }
-
-    const livePrice = Number.parseFloat(variant.price.amount);
-    const cartPrice = Number.parseFloat(line.cost.amountPerQuantity.amount);
-    if (
-      Number.isFinite(livePrice) &&
-      Number.isFinite(cartPrice) &&
-      Math.abs(livePrice - cartPrice) > 0.005
-    ) {
-      issues.push({
-        lineId: line.id,
-        title,
-        reason: "price-changed",
-        message: `The price of ${title} changed. Your cart has been updated.`,
-      });
     }
   }
-
   return issues;
-}
-
-/**
- * Folds one cart's lines into another.
- *
- * Shopify has no merge-carts mutation, so this reads the source lines and adds
- * them to the target. Quantities of a line already present are summed rather
- * than duplicated, which is what a shopper expects when a guest bag meets the
- * bag they left on another device.
- *
- * Returns the updated target cart, or the original when there is nothing to move.
- */
-export async function mergeCartInto(
-  source: Cart,
-  targetCartId: string,
-  country?: string | null,
-): Promise<Cart | null> {
-  if (source.lines.length === 0) return null;
-
-  const target = await getCart(targetCartId, country);
-  if (!target) return null;
-
-  const existing = new Map(
-    target.lines.map((line) => [line.merchandise.id, line]),
-  );
-
-  const toAdd: { merchandiseId: string; quantity: number }[] = [];
-  const toUpdate: { id: string; quantity: number }[] = [];
-
-  for (const line of source.lines) {
-    const match = existing.get(line.merchandise.id);
-    if (match) {
-      toUpdate.push({ id: match.id, quantity: match.quantity + line.quantity });
-    } else {
-      toAdd.push({
-        merchandiseId: line.merchandise.id,
-        quantity: line.quantity,
-      });
-    }
-  }
-
-  let merged = target;
-  if (toAdd.length > 0) merged = await addLines(targetCartId, toAdd, country);
-  if (toUpdate.length > 0)
-    merged = await updateLines(targetCartId, toUpdate, country);
-
-  return merged;
 }

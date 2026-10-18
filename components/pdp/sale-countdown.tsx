@@ -1,69 +1,115 @@
 "use client";
 
 import * as React from "react";
+import { Icon } from "./icon";
+
+/** Digits only, no design decisions — remaining time to a real, merchant-set Shopify deadline. */
+function remaining(target: number): { hours: number; minutes: number; seconds: number } | null {
+  const ms = target - Date.now();
+  if (ms <= 0) return null;
+  const totalSeconds = Math.floor(ms / 1000);
+  return {
+    hours: Math.floor(totalSeconds / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+}
+
+const pad = (n: number) => n.toString().padStart(2, "0");
 
 /**
- * Live countdown to a real sale end time (`custom.sale_ends_at` on the
- * product — an ISO datetime, set once in Shopify admin). Renders nothing
- * once that time passes rather than resetting or looping — the urgency has
- * to be true, so there's no fake deadline that never arrives.
+ * Offer countdown — only ever renders a deadline the merchant actually set in
+ * Shopify (`custom.sale_ends_at`), and hides itself the moment that deadline
+ * passes rather than freezing at 00:00:00 or looping.
  *
- * The date is only meaningful in the shopper's own clock, so — like
- * DeliveryEstimate's arrival dates — the countdown itself is worked out
- * after mount; the server-rendered HTML shows nothing extra to hydrate
- * mismatch against.
+ * The time left depends on the visitor's clock, which the server can't know
+ * (worse with ISR: the HTML may be hours old). It is therefore computed in an
+ * effect after mount — computing it in a `useState` initializer would make the
+ * server text disagree with the client's first render, a hydration mismatch.
  */
-export function SaleCountdown({ endsAt }: { endsAt: string | null }) {
-  const [remainingMs, setRemainingMs] = React.useState<number | null>(null);
+export function SaleCountdown({
+  endsAt,
+  variant = "bar",
+}: {
+  endsAt: string | null;
+  /** "bar": full-width strip for the top of the page. "inline": compact chip beside the price. */
+  variant?: "bar" | "inline";
+}) {
+  const target = endsAt ? Date.parse(endsAt) : Number.NaN;
+  const [left, setLeft] = React.useState<ReturnType<typeof remaining>>(null);
 
   React.useEffect(() => {
-    if (!endsAt) return;
-    const end = new Date(endsAt).getTime();
-    if (Number.isNaN(end)) return;
+    if (Number.isNaN(target)) return;
+    // The deadline is only meaningful against the visitor's clock, known only after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLeft(remaining(target));
+    const id = setInterval(() => setLeft(remaining(target)), 1000);
+    return () => clearInterval(id);
+  }, [target]);
 
-    const tick = () => setRemainingMs(Math.max(0, end - Date.now()));
-    tick();
-    const timer = window.setInterval(tick, 1000);
-    return () => window.clearInterval(timer);
-  }, [endsAt]);
+  if (!left) return null;
 
-  if (!endsAt || remainingMs === null || remainingMs <= 0) return null;
+  const units = [
+    { label: "hours", value: left.hours },
+    { label: "minutes", value: left.minutes },
+    { label: "seconds", value: left.seconds },
+  ];
 
-  const totalSeconds = Math.floor(remainingMs / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  const pad = (n: number) => String(n).padStart(2, "0");
+  if (variant === "inline") {
+    return (
+      <div className="w-full sm:w-auto" role="timer" aria-live="off">
+        {/* Phones: a full-width "rush" bar so the deadline never sits alone as a
+            stray chip. From sm up the same box sits beside the delivery strip. */}
+        <p className="flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-clay-300 bg-clay-50 px-3 py-1.5 font-ui text-[0.78rem] font-semibold text-clay-600 sm:inline-flex sm:w-auto sm:border-0 sm:bg-transparent sm:px-1 sm:py-0">
+          <Icon
+            name="clock"
+            className="size-4 shrink-0 motion-safe:animate-[free-pop_1.2s_ease-in-out_infinite]"
+          />
+          <span>Hurry! Offer ends in</span>
+          <span
+            className="flex items-center gap-0.5 font-numeral text-[0.9rem] font-bold tabular-nums"
+            aria-hidden="true"
+          >
+            {units.map((u, i) => (
+              <span key={u.label} className="flex items-center gap-0.5">
+                {i > 0 && <span className="opacity-70">:</span>}
+                <span className="min-w-5 text-center">{pad(u.value)}</span>
+              </span>
+            ))}
+          </span>
+        </p>
+        <span className="sr-only">
+          Offer ends in {left.hours} hours {left.minutes} minutes
+        </span>
+      </div>
+    );
+  }
 
+  /* A full-width strip at the very top of the product page, so the deadline is
+     the first thing seen. Screen readers get one plain sentence instead of the
+     ticking digits. */
   return (
-    <p
-      className="mt-3 flex items-center gap-2 text-sm font-medium text-danger"
-      role="timer"
-      aria-live="off"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        width={16}
-        height={16}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="shrink-0"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3.5 2" />
-      </svg>
-      Sale ends in{" "}
-      <span
-        className="tabular-nums"
-        aria-label={`${hours} hours ${minutes} minutes ${seconds} seconds`}
-      >
-        {hours > 0 ? `${pad(hours)}:` : ""}
-        {pad(minutes)}:{pad(seconds)}
-      </span>
-    </p>
+    <div className="bg-clay-600 text-ivory" role="timer" aria-live="off">
+      <p className="container-page flex items-center justify-center gap-3 py-2.5 font-ui text-body-sm font-medium">
+        <Icon name="clock" className="size-4 shrink-0" />
+        <span>Offer ends in</span>
+        <span
+          className="flex items-center gap-1 font-numeral font-semibold tabular-nums"
+          aria-hidden="true"
+        >
+          {units.map((u, i) => (
+            <span key={u.label} className="flex items-center gap-1">
+              {i > 0 && <span className="opacity-70">:</span>}
+              <span className="min-w-8 rounded-md bg-ivory/15 px-1.5 py-0.5 text-center">
+                {pad(u.value)}
+              </span>
+            </span>
+          ))}
+        </span>
+        <span className="sr-only">
+          {left.hours} hours {left.minutes} minutes left
+        </span>
+      </p>
+    </div>
   );
 }

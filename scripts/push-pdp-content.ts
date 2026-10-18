@@ -73,6 +73,7 @@ async function main(): Promise<void> {
           label: spec.label,
           value: spec.value,
           description: spec.description,
+          image: spec.image,
         }),
       ),
     );

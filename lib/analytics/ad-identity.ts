@@ -8,9 +8,6 @@
  * attributes, and read back from the order's note_attributes by the orders/paid
  * webhook (services/webhooks/conversions.ts). Without them that event carries
  * no fbc/fbp/external_id at all.
- *
- * Ported from the Belurae reference (`reference/src/lib/ad-identity.ts` and
- * CartProvider.checkout).
  */
 
 export type AdIdentity = {
