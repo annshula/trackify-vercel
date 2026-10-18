@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T09:47:33.050Z",
+  "generatedAt": "2026-10-18T10:56:41.016Z",
   "contact": {
     "email": "support@shoptrackify.com",
     "phone": "",
@@ -28,12 +28,12 @@
     "announcement": "Free shipping on every order",
     "announcements": [
       "Free shipping on every order",
-      "Delivery in 5–11 days, fully tracked",
+      "Delivery in 5–11 working days, fully tracked",
       "Secure checkout with Shop Pay, Apple Pay & Google Pay"
     ],
     "shipping": {
       "processingTime": null,
-      "deliveryEstimate": "5–11 days",
+      "deliveryEstimate": "5–11 working days",
       "costNote": "Free shipping on every order",
       "regions": null
     },
@@ -46,7 +46,7 @@
       {
         "icon": "truck",
         "label": "Tracked delivery",
-        "body": "Delivery in 5–11 days. Every order gets a tracking link as soon as the carrier scans it — also visible under Account → Orders."
+        "body": "Delivery in 5–11 working days. Every order gets a tracking link as soon as the carrier scans it — also visible under Account → Orders."
       },
       {
         "icon": "support",
@@ -144,7 +144,7 @@
     "faq": [
       {
         "question": "How long does shipping take?",
-        "answer": "Shipping is free on every order, and orders arrive in 5–11 days."
+        "answer": "Shipping is free on every order, and orders arrive in 5–11 working days."
       },
       {
         "question": "How do I track my order?",
