@@ -49,6 +49,9 @@ export type ShopifyOrder = {
   customer?: { email?: string | null; phone?: string | null } | null;
   billing_address?: ShopifyAddress | null;
   note_attributes?: { name?: string; value?: string }[];
+  /** Shopper's own IP / user agent, as Shopify captured them at checkout. */
+  browser_ip?: string | null;
+  client_details?: { browser_ip?: string | null; user_agent?: string | null } | null;
 };
 
 /** Mirrors the cart attribute keys proceedToCheckout (lib/cart/actions.ts) writes at checkout. */
@@ -92,6 +95,56 @@ const PRODUCT_PIXEL_ID_PATTERN = /^[0-9]{6,20}$/;
 
 const productGid = (id: string | number) =>
   String(id).startsWith("gid://") ? String(id) : `gid://shopify/Product/${id}`;
+
+/** Sums of per-line prices pick up float noise (79.97999999999999) — report whole cents. */
+const cents = (amount: number) => Math.round(amount * 100) / 100;
+
+/** What a set of lines costs at their own per-line prices. */
+const linesTotal = (items: ShopifyLineItem[]) =>
+  cents(items.reduce((sum, item) => sum + Number(item.price ?? 0) * (item.quantity ?? 1), 0));
+
+/**
+ * The order's line items that belong to this storefront. The Shopify store is
+ * shared with other brands, and every orders/paid webhook for the store lands
+ * here, so an item is only ours when its product is in this catalog — another
+ * brand's purchase must never be reported to this site's pixels.
+ */
+async function ownLineItems(order: ShopifyOrder): Promise<ShopifyLineItem[]> {
+  const items = order.line_items ?? [];
+  const owned = await Promise.all(
+    items.map(async (item) => {
+      if (item.product_id === undefined || item.product_id === null) return false;
+      const product = await productRepository.getProductById(productGid(item.product_id)).catch(() => null);
+      return product !== null;
+    }),
+  );
+  return items.filter((_, index) => owned[index]);
+}
+
+/**
+ * The purchase value to report. A whole-order total when every line is ours;
+ * otherwise just our own lines, so a mixed-brand order doesn't count another
+ * brand's revenue.
+ */
+function purchaseValue(order: ShopifyOrder, items: ShopifyLineItem[]): number {
+  if (items.length === (order.line_items ?? []).length) {
+    return Number(order.current_total_price ?? order.total_price ?? 0);
+  }
+  return linesTotal(items);
+}
+
+/**
+ * The shopper's IP and user agent. The webhook request itself comes from
+ * Shopify's servers, so its IP/UA describe Shopify, not the buyer — Meta and
+ * TikTok match on the buyer's. Shopify includes the real ones on the order;
+ * the request's are only a last resort.
+ */
+function buyerNetwork(order: ShopifyOrder, ip: string | null, userAgent: string | null) {
+  return {
+    ip: order.client_details?.browser_ip || order.browser_ip || ip,
+    userAgent: order.client_details?.user_agent || userAgent,
+  };
+}
 
 /**
  * A product pixel from a different Meta Business (its own ad account, its
@@ -197,7 +250,6 @@ async function postMetaPurchaseEvent(params: {
                   quantity: i.quantity ?? 1,
                   item_price: Number(i.price ?? 0),
                 })),
-                content_name: items.length === 1 ? items[0]!.title : undefined,
                 num_items: items.reduce((n, i) => n + (i.quantity ?? 1), 0),
                 order_id: String(order.id),
               },
@@ -251,9 +303,9 @@ export async function sendMetaPurchase(
     return;
   }
 
-  const items = order.line_items ?? [];
+  const items = await ownLineItems(order);
   if (items.length === 0) {
-    console.log(`[webhook] Meta CAPI skipped for order ${order.id}: no line items`);
+    console.log(`[webhook] Meta CAPI skipped for order ${order.id}: no line items matched this store's catalog`);
     return;
   }
 
@@ -265,9 +317,10 @@ export async function sendMetaPurchase(
   // isn't hashed: it's a random per-browser UUID with no personal meaning, not
   // PII like em/ph.
   const adIdentity = adIdentityFromOrder(order);
+  const buyer = buyerNetwork(order, ip, userAgent);
   const userData = {
-    client_ip_address: ip ?? undefined,
-    client_user_agent: userAgent ?? undefined,
+    client_ip_address: buyer.ip ?? undefined,
+    client_user_agent: buyer.userAgent ?? undefined,
     em: match.em ? [match.em] : undefined,
     ph: match.ph ? [match.ph] : undefined,
     fn: match.fn ? [match.fn] : undefined,
@@ -292,8 +345,8 @@ export async function sendMetaPurchase(
   const globalItems = items.filter((i) => !routedItemIds.has(i.id));
   const globalValue =
     routedItemIds.size === 0
-      ? Number(order.current_total_price ?? order.total_price ?? 0)
-      : globalItems.reduce((sum, i) => sum + Number(i.price ?? 0) * (i.quantity ?? 1), 0);
+      ? purchaseValue(order, items)
+      : linesTotal(globalItems);
 
   await Promise.all([
     // Skip entirely once every item routed elsewhere — an empty Purchase
@@ -314,10 +367,7 @@ export async function sendMetaPurchase(
     ...Array.from(productPixelGroups.entries()).map(([productPixelId, groupItems]) => {
       // Scoped value: just this pixel's items, priced off the order's own
       // per-line price (avoids re-deriving from order-level discounts/tax).
-      const groupValue = groupItems.reduce(
-        (sum, i) => sum + Number(i.price ?? 0) * (i.quantity ?? 1),
-        0,
-      );
+      const groupValue = linesTotal(groupItems);
       return postMetaPurchaseEvent({
         order,
         pixelId: productPixelId,
@@ -344,14 +394,15 @@ export async function sendGa4Purchase(order: ShopifyOrder): Promise<void> {
     return;
   }
 
-  const items = (order.line_items ?? []).map((line) => ({
+  const owned = await ownLineItems(order);
+  const items = owned.map((line) => ({
     item_id: String(line.variant_id ?? line.id),
     item_name: line.title ?? "",
     price: Number(line.price ?? 0),
     quantity: line.quantity ?? 1,
   }));
   if (items.length === 0) {
-    console.log(`[webhook] GA4 MP skipped for order ${order.id}: no line items`);
+    console.log(`[webhook] GA4 MP skipped for order ${order.id}: no line items matched this store's catalog`);
     return;
   }
 
@@ -370,9 +421,7 @@ export async function sendGa4Purchase(order: ShopifyOrder): Promise<void> {
               name: "purchase",
               params: {
                 currency: order.currency ?? "USD",
-                value: Number(
-                  order.current_total_price ?? order.total_price ?? 0,
-                ),
+                value: purchaseValue(order, owned),
                 transaction_id: String(order.id),
                 items,
               },
@@ -408,13 +457,14 @@ export async function sendTikTokPurchase(
     return;
   }
 
-  const items = order.line_items ?? [];
+  const items = await ownLineItems(order);
   if (items.length === 0) {
-    console.log(`[webhook] TikTok Events API skipped for order ${order.id}: no line items`);
+    console.log(`[webhook] TikTok Events API skipped for order ${order.id}: no line items matched this store's catalog`);
     return;
   }
 
-  const value = Number(order.current_total_price ?? order.total_price ?? 0);
+  const value = purchaseValue(order, items);
+  const buyer = buyerNetwork(order, ip, userAgent);
 
   // Same hashed-identity boost as Meta CAPI above — TikTok's Events API
   // matches on `email`/`phone_number` (each a hashed array) too.
@@ -438,8 +488,8 @@ export async function sendTikTokPurchase(
               event_time: Math.floor(Date.now() / 1000),
               event_id: `purchase-${order.id}`,
               user: {
-                ip: ip ?? undefined,
-                user_agent: userAgent ?? undefined,
+                ip: buyer.ip ?? undefined,
+                user_agent: buyer.userAgent ?? undefined,
                 email: match.em ? [match.em] : undefined,
                 phone_number: match.ph ? [match.ph] : undefined,
               },
