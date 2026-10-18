@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T10:42:38.982Z",
+  "generatedAt": "2026-10-18T10:47:27.368Z",
   "shop": {
     "domain": "trackify-com.myshopify.com",
     "name": "Trackify",
@@ -554,7 +554,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-02-26T14:52:57Z",
       "createdAt": "2025-02-26T14:52:57Z",
-      "updatedAt": "2026-10-18T10:35:41Z",
+      "updatedAt": "2026-10-18T10:47:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11157413134563",
@@ -798,7 +798,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619875107043\",\"gid://shopify/Metaobject/619874681059\",\"gid://shopify/Metaobject/619874779363\",\"gid://shopify/Metaobject/619875008739\",\"gid://shopify/Metaobject/619892605155\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619875074275\",\"gid://shopify/Metaobject/619874910435\",\"gid://shopify/Metaobject/619875369187\"]",
         "custom.perks": "[\"One-touch pop-up card access\",\"RFID/NFC-blocking aluminum casing\",\"Holds 5–7 cards plus cash\",\"Slim front-pocket design\"]",
-        "custom.sale_ends_at": "2026-10-20T04:00:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619875172579\",\"gid://shopify/Metaobject/619875401955\",\"gid://shopify/Metaobject/619875270883\",\"gid://shopify/Metaobject/619875565795\",\"gid://shopify/Metaobject/619875336419\",\"gid://shopify/Metaobject/619875434723\",\"gid://shopify/Metaobject/619875467491\",\"gid://shopify/Metaobject/619875631331\",\"gid://shopify/Metaobject/619892637923\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619874648291\",\"gid://shopify/Metaobject/619874746595\"]",
         "custom.subtitle": "One press fans your cards out. Aluminum shielding keeps contactless thieves out.",
@@ -1258,7 +1258,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-06T13:13:13Z",
       "createdAt": "2025-04-06T13:13:13Z",
-      "updatedAt": "2026-10-18T09:46:41Z",
+      "updatedAt": "2026-10-18T10:47:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11194508542179",
@@ -1307,6 +1307,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619876581603\",\"gid://shopify/Metaobject/619876024547\",\"gid://shopify/Metaobject/619875729635\",\"gid://shopify/Metaobject/619875827939\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619876090083\",\"gid://shopify/Metaobject/619876548835\",\"gid://shopify/Metaobject/619876614371\"]",
         "custom.perks": "[\"Credit-card size, wallet-slot fit\",\"Dual-blade edge, saw, wire cutter and opener\",\"Heat-treated stainless steel\",\"Paracord grip, ruler and SOS reference\"]",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619876057315\",\"gid://shopify/Metaobject/619876647139\",\"gid://shopify/Metaobject/619876417763\",\"gid://shopify/Metaobject/619876188387\",\"gid://shopify/Metaobject/619876286691\",\"gid://shopify/Metaobject/619875860707\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619876122851\",\"gid://shopify/Metaobject/619875991779\"]",
         "custom.subtitle": "A full multitool in the shape of a credit card — it slides into any wallet slot.",
@@ -1600,7 +1601,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:10:19Z",
       "createdAt": "2025-04-09T12:10:19Z",
-      "updatedAt": "2026-10-18T10:42:31Z",
+      "updatedAt": "2026-10-18T10:47:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197261512931",
@@ -1652,7 +1653,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619877138659\",\"gid://shopify/Metaobject/619877269731\",\"gid://shopify/Metaobject/619876843747\",\"gid://shopify/Metaobject/619876909283\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619877630179\",\"gid://shopify/Metaobject/619877499107\",\"gid://shopify/Metaobject/619877695715\"]",
         "custom.perks": "[\"4 essentials in one kit\",\"Bluetooth tracker card and key tag\",\"Carbon fiber key organizer\",\"Stainless-steel multitool wallet card\"]",
-        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619877531875\",\"gid://shopify/Metaobject/619877368035\",\"gid://shopify/Metaobject/619877400803\",\"gid://shopify/Metaobject/619877433571\",\"gid://shopify/Metaobject/619877007587\",\"gid://shopify/Metaobject/619877335267\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619876974819\",\"gid://shopify/Metaobject/619876810979\"]",
         "custom.subtitle": "Two trackers, a key organizer and a multitool card — everything for a lighter, safer carry.",
@@ -1944,7 +1945,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:11:10Z",
       "createdAt": "2025-04-09T12:11:10Z",
-      "updatedAt": "2026-10-18T10:42:31Z",
+      "updatedAt": "2026-10-18T10:47:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197262069987",
@@ -1996,7 +1997,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619877859555\",\"gid://shopify/Metaobject/619878252771\",\"gid://shopify/Metaobject/619877892323\",\"gid://shopify/Metaobject/619878121699\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619878449379\",\"gid://shopify/Metaobject/619878154467\",\"gid://shopify/Metaobject/619878023395\"]",
         "custom.perks": "[\"Ultra-thin card tracker for your wallet\",\"Keychain tag for keys and bags\",\"Separation alerts on your phone\",\"Loud beeper you trigger remotely\"]",
-        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619878318307\",\"gid://shopify/Metaobject/619878088931\",\"gid://shopify/Metaobject/619878645987\",\"gid://shopify/Metaobject/619878514915\",\"gid://shopify/Metaobject/619878613219\",\"gid://shopify/Metaobject/619877990627\",\"gid://shopify/Metaobject/619878383843\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619877794019\",\"gid://shopify/Metaobject/619877925091\"]",
         "custom.subtitle": "A slim card for your wallet and a tag for your keys — find either from your phone.",
@@ -2285,7 +2286,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:12:43Z",
       "createdAt": "2025-04-09T12:12:43Z",
-      "updatedAt": "2026-10-18T10:42:31Z",
+      "updatedAt": "2026-10-18T10:47:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197263413475",
@@ -2337,7 +2338,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619879530723\",\"gid://shopify/Metaobject/619878908131\",\"gid://shopify/Metaobject/619879694563\",\"gid://shopify/Metaobject/619879399651\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619879366883\",\"gid://shopify/Metaobject/619878940899\",\"gid://shopify/Metaobject/619879071971\"]",
         "custom.perks": "[\"RFID-blocking pop-up wallet\",\"Carbon fiber key organizer\",\"Smart card tracker and key tag\",\"Works with iOS and Android\"]",
-        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619879006435\",\"gid://shopify/Metaobject/619878875363\",\"gid://shopify/Metaobject/619879104739\",\"gid://shopify/Metaobject/619878973667\",\"gid://shopify/Metaobject/619879039203\",\"gid://shopify/Metaobject/619879629027\",\"gid://shopify/Metaobject/619879334115\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619879465187\",\"gid://shopify/Metaobject/619879235811\"]",
         "custom.subtitle": "A shielded pop-up wallet, a key organizer and two trackers — organized and trackable anywhere.",
@@ -2640,7 +2641,7 @@
       "publishedOnline": true,
       "publishedAt": "2025-04-09T12:14:44Z",
       "createdAt": "2025-04-09T12:14:45Z",
-      "updatedAt": "2026-10-18T10:42:31Z",
+      "updatedAt": "2026-10-18T10:47:21Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/11197265215715",
@@ -2692,7 +2693,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619880448227\",\"gid://shopify/Metaobject/619880579299\",\"gid://shopify/Metaobject/619880087779\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619880415459\",\"gid://shopify/Metaobject/619880874211\",\"gid://shopify/Metaobject/619880841443\"]",
         "custom.perks": "[\"Anti-theft backpack, concealed zippers\",\"Unlock the padlock with your fingerprint\",\"Carbon fiber key organizer\",\"Save more as a kit\"]",
-        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619880906979\",\"gid://shopify/Metaobject/619880644835\",\"gid://shopify/Metaobject/619880382691\",\"gid://shopify/Metaobject/619880218851\",\"gid://shopify/Metaobject/619880186083\",\"gid://shopify/Metaobject/619880710371\",\"gid://shopify/Metaobject/619880775907\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619880251619\",\"gid://shopify/Metaobject/619880317155\"]",
         "custom.subtitle": "An anti-theft backpack, a fingerprint padlock and a key organizer — secured, organized, keyless.",
@@ -3183,7 +3184,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-11T11:37:14Z",
       "createdAt": "2026-08-11T11:37:11Z",
-      "updatedAt": "2026-10-18T10:42:31Z",
+      "updatedAt": "2026-10-18T10:47:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12076193022179",
@@ -3283,7 +3284,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619881595107\",\"gid://shopify/Metaobject/619881201891\",\"gid://shopify/Metaobject/619881267427\",\"gid://shopify/Metaobject/619881332963\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619881169123\",\"gid://shopify/Metaobject/619881005283\",\"gid://shopify/Metaobject/619881234659\"]",
         "custom.perks": "[\"Elastic cord returns every ball\",\"Fill with water or sand for stability\",\"Anti-tangle swivel ring\",\"For kids, beginners and adults\"]",
-        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619881758947\",\"gid://shopify/Metaobject/619881496803\",\"gid://shopify/Metaobject/619881070819\",\"gid://shopify/Metaobject/619881791715\",\"gid://shopify/Metaobject/619881398499\",\"gid://shopify/Metaobject/619881431267\",\"gid://shopify/Metaobject/619881464035\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619881103587\",\"gid://shopify/Metaobject/619881365731\"]",
         "custom.subtitle": "Practice your forehand, backhand and footwork without a partner or a ball machine.",
@@ -3772,7 +3773,7 @@
       "publishedOnline": true,
       "publishedAt": "2026-08-14T20:04:37Z",
       "createdAt": "2026-08-14T20:04:34Z",
-      "updatedAt": "2026-10-18T10:42:32Z",
+      "updatedAt": "2026-10-18T10:47:20Z",
       "options": [
         {
           "id": "gid://shopify/ProductOption/12081130569955",
@@ -3992,7 +3993,7 @@
         "custom.feature_highlights": "[\"gid://shopify/Metaobject/619882414307\",\"gid://shopify/Metaobject/619882217699\",\"gid://shopify/Metaobject/619882676451\",\"gid://shopify/Metaobject/619882086627\"]",
         "custom.how_it_works": "[\"gid://shopify/Metaobject/619882741987\",\"gid://shopify/Metaobject/619882774755\",\"gid://shopify/Metaobject/619882938595\"]",
         "custom.perks": "[\"Silent, scratch-free key storage\",\"Aircraft-grade aluminum, carbon fiber finish\",\"Removable pocket clip and D-ring\",\"Fits most standard keys, no tools needed\"]",
-        "custom.sale_ends_at": "2026-10-25T23:59:00Z",
+        "custom.sale_ends_at": "2026-10-20T10:47:14Z",
         "custom.specs": "[\"gid://shopify/Metaobject/619882545379\",\"gid://shopify/Metaobject/619882447075\",\"gid://shopify/Metaobject/619882053859\",\"gid://shopify/Metaobject/619882709219\",\"gid://shopify/Metaobject/619882479843\",\"gid://shopify/Metaobject/619882643683\",\"gid://shopify/Metaobject/619882512611\"]",
         "custom.story": "[\"gid://shopify/Metaobject/619882610915\",\"gid://shopify/Metaobject/619882873059\"]",
         "custom.subtitle": "Fold your keys inside a pocket-knife-style frame — silent, scratch-free and half the bulk.",
